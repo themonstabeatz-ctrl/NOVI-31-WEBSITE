@@ -293,7 +293,399 @@
   50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-/* Home Page Styles */
+/* New Home Page Styles - Inspired by Pim Thai */
+.home-container-new {
+  color: var(--spa-cream);
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
+}
+
+/* Hero Banner */
+.hero-banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
+              url('https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/i03j5uou_podloga.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-banner-content {
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-main-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--spa-gold);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  letter-spacing: 2px;
+}
+
+.hero-main-subtitle {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--spa-gold);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  letter-spacing: 2px;
+}
+
+.hero-tagline {
+  font-size: 1.4rem;
+  color: var(--spa-cream);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.hero-cta-button {
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
+  color: var(--spa-dark);
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.hero-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* Welcome Section */
+.welcome-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.welcome-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.welcome-subtitle {
+  color: var(--spa-gold);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--spa-gold);
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.welcome-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--spa-cream);
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.welcome-location {
+  font-size: 1rem;
+  color: var(--spa-gold-light);
+  font-weight: 500;
+}
+
+.welcome-logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+}
+
+/* Quote Section */
+.quote-section {
+  background: rgba(212, 175, 55, 0.05);
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  margin: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+}
+
+.quote-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quote-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--spa-gold);
+  margin-bottom: 1rem;
+}
+
+.quote-text {
+  font-size: 1.8rem;
+  color: var(--spa-cream);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.quote-author {
+  font-size: 1.1rem;
+  color: var(--spa-gold);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.quote-cta-button {
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
+  color: var(--spa-dark);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.quote-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* Treatments Section */
+.treatments-section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.treatments-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.treatments-title {
+  font-size: 3rem;
+  color: var(--spa-gold);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.treatment-card {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.treatment-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--spa-gold);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.treatment-image-container {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.treatment-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.treatment-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.treatment-card:hover .treatment-image {
+  transform: scale(1.05);
+}
+
+.treatment-content {
+  padding: 1.5rem;
+}
+
+.treatment-name {
+  color: var(--spa-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.treatment-description {
+  color: var(--spa-cream);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.treatment-duration {
+  color: var(--spa-gold-light);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.book-treatment-button {
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
+  color: var(--spa-dark);
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+}
+
+.book-treatment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* Gift Section */
+.gift-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(212, 175, 55, 0.05);
+  margin: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(15px);
+}
+
+.gift-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.gift-title {
+  font-size: 1.3rem;
+  color: var(--spa-cream);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.gift-voucher {
+  margin: 2rem 0;
+}
+
+.gift-voucher-image {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+}
+
+.gift-cta-button {
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
+  color: var(--spa-dark);
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.gift-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* Testimonial Section */
+.testimonial-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonial-content {
+  background: rgba(212, 175, 55, 0.05);
+  padding: 3rem;
+  border-radius: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(15px);
+}
+
+.testimonial-quote-icon {
+  width: 50px;
+  height: 50px;
+  color: var(--spa-gold);
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-text {
+  font-size: 1.2rem;
+  color: var(--spa-cream);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-size: 1.1rem;
+  color: var(--spa-gold);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.testimonial-stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.star-filled {
+  width: 20px;
+  height: 20px;
+  color: var(--spa-gold);
+  fill: var(--spa-gold);
+}
+
+/* Legacy Styles (keeping for other pages) */
 .home-container {
   color: var(--spa-cream);
   position: relative;
