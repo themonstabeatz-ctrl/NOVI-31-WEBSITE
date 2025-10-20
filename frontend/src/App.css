@@ -1564,8 +1564,118 @@
   line-height: 1.5;
 }
 
+/* Smooth Scrolling and Performance */
+html {
+  scroll-behavior: smooth;
+}
+
+.parallax-container {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.parallax-bg {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.benefit-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.benefit-card:nth-child(1) { animation-delay: 0.1s; }
+.benefit-card:nth-child(2) { animation-delay: 0.2s; }
+.benefit-card:nth-child(3) { animation-delay: 0.3s; }
+.benefit-card:nth-child(4) { animation-delay: 0.4s; }
+.benefit-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Improved Section Separators */
+.section-separator {
+  background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
+  height: 2px;
+  border: none;
+  margin: 4rem 0;
+  opacity: 0.4;
+  position: relative;
+  z-index: 10;
+}
+
+.section-separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--spa-gold) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+/* Enhanced Content Sections */
+.services-preview,
+.benefits-massage-section,
+.about-preview {
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin: 2rem;
+  padding: 4rem 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+  
+  .logo-section {
+    padding: 2rem 0 1rem;
+    min-height: 140px;
+  }
+  
+  .logo-image {
+    max-height: 120px;
+  }
+  
+  .benefits-main-title {
+    font-size: 2.2rem;
+  }
+  
+  .benefits-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .benefit-card {
+    padding: 1.5rem;
+  }
+  
+  .services-preview,
+  .benefits-massage-section,
+  .about-preview {
+    margin: 1rem;
+    padding: 2rem 1rem;
+  }
+  
   .nav-desktop {
     display: none;
   }
