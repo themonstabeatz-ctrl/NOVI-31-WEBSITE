@@ -15,26 +15,67 @@
   min-height: 100vh;
 }
 
-/* Logo Section */
+/* Parallax Background */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
+  background-image: url('https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/i03j5uou_podloga.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.15;
+  z-index: -2;
+  will-change: transform;
+}
+
+.parallax-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%);
+  z-index: -1;
+}
+
+/* Enhanced Logo Section */
 .logo-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
-  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  padding: 4rem 0 2rem;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+  z-index: 10;
+  min-height: 200px;
 }
 
 .logo-image {
-  max-height: 120px;
+  max-height: 180px;
   width: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4));
   transition: transform 0.3s ease, filter 0.3s ease;
+  animation: gentle-glow 3s ease-in-out infinite alternate;
 }
 
 .logo-image:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6));
+}
+
+@keyframes gentle-glow {
+  0% { filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4)); }
+  100% { filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.6)); }
 }
 
 /* Header Styles */
