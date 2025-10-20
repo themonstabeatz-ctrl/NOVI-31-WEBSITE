@@ -111,15 +111,16 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Hero Banner with Parallax */}
+      {/* Hero Banner with Fixed Background */}
       <section className="pim-hero" id="hero-section">
-        <div className="pim-hero-image" id="hero-bg">
+        <div className="pim-hero-image">
           <img 
             src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/lbd6sac9_vecteezy_buddha-statue-meditating-with-lotus-flowers-and-burning-candles_47024342.jpeg" 
             alt="Buddha Meditation - Bua Luang Thai Spa"
           />
         </div>
         <div className="pim-hero-overlay"></div>
+        <div className="pim-parallax-layer" id="parallax-layer"></div>
         <div className="pim-hero-content">
           <h1 className="pim-hero-title">POSTAVITE VAŠE TELO U DOBRE RUKE</h1>
           <Button asChild className="pim-hero-button">
