@@ -2052,6 +2052,58 @@ html {
     transform: scale(1.05);
   }
   
+  /* New Home Page Mobile Styles */
+  .hero-main-title,
+  .hero-main-subtitle {
+    font-size: 2.5rem;
+  }
+  
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+  
+  .welcome-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .welcome-title {
+    font-size: 2rem;
+  }
+  
+  .treatments-title {
+    font-size: 2.2rem;
+  }
+  
+  .treatments-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .treatment-card {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  
+  .quote-text {
+    font-size: 1.4rem;
+  }
+  
+  .gift-title {
+    font-size: 1.1rem;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem;
+  }
+  
+  .gift-section,
+  .quote-section {
+    margin: 1rem;
+    padding: 2rem 1rem;
+  }
+  
+  /* Legacy Mobile Styles */
   .benefits-main-title {
     font-size: 2.2rem;
   }
