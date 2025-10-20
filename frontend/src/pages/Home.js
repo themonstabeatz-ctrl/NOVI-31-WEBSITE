@@ -10,30 +10,31 @@ const Home = () => {
   useEffect(() => {
     const handleParallaxScroll = () => {
       const scrolled = window.pageYOffset;
-      const heroBackground = document.getElementById('hero-bg');
+      const parallaxLayer = document.getElementById('parallax-layer');
       const heroSection = document.getElementById('hero-section');
       
-      if (heroBackground && heroSection) {
-        // Calculate parallax speed - very slow movement (0.3 = 30% of scroll speed)
-        const parallaxSpeed = 0.3;
+      if (parallaxLayer && heroSection) {
+        // Move transparent parallax layer slowly up and down
+        const parallaxSpeed = 0.5; // Speed of parallax movement
         
-        // Move background image slower than scroll
-        heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+        // Move parallax layer - creates the moving transparent effect
+        parallaxLayer.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
         
-        // Add fade out effect as we scroll past hero
+        // Keep hero section visible but gradually fade content
         const heroHeight = heroSection.offsetHeight;
-        const opacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.2);
-        heroSection.style.opacity = opacity;
+        const contentOpacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.5);
+        
+        const heroContent = document.querySelector('.pim-hero-content');
+        if (heroContent) {
+          heroContent.style.opacity = contentOpacity;
+        }
       }
     };
 
     // Add smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Add scroll listener
-    window.addEventListener('scroll', handleParallaxScroll);
-    
-    // Optimize performance with passive listener
+    // Add scroll listener with passive option for performance
     window.addEventListener('scroll', handleParallaxScroll, { passive: true });
     
     // Cleanup
