@@ -501,11 +501,122 @@
   transform: translateY(-2px);
 }
 
+/* Benefits of Massage Section */
+.benefits-massage-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.benefits-container {
+  text-align: center;
+}
+
+.benefits-header {
+  margin-bottom: 3rem;
+}
+
+.benefits-main-title {
+  font-size: 2.8rem;
+  color: var(--spa-gold);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.benefits-subtitle {
+  font-size: 1.8rem;
+  color: var(--spa-gold-light);
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.benefit-card {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.benefit-card:hover::before {
+  left: 100%;
+}
+
+.benefit-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--spa-gold);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+}
+
+.benefit-card h4 {
+  color: var(--spa-gold);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.benefit-card p {
+  color: var(--spa-cream);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.benefits-description {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+}
+
+.benefits-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--spa-cream);
+  opacity: 0.9;
+  margin: 0;
+}
+
 /* About Preview */
 .about-preview {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
 }
 
 .about-content {
