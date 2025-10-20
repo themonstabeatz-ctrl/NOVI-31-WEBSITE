@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
@@ -6,6 +6,42 @@ import { Card, CardContent } from "../components/ui/card";
 
 const Home = () => {
   const { translate } = useLanguage();
+
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.pageYOffset;
+      const heroBackground = document.getElementById('hero-bg');
+      const heroSection = document.getElementById('hero-section');
+      
+      if (heroBackground && heroSection) {
+        // Calculate parallax speed - very slow movement (0.3 = 30% of scroll speed)
+        const parallaxSpeed = 0.3;
+        
+        // Move background image slower than scroll
+        heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+        
+        // Add fade out effect as we scroll past hero
+        const heroHeight = heroSection.offsetHeight;
+        const opacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.2);
+        heroSection.style.opacity = opacity;
+      }
+    };
+
+    // Add smooth scrolling
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleParallaxScroll);
+    
+    // Optimize performance with passive listener
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleParallaxScroll);
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   const treatments = [
     {
