@@ -481,33 +481,30 @@ html {
 }
 
 .pim-welcome-title {
-  color: var(--spa-dark);
+  color: var(--spa-gold);
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 2rem;
   text-align: center;
   letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .pim-welcome-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  display: block;
+  text-align: center;
 }
 
 .pim-welcome-text p {
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
-  color: #555;
-}
-
-.pim-welcome-logo img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  color: var(--spa-cream);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
 }
 
 /* Quote Section */
