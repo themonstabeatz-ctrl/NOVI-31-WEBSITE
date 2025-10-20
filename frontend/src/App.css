@@ -396,12 +396,15 @@
   letter-spacing: 1px;
 }
 
-/* Welcome Section */
+/* Welcome Section with White Background */
 .pim-welcome {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   text-align: left;
+  background: white;
+  position: relative;
+  z-index: 20;
 }
 
 .pim-welcome-subtitle {
