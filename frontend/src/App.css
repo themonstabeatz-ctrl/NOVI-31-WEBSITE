@@ -52,20 +52,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem 0 2rem;
+  padding: 1.5rem 0;
   background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   position: relative;
   z-index: 10;
-  min-height: 200px;
+  min-height: 120px;
 }
 
 .logo-image {
-  max-height: 180px;
+  max-height: 200px;
   width: auto;
-  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4));
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
   transition: transform 0.3s ease, filter 0.3s ease;
   animation: gentle-glow 3s ease-in-out infinite alternate;
+  transform: scale(1.1);
 }
 
 .logo-image:hover {
