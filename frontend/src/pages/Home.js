@@ -95,6 +95,55 @@ const Home = () => {
 
       <Separator className="section-separator" />
 
+      {/* Benefits of Massage Section */}
+      <section className="benefits-massage-section">
+        <div className="benefits-container">
+          <div className="benefits-header">
+            <h2 className="benefits-main-title">Benefiti Masaže</h2>
+            <h3 className="benefits-subtitle">Benefits of Massage</h3>
+          </div>
+          
+          <div className="benefits-grid">
+            <div className="benefit-card">
+              <div className="benefit-icon">🧘‍♀️</div>
+              <h4>Smanjenje stresa</h4>
+              <p>Povećavanje opuštanja i smanjenje nivoa stresa</p>
+            </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">💪</div>
+              <h4>Smanjenje bolova</h4>
+              <p>Ublažavanje bolova u mišićima i napetosti</p>
+            </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">❤️</div>
+              <h4>Poboljšanje cirkulacije</h4>
+              <p>Poboljšanje cirkulacije, energije i budnosti</p>
+            </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">🩺</div>
+              <h4>Zdravlje srca</h4>
+              <p>Smanjenje srčanog ritma i krvnog pritiska</p>
+            </div>
+            <div className="benefit-card">
+              <div className="benefit-icon">🛡️</div>
+              <h4>Jačanje imuniteta</h4>
+              <p>Poboljšanje funkcije imunog sistema</p>
+            </div>
+          </div>
+          
+          <div className="benefits-description">
+            <p className="benefits-text">
+              Masaža je više od pukog luksuza; to je holistički pristup blagostanju. Doživite transformativnu moć dodira 
+              dok naši vešti terapeuti rade na ublažavanju stresa, smanjenju napetosti mišića i podsticanju dubokog 
+              opuštanja. Otkrijte kako masaža može poboljšati vaše celokupno zdravlje i blagostanje, od poboljšanog 
+              sna do jačanja imuniteta. Uronite u svet spokojstva i izađite osveženi i revitalizovani.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="section-separator" />
+
       {/* About Preview */}
       <section className="about-preview">
         <div className="about-content">
