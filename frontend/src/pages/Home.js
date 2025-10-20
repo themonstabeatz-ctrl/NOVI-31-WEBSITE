@@ -75,14 +75,15 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Hero Banner - Exact Pim Thai Style */}
-      <section className="pim-hero">
-        <div className="pim-hero-image">
+      {/* Hero Banner with Parallax */}
+      <section className="pim-hero" id="hero-section">
+        <div className="pim-hero-image" id="hero-bg">
           <img 
-            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/mfndqep6_podloga.jpg" 
-            alt="Bua Luang Thai Spa"
+            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/lbd6sac9_vecteezy_buddha-statue-meditating-with-lotus-flowers-and-burning-candles_47024342.jpeg" 
+            alt="Buddha Meditation - Bua Luang Thai Spa"
           />
         </div>
+        <div className="pim-hero-overlay"></div>
         <div className="pim-hero-content">
           <h1 className="pim-hero-title">POSTAVITE VAŠE TELO U DOBRE RUKE</h1>
           <Button asChild className="pim-hero-button">
