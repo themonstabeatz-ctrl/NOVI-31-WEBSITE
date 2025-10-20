@@ -2507,7 +2507,8 @@ html {
   }
 
   .pim-hero-image {
-    height: 90vh; /* Adjust for mobile */
+    height: 70vh; /* Match hero height on mobile */
+    position: absolute; /* Switch to absolute on mobile */
   }
 
   .pim-hero-title {
@@ -2521,8 +2522,18 @@ html {
     font-size: 1rem;
   }
 
+  .pim-welcome {
+    background-attachment: scroll; /* Disable fixed background on mobile */
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .pim-welcome-title {
+    font-size: 2rem;
+  }
+
   /* Disable parallax on mobile for better performance */
-  .pim-hero-image {
+  .pim-parallax-layer {
     transform: none !important;
   }
 
