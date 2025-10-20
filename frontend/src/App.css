@@ -293,11 +293,25 @@
   50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-/* Pim Thai Style - 90% Similar Structure */
+/* Pim Thai Style with Parallax - 90% Similar Structure */
 .pim-style-homepage {
   background: white;
   color: #333;
   font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Performance optimizations for parallax */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* Hero Section with Parallax Effect */
