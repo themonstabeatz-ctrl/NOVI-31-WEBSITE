@@ -289,6 +289,9 @@
 /* Home Page Styles */
 .home-container {
   color: var(--spa-cream);
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
 }
 
 .hero-section {
@@ -296,6 +299,7 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  z-index: 10;
 }
 
 .hero-content {
