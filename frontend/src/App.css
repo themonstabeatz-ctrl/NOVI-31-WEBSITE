@@ -2467,6 +2467,14 @@ html {
   }
   
   /* Pim Style Mobile Responsive */
+  .pim-hero {
+    height: 70vh; /* Smaller height on mobile */
+  }
+
+  .pim-hero-image {
+    height: 90vh; /* Adjust for mobile */
+  }
+
   .pim-hero-title {
     font-size: 2.5rem;
     line-height: 1.1;
@@ -2474,8 +2482,13 @@ html {
   }
 
   .pim-hero-button {
-    padding: 0.8rem 2rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
+  }
+
+  /* Disable parallax on mobile for better performance */
+  .pim-hero-image {
+    transform: none !important;
   }
 
   .pim-tagline h2 {
