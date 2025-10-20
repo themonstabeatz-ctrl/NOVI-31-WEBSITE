@@ -134,25 +134,21 @@ const Home = () => {
         <h2>Oslobodite se, Opustite se, Odmorite se</h2>
       </section>
 
-      {/* Welcome Section */}
+      {/* Welcome Section with Background */}
       <section className="pim-welcome">
-        <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
-        <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
-        <div className="pim-welcome-content">
-          <div className="pim-welcome-text">
-            <p>
-              Bua Luang Thai Spa je posvećen spajanju tradicionalnih tajlandskih tehnika masaže sa 
-              savremenim wellness praksama. Naš tim je posvećen pružanju pomoći u postizanju opuštanja, 
-              ublažavanju napetosti mišića i poboljšanju opšteg blagostanja. Zalažemo se za holistički 
-              pristup lečenju koji integriše um, telo i duh.
-            </p>
-            <p>Pronađite nas na adresi Knez Mihailova 15, Beograd 11000, Srbija.</p>
-          </div>
-          <div className="pim-welcome-logo">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/ujd19ro1_Bua%20luang%20logo.png" 
-              alt="Bua Luang Thai Spa Logo"
-            />
+        <div className="pim-welcome-container">
+          <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
+          <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
+          <div className="pim-welcome-content">
+            <div className="pim-welcome-text">
+              <p>
+                Bua Luang Thai Spa je posvećen spajanju tradicionalnih tajlandskih tehnika masaže sa 
+                savremenim wellness praksama. Naš tim je posvećen pružanju pomoći u postizanju opuštanja, 
+                ublažavanju napetosti mišića i poboljšanju opšteg blagostanja. Zalažemo se za holistički 
+                pristup lečenju koji integriše um, telo i duh.
+              </p>
+              <p>Pronađite nas na adresi Knez Mihailova 15, Beograd 11000, Srbija.</p>
+            </div>
           </div>
         </div>
       </section>
