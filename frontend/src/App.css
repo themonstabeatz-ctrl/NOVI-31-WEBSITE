@@ -70,13 +70,19 @@
 }
 
 .logo-image:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6));
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 45px rgba(212, 175, 55, 0.7));
 }
 
 @keyframes gentle-glow {
-  0% { filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4)); }
-  100% { filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.6)); }
+  0% { 
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+    transform: scale(1.1);
+  }
+  100% { 
+    filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7));
+    transform: scale(1.12);
+  }
 }
 
 /* Header Styles */
