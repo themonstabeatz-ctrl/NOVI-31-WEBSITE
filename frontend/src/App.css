@@ -381,9 +381,9 @@ html {
 }
 
 .pim-hero-button {
-  background: var(--spa-gold);
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
   color: var(--spa-dark);
-  padding: 1rem 3rem;
+  padding: 1.2rem 3rem;
   font-size: 1.2rem;
   font-weight: 700;
   border: none;
@@ -392,12 +392,15 @@ html {
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .pim-hero-button:hover {
-  background: var(--spa-gold-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, var(--spa-gold-light) 0%, var(--spa-gold) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
 }
 
 /* Tagline with Overlap Effect */
