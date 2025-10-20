@@ -293,12 +293,372 @@
   50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-/* New Home Page Styles - Inspired by Pim Thai */
-.home-container-new {
-  color: var(--spa-cream);
+/* Pim Thai Style - 90% Similar Structure */
+.pim-style-homepage {
+  background: white;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Hero Section - Exact Pim Style */
+.pim-hero {
   position: relative;
-  z-index: 5;
-  background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
+  margin-bottom: 0;
+}
+
+.pim-hero-image {
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.pim-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pim-hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.pim-hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--spa-gold);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+
+.pim-hero-button {
+  background: var(--spa-gold);
+  color: var(--spa-dark);
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pim-hero-button:hover {
+  background: var(--spa-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* Tagline */
+.pim-tagline {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--spa-dark);
+}
+
+.pim-tagline h2 {
+  color: var(--spa-gold);
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Welcome Section */
+.pim-welcome {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.pim-welcome-subtitle {
+  color: var(--spa-gold);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.pim-welcome-title {
+  color: var(--spa-dark);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.pim-welcome-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.pim-welcome-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.pim-welcome-logo img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+}
+
+/* Quote Section */
+.pim-quote {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(212, 175, 55, 0.1);
+  margin: 2rem 0;
+}
+
+.pim-quote-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pim-quote-text {
+  font-size: 2rem;
+  color: var(--spa-dark);
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.pim-quote-author {
+  font-size: 1.1rem;
+  color: var(--spa-gold);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.pim-quote-button {
+  background: var(--spa-gold);
+  color: var(--spa-dark);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pim-quote-button:hover {
+  background: var(--spa-gold-dark);
+  transform: translateY(-2px);
+}
+
+/* Philosophy Section */
+.pim-philosophy {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--spa-dark);
+}
+
+.pim-philosophy h2 {
+  color: var(--spa-gold);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.pim-philosophy-image {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pim-philosophy-image img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+}
+
+/* Services Section */
+.pim-services {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pim-services-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--spa-dark);
+  font-weight: 800;
+  margin-bottom: 3rem;
+  letter-spacing: 1px;
+}
+
+.pim-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.pim-treatment-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pim-treatment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.pim-treatment-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.pim-treatment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.pim-treatment-card:hover .pim-treatment-image img {
+  transform: scale(1.05);
+}
+
+.pim-treatment-content {
+  padding: 1.5rem;
+}
+
+.pim-treatment-name {
+  color: var(--spa-dark);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pim-treatment-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.pim-treatment-duration {
+  color: var(--spa-gold);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.pim-treatment-button {
+  background: var(--spa-gold);
+  color: var(--spa-dark);
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pim-treatment-button:hover {
+  background: var(--spa-gold-dark);
+  transform: translateY(-2px);
+}
+
+/* Gift Section */
+.pim-gift {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.pim-gift-title {
+  font-size: 1.3rem;
+  color: var(--spa-dark);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.pim-gift-image {
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.pim-gift-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+}
+
+.pim-gift-button,
+.pim-gift-button-bottom {
+  background: var(--spa-gold);
+  color: var(--spa-dark);
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  margin: 1rem;
+  display: inline-block;
+}
+
+.pim-gift-button:hover,
+.pim-gift-button-bottom:hover {
+  background: var(--spa-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* Testimonial */
+.pim-testimonial {
+  background: var(--spa-dark);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.pim-testimonial-quote {
+  font-size: 1.2rem;
+  color: var(--spa-cream);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+}
+
+.pim-testimonial-author {
+  font-size: 1.1rem;
+  color: var(--spa-gold);
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* Hero Banner */
