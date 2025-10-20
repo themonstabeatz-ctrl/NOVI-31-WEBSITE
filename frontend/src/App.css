@@ -441,15 +441,35 @@ html {
   letter-spacing: 1px;
 }
 
-/* Welcome Section with White Background */
+/* Welcome Section with Background Image */
 .pim-welcome {
   padding: 4rem 2rem;
+  position: relative;
+  z-index: 20;
+  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/vpmqfy4q_podloga.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 60vh;
+}
+
+.pim-welcome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.pim-welcome-container {
   max-width: 1200px;
   margin: 0 auto;
   text-align: left;
-  background: white;
   position: relative;
-  z-index: 20;
+  z-index: 2;
 }
 
 .pim-welcome-subtitle {
