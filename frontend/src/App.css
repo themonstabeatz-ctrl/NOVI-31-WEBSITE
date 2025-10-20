@@ -376,11 +376,16 @@
   box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
-/* Tagline */
+/* Tagline with Overlap Effect */
 .pim-tagline {
   text-align: center;
   padding: 3rem 2rem;
   background: var(--spa-dark);
+  position: relative;
+  z-index: 20;
+  margin-top: -5vh; /* Overlap with hero */
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
 }
 
 .pim-tagline h2 {
