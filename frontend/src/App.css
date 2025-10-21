@@ -2573,6 +2573,19 @@ body {
   font-size: 0.9rem;
 }
 
+.map-button {
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
+  border: none;
+  color: var(--spa-dark);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.map-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
 /* Additional Info */
 .additional-info {
   padding: 2rem;
