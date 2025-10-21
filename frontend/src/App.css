@@ -395,12 +395,12 @@ body {
   backface-visibility: hidden;
 }
 
-/* Hero Section - Clean Buddha */
+/* Full-Size Buddha Hero */
 .pim-hero {
   position: relative;
-  height: calc(100vh - 220px); /* Account for logo + slogan space */
+  height: 100vh;
   overflow: hidden;
-  margin-top: 220px; /* Space for logo and slogan */
+  margin-top: 0;
   margin-bottom: 0;
 }
 
