@@ -241,7 +241,24 @@ const Home = () => {
 
       {/* Philosophy Section - Normal */}
       <section className="pim-philosophy">
-        <h2>FILOSOFIJA</h2>
+        <h2 className="pim-philosophy-title">NAŠA UMETNOST TAJLANDSKE MASAŽE</h2>
+        <div className="pim-philosophy-content">
+          <div className="pim-philosophy-text">
+            <p>
+              Tajlandska masaža nije samo tretman, to je poštovanje prema telu, umu i duhu.
+              U njenim korenima leži drevna mudrost joge, ajurvede i budističke prakse.
+              Verujemo da kroz dodir i harmoničan ritam terapeut ne samo da opušta mišiće, već oslobađa puteve energije, vraća protok i uspostavlja balans u telu i duhu.
+            </p>
+            <p>
+              Svaki pritisak, opušta mišiće i istezanje postaje komunikacija tela sa sobom.
+              Terapeut ne vodi samo pokret ruku, vodi pažnju, saosećanje i prisutnost.
+              Kroz to putovanje, napetosti se pretvaraju u olakšanje, a telo u prostor obnove.
+            </p>
+            <p>
+              Naš cilj je da svaki klijent iz spa-prostora izađe ne samo opušteniji, već osnaženiji, povezaniji sa sobom i inspirisan tišinom, jer prava masaža je susret između energije koju dolazite da primite i harmonije koju otkrijete u sebi.
+            </p>
+          </div>
+        </div>
         <div className="pim-philosophy-image">
           <img 
             src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
