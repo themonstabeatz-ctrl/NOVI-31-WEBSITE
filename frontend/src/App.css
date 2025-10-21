@@ -1895,52 +1895,52 @@ body {
 
 /* Contact Section Ultra Compact */
 .contact-section {
-  padding: 0.5rem;
-  max-width: 900px;
+  padding: 0.25rem;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 0.25rem;
 }
 
-/* Form Card Ultra Compact */
+/* Form Card EXTRA Ultra Compact */
 .contact-form-card {
   background: rgba(212, 175, 55, 0.05);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 .contact-form-card .card-header {
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 .contact-form-card .card-content {
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 .contact-form-card .form-title {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.15rem;
 }
 
 .contact-form-card .form-subtitle {
-  font-size: 0.75rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.65rem;
+  margin-bottom: 0.25rem;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .form-group {
@@ -1948,21 +1948,25 @@ body {
 }
 
 .form-group label {
-  font-size: 0.95rem;
-  margin-bottom: 0.2rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.1rem;
   font-weight: 500;
 }
 
 .form-input,
 .form-textarea {
-  font-size: 1rem;
-  padding: 0.3rem;
+  font-size: 0.85rem;
+  padding: 0.2rem;
+}
+
+.form-textarea {
+  min-height: 60px;
 }
 
 .submit-button {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  padding: 0.4rem 0.8rem;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
 }
 
 /* Contact Info Ultra Compact */
