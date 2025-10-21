@@ -1920,13 +1920,11 @@ body {
   gap: 0.1rem;
 }
 
-/* Map Card - Position top right */
+/* Map Card - Third column (right) */
 .map-card {
-  position: absolute;
-  top: 0;
-  right: -120px;
+  grid-column: 3;
+  grid-row: 1;
   width: 110px;
-  z-index: 10;
 }
 /* Form Card UNIQUE STYLE - Different from other cards */
 .contact-form-card {
