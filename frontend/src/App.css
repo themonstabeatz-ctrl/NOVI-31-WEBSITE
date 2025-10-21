@@ -105,40 +105,23 @@
 
 /* Fixed Footer with Slogan Below Buddha */
 .fixed-footer-slogan {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  height: 60px;
   z-index: 500;
-  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .fixed-footer-content {
-  padding: 1.5rem 2rem;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 15px;
-  border: 2px solid var(--spa-gold);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: none; /* Hide the golden frame and text */
 }
 
 .fixed-footer-text {
-  color: var(--spa-gold);
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin: 0;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-  line-height: 1.2;
-  animation: goldGlow 3s ease-in-out infinite alternate;
-  font-family: 'Agency FB', 'Arial Narrow', sans-serif;
+  display: none; /* Hide the text */
 }
 
 @keyframes goldGlow {
