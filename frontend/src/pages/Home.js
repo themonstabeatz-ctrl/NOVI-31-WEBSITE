@@ -156,9 +156,6 @@ const Home = () => {
             className="hero-logo-animated"
             id="hero-logo"
           />
-          <Button asChild className="pim-hero-button">
-            <Link to="/contact">Rezervišite Online</Link>
-          </Button>
         </div>
       </section>
 
