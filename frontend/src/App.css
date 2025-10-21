@@ -2127,10 +2127,11 @@ body {
   margin-top: 0.075rem;
 }
 
-/* Additional Info - Same row as Form (Row 1), Column 3 */
+/* Additional Info - Same row as Form (Row 1), Next to it */
 .contact-container .additional-info {
-  grid-column: 3;
-  grid-row: 1; /* Same row as form - was row 2 */
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start; /* Stick to left edge of column */
   width: 110px;
   padding: 0;
   margin: 0;
