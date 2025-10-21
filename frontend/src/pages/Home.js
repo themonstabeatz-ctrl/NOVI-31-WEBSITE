@@ -76,37 +76,36 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    const heroTitle = document.getElementById('hero-title');
-    const originalText = "Dobro došli u Bua Luang Thai Spa gde dodir postaje umetnost mira";
+    const heroLogo = document.getElementById('hero-logo');
     
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const heroSection = document.getElementById('hero-section');
       
-      if (!heroSection || !heroTitle) return;
+      if (!heroSection || !heroLogo) return;
       
       const heroHeight = heroSection.offsetHeight;
       const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
       
       if (scrollPercent > 0.3) {
-        // Scroll down - transform to lotus
+        // Scroll down - transform logo to lotus
         const opacity = Math.max(1 - (scrollPercent - 0.3) * 2, 0);
         const scale = Math.max(1 - (scrollPercent - 0.3), 0.3);
         
-        heroTitle.style.opacity = opacity;
-        heroTitle.style.transform = `scale(${scale})`;
-        heroTitle.style.filter = `blur(${(scrollPercent - 0.3) * 10}px)`;
+        heroLogo.style.opacity = opacity;
+        heroLogo.style.transform = `scale(${scale})`;
+        heroLogo.style.filter = `blur(${(scrollPercent - 0.3) * 10}px)`;
         
         // Add lotus petals effect
-        if (scrollPercent > 0.5 && !heroTitle.classList.contains('lotus-transform')) {
-          heroTitle.classList.add('lotus-transform');
+        if (scrollPercent > 0.5 && !heroLogo.classList.contains('lotus-transform')) {
+          heroLogo.classList.add('lotus-transform');
         }
       } else {
-        // Scroll up - restore text
-        heroTitle.style.opacity = 1;
-        heroTitle.style.transform = 'scale(1)';
-        heroTitle.style.filter = 'blur(0px)';
-        heroTitle.classList.remove('lotus-transform');
+        // Scroll up - restore logo
+        heroLogo.style.opacity = 1;
+        heroLogo.style.transform = 'scale(1)';
+        heroLogo.style.filter = 'blur(0px)';
+        heroLogo.classList.remove('lotus-transform');
       }
     };
     
