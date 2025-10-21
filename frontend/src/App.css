@@ -195,7 +195,8 @@
   display: flex;
   gap: 2rem;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: 2rem;
 }
 
 .nav-link {
