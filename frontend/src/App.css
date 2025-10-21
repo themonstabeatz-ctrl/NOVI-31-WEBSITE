@@ -1872,29 +1872,31 @@ body {
 .about-container,
 /* Contact Page - EXTREME Compact Version (70% reduction) */
 .contact-container .page-header {
-  padding: 0.5rem;
+  padding: 0.3rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
   align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .contact-container .page-decoration {
   order: -1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .contact-container .page-title {
-  font-size: 2.25rem; /* 50% larger - was 1.5rem */
-  margin-bottom: 0.5rem;
+  font-size: 1.35rem; /* 70% of 2.25rem */
+  margin-bottom: 0.3rem;
   text-align: center;
   order: 1;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 .contact-container .contact-animated-logo {
-  max-width: 100px;
+  max-width: 150px; /* Bigger logo */
   margin: 0;
 }
 
@@ -1906,15 +1908,15 @@ body {
 
 /* Contact Section EXTREME Compact */
 .contact-section {
-  padding: 0.15rem;
-  max-width: 600px;
+  padding: 0.1rem;
+  max-width: 500px;
   margin: 0 auto;
 }
 
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 /* Form Card UNIQUE STYLE - Different from other cards */
