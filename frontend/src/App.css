@@ -1944,10 +1944,10 @@ body {
   grid-row: 1;
   justify-self: start;
   width: 100%;
-  max-width: 180px;
+  max-width: 360px; /* 100% wider - was 180px */
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
   border: 1.5px solid rgba(212, 175, 55, 0.5);
-  padding: 0.15rem; /* Slightly increased */
+  padding: 0.15rem;
   box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
   border-radius: 6px;
 }
