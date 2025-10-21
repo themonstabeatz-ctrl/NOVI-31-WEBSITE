@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
@@ -6,47 +6,6 @@ import { Card, CardContent } from "../components/ui/card";
 
 const Home = () => {
   const { translate } = useLanguage();
-
-  useEffect(() => {
-    const handleScrollEffects = () => {
-      const scrolled = window.pageYOffset;
-      
-      // Sticky Header Effect - only after scrolling past compact logo
-      const header = document.querySelector('.header-container');
-      const logoHeight = 80; // Compact logo section height
-      const stickyPoint = logoHeight + 50; // Small buffer
-      
-      if (header) {
-        if (scrolled > stickyPoint) {
-          header.classList.add('sticky');
-        } else {
-          header.classList.remove('sticky');
-        }
-      }
-      
-      // No parallax effects - removed for clean look
-      
-      // Fade hero content as we scroll
-      const heroContent = document.querySelector('.pim-hero-content');
-      if (heroContent) {
-        const heroHeight = window.innerHeight;
-        const contentOpacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.2);
-        heroContent.style.opacity = contentOpacity;
-      }
-    };
-
-    // Add smooth scrolling
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Add scroll listener with passive option for performance
-    window.addEventListener('scroll', handleScrollEffects, { passive: true });
-    
-    // Cleanup
-    return () => {
-      window.removeEventListener('scroll', handleScrollEffects);
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
 
   const treatments = [
     {
