@@ -17,19 +17,19 @@ const Layout = () => {
         />
       </div>
       
-      {isHomePage && (
-        <div className="fixed-slogan-section" id="fixed-slogan">
-          <div className="fixed-slogan-content">
-            <h2 className="fixed-slogan-text">Tajlandska masaža, duša tradicije i tela</h2>
-          </div>
-        </div>
-      )}
-      
       <Header />
       
       <main>
         <Outlet />
       </main>
+      
+      {isHomePage && (
+        <div className="fixed-footer-slogan" id="fixed-footer">
+          <div className="fixed-footer-content">
+            <h2 className="fixed-footer-text">Tajlandska masaža, duša tradicije i tela</h2>
+          </div>
+        </div>
+      )}
       
       <Footer />
     </div>
