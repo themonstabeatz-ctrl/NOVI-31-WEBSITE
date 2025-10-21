@@ -2143,12 +2143,13 @@ body {
 .contact-container .additional-info {
   grid-column: 1;
   grid-row: 1;
-  justify-self: end; /* Align to the right edge of form column */
+  justify-self: end; /* Position close to the right of form, left side */
   align-self: start;
   width: 110px;
   padding: 0;
   margin: 0;
   margin-top: 0;
+  margin-right: 0.05rem; /* Minimal gap from form */
   max-width: none;
 }
 
