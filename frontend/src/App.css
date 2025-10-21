@@ -139,7 +139,10 @@
 
 /* Fixed Navigation with Logo */
 .header-container {
-  background: rgba(0, 0, 0, 0.95);
+  background-image: url('https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/0nytfyra_podloga%20prazna.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
   backdrop-filter: blur(15px);
   border-bottom: 2px solid var(--spa-gold);
   position: fixed;
@@ -149,6 +152,17 @@
   z-index: 1000;
   transition: all 0.3s ease;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: -1;
 }
 
 .nav-wrapper {
