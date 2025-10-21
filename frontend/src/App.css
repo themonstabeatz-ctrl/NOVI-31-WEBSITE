@@ -512,35 +512,53 @@ html {
   line-height: 1.2;
 }
 
-/* Welcome Section with Background Image */
+/* Welcome Section with Parallax */
 .pim-welcome {
-  padding: 4rem 2rem;
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 20;
-  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/vpmqfy4q_podloga.jpg');
+  overflow: hidden;
+}
+
+.pim-welcome-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: 60vh;
 }
 
-.pim-welcome::before {
-  content: '';
+.pim-welcome-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
+  width: 100%;
+  height: 200vh;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 3;
+  will-change: transform;
 }
 
 .pim-welcome-container {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  padding: 4rem 2rem;
 }
 
 .pim-welcome-subtitle {
