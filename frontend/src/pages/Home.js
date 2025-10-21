@@ -130,9 +130,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Release Relax Unwind */}
-      <section className="pim-tagline">
-        <h2>Oslobodite se, Opustite se, Odmorite se</h2>
+      {/* Tagline with Parallax */}
+      <section className="pim-tagline" id="tagline-section">
+        <div className="pim-tagline-bg"></div>
+        <div className="pim-tagline-overlay" id="tagline-overlay"></div>
+        <div className="pim-tagline-content">
+          <h2>Tajlandska masaža, duša tradicije i tela</h2>
+        </div>
       </section>
 
       {/* Welcome Section with Background */}
