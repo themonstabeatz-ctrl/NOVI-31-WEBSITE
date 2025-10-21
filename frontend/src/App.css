@@ -85,14 +85,23 @@
   }
 }
 
-/* Header Styles */
+/* Sticky Header Styles */
 .header-container {
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(15px);
   border-bottom: 2px solid var(--spa-gold);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-container.scrolled {
+  background: rgba(0, 0, 0, 0.98);
+  border-bottom-color: var(--spa-gold);
 }
 
 .nav-wrapper {
