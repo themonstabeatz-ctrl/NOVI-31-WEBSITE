@@ -1885,10 +1885,12 @@ body {
 }
 
 .contact-container .page-title {
-  font-size: 1.5rem;
+  font-size: 2.25rem; /* 50% larger - was 1.5rem */
   margin-bottom: 0.5rem;
   text-align: center;
   order: 1;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .contact-container .contact-animated-logo {
