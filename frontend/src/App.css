@@ -2703,7 +2703,8 @@ body {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 400px;
-  gap: 3rem;
+  column-gap: 0.05rem; /* Minimal gap for ultra-compact layout */
+  row-gap: 3rem;
 }
 
 .contact-form-card {
