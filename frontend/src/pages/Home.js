@@ -11,33 +11,27 @@ const Home = () => {
     const handleScrollEffects = () => {
       const scrolled = window.pageYOffset;
       
-      // Sticky Header Effect
+      // Sticky Header Effect - only after scrolling past logo and slogan
       const header = document.querySelector('.header-container');
+      const logoHeight = 120; // Logo section height
+      const sloganHeight = 100; // Slogan section height
+      const stickyPoint = logoHeight + sloganHeight;
+      
       if (header) {
-        if (scrolled > 100) {
-          header.classList.add('scrolled');
+        if (scrolled > stickyPoint) {
+          header.classList.add('sticky');
         } else {
-          header.classList.remove('scrolled');
+          header.classList.remove('sticky');
         }
       }
       
-      // Parallax effect ONLY for tagline over Buddha
-      const parallaxTagline = document.getElementById('parallax-tagline');
-      const heroSection = document.getElementById('hero-section');
+      // Parallax effect for fixed slogan over Buddha
+      const fixedSlogan = document.getElementById('fixed-slogan');
       
-      if (parallaxTagline && heroSection) {
-        const heroHeight = heroSection.offsetHeight;
-        
-        // Move tagline up and down over Buddha image during scroll
-        const parallaxSpeed = 0.8; // Speed of tagline movement
-        const maxScroll = heroHeight * 1.2; // Limit the parallax effect
-        
-        if (scrolled < maxScroll) {
-          parallaxTagline.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-          parallaxTagline.style.opacity = Math.max(0.3, 1 - (scrolled / heroHeight) * 0.7);
-        } else {
-          parallaxTagline.style.opacity = 0;
-        }
+      if (fixedSlogan) {
+        // Move slogan up and down over Buddha image during scroll
+        const parallaxSpeed = 0.5; // Speed of slogan movement
+        fixedSlogan.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
       }
       
       // Fade hero content as we scroll
