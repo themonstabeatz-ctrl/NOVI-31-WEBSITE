@@ -1918,6 +1918,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.1rem;
+  margin-bottom: 80px; /* Space for absolute positioned elements */
 }
 
 /* Form Card UNIQUE STYLE - Different from other cards */
