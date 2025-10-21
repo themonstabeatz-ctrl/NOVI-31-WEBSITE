@@ -113,6 +113,31 @@ const Home = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Parallax effect for sections after Buddha
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.scrollY;
+      const heroSection = document.getElementById('hero-section');
+      
+      if (!heroSection) return;
+      
+      const heroHeight = heroSection.offsetHeight;
+      
+      // Apply parallax only to sections after hero
+      if (scrolled > heroHeight) {
+        const parallaxSections = document.querySelectorAll('.pim-welcome, .pim-quote, .pim-philosophy, .pim-treatments');
+        parallaxSections.forEach((section) => {
+          const speed = 0.5; // Parallax speed
+          const yPos = -(scrolled - heroHeight) * speed;
+          section.style.transform = `translateY(${yPos}px)`;
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleParallaxScroll);
+    return () => window.removeEventListener('scroll', handleParallaxScroll);
+  }, []);
+
   return (
     <div className="pim-style-homepage">
       {/* Hero Banner with Original Buddha */}
