@@ -85,7 +85,7 @@ const Home = () => {
         </div>
         <div className="pim-hero-overlay"></div>
         <div className="pim-hero-content">
-          <h1 className="pim-hero-title">POSTAVITE VAŠE TELO U DOBRE RUKE</h1>
+          <h1 className="pim-hero-title" id="hero-title">Dobro došli u Bua Luang Thai Spa gde dodir postaje umetnost mira</h1>
           <Button asChild className="pim-hero-button">
             <Link to="/contact">Rezervišite Online</Link>
           </Button>
