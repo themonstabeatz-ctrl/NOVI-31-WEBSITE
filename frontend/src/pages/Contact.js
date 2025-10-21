@@ -197,7 +197,7 @@ const Contact = () => {
                     <h4>Radno vreme</h4>
                     <div className="working-hours">
                       <p>Ponedeljak - Nedelja</p>
-                      <p className="hours">09:00 - 21:00</p>
+                      <p className="hours">10:00 - 22:00</p>
                     </div>
                   </div>
                 </div>
