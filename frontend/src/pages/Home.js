@@ -120,13 +120,18 @@ const Home = () => {
       <section className="pim-hero" id="hero-section">
         <div className="pim-hero-image">
           <img 
-            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/lbd6sac9_vecteezy_buddha-statue-meditating-with-lotus-flowers-and-burning-candles_47024342.jpeg" 
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/6u1f3zhj_vecteezy_buddha-statue-meditating-with-lotus-flowers-and-burning-candles_47024342.jpeg" 
             alt="Buddha Meditation - Bua Luang Thai Spa"
           />
         </div>
         <div className="pim-hero-overlay"></div>
         <div className="pim-hero-content">
-          <h1 className="pim-hero-title" id="hero-title">Dobro došli u Bua Luang Thai Spa gde dodir postaje umetnost mira</h1>
+          <img 
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/20ujd7qa_Bua%20luang%20logo.png"
+            alt="Bua Luang Thai Spa Logo"
+            className="hero-logo-animated"
+            id="hero-logo"
+          />
           <Button asChild className="pim-hero-button">
             <Link to="/contact">Rezervišite Online</Link>
           </Button>
