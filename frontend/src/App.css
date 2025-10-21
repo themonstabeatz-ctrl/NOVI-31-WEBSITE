@@ -100,10 +100,10 @@
   }
 }
 
-/* Fixed Slogan Section Below Logo */
-.fixed-slogan-section {
+/* Fixed Footer with Slogan Below Buddha */
+.fixed-footer-slogan {
   position: fixed;
-  top: 120px; /* Below logo section */
+  bottom: 0;
   left: 0;
   right: 0;
   height: 100px;
@@ -114,21 +114,21 @@
   z-index: 500;
   background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
   backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-  will-change: transform;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
 }
 
-.fixed-slogan-content {
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.7);
+.fixed-footer-content {
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 15px;
   border: 2px solid var(--spa-gold);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-.fixed-slogan-text {
+.fixed-footer-text {
   color: var(--spa-gold);
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 300;
   margin: 0;
   letter-spacing: 2px;
