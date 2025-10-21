@@ -203,58 +203,28 @@ const Contact = () => {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Social Media */}
-            <Card className="social-card">
-              <CardHeader>
-                <CardTitle className="social-title">{translate("followUs")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <a 
-                  href="https://www.instagram.com/bualuang_thai_spa" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  <Instagram className="social-icon" />
-                  <div className="social-info">
-                    <h4>Instagram</h4>
-                    <p>@bualuang_thai_spa</p>
-                  </div>
-                </a>
-              </CardContent>
-            </Card>
-
-            {/* Location Map */}
-            <Card className="map-card">
-              <CardHeader>
-                <CardTitle className="map-title">Lokacija</CardTitle>
-              </CardHeader>
-              <CardContent className="map-content">
-                <div className="map-placeholder">
-                  <MapPin className="map-icon" />
-                  <p>Abebe Bikile 10A, Zemun, Beograd</p>
-                  <p className="map-note">
-                    U centru grada, blizu glavne pešačke zone
-                  </p>
-                  <Button 
-                    asChild 
-                    className="map-button"
-                    style={{ marginTop: '1rem' }}
-                  >
-                    <a 
-                      href="https://www.google.com/maps/search/?api=1&query=Abebe+Bikile+10A+Zemun+Beograd+11080+Srbija" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <MapPin className="w-4 h-4 mr-2" />
-                      Otvori u Google Maps
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
           </div>
+
+          {/* Social Media - Separate in Grid, Row 2, Column 1 */}
+          <Card className="social-card">
+            <CardHeader>
+              <CardTitle className="social-title">{translate("followUs")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <a 
+                href="https://www.instagram.com/bualuang_thai_spa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <Instagram className="social-icon" />
+                <div className="social-info">
+                  <h4>Instagram</h4>
+                  <p>@bualuang_thai_spa</p>
+                </div>
+              </a>
+            </CardContent>
+          </Card>
 
           {/* Additional Information - Third column */}
           <Card className="booking-info-card additional-info">
