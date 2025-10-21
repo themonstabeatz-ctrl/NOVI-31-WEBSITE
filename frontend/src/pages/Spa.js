@@ -8,6 +8,26 @@ import { Clock, Sparkles, Leaf, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Spa = () => {
   const { translate } = useLanguage();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxUaGFpJTIwc3BhfGVufDB8fHx8MTc2MTA4NjA4N3ww&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1758614256591-91deecdff2e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxUaGFpJTIwc3BhfGVufDB8fHx8MTc2MTA4NjA4N3ww&ixlib=rb-4.1.0&q=85",
+    "https://images.pexels.com/photos/6188120/pexels-photo-6188120.jpeg",
+    "https://images.pexels.com/photos/29311125/pexels-photo-29311125.jpeg",
+    "https://images.unsplash.com/photo-1515377905703-c4788e51af15?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwxfHxhcm9tYXRoZXJhcHl8ZW58MHx8fHwxNzYxMDg2MDk0fDA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1556760544-74068565f05c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwyfHxhcm9tYXRoZXJhcHl8ZW58MHx8fHwxNzYxMDg2MDk0fDA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1636714507452-48716cfa1818?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxhcm9tYXRoZXJhcHl8ZW58MHx8fHwxNzYxMDg2MDk0fDA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1635749886064-8debe661b70e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHw0fHxhcm9tYXRoZXJhcHl8ZW58MHx8fHwxNzYxMDg2MDk0fDA&ixlib=rb-4.1.0&q=85"
+  ];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
 
   const spaServices = [
     {
