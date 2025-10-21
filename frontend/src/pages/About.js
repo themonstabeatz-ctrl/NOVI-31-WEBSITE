@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
@@ -8,6 +8,11 @@ import { Award, Heart, Users, Star } from "lucide-react";
 
 const About = () => {
   const { translate } = useLanguage();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const values = [
     {
