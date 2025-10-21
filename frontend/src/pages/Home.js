@@ -162,6 +162,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Transparent footer bar below Buddha */}
+      <div className="transparent-footer-bar"></div>
+
       {/* Welcome Section - Normal */}
       <section className="pim-welcome">
         <div className="pim-welcome-container">
