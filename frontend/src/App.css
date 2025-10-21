@@ -2110,11 +2110,15 @@ body {
   margin-top: 0.1rem;
 }
 
-/* Additional Info EXTREME Compact */
+/* Additional Info - Position below map on the right */
 .contact-container .additional-info {
+  position: absolute;
+  top: 0;
+  right: -240px;
+  width: 110px;
   padding: 0.1rem;
-  margin: 0.1rem auto 0;
-  max-width: 500px;
+  margin: 0;
+  max-width: none;
 }
 
 .booking-info-card {
