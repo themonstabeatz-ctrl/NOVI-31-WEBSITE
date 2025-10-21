@@ -55,15 +55,12 @@ const Contact = () => {
       <section className="page-header">
         <div className="page-header-content">
           <h1 className="page-title">{translate("contactTitle")}</h1>
-          <p className="page-subtitle">
-            Kontaktirajte nas za rezervacije ili dodatne informacije o našim uslugama
-          </p>
         </div>
-        <div className="page-decoration">
+        <div className="page-decoration contact-logo-animation">
           <img 
-            src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/1yzb8w71_%E2%80%94Pngtree%E2%80%94luxury%20mandala%20gold%20vintage%20frame_8780829.png"
-            alt="Mandala decoration"
-            className="decoration-image"
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png"
+            alt="Bua Luang Thai Spa Logo"
+            className="contact-animated-logo"
           />
         </div>
       </section>
