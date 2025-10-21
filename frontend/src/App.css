@@ -3278,4 +3278,276 @@ html {
     flex-direction: column;
     align-items: center;
   }
+
+
+/* ============================================
+   GALLERY SECTION STYLES
+   ============================================ */
+
+.gallery-section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gallery-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--spa-gold);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.gallery-subtitle {
+  font-size: 1.2rem;
+  color: var(--spa-cream);
+  opacity: 0.8;
+}
+
+/* Main Carousel */
+.gallery-carousel {
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.carousel-image-container {
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.carousel-image-container:hover {
+  border-color: var(--spa-gold);
+  box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+  transform: scale(1.02);
+}
+
+.carousel-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.carousel-main-image:hover {
+  transform: scale(1.05);
+}
+
+.carousel-btn {
+  background: rgba(212, 175, 55, 0.2);
+  border: 2px solid var(--spa-gold);
+  color: var(--spa-gold);
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: var(--spa-gold);
+  color: var(--spa-dark);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+/* Thumbnail Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.3);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  border-color: var(--spa-gold);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.15);
+}
+
+.gallery-item:hover .gallery-overlay {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.gallery-item.active {
+  border-color: var(--spa-gold);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+.gallery-item.active .gallery-overlay {
+  background: rgba(212, 175, 55, 0.3);
+}
+
+/* ============================================
+   ENHANCED CARD HOVER EFFECTS
+   ============================================ */
+
+.massage-card,
+.spa-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.massage-card::before,
+.spa-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 148, 31, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.massage-card:hover,
+.spa-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--spa-gold);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+}
+
+.massage-card:hover::before,
+.spa-card:hover::before {
+  opacity: 1;
+}
+
+.massage-card:hover .massage-name,
+.spa-card:hover .spa-name {
+  color: var(--spa-gold-light);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.massage-card:hover .book-button,
+.spa-card:hover .book-button {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-gold-light) 100%);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+}
+
+.book-button {
+  transition: all 0.3s ease;
+}
+
+/* Package Cards Hover */
+.package-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.package-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 148, 31, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.package-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: var(--spa-gold);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+}
+
+.package-card:hover::before {
+  opacity: 1;
+}
+
+.package-card:hover .package-name {
+  color: var(--spa-gold-light);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* Responsive Gallery */
+@media (max-width: 768px) {
+  .gallery-carousel {
+    flex-direction: column;
+  }
+  
+  .carousel-image-container {
+    height: 350px;
+  }
+  
+  .carousel-btn {
+    padding: 0.75rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .gallery-item {
+    height: 140px;
+  }
+  
+  .gallery-title {
+    font-size: 2rem;
+  }
+  
+  .gallery-subtitle {
+    font-size: 1rem;
+  }
+}
+
 }
