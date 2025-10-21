@@ -203,12 +203,13 @@
   color: var(--spa-cream);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   position: relative;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
   border-radius: 4px;
+  font-family: 'Agency FB', 'Arial Narrow', sans-serif;
 }
 
 .nav-link:hover {
