@@ -128,12 +128,12 @@ const Home = () => {
       const buddhaStartTrigger = heroHeight * 0.5; // Buddha starts moving at 50%
       const herbalStartTrigger = heroHeight * 1.1; // Herbal appears AFTER Welcome section
       
-      // Buddha movement - starts EARLY at 50%
+      // Buddha movement - FASTER movement
       if (scrolled > buddhaStartTrigger) {
-        // Calculate how much to move - gentle and smooth
-        const moveAmount = (scrolled - buddhaStartTrigger) * 0.6; // 0.6 for gentler movement
+        // Calculate how much to move - FASTER now
+        const moveAmount = (scrolled - buddhaStartTrigger) * 1.2; // 1.2 for FASTER movement (was 0.6)
         
-        // Move Buddha hero up smoothly (NO FADE)
+        // Move Buddha hero up FAST (NO FADE)
         heroSection.style.transform = `translateY(-${moveAmount}px)`;
         heroSection.style.opacity = 1; // Keep full opacity
       } else {
