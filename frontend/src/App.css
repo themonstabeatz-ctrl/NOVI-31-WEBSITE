@@ -2143,7 +2143,7 @@ body {
 .contact-container .additional-info {
   grid-column: 2;
   grid-row: 1;
-  justify-self: start; /* Stick to left edge of column */
+  justify-self: end; /* Stick to right edge - close to form */
   width: 110px;
   padding: 0;
   margin: 0;
