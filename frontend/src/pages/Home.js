@@ -145,13 +145,6 @@ const Home = () => {
             <Link to="/contact">Rezervišite Online</Link>
           </Button>
         </div>
-        
-        {/* Parallax Tagline Over Buddha */}
-        <div className="pim-tagline" id="parallax-tagline">
-          <div className="pim-tagline-content">
-            <h2>Tajlandska masaža, duša tradicije i tela</h2>
-          </div>
-        </div>
       </section>
 
       {/* Welcome Section - Normal */}
