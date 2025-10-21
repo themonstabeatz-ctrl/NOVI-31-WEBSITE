@@ -1938,10 +1938,13 @@ body {
   grid-row: 1;
   width: 110px;
 }
-/* Form Card UNIQUE STYLE - Different from other cards */
+/* Form Card - Column 1, Row 1 - ALL THE WAY LEFT */
 .contact-form-card {
   grid-column: 1;
   grid-row: 1;
+  justify-self: start;
+  width: 100%;
+  max-width: 180px;
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
   border: 1.5px solid rgba(212, 175, 55, 0.5);
   padding: 0.15rem; /* Slightly increased */
