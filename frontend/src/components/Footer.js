@@ -52,7 +52,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-mandala-pattern"></div>
         <p className="footer-copyright">
-          © 2024 Bua Luang Thai Spa. Sva prava zadržana.
+          © 2025 Bua Luang Thai Spa. Sva prava zadržana.
         </p>
       </div>
     </footer>
