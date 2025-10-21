@@ -2706,7 +2706,7 @@ body {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 400px;
-  column-gap: 0.5rem; /* Small gap between columns */
+  column-gap: 0.5rem; /* Gap between column 1 and 2 */
   row-gap: 3rem;
 }
 
