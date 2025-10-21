@@ -2703,6 +2703,205 @@ body {
   margin: 0 auto;
 }
 
+
+/* ============================================
+   UNIFIED CONTACT CARD STYLES
+   ============================================ */
+
+.unified-contact-card {
+  background: rgba(212, 175, 55, 0.05);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.unified-contact-content {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Form Section - Spans 2 columns, first row */
+.unified-form-section {
+  grid-column: 1 / -1;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.unified-section-title {
+  color: var(--spa-gold);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.unified-section-subtitle {
+  color: var(--spa-cream);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.unified-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+}
+
+/* Booking Information Section */
+.unified-booking-section {
+  padding-top: 2rem;
+}
+
+.unified-booking-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.unified-booking-item h4 {
+  color: var(--spa-gold);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.unified-booking-item p {
+  color: var(--spa-cream);
+  opacity: 0.9;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Contact Information Section */
+.unified-info-section {
+  padding-top: 2rem;
+}
+
+.unified-info-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.unified-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.unified-info-icon {
+  color: var(--spa-gold);
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.unified-info-details h4 {
+  color: var(--spa-gold);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.unified-info-details p,
+.unified-info-details a {
+  color: var(--spa-cream);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.unified-info-details a {
+  transition: color 0.3s ease;
+}
+
+.unified-info-details a:hover {
+  color: var(--spa-gold-light);
+}
+
+/* Social Media Section */
+.unified-social-section {
+  grid-column: 1 / -1;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  margin-top: 2rem;
+}
+
+.unified-social-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.unified-social-link:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--spa-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+}
+
+.unified-social-icon {
+  color: var(--spa-gold);
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.unified-social-info h4 {
+  color: var(--spa-gold);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.unified-social-info p {
+  color: var(--spa-cream);
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design for Unified Card */
+@media (max-width: 1024px) {
+  .unified-contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .unified-form-section {
+    grid-column: 1;
+  }
+  
+  .unified-social-section {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .unified-contact-content {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .unified-section-title {
+    font-size: 1.5rem;
+  }
+}
+
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 400px;
