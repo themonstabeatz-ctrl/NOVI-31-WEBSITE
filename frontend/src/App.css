@@ -104,7 +104,8 @@
 }
 
 /* Fixed Footer with Slogan Below Buddha */
-.fixed-footer-slogan {
+/* Transparent footer bar below Buddha */
+.transparent-footer-bar {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -116,12 +117,16 @@
   border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
+.fixed-footer-slogan {
+  display: none;
+}
+
 .fixed-footer-content {
-  display: none; /* Hide the golden frame and text */
+  display: none;
 }
 
 .fixed-footer-text {
-  display: none; /* Hide the text */
+  display: none;
 }
 
 @keyframes goldGlow {
