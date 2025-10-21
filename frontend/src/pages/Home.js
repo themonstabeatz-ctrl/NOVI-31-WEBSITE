@@ -140,6 +140,9 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
+      {/* Thin footer bar below header */}
+      <div className="thin-footer-header"></div>
+
       {/* Hero Banner with Original Buddha */}
       <section className="pim-hero" id="hero-section">
         <div className="pim-hero-image">
