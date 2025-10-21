@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
-import { Clock, Star } from "lucide-react";
+import { Clock, Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Massage = () => {
   const { translate } = useLanguage();
