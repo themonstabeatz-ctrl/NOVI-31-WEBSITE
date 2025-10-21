@@ -142,13 +142,13 @@ const Home = () => {
     <div className="pim-style-homepage">
       {/* Hero Banner with Original Buddha */}
       <section className="pim-hero" id="hero-section">
-        <div className="pim-hero-image">
+        <div className="pim-hero-image" id="buddha-hero">
           <img 
             src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/6u1f3zhj_vecteezy_buddha-statue-meditating-with-lotus-flowers-and-burning-candles_47024342.jpeg" 
             alt="Buddha Meditation - Bua Luang Thai Spa"
           />
         </div>
-        <div className="pim-hero-overlay"></div>
+        <div className="pim-hero-overlay" id="buddha-overlay"></div>
         <div className="pim-hero-content">
           <img 
             src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png"
@@ -157,6 +157,17 @@ const Home = () => {
             id="hero-logo"
           />
         </div>
+      </section>
+
+      {/* Second Hero - Herbal Compress (appears when Buddha scrolls away) */}
+      <section className="pim-hero-secondary" id="hero-secondary">
+        <div className="pim-hero-image">
+          <img 
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/9liwcjtb_herbal-compress-herbal-spa-treatment-equipments-put-dark-floor.jpg" 
+            alt="Herbal Spa Treatment - Bua Luang Thai Spa"
+          />
+        </div>
+        <div className="pim-hero-overlay"></div>
       </section>
 
       {/* Container for parallax sections that go over hero */}
