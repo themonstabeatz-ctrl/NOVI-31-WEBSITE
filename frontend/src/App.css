@@ -476,11 +476,11 @@ body {
 
 /* Hero Animated Logo */
 .hero-logo-animated {
-  max-width: 500px;
+  max-width: 350px;
   width: 100%;
   height: auto;
   filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6));
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   margin-bottom: 2rem;
   animation: logoGlow3D 3s ease-in-out infinite alternate;
 }
