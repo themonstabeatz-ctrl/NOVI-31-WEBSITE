@@ -165,11 +165,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Transparent footer bar below Buddha */}
-      <div className="transparent-footer-bar"></div>
+      {/* Container for parallax sections that go over hero */}
+      <div style={{position: 'relative', zIndex: 20, marginTop: 'calc(100vh - 125px)'}}>
+        {/* Transparent footer bar below Buddha */}
+        <div className="transparent-footer-bar"></div>
 
-      {/* Welcome Section - Normal */}
-      <section className="pim-welcome">
+        {/* Welcome Section - Normal */}
+        <section className="pim-welcome">
         <div className="pim-welcome-container">
           <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
           <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
