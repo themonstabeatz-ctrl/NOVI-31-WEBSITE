@@ -146,7 +146,7 @@
   }
 }
 
-/* Navigation Header - Becomes Sticky on Scroll */
+/* Compact Navigation Header */
 .header-container {
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
@@ -154,6 +154,7 @@
   position: relative;
   z-index: 999;
   transition: all 0.3s ease;
+  padding: 0.5rem 0; /* Reduced padding */
 }
 
 .header-container.sticky {
@@ -164,6 +165,15 @@
   background: rgba(0, 0, 0, 0.98);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem; /* Reduced from 1rem */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .nav-wrapper {
