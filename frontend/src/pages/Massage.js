@@ -8,6 +8,26 @@ import { Clock, Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Massage = () => {
   const { translate } = useLanguage();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwxfHxUaGFpJTIwbWFzc2FnZXxlbnwwfHx8fDE3NjEwODYwNTB8MA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1611073615848-d6ff6215931f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwyfHxUaGFpJTIwbWFzc2FnZXxlbnwwfHx8fDE3NjEwODYwNTB8MA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwzfHxUaGFpJTIwbWFzc2FnZXxlbnwwfHx8fDE3NjEwODYwNTB8MA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHw0fHxUaGFpJTIwbWFzc2FnZXxlbnwwfHx8fDE3NjEwODYwNTB8MA&ixlib=rb-4.1.0&q=85",
+    "https://images.pexels.com/photos/161477/treatment-finger-keep-hand-161477.jpeg",
+    "https://images.pexels.com/photos/6187421/pexels-photo-6187421.jpeg",
+    "https://images.unsplash.com/photo-1669989179415-6b92170d193a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwyfHxzcGElMjB0aGVyYXB5fGVufDB8fHx8MTc2MTA4NjA1Nnww&ixlib=rb-4.1.0&q=85",
+    "https://images.pexels.com/photos/3230236/pexels-photo-3230236.jpeg"
+  ];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
 
   const massageServices = [
     {
