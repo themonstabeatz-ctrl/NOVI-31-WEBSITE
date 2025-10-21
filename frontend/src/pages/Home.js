@@ -151,7 +151,7 @@ const Home = () => {
         <div className="pim-hero-overlay"></div>
         <div className="pim-hero-content">
           <img 
-            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/20ujd7qa_Bua%20luang%20logo.png"
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png"
             alt="Bua Luang Thai Spa Logo"
             className="hero-logo-animated"
             id="hero-logo"
