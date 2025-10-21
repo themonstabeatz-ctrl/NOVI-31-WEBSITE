@@ -255,30 +255,28 @@ const Contact = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
 
-      {/* Additional Information */}
-      <section className="additional-info">
-        <Card className="booking-info-card">
-          <CardContent className="booking-info">
-            <h3 className="booking-title">Informacije o rezervaciji</h3>
-            <div className="booking-details">
-              <div className="booking-item">
-                <h4>Otkazivanje</h4>
-                <p>Molimo vas da otkazujete termine najmanje 4 sata unapred</p>
+          {/* Additional Information - Third column */}
+          <Card className="booking-info-card additional-info">
+            <CardContent className="booking-info">
+              <h3 className="booking-title">Informacije o rezervaciji</h3>
+              <div className="booking-details">
+                <div className="booking-item">
+                  <h4>Otkazivanje</h4>
+                  <p>Molimo vas da otkazujete termine najmanje 4 sata unapred</p>
+                </div>
+                <div className="booking-item">
+                  <h4>Kasnjenje</h4>
+                  <p>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</p>
+                </div>
+                <div className="booking-item">
+                  <h4>Grupne rezervacije</h4>
+                  <p>Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno</p>
+                </div>
               </div>
-              <div className="booking-item">
-                <h4>Kasnjenje</h4>
-                <p>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</p>
-              </div>
-              <div className="booking-item">
-                <h4>Grupne rezervacije</h4>
-                <p>Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </section>
     </div>
   );
