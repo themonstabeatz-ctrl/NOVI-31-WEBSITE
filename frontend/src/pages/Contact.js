@@ -224,7 +224,7 @@ const Contact = () => {
               <CardContent className="map-content">
                 <div className="map-placeholder">
                   <MapPin className="map-icon" />
-                  <p>Knez Mihailova 15, Beograd</p>
+                  <p>Abebe Bikile 10A, Zemun, Beograd</p>
                   <p className="map-note">
                     U centru grada, blizu glavne pešačke zone
                   </p>
