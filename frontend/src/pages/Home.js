@@ -118,10 +118,33 @@ const Home = () => {
     const handleParallaxScroll = () => {
       const scrolled = window.scrollY;
       const heroSection = document.getElementById('hero-section');
+      const secondaryHero = document.getElementById('hero-secondary');
+      const buddhaHero = document.getElementById('buddha-hero');
+      const buddhaOverlay = document.getElementById('buddha-overlay');
       
-      if (!heroSection) return;
+      if (!heroSection || !secondaryHero) return;
       
-      const heroHeight = heroSection.offsetHeight;
+      const heroHeight = 110 * window.innerHeight / 100; // 110vh in pixels
+      const halfHeroHeight = heroHeight / 2;
+      
+      // When scroll passes half of hero height
+      if (scrolled > halfHeroHeight) {
+        // Calculate how much to move Buddha up
+        const moveAmount = scrolled - halfHeroHeight;
+        const movePercent = Math.min(moveAmount / halfHeroHeight, 1);
+        
+        // Move Buddha hero up and fade out
+        heroSection.style.transform = `translateY(-${moveAmount}px)`;
+        heroSection.style.opacity = Math.max(1 - movePercent, 0);
+        
+        // Fade in secondary hero
+        secondaryHero.style.opacity = Math.min(movePercent, 1);
+      } else {
+        // Reset when scrolling back to top
+        heroSection.style.transform = 'translateY(0)';
+        heroSection.style.opacity = 1;
+        secondaryHero.style.opacity = 0;
+      }
       
       // Apply parallax only to sections after hero
       if (scrolled > heroHeight) {
