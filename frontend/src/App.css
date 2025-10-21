@@ -1917,8 +1917,8 @@ body {
 .contact-grid {
   display: grid;
   grid-template-columns: 360px 1fr 120px; /* Fixed width for form, flexible middle, booking on right */
-  gap: 0.2rem; /* Small gap between columns */
-  column-gap: 0.1rem; /* Even smaller gap horizontally */
+  gap: 0.05rem; /* Minimal gap */
+  column-gap: 0.05rem; /* Very small horizontal gap - was 0.1rem */
 }
 
 /* Form Card - Column 1, Row 1 */
@@ -1946,6 +1946,7 @@ body {
   justify-self: start;
   width: 100%;
   max-width: 360px; /* 100% wider - was 180px */
+  margin-right: 0; /* No margin on right */
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
   border: 1.5px solid rgba(212, 175, 55, 0.5);
   padding: 0.15rem;
