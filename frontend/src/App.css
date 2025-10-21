@@ -175,15 +175,15 @@
 
 /* Logo in Navigation */
 .nav-logo {
-  height: 60px;
+  height: 110px;
   width: auto;
-  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
   transition: all 0.3s ease;
 }
 
 .nav-logo:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.6));
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.7));
 }
 
 .nav-wrapper {
