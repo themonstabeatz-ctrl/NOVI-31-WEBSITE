@@ -404,6 +404,9 @@
 /* Contact Page Logo Animation */
 .contact-logo-animation {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-animated-logo {
@@ -411,6 +414,8 @@
   height: auto;
   filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
   animation: gentle-sway 6s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
 }
 
 /* Gentle sway animation for the logo */
