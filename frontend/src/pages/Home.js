@@ -125,29 +125,34 @@ const Home = () => {
       if (!heroSection || !secondaryHero) return;
       
       const heroHeight = 110 * window.innerHeight / 100; // 110vh in pixels
-      const triggerPoint = heroHeight * 0.75; // Start at 75% instead of 50%
+      const buddhaStartTrigger = heroHeight * 0.5; // Buddha starts moving at 50%
+      const herbalStartTrigger = heroHeight * 1.1; // Herbal appears AFTER Welcome section
       
-      // When scroll passes 75% of hero height
-      if (scrolled > triggerPoint) {
+      // Buddha movement - starts EARLY at 50%
+      if (scrolled > buddhaStartTrigger) {
         // Calculate how much to move - gentle and smooth
-        const moveAmount = (scrolled - triggerPoint) * 0.6; // 0.6 for gentler movement
+        const moveAmount = (scrolled - buddhaStartTrigger) * 0.6; // 0.6 for gentler movement
         
         // Move Buddha hero up smoothly (NO FADE)
         heroSection.style.transform = `translateY(-${moveAmount}px)`;
         heroSection.style.opacity = 1; // Keep full opacity
-        
-        // Move herbal compress up gently and fade in
-        const herbalMove = moveAmount * 0.3; // Even gentler movement for herbal
+      } else {
+        // Reset Buddha when scrolling back to top
+        heroSection.style.transform = 'translateY(0)';
+        heroSection.style.opacity = 1;
+      }
+      
+      // Herbal compress - appears AFTER Welcome section text
+      if (scrolled > herbalStartTrigger) {
+        const herbalMove = (scrolled - herbalStartTrigger) * 0.3; // Gentle movement
         secondaryHero.style.transform = `translateY(-${herbalMove}px)`;
         
         // Calculate fade in for herbal
-        const remainingScroll = heroHeight - triggerPoint;
-        const fadePercent = Math.min((scrolled - triggerPoint) / remainingScroll, 1);
-        secondaryHero.style.opacity = Math.min(fadePercent * 0.8, 0.8);
+        const fadeDistance = heroHeight * 0.3;
+        const fadePercent = Math.min((scrolled - herbalStartTrigger) / fadeDistance, 1);
+        secondaryHero.style.opacity = Math.min(fadePercent * 0.9, 0.9);
       } else {
-        // Reset when scrolling back to top
-        heroSection.style.transform = 'translateY(0)';
-        heroSection.style.opacity = 1;
+        // Reset herbal when scrolling back
         secondaryHero.style.transform = 'translateY(0)';
         secondaryHero.style.opacity = 0;
       }
