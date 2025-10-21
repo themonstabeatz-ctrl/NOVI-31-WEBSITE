@@ -625,6 +625,7 @@ body {
   z-index: 50; /* Higher z-index so Buddha goes BEHIND it */
   transform-style: preserve-3d;
   will-change: transform;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .pim-welcome::before {
