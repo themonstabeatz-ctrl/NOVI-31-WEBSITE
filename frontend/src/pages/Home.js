@@ -160,8 +160,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quote Section */}
-      <section className="pim-quote">
+      {/* Quote Section with Parallax */}
+      <section className="pim-quote" id="quote-section">
+        <div className="pim-quote-bg"></div>
+        <div className="pim-quote-overlay" id="quote-overlay"></div>
         <div className="pim-quote-content">
           <p className="pim-quote-text">"Doživite lečilišne benefite tajlandske masaže"</p>
           <p className="pim-quote-author">- Bua Luang Thai Spa-Beograd</p>
