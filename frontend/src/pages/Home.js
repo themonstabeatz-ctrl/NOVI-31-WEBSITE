@@ -75,6 +75,45 @@ const Home = () => {
     }
   ];
 
+  useEffect(() => {
+    const heroTitle = document.getElementById('hero-title');
+    const originalText = "Dobro došli u Bua Luang Thai Spa gde dodir postaje umetnost mira";
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const heroSection = document.getElementById('hero-section');
+      
+      if (!heroSection || !heroTitle) return;
+      
+      const heroHeight = heroSection.offsetHeight;
+      const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
+      
+      if (scrollPercent > 0.3) {
+        // Scroll down - transform to lotus
+        const opacity = Math.max(1 - (scrollPercent - 0.3) * 2, 0);
+        const scale = Math.max(1 - (scrollPercent - 0.3), 0.3);
+        
+        heroTitle.style.opacity = opacity;
+        heroTitle.style.transform = `scale(${scale})`;
+        heroTitle.style.filter = `blur(${(scrollPercent - 0.3) * 10}px)`;
+        
+        // Add lotus petals effect
+        if (scrollPercent > 0.5 && !heroTitle.classList.contains('lotus-transform')) {
+          heroTitle.classList.add('lotus-transform');
+        }
+      } else {
+        // Scroll up - restore text
+        heroTitle.style.opacity = 1;
+        heroTitle.style.transform = 'scale(1)';
+        heroTitle.style.filter = 'blur(0px)';
+        heroTitle.classList.remove('lotus-transform');
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="pim-style-homepage">
       {/* Hero Banner with Original Buddha */}
