@@ -173,14 +173,18 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="pim-philosophy">
-        <h2>FILOSOFIJA</h2>
-        <div className="pim-philosophy-image">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
-            alt="Thai Philosophy"
-          />
+      {/* Philosophy Section with Parallax */}
+      <section className="pim-philosophy" id="philosophy-section">
+        <div className="pim-philosophy-bg"></div>
+        <div className="pim-philosophy-overlay" id="philosophy-overlay"></div>
+        <div className="pim-philosophy-content">
+          <h2>FILOSOFIJA</h2>
+          <div className="pim-philosophy-image">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
+              alt="Thai Philosophy"
+            />
+          </div>
         </div>
       </section>
 
