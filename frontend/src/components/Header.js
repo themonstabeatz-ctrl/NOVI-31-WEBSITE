@@ -39,7 +39,7 @@ const Header = () => {
         <div className="nav-logo-container">
           <Link to="/">
             <img 
-              src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/ujd19ro1_Bua%20luang%20logo.png" 
+              src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png" 
               alt="Bua Luang Thai Spa" 
               className="nav-logo"
             />
