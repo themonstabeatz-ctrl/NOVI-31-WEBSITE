@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
@@ -9,6 +9,11 @@ import { Clock, Sparkles, Leaf, ChevronLeft, ChevronRight } from "lucide-react";
 const Spa = () => {
   const { translate } = useLanguage();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const galleryImages = [
     "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxUaGFpJTIwc3BhfGVufDB8fHx8MTc2MTA4NjA4N3ww&ixlib=rb-4.1.0&q=85",
