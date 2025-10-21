@@ -2126,10 +2126,10 @@ body {
   margin-top: 0.075rem;
 }
 
-/* Additional Info - Below map in third column */
+/* Additional Info - Same row as Form (Row 1), Column 3 */
 .contact-container .additional-info {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 1; /* Same row as form - was row 2 */
   width: 110px;
   padding: 0;
   margin: 0;
