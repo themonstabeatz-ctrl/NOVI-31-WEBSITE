@@ -160,7 +160,7 @@ const Home = () => {
       </section>
 
       {/* Container for parallax sections that go over hero */}
-      <div style={{position: 'relative', zIndex: 20, marginTop: '60vh'}}>
+      <div style={{position: 'relative', zIndex: 20, marginTop: 'calc(100vh - 100px)'}}>
         {/* Transparent footer bar below Buddha */}
         <div className="transparent-footer-bar"></div>
 
