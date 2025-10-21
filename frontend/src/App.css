@@ -1917,10 +1917,22 @@ body {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 120px;
-  gap: 0.1rem;
+  gap: 0.05rem; /* 50% smaller gap - was 0.1rem */
 }
 
-/* Map Card - Third column (right) */
+/* Form Card - Column 1, Row 1 */
+.contact-form-card {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Contact Info - Column 2, Row 2 */
+.contact-info {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Map Card - Third column (right), Row 1 */
 .map-card {
   grid-column: 3;
   grid-row: 1;
