@@ -149,10 +149,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Welcome Section with Parallax */}
-      <section className="pim-welcome" id="welcome-section">
-        <div className="pim-welcome-bg"></div>
-        <div className="pim-welcome-overlay" id="welcome-overlay"></div>
+      {/* Welcome Section - Normal */}
+      <section className="pim-welcome">
         <div className="pim-welcome-container">
           <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
           <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
@@ -170,10 +168,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quote Section with Parallax */}
-      <section className="pim-quote" id="quote-section">
-        <div className="pim-quote-bg"></div>
-        <div className="pim-quote-overlay" id="quote-overlay"></div>
+      {/* Quote Section - Normal */}
+      <section className="pim-quote">
         <div className="pim-quote-content">
           <p className="pim-quote-text">"Doživite lečilišne benefite tajlandske masaže"</p>
           <p className="pim-quote-author">- Bua Luang Thai Spa-Beograd</p>
@@ -183,18 +179,14 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Philosophy Section with Parallax */}
-      <section className="pim-philosophy" id="philosophy-section">
-        <div className="pim-philosophy-bg"></div>
-        <div className="pim-philosophy-overlay" id="philosophy-overlay"></div>
-        <div className="pim-philosophy-content">
-          <h2>FILOSOFIJA</h2>
-          <div className="pim-philosophy-image">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
-              alt="Thai Philosophy"
-            />
-          </div>
+      {/* Philosophy Section - Normal */}
+      <section className="pim-philosophy">
+        <h2>FILOSOFIJA</h2>
+        <div className="pim-philosophy-image">
+          <img 
+            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
+            alt="Thai Philosophy"
+          />
         </div>
       </section>
 
