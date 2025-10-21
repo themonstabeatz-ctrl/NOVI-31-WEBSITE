@@ -105,7 +105,7 @@ const Home = () => {
                 ublažavanju napetosti mišića i poboljšanju opšteg blagostanja. Zalažemo se za holistički 
                 pristup lečenju koji integriše um, telo i duh.
               </p>
-              <p>Pronađite nas na adresi Knez Mihailova 15, Beograd 11000, Srbija.</p>
+              <p>Pronađite nas na adresi Abebe Bikile 10A, Zemun, Beograd 11080, Srbija.</p>
             </div>
           </div>
         </div>
