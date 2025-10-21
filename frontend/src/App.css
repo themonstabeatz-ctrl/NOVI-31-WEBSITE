@@ -85,6 +85,52 @@
   }
 }
 
+/* Fixed Slogan Section Below Logo */
+.fixed-slogan-section {
+  position: fixed;
+  top: 120px; /* Below logo section */
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 500;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  will-change: transform;
+}
+
+.fixed-slogan-content {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  border: 2px solid var(--spa-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.fixed-slogan-text {
+  color: var(--spa-gold);
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  line-height: 1.2;
+  animation: goldGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes goldGlow {
+  0% { 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  100% { 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.6);
+  }
+}
+
 /* Navigation Header - Becomes Sticky on Scroll */
 .header-container {
   background: rgba(0, 0, 0, 0.9);
