@@ -104,16 +104,27 @@
 }
 
 /* Fixed Footer with Slogan Below Buddha */
+/* Thin footer bar below header */
+.thin-footer-header {
+  position: relative;
+  width: 100%;
+  height: 25px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
 /* Transparent footer bar below Buddha */
 .transparent-footer-bar {
   position: relative;
   width: 100%;
-  height: 60px;
+  height: 25px;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  margin-top: -60px; /* Pull it up to touch the bottom of hero */
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  margin-top: -25px;
 }
 
 .fixed-footer-slogan {
