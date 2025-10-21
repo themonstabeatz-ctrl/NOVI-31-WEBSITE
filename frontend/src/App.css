@@ -2030,6 +2030,17 @@ body {
   gap: 0.05rem; /* 50% smaller - was 0.1rem */
 }
 
+/* Social Card - Separate positioning in Row 2, Column 1, Far Left */
+.social-card {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  justify-self: start;
+  width: 110px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 0.1rem;
+}
+
 .info-card,
 .social-card,
 .map-card {
