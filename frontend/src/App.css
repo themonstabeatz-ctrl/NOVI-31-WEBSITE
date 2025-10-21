@@ -1921,6 +1921,14 @@ body {
   margin-bottom: 80px; /* Space for absolute positioned elements */
 }
 
+/* Map Card - Position top right */
+.map-card {
+  position: absolute;
+  top: 0;
+  right: -120px;
+  width: 110px;
+  z-index: 10;
+}
 /* Form Card UNIQUE STYLE - Different from other cards */
 .contact-form-card {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
