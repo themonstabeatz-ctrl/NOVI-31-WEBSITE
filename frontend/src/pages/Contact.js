@@ -177,8 +177,8 @@ const Contact = () => {
                   <Phone className="info-icon" />
                   <div className="info-details">
                     <h4>Telefon</h4>
-                    <a href="tel:+381111234567" className="info-link">
-                      +381 11 123 4567
+                    <a href="tel:+381626625500" className="info-link">
+                      +381 62 625 500
                     </a>
                   </div>
                 </div>
