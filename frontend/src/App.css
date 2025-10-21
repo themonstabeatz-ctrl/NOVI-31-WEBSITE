@@ -487,9 +487,9 @@ body {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6));
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
   margin-bottom: 2rem;
-  animation: logoGlow3D 3s ease-in-out infinite alternate;
+  animation: logoGlow3D 5s ease-in-out infinite alternate;
 }
 
 @keyframes logoGlow3D {
