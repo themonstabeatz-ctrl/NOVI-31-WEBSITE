@@ -8,25 +8,37 @@ const Home = () => {
   const { translate } = useLanguage();
 
   useEffect(() => {
-    const handleGlobalParallaxScroll = () => {
+    const handleScrollEffects = () => {
       const scrolled = window.pageYOffset;
-      const parallaxSpeed = 0.5; // Speed for all parallax layers
       
-      // Global parallax layers - all move at same speed but in different sections
-      const parallaxLayers = [
-        'parallax-layer',      // Hero section
-        'tagline-overlay',     // Tagline section
-        'welcome-overlay',     // Welcome section
-        'quote-overlay',       // Quote section
-        'philosophy-overlay'   // Philosophy section
-      ];
-      
-      parallaxLayers.forEach(layerId => {
-        const layer = document.getElementById(layerId);
-        if (layer) {
-          layer.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+      // Sticky Header Effect
+      const header = document.querySelector('.header-container');
+      if (header) {
+        if (scrolled > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
         }
-      });
+      }
+      
+      // Parallax effect ONLY for tagline over Buddha
+      const parallaxTagline = document.getElementById('parallax-tagline');
+      const heroSection = document.getElementById('hero-section');
+      
+      if (parallaxTagline && heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        
+        // Move tagline up and down over Buddha image during scroll
+        const parallaxSpeed = 0.8; // Speed of tagline movement
+        const maxScroll = heroHeight * 1.2; // Limit the parallax effect
+        
+        if (scrolled < maxScroll) {
+          parallaxTagline.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+          parallaxTagline.style.opacity = Math.max(0.3, 1 - (scrolled / heroHeight) * 0.7);
+        } else {
+          parallaxTagline.style.opacity = 0;
+        }
+      }
       
       // Fade hero content as we scroll
       const heroContent = document.querySelector('.pim-hero-content');
@@ -35,24 +47,17 @@ const Home = () => {
         const contentOpacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.2);
         heroContent.style.opacity = contentOpacity;
       }
-      
-      // Create depth by changing background positions at different speeds
-      const backgrounds = document.querySelectorAll('.pim-tagline-bg, .pim-welcome-bg, .pim-quote-bg, .pim-philosophy-bg');
-      backgrounds.forEach((bg, index) => {
-        const speed = 0.3 + (index * 0.1); // Different speeds for each background
-        bg.style.transform = `translateY(${scrolled * speed}px)`;
-      });
     };
 
     // Add smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';
     
     // Add scroll listener with passive option for performance
-    window.addEventListener('scroll', handleGlobalParallaxScroll, { passive: true });
+    window.addEventListener('scroll', handleScrollEffects, { passive: true });
     
     // Cleanup
     return () => {
-      window.removeEventListener('scroll', handleGlobalParallaxScroll);
+      window.removeEventListener('scroll', handleScrollEffects);
       document.documentElement.style.scrollBehavior = 'auto';
     };
   }, []);
