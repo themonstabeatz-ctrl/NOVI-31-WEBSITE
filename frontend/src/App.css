@@ -586,6 +586,7 @@ body {
 .parallax-sections {
   position: relative;
   z-index: 20;
+  margin-top: calc(100vh - 100px); /* Start below fixed hero */
 }
 
 .parallax-sections > section {
