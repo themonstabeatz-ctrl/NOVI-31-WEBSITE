@@ -264,6 +264,7 @@ const Home = () => {
         </blockquote>
         <cite className="pim-testimonial-author">Marija</cite>
       </section>
+      </div> {/* Close parallax container */}
     </div>
   );
 };
