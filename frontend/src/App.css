@@ -443,6 +443,23 @@ body {
   z-index: 1;
   margin: 0;
   padding: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Secondary Hero - Herbal Compress */
+.pim-hero-secondary {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 110vh;
+  overflow: hidden;
+  z-index: 0; /* Behind Buddha hero */
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .pim-hero-image {
