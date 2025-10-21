@@ -9,14 +9,6 @@ const Layout = () => {
 
   return (
     <div className={`min-h-screen ${isHomePage ? '' : 'bg-spa-dark'}`}>
-      <div className="logo-section">
-        <img 
-          src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/ujd19ro1_Bua%20luang%20logo.png" 
-          alt="Bua Luang Thai Spa" 
-          className="logo-image"
-        />
-      </div>
-      
       <Header />
       
       <main>
