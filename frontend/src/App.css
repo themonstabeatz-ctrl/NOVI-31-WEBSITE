@@ -293,7 +293,7 @@
   50% { transform: translateY(-10px) rotate(2deg); }
 }
 
-/* Pim Thai Style with Parallax - 90% Similar Structure */
+/* Global Parallax Website - Pim Thai Style */
 .pim-style-homepage {
   background: white;
   color: #333;
@@ -302,7 +302,7 @@
   overflow-x: hidden;
 }
 
-/* Performance optimizations for parallax */
+/* Global Parallax Setup */
 html {
   scroll-behavior: smooth;
 }
@@ -312,6 +312,39 @@ html {
   backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+}
+
+/* Global Parallax Layers */
+.parallax-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+.parallax-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.parallax-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200vh;
+  z-index: 3;
+  will-change: transform;
 }
 
 /* Hero Section with Fixed Background */
