@@ -47,26 +47,41 @@
   z-index: -1;
 }
 
-/* Logo Section - Fixed at Top */
+/* Compact Logo Section with Background */
 .logo-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0;
-  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  padding: 1rem 0;
+  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/7xixkvv4_podloga.jpg');
+  background-size: cover;
+  background-position: center;
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   position: relative;
   z-index: 100;
-  min-height: 120px;
+  min-height: 80px;
+}
+
+.logo-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 1;
 }
 
 .logo-image {
-  max-height: 200px;
+  max-height: 280px;
   width: auto;
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6));
   transition: transform 0.3s ease, filter 0.3s ease;
   animation: gentle-glow 3s ease-in-out infinite alternate;
-  transform: scale(1.1);
+  transform: scale(1.2);
+  position: relative;
+  z-index: 2;
 }
 
 .logo-image:hover {
