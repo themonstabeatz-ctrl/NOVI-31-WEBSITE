@@ -8,38 +8,51 @@ const Home = () => {
   const { translate } = useLanguage();
 
   useEffect(() => {
-    const handleParallaxScroll = () => {
+    const handleGlobalParallaxScroll = () => {
       const scrolled = window.pageYOffset;
-      const parallaxLayer = document.getElementById('parallax-layer');
-      const heroSection = document.getElementById('hero-section');
+      const parallaxSpeed = 0.5; // Speed for all parallax layers
       
-      if (parallaxLayer && heroSection) {
-        // Move transparent parallax layer slowly up and down
-        const parallaxSpeed = 0.5; // Speed of parallax movement
-        
-        // Move parallax layer - creates the moving transparent effect
-        parallaxLayer.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-        
-        // Keep hero section visible but gradually fade content
-        const heroHeight = heroSection.offsetHeight;
-        const contentOpacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.5);
-        
-        const heroContent = document.querySelector('.pim-hero-content');
-        if (heroContent) {
-          heroContent.style.opacity = contentOpacity;
+      // Global parallax layers - all move at same speed but in different sections
+      const parallaxLayers = [
+        'parallax-layer',      // Hero section
+        'tagline-overlay',     // Tagline section
+        'welcome-overlay',     // Welcome section
+        'quote-overlay',       // Quote section
+        'philosophy-overlay'   // Philosophy section
+      ];
+      
+      parallaxLayers.forEach(layerId => {
+        const layer = document.getElementById(layerId);
+        if (layer) {
+          layer.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
         }
+      });
+      
+      // Fade hero content as we scroll
+      const heroContent = document.querySelector('.pim-hero-content');
+      if (heroContent) {
+        const heroHeight = window.innerHeight;
+        const contentOpacity = Math.max(0, 1 - (scrolled / heroHeight) * 1.2);
+        heroContent.style.opacity = contentOpacity;
       }
+      
+      // Create depth by changing background positions at different speeds
+      const backgrounds = document.querySelectorAll('.pim-tagline-bg, .pim-welcome-bg, .pim-quote-bg, .pim-philosophy-bg');
+      backgrounds.forEach((bg, index) => {
+        const speed = 0.3 + (index * 0.1); // Different speeds for each background
+        bg.style.transform = `translateY(${scrolled * speed}px)`;
+      });
     };
 
     // Add smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';
     
     // Add scroll listener with passive option for performance
-    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    window.addEventListener('scroll', handleGlobalParallaxScroll, { passive: true });
     
     // Cleanup
     return () => {
-      window.removeEventListener('scroll', handleParallaxScroll);
+      window.removeEventListener('scroll', handleGlobalParallaxScroll);
       document.documentElement.style.scrollBehavior = 'auto';
     };
   }, []);
