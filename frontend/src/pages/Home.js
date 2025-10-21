@@ -140,10 +140,7 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Thin footer bar below header */}
-      <div className="thin-footer-header"></div>
-
-      {/* Second thin footer bar before hero */}
+      {/* Gray footer bar before hero */}
       <div className="transparent-footer-bar"></div>
 
       {/* Hero Banner with Original Buddha */}
