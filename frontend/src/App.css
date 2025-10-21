@@ -2107,15 +2107,15 @@ body {
   margin-top: 0.1rem;
 }
 
-/* Additional Info - Position below map on the right */
+/* Additional Info - Below map in third column */
 .contact-container .additional-info {
-  position: absolute;
-  top: 0;
-  right: -240px;
+  position: static;
   width: 110px;
   padding: 0.1rem;
   margin: 0;
   max-width: none;
+  grid-column: 3;
+  grid-row: 2;
 }
 
 .booking-info-card {
