@@ -11,11 +11,10 @@ const Home = () => {
     const handleScrollEffects = () => {
       const scrolled = window.pageYOffset;
       
-      // Sticky Header Effect - only after scrolling past logo and slogan
+      // Sticky Header Effect - only after scrolling past compact logo
       const header = document.querySelector('.header-container');
-      const logoHeight = 120; // Logo section height
-      const sloganHeight = 100; // Slogan section height
-      const stickyPoint = logoHeight + sloganHeight;
+      const logoHeight = 80; // Compact logo section height
+      const stickyPoint = logoHeight + 50; // Small buffer
       
       if (header) {
         if (scrolled > stickyPoint) {
@@ -25,14 +24,7 @@ const Home = () => {
         }
       }
       
-      // Parallax effect for fixed slogan over Buddha
-      const fixedSlogan = document.getElementById('fixed-slogan');
-      
-      if (fixedSlogan) {
-        // Move slogan up and down over Buddha image during scroll
-        const parallaxSpeed = 0.5; // Speed of slogan movement
-        fixedSlogan.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-      }
+      // No parallax effects - removed for clean look
       
       // Fade hero content as we scroll
       const heroContent = document.querySelector('.pim-hero-content');
