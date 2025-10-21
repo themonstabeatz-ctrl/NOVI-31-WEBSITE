@@ -22,7 +22,7 @@ const Footer = () => {
             </div>
             <div className="footer-contact-item">
               <MapPin className="footer-icon" />
-              <span>Knez Mihailova 15, Beograd 11000</span>
+              <span>Abebe Bikile 10A, Zemun, Beograd 11080, Srbija</span>
             </div>
             <div className="footer-contact-item">
               <Clock className="footer-icon" />
