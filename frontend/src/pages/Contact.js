@@ -77,19 +77,17 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form and Info */}
+      {/* Unified Contact Card */}
       <section className="contact-section">
-        <div className="contact-grid">
-          {/* Contact Form */}
-          <Card className="contact-form-card">
-            <CardHeader>
-              <CardTitle className="form-title">Pošaljite nam poruku</CardTitle>
-              <p className="form-subtitle">
+        <Card className="unified-contact-card">
+          <CardContent className="unified-contact-content">
+            {/* Contact Form Section */}
+            <div className="unified-form-section">
+              <h2 className="unified-section-title">Pošaljite nam poruku</h2>
+              <p className="unified-section-subtitle">
                 Popunite formu ispod i kontaktiraćemo vas u najkraćem roku
               </p>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="contact-form">
+              <form onSubmit={handleSubmit} className="unified-contact-form">
                 <div className="form-row">
                   <div className="form-group">
                     <Label htmlFor="firstName">{translate("firstName")}</Label>
@@ -153,19 +151,34 @@ const Contact = () => {
                   {isSubmitting ? "Šalje se..." : translate("send")}
                 </Button>
               </form>
-            </CardContent>
-          </Card>
+            </div>
 
-          {/* Contact Information */}
-          <div className="contact-info">
-            <Card className="info-card">
-              <CardHeader>
-                <CardTitle className="info-title">Kontakt informacije</CardTitle>
-              </CardHeader>
-              <CardContent className="info-content">
-                <div className="info-item">
-                  <Mail className="info-icon" />
-                  <div className="info-details">
+            {/* Booking Information Section */}
+            <div className="unified-booking-section">
+              <h3 className="unified-section-title">Informacije o rezervaciji</h3>
+              <div className="unified-booking-details">
+                <div className="unified-booking-item">
+                  <h4>Otkazivanje</h4>
+                  <p>Molimo vas da otkazujete termine najmanje 4 sata unapred</p>
+                </div>
+                <div className="unified-booking-item">
+                  <h4>Kasnjenje</h4>
+                  <p>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</p>
+                </div>
+                <div className="unified-booking-item">
+                  <h4>Grupne rezervacije</h4>
+                  <p>Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Information Section */}
+            <div className="unified-info-section">
+              <h3 className="unified-section-title">Kontakt informacije</h3>
+              <div className="unified-info-items">
+                <div className="unified-info-item">
+                  <Mail className="unified-info-icon" />
+                  <div className="unified-info-details">
                     <h4>Email</h4>
                     <a href="mailto:bualuangthailandspa@gmail.com" className="info-link">
                       bualuangthailandspa@gmail.com
@@ -173,9 +186,9 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="info-item">
-                  <Phone className="info-icon" />
-                  <div className="info-details">
+                <div className="unified-info-item">
+                  <Phone className="unified-info-icon" />
+                  <div className="unified-info-details">
                     <h4>Telefon</h4>
                     <a href="tel:+381626625500" className="info-link">
                       +381 62 625 500
@@ -183,17 +196,17 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="info-item">
-                  <MapPin className="info-icon" />
-                  <div className="info-details">
+                <div className="unified-info-item">
+                  <MapPin className="unified-info-icon" />
+                  <div className="unified-info-details">
                     <h4>Adresa</h4>
                     <p className="info-text">Abebe Bikile 10A, Zemun<br />Beograd 11080, Srbija</p>
                   </div>
                 </div>
                 
-                <div className="info-item">
-                  <Clock className="info-icon" />
-                  <div className="info-details">
+                <div className="unified-info-item">
+                  <Clock className="unified-info-icon" />
+                  <div className="unified-info-details">
                     <h4>Radno vreme</h4>
                     <div className="working-hours">
                       <p>Ponedeljak - Nedelja</p>
@@ -201,52 +214,27 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </div>
 
-          {/* Social Media - Separate in Grid, Row 2, Column 1 */}
-          <Card className="social-card">
-            <CardHeader>
-              <CardTitle className="social-title">{translate("followUs")}</CardTitle>
-            </CardHeader>
-            <CardContent>
+            {/* Social Media Section */}
+            <div className="unified-social-section">
+              <h3 className="unified-section-title">{translate("followUs")}</h3>
               <a 
                 href="https://www.instagram.com/bualuang_thai_spa" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="social-link"
+                className="unified-social-link"
               >
-                <Instagram className="social-icon" />
-                <div className="social-info">
+                <Instagram className="unified-social-icon" />
+                <div className="unified-social-info">
                   <h4>Instagram</h4>
                   <p>@bualuang_thai_spa</p>
                 </div>
               </a>
-            </CardContent>
-          </Card>
-
-          {/* Additional Information - Third column */}
-          <Card className="booking-info-card additional-info">
-            <CardContent className="booking-info">
-              <h3 className="booking-title">Informacije o rezervaciji</h3>
-              <div className="booking-details">
-                <div className="booking-item">
-                  <h4>Otkazivanje</h4>
-                  <p>Molimo vas da otkazujete termine najmanje 4 sata unapred</p>
-                </div>
-                <div className="booking-item">
-                  <h4>Kasnjenje</h4>
-                  <p>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</p>
-                </div>
-                <div className="booking-item">
-                  <h4>Grupne rezervacije</h4>
-                  <p>Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
     </div>
   );
