@@ -514,13 +514,12 @@ html {
 }
 
 .pim-welcome-title {
-  color: var(--spa-gold);
+  color: var(--spa-dark);
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 2rem;
   text-align: center;
   letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .pim-welcome-content {
@@ -532,8 +531,7 @@ html {
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
-  color: var(--spa-cream);
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  color: #555;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
