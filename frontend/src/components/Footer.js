@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             <div className="footer-contact-item">
               <Clock className="footer-icon" />
-              <span>Pon - Ned: 09:00 - 21:00</span>
+              <span>Pon - Ned: 10:00 - 22:00</span>
             </div>
           </div>
         </div>
