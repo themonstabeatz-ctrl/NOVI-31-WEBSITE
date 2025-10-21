@@ -1927,10 +1927,10 @@ body {
   grid-row: 1;
 }
 
-/* Contact Info - Column 2, Row 2 */
+/* Contact Info - Column 2, Row 1 (first row, right side) */
 .contact-info {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 /* Map Card - Third column (right), Row 1 */
