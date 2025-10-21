@@ -56,7 +56,7 @@
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
-  background-image: url('https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/0nvmz73i_podloga.jpg');
+  background-image: url('https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/zft4r2iu_podloga.jpg');
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -72,7 +72,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
