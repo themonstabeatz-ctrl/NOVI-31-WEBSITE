@@ -87,17 +87,17 @@ const Home = () => {
       const heroHeight = heroSection.offsetHeight;
       const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
       
-      if (scrollPercent > 0.3) {
-        // Scroll down - transform logo to lotus
-        const opacity = Math.max(1 - (scrollPercent - 0.3) * 2, 0);
-        const scale = Math.max(1 - (scrollPercent - 0.3), 0.3);
+      if (scrollPercent > 0.05) {
+        // Scroll down - transform logo to lotus IMMEDIATELY and FASTER
+        const opacity = Math.max(1 - (scrollPercent - 0.05) * 3, 0);
+        const scale = Math.max(1 - (scrollPercent - 0.05) * 1.5, 0.2);
         
         heroLogo.style.opacity = opacity;
         heroLogo.style.transform = `scale(${scale})`;
-        heroLogo.style.filter = `blur(${(scrollPercent - 0.3) * 10}px)`;
+        heroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
         
-        // Add lotus petals effect
-        if (scrollPercent > 0.5 && !heroLogo.classList.contains('lotus-transform')) {
+        // Add lotus petals effect immediately
+        if (scrollPercent > 0.1 && !heroLogo.classList.contains('lotus-transform')) {
           heroLogo.classList.add('lotus-transform');
         }
       } else {
