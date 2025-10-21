@@ -546,12 +546,27 @@ body {
 
 /* Remove old tagline styles - now using fixed slogan */
 
-/* Welcome Section - Normal */
+/* Parallax Container for all sections after Buddha */
+.parallax-sections {
+  position: relative;
+  z-index: 20;
+}
+
+.parallax-sections > section {
+  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Welcome Section - With Parallax */
 .pim-welcome {
   padding: 4rem 2rem;
   background: white;
   position: relative;
   z-index: 20;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .pim-welcome-container {
