@@ -35,6 +35,17 @@ const Header = () => {
   return (
     <header className="header-container">
       <nav className="nav-wrapper">
+        {/* Logo on Left */}
+        <div className="nav-logo-container">
+          <Link to="/">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/ujd19ro1_Bua%20luang%20logo.png" 
+              alt="Bua Luang Thai Spa" 
+              className="nav-logo"
+            />
+          </Link>
+        </div>
+
         {/* Desktop Navigation */}
         <div className="nav-desktop">
           {navigation.map((item) => (
