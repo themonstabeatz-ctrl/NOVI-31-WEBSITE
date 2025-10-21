@@ -431,14 +431,17 @@ body {
   backface-visibility: hidden;
 }
 
-/* Full-Size Buddha Hero */
+/* Full-Size Buddha Hero - FIXED */
 .pim-hero {
-  position: relative;
-  height: 100vh;
+  position: fixed;
+  top: 125px; /* Below header + gray footer */
+  left: 0;
+  right: 0;
+  height: calc(100vh - 125px);
   overflow: hidden;
-  margin-top: 0; /* Start immediately below header */
-  margin-bottom: 0;
-  padding-top: 0; /* No padding needed */
+  z-index: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .pim-hero-image {
