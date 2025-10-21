@@ -444,45 +444,19 @@ html {
   box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
 }
 
-/* Tagline Section with Parallax Background */
+/* Tagline Section with Parallax Over Buddha */
 .pim-tagline {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 20;
-  overflow: hidden;
-}
-
-.pim-tagline-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/vpmqfy4q_podloga.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.pim-tagline-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 200vh;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.7) 70%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-  z-index: 3;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 50;
+  pointer-events: none;
   will-change: transform;
 }
 
@@ -490,6 +464,11 @@ html {
   position: relative;
   z-index: 10;
   padding: 3rem 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--spa-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .pim-tagline h2 {
@@ -500,6 +479,16 @@ html {
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
   line-height: 1.2;
+  animation: goldGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes goldGlow {
+  0% { 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  100% { 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.6);
+  }
 }
 
 /* Welcome Section with Parallax */
