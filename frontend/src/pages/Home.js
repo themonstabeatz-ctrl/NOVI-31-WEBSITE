@@ -125,7 +125,7 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Hero Banner with Fixed Background */}
+      {/* Hero Banner with Original Buddha */}
       <section className="pim-hero" id="hero-section">
         <div className="pim-hero-image">
           <img 
@@ -134,21 +134,18 @@ const Home = () => {
           />
         </div>
         <div className="pim-hero-overlay"></div>
-        <div className="pim-parallax-layer" id="parallax-layer"></div>
         <div className="pim-hero-content">
           <h1 className="pim-hero-title">POSTAVITE VAŠE TELO U DOBRE RUKE</h1>
           <Button asChild className="pim-hero-button">
             <Link to="/contact">Rezervišite Online</Link>
           </Button>
         </div>
-      </section>
-
-      {/* Tagline with Parallax */}
-      <section className="pim-tagline" id="tagline-section">
-        <div className="pim-tagline-bg"></div>
-        <div className="pim-tagline-overlay" id="tagline-overlay"></div>
-        <div className="pim-tagline-content">
-          <h2>Tajlandska masaža, duša tradicije i tela</h2>
+        
+        {/* Parallax Tagline Over Buddha */}
+        <div className="pim-tagline" id="parallax-tagline">
+          <div className="pim-tagline-content">
+            <h2>Tajlandska masaža, duša tradicije i tela</h2>
+          </div>
         </div>
       </section>
 
