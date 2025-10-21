@@ -387,7 +387,8 @@ html {
 }
 
 body {
-  padding-top: 0; /* No padding needed since header is not initially sticky */
+  padding-top: 0;
+  padding-bottom: 100px; /* Space for fixed footer slogan */
 }
 
 * {
