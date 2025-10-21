@@ -502,6 +502,36 @@ body {
   }
 }
 
+/* Lotus Transform Effect */
+.pim-hero-title.lotus-transform {
+  animation: lotusDissolve 1s ease-out forwards;
+}
+
+@keyframes lotusDissolve {
+  0% {
+    letter-spacing: 2px;
+  }
+  50% {
+    letter-spacing: 20px;
+    text-shadow: 
+      0 0 10px rgba(212, 175, 55, 0.8),
+      0 0 20px rgba(212, 175, 55, 0.6),
+      0 0 30px rgba(212, 175, 55, 0.4),
+      5px 5px 0px rgba(255, 192, 203, 0.5),
+      -5px -5px 0px rgba(255, 192, 203, 0.5);
+  }
+  100% {
+    letter-spacing: 40px;
+    opacity: 0;
+    transform: scale(2) rotate(15deg);
+    text-shadow: 
+      0 0 20px rgba(212, 175, 55, 0.4),
+      0 0 40px rgba(255, 192, 203, 0.6),
+      10px 10px 0px rgba(255, 192, 203, 0.3),
+      -10px -10px 0px rgba(255, 192, 203, 0.3);
+  }
+}
+
 .pim-hero-button {
   background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
   color: var(--spa-dark);
