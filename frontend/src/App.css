@@ -1916,9 +1916,8 @@ body {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 120px;
   gap: 0.1rem;
-  margin-bottom: 80px; /* Space for absolute positioned elements */
 }
 
 /* Map Card - Position top right */
