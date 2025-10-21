@@ -178,7 +178,7 @@ const Contact = () => {
                   <MapPin className="info-icon" />
                   <div className="info-details">
                     <h4>Adresa</h4>
-                    <p className="info-text">Knez Mihailova 15<br />Beograd 11000, Srbija</p>
+                    <p className="info-text">Abebe Bikile 10A, Zemun<br />Beograd 11080, Srbija</p>
                   </div>
                 </div>
                 
