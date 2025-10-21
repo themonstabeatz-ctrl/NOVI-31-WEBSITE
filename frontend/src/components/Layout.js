@@ -16,10 +16,8 @@ const Layout = () => {
       </main>
       
       {isHomePage && (
-        <div className="fixed-footer-slogan" id="fixed-footer">
-          <div className="fixed-footer-content">
-            <h2 className="fixed-footer-text">Tajlandska masaža, duša tradicije i tela</h2>
-          </div>
+        <div className="transparent-footer-bar" id="transparent-footer">
+          {/* Empty transparent bar - positioned below Buddha image */}
         </div>
       )}
       
