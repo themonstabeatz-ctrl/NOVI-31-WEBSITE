@@ -2025,7 +2025,7 @@ body {
 /* Contact Info EXTREME Compact */
 .contact-info {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: 0.05rem; /* 50% smaller - was 0.1rem */
