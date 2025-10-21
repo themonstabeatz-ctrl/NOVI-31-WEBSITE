@@ -2109,13 +2109,12 @@ body {
 
 /* Additional Info - Below map in third column */
 .contact-container .additional-info {
-  position: static;
-  width: 110px;
-  padding: 0.1rem;
-  margin: 0;
-  max-width: none;
   grid-column: 3;
   grid-row: 2;
+  width: 110px;
+  padding: 0;
+  margin: 0;
+  max-width: none;
 }
 
 .booking-info-card {
@@ -2133,8 +2132,8 @@ body {
 }
 
 .booking-details {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 0.2rem;
 }
 
