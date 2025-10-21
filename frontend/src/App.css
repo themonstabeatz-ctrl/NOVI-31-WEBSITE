@@ -467,6 +467,7 @@ body {
   letter-spacing: 2px;
   line-height: 1.1;
   animation: heroGlow 3s ease-in-out infinite alternate;
+  font-family: 'Agency FB', 'Arial Narrow', sans-serif;
 }
 
 @keyframes heroGlow {
