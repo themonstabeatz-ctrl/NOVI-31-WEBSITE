@@ -225,7 +225,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            {/* Location Map Placeholder */}
+            {/* Location Map */}
             <Card className="map-card">
               <CardHeader>
                 <CardTitle className="map-title">Lokacija</CardTitle>
@@ -237,6 +237,20 @@ const Contact = () => {
                   <p className="map-note">
                     U centru grada, blizu glavne pešačke zone
                   </p>
+                  <Button 
+                    asChild 
+                    className="map-button"
+                    style={{ marginTop: '1rem' }}
+                  >
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Abebe+Bikile+10A+Zemun+Beograd+11080+Srbija" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Otvori u Google Maps
+                    </a>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
