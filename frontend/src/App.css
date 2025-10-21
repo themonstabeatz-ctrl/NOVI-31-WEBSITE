@@ -437,7 +437,7 @@ body {
   top: 100px; /* Exactly below header golden line */
   left: 0;
   right: 0;
-  height: calc(100vh - 100px); /* Full remaining height */
+  height: 110vh; /* Extra tall to show full image */
   overflow: hidden;
   z-index: 1;
   margin: 0;
