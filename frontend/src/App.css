@@ -434,10 +434,10 @@ body {
 /* Full-Size Buddha Hero - FIXED */
 .pim-hero {
   position: fixed;
-  top: 125px; /* Below header + gray footer */
+  top: 100px; /* Exactly below header */
   left: 0;
   right: 0;
-  height: calc(100vh - 125px);
+  height: 60vh; /* Reduced height - narrower */
   overflow: hidden;
   z-index: 1;
   margin: 0;
