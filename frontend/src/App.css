@@ -2000,7 +2000,7 @@ body {
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .info-card,
@@ -2008,51 +2008,51 @@ body {
 .map-card {
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 0.15rem;
+  padding: 0.1rem;
 }
 
 .info-card .card-header,
 .social-card .card-header,
 .map-card .card-header {
-  padding: 0.15rem;
+  padding: 0.1rem;
 }
 
 .info-card .card-content,
 .social-card .card-content,
 .map-card .card-content {
-  padding: 0.15rem;
+  padding: 0.1rem;
 }
 
 .info-title,
 .social-title,
 .map-title {
-  font-size: 0.7rem;
-  margin-bottom: 0.15rem;
+  font-size: 0.5rem;
+  margin-bottom: 0.1rem;
 }
 
 .info-content {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .info-item {
   display: flex;
-  gap: 0.15rem;
-  padding: 0.1rem 0;
+  gap: 0.1rem;
+  padding: 0.05rem 0;
 }
 
 .info-icon,
 .social-icon {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   color: var(--spa-gold);
   flex-shrink: 0;
 }
 
 .info-details h4,
 .social-info h4 {
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   margin-bottom: 0.05rem;
   font-weight: 600;
 }
@@ -2060,11 +2060,11 @@ body {
 .info-text,
 .info-link,
 .social-info p {
-  font-size: 0.65rem;
+  font-size: 0.45rem;
 }
 
 .working-hours {
-  font-size: 0.65rem;
+  font-size: 0.45rem;
 }
 
 .hours {
@@ -2073,38 +2073,38 @@ body {
 }
 
 .map-content {
-  padding: 0.15rem;
+  padding: 0.1rem;
 }
 
 .map-placeholder {
-  padding: 0.3rem;
-  gap: 0.15rem;
+  padding: 0.2rem;
+  gap: 0.1rem;
 }
 
 .map-icon {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 .map-placeholder p {
-  font-size: 0.65rem;
+  font-size: 0.45rem;
 }
 
 .map-note {
-  font-size: 0.55rem;
+  font-size: 0.4rem;
 }
 
 .map-button {
-  font-size: 0.65rem;
-  padding: 0.15rem 0.3rem;
-  margin-top: 0.15rem;
+  font-size: 0.45rem;
+  padding: 0.1rem 0.2rem;
+  margin-top: 0.1rem;
 }
 
 /* Additional Info EXTREME Compact */
 .contact-container .additional-info {
-  padding: 0.15rem;
-  margin: 0.15rem auto 0;
-  max-width: 600px;
+  padding: 0.1rem;
+  margin: 0.1rem auto 0;
+  max-width: 500px;
 }
 
 .booking-info-card {
@@ -2113,28 +2113,28 @@ body {
 }
 
 .booking-info {
-  padding: 0.3rem;
+  padding: 0.2rem;
 }
 
 .booking-title {
-  font-size: 0.75rem;
-  margin-bottom: 0.3rem;
+  font-size: 0.55rem;
+  margin-bottom: 0.2rem;
 }
 
 .booking-details {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.3rem;
+  gap: 0.2rem;
 }
 
 .booking-item h4 {
-  font-size: 0.7rem;
-  margin-bottom: 0.1rem;
+  font-size: 0.5rem;
+  margin-bottom: 0.05rem;
   font-weight: 600;
 }
 
 .booking-item p {
-  font-size: 0.6rem;
+  font-size: 0.45rem;
 }
 
 .social-link {
