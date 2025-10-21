@@ -406,7 +406,7 @@
   background: white;
   color: #333;
   font-family: 'Agency FB', 'Arial Narrow', sans-serif;
-  padding-top: 193px; /* Space for header (~143px) + thin footer (25px) + second footer (25px) */
+  padding-top: 125px; /* Space for header (~100px) + gray footer (25px) */
 }
 
 /* Global Font Setting */
