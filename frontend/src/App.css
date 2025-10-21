@@ -420,9 +420,9 @@ body {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  margin-top: -80px; /* Overlap with fixed navigation */
+  margin-top: 0; /* Start immediately below header */
   margin-bottom: 0;
-  padding-top: 80px; /* Compensate for overlap */
+  padding-top: 0; /* No padding needed */
 }
 
 .pim-hero-image {
