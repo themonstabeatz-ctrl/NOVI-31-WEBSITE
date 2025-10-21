@@ -139,8 +139,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Welcome Section with Background */}
-      <section className="pim-welcome">
+      {/* Welcome Section with Parallax */}
+      <section className="pim-welcome" id="welcome-section">
+        <div className="pim-welcome-bg"></div>
+        <div className="pim-welcome-overlay" id="welcome-overlay"></div>
         <div className="pim-welcome-container">
           <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
           <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
