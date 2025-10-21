@@ -125,24 +125,30 @@ const Home = () => {
       if (!heroSection || !secondaryHero) return;
       
       const heroHeight = 110 * window.innerHeight / 100; // 110vh in pixels
-      const halfHeroHeight = heroHeight / 2;
+      const triggerPoint = heroHeight * 0.75; // Start at 75% instead of 50%
       
-      // When scroll passes half of hero height
-      if (scrolled > halfHeroHeight) {
-        // Calculate how much to move Buddha up
-        const moveAmount = scrolled - halfHeroHeight;
-        const movePercent = Math.min(moveAmount / halfHeroHeight, 1);
+      // When scroll passes 75% of hero height
+      if (scrolled > triggerPoint) {
+        // Calculate how much to move - gentle and smooth
+        const moveAmount = (scrolled - triggerPoint) * 0.6; // 0.6 for gentler movement
         
-        // Move Buddha hero up and fade out
+        // Move Buddha hero up smoothly (NO FADE)
         heroSection.style.transform = `translateY(-${moveAmount}px)`;
-        heroSection.style.opacity = Math.max(1 - movePercent, 0);
+        heroSection.style.opacity = 1; // Keep full opacity
         
-        // Fade in secondary hero
-        secondaryHero.style.opacity = Math.min(movePercent, 1);
+        // Move herbal compress up gently and fade in
+        const herbalMove = moveAmount * 0.3; // Even gentler movement for herbal
+        secondaryHero.style.transform = `translateY(-${herbalMove}px)`;
+        
+        // Calculate fade in for herbal
+        const remainingScroll = heroHeight - triggerPoint;
+        const fadePercent = Math.min((scrolled - triggerPoint) / remainingScroll, 1);
+        secondaryHero.style.opacity = Math.min(fadePercent * 0.8, 0.8);
       } else {
         // Reset when scrolling back to top
         heroSection.style.transform = 'translateY(0)';
         heroSection.style.opacity = 1;
+        secondaryHero.style.transform = 'translateY(0)';
         secondaryHero.style.opacity = 0;
       }
       
