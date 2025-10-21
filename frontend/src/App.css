@@ -401,6 +401,56 @@
   50% { transform: translateY(-10px) rotate(2deg); }
 }
 
+/* Contact Page Logo Animation */
+.contact-logo-animation {
+  position: relative;
+}
+
+.contact-animated-logo {
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+  animation: gentle-sway 6s ease-in-out infinite;
+}
+
+/* Gentle sway animation for the logo */
+@keyframes gentle-sway {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px);
+  }
+  25% { 
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% { 
+    transform: translateY(-15px) translateX(0px);
+  }
+  75% { 
+    transform: translateY(-10px) translateX(-5px);
+  }
+}
+
+/* Rotating lotus flower effect - using pseudo-element */
+.contact-animated-logo::before {
+  content: '🪷';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  font-size: 3rem;
+  transform: translate(-50%, -50%);
+  animation: lotus-rotate 10s linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes lotus-rotate {
+  0% { 
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% { 
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 /* Pim Thai Style with Agency FB Font */
 .pim-style-homepage {
   background: white;
