@@ -47,7 +47,7 @@
   z-index: -1;
 }
 
-/* Enhanced Logo Section */
+/* Logo Section - Fixed at Top */
 .logo-section {
   display: flex;
   justify-content: center;
@@ -56,7 +56,7 @@
   background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
   position: relative;
-  z-index: 10;
+  z-index: 100;
   min-height: 120px;
 }
 
