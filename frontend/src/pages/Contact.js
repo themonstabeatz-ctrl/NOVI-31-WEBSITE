@@ -29,24 +29,36 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Mock form submission
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Kontakt forma - ${formData.firstName} ${formData.lastName}`);
+    const body = encodeURIComponent(
+      `Ime: ${formData.firstName} ${formData.lastName}\n` +
+      `Email: ${formData.email}\n\n` +
+      `Poruka:\n${formData.message}`
+    );
+    
+    const mailtoLink = `mailto:bualuangthailandspa@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
     setTimeout(() => {
       toast({
-        title: "Poruka poslata!",
-        description: "Hvala vam na poruci. Kontaktiraćemo vas uskoro.",
+        title: "Email klijent otvoren!",
+        description: "Molimo vas završite slanje poruke u vašem email klijentu.",
         variant: "success"
       });
       
+      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
         email: "",
         message: ""
       });
-      setIsSubmitting(false);
-    }, 1000);
+    }, 500);
   };
 
   return (
