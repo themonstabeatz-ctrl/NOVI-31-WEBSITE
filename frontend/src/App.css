@@ -717,18 +717,7 @@ body {
   text-align: center;
 }
 
-/* Animations removed */
-
-    0 1px 0 rgba(212, 175, 55, 0.8),
-    0 2px 0 rgba(212, 175, 55, 0.7),
-    0 3px 0 rgba(212, 175, 55, 0.6),
-    0 4px 0 rgba(212, 175, 55, 0.5),
-    0 5px 5px rgba(0, 0, 0, 0.5),
-    0 10px 15px rgba(212, 175, 55, 0.4),
-    0 15px 25px rgba(0, 0, 0, 0.3);
-  transform: perspective(500px) rotateX(5deg);
-  animation: subtle-float-3d 6s ease-in-out infinite;
-}
+/* Animations and orphaned CSS removed */
 
 .pim-welcome-title {
   color: var(--spa-dark);
