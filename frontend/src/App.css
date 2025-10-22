@@ -959,10 +959,10 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Gift Voucher Showcase - 200% with Breathing Effect */
+/* Gift Voucher Showcase - Original Size with Breathing Effect */
 .pim-gift-voucher-showcase {
   margin: 2rem auto;
-  max-width: 1400px; /* 200% size (2x original 700px) */
+  max-width: 700px; /* Original size (100%) */
   perspective: 1000px;
   padding: 0;
   background: transparent;
