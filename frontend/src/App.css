@@ -712,19 +712,69 @@ body {
 
 .pim-welcome-subtitle {
   color: var(--spa-gold);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   text-align: center;
+  /* 3D Effect - Layered golden glow */
+  text-shadow: 
+    0 1px 0 rgba(212, 175, 55, 0.8),
+    0 2px 0 rgba(212, 175, 55, 0.7),
+    0 3px 0 rgba(212, 175, 55, 0.6),
+    0 4px 0 rgba(212, 175, 55, 0.5),
+    0 5px 5px rgba(0, 0, 0, 0.5),
+    0 10px 15px rgba(212, 175, 55, 0.4),
+    0 15px 25px rgba(0, 0, 0, 0.3);
+  transform: perspective(500px) rotateX(5deg);
+  animation: subtle-float-3d 6s ease-in-out infinite;
 }
 
 .pim-welcome-title {
-  color: var(--spa-dark);
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 2rem;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 2.5rem;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  /* Ultimate 3D Effect - Multi-layered depth */
+  background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    /* Deep 3D layers */
+    0 1px 0 rgba(184, 148, 31, 0.9),
+    0 2px 0 rgba(184, 148, 31, 0.85),
+    0 3px 0 rgba(184, 148, 31, 0.8),
+    0 4px 0 rgba(184, 148, 31, 0.75),
+    0 5px 0 rgba(184, 148, 31, 0.7),
+    0 6px 0 rgba(184, 148, 31, 0.65),
+    0 7px 0 rgba(184, 148, 31, 0.6),
+    0 8px 0 rgba(184, 148, 31, 0.55),
+    /* Shadow for depth */
+    0 10px 20px rgba(0, 0, 0, 0.6),
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    /* Golden glow */
+    0 0 30px rgba(212, 175, 55, 0.6),
+    0 0 50px rgba(212, 175, 55, 0.4),
+    0 0 70px rgba(212, 175, 55, 0.2);
+  filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.3));
+  transform: perspective(800px) rotateX(10deg) rotateY(-2deg);
+  transform-style: preserve-3d;
+  animation: majestic-3d-float 8s ease-in-out infinite;
+  position: relative;
+}
+
+.pim-welcome-title::before {
+  content: 'UMETNOST TAJLANDSKE MASAŽE';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: rgba(212, 175, 55, 0.1);
+  z-index: -1;
+  transform: translateZ(-50px) scale(1.05);
+  filter: blur(2px);
 }
 
 .pim-welcome-content {
