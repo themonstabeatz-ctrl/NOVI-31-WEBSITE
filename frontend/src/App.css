@@ -449,7 +449,7 @@ html {
 
 body {
   padding-top: 80px; /* Space for fixed navigation */
-  padding-bottom: 100px; /* Space for fixed footer slogan */
+  padding-bottom: 0; /* No space at bottom - footer touches bottom */
   font-family: 'Agency FB', 'Arial Narrow', sans-serif;
 }
 
