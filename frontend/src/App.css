@@ -759,9 +759,10 @@ body {
   transform: translateY(-2px);
 }
 
-/* Philosophy Section - Normal */
+/* Philosophy Section - Covers content below */
 .pim-philosophy {
   position: relative;
+  z-index: 10; /* Higher z-index to cover quote section below */
   text-align: center;
   padding: 3rem 2rem;
   background: var(--spa-dark);
