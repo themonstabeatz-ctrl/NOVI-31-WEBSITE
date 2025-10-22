@@ -1999,6 +1999,7 @@ body {
   margin-top: 4rem;
   margin-bottom: 0;
   position: relative;
+  background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
 }
 
 .footer-mandala-pattern {
