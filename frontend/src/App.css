@@ -806,44 +806,42 @@ body {
   text-indent: 0;
 }
 
-/* Philosophy Background with Rotating Circle */
-.pim-philosophy-background {
+/* Philosophy Video Background */
+.pim-philosophy-video-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/oajh7ga5_Pozadina%201.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.15;
+  overflow: hidden;
   z-index: 0;
 }
 
-.pim-philosophy-rotating-circle {
+.pim-philosophy-video {
   position: absolute;
   top: 50%;
   left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 400px;
-  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: rotate-circle 30s linear infinite;
-  opacity: 0.3;
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+  object-fit: cover;
+  opacity: 0.4;
 }
 
-@keyframes rotate-circle {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.pim-philosophy-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg, 
+    rgba(10, 10, 10, 0.7) 0%, 
+    rgba(26, 26, 26, 0.6) 100%
+  );
+  z-index: 1;
 }
 
 /* Services Section */
