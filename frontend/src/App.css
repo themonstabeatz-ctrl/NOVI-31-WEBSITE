@@ -841,21 +841,9 @@ body {
 }
 
 .pim-welcome-text p {
-  font-size: 1.15rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
-  color: #ffffff;
-  font-weight: 500;
-  /* 3D Text depth */
-  text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.8),
-    0 2px 0 rgba(255, 255, 255, 0.6),
-    0 3px 0 rgba(255, 255, 255, 0.4),
-    0 4px 5px rgba(0, 0, 0, 0.5),
-    0 8px 15px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(212, 175, 55, 0.2);
-  transform: perspective(500px) translateZ(10px);
-  animation: text-breathe 5s ease-in-out infinite;
   color: #555;
   max-width: 800px;
   margin-left: auto;
