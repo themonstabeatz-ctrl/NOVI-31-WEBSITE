@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
 import { Award, Heart, Users, Star, Sparkles, Leaf, Zap } from "lucide-react";
 
@@ -12,12 +11,10 @@ const About = () => {
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef(null);
 
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Track mouse position for 3D effects
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -26,7 +23,6 @@ const About = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Track scroll for parallax
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -37,49 +33,28 @@ const About = () => {
 
   const values = [
     {
-      icon: <Heart className="w-8 h-8" />,
+      icon: <Heart className="w-12 h-12" />,
       title: "Tradicionalnost",
-      description: "Naše tehnike su prenesene direktno iz Tajlanda kroz generacije među stručnim masereima."
+      description: "Naše tehnike su prenesene direktno iz Tajlanda kroz generacije među stručnim masereima.",
+      color: "#D4AF37"
     },
     {
-      icon: <Award className="w-8 h-8" />,
+      icon: <Award className="w-12 h-12" />,
       title: "Kvalitet",
-      description: "Koristimo isključivo prirodne sastojke i aromatična ulja najvišeg kvaliteta."
+      description: "Koristimo isključivo prirodne sastojke i aromatična ulja najvišeg kvaliteta.",
+      color: "#B8860B"
     },
     {
-      icon: <Users className="w-8 h-8" />,
+      icon: <Users className="w-12 h-12" />,
       title: "Iskustvo",
-      description: "Naš tim čine sertifikovani terapeuti sa više od 10 godina iskustva."
-    }
-  ];
-
-  const teamMembers = [
-    {
-      name: "Siriporn Thanakit",
-      position: "Glavni terapijska",
-      experience: "15 godina iskustva",
-      specialty: "Tradicionalne tajlandske masaže",
-      certification: "Royal Thai Massage School, Bangkok"
-    },
-    {
-      name: "Chanida Suwannaporn", 
-      position: "Spa terapeutkinja",
-      experience: "12 godina iskustva",
-      specialty: "Tretmani lica i aromaterapija",
-      certification: "Chiva-Som International Health Resort"
-    },
-    {
-      name: "Niran Pongpanich",
-      position: "Masažer",
-      experience: "8 godina iskustva", 
-      specialty: "Deep tissue i sportske masaže",
-      certification: "Thai Traditional Medical College"
+      description: "Naš tim čine sertifikovani terapeuti sa više od 10 godina iskustva.",
+      color: "#FFD700"
     }
   ];
 
   return (
     <div className="about-container-3d" ref={containerRef}>
-      {/* 3D Hero Header */}
+      {/* 3D Hero Section */}
       <section className="about-hero-3d">
         <div 
           className="about-hero-background"
@@ -111,12 +86,18 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="story-section">
-        <div className="story-content">
-          <div className="story-text">
-            <h2 className="story-title">Naša Priča</h2>
-            <div className="story-paragraphs">
+      {/* 3D Story Section */}
+      <section className="story-section-3d">
+        <div className="story-container-3d">
+          <div 
+            className="story-card-3d"
+            style={{
+              transform: `perspective(1500px) rotateY(${(mousePosition.x / window.innerWidth - 0.5) * 10}deg) rotateX(${-(mousePosition.y / window.innerHeight - 0.5) * 10}deg)`,
+            }}
+          >
+            <div className="story-card-glow"></div>
+            <h2 className="story-title-3d">Naša Priča</h2>
+            <div className="story-content-3d">
               <p>
                 Bua Luang Thai Spa je nastao iz želje da se autentično tajlandsko iskustvo 
                 donese u srce Srbije. Naša osnivačka je provela godine u Tajlandu, 
@@ -134,111 +115,111 @@ const About = () => {
                 i opremom, pružajući jedinstveno iskustvo svakom gostu.
               </p>
             </div>
-          </div>
-          <div className="story-image">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/i03j5uou_podloga.jpg"
-              alt="Thai traditional pattern"
-              className="story-pattern"
-            />
+            <div className="lotus-decoration">
+              <Leaf className="lotus-leaf" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Our Values */}
-      <section className="values-section">
-        <h2 className="values-title">Naše Vrednosti</h2>
-        <div className="values-grid">
+      {/* 3D Values Section */}
+      <section className="values-section-3d">
+        <h2 
+          className="values-title-3d"
+          style={{
+            transform: `translateZ(${scrollY * 0.05}px)`,
+          }}
+        >
+          Naše Vrednosti
+        </h2>
+        <div className="values-grid-3d">
           {values.map((value, index) => (
-            <Card key={index} className="value-card">
-              <CardContent className="value-content">
-                <div className="value-icon">{value.icon}</div>
-                <h3 className="value-name">{value.title}</h3>
-                <p className="value-description">{value.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Our Team */}
-      <section className="team-section">
-        <h2 className="team-title">Naš Tim</h2>
-        <p className="team-subtitle">
-          Upoznajte stručne terapeunte koji će se pobrinuti za vaše blagostanje
-        </p>
-        
-        <div className="team-grid">
-          {teamMembers.map((member, index) => (
-            <Card key={index} className="team-card">
-              <CardContent className="team-content">
-                <div className="member-info">
-                  <h3 className="member-name">{member.name}</h3>
-                  <Badge className="member-position">{member.position}</Badge>
-                  
-                  <div className="member-details">
-                    <div className="member-experience">
-                      <Star className="w-4 h-4" />
-                      <span>{member.experience}</span>
-                    </div>
-                    
-                    <div className="member-specialty">
-                      <strong>Specijalnost:</strong> {member.specialty}
-                    </div>
-                    
-                    <div className="member-certification">
-                      <strong>Sertifikacija:</strong> {member.certification}
-                    </div>
+            <div
+              key={index}
+              className="value-card-3d"
+              style={{
+                animationDelay: `${index * 0.2}s`,
+              }}
+            >
+              <div className="value-card-inner">
+                <div className="value-card-front">
+                  <div className="value-icon-3d" style={{ color: value.color }}>
+                    {value.icon}
                   </div>
+                  <h3 className="value-title">{value.title}</h3>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="value-card-back">
+                  <p className="value-description-3d">{value.description}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Certifications */}
-      <section className="certifications-section">
-        <div className="certifications-content">
-          <h2 className="certifications-title">Sertifikacije i Priznanja</h2>
-          <div className="certifications-grid">
-            <div className="certification-item">
-              <Award className="certification-icon" />
-              <div className="certification-text">
-                <h4>Sertifikovano od strane Royal Thai Massage Association</h4>
-                <p>Oficijalno priznanje za autentične tajlandske tehnike</p>
+      {/* 3D Team Section */}
+      <section className="team-section-3d">
+        <h2 className="team-title-3d">Naš Stručni Tim</h2>
+        <div className="team-grid-3d">
+          <div className="team-member-3d">
+            <div className="member-card-3d">
+              <div className="member-avatar">
+                <div className="avatar-glow"></div>
+                <Star className="member-star" />
+              </div>
+              <h3 className="member-name-3d">Siriporn Thanakit</h3>
+              <p className="member-role-3d">Glavni terapijska</p>
+              <div className="member-details-3d">
+                <p>15 godina iskustva</p>
+                <p>Royal Thai Massage School, Bangkok</p>
               </div>
             </div>
-            
-            <div className="certification-item">
-              <Award className="certification-icon" />
-              <div className="certification-text">
-                <h4>Najbolji Spa u Beogradu 2023</h4>
-                <p>Nagrada za izuzetnu uslugu i kvalitet tretmana</p>
+          </div>
+
+          <div className="team-member-3d">
+            <div className="member-card-3d">
+              <div className="member-avatar">
+                <div className="avatar-glow"></div>
+                <Star className="member-star" />
+              </div>
+              <h3 className="member-name-3d">Chanida Suwannaporn</h3>
+              <p className="member-role-3d">Spa terapeutkinja</p>
+              <div className="member-details-3d">
+                <p>12 godina iskustva</p>
+                <p>Chiva-Som International Health Resort</p>
               </div>
             </div>
-            
-            <div className="certification-item">
-              <Award className="certification-icon" />
-              <div className="certification-text">
-                <h4>Član Srpske Asocijacije Spa Centara</h4>
-                <p>Pridruživanje profesionalnim standardima industrije</p>
+          </div>
+
+          <div className="team-member-3d">
+            <div className="member-card-3d">
+              <div className="member-avatar">
+                <div className="avatar-glow"></div>
+                <Star className="member-star" />
+              </div>
+              <h3 className="member-name-3d">Niran Pongpanich</h3>
+              <p className="member-role-3d">Masažer</p>
+              <div className="member-details-3d">
+                <p>8 godina iskustva</p>
+                <p>Thai Traditional Medical College</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="cta-section">
-        <div className="cta-content">
-          <h2 className="cta-title">Spremni da doživite autentično tajlandsko iskustvo?</h2>
-          <p className="cta-subtitle">Kontaktirajte nas i rezervišite vaš tretman</p>
-          <div className="cta-buttons">
-            <Button asChild size="lg" className="cta-button-primary">
+      {/* 3D CTA Section */}
+      <section className="cta-section-3d">
+        <div className="cta-container-3d">
+          <Zap className="cta-zap cta-zap-1" />
+          <Zap className="cta-zap cta-zap-2" />
+          <h2 className="cta-title-3d">Spremni da doživite autentično tajlandsko iskustvo?</h2>
+          <p className="cta-subtitle-3d">Kontaktirajte nas i rezervišite vaš tretman</p>
+          <div className="cta-buttons-3d">
+            <Button asChild className="cta-button-3d cta-button-primary">
               <Link to="/contact">Kontaktirajte nas</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="cta-button-secondary">
+            <Button asChild className="cta-button-3d cta-button-secondary">
               <Link to="/massage">Pogledajte naše usluge</Link>
             </Button>
           </div>
