@@ -834,6 +834,7 @@ body {
   background: var(--spa-dark);
   overflow: hidden;
   min-height: 600px;
+  margin-top: -10rem;
 }
 
 .pim-philosophy-title {
