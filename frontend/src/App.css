@@ -436,10 +436,11 @@
 
 /* Pim Thai Style with Agency FB Font */
 .pim-style-homepage {
-  background: white;
+  background: transparent; /* Changed from white - allow fixed video to show */
   color: #333;
   font-family: 'Agency FB', 'Arial Narrow', sans-serif;
   padding-top: 100px; /* Space for header only */
+  position: relative;
 }
 
 /* Global Font Setting */
