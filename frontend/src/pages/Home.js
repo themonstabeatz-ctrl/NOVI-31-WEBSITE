@@ -159,9 +159,18 @@ const Home = () => {
       
       // Apply parallax only to sections after hero
       if (scrolled > heroHeight) {
-        const parallaxSections = document.querySelectorAll('.pim-welcome, .pim-quote, .pim-philosophy, .pim-treatments');
-        parallaxSections.forEach((section) => {
-          const speed = 0.5; // Parallax speed
+        // Quote section moves faster up
+        const quoteSection = document.querySelector('.pim-quote');
+        if (quoteSection) {
+          const quoteFastSpeed = 0.8; // Faster parallax for quote section
+          const quoteYPos = -(scrolled - heroHeight) * quoteFastSpeed;
+          quoteSection.style.transform = `translateY(${quoteYPos}px)`;
+        }
+        
+        // Other sections move at normal speed
+        const otherSections = document.querySelectorAll('.pim-welcome, .pim-philosophy, .pim-treatments');
+        otherSections.forEach((section) => {
+          const speed = 0.5; // Normal parallax speed
           const yPos = -(scrolled - heroHeight) * speed;
           section.style.transform = `translateY(${yPos}px)`;
         });
