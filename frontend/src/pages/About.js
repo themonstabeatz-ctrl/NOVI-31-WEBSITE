@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
-import { Award, Heart, Users, Star } from "lucide-react";
+import { Award, Heart, Users, Star, Sparkles, Leaf, Zap } from "lucide-react";
 
 const About = () => {
   const { translate } = useLanguage();
