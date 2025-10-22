@@ -144,16 +144,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Second Hero - Herbal Compress (appears when Buddha scrolls away) */}
-      <section className="pim-hero-secondary" id="hero-secondary">
-        <div className="pim-hero-image">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/9liwcjtb_herbal-compress-herbal-spa-treatment-equipments-put-dark-floor.jpg" 
-            alt="Herbal Spa Treatment - Bua Luang Thai Spa"
-          />
-        </div>
-        <div className="pim-hero-overlay"></div>
-      </section>
+      {/* Second Hero section removed as requested */}
 
       {/* Container for parallax sections that go over hero */}
       <div style={{position: 'relative', zIndex: 20, marginTop: '110vh'}}>
