@@ -790,7 +790,8 @@ body {
 .pim-quote-text {
   font-size: 2rem;
   color: var(--spa-gold);
-  font-style: italic;
+  font-style: normal;
+  font-family: 'Agency FB', 'Arial Narrow', sans-serif;
   margin-bottom: 1rem;
   line-height: 1.3;
 }
