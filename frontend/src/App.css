@@ -756,16 +756,14 @@ body {
   z-index: 1; /* Changed from 0 to appear above background */
 }
 
-  text-align: center;
-}
-
+.pim-welcome {
   padding: 4rem 2rem;
   position: relative;
-  z-index: 50; /* Higher z-index so Buddha goes BEHIND it */
+  z-index: 50;
   transform-style: preserve-3d;
   will-change: transform;
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden - allow ::after to show */
   min-height: 600px;
 }
 
