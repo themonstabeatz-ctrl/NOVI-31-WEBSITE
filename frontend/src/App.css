@@ -1053,7 +1053,7 @@ body {
 
 /* Testimonial */
 .pim-testimonial {
-  background: var(--spa-dark);
+  background: transparent; /* Changed to transparent */
   padding: 4rem 2rem;
   text-align: center;
 }
