@@ -702,6 +702,8 @@ body {
 }
 
 .pim-welcome-container {
+  position: relative;
+  z-index: 2; /* Above background and overlay */
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
