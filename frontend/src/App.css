@@ -497,6 +497,20 @@ body {
 }
 
 
+/* Make all sections relative so they appear above fixed video */
+.pim-hero,
+.pim-hero-secondary,
+.pim-welcome,
+.pim-quote,
+.pim-philosophy,
+.pim-gift,
+.pim-testimonial {
+  position: relative;
+  z-index: 1; /* Above fixed video background */
+}
+
+
+
 * {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
