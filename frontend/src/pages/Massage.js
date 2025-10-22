@@ -104,47 +104,6 @@ const Massage = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="gallery-section">
-        <div className="gallery-header">
-          <h2 className="gallery-title">Galerija Masaža</h2>
-          <p className="gallery-subtitle">Doživite atmosferu našeg spa centra</p>
-        </div>
-        
-        {/* Main Carousel */}
-        <div className="gallery-carousel">
-          <button className="carousel-btn carousel-btn-prev" onClick={prevImage}>
-            <ChevronLeft className="w-8 h-8" />
-          </button>
-          
-          <div className="carousel-image-container">
-            <img 
-              src={galleryImages[currentImageIndex]} 
-              alt={`Massage ${currentImageIndex + 1}`}
-              className="carousel-main-image"
-            />
-          </div>
-          
-          <button className="carousel-btn carousel-btn-next" onClick={nextImage}>
-            <ChevronRight className="w-8 h-8" />
-          </button>
-        </div>
-
-        {/* Thumbnail Grid */}
-        <div className="gallery-grid">
-          {galleryImages.map((image, index) => (
-            <div 
-              key={index} 
-              className={`gallery-item ${currentImageIndex === index ? 'active' : ''}`}
-              onClick={() => setCurrentImageIndex(index)}
-            >
-              <img src={image} alt={`Massage thumbnail ${index + 1}`} />
-              <div className="gallery-overlay"></div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Services Grid */}
       <section className="services-section">
         <div className="services-grid">
