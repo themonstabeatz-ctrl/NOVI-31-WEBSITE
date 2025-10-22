@@ -3909,3 +3909,623 @@ html {
 }
 
 }
+
+
+/* ============================================
+   3D ABOUT PAGE STYLES
+   ============================================ */
+
+.about-container-3d {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 3D Hero Section */
+.about-hero-3d {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--spa-gold) 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.hero-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+  top: 50%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.hero-orb-3 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--spa-gold) 0%, transparent 70%);
+  bottom: 10%;
+  left: 30%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+}
+
+.about-hero-title-3d {
+  font-size: 6rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--spa-gold) 0%, #FFD700 50%, var(--spa-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 0 40px rgba(212, 175, 55, 0.5),
+    0 0 80px rgba(212, 175, 55, 0.3);
+  margin-bottom: 1rem;
+  transform-style: preserve-3d;
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 40px rgba(212, 175, 55, 0.5),
+      0 0 80px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 60px rgba(212, 175, 55, 0.7),
+      0 0 120px rgba(212, 175, 55, 0.5);
+  }
+}
+
+.about-hero-subtitle-3d {
+  font-size: 1.5rem;
+  color: var(--spa-cream);
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-sparkles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--spa-gold);
+  opacity: 0;
+  animation: sparkleAnimation 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  top: 30%;
+  right: 25%;
+  animation-delay: 1s;
+}
+
+.sparkle-3 {
+  bottom: 25%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+@keyframes sparkleAnimation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5) rotate(180deg);
+  }
+}
+
+/* 3D Story Section */
+.story-section-3d {
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+.story-container-3d {
+  max-width: 1200px;
+  margin: 0 auto;
+  perspective: 2000px;
+}
+
+.story-card-3d {
+  position: relative;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 30px;
+  padding: 4rem;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(212, 175, 55, 0.1);
+}
+
+.story-card-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, var(--spa-gold), #FFD700, var(--spa-gold));
+  border-radius: 30px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  filter: blur(20px);
+}
+
+.story-card-3d:hover .story-card-glow {
+  opacity: 0.3;
+}
+
+.story-title-3d {
+  font-size: 3rem;
+  color: var(--spa-gold);
+  margin-bottom: 2rem;
+  text-align: center;
+  transform: translateZ(50px);
+  text-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.story-content-3d p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--spa-cream);
+  margin-bottom: 1.5rem;
+  transform: translateZ(20px);
+  opacity: 0.9;
+}
+
+.lotus-decoration {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  opacity: 0.2;
+}
+
+.lotus-leaf {
+  width: 100px;
+  height: 100px;
+  color: var(--spa-gold);
+  animation: leafRotate 6s linear infinite;
+}
+
+@keyframes leafRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 3D Values Section */
+.values-section-3d {
+  padding: 8rem 2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.5) 50%, transparent 100%);
+}
+
+.values-title-3d {
+  font-size: 3.5rem;
+  color: var(--spa-gold);
+  text-align: center;
+  margin-bottom: 4rem;
+  transform-style: preserve-3d;
+}
+
+.values-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.value-card-3d {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  animation: cardFloat 3s ease-in-out infinite;
+}
+
+.value-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.value-card-3d:hover .value-card-inner {
+  transform: rotateY(180deg);
+}
+
+.value-card-front,
+.value-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.value-card-front {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(26, 26, 26, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.value-card-back {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(212, 175, 55, 0.15) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  transform: rotateY(180deg);
+}
+
+.value-icon-3d {
+  margin-bottom: 1.5rem;
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.value-title {
+  font-size: 2rem;
+  color: var(--spa-gold);
+  margin-bottom: 1rem;
+}
+
+.value-description-3d {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--spa-cream);
+  opacity: 0.9;
+}
+
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* 3D Team Section */
+.team-section-3d {
+  padding: 8rem 2rem;
+  position: relative;
+}
+
+.team-title-3d {
+  font-size: 3.5rem;
+  color: var(--spa-gold);
+  text-align: center;
+  margin-bottom: 4rem;
+  text-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+}
+
+.team-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-member-3d {
+  perspective: 1000px;
+}
+
+.member-card-3d {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 26, 26, 0.8) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.member-card-3d:hover {
+  transform: translateY(-20px) rotateX(5deg);
+  box-shadow: 0 30px 80px rgba(212, 175, 55, 0.3);
+}
+
+.member-avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--spa-gold) 0%, #FFD700 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: avatarPulse 2s ease-in-out infinite;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: var(--spa-gold);
+  filter: blur(20px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.member-star {
+  width: 60px;
+  height: 60px;
+  color: var(--spa-dark);
+  animation: starRotate 4s linear infinite;
+}
+
+@keyframes avatarPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes starRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.member-name-3d {
+  font-size: 1.8rem;
+  color: var(--spa-gold);
+  margin-bottom: 0.5rem;
+}
+
+.member-role-3d {
+  font-size: 1.2rem;
+  color: var(--spa-cream);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.member-details-3d {
+  font-size: 1rem;
+  color: var(--spa-cream);
+  opacity: 0.7;
+  line-height: 1.8;
+}
+
+.member-details-3d p {
+  margin-bottom: 0.5rem;
+}
+
+/* 3D CTA Section */
+.cta-section-3d {
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-container-3d {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.cta-zap {
+  position: absolute;
+  color: var(--spa-gold);
+  opacity: 0.3;
+  animation: zapAnimation 2s ease-in-out infinite;
+}
+
+.cta-zap-1 {
+  width: 60px;
+  height: 60px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.cta-zap-2 {
+  width: 80px;
+  height: 80px;
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 1s;
+}
+
+@keyframes zapAnimation {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+.cta-title-3d {
+  font-size: 3rem;
+  color: var(--spa-gold);
+  margin-bottom: 1rem;
+  text-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    text-shadow: 0 10px 60px rgba(212, 175, 55, 0.6);
+  }
+}
+
+.cta-subtitle-3d {
+  font-size: 1.3rem;
+  color: var(--spa-cream);
+  opacity: 0.9;
+  margin-bottom: 3rem;
+}
+
+.cta-buttons-3d {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button-3d {
+  padding: 1.5rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button-primary {
+  background: linear-gradient(135deg, var(--spa-gold) 0%, #FFD700 100%);
+  color: var(--spa-dark);
+  border: none;
+}
+
+.cta-button-primary:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
+}
+
+.cta-button-secondary {
+  background: transparent;
+  color: var(--spa-gold);
+  border: 2px solid var(--spa-gold);
+}
+
+.cta-button-secondary:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-hero-title-3d {
+    font-size: 3rem;
+  }
+
+  .about-hero-subtitle-3d {
+    font-size: 1.1rem;
+  }
+
+  .story-title-3d {
+    font-size: 2rem;
+  }
+
+  .story-card-3d {
+    padding: 2rem;
+  }
+
+  .values-title-3d,
+  .team-title-3d,
+  .cta-title-3d {
+    font-size: 2rem;
+  }
+
+  .value-card-3d {
+    height: 350px;
+  }
+
+  .cta-buttons-3d {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
