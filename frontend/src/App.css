@@ -1117,9 +1117,7 @@ body {
 
 /* Testimonial */
 .pim-testimonial {
-  background: transparent; /* Changed to transparent */
-  padding: 4rem 2rem;
-  text-align: center;
+  display: none; /* Hide empty testimonial section */
 }
 
 .pim-testimonial-quote {
