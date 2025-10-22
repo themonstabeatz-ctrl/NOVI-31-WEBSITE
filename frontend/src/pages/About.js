@@ -52,53 +52,206 @@ const About = () => {
 
   return (
     <div className="about-ultimate-container" ref={containerRef}>
-      {/* Canvas for candles */}
-      <canvas ref={canvasRef} className="candles-canvas"></canvas>
-
-      {/* Animated vines SVG */}
-      <svg className="vines-svg" viewBox="0 0 1920 5000" preserveAspectRatio="none">
+      {/* Beautiful Animated Vines SVG */}
+      <svg className="vines-svg" viewBox="0 0 1920 6000" preserveAspectRatio="xMidYMid slice">
         <defs>
+          {/* Gradients */}
           <linearGradient id="vineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#D4AF37', stopOpacity: 0.8 }} />
-            <stop offset="100%" style={{ stopColor: '#8B7355', stopOpacity: 0.6 }} />
+            <stop offset="0%" style={{ stopColor: '#FFD700', stopOpacity: 1 }}>
+              <animate attributeName="stop-color" values="#FFD700;#D4AF37;#FFD700" dur="4s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="50%" style={{ stopColor: '#D4AF37', stopOpacity: 0.9 }} />
+            <stop offset="100%" style={{ stopColor: '#B8860B', stopOpacity: 0.8 }} />
           </linearGradient>
+
+          <radialGradient id="leafGradient" cx="50%" cy="50%">
+            <stop offset="0%" style={{ stopColor: '#90EE90', stopOpacity: 0.9 }} />
+            <stop offset="50%" style={{ stopColor: '#228B22', stopOpacity: 0.8 }} />
+            <stop offset="100%" style={{ stopColor: '#006400', stopOpacity: 0.7 }} />
+          </radialGradient>
+
+          <radialGradient id="flowerGradient" cx="50%" cy="50%">
+            <stop offset="0%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
+            <stop offset="50%" style={{ stopColor: '#FFA500', stopOpacity: 0.9 }} />
+            <stop offset="100%" style={{ stopColor: '#FF8C00', stopOpacity: 0.8 }} />
+          </radialGradient>
+
+          {/* Glow filter */}
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
         
-        {/* Left vine */}
+        {/* Left Vine - Complex Path */}
         <path 
-          className="vine-path vine-left"
-          d={`M 50,0 Q 100,${100 + scrollY * 0.1} 80,${200 + scrollY * 0.15} T 60,${400 + scrollY * 0.2} T 90,${600 + scrollY * 0.25} T 70,${800 + scrollY * 0.3} T 100,${1000 + scrollY * 0.35} T 80,${1200 + scrollY * 0.4} T 60,${1400 + scrollY * 0.45} T 90,${1600 + scrollY * 0.5} T 70,${1800 + scrollY * 0.55} T 80,${2000 + scrollY * 0.6}`}
+          className="vine-main vine-left"
+          d={`M 80,0 
+             C 100,${150 + scrollY * 0.08} 70,${300 + scrollY * 0.12} 90,${450 + scrollY * 0.16}
+             S 110,${600 + scrollY * 0.20} 75,${750 + scrollY * 0.24}
+             S 95,${900 + scrollY * 0.28} 85,${1050 + scrollY * 0.32}
+             S 100,${1200 + scrollY * 0.36} 70,${1350 + scrollY * 0.40}
+             S 90,${1500 + scrollY * 0.44} 80,${1650 + scrollY * 0.48}
+             S 95,${1800 + scrollY * 0.52} 75,${1950 + scrollY * 0.56}
+             S 85,${2100 + scrollY * 0.60} 90,${2250 + scrollY * 0.64}
+             S 80,${2400 + scrollY * 0.68} 85,${2550 + scrollY * 0.72}`}
           fill="none"
           stroke="url(#vineGradient)"
-          strokeWidth="3"
+          strokeWidth="5"
+          filter="url(#glow)"
         />
         
-        {/* Right vine */}
+        {/* Right Vine - Complex Path */}
         <path 
-          className="vine-path vine-right"
-          d={`M 1870,0 Q 1820,${100 + scrollY * 0.1} 1840,${200 + scrollY * 0.15} T 1860,${400 + scrollY * 0.2} T 1830,${600 + scrollY * 0.25} T 1850,${800 + scrollY * 0.3} T 1820,${1000 + scrollY * 0.35} T 1840,${1200 + scrollY * 0.4} T 1860,${1400 + scrollY * 0.45} T 1830,${1600 + scrollY * 0.5} T 1850,${1800 + scrollY * 0.55} T 1840,${2000 + scrollY * 0.6}`}
+          className="vine-main vine-right"
+          d={`M 1840,0 
+             C 1820,${150 + scrollY * 0.08} 1850,${300 + scrollY * 0.12} 1830,${450 + scrollY * 0.16}
+             S 1810,${600 + scrollY * 0.20} 1845,${750 + scrollY * 0.24}
+             S 1825,${900 + scrollY * 0.28} 1835,${1050 + scrollY * 0.32}
+             S 1820,${1200 + scrollY * 0.36} 1850,${1350 + scrollY * 0.40}
+             S 1830,${1500 + scrollY * 0.44} 1840,${1650 + scrollY * 0.48}
+             S 1825,${1800 + scrollY * 0.52} 1845,${1950 + scrollY * 0.56}
+             S 1835,${2100 + scrollY * 0.60} 1830,${2250 + scrollY * 0.64}
+             S 1840,${2400 + scrollY * 0.68} 1835,${2550 + scrollY * 0.72}`}
           fill="none"
           stroke="url(#vineGradient)"
-          strokeWidth="3"
+          strokeWidth="5"
+          filter="url(#glow)"
         />
 
-        {/* Leaves on vines */}
-        {[...Array(20)].map((_, i) => {
+        {/* Secondary vine branches */}
+        {[...Array(10)].map((_, i) => {
           const side = i % 2 === 0 ? 'left' : 'right';
-          const baseX = side === 'left' ? 70 : 1840;
-          const yPos = i * 120 + scrollY * 0.1;
-          const rotation = Math.sin(scrollY * 0.01 + i) * 20;
+          const baseX = side === 'left' ? 85 : 1835;
+          const endX = side === 'left' ? baseX - 40 : baseX + 40;
+          const yPos = i * 280 + scrollY * 0.15;
           
           return (
-            <g key={i} transform={`translate(${baseX}, ${yPos}) rotate(${rotation})`}>
-              <ellipse
-                className="vine-leaf"
+            <path
+              key={`branch-${i}`}
+              className="vine-branch"
+              d={`M ${baseX},${yPos} Q ${(baseX + endX) / 2},${yPos + 30} ${endX},${yPos + 60}`}
+              fill="none"
+              stroke="url(#vineGradient)"
+              strokeWidth="3"
+              opacity="0.8"
+              filter="url(#glow)"
+            />
+          );
+        })}
+
+        {/* Beautiful Leaves */}
+        {[...Array(35)].map((_, i) => {
+          const side = i % 2 === 0 ? 'left' : 'right';
+          const baseX = side === 'left' ? 85 : 1835;
+          const offsetX = (Math.sin(i) * 30) * (side === 'left' ? -1 : 1);
+          const yPos = i * 80 + scrollY * 0.12;
+          const rotation = Math.sin(scrollY * 0.008 + i) * 25 + (i * 10);
+          const scale = 0.8 + Math.sin(scrollY * 0.01 + i) * 0.3;
+          
+          return (
+            <g key={`leaf-${i}`} transform={`translate(${baseX + offsetX}, ${yPos})`}>
+              {/* Leaf shape with stem */}
+              <path
+                className="vine-leaf-detailed"
+                d={`M 0,0 
+                   Q -${20 * scale},${15 * scale} -${25 * scale},${25 * scale}
+                   Q -${20 * scale},${35 * scale} 0,${40 * scale}
+                   Q ${20 * scale},${35 * scale} ${25 * scale},${25 * scale}
+                   Q ${20 * scale},${15 * scale} 0,0`}
+                fill="url(#leafGradient)"
+                stroke="#2F4F2F"
+                strokeWidth="1"
+                opacity="0.85"
+                filter="url(#glow)"
+                style={{
+                  transform: `rotate(${rotation}deg)`,
+                  transformOrigin: 'center',
+                }}
+              />
+              {/* Leaf vein */}
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2={40 * scale}
+                stroke="#2F4F2F"
+                strokeWidth="1.5"
+                opacity="0.6"
+                style={{
+                  transform: `rotate(${rotation}deg)`,
+                  transformOrigin: 'center',
+                }}
+              />
+            </g>
+          );
+        })}
+
+        {/* Golden Flowers */}
+        {[...Array(12)].map((_, i) => {
+          const side = i % 2 === 0 ? 'left' : 'right';
+          const baseX = side === 'left' ? 85 : 1835;
+          const offsetX = (Math.sin(i * 2) * 35) * (side === 'left' ? -1 : 1);
+          const yPos = i * 230 + 120 + scrollY * 0.15;
+          const petalRotation = (Date.now() * 0.001 + i) % 360;
+          
+          return (
+            <g key={`flower-${i}`} transform={`translate(${baseX + offsetX}, ${yPos})`}>
+              {/* Flower petals */}
+              {[...Array(8)].map((_, p) => {
+                const angle = (p * 45) + petalRotation;
+                return (
+                  <ellipse
+                    key={`petal-${p}`}
+                    cx="0"
+                    cy="-12"
+                    rx="6"
+                    ry="15"
+                    fill="url(#flowerGradient)"
+                    opacity="0.9"
+                    filter="url(#glow)"
+                    style={{
+                      transform: `rotate(${angle}deg)`,
+                      transformOrigin: '0 0',
+                    }}
+                  />
+                );
+              })}
+              {/* Flower center */}
+              <circle
                 cx="0"
                 cy="0"
-                rx="15"
-                ry="25"
-                fill="url(#vineGradient)"
-                opacity="0.7"
+                r="8"
+                fill="#FF8C00"
+                opacity="0.95"
+                filter="url(#glow)"
+              />
+              <circle
+                cx="0"
+                cy="0"
+                r="4"
+                fill="#FFD700"
+                opacity="1"
+              />
+            </g>
+          );
+        })}
+
+        {/* Decorative sparkles */}
+        {[...Array(20)].map((_, i) => {
+          const x = i % 2 === 0 ? 40 + Math.sin(i) * 30 : 1880 - Math.sin(i) * 30;
+          const y = i * 150 + scrollY * 0.1;
+          const opacity = 0.3 + Math.sin(Date.now() * 0.002 + i) * 0.3;
+          
+          return (
+            <g key={`sparkle-${i}`} transform={`translate(${x}, ${y})`} opacity={opacity}>
+              <polygon
+                points="0,-8 2,-2 8,0 2,2 0,8 -2,2 -8,0 -2,-2"
+                fill="#FFD700"
+                filter="url(#glow)"
               />
             </g>
           );
