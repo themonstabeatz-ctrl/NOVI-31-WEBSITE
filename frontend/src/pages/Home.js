@@ -157,16 +157,8 @@ const Home = () => {
         {/* Transparent footer bar below Buddha */}
         <div className="transparent-footer-bar"></div>
 
-        {/* Welcome Section - With Background Image */}
+        {/* Welcome Section - Normal */}
         <section className="pim-welcome">
-        <div className="pim-welcome-background">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/0iy3hjwc_3771817.jpeg" 
-            alt="Thai Massage Hands"
-            className="pim-welcome-bg-image"
-          />
-          <div className="pim-welcome-overlay"></div>
-        </div>
         <div className="pim-welcome-container">
           <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
           <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
