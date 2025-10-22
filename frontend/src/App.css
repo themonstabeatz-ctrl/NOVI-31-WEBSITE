@@ -971,8 +971,6 @@ body {
 .pim-gift-voucher-image {
   width: 100%;
   height: auto;
-  border-radius: 15px;
-  border: 3px solid rgba(212, 175, 55, 0.6); /* Golden border/outline */
   background: transparent; /* No background on image */
   filter: drop-shadow(0 10px 40px rgba(212, 175, 55, 0.5));
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -983,7 +981,6 @@ body {
 
 .pim-gift-voucher-image:hover {
   transform: scale(1.05) rotateY(5deg) rotateX(2deg);
-  border-color: var(--spa-gold); /* Brighter golden border on hover */
   filter: drop-shadow(0 15px 60px rgba(212, 175, 55, 0.7));
   box-shadow: 
     0 0 40px rgba(212, 175, 55, 0.4),
