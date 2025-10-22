@@ -757,9 +757,12 @@ body {
 
 /* Philosophy Section - Normal */
 .pim-philosophy {
+  position: relative;
   text-align: center;
   padding: 3rem 2rem;
   background: var(--spa-dark);
+  overflow: hidden;
+  min-height: 600px;
 }
 
 .pim-philosophy-title {
