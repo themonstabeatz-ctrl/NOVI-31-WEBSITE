@@ -5150,13 +5150,11 @@ html {
   .about-hero-subtitle-3d {
     font-size: 1.1rem;
   }
-
+}
 
 /* ============================================
-@media (max-width: 768px) {
-  .hero-title-ultimate {
-    font-size: 3rem;
-  }
+   PROFESSIONAL ABOUT PAGE
+   ============================================ */
 
   .story-ultimate-card,
   .cta-ultimate-container {
