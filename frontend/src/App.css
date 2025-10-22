@@ -802,15 +802,44 @@ body {
   text-indent: 0;
 }
 
-.pim-philosophy-image {
-  max-width: 600px;
-  margin: 0 auto;
+/* Philosophy Background with Rotating Circle */
+.pim-philosophy-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/oajh7ga5_Pozadina%201.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: 0;
 }
 
-.pim-philosophy-image img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+.pim-philosophy-rotating-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background-image: url('https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: rotate-circle 30s linear infinite;
+  opacity: 0.3;
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 /* Services Section */
