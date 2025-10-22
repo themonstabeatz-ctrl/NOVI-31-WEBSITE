@@ -959,10 +959,10 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Gift Voucher Showcase with Effects - 200% Larger */
+/* Gift Voucher Showcase with Effects - 300% Larger */
 .pim-gift-voucher-showcase {
   margin: 3rem auto;
-  max-width: 1400px; /* 200% increase from 700px */
+  max-width: 2100px; /* 300% increase from 700px (3x larger) */
   perspective: 1000px;
   padding: 0;
   background: transparent; /* Completely transparent - no background */
