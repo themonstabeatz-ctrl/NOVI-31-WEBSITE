@@ -282,28 +282,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="pim-services">
-        <h2 className="pim-services-title">Naši Tretmani</h2>
-        <div className="pim-services-grid">
-          {treatments.map((treatment, index) => (
-            <Card key={index} className="pim-treatment-card">
-              <div className="pim-treatment-image">
-                <img src={treatment.image} alt={treatment.name} />
-              </div>
-              <CardContent className="pim-treatment-content">
-                <h3 className="pim-treatment-name">{treatment.name}</h3>
-                <p className="pim-treatment-description">{treatment.description}</p>
-                <p className="pim-treatment-duration">{treatment.duration}</p>
-                <Button className="pim-treatment-button" asChild>
-                  <Link to={treatment.link}>Rezervišite Sada</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
       {/* Gift Voucher Section */}
       <section className="pim-gift">
         <h2 className="pim-gift-title">
