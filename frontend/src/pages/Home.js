@@ -117,18 +117,13 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Hero Banner with Video */}
+      {/* Hero Banner with Original Buddha */}
       <section className="pim-hero" id="hero-section">
         <div className="pim-hero-image" id="buddha-hero">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="pim-hero-video"
-          >
-            <source src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/4jyw4e6l_Unrecognizable_Osteopath_Setting_Bones_Of_Woman_During_Massage_Session_uhd_2729957.mp4" type="video/mp4" />
-          </video>
+          <img 
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/6u1f3zhj_vecteezy_buddha-statue-meditating-with-lotus-flowers-and-burning-candles_47024342.jpeg" 
+            alt="Buddha Meditation - Bua Luang Thai Spa"
+          />
         </div>
         <div className="pim-hero-overlay" id="buddha-overlay"></div>
         <div className="pim-hero-content">
