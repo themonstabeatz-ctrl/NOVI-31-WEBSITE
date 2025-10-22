@@ -696,6 +696,66 @@ body {
   font-size: 0.9rem;
   position: relative;
   z-index: 2;
+
+
+/* ============================================
+   UNIVERSAL SECTION BORDERS (Top & Bottom)
+   ============================================ */
+
+/* Add golden borders to all main sections */
+.pim-hero,
+.pim-footer-pattern-section,
+.pim-welcome,
+.pim-quote,
+.pim-philosophy,
+.pim-gift,
+.pim-testimonial {
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+}
+
+/* Optional: Add mandala pattern overlay at top and bottom of sections */
+.pim-welcome::before,
+.pim-quote::before,
+.pim-philosophy::before,
+.pim-gift::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-image: url('https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/lghkaqzq_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
+  background-size: contain;
+  background-position: center top;
+  background-repeat: repeat-x;
+  opacity: 0.08;
+  filter: sepia(100%) hue-rotate(30deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pim-welcome::after,
+.pim-quote::after,
+.pim-philosophy::after,
+.pim-gift::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-image: url('https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/lghkaqzq_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
+  background-size: contain;
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  opacity: 0.08;
+  filter: sepia(100%) hue-rotate(30deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
   text-align: center;
 }
 
