@@ -459,6 +459,44 @@ body {
   font-family: 'Agency FB', 'Arial Narrow', sans-serif;
 }
 
+
+/* ============================================
+   FIXED VIDEO BACKGROUND - Stays in place
+   ============================================ */
+
+.fixed-video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Behind all content */
+  overflow: hidden;
+}
+
+.global-fixed-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.global-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for content readability */
+  z-index: 1;
+}
+
+
 * {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
