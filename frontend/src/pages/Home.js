@@ -117,19 +117,22 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Hero Banner with Video */}
+      {/* Fixed Video Background - Stays in place while scrolling */}
+      <div className="fixed-video-background">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="global-fixed-video"
+        >
+          <source src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/4jyw4e6l_Unrecognizable_Osteopath_Setting_Bones_Of_Woman_During_Massage_Session_uhd_2729957.mp4" type="video/mp4" />
+        </video>
+        <div className="global-video-overlay"></div>
+      </div>
+
+      {/* Hero Banner - Now without video, just content */}
       <section className="pim-hero" id="hero-section">
-        <div className="pim-hero-image" id="buddha-hero">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="pim-hero-video"
-          >
-            <source src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/4jyw4e6l_Unrecognizable_Osteopath_Setting_Bones_Of_Woman_During_Massage_Session_uhd_2729957.mp4" type="video/mp4" />
-          </video>
-        </div>
         <div className="pim-hero-overlay" id="buddha-overlay"></div>
         <div className="pim-hero-content">
           <img 
