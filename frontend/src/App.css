@@ -836,7 +836,7 @@ body {
   height: auto;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  opacity: 0.4;
+  opacity: 0.6; /* Increased by 20% (was 0.4) */
 }
 
 .pim-philosophy-video-overlay {
