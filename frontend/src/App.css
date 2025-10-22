@@ -713,6 +713,8 @@ body {
 
 /* Quote Section - Normal */
 .pim-quote {
+  position: relative;
+  z-index: 1; /* Lower z-index so Philosophy section covers it */
   text-align: center;
   padding: 3rem 2rem;
   background: rgba(212, 175, 55, 0.1);
