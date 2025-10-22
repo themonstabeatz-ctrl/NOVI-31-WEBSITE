@@ -156,7 +156,7 @@ const Home = () => {
       {/* Quote Section - Normal */}
       <section className="pim-quote">
         <div className="pim-quote-content">
-          <p className="pim-quote-text">Osetite harmoniju tela i duha.</p>
+          <p className="pim-quote-text">Osetite harmoniju tela i duha</p>
           <p className="pim-quote-author">Bua Luang Thai Spa-Beograd</p>
           <Button asChild className="pim-quote-button">
             <Link to="/contact">Rezervišite Online</Link>
