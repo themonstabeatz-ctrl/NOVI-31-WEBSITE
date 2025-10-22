@@ -1032,7 +1032,8 @@ body {
   border: none;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  margin: 2rem;
+  margin-top: 2rem; /* Space above button */
+  margin-bottom: 0;
   display: inline-block;
   box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
 }
