@@ -1915,7 +1915,7 @@ body {
 .footer-container {
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
   color: var(--spa-cream);
-  margin-top: 12rem;
+  margin-top: 25rem;
   position: relative;
   overflow: hidden;
 }
