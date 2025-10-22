@@ -137,12 +137,14 @@ const Home = () => {
       </section>
 
       {/* Second Hero - Herbal Compress (appears when Buddha scrolls away) */}
-      {/* Footer Pattern Section - Replacing Herbal Hero */}
-      <section className="pim-footer-pattern-section">
-        <div className="pim-footer-mandala-pattern"></div>
-        <p className="pim-footer-copyright-text">
-          © 2025 Bua Luang Thai Spa. Sva prava zadržana.
-        </p>
+      <section className="pim-hero-secondary" id="hero-secondary">
+        <div className="pim-hero-image">
+          <img 
+            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/9liwcjtb_herbal-compress-herbal-spa-treatment-equipments-put-dark-floor.jpg" 
+            alt="Herbal Spa Treatment - Bua Luang Thai Spa"
+          />
+        </div>
+        <div className="pim-hero-overlay"></div>
       </section>
 
       {/* Container for parallax sections that go over hero */}
