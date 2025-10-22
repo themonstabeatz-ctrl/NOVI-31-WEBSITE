@@ -766,6 +766,8 @@ body {
 }
 
 .pim-philosophy-title {
+  position: relative;
+  z-index: 1;
   color: var(--spa-gold);
   font-size: 2rem;
   font-weight: 800;
