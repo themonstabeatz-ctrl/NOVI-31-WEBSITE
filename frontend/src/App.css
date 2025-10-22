@@ -964,23 +964,26 @@ body {
   margin: 3rem auto;
   max-width: 1400px; /* 200% increase from 700px */
   perspective: 1000px;
-  padding: 0; /* Remove transparent background padding */
-  background: none; /* No background */
+  padding: 0;
+  background: transparent; /* Completely transparent - no background */
 }
 
 .pim-gift-voucher-image {
   width: 100%;
   height: auto;
   border-radius: 15px;
+  border: 3px solid rgba(212, 175, 55, 0.6); /* Golden border/outline */
+  background: transparent; /* No background on image */
   filter: drop-shadow(0 10px 40px rgba(212, 175, 55, 0.5));
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
   animation: gentle-float 4s ease-in-out infinite;
-  transform: scale(1); /* Base scale, will be 200% due to container */
+  transform: scale(1);
 }
 
 .pim-gift-voucher-image:hover {
   transform: scale(1.05) rotateY(5deg) rotateX(2deg);
+  border-color: var(--spa-gold); /* Brighter golden border on hover */
   filter: drop-shadow(0 15px 60px rgba(212, 175, 55, 0.7));
   box-shadow: 
     0 0 40px rgba(212, 175, 55, 0.4),
