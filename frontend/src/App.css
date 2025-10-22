@@ -959,14 +959,39 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Gift Voucher Showcase - No Border */
+/* Gift Voucher Showcase - 200% with Breathing Effect */
 .pim-gift-voucher-showcase {
-  margin: 3rem auto;
-  max-width: 2100px;
-  min-height: 400px;
+  margin: 2rem auto;
+  max-width: 1400px; /* 200% size (2x original 700px) */
   perspective: 1000px;
-  padding: 3rem;
-  background: transparent; /* Transparent, parent section has the color */
+  padding: 0;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pim-gift-voucher-breathing {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 40px rgba(212, 175, 55, 0.5));
+  animation: breathing 4s ease-in-out infinite;
+  transition: filter 0.3s ease;
+}
+
+.pim-gift-voucher-breathing:hover {
+  filter: drop-shadow(0 15px 60px rgba(212, 175, 55, 0.7));
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
 }
 
 .pim-gift-voucher-image {
