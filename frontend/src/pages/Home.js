@@ -102,7 +102,7 @@ const Home = () => {
         }
         
         // Other sections move at normal speed
-        const otherSections = document.querySelectorAll('.pim-welcome, .pim-philosophy, .pim-treatments');
+        const otherSections = document.querySelectorAll('.pim-welcome, .pim-philosophy');
         otherSections.forEach((section) => {
           const speed = 0.5; // Normal parallax speed
           const yPos = -(scrolled - heroHeight) * speed;
