@@ -239,8 +239,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Philosophy Section - Normal */}
+      {/* Philosophy Section - With Background */}
       <section className="pim-philosophy">
+        <div className="pim-philosophy-background">
+          <div className="pim-philosophy-rotating-circle"></div>
+        </div>
         <h2 className="pim-philosophy-title">NAŠA UMETNOST TAJLANDSKE MASAŽE</h2>
         <div className="pim-philosophy-content">
           <div className="pim-philosophy-text">
@@ -258,12 +261,6 @@ const Home = () => {
               Naš cilj je da svaki klijent iz spa-prostora izađe ne samo opušteniji, već osnaženiji, povezaniji sa sobom i inspirisan tišinom, jer prava masaža je susret između energije koju dolazite da primite i harmonije koju otkrijete u sebi.
             </p>
           </div>
-        </div>
-        <div className="pim-philosophy-image">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
-            alt="Thai Philosophy"
-          />
         </div>
       </section>
 
