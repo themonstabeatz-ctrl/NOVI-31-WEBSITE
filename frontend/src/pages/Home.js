@@ -52,15 +52,13 @@ const Home = () => {
     const handleParallaxScroll = () => {
       const scrolled = window.scrollY;
       const heroSection = document.getElementById('hero-section');
-      const secondaryHero = document.getElementById('hero-secondary');
       const buddhaHero = document.getElementById('buddha-hero');
       const buddhaOverlay = document.getElementById('buddha-overlay');
       
-      if (!heroSection || !secondaryHero) return;
+      if (!heroSection) return;
       
       const heroHeight = 110 * window.innerHeight / 100; // 110vh in pixels
       const buddhaStartTrigger = heroHeight * 0.5; // Buddha starts moving at 50%
-      const herbalStartTrigger = heroHeight * 1.1; // Herbal appears AFTER Welcome section
       
       // Buddha movement - FASTER movement
       if (scrolled > buddhaStartTrigger) {
@@ -74,21 +72,6 @@ const Home = () => {
         // Reset Buddha when scrolling back to top
         heroSection.style.transform = 'translateY(0)';
         heroSection.style.opacity = 1;
-      }
-      
-      // Herbal compress - appears AFTER Welcome section text
-      if (scrolled > herbalStartTrigger) {
-        const herbalMove = (scrolled - herbalStartTrigger) * 0.3; // Gentle movement
-        secondaryHero.style.transform = `translateY(-${herbalMove}px)`;
-        
-        // Calculate fade in for herbal
-        const fadeDistance = heroHeight * 0.3;
-        const fadePercent = Math.min((scrolled - herbalStartTrigger) / fadeDistance, 1);
-        secondaryHero.style.opacity = Math.min(fadePercent * 0.9, 0.9);
-      } else {
-        // Reset herbal when scrolling back
-        secondaryHero.style.transform = 'translateY(0)';
-        secondaryHero.style.opacity = 0;
       }
       
       // Apply parallax only to sections after hero
