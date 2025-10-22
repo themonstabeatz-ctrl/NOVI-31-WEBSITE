@@ -187,19 +187,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Philosophy Section - With Video Background */}
+      {/* Philosophy Section - With Image Background */}
       <section className="pim-philosophy">
-        <div className="pim-philosophy-video-background">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="pim-philosophy-video"
-          >
-            <source src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/mt6zy81k_261255.mp4" type="video/mp4" />
-          </video>
-          <div className="pim-philosophy-video-overlay"></div>
+        <div className="pim-philosophy-image-background">
+          <img 
+            src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/ludzjfve_3771817.jpeg" 
+            alt="Thai Massage Art"
+            className="pim-philosophy-background-img"
+          />
+          <div className="pim-philosophy-image-overlay"></div>
         </div>
         <h2 className="pim-philosophy-title">NAŠA UMETNOST TAJLANDSKE MASAŽE</h2>
         <div className="pim-philosophy-content">
