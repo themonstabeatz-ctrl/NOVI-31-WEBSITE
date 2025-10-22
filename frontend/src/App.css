@@ -1923,7 +1923,6 @@ body {
 /* Footer */
 .footer-container {
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
-  border-top: 2px solid var(--spa-gold);
   color: var(--spa-cream);
   margin-top: 4rem;
   position: relative;
