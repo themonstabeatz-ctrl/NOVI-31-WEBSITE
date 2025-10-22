@@ -796,6 +796,7 @@ body {
   font-size: 1.1rem;
   line-height: 1.8;
   text-align: left;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
 }
 
 .pim-philosophy-text p {
