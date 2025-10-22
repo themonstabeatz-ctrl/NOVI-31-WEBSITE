@@ -696,7 +696,8 @@ body {
   font-size: 0.9rem;
   position: relative;
   z-index: 2;
-
+  text-align: center;
+}
 
 /* ============================================
    UNIVERSAL SECTION BORDERS (Top & Bottom)
