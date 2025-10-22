@@ -950,7 +950,7 @@ body {
 
 .pim-gift-title {
   font-size: 1.3rem;
-  color: var(--spa-dark);
+  color: var(--spa-gold); /* Changed to gold for visibility on dark background */
   margin-bottom: 2rem;
   line-height: 1.6;
   max-width: 800px;
