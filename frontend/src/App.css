@@ -994,26 +994,25 @@ body {
   }
 }
 
-.pim-gift-button,
 .pim-gift-button-bottom {
   background: var(--spa-gold);
   color: var(--spa-dark);
-  padding: 1.2rem 3rem;
-  font-size: 1.2rem;
+  padding: 1.5rem 4rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   border: none;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  margin: 1rem;
+  margin: 2rem;
   display: inline-block;
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
 }
 
-.pim-gift-button:hover,
 .pim-gift-button-bottom:hover {
   background: var(--spa-gold-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(212, 175, 55, 0.5);
 }
 
 /* Testimonial */
