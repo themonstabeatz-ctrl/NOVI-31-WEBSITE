@@ -8,7 +8,6 @@ const About = () => {
   const { translate } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -32,93 +31,6 @@ const About = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  // Canvas candles animation
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = document.body.scrollHeight;
-
-    class Candle {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.height = 150 + Math.random() * 100;
-        this.width = 4;
-        this.glowSize = 30 + Math.random() * 20;
-        this.flickerOffset = Math.random() * Math.PI * 2;
-        this.flickerSpeed = 0.05 + Math.random() * 0.05;
-      }
-
-      draw(scrollOffset) {
-        const flickerIntensity = Math.sin(Date.now() * this.flickerSpeed + this.flickerOffset) * 5;
-        const adjustedY = this.y - scrollOffset * 0.3;
-        
-        // Candle stick
-        ctx.fillStyle = 'rgba(212, 175, 55, 0.8)';
-        ctx.fillRect(this.x - this.width / 2, adjustedY, this.width, this.height);
-
-        // Flame
-        const flameY = adjustedY - 20 + flickerIntensity;
-        
-        // Glow
-        const gradient = ctx.createRadialGradient(
-          this.x, flameY, 0,
-          this.x, flameY, this.glowSize + flickerIntensity
-        );
-        gradient.addColorStop(0, 'rgba(255, 215, 0, 0.8)');
-        gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.4)');
-        gradient.addColorStop(1, 'rgba(212, 175, 55, 0)');
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, flameY, this.glowSize + flickerIntensity, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Flame shape
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.9)';
-        ctx.beginPath();
-        ctx.moveTo(this.x, flameY - 15);
-        ctx.bezierCurveTo(
-          this.x - 8, flameY - 10,
-          this.x - 8, flameY,
-          this.x, flameY + 5
-        );
-        ctx.bezierCurveTo(
-          this.x + 8, flameY,
-          this.x + 8, flameY - 10,
-          this.x, flameY - 15
-        );
-        ctx.fill();
-      }
-    }
-
-    const candles = [];
-    const candleCount = 15;
-    for (let i = 0; i < candleCount; i++) {
-      const x = (i / (candleCount - 1)) * canvas.width;
-      const y = 100 + Math.random() * (canvas.height - 200);
-      candles.push(new Candle(x, y));
-    }
-
-    let animationId;
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      candles.forEach(candle => candle.draw(scrollY));
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [scrollY]);
 
   const values = [
     {
