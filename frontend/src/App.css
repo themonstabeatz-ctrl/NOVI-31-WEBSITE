@@ -126,8 +126,6 @@
   z-index: 100;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .fixed-footer-slogan {
