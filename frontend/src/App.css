@@ -767,12 +767,13 @@ body {
 
 .pim-philosophy-title {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   color: var(--spa-gold);
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 2rem;
   letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .pim-philosophy h2 {
