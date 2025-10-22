@@ -945,7 +945,7 @@ body {
 .pim-gift {
   text-align: center;
   padding: 4rem 2rem;
-  background: rgba(212, 175, 55, 0.1);
+  background: transparent; /* Removed transparent golden background */
 }
 
 .pim-gift-title {
