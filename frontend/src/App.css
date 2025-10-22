@@ -959,12 +959,13 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Gift Voucher Showcase with Effects */
+/* Gift Voucher Showcase with Effects - 200% Larger */
 .pim-gift-voucher-showcase {
   margin: 3rem auto;
-  max-width: 700px;
+  max-width: 1400px; /* 200% increase from 700px */
   perspective: 1000px;
-  padding: 2rem;
+  padding: 0; /* Remove transparent background padding */
+  background: none; /* No background */
 }
 
 .pim-gift-voucher-image {
@@ -975,6 +976,7 @@ body {
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
   animation: gentle-float 4s ease-in-out infinite;
+  transform: scale(1); /* Base scale, will be 200% due to container */
 }
 
 .pim-gift-voucher-image:hover {
