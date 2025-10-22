@@ -236,14 +236,9 @@ const Home = () => {
         </Button>
       </section>
 
-      {/* Testimonial */}
+      {/* Testimonial - Empty with transparent background */}
       <section className="pim-testimonial">
-        <blockquote className="pim-testimonial-quote">
-          "Blaženo i lečilišno. Naš tim je topao, dobrodošao, profesionalan i briljantan u svom poslu. 
-          Prilagođavaju se pritisku koji želite, ciljaju oblasti koje trebate, i brinu o vama svaki trenutak. 
-          Snažne ruke, um, duša. 5★ i 10/10 snažno preporučujem!"
-        </blockquote>
-        <cite className="pim-testimonial-author">Marija</cite>
+        {/* Content removed */}
       </section>
       </div> {/* Close parallax container */}
     </div>
