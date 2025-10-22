@@ -78,21 +78,36 @@ const About = () => {
   ];
 
   return (
-    <div className="about-container">
-      {/* Header */}
-      <section className="page-header">
-        <div className="page-header-content">
-          <h1 className="page-title">{translate("aboutTitle")}</h1>
-          <p className="page-subtitle">
+    <div className="about-container-3d" ref={containerRef}>
+      {/* 3D Hero Header */}
+      <section className="about-hero-3d">
+        <div 
+          className="about-hero-background"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
+          <div className="hero-gradient-orb hero-orb-1"></div>
+          <div className="hero-gradient-orb hero-orb-2"></div>
+          <div className="hero-gradient-orb hero-orb-3"></div>
+        </div>
+        <div className="about-hero-content">
+          <h1 
+            className="about-hero-title-3d"
+            style={{
+              transform: `perspective(1000px) rotateX(${scrollY * 0.02}deg) translateZ(${scrollY * 0.1}px)`,
+            }}
+          >
+            O Nama
+          </h1>
+          <p className="about-hero-subtitle-3d">
             Otkrijte našu priču i strast prema tradicionalnim tajlandskim tretmanima
           </p>
-        </div>
-        <div className="page-decoration">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/7sfhgz1m_Bua%20luang%20logo.png"
-            alt="Bua Luang Logo"
-            className="decoration-logo"
-          />
+          <div className="hero-sparkles">
+            <Sparkles className="sparkle sparkle-1" />
+            <Sparkles className="sparkle sparkle-2" />
+            <Sparkles className="sparkle sparkle-3" />
+          </div>
         </div>
       </section>
 
