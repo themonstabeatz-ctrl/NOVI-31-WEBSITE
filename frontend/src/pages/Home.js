@@ -304,7 +304,11 @@ const Home = () => {
           Kliknite "KUPITE SADA" da razmaziž voljenu osobu divnim poklonom opuštanja.
         </h2>
         <div className="pim-gift-voucher-showcase">
-          {/* Dark gray background instead of image */}
+          <img 
+            src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/1uemvsqg_Poklon%20vaucer%20sa%20kovertom%20srpski.png" 
+            alt="Poklon Vaucer"
+            className="pim-gift-voucher-breathing"
+          />
         </div>
         <Button asChild className="pim-gift-button-bottom">
           <Link to="/contact">KUPITE SADA</Link>
