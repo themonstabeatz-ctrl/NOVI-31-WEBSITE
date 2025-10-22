@@ -959,13 +959,15 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Gift Voucher Showcase with Effects - 300% Larger */
+/* Gift Voucher Showcase with Dark Gray Background */
 .pim-gift-voucher-showcase {
   margin: 3rem auto;
-  max-width: 2100px; /* 300% increase from 700px (3x larger) */
+  max-width: 2100px;
+  min-height: 400px; /* Give it some height */
   perspective: 1000px;
-  padding: 0;
-  background: transparent; /* Completely transparent - no background */
+  padding: 3rem;
+  background: #232222; /* Dark gray background */
+  border-radius: 15px;
 }
 
 .pim-gift-voucher-image {
