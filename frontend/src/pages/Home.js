@@ -303,13 +303,11 @@ const Home = () => {
           Sa samo nekoliko klikova, možete kupiti savršen poklon od nas. 
           Kliknite "KUPITE SADA" da razmaziž voljenu osobu divnim poklonom opuštanja.
         </h2>
-        <Button asChild className="pim-gift-button">
-          <Link to="/contact">KUPITE SADA</Link>
-        </Button>
-        <div className="pim-gift-image">
+        <div className="pim-gift-voucher-showcase">
           <img 
-            src="https://customer-assets.emergentagent.com/job_thai-massage-spa/artifacts/cgds8iwm_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png" 
-            alt="Gift Voucher"
+            src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/gwespm5l_Poklon%20vaucer%20sa%20kovertom%20srpski.png" 
+            alt="Poklon Vaucer"
+            className="pim-gift-voucher-image"
           />
         </div>
         <Button asChild className="pim-gift-button-bottom">
