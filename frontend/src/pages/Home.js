@@ -305,7 +305,7 @@ const Home = () => {
         </h2>
         <div className="pim-gift-voucher-showcase">
           <img 
-            src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/gwespm5l_Poklon%20vaucer%20sa%20kovertom%20srpski.png" 
+            src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/4iuxl55t_Poklon%20vaucer%20sa%20kovertom%20srpski.png" 
             alt="Poklon Vaucer"
             className="pim-gift-voucher-image"
           />
