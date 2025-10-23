@@ -6005,10 +6005,10 @@ html {
   animation: sparkleRotate 4s linear infinite;
 }
 
-/* Philosophy Logo Wrapper and Animation */
+/* Philosophy Logo Wrapper and Animation - Same as Contact page */
 .philosophy-logo-wrapper {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: auto;
   margin: 0 auto 2rem;
   display: flex;
   align-items: center;
@@ -6017,27 +6017,12 @@ html {
 }
 
 .philosophy-bua-logo {
-  width: 100%;
+  max-width: 200px;
   height: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
-  animation: lotusFlowerRotate 8s ease-in-out infinite;
-  transform-origin: center 30%;
-}
-
-/* Lotus Flower Rotation Animation - rotates from the flower center */
-@keyframes lotusFlowerRotate {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(90deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(270deg);
-  }
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+  animation: gentle-sway 6s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
 }
 
 .philosophy-quote-title {
