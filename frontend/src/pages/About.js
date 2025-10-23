@@ -287,6 +287,11 @@ const About = () => {
         </div>
       </section>
 
+      {/* Empty parallax section for spacing - like Home page */}
+      <section className="about-testimonial">
+        {/* Empty section for consistent spacing */}
+      </section>
+
     </div>
   );
 };
