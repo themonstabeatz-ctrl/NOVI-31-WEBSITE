@@ -1266,7 +1266,7 @@ body {
   width: 100%;
   max-width: 300px;
   height: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8));
 }
 
 /* Quote Section */
