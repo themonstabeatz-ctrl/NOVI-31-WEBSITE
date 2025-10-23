@@ -140,7 +140,7 @@ const Massage = () => {
       <div 
         className="massage-parallax-content"
         style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
+          transform: `translate3d(0, ${scrollY * 0.2}px, 0)`,
         }}
       >
 
