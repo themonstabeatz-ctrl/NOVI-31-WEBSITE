@@ -5714,8 +5714,12 @@ html {
   border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .spa-container .spa-card:hover {
