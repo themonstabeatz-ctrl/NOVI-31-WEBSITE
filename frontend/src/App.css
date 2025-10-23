@@ -201,13 +201,13 @@ html {
 .nav-logo {
   height: 90px;
   width: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.7));
   transition: all 0.3s ease;
 }
 
 .nav-logo:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.7));
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.9));
 }
 
 .nav-wrapper {
