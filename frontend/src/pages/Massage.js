@@ -15,22 +15,38 @@ const Massage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Optimized scroll tracking with requestAnimationFrame
+  // Ultra-optimized scroll tracking with throttling
   useEffect(() => {
     let ticking = false;
+    let lastScrollY = 0;
 
     const handleScroll = () => {
+      lastScrollY = window.scrollY;
+      
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          setScrollY(lastScrollY);
           ticking = false;
         });
         ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Throttle scroll events
+    let throttleTimer;
+    const throttledScroll = () => {
+      if (throttleTimer) return;
+      throttleTimer = setTimeout(() => {
+        handleScroll();
+        throttleTimer = null;
+      }, 16); // ~60fps
+    };
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      if (throttleTimer) clearTimeout(throttleTimer);
+    };
   }, []);
 
   const massageServices = [
