@@ -15,15 +15,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* GPU acceleration for all transforms */
-* {
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -moz-perspective: 1000;
-  perspective: 1000;
-}
+/* Remove excessive GPU layers - apply only where needed */
 
 /* Thai Spa Styles */
 :root {
