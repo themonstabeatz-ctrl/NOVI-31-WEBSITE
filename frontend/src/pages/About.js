@@ -8,14 +8,66 @@ const About = () => {
   const { translate } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
 
+  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  // Logo transformation and parallax effects on scroll
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const aboutHeroSection = document.querySelector('.about-hero-fixed');
+      const aboutHeroLogo = document.querySelector('.about-hero-logo');
+      
+      if (!aboutHeroSection || !aboutHeroLogo) return;
+      
+      const heroHeight = aboutHeroSection.offsetHeight;
+      const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
+      
+      if (scrollPercent > 0.05) {
+        // Scroll down - transform logo with fade and blur
+        const opacity = Math.max(1 - (scrollPercent - 0.05) * 3, 0);
+        const scale = Math.max(1 - (scrollPercent - 0.05) * 1.5, 0.2);
+        
+        aboutHeroLogo.style.opacity = opacity;
+        aboutHeroLogo.style.transform = `scale(${scale})`;
+        aboutHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+      } else {
+        // Scroll up - restore logo
+        aboutHeroLogo.style.opacity = 1;
+        aboutHeroLogo.style.transform = 'scale(1)';
+        aboutHeroLogo.style.filter = 'blur(0px)';
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Parallax effect for content sections
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.scrollY;
+      const aboutHeroSection = document.querySelector('.about-hero-fixed');
+      
+      if (!aboutHeroSection) return;
+      
+      const heroHeight = aboutHeroSection.offsetHeight;
+      
+      // Apply parallax to sections after hero
+      if (scrolled > heroHeight * 0.3) {
+        const parallaxContent = document.querySelector('.about-parallax-content');
+        if (parallaxContent) {
+          const speed = 0.5;
+          const yPos = -(scrolled - heroHeight * 0.3) * speed;
+          parallaxContent.style.transform = `translateY(${yPos}px)`;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleParallaxScroll);
   }, []);
 
   return (
