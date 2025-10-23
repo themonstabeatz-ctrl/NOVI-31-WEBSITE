@@ -5903,7 +5903,7 @@ html {
   width: 120px;
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 0.2rem;
   animation: dividerExpand 2s ease-in-out infinite;
 }
 
