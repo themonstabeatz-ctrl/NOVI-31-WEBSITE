@@ -135,18 +135,15 @@ const Spa = () => {
       {/* Fixed Video Hero Section */}
       <section className="spa-hero-fixed">
         <div className="spa-hero-video-container">
-          {/* Placeholder for video - you can replace with actual video */}
-          <div className="video-placeholder">
-            <video 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              className="spa-hero-video"
-            >
-              <source src="/path-to-your-spa-video.mp4" type="video/mp4" />
-            </video>
-          </div>
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="spa-hero-video"
+          >
+            <source src="https://customer-assets.emergentagent.com/job_massage-preview/artifacts/0wo286ms_Woman_Exit_The_Sauna_uhd_1051801.mp4" type="video/mp4" />
+          </video>
           <div className="spa-hero-overlay"></div>
         </div>
         
