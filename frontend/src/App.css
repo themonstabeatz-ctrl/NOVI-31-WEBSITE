@@ -5917,7 +5917,7 @@ html {
 .about-parallax-content {
   position: relative;
   z-index: 5;
-  margin-top: calc(100vh - 80px);
+  margin-top: 100vh;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.95) 0%,
