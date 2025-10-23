@@ -5659,8 +5659,8 @@ html {
 }
 
 .spa-hero-logo {
-  margin-bottom: 2rem;
-  margin-top: 4cm;
+  margin-bottom: 1rem;
+  margin-top: 2cm;
   animation: gentle-sway 6s ease-in-out infinite;
   transition: opacity 0.3s ease-out, transform 0.3s ease-out, filter 0.3s ease-out;
 }
