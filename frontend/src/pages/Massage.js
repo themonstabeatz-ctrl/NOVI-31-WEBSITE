@@ -15,38 +15,61 @@ const Massage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Ultra-optimized scroll tracking with throttling
+  // Logo transformation and parallax effects on scroll
   useEffect(() => {
-    let ticking = false;
-    let lastScrollY = 0;
-
     const handleScroll = () => {
-      lastScrollY = window.scrollY;
+      const scrollPosition = window.scrollY;
+      const massageHeroSection = document.querySelector('.massage-hero-fixed');
+      const massageHeroLogo = document.querySelector('.massage-hero-logo');
       
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(lastScrollY);
-          ticking = false;
-        });
-        ticking = true;
+      if (!massageHeroSection || !massageHeroLogo) return;
+      
+      const heroHeight = massageHeroSection.offsetHeight;
+      const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
+      
+      if (scrollPercent > 0.05) {
+        // Scroll down - transform logo with fade and blur
+        const opacity = Math.max(1 - (scrollPercent - 0.05) * 3, 0);
+        const scale = Math.max(1 - (scrollPercent - 0.05) * 1.5, 0.2);
+        
+        massageHeroLogo.style.opacity = opacity;
+        massageHeroLogo.style.transform = `scale(${scale})`;
+        massageHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+      } else {
+        // Scroll up - restore logo
+        massageHeroLogo.style.opacity = 1;
+        massageHeroLogo.style.transform = 'scale(1)';
+        massageHeroLogo.style.filter = 'blur(0px)';
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Parallax effect for content sections
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.scrollY;
+      const massageHeroSection = document.querySelector('.massage-hero-fixed');
+      
+      if (!massageHeroSection) return;
+      
+      const heroHeight = massageHeroSection.offsetHeight;
+      
+      // Apply parallax to sections after hero
+      if (scrolled > heroHeight * 0.3) {
+        const parallaxContent = document.querySelector('.massage-parallax-content');
+        if (parallaxContent) {
+          const speed = 0.5;
+          const yPos = -(scrolled - heroHeight * 0.3) * speed;
+          parallaxContent.style.transform = `translateY(${yPos}px)`;
+        }
       }
     };
 
-    // Throttle scroll events
-    let throttleTimer;
-    const throttledScroll = () => {
-      if (throttleTimer) return;
-      throttleTimer = setTimeout(() => {
-        handleScroll();
-        throttleTimer = null;
-      }, 16); // ~60fps
-    };
-
-    window.addEventListener('scroll', throttledScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', throttledScroll);
-      if (throttleTimer) clearTimeout(throttleTimer);
-    };
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleParallaxScroll);
   }, []);
 
   const massageServices = [
