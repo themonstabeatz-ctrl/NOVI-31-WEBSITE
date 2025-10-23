@@ -77,22 +77,47 @@ const Massage = () => {
 
   return (
     <div className="massage-container">
-      {/* Header */}
-      <section className="page-header">
-        <div className="page-header-content">
-          <h1 className="page-title">{translate("massage")}</h1>
-          <p className="page-subtitle">
+      {/* Fixed Video Hero Section */}
+      <section className="massage-hero-fixed">
+        <div className="massage-hero-video-container">
+          {/* Placeholder for video - you can replace with actual video */}
+          <div className="video-placeholder">
+            <video 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="massage-hero-video"
+            >
+              <source src="/path-to-your-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="massage-hero-overlay"></div>
+        </div>
+        
+        <div className="massage-hero-content">
+          <div className="massage-hero-logo">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/7sfhgz1m_Bua%20luang%20logo.png"
+              alt="Bua Luang Logo"
+              className="hero-logo-image"
+            />
+          </div>
+          <h1 className="massage-hero-title">Masaže sa Bua Luang</h1>
+          <div className="massage-hero-divider"></div>
+          <p className="massage-hero-subtitle">
             Otkrijte moć tradicionalnih tajlandskih masaža za potpuno opuštanje tela i duha
           </p>
         </div>
-        <div className="page-decoration">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/1yzb8w71_%E2%80%94Pngtree%E2%80%94luxury%20mandala%20gold%20vintage%20frame_8780829.png"
-            alt="Mandala decoration"
-            className="decoration-image"
-          />
-        </div>
       </section>
+
+      {/* Parallax Content Section */}
+      <div 
+        className="massage-parallax-content"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)`,
+        }}
+      >
 
       {/* Services Grid */}
       <section className="services-section">
