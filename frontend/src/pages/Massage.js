@@ -178,6 +178,7 @@ const Massage = () => {
           </div>
         </div>
       </section>
+      </div> {/* Close parallax-content */}
     </div>
   );
 };
