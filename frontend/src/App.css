@@ -5688,12 +5688,13 @@ html {
 }
 
 .spa-hero-subtitle {
-  font-size: clamp(1.164rem, 2.91vw, 1.746rem);
+  font-size: clamp(0.989rem, 2.474vw, 1.484rem);
   color: var(--spa-cream);
   opacity: 0.95;
   max-width: 800px;
   line-height: 1.7;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  margin-top: -3cm;
 }
 
 /* Parallax Content */
