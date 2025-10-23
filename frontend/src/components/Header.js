@@ -58,6 +58,7 @@ const Header = () => {
             <Link
               key={item.path}
               to={item.path}
+              onClick={handleNavClick}
               className={`nav-link ${
                 location.pathname === item.path ? "nav-link-active" : ""
               }`}
