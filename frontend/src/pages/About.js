@@ -208,6 +208,8 @@ const About = () => {
         </div>
       </section>
 
+      </div> {/* Close parallax-content */}
+
       {/* Contact & Social Section */}
       <section className="about-contact-social-section">
         <div className="about-contact-container">
@@ -280,7 +282,6 @@ const About = () => {
         </div>
       </section>
 
-      </div> {/* Close parallax-content */}
     </div>
   );
 };
