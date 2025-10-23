@@ -5918,7 +5918,7 @@ html {
   font-weight: 300;
   opacity: 0.95;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-  margin-top: 0;
+  margin-top: -0.3rem;
 }
 
 /* Parallax Content */
