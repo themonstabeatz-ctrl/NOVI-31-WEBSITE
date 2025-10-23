@@ -157,12 +157,7 @@ const Massage = () => {
       </section>
 
       {/* Parallax Content Section */}
-      <div 
-        className="massage-parallax-content"
-        style={{
-          transform: `translate3d(0, ${scrollY * 0.2}px, 0)`,
-        }}
-      >
+      <div className="massage-parallax-content">
 
       {/* Services Grid */}
       <section className="services-section">
