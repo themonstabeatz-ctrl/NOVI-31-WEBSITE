@@ -280,6 +280,11 @@ const About = () => {
 
           </div>
         </div>
+        
+        {/* Copyright */}
+        <div className="about-contact-copyright">
+          © 2025 Bua Luang Thai Spa. Sva prava zadržana.
+        </div>
       </section>
 
     </div>
