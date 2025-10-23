@@ -208,6 +208,78 @@ const About = () => {
         </div>
       </section>
 
+      {/* Contact & Social Section */}
+      <section className="about-contact-social-section">
+        <div className="about-contact-container">
+          <div className="about-contact-grid">
+            
+            {/* Contact Information */}
+            <div className="about-contact-info-card">
+              <h3 className="about-contact-title">Kontaktirajte Nas</h3>
+              <div className="about-contact-items">
+                <div className="about-contact-item">
+                  <Mail className="about-contact-icon" />
+                  <div className="about-contact-details">
+                    <h4>Email</h4>
+                    <a href="mailto:bualuangthailandspa@gmail.com" className="about-info-link">
+                      bualuangthailandspa@gmail.com
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="about-contact-item">
+                  <Phone className="about-contact-icon" />
+                  <div className="about-contact-details">
+                    <h4>Telefon</h4>
+                    <a href="tel:+381626625500" className="about-info-link">
+                      +381 62 662 5500
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="about-contact-item">
+                  <MapPin className="about-contact-icon" />
+                  <div className="about-contact-details">
+                    <h4>Adresa</h4>
+                    <p className="about-info-text">Abebe Bikile 10A, Zemun<br />Beograd 11080, Srbija</p>
+                  </div>
+                </div>
+                
+                <div className="about-contact-item">
+                  <Clock className="about-contact-icon" />
+                  <div className="about-contact-details">
+                    <h4>Radno vreme</h4>
+                    <div className="about-working-hours">
+                      <p>Ponedeljak - Nedelja</p>
+                      <p className="about-hours">10:00 - 22:00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="about-social-card">
+              <h3 className="about-contact-title">Pratite Nas</h3>
+              <a 
+                href="https://www.instagram.com/bualuang_thai_spa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="about-social-link"
+              >
+                <Instagram className="about-social-icon" />
+                <div className="about-social-info">
+                  <h4>Instagram</h4>
+                  <p>@bualuang_thai_spa</p>
+                  <span className="about-social-cta">Pratite nas za ekskluzivne ponude</span>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       </div> {/* Close parallax-content */}
     </div>
   );
