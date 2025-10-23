@@ -5908,7 +5908,7 @@ html {
 }
 
 .about-hero-subtitle {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(1.164rem, 2.91vw, 1.746rem);
   color: var(--spa-cream);
   max-width: 800px;
   line-height: 1.7;
