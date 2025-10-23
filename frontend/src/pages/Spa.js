@@ -15,38 +15,61 @@ const Spa = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Ultra-optimized scroll tracking with throttling
+  // Logo transformation and parallax effects on scroll
   useEffect(() => {
-    let ticking = false;
-    let lastScrollY = 0;
-
     const handleScroll = () => {
-      lastScrollY = window.scrollY;
+      const scrollPosition = window.scrollY;
+      const spaHeroSection = document.querySelector('.spa-hero-fixed');
+      const spaHeroLogo = document.querySelector('.spa-hero-logo');
       
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(lastScrollY);
-          ticking = false;
-        });
-        ticking = true;
+      if (!spaHeroSection || !spaHeroLogo) return;
+      
+      const heroHeight = spaHeroSection.offsetHeight;
+      const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
+      
+      if (scrollPercent > 0.05) {
+        // Scroll down - transform logo with fade and blur
+        const opacity = Math.max(1 - (scrollPercent - 0.05) * 3, 0);
+        const scale = Math.max(1 - (scrollPercent - 0.05) * 1.5, 0.2);
+        
+        spaHeroLogo.style.opacity = opacity;
+        spaHeroLogo.style.transform = `scale(${scale})`;
+        spaHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+      } else {
+        // Scroll up - restore logo
+        spaHeroLogo.style.opacity = 1;
+        spaHeroLogo.style.transform = 'scale(1)';
+        spaHeroLogo.style.filter = 'blur(0px)';
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Parallax effect for content sections
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.scrollY;
+      const spaHeroSection = document.querySelector('.spa-hero-fixed');
+      
+      if (!spaHeroSection) return;
+      
+      const heroHeight = spaHeroSection.offsetHeight;
+      
+      // Apply parallax to sections after hero
+      if (scrolled > heroHeight * 0.3) {
+        const parallaxContent = document.querySelector('.spa-parallax-content');
+        if (parallaxContent) {
+          const speed = 0.5;
+          const yPos = -(scrolled - heroHeight * 0.3) * speed;
+          parallaxContent.style.transform = `translateY(${yPos}px)`;
+        }
       }
     };
 
-    // Throttle scroll events
-    let throttleTimer;
-    const throttledScroll = () => {
-      if (throttleTimer) return;
-      throttleTimer = setTimeout(() => {
-        handleScroll();
-        throttleTimer = null;
-      }, 16); // ~60fps
-    };
-
-    window.addEventListener('scroll', throttledScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', throttledScroll);
-      if (throttleTimer) clearTimeout(throttleTimer);
-    };
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleParallaxScroll);
   }, []);
 
   const spaServices = [
