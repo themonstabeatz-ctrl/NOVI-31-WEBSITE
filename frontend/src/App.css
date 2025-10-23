@@ -5264,6 +5264,7 @@ html {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   color: var(--spa-gold);
+  margin-top: -1.3rem;
   margin-bottom: 0.5rem;
   text-shadow: 
     0 0 40px rgba(212, 175, 55, 0.6),
