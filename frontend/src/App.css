@@ -5564,3 +5564,195 @@ html {
   }
 }
 
+
+
+/* ============================================
+   SPA PAGE - FIXED VIDEO HERO & PARALLAX (Identical to Massage)
+   ============================================ */
+
+/* Fixed Video Hero Section */
+.spa-hero-fixed {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.spa-hero-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.spa-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spa-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.spa-hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.spa-hero-logo {
+  margin-bottom: 2rem;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.spa-hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: var(--spa-gold);
+  margin-bottom: 1.5rem;
+  text-shadow: 
+    0 0 40px rgba(212, 175, 55, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.8);
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+.spa-hero-divider {
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
+  margin: 0 auto 2rem;
+  animation: dividerExpand 2s ease-in-out infinite;
+}
+
+.spa-hero-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--spa-cream);
+  opacity: 0.95;
+  max-width: 800px;
+  line-height: 1.7;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Parallax Content */
+.spa-parallax-content {
+  position: relative;
+  z-index: 5;
+  margin-top: calc(100vh - 80px);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    #000000 5%,
+    #000000 100%
+  );
+  min-height: 100vh;
+  transition: transform 0.1s ease-out;
+}
+
+/* Services Section */
+.spa-container .services-section {
+  position: relative;
+  padding: 6rem 2rem;
+  background: #000000;
+}
+
+.spa-container .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out;
+}
+
+.spa-container .spa-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.05) 0%,
+    rgba(26, 26, 26, 0.9) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.spa-container .spa-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 
+    0 25px 60px rgba(212, 175, 55, 0.3),
+    0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+.spa-container .spa-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--spa-gold), #FFA500, var(--spa-gold));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.spa-container .spa-card:hover::before {
+  transform: scaleX(1);
+}
+
+.spa-container .popular-badge {
+  background: linear-gradient(135deg, var(--spa-gold), #FFA500);
+  color: var(--spa-dark);
+  font-weight: 700;
+}
+
+.spa-container .category-badge {
+  margin-bottom: 1rem;
+}
+
+.spa-container .spa-name {
+  font-size: 1.8rem;
+  color: var(--spa-gold);
+}
+
+.spa-container .spa-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--spa-cream);
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .spa-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .spa-container .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
