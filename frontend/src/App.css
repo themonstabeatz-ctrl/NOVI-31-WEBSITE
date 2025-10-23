@@ -421,7 +421,7 @@ html {
 .contact-animated-logo {
   max-width: 300px;
   height: auto;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8));
   animation: gentle-sway 6s ease-in-out infinite;
   position: relative;
   z-index: 2;
