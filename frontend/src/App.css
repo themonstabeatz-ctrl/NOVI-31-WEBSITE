@@ -1132,6 +1132,18 @@ body {
 /* Testimonial */
 .pim-testimonial {
   display: none; /* Hide empty testimonial section */
+  padding: 4rem 2rem; 
+  min-height: 200px;
+  background: transparent;
+}
+
+.about-testimonial,
+.massage-testimonial,
+.spa-testimonial {
+  display: block; /* Show for spacing */
+  padding: 4rem 2rem; 
+  min-height: 200px;
+  background: transparent;
 }
 
 .pim-testimonial-quote {
