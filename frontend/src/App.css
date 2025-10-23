@@ -5908,12 +5908,13 @@ html {
 }
 
 .about-hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
   color: var(--spa-cream);
   max-width: 800px;
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 300;
   opacity: 0.95;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
 /* Parallax Content */
