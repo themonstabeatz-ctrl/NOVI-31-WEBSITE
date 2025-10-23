@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
 import { Award, Heart, Users, Sparkles, Leaf, Star, Shield, Target } from "lucide-react";
 
@@ -70,6 +72,45 @@ const About = () => {
     return () => window.removeEventListener('scroll', handleParallaxScroll);
   }, []);
 
+  const aboutCards = [
+    {
+      title: "Naša Priča",
+      icon: <Leaf className="w-6 h-6" />,
+      description: "Bua Luang Thai Spa je nastao iz duboke strasti prema autentičnoj tajlandskoj wellness tradiciji. Naša osnivačica je provela godine učeći tradicionalne tehnike direktno od majstora u Bangkoku.",
+      color: "from-green-500 to-teal-600"
+    },
+    {
+      title: "Kraljevski Lotos",
+      icon: <Sparkles className="w-6 h-6" />,
+      description: "\"Bua Luang\" znači \"kraljevski lotos\" - simbol čistoće i transformacije. Baš kao što lotos cveta iz vode, verujemo da svako može pronaći unutrašnji mir kroz naše tretmane.",
+      color: "from-amber-500 to-yellow-600"
+    },
+    {
+      title: "Tradicionalnost",
+      icon: <Heart className="w-6 h-6" />,
+      description: "Naše tehnike su prenesene kroz generacije direktno iz Tajlanda, čuvajući autentičnost svakog pokreta i rituala hiljadugodišnje tajlandske mudrosti.",
+      color: "from-pink-500 to-rose-600"
+    },
+    {
+      title: "Kvalitet",
+      icon: <Shield className="w-6 h-6" />,
+      description: "Koristimo isključivo prirodne proizvode i aromatična ulja najvišeg kvaliteta, direktno uvezena iz Tajlanda za vaše potpuno zadovoljstvo.",
+      color: "from-blue-500 to-indigo-600"
+    },
+    {
+      title: "Posvećenost",
+      icon: <Target className="w-6 h-6" />,
+      description: "Svaki tretman je prilagođen vašim individualnim potrebama. Naš tim stručnjaka posvećen je vašem blagostanju i transformaciji tela, uma i duha.",
+      color: "from-purple-500 to-violet-600"
+    },
+    {
+      title: "Iskustvo",
+      icon: <Award className="w-6 h-6" />,
+      description: "Sa preko 15 godina iskustva i više od 5000 zadovoljnih gostiju, kombinujemo tradiciju sa modernim pristupom wellness-u za jedinstveno iskustvo.",
+      color: "from-orange-500 to-red-600"
+    }
+  ];
+
   return (
     <div className="about-container">
       {/* Fixed Video Hero Section */}
@@ -82,7 +123,7 @@ const About = () => {
             playsInline
             className="about-hero-video"
           >
-            <source src="/Woman_Exit_The_Sauna_uhd_1051801.mp4" type="video/mp4" />
+            <source src="/Woman_Drinking_Tea_In_Spa_fhd_2012921.mp4" type="video/mp4" />
           </video>
           <div className="about-hero-overlay"></div>
         </div>
@@ -106,134 +147,57 @@ const About = () => {
       {/* Parallax Content Section */}
       <div className="about-parallax-content">
 
-      {/* Story Section */}
-      <section className="about-story-section">
-        <div className="about-section-inner">
-          <div className="story-grid-about">
-            <div className="story-text-area">
-              <span className="about-section-label">Naša Priča</span>
-              <h2 className="about-section-title">Kraljevski Lotos</h2>
-              <div className="story-paragraphs">
-                <p>
-                  "Bua Luang" znači "kraljevski lotos" na tajlandskom - simbol čistoće, transformacije i unutrašnjeg mira. 
-                  Baš kao što lotos cveta iz vode, mi verujemo da svako može pronaći svoj unutrašnji mir kroz naše tretmane.
-                </p>
-                <p>
-                  Naša priča počinje u Bangkoku, gde je naša osnivačica provela godine učeći tradicionalne tehnike masaže 
-                  direktno od tajlandskih majstora. Nakon što je stekla duboko razumevanje ove drevne umetnosti, 
-                  donela je tu mudrost u Srbiju.
-                </p>
-                <p>
-                  Danas, Bua Luang Thai Spa je mesto gde se hiljadugodišnja tajlandska tradicija spaja sa modernim 
-                  pristupom wellness-u. Svaki tretman je dizajniran da transformiše telo, um i duh.
-                </p>
-              </div>
+      {/* Cards Grid Section */}
+      <section className="services-section">
+        <div className="services-grid">
+          {aboutCards.map((card, index) => (
+            <Card key={index} className="about-card">
+              <CardHeader>
+                <div className="about-category">
+                  <Badge className={`category-badge bg-gradient-to-r ${card.color}`}>
+                    {card.icon}
+                    <span className="ml-1">{card.title}</span>
+                  </Badge>
+                </div>
+              </CardHeader>
               
-              <div className="story-stats-row">
-                <div className="stat-box">
-                  <Award className="stat-icon-about" />
-                  <div className="stat-number-about">15+</div>
-                  <div className="stat-label-about">Godina Iskustva</div>
-                </div>
-                <div className="stat-box">
-                  <Users className="stat-icon-about" />
-                  <div className="stat-number-about">5000+</div>
-                  <div className="stat-label-about">Zadovoljnih Gostiju</div>
-                </div>
-                <div className="stat-box">
-                  <Star className="stat-icon-about" />
-                  <div className="stat-number-about">100%</div>
-                  <div className="stat-label-about">Autentično</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="about-values-section">
-        <div className="about-section-inner">
-          <div className="values-header-about">
-            <span className="about-section-label">Naše Vrednosti</span>
-            <h2 className="about-section-title">Šta Nas Definiše</h2>
-            <p className="values-description">
-              Tri stuba na kojima gradimo svako iskustvo u Bua Luang Thai Spa
-            </p>
-          </div>
-          
-          <div className="values-grid-about">
-            <div className="value-card-about">
-              <div className="value-icon-circle">
-                <Heart className="value-icon-about" />
-              </div>
-              <h3 className="value-card-title">Tradicionalnost</h3>
-              <p className="value-card-text">
-                Naše tehnike su prenesene kroz generacije direktno iz Tajlanda, 
-                čuvajući autentičnost svakog pokreta i rituala.
-              </p>
-            </div>
-
-            <div className="value-card-about">
-              <div className="value-icon-circle">
-                <Shield className="value-icon-about" />
-              </div>
-              <h3 className="value-card-title">Kvalitet</h3>
-              <p className="value-card-text">
-                Koristimo isključivo prirodne proizvode i aromatična ulja 
-                najvišeg kvaliteta direktno iz Tajlanda.
-              </p>
-            </div>
-
-            <div className="value-card-about">
-              <div className="value-icon-circle">
-                <Target className="value-icon-about" />
-              </div>
-              <h3 className="value-card-title">Posvećenost</h3>
-              <p className="value-card-text">
-                Svaki tretman je prilagođen vašim individualnim potrebama 
-                za optimalne rezultate i potpuno opuštanje.
-              </p>
-            </div>
-          </div>
+              <CardContent>
+                <p className="about-description">{card.description}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
       {/* Philosophy Quote Section */}
-      <section className="about-philosophy-section">
-        <div className="about-section-inner">
-          <div className="philosophy-box">
-            <Sparkles className="philosophy-sparkle-icon" />
-            <h2 className="philosophy-quote-title">Naša Filozofija</h2>
-            <blockquote className="philosophy-quote-text">
-              "Verujemo da je pravi luksuz u jednostavnosti. Svaki pokret, svaki miris, 
-              svaki trenutak u našem spa-u dizajniran je da vas vrati u sklad sa sobom. 
-              Tajlandska masaža nije samo fizički tretman - to je meditacija, 
-              putovanje i transformacija."
-            </blockquote>
-            <div className="philosophy-signature-line">
-              <span className="signature-text-about">— Bua Luang Thai Spa</span>
-            </div>
+      <section className="about-philosophy-quote">
+        <div className="philosophy-quote-container">
+          <Sparkles className="philosophy-icon-large" />
+          <h2 className="philosophy-quote-title">Naša Filozofija</h2>
+          <blockquote className="philosophy-quote-text">
+            "Verujemo da je pravi luksuz u jednostavnosti. Svaki pokret, svaki miris, 
+            svaki trenutak u našem spa-u dizajniran je da vas vrati u sklad sa sobom. 
+            Tajlandska masaža nije samo fizički tretman - to je meditacija, 
+            putovanje i transformacija."
+          </blockquote>
+          <div className="philosophy-signature">
+            <span>— Bua Luang Thai Spa</span>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="about-cta-section">
-        <div className="about-section-inner">
-          <div className="cta-content-about">
-            <h2 className="cta-title-about">Spremni Za Transformaciju?</h2>
-            <p className="cta-subtitle-about">
-              Rezervišite svoj tretman i započnite putovanje ka unutrašnjem miru
-            </p>
-            <div className="cta-buttons-about">
-              <Button asChild className="cta-button-primary-about">
-                <Link to="/contact">Kontaktirajte Nas</Link>
-              </Button>
-              <Button asChild className="cta-button-secondary-about">
-                <Link to="/massage">Pogledajte Naše Usluge</Link>
-              </Button>
-            </div>
+      {/* Call to Action */}
+      <section className="cta-section">
+        <div className="cta-content">
+          <h2 className="cta-title">Spremni Za Transformaciju?</h2>
+          <p className="cta-subtitle">Rezervišite svoj tretman i započnite putovanje ka unutrašnjem miru</p>
+          <div className="cta-buttons">
+            <Button asChild size="lg" className="cta-button-primary">
+              <Link to="/contact">Kontaktirajte Nas</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="cta-button-secondary">
+              <Link to="/massage">Pogledajte Naše Usluge</Link>
+            </Button>
           </div>
         </div>
       </section>
