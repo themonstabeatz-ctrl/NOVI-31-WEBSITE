@@ -5925,6 +5925,112 @@ html {
   transition: transform 0.1s ease-out;
 }
 
+/* About Cards Grid - Similar to Massage/Spa */
+.about-container .services-section {
+  position: relative;
+  padding: 6rem 2rem;
+  background: #000000;
+}
+
+.about-container .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: linear-gradient(135deg, rgba(15, 15, 15, 0.95), rgba(25, 25, 25, 0.85));
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  padding: 0;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--spa-gold);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+}
+
+.about-card .about-category {
+  margin-bottom: 1rem;
+}
+
+.about-card .category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  color: white;
+  border: none;
+}
+
+.about-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--spa-cream);
+  opacity: 0.9;
+}
+
+/* Philosophy Quote Section */
+.about-philosophy-quote {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+}
+
+.philosophy-quote-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.03));
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+}
+
+.philosophy-icon-large {
+  width: 60px;
+  height: 60px;
+  color: var(--spa-gold);
+  margin: 0 auto 2rem;
+  animation: sparkleRotate 4s linear infinite;
+}
+
+.philosophy-quote-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--spa-gold);
+  margin-bottom: 2rem;
+}
+
+.philosophy-quote-text {
+  font-size: 1.3rem;
+  line-height: 1.9;
+  color: var(--spa-cream);
+  font-style: italic;
+  opacity: 0.95;
+  margin-bottom: 2rem;
+}
+
+.philosophy-signature {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.philosophy-signature span {
+  font-size: 1.1rem;
+  color: var(--spa-gold);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
 /* Section Styling */
 .about-section-inner {
   max-width: 1200px;
