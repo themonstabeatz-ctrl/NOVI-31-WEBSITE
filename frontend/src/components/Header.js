@@ -115,7 +115,7 @@ const Header = () => {
             className={`mobile-nav-link ${
               location.pathname === item.path ? "mobile-nav-link-active" : ""
             }`}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleNavClick}
           >
             {item.label}
           </Link>
