@@ -15,12 +15,21 @@ const Massage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Track scroll for parallax
+  // Optimized scroll tracking with requestAnimationFrame
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
