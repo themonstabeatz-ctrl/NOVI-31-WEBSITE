@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
-import { Award, Heart, Users, Sparkles, Leaf, Star, Shield, Target } from "lucide-react";
+import { Award, Heart, Users, Sparkles, Leaf, Star, Shield, Target, Mail, Phone, MapPin, Clock, Instagram } from "lucide-react";
 
 const About = () => {
   const { translate } = useLanguage();
