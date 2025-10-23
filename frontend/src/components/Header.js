@@ -32,6 +32,12 @@ const Header = () => {
     { path: "/contact", label: translate("contact") }
   ];
 
+  // Scroll to top when clicking navigation links
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsMenuOpen(false); // Close mobile menu if open
+  };
+
   return (
     <header className="header-container">
       <nav className="nav-wrapper">
