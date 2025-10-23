@@ -291,6 +291,12 @@ const Spa = () => {
           </div>
         </div>
       </section>
+
+      {/* Empty parallax section for spacing - like Home page */}
+      <section className="spa-testimonial">
+        {/* Empty section for consistent spacing */}
+      </section>
+
       </div> {/* Close parallax-content */}
     </div>
   );
