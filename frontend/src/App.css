@@ -451,6 +451,9 @@ body {
   padding-top: 80px; /* Space for fixed navigation */
   padding-bottom: 0; /* No space at bottom - footer touches bottom */
   font-family: 'Agency FB', 'Arial Narrow', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 
