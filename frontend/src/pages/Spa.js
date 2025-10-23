@@ -107,22 +107,47 @@ const Spa = () => {
 
   return (
     <div className="spa-container">
-      {/* Header */}
-      <section className="page-header">
-        <div className="page-header-content">
-          <h1 className="page-title">{translate("spa")}</h1>
-          <p className="page-subtitle">
+      {/* Fixed Video Hero Section */}
+      <section className="spa-hero-fixed">
+        <div className="spa-hero-video-container">
+          {/* Placeholder for video - you can replace with actual video */}
+          <div className="video-placeholder">
+            <video 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              className="spa-hero-video"
+            >
+              <source src="/path-to-your-spa-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="spa-hero-overlay"></div>
+        </div>
+        
+        <div className="spa-hero-content">
+          <div className="spa-hero-logo">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/7sfhgz1m_Bua%20luang%20logo.png"
+              alt="Bua Luang Logo"
+              className="hero-logo-image"
+            />
+          </div>
+          <h1 className="spa-hero-title">SPA Tretmani sa Bua Luang</h1>
+          <div className="spa-hero-divider"></div>
+          <p className="spa-hero-subtitle">
             Luksuzni spa tretmani koji spajaju tradicionalnu tajlandsku mudrost sa modernim tehnikama
           </p>
         </div>
-        <div className="page-decoration">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/lghkaqzq_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png"
-            alt="Thai decoration"
-            className="decoration-image"
-          />
-        </div>
       </section>
+
+      {/* Parallax Content Section */}
+      <div 
+        className="spa-parallax-content"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)`,
+        }}
+      >
 
       {/* Services Grid */}
       <section className="services-section">
