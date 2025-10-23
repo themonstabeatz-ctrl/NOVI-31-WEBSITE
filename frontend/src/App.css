@@ -5328,6 +5328,8 @@ html {
   -webkit-transform: translateZ(0);
   contain: layout style paint;
   content-visibility: auto;
+  transition: transform 0.1s ease-out;
+}
 }
 
 /* Services Section with Parallax */
