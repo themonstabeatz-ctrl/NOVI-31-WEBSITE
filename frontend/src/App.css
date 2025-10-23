@@ -5906,7 +5906,8 @@ html {
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
   margin: 0 auto 0.1rem;
-  animation: dividerExpand 2s ease-in-out infinite;
+  animation: none;
+  display: none;
 }
 
 .about-hero-subtitle {
