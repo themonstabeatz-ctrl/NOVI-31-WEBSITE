@@ -5683,7 +5683,7 @@ html {
   width: 120px;
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
-  margin: 1.8rem auto 0.1rem;
+  margin: 3rem auto 0.1rem;
   animation: dividerExpand 2s ease-in-out infinite;
 }
 
