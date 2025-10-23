@@ -172,7 +172,13 @@ const About = () => {
       {/* Philosophy Quote Section */}
       <section className="about-philosophy-quote">
         <div className="philosophy-quote-container">
-          <Sparkles className="philosophy-icon-large" />
+          <div className="philosophy-logo-wrapper">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/7sfhgz1m_Bua%20luang%20logo.png"
+              alt="Bua Luang Logo"
+              className="philosophy-bua-logo"
+            />
+          </div>
           <h2 className="philosophy-quote-title">Naša Filozofija</h2>
           <blockquote className="philosophy-quote-text">
             "Verujemo da je pravi luksuz u jednostavnosti. Svaki pokret, svaki miris, 
