@@ -5290,8 +5290,8 @@ html {
 /* Parallax Content */
 .massage-parallax-content {
   position: relative;
-  z-index: 10;
-  margin-top: 100vh;
+  z-index: 5;
+  margin-top: calc(100vh - 80px);
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.95) 0%,
