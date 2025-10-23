@@ -142,7 +142,7 @@ const Spa = () => {
             playsInline
             className="spa-hero-video"
           >
-            <source src="https://customer-assets.emergentagent.com/job_massage-preview/artifacts/0wo286ms_Woman_Exit_The_Sauna_uhd_1051801.mp4" type="video/mp4" />
+            <source src="/Woman_Exit_The_Sauna_uhd_1051801.mp4" type="video/mp4" />
           </video>
           <div className="spa-hero-overlay"></div>
         </div>
