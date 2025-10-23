@@ -187,12 +187,7 @@ const Spa = () => {
       </section>
 
       {/* Parallax Content Section */}
-      <div 
-        className="spa-parallax-content"
-        style={{
-          transform: `translate3d(0, ${scrollY * 0.2}px, 0)`,
-        }}
-      >
+      <div className="spa-parallax-content">
 
       {/* Services Grid */}
       <section className="services-section">
