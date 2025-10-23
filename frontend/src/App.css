@@ -5659,6 +5659,7 @@ html {
 .spa-hero-logo {
   margin-bottom: 2rem;
   animation: logoFloat 3s ease-in-out infinite;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, filter 0.3s ease-out;
 }
 
 .spa-hero-title {
