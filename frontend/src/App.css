@@ -2023,7 +2023,7 @@ body {
 .footer-bottom {
   text-align: center;
   padding: 1rem 2rem 3rem 2rem;
-  margin-top: 5rem;
+  margin-top: 0;
   margin-bottom: 0;
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
