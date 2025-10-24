@@ -7355,9 +7355,10 @@ html {
 }
 
 .gallery-hero-logo {
-  margin-bottom: 3.5cm;
-  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
   margin-top: 3.5cm;
+  animation: gentle-sway 6s ease-in-out infinite;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, filter 0.3s ease-out;
 }
 
 .gallery-hero-logo .hero-logo-image {
@@ -7395,8 +7396,8 @@ html {
   width: 120px;
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
-  margin: 1.5rem auto;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  margin: 0 auto 0.1rem;
+  animation: none;
   display: none;
 }
 
