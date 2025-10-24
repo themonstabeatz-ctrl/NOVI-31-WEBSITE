@@ -2027,6 +2027,9 @@ body {
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
   min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-bottom::before {
