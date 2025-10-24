@@ -6436,38 +6436,29 @@ html {
 
 .about-contact-item {
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
+  gap: 1rem;
+  align-items: center;
   padding: 0;
   background: transparent;
   border-radius: 0;
-  transition: all 0.3s ease;
+  transition: none;
 }
 
 .about-contact-item:hover {
   background: transparent;
-  transform: translateX(5px);
+  transform: none;
 }
 
 .about-contact-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--spa-gold);
   flex-shrink: 0;
-  margin-top: 0.2rem;
-}
-
-.about-contact-details h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--spa-gold);
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
 }
 
 .about-info-link {
   color: var(--spa-cream);
-  font-size: 1.05rem;
+  font-size: 1rem;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -6478,22 +6469,9 @@ html {
 
 .about-info-text {
   color: var(--spa-cream);
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.6;
-  opacity: 0.9;
-}
-
-.about-working-hours p {
-  color: var(--spa-cream);
-  font-size: 1.05rem;
-  margin-bottom: 0.3rem;
-  opacity: 0.9;
-}
-
-.about-hours {
-  font-weight: 600;
-  color: var(--spa-gold);
-  font-size: 1.1rem;
+  margin: 0;
 }
 
 /* Social Card */
