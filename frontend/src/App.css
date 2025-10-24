@@ -741,7 +741,26 @@ body {
 }
 
 .pim-welcome::before {
-  display: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--spa-gold);
+  z-index: 3;
+  display: block;
+}
+
+.pim-welcome::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--spa-gold);
+  z-index: 3;
 }
 
 .pim-welcome-container {
