@@ -2032,6 +2032,7 @@ body {
   position: relative;
   overflow: hidden;
   border-top: 2px solid var(--spa-gold);
+  z-index: 100;
 }
 
 .footer-content {
