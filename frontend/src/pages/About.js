@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
+import { Card, CardContent } from "../components/ui/card";
 import { Link } from "react-router-dom";
-import { Award, Heart, Users, Sparkles, Leaf, Star, Shield, Target, Mail, Phone, MapPin, Clock, Instagram } from "lucide-react";
+import { Heart, Sparkles, Users, Award } from "lucide-react";
 
 const About = () => {
   const { translate } = useLanguage();
-  const [scrollY, setScrollY] = useState(0);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Logo transformation and parallax effects on scroll
+  // Logo transformation on scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -28,7 +26,6 @@ const About = () => {
       const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
       
       if (scrollPercent > 0.05) {
-        // Scroll down - transform logo with fade and blur
         const opacity = Math.max(1 - (scrollPercent - 0.05) * 3, 0);
         const scale = Math.max(1 - (scrollPercent - 0.05) * 1.5, 0.2);
         
@@ -36,7 +33,6 @@ const About = () => {
         aboutHeroLogo.style.transform = `scale(${scale})`;
         aboutHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
       } else {
-        // Scroll up - restore logo
         aboutHeroLogo.style.opacity = 1;
         aboutHeroLogo.style.transform = 'scale(1)';
         aboutHeroLogo.style.filter = 'blur(0px)';
@@ -47,7 +43,7 @@ const About = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Parallax effect for content sections
+  // Parallax effect
   useEffect(() => {
     const handleParallaxScroll = () => {
       const scrolled = window.scrollY;
@@ -57,25 +53,12 @@ const About = () => {
       
       const heroHeight = aboutHeroSection.offsetHeight;
       
-      // Apply parallax to sections after hero
       if (scrolled > heroHeight * 0.3) {
         const parallaxContent = document.querySelector('.about-parallax-content');
         if (parallaxContent) {
           const speed = 0.5;
           const yPos = -(scrolled - heroHeight * 0.3) * speed;
           parallaxContent.style.transform = `translateY(${yPos}px)`;
-        }
-      }
-
-      // Hide hero content when scrolling down to prevent it from showing through footer
-      const heroContent = document.querySelector('.about-hero-content');
-      if (heroContent) {
-        if (scrolled > heroHeight * 0.8) {
-          heroContent.style.opacity = '0';
-          heroContent.style.pointerEvents = 'none';
-        } else {
-          heroContent.style.opacity = '1';
-          heroContent.style.pointerEvents = 'auto';
         }
       }
     };
@@ -86,40 +69,24 @@ const About = () => {
 
   const aboutCards = [
     {
+      icon: <Heart className="w-8 h-8" />,
       title: "Naša Priča",
-      icon: <Leaf className="w-6 h-6" />,
-      description: "Bua Luang Thai Spa je nastao iz duboke strasti prema autentičnoj tajlandskoj wellness tradiciji. Naša osnivačica je provela godine učeći tradicionalne tehnike direktno od majstora u Bangkoku.",
-      color: "from-green-500 to-teal-600"
+      description: "Bua Luang Thai Spa je osnovan iz duboke strasti prema autentičnoj tajlandskoj wellness tradiciji. Naš tim posvećen je vašem blagostanju."
     },
     {
-      title: "Kraljevski Lotos",
-      icon: <Sparkles className="w-6 h-6" />,
-      description: "\"Bua Luang\" znači \"kraljevski lotos\" - simbol čistoće i transformacije. Baš kao što lotos cveta iz vode, verujemo da svako može pronaći unutrašnji mir kroz naše tretmane.",
-      color: "from-amber-500 to-yellow-600"
+      icon: <Sparkles className="w-8 h-8" />,
+      title: "Naša Filozofija",
+      description: "Verujemo da je prava lepota odraz unutrašnjeg mira. Svaki tretman je dizajniran da donese harmoniju telu, umu i duhu."
     },
     {
-      title: "Tradicionalnost",
-      icon: <Heart className="w-6 h-6" />,
-      description: "Naše tehnike su prenesene kroz generacije direktno iz Tajlanda, čuvajući autentičnost svakog pokreta i rituala hiljadugodišnje tajlandske mudrosti.",
-      color: "from-pink-500 to-rose-600"
+      icon: <Users className="w-8 h-8" />,
+      title: "Naš Tim",
+      description: "Naš stručni tim terapeuta obučen je direktno u Tajlandu, garantujući autentično iskustvo tradicionalnog wellness-a."
     },
     {
-      title: "Kvalitet",
-      icon: <Shield className="w-6 h-6" />,
-      description: "Koristimo isključivo prirodne proizvode i aromatična ulja najvišeg kvaliteta, direktno uvezena iz Tajlanda za vaše potpuno zadovoljstvo.",
-      color: "from-blue-500 to-indigo-600"
-    },
-    {
-      title: "Posvećenost",
-      icon: <Target className="w-6 h-6" />,
-      description: "Svaki tretman je prilagođen vašim individualnim potrebama. Naš tim stručnjaka posvećen je vašem blagostanju i transformaciji tela, uma i duha.",
-      color: "from-purple-500 to-violet-600"
-    },
-    {
-      title: "Iskustvo",
-      icon: <Award className="w-6 h-6" />,
-      description: "Sa preko 15 godina iskustva i više od 5000 zadovoljnih gostiju, kombinujemo tradiciju sa modernim pristupom wellness-u za jedinstveno iskustvo.",
-      color: "from-orange-500 to-red-600"
+      icon: <Award className="w-8 h-8" />,
+      title: "Naše Vrednosti",
+      description: "Sa preko 15 godina iskustva, kombinujemo tradiciju sa modernim pristupom za jedinstveno iskustvo relaksacije."
     }
   ];
 
@@ -156,6 +123,48 @@ const About = () => {
         </div>
       </section>
 
+      {/* Parallax Content Section */}
+      <div className="about-parallax-content">
+
+      {/* Services Grid */}
+      <section className="services-section">
+        <div className="services-grid">
+          {aboutCards.map((card, index) => (
+            <Card key={index} className="about-service-card">
+              <CardContent className="about-card-content">
+                <div className="about-icon-wrapper">
+                  {card.icon}
+                </div>
+                <h3 className="about-card-title">{card.title}</h3>
+                <p className="about-card-description">{card.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="cta-section">
+        <div className="cta-content">
+          <h2 className="cta-title">Spremni za transformaciju?</h2>
+          <p className="cta-subtitle">Rezervišite svoj tretman i započnite putovanje ka unutrašnjem miru</p>
+          <div className="cta-buttons">
+            <Button asChild size="lg" className="cta-button-primary">
+              <Link to="/contact">Kontaktirajte nas</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="cta-button-secondary">
+              <Link to="/massage">Pogledajte naše usluge</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Empty testimonial section for spacing */}
+      <section className="about-testimonial">
+        {/* Empty section for consistent spacing */}
+      </section>
+
+      </div> {/* Close parallax-content */}
     </div>
   );
 };
