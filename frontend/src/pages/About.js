@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
-import { Link } from "react-router-dom";
-import { Heart, Sparkles, Users, Award } from "lucide-react";
 
 const About = () => {
   const { translate } = useLanguage();
@@ -43,75 +39,12 @@ const About = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Parallax effect
-  useEffect(() => {
-    const handleParallaxScroll = () => {
-      const scrolled = window.scrollY;
-      const aboutHeroSection = document.querySelector('.about-hero-fixed');
-      
-      if (!aboutHeroSection) return;
-      
-      const heroHeight = aboutHeroSection.offsetHeight;
-      
-      if (scrolled > heroHeight * 0.3) {
-        const parallaxContent = document.querySelector('.about-parallax-content');
-        if (parallaxContent) {
-          const speed = 0.5;
-          const yPos = -(scrolled - heroHeight * 0.3) * speed;
-          parallaxContent.style.transform = `translateY(${yPos}px)`;
-        }
-      }
-
-      // Hide hero content when scrolling to bottom (to prevent showing over footer)
-      const heroContent = document.querySelector('.about-hero-content');
-      if (heroContent) {
-        const scrollHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.scrollY;
-        const clientHeight = window.innerHeight;
-        
-        // If user is near bottom (within 400px of footer)
-        if (scrollHeight - scrollTop - clientHeight < 400) {
-          heroContent.style.opacity = '0';
-          heroContent.style.pointerEvents = 'none';
-        } else {
-          heroContent.style.opacity = '1';
-          heroContent.style.pointerEvents = 'auto';
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleParallaxScroll);
-  }, []);
-
-  const aboutCards = [
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Naša Priča",
-      description: "Bua Luang Thai Spa je osnovan iz duboke strasti prema autentičnoj tajlandskoj wellness tradiciji. Naš tim posvećen je vašem blagostanju."
-    },
-    {
-      icon: <Sparkles className="w-8 h-8" />,
-      title: "Naša Filozofija",
-      description: "Verujemo da je prava lepota odraz unutrašnjeg mira. Svaki tretman je dizajniran da donese harmoniju telu, umu i duhu."
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Naš Tim",
-      description: "Naš stručni tim terapeuta obučen je direktno u Tajlandu, garantujući autentično iskustvo tradicionalnog wellness-a."
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      title: "Naše Vrednosti",
-      description: "Sa preko 15 godina iskustva, kombinujemo tradiciju sa modernim pristupom za jedinstveno iskustvo relaksacije."
-    }
-  ];
-
   return (
     <div className="about-container">
-      {/* Fixed Video Hero Section */}
+      {/* Fixed Video Hero Section - Prazan za postavljanje videa */}
       <section className="about-hero-fixed">
         <div className="about-hero-video-container">
+          {/* Ovde postavite video */}
           <video 
             autoPlay 
             muted 
@@ -119,7 +52,7 @@ const About = () => {
             playsInline
             className="about-hero-video"
           >
-            <source src="https://customer-assets.emergentagent.com/job_thaispa-design/artifacts/yp623y9q_Woman_Drinking_Tea_In_Spa_fhd_2012921.mp4" type="video/mp4" />
+            {/* Dodajte source tag sa vašim video URL-om */}
           </video>
           <div className="about-hero-overlay"></div>
         </div>
@@ -139,49 +72,6 @@ const About = () => {
           </p>
         </div>
       </section>
-
-      {/* Parallax Content Section */}
-      <div className="about-parallax-content">
-
-      {/* Services Grid */}
-      <section className="services-section">
-        <div className="services-grid">
-          {aboutCards.map((card, index) => (
-            <Card key={index} className="about-service-card">
-              <CardContent className="about-card-content">
-                <div className="about-icon-wrapper">
-                  {card.icon}
-                </div>
-                <h3 className="about-card-title">{card.title}</h3>
-                <p className="about-card-description">{card.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="cta-section">
-        <div className="cta-content">
-          <h2 className="cta-title">Spremni za transformaciju?</h2>
-          <p className="cta-subtitle">Rezervišite svoj tretman i započnite putovanje ka unutrašnjem miru</p>
-          <div className="cta-buttons">
-            <Button asChild size="lg" className="cta-button-primary">
-              <Link to="/contact">Kontaktirajte nas</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="cta-button-secondary">
-              <Link to="/massage">Pogledajte naše usluge</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Empty testimonial section for spacing */}
-      <section className="about-testimonial">
-        {/* Empty section for consistent spacing */}
-      </section>
-
-      </div> {/* Close parallax-content */}
     </div>
   );
 };
