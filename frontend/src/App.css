@@ -2023,13 +2023,12 @@ body {
 
 .footer-bottom {
   text-align: center;
-  padding: 1rem 2rem 3rem 2rem;
-  padding-bottom: 2rem;
+  padding: 1rem 2rem 1rem 2rem;
   margin-top: 0;
   margin-bottom: 0;
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
-  min-height: 150px;
+  min-height: 100px;
 }
 
 .footer-bottom::before {
@@ -2072,9 +2071,10 @@ body {
   font-size: 0.9rem;
   position: absolute;
   z-index: 2;
-  bottom: 35px;
+  top: 50%;
   left: 0;
   right: 0;
+  transform: translateY(-50%);
   margin: 0;
   padding: 0;
   text-align: center;
