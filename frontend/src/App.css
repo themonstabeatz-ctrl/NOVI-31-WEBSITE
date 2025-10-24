@@ -6383,6 +6383,100 @@ html {
 }
 
 /* Contact & Social Section - Matching Contact Page Style */
+/* About page footer - same as Contact page */
+.contact-footer {
+  background: #1a1a1a;
+  padding: 4rem 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.contact-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--spa-gold);
+  margin-bottom: 2rem;
+}
+
+.footer-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-icon {
+  color: var(--spa-gold);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.footer-item a,
+.footer-item p {
+  color: var(--spa-cream);
+  font-size: 1rem;
+  text-decoration: none;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.footer-item a:hover {
+  color: var(--spa-gold);
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--spa-cream);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-social-link:hover {
+  color: var(--spa-gold);
+}
+
+.footer-copyright {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--spa-cream);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .contact-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 .about-contact-social-section {
   padding: 4rem 0 2rem;
   background: #1a1a1a;
