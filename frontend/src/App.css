@@ -6872,6 +6872,13 @@ html {
   font-weight: 300;
 }
 
+.about-intro-highlight {
+  color: var(--spa-gold);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
 .about-text-paragraph:nth-child(2) {
   padding-left: 0;
 }
