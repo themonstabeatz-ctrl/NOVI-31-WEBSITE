@@ -6494,56 +6494,41 @@ html {
 
 .about-social-link {
   display: flex;
-  flex-direction: column;
+  gap: 0.8rem;
   align-items: center;
-  gap: 1.5rem;
   text-decoration: none;
-  padding: 2rem;
-  background: rgba(212, 175, 55, 0.05);
-  border-radius: 12px;
-  transition: all 0.4s ease;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  transition: none;
 }
 
 .about-social-link:hover {
-  background: rgba(212, 175, 55, 0.15);
-  transform: translateY(-5px);
+  background: transparent;
+  transform: none;
 }
 
 .about-social-icon {
-  width: 60px;
-  height: 60px;
-  color: var(--spa-gold);
-  transition: all 0.3s ease;
+  width: 24px;
+  height: 24px;
+  color: var(--spa-cream);
+  transition: none;
+  flex-shrink: 0;
 }
 
 .about-social-link:hover .about-social-icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: none;
 }
 
-.about-social-info {
-  text-align: center;
-}
-
-.about-social-info h4 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--spa-gold);
-  margin-bottom: 0.5rem;
-}
-
-.about-social-info p {
-  font-size: 1.1rem;
+.about-social-handle {
   color: var(--spa-cream);
-  margin-bottom: 0.5rem;
-  opacity: 0.9;
+  font-size: 1rem;
+  margin: 0;
+  transition: color 0.3s ease;
 }
 
-.about-social-cta {
-  display: block;
-  font-size: 0.9rem;
+.about-social-link:hover .about-social-handle {
   color: var(--spa-gold);
-  margin-top: 0.5rem;
-  opacity: 0.8;
 }
 
 /* Copyright at bottom */
