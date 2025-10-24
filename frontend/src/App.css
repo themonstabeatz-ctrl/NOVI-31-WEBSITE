@@ -6804,6 +6804,8 @@ html {
   align-items: center;
   justify-content: center;
   margin-top: 100vh;
+  border-top: 2px solid var(--spa-gold);
+  border-bottom: 2px solid var(--spa-gold);
 }
 
 .about-text-container {
