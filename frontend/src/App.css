@@ -7362,8 +7362,8 @@ html {
 }
 
 .gallery-hero-logo .hero-logo-image {
-  max-height: 150px;
-  width: auto;
+  width: 220px;
+  height: auto;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8));
 }
 
