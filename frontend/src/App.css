@@ -6800,7 +6800,7 @@ html {
   min-height: auto;
   background: #000000;
   background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/3888nhn6_Pozadina%20mangala.jpg');
-  background-size: 115% auto;
+  background-size: 115% 100%;
   background-position: center;
   background-repeat: no-repeat;
   padding: 3rem 0;
