@@ -7355,39 +7355,62 @@ html {
 }
 
 .gallery-hero-logo {
-  margin-bottom: 2rem;
+  margin-bottom: 3.5cm;
   transition: all 0.3s ease;
+  margin-top: 3.5cm;
 }
 
 .gallery-hero-logo .hero-logo-image {
-  max-height: 120px;
+  max-height: 150px;
   width: auto;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8));
 }
 
+.gallery-hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/a1ydrxis_podloga.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
 .gallery-hero-title {
-  font-family: 'Agency FB', sans-serif;
-  font-size: 4rem;
-  font-weight: 700;
+  font-size: clamp(1.65rem, 4.4vw, 3.3rem);
+  font-weight: 900;
   color: var(--spa-gold);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  margin-bottom: 1rem;
-  letter-spacing: 3px;
+  margin-top: -2.2rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 
+    0 0 40px rgba(212, 175, 55, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.8);
+  animation: titleGlow 3s ease-in-out infinite;
 }
 
 .gallery-hero-divider {
-  width: 100px;
-  height: 2px;
+  width: 120px;
+  height: 3px;
   background: linear-gradient(90deg, transparent, var(--spa-gold), transparent);
-  margin: 1rem auto;
+  margin: 1.5rem auto;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  display: none;
 }
 
 .gallery-hero-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(0.85rem, 2vw, 1.2rem);
   color: var(--spa-cream);
-  max-width: 600px;
-  line-height: 1.6;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  opacity: 0.95;
+  max-width: 100%;
+  line-height: 1.5;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  margin-top: -1.2rem;
+  animation: fadeInUp 1s ease-out;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 /* Gallery Parallax Content Section */
