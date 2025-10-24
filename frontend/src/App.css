@@ -5444,7 +5444,7 @@ html {
 }
 
 .massage-hero-subtitle {
-  font-size: clamp(1.03rem, 2.577vw, 1.546rem);
+  font-size: clamp(0.989rem, 2.474vw, 1.484rem);
   color: var(--spa-cream);
   opacity: 0.95;
   max-width: 800px;
