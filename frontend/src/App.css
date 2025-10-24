@@ -1951,6 +1951,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
   padding: 0.1rem 2rem;
+  padding-top: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
