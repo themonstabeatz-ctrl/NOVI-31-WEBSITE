@@ -789,7 +789,7 @@ body {
   top: -4rem;
   bottom: -4rem;
   width: 300px;
-  transform: translateX(-100%);
+  transform: translateX(calc(-100% + 7cm));
   background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/vakejrbs_bambus%20levo.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -806,7 +806,7 @@ body {
   top: -4rem;
   bottom: -4rem;
   width: 300px;
-  transform: translateX(100%);
+  transform: translateX(calc(100% - 7cm));
   background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/oi3nac1f_Bambus%20desno.png');
   background-size: contain;
   background-repeat: no-repeat;
