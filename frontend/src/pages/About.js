@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const About = () => {
   const { translate } = useLanguage();
+  const parallaxSection1Ref = useRef(null);
+  const parallaxSection2Ref = useRef(null);
+  const textRowsRef = useRef([]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -39,12 +42,75 @@ const About = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Advanced Parallax Text Animation System
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -10% 0px',
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        const section = entry.target;
+        const textRows = section.querySelectorAll('.parallax-text-row');
+        
+        if (entry.isIntersecting) {
+          // Calculate animation progress based on intersection ratio
+          const progress = entry.intersectionRatio;
+          
+          textRows.forEach((row, index) => {
+            const delay = index * 200; // 200ms delay between rows
+            const shouldAnimate = progress > (index * 0.15); // Staggered trigger points
+            
+            if (shouldAnimate && !row.classList.contains('animated')) {
+              setTimeout(() => {
+                row.classList.add('slide-in-active');
+                row.classList.add('animated');
+              }, delay);
+            }
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+    
+    // Observe both parallax sections
+    if (parallaxSection1Ref.current) {
+      observer.observe(parallaxSection1Ref.current);
+    }
+    if (parallaxSection2Ref.current) {
+      observer.observe(parallaxSection2Ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Smooth parallax scrolling effect
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.parallax-bg-layer');
+      
+      parallaxElements.forEach((element, index) => {
+        const speed = 0.5 + (index * 0.1); // Different speeds for layers
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+      });
+    };
+
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleParallaxScroll);
+  }, []);
+
   return (
     <div className="about-container">
-      {/* Fixed Video Hero Section - Prazan za postavljanje videa */}
+      {/* Fixed Video Hero Section - Existing */}
       <section className="about-hero-fixed">
         <div className="about-hero-video-container">
-          {/* Ovde postavite video */}
           <video 
             autoPlay 
             muted 
@@ -73,7 +139,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* About Content Section with 3D Effects */}
+      {/* Existing About Content Section */}
       <div className="about-content-parallax">
         <section className="about-story-section">
           <div className="about-story-container">
@@ -123,6 +189,86 @@ const About = () => {
           </div>
         </section>
       </div>
+
+      {/* NEW: Advanced Parallax Section 1 */}
+      <section 
+        ref={parallaxSection1Ref}
+        className="parallax-section parallax-section-1"
+      >
+        {/* Parallax Background Layers */}
+        <div className="parallax-bg-layer parallax-bg-1"></div>
+        <div className="parallax-bg-layer parallax-bg-2"></div>
+        
+        {/* Animated Text Content */}
+        <div className="parallax-content-wrapper">
+          <div className="parallax-text-container">
+            {/* Row 1 - Slides from LEFT */}
+            <div className="parallax-text-row slide-from-left" data-row="1">
+              <h2 className="parallax-text-line">Dobrodošli u Bua Luang Thai Spa</h2>
+            </div>
+            
+            {/* Row 2 - Slides from RIGHT */}
+            <div className="parallax-text-row slide-from-right" data-row="2">
+              <h2 className="parallax-text-line">Oazu mira u srcu Beograda</h2>
+            </div>
+            
+            {/* Row 3 - Slides from LEFT */}
+            <div className="parallax-text-row slide-from-left" data-row="3">
+              <h2 className="parallax-text-line">gde drevna tradicija Tajlanda</h2>
+            </div>
+            
+            {/* Row 4 - Slides from RIGHT */}
+            <div className="parallax-text-row slide-from-right" data-row="4">
+              <h2 className="parallax-text-line">susreće savremeni duh blagostanja</h2>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: Advanced Parallax Section 2 */}
+      <section 
+        ref={parallaxSection2Ref}
+        className="parallax-section parallax-section-2"
+      >
+        {/* Parallax Background Layers */}
+        <div className="parallax-bg-layer parallax-bg-3"></div>
+        <div className="parallax-bg-layer parallax-bg-4"></div>
+        
+        {/* Animated Text Content */}
+        <div className="parallax-content-wrapper">
+          <div className="parallax-text-container">
+            {/* Row 1 - Slides from LEFT */}
+            <div className="parallax-text-row slide-from-left" data-row="1">
+              <h2 className="parallax-text-line">Naša filozofija počiva na umeću</h2>
+            </div>
+            
+            {/* Row 2 - Slides from RIGHT */}
+            <div className="parallax-text-row slide-from-right" data-row="2">
+              <h2 className="parallax-text-line">tradicionalne tajlandske masaže</h2>
+            </div>
+            
+            {/* Row 3 - Slides from LEFT */}
+            <div className="parallax-text-row slide-from-left" data-row="3">
+              <h2 className="parallax-text-line">starom više od 2.500 godina</h2>
+            </div>
+            
+            {/* Row 4 - Slides from RIGHT */}
+            <div className="parallax-text-row slide-from-right" data-row="4">
+              <h2 className="parallax-text-line">Njen tvorac, dr Jivaka Kumar Bhaccha</h2>
+            </div>
+            
+            {/* Row 5 - Slides from LEFT */}
+            <div className="parallax-text-row slide-from-left" data-row="5">
+              <h2 className="parallax-text-line">legendarni lekar kraljevske porodice</h2>
+            </div>
+            
+            {/* Row 6 - Slides from RIGHT */}
+            <div className="parallax-text-row slide-from-right" data-row="6">
+              <h2 className="parallax-text-line">spojio je znanja ajurvede, joge i meditacije</h2>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
