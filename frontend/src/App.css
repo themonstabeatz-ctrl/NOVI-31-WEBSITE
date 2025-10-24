@@ -218,26 +218,15 @@ html {
 }
 
 .nav-logo {
-  height: 120px;
+  height: 90px;
   width: auto;
   filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.7));
   transition: all 0.3s ease;
-  animation: logoFloatNav 3s ease-in-out infinite;
-}
-
-@keyframes logoFloatNav {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(2deg);
-  }
 }
 
 .nav-logo:hover {
-  transform: scale(1.1) rotate(-2deg);
-  filter: drop-shadow(0 8px 20px rgba(212, 175, 55, 0.6));
-  animation-play-state: paused;
+  transform: scale(1.05);
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.9));
 }
 
 .nav-wrapper {
