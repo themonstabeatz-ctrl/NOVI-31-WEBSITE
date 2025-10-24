@@ -6829,6 +6829,7 @@ html {
   margin: 0 auto;
   padding: 1.5rem 2rem;
   position: relative;
+  z-index: 1;
 }
 
 .about-parallax-logo {
