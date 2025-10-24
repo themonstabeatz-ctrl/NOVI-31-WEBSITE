@@ -177,6 +177,13 @@ html {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
+.header-container .nav-logo-container {
+  position: fixed;
+  left: 0.5rem;
+  top: 1rem;
+  z-index: 1001;
+}
+
 .header-container::before {
   content: '';
   position: absolute;
