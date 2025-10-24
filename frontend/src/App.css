@@ -2095,6 +2095,7 @@ body {
   transition: all 0.3s ease;
   padding: 0.5rem;
   border-radius: 5px;
+  font-size: 1.03rem;
 }
 
 .footer-social-link:hover {
