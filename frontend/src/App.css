@@ -2030,13 +2030,22 @@ body {
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
   min-height: 150px;
-  border-bottom: 2px solid var(--spa-gold);
 }
 
 .footer-bottom::before {
   content: '';
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--spa-gold);
+}
+
+.footer-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
