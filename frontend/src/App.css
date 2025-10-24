@@ -850,6 +850,28 @@ body {
   margin-top: -10rem;
 }
 
+.pim-philosophy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--spa-gold);
+  z-index: 3;
+}
+
+.pim-philosophy::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--spa-gold);
+  z-index: 3;
+}
+
 .pim-philosophy-title {
   position: relative;
   z-index: 2;
