@@ -7420,7 +7420,7 @@ html {
   z-index: 10;
   margin-top: 100vh;
   width: 100vw;
-  background: var(--spa-dark);
+  background: rgba(0, 0, 0, 0.6);
   border-top: 2px solid var(--spa-gold);
   border-bottom: 2px solid var(--spa-gold);
   padding: 4rem 0;
