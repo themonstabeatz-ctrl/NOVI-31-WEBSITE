@@ -6817,9 +6817,9 @@ html {
 }
 
 .about-parallax-logo {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 3rem;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
