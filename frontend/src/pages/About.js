@@ -72,6 +72,57 @@ const About = () => {
           </p>
         </div>
       </section>
+
+      {/* About Content Section with 3D Effects */}
+      <div className="about-content-parallax">
+        <section className="about-story-section">
+          <div className="about-story-container">
+            <div className="about-story-card-3d">
+              <h2 className="about-story-title">Dobrodošli u Bua Luang Thai Spa</h2>
+              <p className="about-story-text">
+                Oazu mira u srcu Beograda, gde drevna tradicija Tajlanda susreće savremeni duh blagostanja.
+              </p>
+            </div>
+
+            <div className="about-story-card-3d">
+              <p className="about-story-text">
+                Naša filozofija počiva na umeću tradicionalne tajlandske masaže, starom više od 2.500 godina. 
+                Njen tvorac, dr Jivaka Kumar Bhaccha, legendarni lekar kraljevske porodice i prijatelj Bude, 
+                spojio je znanja ajurvede, joge i meditacije u jedinstvenu tehniku koja obnavlja telo, um i energiju.
+              </p>
+            </div>
+
+            <div className="about-story-card-3d">
+              <p className="about-story-text">
+                Kroz vekove, ova umetnost negovana je u hramovima širom Tajlanda, naročito u čuvenom Wat Pho hramu u Bangkoku, 
+                danas poznatom kao svetsko središte tradicionalne masaže.
+              </p>
+            </div>
+
+            <div className="about-story-card-3d">
+              <p className="about-story-text">
+                U našem spa centru sa ponosom čuvamo tu autentičnu tradiciju, uz dašak modernog luksuza i pažnje prema svakom detalju. 
+                Naši terapeuti, školovani u renomiranim tajlandskim institucijama, pristupaju svakom tretmanu s potpunom posvećenošću, 
+                unoseći u svaki dodir energiju, smirenost i poštovanje prema vašem telu i duši.
+              </p>
+            </div>
+
+            <div className="about-story-card-3d">
+              <p className="about-story-text">
+                Uđite u prostor gde miris eteričnih ulja, toplina dodira i tišina trenutka buđe vaša čula i vraćaju vas sebi. 
+                Doživite snagu tradicije, lepotu dodira i harmoniju koja traje vekovima.
+              </p>
+            </div>
+
+            <div className="about-story-card-3d about-story-card-final">
+              <h3 className="about-story-subtitle">Bua Luang Thai Spa</h3>
+              <p className="about-story-text-highlight">
+                Vaše putovanje ka unutrašnjem miru i savršenoj ravnoteži.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
