@@ -749,8 +749,8 @@ body {
     auto 100%,
     cover;
   background-position: 
-    calc(50% - 600px + 9cm) center,
-    calc(50% + 600px - 9cm) center,
+    calc(50% - 600px - 4cm) center,
+    calc(50% + 600px + 4cm) center,
     center;
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-attachment: scroll, scroll, fixed;
