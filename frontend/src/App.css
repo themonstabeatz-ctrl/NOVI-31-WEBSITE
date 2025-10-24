@@ -740,27 +740,18 @@ body {
 
 .pim-welcome {
   padding: 4rem 2rem;
-  background-image: 
-    url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/vakejrbs_bambus%20levo.png'),
-    url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/oi3nac1f_Bambus%20desno.png'),
-    url('https://customer-assets.emergentagent.com/job_buathaispa/artifacts/3b56d607_Pozadina%20cista%20siva.jpg');
-  background-size: 
-    auto 100%,
-    auto 100%,
-    cover;
-  background-position: 
-    calc(50% - 600px - 1cm) center,
-    calc(50% + 600px + 1cm) center,
-    center;
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-attachment: scroll, scroll, fixed;
-  background-origin: border-box, border-box, padding-box;
+  background-image: url('https://customer-assets.emergentagent.com/job_buathaispa/artifacts/3b56d607_Pozadina%20cista%20siva.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   position: relative;
   z-index: 50;
   transform-style: preserve-3d;
   will-change: transform;
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  border-top: 2px solid var(--spa-gold);
+  border-bottom: 2px solid var(--spa-gold);
 }
 
 .pim-welcome::before {
@@ -793,29 +784,6 @@ body {
   opacity: 0.95;
   z-index: 1;
   pointer-events: none;
-}
-
-.pim-welcome::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--spa-gold);
-  z-index: 3;
-  display: block;
-}
-
-.pim-welcome::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--spa-gold);
-  z-index: 3;
 }
 
 .pim-welcome-container {
