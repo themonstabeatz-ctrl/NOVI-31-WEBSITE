@@ -2030,6 +2030,7 @@ body {
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
   min-height: 150px;
+  border-bottom: 2px solid var(--spa-gold);
 }
 
 .footer-bottom::before {
