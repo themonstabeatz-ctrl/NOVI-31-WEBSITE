@@ -1944,6 +1944,7 @@ body {
   margin-top: 4rem;
   position: relative;
   overflow: hidden;
+  border-top: 2px solid var(--spa-gold);
 }
 
 .footer-content {
@@ -1955,7 +1956,6 @@ body {
   padding-bottom: 12rem;
   max-width: 1200px;
   margin: 0 auto;
-  border-top: 2px solid var(--spa-gold);
 }
 
 .footer-section {
