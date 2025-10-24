@@ -6872,6 +6872,30 @@ html {
   font-weight: 300;
 }
 
+.about-text-paragraph:nth-child(2) {
+  padding-left: 0;
+}
+
+.about-text-paragraph:nth-child(3) {
+  padding-left: 3rem;
+}
+
+.about-text-paragraph:nth-child(4) {
+  padding-left: 1.5rem;
+}
+
+.about-text-paragraph:nth-child(5) {
+  padding-left: 4rem;
+}
+
+.about-text-paragraph:nth-child(6) {
+  padding-left: 2rem;
+}
+
+.about-text-paragraph:nth-child(7) {
+  padding-left: 0.5rem;
+}
+
 .about-text-paragraph:first-child {
   color: var(--spa-gold);
   font-size: 1.4rem;
