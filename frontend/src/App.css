@@ -2067,7 +2067,7 @@ body {
   gap: 0.8rem;
   color: var(--spa-cream);
   transition: color 0.3s ease;
-  font-size: 1.03rem;
+  font-size: 1.0506rem;
 }
 
 .footer-contact-item:hover {
