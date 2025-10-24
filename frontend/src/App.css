@@ -5810,7 +5810,7 @@ html {
 }
 
 .spa-hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(1.65rem, 4.4vw, 3.3rem);
   font-weight: 900;
   color: var(--spa-gold);
   margin-top: -2.2rem;
