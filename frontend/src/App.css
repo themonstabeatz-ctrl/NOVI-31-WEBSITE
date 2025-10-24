@@ -6792,6 +6792,92 @@ html {
 }
 
 
+/* Simple Parallax Section - About Page */
+.about-simple-parallax {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  min-height: 80vh;
+  background: #000000;
+  padding: 6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-text-container {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.about-text-paragraph {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-align: center;
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+.about-text-paragraph:first-child {
+  color: var(--spa-gold);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.about-text-final {
+  color: var(--spa-gold);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-simple-parallax {
+    padding: 4rem 0;
+    min-height: auto;
+  }
+  
+  .about-text-container {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
+  
+  .about-text-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  .about-text-paragraph:first-child {
+    font-size: 1.2rem;
+  }
+  
+  .about-text-final {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-text-paragraph {
+    font-size: 1rem;
+  }
+  
+  .about-text-paragraph:first-child {
+    font-size: 1.1rem;
+  }
+  
+  .about-text-final {
+    font-size: 1.05rem;
+  }
+}
+
+
 
 
 /* ============================================
