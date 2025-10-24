@@ -6038,7 +6038,7 @@ html {
 }
 
 .about-hero-title {
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
   color: var(--spa-gold);
   margin-top: -2.2rem;
