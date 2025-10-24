@@ -119,7 +119,7 @@ const About = () => {
             playsInline
             className="about-hero-video"
           >
-            <source src="/Woman_Drinking_Tea_In_Spa_fhd_2012921.mp4" type="video/mp4" />
+            <source src="https://customer-assets.emergentagent.com/job_thaispa-design/artifacts/yp623y9q_Woman_Drinking_Tea_In_Spa_fhd_2012921.mp4" type="video/mp4" />
           </video>
           <div className="about-hero-overlay"></div>
         </div>
