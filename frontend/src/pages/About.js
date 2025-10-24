@@ -222,52 +222,48 @@ const About = () => {
 
       </div> {/* Close parallax-content */}
 
-      {/* Contact & Social Section */}
-      <section className="about-contact-social-section">
-        <div className="about-contact-container">
-          <div className="about-contact-grid">
+      {/* Contact & Social Footer - Same as other pages */}
+      <footer className="contact-footer">
+        <div className="contact-footer-container">
+          <div className="contact-footer-grid">
             
             {/* Contact Information */}
-            <div className="about-contact-info-card">
-              <h3 className="about-contact-title">Kontaktirajte nas</h3>
-              <div className="about-contact-items">
-                <div className="about-contact-item">
-                  <Mail className="about-contact-icon" />
-                  <a href="mailto:bualuangthailandspa@gmail.com" className="about-info-link">
-                    bualuangthailandspa@gmail.com
-                  </a>
+            <div className="footer-section">
+              <h3 className="footer-title">Kontaktirajte nas</h3>
+              <div className="footer-items">
+                <div className="footer-item">
+                  <Mail className="footer-icon" />
+                  <a href="mailto:bualuangthailandspa@gmail.com">bualuangthailandspa@gmail.com</a>
                 </div>
                 
-                <div className="about-contact-item">
-                  <Phone className="about-contact-icon" />
-                  <a href="tel:+381626625500" className="about-info-link">
-                    +381 62 625 500
-                  </a>
+                <div className="footer-item">
+                  <Phone className="footer-icon" />
+                  <a href="tel:+381626625500">+381 62 625 500</a>
                 </div>
                 
-                <div className="about-contact-item">
-                  <MapPin className="about-contact-icon" />
-                  <p className="about-info-text">Abebe Bikile 10A, Zemun, Beograd 11080, Srbija</p>
+                <div className="footer-item">
+                  <MapPin className="footer-icon" />
+                  <p>Abebe Bikile 10A, Zemun, Beograd 11080, Srbija</p>
                 </div>
                 
-                <div className="about-contact-item">
-                  <Clock className="about-contact-icon" />
-                  <p className="about-info-text">Pon - Ned: 10:00 - 22:00</p>
+                <div className="footer-item">
+                  <Clock className="footer-icon" />
+                  <p>Pon - Ned: 10:00 - 22:00</p>
                 </div>
               </div>
             </div>
 
             {/* Social Media */}
-            <div className="about-social-card">
-              <h3 className="about-contact-title">Pratite nas</h3>
+            <div className="footer-section">
+              <h3 className="footer-title">Pratite nas</h3>
               <a 
                 href="https://www.instagram.com/bualuang_thai_spa" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="about-social-link"
+                className="footer-social-link"
               >
-                <Instagram className="about-social-icon" />
-                <p className="about-social-handle">@bualuang_thai_spa</p>
+                <Instagram className="footer-icon" />
+                <span>@bualuang_thai_spa</span>
               </a>
             </div>
 
@@ -275,10 +271,10 @@ const About = () => {
         </div>
         
         {/* Copyright */}
-        <div className="about-contact-copyright">
+        <div className="footer-copyright">
           © 2025 Bua Luang Thai Spa. Sva prava zadržana.
         </div>
-      </section>
+      </footer>
 
       {/* Empty parallax section for spacing - like Home page */}
       <section className="about-testimonial">
