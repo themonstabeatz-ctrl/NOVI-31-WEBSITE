@@ -188,6 +188,17 @@ html {
   z-index: -1;
 }
 
+.header-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--spa-gold);
+  z-index: 10;
+}
+
 .nav-wrapper {
   display: flex;
   justify-content: space-between;
