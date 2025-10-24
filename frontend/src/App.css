@@ -6903,13 +6903,6 @@ html {
   padding-left: 0.5rem;
 }
 
-.about-text-paragraph:first-child {
-  color: var(--spa-gold);
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-bottom: 3rem;
-}
-
 .about-text-final {
   color: var(--spa-gold);
   font-size: 1.3rem;
