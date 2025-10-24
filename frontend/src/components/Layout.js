@@ -6,7 +6,6 @@ import Footer from "./Footer";
 const Layout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const isAboutPage = location.pathname === "/about";
 
   return (
     <div className={`min-h-screen ${isHomePage ? '' : 'bg-spa-dark'}`}>
@@ -22,7 +21,7 @@ const Layout = () => {
         </div>
       )}
       
-      {!isAboutPage && <Footer />}
+      <Footer />
     </div>
   );
 };
