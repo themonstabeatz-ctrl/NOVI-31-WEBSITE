@@ -2021,30 +2021,25 @@ body {
 
 .footer-bottom {
   text-align: center;
-  padding: 1rem 2rem 2rem 2rem;
+  padding: 1rem 2rem 3rem 2rem;
   margin-top: 4rem;
   margin-bottom: 0;
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
   border-top: 2px solid var(--spa-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
+  min-height: 150px;
 }
 
 .footer-mandala-pattern {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 800px;
-  height: 120px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
   background-image: url('https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/lghkaqzq_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
-  background-size: contain;
+  background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
-  background-position: center bottom;
   opacity: 0.1;
   filter: sepia(100%) hue-rotate(30deg);
 }
@@ -2056,7 +2051,7 @@ body {
   position: relative;
   z-index: 2;
   margin: 0;
-  padding: 1rem 0 0 0;
+  padding: 2rem 0 0 0;
   text-align: center;
 }
 
