@@ -6826,7 +6826,8 @@ html {
 .about-text-container {
   max-width: 1000px;
   width: 90%;
-  margin: 0 auto;
+  margin: 0;
+  margin-left: 5%;
   padding: 1.5rem 2rem;
   position: relative;
   z-index: 1;
