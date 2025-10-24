@@ -142,6 +142,13 @@ const About = () => {
       {/* Simple Parallax Content Section */}
       <div className="about-simple-parallax">
         <div className="about-text-container">
+          <div className="about-parallax-logo">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/7sfhgz1m_Bua%20luang%20logo.png"
+              alt="Bua Luang Logo"
+            />
+          </div>
+          
           <p className="about-text-paragraph">
             Mi smo Bua Luang Thai Spa — mesto gde vreme usporava, a telo i duh pronalaze svoj prirodni ritam.
             U srcu Beograda negujemo istinsku umetnost tajlandskog dodira, zasnovanu na drevnoj tradiciji isceljenja koja traje više od dva i po milenijuma. Ovde svaka masaža nije samo tretman, već ritual ravnoteže, energije i tišine.
