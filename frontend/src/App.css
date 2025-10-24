@@ -6385,7 +6385,7 @@ html {
 /* Contact & Social Section - Matching Contact Page Style */
 .about-contact-social-section {
   padding: 4rem 0 2rem;
-  background: transparent;
+  background: #1a1a1a;
   border-top: none;
 }
 
