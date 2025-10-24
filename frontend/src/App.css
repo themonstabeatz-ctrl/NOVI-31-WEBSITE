@@ -6472,16 +6472,6 @@ html {
   color: var(--spa-gold);
 }
 
-.footer-copyright {
-  text-align: center;
-  padding: 2rem 0;
-  margin-top: 3rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  color: var(--spa-cream);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
 @media (max-width: 768px) {
   .contact-footer-grid {
     grid-template-columns: 1fr;
