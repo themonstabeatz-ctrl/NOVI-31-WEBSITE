@@ -774,46 +774,40 @@ body {
   z-index: 3;
 }
 
-.pim-welcome-container {
-  position: relative;
-  z-index: 2; /* Above background and overlay */
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
+/* Bamboo left */
 .pim-welcome-container::before {
   content: '';
-  position: absolute;
-  left: -1px;
-  top: -4rem;
-  bottom: -4rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 300px;
-  transform: translateX(calc(-100% + 5cm));
   background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/vakejrbs_bambus%20levo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right center;
-  opacity: 0.95;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.pim-welcome-container::after {
-  content: '';
-  position: absolute;
-  right: -1px;
-  top: -4rem;
-  bottom: -4rem;
-  width: 300px;
-  transform: translateX(calc(100% - 5cm));
-  background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/oi3nac1f_Bambus%20desno.png');
-  background-size: contain;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: left center;
   opacity: 0.95;
-  z-index: 0;
+  z-index: 51;
   pointer-events: none;
+  transform: translateX(calc((100vw - 1200px) / 2 - 300px + 5cm));
+}
+
+/* Bamboo right */
+.pim-welcome-container::after {
+  content: '';
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background-image: url('https://customer-assets.emergentagent.com/job_a9e89e7a-058d-490d-923c-38f5cc2b3a04/artifacts/oi3nac1f_Bambus%20desno.png');
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: right center;
+  opacity: 0.95;
+  z-index: 51;
+  pointer-events: none;
+  transform: translateX(calc(-1 * ((100vw - 1200px) / 2 - 300px + 5cm)));
 }
 
 .pim-welcome-subtitle {
