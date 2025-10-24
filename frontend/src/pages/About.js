@@ -108,7 +108,7 @@ const About = () => {
 
   return (
     <div className="about-container">
-      {/* Fixed Video Hero Section - Existing */}
+      {/* Fixed Video Hero Section */}
       <section className="about-hero-fixed">
         <div className="about-hero-video-container">
           <video 
@@ -139,136 +139,37 @@ const About = () => {
         </div>
       </section>
 
-      {/* Existing About Content Section */}
-      <div className="about-content-parallax">
-        <section className="about-story-section">
-          <div className="about-story-container">
-            <div className="about-story-card-3d">
-              <h2 className="about-story-title">Dobrodošli u Bua Luang Thai Spa</h2>
-              <p className="about-story-text">
-                Oazu mira u srcu Beograda, gde drevna tradicija Tajlanda susreće savremeni duh blagostanja.
-              </p>
-            </div>
-
-            <div className="about-story-card-3d">
-              <p className="about-story-text">
-                Naša filozofija počiva na umeću tradicionalne tajlandske masaže, starom više od 2.500 godina. 
-                Njen tvorac, dr Jivaka Kumar Bhaccha, legendarni lekar kraljevske porodice i prijatelj Bude, 
-                spojio je znanja ajurvede, joge i meditacije u jedinstvenu tehniku koja obnavlja telo, um i energiju.
-              </p>
-            </div>
-
-            <div className="about-story-card-3d">
-              <p className="about-story-text">
-                Kroz vekove, ova umetnost negovana je u hramovima širom Tajlanda, naročito u čuvenom Wat Pho hramu u Bangkoku, 
-                danas poznatom kao svetsko središte tradicionalne masaže.
-              </p>
-            </div>
-
-            <div className="about-story-card-3d">
-              <p className="about-story-text">
-                U našem spa centru sa ponosom čuvamo tu autentičnu tradiciju, uz dašak modernog luksuza i pažnje prema svakom detalju. 
-                Naši terapeuti, školovani u renomiranim tajlandskim institucijama, pristupaju svakom tretmanu s potpunom posvećenošću, 
-                unoseći u svaki dodir energiju, smirenost i poštovanje prema vašem telu i duši.
-              </p>
-            </div>
-
-            <div className="about-story-card-3d">
-              <p className="about-story-text">
-                Uđite u prostor gde miris eteričnih ulja, toplina dodira i tišina trenutka buđe vaša čula i vraćaju vas sebi. 
-                Doživite snagu tradicije, lepotu dodira i harmoniju koja traje vekovima.
-              </p>
-            </div>
-
-            <div className="about-story-card-3d about-story-card-final">
-              <h3 className="about-story-subtitle">Bua Luang Thai Spa</h3>
-              <p className="about-story-text-highlight">
-                Vaše putovanje ka unutrašnjem miru i savršenoj ravnoteži.
-              </p>
-            </div>
-          </div>
-        </section>
+      {/* Simple Parallax Content Section */}
+      <div className="about-simple-parallax">
+        <div className="about-text-container">
+          <p className="about-text-paragraph">
+            Mi smo Bua Luang Thai Spa — mesto gde vreme usporava, a telo i duh pronalaze svoj prirodni ritam.
+            U srcu Beograda negujemo istinsku umetnost tajlandskog dodira, zasnovanu na drevnoj tradiciji isceljenja koja traje više od dva i po milenijuma. Ovde svaka masaža nije samo tretman, već ritual ravnoteže, energije i tišine.
+          </p>
+          
+          <p className="about-text-paragraph">
+            Naša filozofija počiva na umeću tradicionalne tajlandske masaže, starom više od 2.500 godina. Njen tvorac, dr Jivaka Kumar Bhaccha, legendarni lekar kraljevske porodice i prijatelj Bude, spojio je znanja ajurvede, joge i meditacije u jedinstvenu tehniku koja obnavlja telo, um i energiju.
+          </p>
+          
+          <p className="about-text-paragraph">
+            Kroz vekove, ova umetnost negovana je u hramovima širom Tajlanda, naročito u čuvenom Wat Pho hramu u Bangkoku, danas poznatom kao svetsko središte tradicionalne masaže.
+          </p>
+          
+          <p className="about-text-paragraph">
+            U našem spa centru sa ponosom čuvamo tu autentičnu tradiciju, uz dašak modernog luksuza i pažnje prema svakom detalju.
+            Naši terapeuti, školovani u renomiranim tajlandskim institucijama, pristupaju svakom tretmanu s potpunom posvećenošću, unoseći u svaki dodir energiju, smirenost i poštovanje prema vašem telu i duhu.
+          </p>
+          
+          <p className="about-text-paragraph">
+            Uđite u prostor gde miris eteričnih ulja, toplina dodira i tišina trenutka buđe vaša čula i vraćaju vas sebi.
+            Doživite snagu tradicije, lepotu dodira i harmoniju koja traje vekovima.
+          </p>
+          
+          <p className="about-text-paragraph about-text-final">
+            Bua Luang Thai Spa — vaše putovanje ka unutrašnjem miru i savršenoj ravnoteži.
+          </p>
+        </div>
       </div>
-
-      {/* NEW: Advanced Parallax Section 1 */}
-      <section 
-        ref={parallaxSection1Ref}
-        className="parallax-section parallax-section-1"
-      >
-        {/* Parallax Background Layers */}
-        <div className="parallax-bg-layer parallax-bg-1"></div>
-        <div className="parallax-bg-layer parallax-bg-2"></div>
-        
-        {/* Animated Text Content */}
-        <div className="parallax-content-wrapper">
-          <div className="parallax-text-container">
-            {/* Row 1 - Slides from LEFT */}
-            <div className="parallax-text-row slide-from-left" data-row="1">
-              <h2 className="parallax-text-line">Dobrodošli u Bua Luang Thai Spa</h2>
-            </div>
-            
-            {/* Row 2 - Slides from RIGHT */}
-            <div className="parallax-text-row slide-from-right" data-row="2">
-              <h2 className="parallax-text-line">Oazu mira u srcu Beograda</h2>
-            </div>
-            
-            {/* Row 3 - Slides from LEFT */}
-            <div className="parallax-text-row slide-from-left" data-row="3">
-              <h2 className="parallax-text-line">gde drevna tradicija Tajlanda</h2>
-            </div>
-            
-            {/* Row 4 - Slides from RIGHT */}
-            <div className="parallax-text-row slide-from-right" data-row="4">
-              <h2 className="parallax-text-line">susreće savremeni duh blagostanja</h2>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* NEW: Advanced Parallax Section 2 */}
-      <section 
-        ref={parallaxSection2Ref}
-        className="parallax-section parallax-section-2"
-      >
-        {/* Parallax Background Layers */}
-        <div className="parallax-bg-layer parallax-bg-3"></div>
-        <div className="parallax-bg-layer parallax-bg-4"></div>
-        
-        {/* Animated Text Content */}
-        <div className="parallax-content-wrapper">
-          <div className="parallax-text-container">
-            {/* Row 1 - Slides from LEFT */}
-            <div className="parallax-text-row slide-from-left" data-row="1">
-              <h2 className="parallax-text-line">Naša filozofija počiva na umeću</h2>
-            </div>
-            
-            {/* Row 2 - Slides from RIGHT */}
-            <div className="parallax-text-row slide-from-right" data-row="2">
-              <h2 className="parallax-text-line">tradicionalne tajlandske masaže</h2>
-            </div>
-            
-            {/* Row 3 - Slides from LEFT */}
-            <div className="parallax-text-row slide-from-left" data-row="3">
-              <h2 className="parallax-text-line">starom više od 2.500 godina</h2>
-            </div>
-            
-            {/* Row 4 - Slides from RIGHT */}
-            <div className="parallax-text-row slide-from-right" data-row="4">
-              <h2 className="parallax-text-line">Njen tvorac, dr Jivaka Kumar Bhaccha</h2>
-            </div>
-            
-            {/* Row 5 - Slides from LEFT */}
-            <div className="parallax-text-row slide-from-left" data-row="5">
-              <h2 className="parallax-text-line">legendarni lekar kraljevske porodice</h2>
-            </div>
-            
-            {/* Row 6 - Slides from RIGHT */}
-            <div className="parallax-text-row slide-from-right" data-row="6">
-              <h2 className="parallax-text-line">spojio je znanja ajurvede, joge i meditacije</h2>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
