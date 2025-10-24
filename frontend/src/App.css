@@ -6387,6 +6387,8 @@ html {
   padding: 4rem 0 2rem;
   background: #1a1a1a;
   border-top: none;
+  position: relative;
+  z-index: 10;
 }
 
 .about-contact-container {
