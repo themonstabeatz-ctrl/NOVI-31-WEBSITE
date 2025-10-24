@@ -61,6 +61,23 @@ const About = () => {
           parallaxContent.style.transform = `translateY(${yPos}px)`;
         }
       }
+
+      // Hide hero content when scrolling to bottom (to prevent showing over footer)
+      const heroContent = document.querySelector('.about-hero-content');
+      if (heroContent) {
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+        const clientHeight = window.innerHeight;
+        
+        // If user is near bottom (within 400px of footer)
+        if (scrollHeight - scrollTop - clientHeight < 400) {
+          heroContent.style.opacity = '0';
+          heroContent.style.pointerEvents = 'none';
+        } else {
+          heroContent.style.opacity = '1';
+          heroContent.style.pointerEvents = 'auto';
+        }
+      }
     };
 
     window.addEventListener('scroll', handleParallaxScroll, { passive: true });
