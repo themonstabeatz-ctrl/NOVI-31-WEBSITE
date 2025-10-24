@@ -6059,7 +6059,7 @@ html {
 }
 
 .about-hero-subtitle {
-  font-size: clamp(0.989rem, 2.474vw, 1.484rem);
+  font-size: clamp(0.949rem, 2.375vw, 1.425rem);
   color: var(--spa-cream);
   max-width: 800px;
   line-height: 1.7;
