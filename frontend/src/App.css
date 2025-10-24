@@ -217,12 +217,7 @@ html {
 
 /* Logo in Navigation */
 .nav-logo-container {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
   z-index: 10;
-  padding-left: 0.25rem;
 }
 
 .nav-logo {
