@@ -2026,18 +2026,21 @@ body {
   margin-bottom: 0;
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
+  border-top: 2px solid var(--spa-gold);
 }
 
 .footer-mandala-pattern {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 150px;
   background-image: url('https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/lghkaqzq_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  opacity: 0.15;
   filter: sepia(100%) hue-rotate(30deg);
 }
 
