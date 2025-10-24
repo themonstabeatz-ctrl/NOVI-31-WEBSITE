@@ -66,6 +66,18 @@ const About = () => {
           parallaxContent.style.transform = `translateY(${yPos}px)`;
         }
       }
+
+      // Hide hero content when scrolling down to prevent it from showing through footer
+      const heroContent = document.querySelector('.about-hero-content');
+      if (heroContent) {
+        if (scrolled > heroHeight * 0.8) {
+          heroContent.style.opacity = '0';
+          heroContent.style.pointerEvents = 'none';
+        } else {
+          heroContent.style.opacity = '1';
+          heroContent.style.pointerEvents = 'auto';
+        }
+      }
     };
 
     window.addEventListener('scroll', handleParallaxScroll, { passive: true });
