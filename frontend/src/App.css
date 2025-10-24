@@ -2021,12 +2021,12 @@ body {
 
 .footer-bottom {
   text-align: center;
-  padding: 1rem 2rem 3rem 2rem;
+  padding: 1rem 2rem 4rem 2rem;
   margin-top: 5rem;
   margin-bottom: 0;
   position: relative;
   background: linear-gradient(135deg, var(--spa-dark) 0%, #1a1a1a 100%);
-  min-height: 150px;
+  min-height: 200px;
 }
 
 .footer-bottom::before {
@@ -2041,7 +2041,7 @@ body {
 
 .footer-mandala-pattern {
   position: absolute;
-  top: 0;
+  top: 20px;
   left: 0;
   right: 0;
   height: 180px;
@@ -2060,7 +2060,7 @@ body {
   position: relative;
   z-index: 2;
   margin: 0;
-  padding: 2rem 0 0 0;
+  padding: 3rem 0 0 0;
   text-align: center;
 }
 
