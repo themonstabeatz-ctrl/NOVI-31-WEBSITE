@@ -180,7 +180,8 @@ html {
 .header-container .nav-logo-container {
   position: fixed;
   left: 0.5rem;
-  top: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1001;
 }
 
