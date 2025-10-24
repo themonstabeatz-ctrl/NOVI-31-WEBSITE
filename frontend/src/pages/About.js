@@ -150,7 +150,7 @@ const About = () => {
           </div>
           
           <p className="about-text-paragraph">
-            Mi smo Bua Luang Thai Spa — mesto gde vreme usporava, a telo i duh pronalaze svoj prirodni ritam.
+            <span className="about-intro-highlight">Mi smo Bua Luang Thai Spa</span> — mesto gde vreme usporava, a telo i duh pronalaze svoj prirodni ritam.
             U srcu Beograda negujemo istinsku umetnost tajlandskog dodira, zasnovanu na drevnoj tradiciji isceljenja koja traje više od dva i po milenijuma. Ovde svaka masaža nije samo tretman, već ritual ravnoteže, energije i tišine.
           </p>
           
