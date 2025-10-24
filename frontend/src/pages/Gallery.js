@@ -103,9 +103,18 @@ const Gallery = () => {
 
   return (
     <div className="gallery-container">
-      {/* Fixed Hero Section (no video as requested) */}
+      {/* Fixed Hero Section with Video */}
       <section className="gallery-hero-fixed">
-        <div className="gallery-hero-background">
+        <div className="gallery-hero-video-container">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="gallery-hero-video"
+          >
+            {/* Add video source here */}
+          </video>
           <div className="gallery-hero-overlay"></div>
         </div>
         
