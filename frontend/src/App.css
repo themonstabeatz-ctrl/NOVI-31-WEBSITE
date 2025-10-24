@@ -211,14 +211,14 @@ html {
 /* Logo in Navigation */
 .nav-logo-container {
   position: absolute;
-  left: 1rem;
+  left: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
 }
 
 .nav-logo {
-  height: 90px;
+  height: 70px;
   width: auto;
   filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.7));
   transition: all 0.3s ease;
