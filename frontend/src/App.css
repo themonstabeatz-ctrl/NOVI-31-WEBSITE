@@ -3250,14 +3250,6 @@ body {
     padding: 2rem;
   } */
   
-  .unified-form-section {
-    grid-column: 1;
-  }
-  
-  .unified-social-section {
-    grid-column: 1;
-  }
-}
 
 /* @media (max-width: 768px) {
   .unified-contact-content {
