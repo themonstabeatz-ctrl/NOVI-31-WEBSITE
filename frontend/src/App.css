@@ -7927,10 +7927,15 @@ html {
 /* ===== END GALLERY PAGE STYLES ===== */
 
 /* ========================================= */
-/* ===== MASTER RESPONSIVE STYLES ===== */
+/* ===== DESKTOP VIEW FOR ALL DEVICES ===== */
+/* Responsive styles DISABLED - Desktop view with zoom enabled for all devices */
 /* ========================================= */
 
+/*
+RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
+
 /* ===== LARGE DESKTOP - 1440px and up ===== */
+/*
 @media (min-width: 1441px) {
   .hero-container,
   .massage-hero,
