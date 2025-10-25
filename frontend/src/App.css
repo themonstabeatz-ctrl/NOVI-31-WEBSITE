@@ -3258,8 +3258,7 @@ body {
     grid-column: 1;
   }
 } */
-
-/* @media (max-width: 768px) {
+/* Orphaned rules removed by auto-fix */
   .unified-contact-content {
     padding: 1.5rem;
     gap: 1.5rem;
@@ -3269,8 +3268,7 @@ body {
     font-size: 1.5rem;
   }
 } */
-
-
+/* Orphaned rules removed by auto-fix */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 400px;
@@ -3624,7 +3622,7 @@ html {
   .parallax-bg {
     background-attachment: scroll;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .logo-section {
     padding: 1rem 0;
     min-height: 100px;
@@ -4095,7 +4093,7 @@ html {
   .gallery-carousel {
     flex-direction: column;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .carousel-image-container {
     height: 350px;
   }
@@ -4718,7 +4716,7 @@ html {
     grid-template-columns: 1fr;
     gap: 4rem;
   } */
-
+/* Orphaned rules removed by auto-fix */
   .story-image-frame {
     max-width: 500px;
     margin: 0 auto;
@@ -4742,7 +4740,7 @@ html {
   .about-pro-hero {
     height: 70vh;
   } */
-
+/* Orphaned rules removed by auto-fix */
   .about-hero-title {
     font-size: 3rem;
   }
@@ -5365,7 +5363,7 @@ html {
   .about-hero-title-3d {
     font-size: 3rem;
   } */
-
+/* Orphaned rules removed by auto-fix */
   .about-hero-subtitle-3d {
     font-size: 1.1rem;
   }
@@ -5777,7 +5775,7 @@ html {
   .massage-hero-title {
     font-size: 2.5rem;
   } */
-
+/* Orphaned rules removed by auto-fix */
   .hero-logo-image {
     width: 100px;
   }
@@ -6013,7 +6011,7 @@ html {
   .spa-hero-title {
     font-size: 2.5rem;
   } */
-
+/* Orphaned rules removed by auto-fix */
   .spa-container .services-grid {
     grid-template-columns: 1fr;
   }
@@ -6659,7 +6657,7 @@ html {
     grid-template-columns: 1fr;
     gap: 2rem;
   } */
-}
+/* Orphaned rules removed by auto-fix */
 
 .about-contact-social-section {
   padding: 4rem 0 2rem;
@@ -6826,7 +6824,7 @@ html {
   .about-contact-grid {
     grid-template-columns: 1fr;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .about-social-card {
     border-left: none;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
@@ -6841,7 +6839,7 @@ html {
   .about-hero-title {
     font-size: 2.5rem;
   } */
-
+/* Orphaned rules removed by auto-fix */
   .story-stats-row {
     grid-template-columns: 1fr;
   }
@@ -6985,7 +6983,7 @@ html {
     padding: 4rem 0;
     min-height: auto;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .about-text-container {
     width: 95%;
     padding: 2rem 1rem;
@@ -7009,7 +7007,7 @@ html {
   .about-text-paragraph {
     font-size: 1rem;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .about-text-paragraph:first-child {
     font-size: 1.1rem;
   }
@@ -7249,7 +7247,7 @@ html {
   .parallax-section {
     min-height: 100vh;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .parallax-text-container {
     gap: 2rem;
     min-height: 70vh;
@@ -7266,7 +7264,7 @@ html {
     min-height: 90vh;
     padding: 2rem 0;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .parallax-content-wrapper {
     padding: 0 1rem;
   }
@@ -7293,7 +7291,7 @@ html {
     font-size: clamp(1rem, 3vw, 2rem);
     padding: 0.5rem 0.8rem;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .parallax-text-container {
     gap: 1rem;
   }
@@ -7305,7 +7303,7 @@ html {
     transition: opacity 0.3s ease;
     transform: none !important;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .parallax-text-row.slide-in-active {
     opacity: 1;
     transform: none !important;
@@ -7329,7 +7327,7 @@ html {
     -webkit-text-fill-color: var(--spa-gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   } */
-}
+/* Orphaned rules removed by auto-fix */
 
 /* Print styles */
 /* @media print {
@@ -7339,7 +7337,7 @@ html {
     min-height: auto;
     page-break-inside: avoid;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .parallax-text-row {
     opacity: 1 !important;
     transform: none !important;
@@ -7710,7 +7708,7 @@ html {
     width: 380px;
     height: 280px;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .gallery-row:nth-child(odd) .gallery-image-2 {
     width: 220px;
     height: 300px;
@@ -7748,7 +7746,7 @@ html {
     margin-top: 2.5cm;
     margin-bottom: 1rem;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
   }
@@ -7815,7 +7813,7 @@ html {
     margin-top: 2cm;
     margin-bottom: 0.8rem;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(2rem, 5vw, 3rem);
   }
@@ -7872,7 +7870,7 @@ html {
     width: 140px;
     margin-top: 1.5cm;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(1.8rem, 4.5vw, 2.5rem);
   }
@@ -7894,7 +7892,7 @@ html {
     width: 120px;
     margin-top: 1.2cm;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(1.6rem, 4vw, 2.2rem);
   }
@@ -7980,7 +7978,7 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .nav-desktop {
     gap: 1.5rem;
   } */
-  
+/* Orphaned rules removed by auto-fix */
   .nav-link {
     font-size: 0.9rem;
   }
