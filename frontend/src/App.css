@@ -309,6 +309,51 @@ html {
   color: var(--spa-dark);
 }
 
+/* Language Dropdown Menu Styling */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+.language-selector [role="menu"] {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.98), rgba(40, 30, 20, 0.98));
+  border: 1px solid var(--spa-gold);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(10px);
+  min-width: 140px;
+  margin-top: 0.5rem;
+}
+
+.language-selector [role="menuitem"] {
+  color: var(--spa-cream);
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+}
+
+.language-selector [role="menuitem"]:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-left-color: var(--spa-gold);
+  padding-left: 1.2rem;
+}
+
+.language-selector [role="menuitem"][data-highlighted] {
+  background: rgba(212, 175, 55, 0.15);
+  border-left-color: var(--spa-gold);
+  outline: none;
+}
+
+.language-selector [role="menuitem"][class*="bg-accent"] {
+  background: rgba(212, 175, 55, 0.25);
+  border-left-color: var(--spa-gold);
+  color: var(--spa-gold);
+  font-weight: 500;
+}
+
 /* Mobile Menu */
 .mobile-menu-button {
   display: none;
