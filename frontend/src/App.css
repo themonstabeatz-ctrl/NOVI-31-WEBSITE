@@ -3243,28 +3243,26 @@ body {
 }
 
 /* Responsive Design for Unified Card */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .unified-contact-content {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding: 2rem;
   }
-
+  
   .unified-form-section {
     grid-column: 1;
   }
-
+  
   .unified-social-section {
     grid-column: 1;
   }
-}
-  Orphaned rules removed by auto-fix
+} */
+/* Orphaned rules removed by auto-fix */
   .unified-contact-content {
     padding: 1.5rem;
     gap: 1.5rem;
   }
-*/ /* End disabled @media */
   
   .unified-section-title {
     font-size: 1.5rem;
@@ -3620,17 +3618,15 @@ html {
 }
 
 /* Responsive Design */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .parallax-bg {
     background-attachment: scroll;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .logo-section {
     padding: 1rem 0;
     min-height: 100px;
   }
-*/ /* End disabled @media */
   
   .logo-image {
     max-height: 140px;
@@ -4093,16 +4089,14 @@ html {
 }
 
 /* Responsive Gallery */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .gallery-carousel {
     flex-direction: column;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .carousel-image-container {
     height: 350px;
   }
-*/ /* End disabled @media */
   
   .carousel-btn {
     padding: 0.75rem;
@@ -4717,18 +4711,16 @@ html {
 }
 
 /* Responsive */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .story-grid {
     grid-template-columns: 1fr;
     gap: 4rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .story-image-frame {
     max-width: 500px;
     margin: 0 auto;
   }
-*/ /* End disabled @media */
 
   .values-grid-pro,
   .team-grid-pro {
@@ -4744,16 +4736,14 @@ html {
   }
 }
 
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .about-pro-hero {
     height: 70vh;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .about-hero-title {
     font-size: 3rem;
   }
-*/ /* End disabled @media */
 
   .about-pro-story,
   .about-pro-values,
@@ -5369,16 +5359,14 @@ html {
 }
 
 /* Responsive Design */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .about-hero-title-3d {
     font-size: 3rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .about-hero-subtitle-3d {
     font-size: 1.1rem;
   }
-*/ /* End disabled @media */
 }
 
 
@@ -5783,16 +5771,14 @@ html {
 }
 
 /* Responsive */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .massage-hero-title {
     font-size: 2.5rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .hero-logo-image {
     width: 100px;
   }
-*/ /* End disabled @media */
 
   .massage-hero-subtitle {
     font-size: 1.1rem;
@@ -6021,16 +6007,14 @@ html {
 }
 
 /* Responsive */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .spa-hero-title {
     font-size: 2.5rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .spa-container .services-grid {
     grid-template-columns: 1fr;
   }
-*/ /* End disabled @media */
 }
 
 
@@ -6668,13 +6652,12 @@ html {
   color: var(--spa-gold);
 }
 
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .contact-footer-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
 
 .about-contact-social-section {
   padding: 4rem 0 2rem;
@@ -6683,7 +6666,6 @@ html {
   position: relative;
   z-index: 10;
 }
-*/ /* End disabled @media */
 
 .about-contact-container {
   max-width: 1200px;
@@ -6838,12 +6820,11 @@ html {
 }
 
 /* Responsive */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 968px) {
+/* @media (max-width: 968px) {
   .about-contact-grid {
     grid-template-columns: 1fr;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .about-social-card {
     border-left: none;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
@@ -6851,20 +6832,17 @@ html {
     padding-top: 3rem;
     margin-top: 3rem;
   }
-*/ /* End disabled @media */
 }
 
 /* Responsive */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .about-hero-title {
     font-size: 2.5rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .story-stats-row {
     grid-template-columns: 1fr;
   }
-*/ /* End disabled @media */
 
   .values-grid-about {
     grid-template-columns: 1fr;
@@ -7000,18 +6978,16 @@ html {
 }
 
 /* Responsive */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .about-simple-parallax {
     padding: 4rem 0;
     min-height: auto;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .about-text-container {
     width: 95%;
     padding: 2rem 1rem;
   }
-*/ /* End disabled @media */
   
   .about-text-paragraph {
     font-size: 1.1rem;
@@ -7027,16 +7003,14 @@ html {
   }
 }
 
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .about-text-paragraph {
     font-size: 1rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .about-text-paragraph:first-child {
     font-size: 1.1rem;
   }
-*/ /* End disabled @media */
   
   .about-text-final {
     font-size: 1.05rem;
@@ -7269,17 +7243,15 @@ html {
 }
 
 /* Responsive Design */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .parallax-section {
     min-height: 100vh;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .parallax-text-container {
     gap: 2rem;
     min-height: 70vh;
   }
-*/ /* End disabled @media */
   
   .parallax-text-line {
     font-size: clamp(1.5rem, 4vw, 3rem);
@@ -7287,17 +7259,15 @@ html {
   }
 }
 
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .parallax-section {
     min-height: 90vh;
     padding: 2rem 0;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .parallax-content-wrapper {
     padding: 0 1rem;
   }
-*/ /* End disabled @media */
   
   .parallax-text-container {
     gap: 1.5rem;
@@ -7316,32 +7286,28 @@ html {
   }
 }
 
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .parallax-text-line {
     font-size: clamp(1rem, 3vw, 2rem);
     padding: 0.5rem 0.8rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .parallax-text-container {
     gap: 1rem;
   }
-*/ /* End disabled @media */
 }
 
 /* Accessibility */
-/* DISABLED @media query - Desktop view only
-  @media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   .parallax-text-row {
     transition: opacity 0.3s ease;
     transform: none !important;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .parallax-text-row.slide-in-active {
     opacity: 1;
     transform: none !important;
   }
-*/ /* End disabled @media */
   
   .parallax-bg-layer {
     transform: none !important;
@@ -7355,29 +7321,27 @@ html {
 }
 
 /* High contrast mode support */
-/* DISABLED @media query - Desktop view only
-  @media (prefers-contrast: high) {
+/* @media (prefers-contrast: high) {
   .parallax-text-line {
     color: var(--spa-gold);
     -webkit-text-fill-color: var(--spa-gold);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
 
-  Print styles
-  @media print {
+/* Print styles */
+/* @media print {
   .parallax-section {
     position: static;
     height: auto;
     min-height: auto;
     page-break-inside: avoid;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .parallax-text-row {
     opacity: 1 !important;
     transform: none !important;
   }
-*/ /* End disabled @media */
   
   .parallax-bg-layer {
     display: none;
@@ -7739,18 +7703,16 @@ html {
 /* ===== RESPONSIVE GALLERY STYLES ===== */
 
 /* Tablet Landscape - 1024px to 1200px */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .gallery-row:nth-child(odd) .gallery-image-1 {
     width: 380px;
     height: 280px;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .gallery-row:nth-child(odd) .gallery-image-2 {
     width: 220px;
     height: 300px;
   }
-*/ /* End disabled @media */
   
   .gallery-row:nth-child(odd) .gallery-image-3 {
     width: 300px;
@@ -7778,18 +7740,16 @@ html {
 }
 
 /* Tablet Portrait - 768px to 1024px */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .gallery-hero-logo {
     width: 180px;
     margin-top: 2.5cm;
     margin-bottom: 1rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
   }
-*/ /* End disabled @media */
   
   .gallery-hero-subtitle {
     font-size: clamp(0.85rem, 1.8vw, 1.1rem);
@@ -7847,18 +7807,16 @@ html {
 }
 
 /* Mobile Landscape & Tablet Small - 600px to 768px */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .gallery-hero-logo {
     width: 160px;
     margin-top: 2cm;
     margin-bottom: 0.8rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(2rem, 5vw, 3rem);
   }
-*/ /* End disabled @media */
   
   .gallery-hero-subtitle {
     font-size: clamp(0.75rem, 1.5vw, 0.95rem);
@@ -7907,17 +7865,15 @@ html {
 }
 
 /* Mobile Portrait - 480px to 600px */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .gallery-hero-logo {
     width: 140px;
     margin-top: 1.5cm;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(1.8rem, 4.5vw, 2.5rem);
   }
-*/ /* End disabled @media */
   
   .gallery-hero-subtitle {
     font-size: clamp(0.7rem, 1.3vw, 0.85rem);
@@ -7931,17 +7887,15 @@ html {
 }
 
 /* Mobile Small - up to 480px */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .gallery-hero-logo {
     width: 120px;
     margin-top: 1.2cm;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .gallery-hero-title {
     font-size: clamp(1.6rem, 4vw, 2.2rem);
   }
-*/ /* End disabled @media */
   
   .gallery-hero-subtitle {
     font-size: clamp(0.65rem, 1.2vw, 0.8rem);
@@ -7980,16 +7934,14 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 
 /* ===== LARGE DESKTOP - 1440px and up ===== */
 /*
-/* DISABLED @media query - Desktop view only
-  @media (min-width: 1441px) {
-  .hero-container,
+/* @media (min-width: 1441px) {
+  .hero-container, */
   .massage-hero,
   .spa-hero,
   .about-hero,
   .gallery-hero-fixed {
     background-size: cover;
   }
-*/ /* End disabled @media */
   
   .pim-welcome {
     background-size: 35% auto, 35% auto;
@@ -7997,15 +7949,13 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== TABLET LANDSCAPE - 1024px to 1440px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1440px) {
-  .hero-logo,
+/* @media (max-width: 1440px) {
+  .hero-logo, */
   .massage-hero-logo,
   .spa-hero-logo,
   .about-parallax-logo-container img {
     max-width: 240px;
   }
-*/ /* End disabled @media */
   
   .hero-title,
   .massage-hero-title,
@@ -8024,16 +7974,14 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== TABLET LANDSCAPE - 1024px to 1200px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .nav-desktop {
     gap: 1.5rem;
-  }
-  Orphaned rules removed by auto-fix
+  } */
+/* Orphaned rules removed by auto-fix */
   .nav-link {
     font-size: 0.9rem;
   }
-*/ /* End disabled @media */
   
   .pim-philosophy-content,
   .pim-gift-content {
@@ -8046,13 +7994,11 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== TABLET PORTRAIT & LANDSCAPE - up to 1024px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 1024px) {
-    Header & Navigation
+/* @media (max-width: 1024px) {
+  /* Header & Navigation */ */
   .header-container {
     padding: 0.8rem 1rem;
   }
-*/ /* End disabled @media */
   
   .nav-desktop {
     display: none;
@@ -8138,13 +8084,11 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== TABLET PORTRAIT - 768px to 1024px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 768px) {
-    Typography
+/* @media (max-width: 768px) {
+  /* Typography */ */
   body {
     font-size: 15px;
   }
-*/ /* End disabled @media */
   
   /* Header */
   .header-container {
@@ -8328,16 +8272,14 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== MOBILE LANDSCAPE & LARGE MOBILE - 600px to 768px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 600px) {
-    Hero Sections
+/* @media (max-width: 600px) {
+  /* Hero Sections */ */
   .hero-logo,
   .massage-hero-logo,
   .spa-hero-logo,
   .about-parallax-logo-container img {
     max-width: 150px;
   }
-*/ /* End disabled @media */
   
   .hero-title,
   .massage-hero-title,
@@ -8389,13 +8331,11 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== MOBILE PORTRAIT - up to 480px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 480px) {
-    Global Typography
+/* @media (max-width: 480px) {
+  /* Global Typography */ */
   body {
     font-size: 14px;
   }
-*/ /* End disabled @media */
   
   /* Header */
   .header-container {
@@ -8592,15 +8532,13 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== MOBILE SMALL - up to 375px ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-width: 375px) {
-    Ultra compact for small phones
+/* @media (max-width: 375px) {
+  /* Ultra compact for small phones */ */
   .hero-logo,
   .massage-hero-logo,
   .spa-hero-logo {
     max-width: 110px;
   }
-*/ /* End disabled @media */
   
   .hero-title,
   .massage-hero-title,
@@ -8626,9 +8564,8 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
-/* DISABLED @media query - Desktop view only
-  @media (hover: none) and (pointer: coarse) {
-    Improve touch targets
+/* @media (hover: none) and (pointer: coarse) {
+  /* Improve touch targets */ */
   button,
   a,
   input,
@@ -8637,7 +8574,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
     min-height: 44px;
     min-width: 44px;
   }
-*/ /* End disabled @media */
   
   /* Remove hover effects on touch devices */
   .gallery-image-wrapper:hover {
@@ -8651,9 +8587,8 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== LANDSCAPE ORIENTATION ===== */
-/* DISABLED @media query - Desktop view only
-  @media (max-height: 500px) and (orientation: landscape) {
-    Reduce vertical spacing in landscape
+/* @media (max-height: 500px) and (orientation: landscape) {
+  /* Reduce vertical spacing in landscape */ */
   .hero-logo,
   .massage-hero-logo,
   .spa-hero-logo {
@@ -8661,7 +8596,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
     margin-top: 1rem;
     margin-bottom: 0.5rem;
   }
-*/ /* End disabled @media */
   
   .hero-title,
   .massage-hero-title,
@@ -8684,9 +8618,8 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 }
 
 /* ===== PRINT STYLES ===== */
-/* DISABLED @media query - Desktop view only
-  @media print {
-  .header-container,
+/* @media print {
+  .header-container, */
   .mobile-menu-button,
   .language-selector,
   .footer-container,
@@ -8694,7 +8627,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   video {
     display: none !important;
   }
-*/ /* End disabled @media */
   
   body {
     background: white;
