@@ -6822,21 +6822,6 @@ html {
     font-size: 2.5rem;
   } */
 
-  .story-stats-row {
-    grid-template-columns: 1fr;
-  }
-
-  .values-grid-about {
-    grid-template-columns: 1fr;
-  }
-
-  .philosophy-box {
-    padding: 3rem 2rem;
-  }
-
-  .cta-buttons-about {
-    flex-direction: column;
-  }
 
 
 /* Simple Parallax Section - About Page */
