@@ -117,7 +117,6 @@ html {
     filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7));
     transform: scale(1.12);
   }
-}
 
 /* Fixed Footer with Slogan Below Buddha */
 /* Thin footer bar below header */
@@ -158,7 +157,6 @@ html {
   100% { 
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.6);
   }
-}
 
 /* Fixed Navigation with Logo */
 .header-container {
@@ -481,7 +479,6 @@ html {
 @keyframes gentle-float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-10px) rotate(2deg); }
-}
 
 /* Contact Page Logo Animation */
 .contact-logo-animation {
@@ -514,7 +511,6 @@ html {
   75% { 
     transform: translateY(-10px) translateX(-5px) rotate(-2deg);
   }
-}
 
 /* Pim Thai Style with Agency FB Font */
 .pim-style-homepage {
@@ -697,7 +693,6 @@ body {
   100% { 
     filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.8));
   }
-}
 
 /* Lotus Transform Effect for Logo */
 .hero-logo-animated.lotus-transform {
@@ -723,7 +718,6 @@ body {
       15px 15px 20px rgba(0, 0, 0, 0.5),
       0 0 40px rgba(212, 175, 55, 0.6);
   }
-}
 
 /* Lotus Transform Effect */
 .pim-hero-title.lotus-transform {
@@ -753,7 +747,6 @@ body {
       10px 10px 0px rgba(255, 192, 203, 0.3),
       -10px -10px 0px rgba(255, 192, 203, 0.3);
   }
-}
 
 .pim-hero-button {
   background: linear-gradient(135deg, var(--spa-gold) 0%, var(--spa-bronze) 100%);
@@ -1224,7 +1217,6 @@ body {
     transform: scale(1.03);
     opacity: 1;
   }
-}
 
 .pim-gift-voucher-image {
   width: 100%;
@@ -1252,7 +1244,6 @@ body {
   50% {
     transform: translateY(-10px);
   }
-}
 
 .pim-gift-button-bottom {
   background: var(--spa-gold);
@@ -1805,7 +1796,6 @@ body {
 @keyframes slow-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
 
 /* Section Styles */
 .section-separator {
@@ -3559,7 +3549,6 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
 .benefit-card {
   animation: fadeInUp 0.6s ease-out forwards;
@@ -4173,7 +4162,6 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
 .about-hero-divider {
   width: 100px;
@@ -4192,7 +4180,6 @@ html {
     width: 100px;
     opacity: 1;
   }
-}
 
 .about-hero-subtitle {
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
@@ -4213,7 +4200,6 @@ html {
     opacity: 0.95;
     transform: translateY(0);
   }
-}
 
 .scroll-indicator {
   position: absolute;
@@ -4252,7 +4238,6 @@ html {
   50% {
     transform: translateY(10px);
   }
-}
 
 @keyframes scrollDot {
   0% {
@@ -4263,7 +4248,6 @@ html {
     opacity: 1;
     transform: translateX(-50%) translateY(20px);
   }
-}
 
 /* Container */
 .container-pro {
@@ -4336,7 +4320,6 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
 .section-label {
   display: inline-block;
@@ -4721,7 +4704,6 @@ html {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-}
 
 /* @media (max-width: 768px) {
   .about-pro-hero {
@@ -4757,7 +4739,6 @@ html {
   .cta-button-secondary-pro {
     width: 100%;
   }
-}
 
 
 
@@ -4836,7 +4817,6 @@ html {
   66% {
     transform: translate(-20px, 20px) scale(0.9);
   }
-}
 
 .about-hero-content {
   position: relative;
@@ -4871,7 +4851,6 @@ html {
       0 0 60px rgba(212, 175, 55, 0.7),
       0 0 120px rgba(212, 175, 55, 0.5);
   }
-}
 
 .about-hero-subtitle-3d {
   font-size: 1.5rem;
@@ -4924,7 +4903,6 @@ html {
     opacity: 1;
     transform: scale(1.5) rotate(180deg);
   }
-}
 
 /* 3D Story Section */
 .story-section-3d {
@@ -5009,7 +4987,6 @@ html {
   to {
     transform: rotate(360deg);
   }
-}
 
 /* 3D Values Section */
 .values-section-3d {
@@ -5094,7 +5071,6 @@ html {
   50% {
     transform: translateY(-10px);
   }
-}
 
 .value-title {
   font-size: 2rem;
@@ -5116,7 +5092,6 @@ html {
   50% {
     transform: translateY(-20px);
   }
-}
 
 /* 3D Team Section */
 .team-section-3d {
@@ -5197,7 +5172,6 @@ html {
   50% {
     transform: scale(1.05);
   }
-}
 
 @keyframes starRotate {
   from {
@@ -5206,7 +5180,6 @@ html {
   to {
     transform: rotate(360deg);
   }
-}
 
 .member-name-3d {
   font-size: 1.8rem;
@@ -5279,7 +5252,6 @@ html {
     transform: scale(1.2) rotate(180deg);
     opacity: 0.6;
   }
-}
 
 .cta-title-3d {
   font-size: 3rem;
@@ -5296,7 +5268,6 @@ html {
   50% {
     text-shadow: 0 10px 60px rgba(212, 175, 55, 0.6);
   }
-}
 
 .cta-subtitle-3d {
   font-size: 1.3rem;
@@ -5354,7 +5325,6 @@ html {
   .about-hero-subtitle-3d {
     font-size: 1.1rem;
   }
-}
 
 
 
@@ -5437,7 +5407,6 @@ html {
   50% {
     transform: translateY(-10px);
   }
-}
 
 .hero-logo-image {
   width: 220px;
@@ -5468,7 +5437,6 @@ html {
       0 0 60px rgba(212, 175, 55, 0.9),
       0 10px 30px rgba(0, 0, 0, 0.8);
   }
-}
 
 .massage-hero-divider {
   width: 120px;
@@ -5488,7 +5456,6 @@ html {
     width: 160px;
     opacity: 1;
   }
-}
 
 .massage-hero-subtitle {
   font-size: clamp(0.85rem, 2vw, 1.2rem);
@@ -5549,7 +5516,6 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
 .massage-container .massage-card {
   position: relative;
@@ -5788,7 +5754,6 @@ html {
   .massage-container .cta-button-secondary {
     width: 100%;
   }
-}
 
 
 
@@ -6002,7 +5967,6 @@ html {
   .spa-container .services-grid {
     grid-template-columns: 1fr;
   }
-}
 
 
 
@@ -6461,7 +6425,6 @@ html {
   100% {
     transform: rotate(360deg);
   }
-}
 
 .philosophy-quote-title {
   font-size: 2.5rem;
@@ -6819,7 +6782,6 @@ html {
     padding-top: 3rem;
     margin-top: 3rem;
   }
-}
 
 /* Responsive */
 /* @media (max-width: 768px) {
@@ -6842,7 +6804,6 @@ html {
   .cta-buttons-about {
     flex-direction: column;
   }
-}
 
 
 /* Simple Parallax Section - About Page */
@@ -6913,7 +6874,6 @@ html {
     transform: translateY(-10px);
     filter: drop-shadow(0 15px 30px rgba(212, 175, 55, 0.8));
   }
-}
 
 .about-text-paragraph {
   font-size: 1.122rem;
@@ -6988,7 +6948,6 @@ html {
   .about-text-final {
     font-size: 1.15rem;
   }
-}
 
 /* @media (max-width: 480px) {
   .about-text-paragraph {
@@ -7002,7 +6961,6 @@ html {
   .about-text-final {
     font-size: 1.05rem;
   }
-}
 
 
 
@@ -7185,7 +7143,6 @@ html {
   50% {
     background-position: 100% 50%;
   }
-}
 
 /* Parallax Section Separators */
 .parallax-section::before {
@@ -7244,7 +7201,6 @@ html {
     font-size: clamp(1.5rem, 4vw, 3rem);
     padding: 0.8rem 1.5rem;
   }
-}
 
 /* @media (max-width: 768px) {
   .parallax-section {
@@ -7271,7 +7227,6 @@ html {
   .parallax-bg-layer {
     transform: none !important;
   }
-}
 
 /* @media (max-width: 480px) {
   .parallax-text-line {
@@ -7282,7 +7237,6 @@ html {
   .parallax-text-container {
     gap: 1rem;
   }
-}
 
 /* Accessibility */
 /* @media (prefers-reduced-motion: reduce) {
@@ -7305,7 +7259,6 @@ html {
       background-position: 0% 50%;
     }
   }
-}
 
 /* High contrast mode support */
 /* @media (prefers-contrast: high) {
@@ -7333,7 +7286,6 @@ html {
   .parallax-bg-layer {
     display: none;
   }
-}
 
 
 /* ===== GALLERY PAGE STYLES ===== */
@@ -7673,7 +7625,6 @@ html {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
 
 @keyframes zoomIn {
   from { 
@@ -7684,7 +7635,6 @@ html {
     opacity: 1;
     transform: scale(1);
   }
-}
 
 /* Responsive Design */
 /* ===== RESPONSIVE GALLERY STYLES ===== */
@@ -7724,7 +7674,6 @@ html {
   .gallery-image-2 {
     margin: 0 -35px;
   }
-}
 
 /* Tablet Portrait - 768px to 1024px */
 /* @media (max-width: 1024px) {
@@ -7791,7 +7740,6 @@ html {
     margin-left: -25px;
     transform: translateY(-15px) translateX(15px) rotate(-4deg);
   }
-}
 
 /* Mobile Landscape & Tablet Small - 600px to 768px */
 /* @media (max-width: 768px) {
@@ -7849,7 +7797,6 @@ html {
   .gallery-image-zoom-icon {
     font-size: 2.5rem;
   }
-}
 
 /* Mobile Portrait - 480px to 600px */
 /* @media (max-width: 600px) {
@@ -7871,7 +7818,6 @@ html {
     width: 92vw !important;
     max-width: 350px !important;
   }
-}
 
 /* Mobile Small - up to 480px */
 /* @media (max-width: 480px) {
@@ -7907,7 +7853,6 @@ html {
   .gallery-image-zoom-icon {
     font-size: 2rem;
   }
-}
 
 /* ===== END GALLERY PAGE STYLES ===== */
 
@@ -7933,7 +7878,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .pim-welcome {
     background-size: 35% auto, 35% auto;
   }
-}
 
 /* ===== TABLET LANDSCAPE - 1024px to 1440px ===== */
 /* @media (max-width: 1440px) {
@@ -7958,7 +7902,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .contact-form-section {
     padding: 2.5rem;
   }
-}
 
 /* ===== TABLET LANDSCAPE - 1024px to 1200px ===== */
 /* @media (max-width: 1200px) {
@@ -7978,7 +7921,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .pim-welcome-text-container {
     max-width: 85%;
   }
-}
 
 /* ===== TABLET PORTRAIT & LANDSCAPE - up to 1024px ===== */
 /* @media (max-width: 1024px) {
@@ -8068,7 +8010,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .footer-container {
     margin-top: 8rem;
   }
-}
 
 /* ===== TABLET PORTRAIT - 768px to 1024px ===== */
 /* @media (max-width: 768px) {
@@ -8256,7 +8197,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .cta-section p {
     font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   }
-}
 
 /* ===== MOBILE LANDSCAPE & LARGE MOBILE - 600px to 768px ===== */
 /* @media (max-width: 600px) {
@@ -8315,7 +8255,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .footer-section a {
     font-size: 0.9rem;
   }
-}
 
 /* ===== MOBILE PORTRAIT - up to 480px ===== */
 /* @media (max-width: 480px) {
@@ -8516,7 +8455,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
     font-size: 0.85rem;
     padding: 0.7rem 1.3rem;
   }
-}
 
 /* ===== MOBILE SMALL - up to 375px ===== */
 /* @media (max-width: 375px) {
@@ -8548,7 +8486,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .nav-logo-container {
     width: 45px;
   }
-}
 
 /* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
 /* @media (hover: none) and (pointer: coarse) {
@@ -8571,7 +8508,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .gallery-image-wrapper:active .gallery-image-overlay {
     opacity: 1;
   }
-}
 
 /* ===== LANDSCAPE ORIENTATION ===== */
 /* @media (max-height: 500px) and (orientation: landscape) {
@@ -8602,7 +8538,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .pim-welcome {
     padding: 1.5rem 1rem;
   }
-}
 
 /* ===== PRINT STYLES ===== */
 /* @media print {
@@ -8628,7 +8563,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
     background: none;
     page-break-after: always;
   }
-}
 
 /* ===== END MASTER RESPONSIVE STYLES ===== */
 
