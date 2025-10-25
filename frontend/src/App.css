@@ -8647,3 +8647,53 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
 
 /* ===== END MASTER RESPONSIVE STYLES ===== */
 
+
+
+/* DESKTOP-ONLY OVERRIDE - Force desktop layout on all devices */
+@media screen {
+  /* Override all responsive styles to maintain desktop layout */
+  * {
+    min-width: auto !important;
+    max-width: none !important;
+  }
+  
+  /* Force desktop grid layouts */
+  .treatments-grid,
+  .gallery-grid,
+  .story-grid,
+  .services-grid,
+  .contact-grid,
+  .welcome-content,
+  .pim-services-grid,
+  .values-grid-about {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  }
+  
+  /* Maintain desktop font sizes */
+  .hero-main-title,
+  .pim-hero-title,
+  .about-hero-title {
+    font-size: 4rem !important;
+  }
+  
+  .hero-main-subtitle,
+  .welcome-title,
+  .treatments-title {
+    font-size: 2.5rem !important;
+  }
+  
+  /* Keep desktop padding and margins */
+  .hero-section,
+  .welcome-section,
+  .treatments-section,
+  .gallery-section {
+    padding: 4rem 2rem !important;
+  }
+  
+  /* Maintain desktop button layouts */
+  .hero-buttons,
+  .cta-buttons {
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+}
