@@ -78,7 +78,7 @@ const Header = () => {
                 </span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="language-dropdown-custom">
               {languages.map((language) => (
                 <DropdownMenuItem
                   key={language.code}
