@@ -19,8 +19,6 @@ const Header = () => {
     { code: "sr", name: "Srpski" },
     { code: "en", name: "English" },
     { code: "ru", name: "Русский" },
-    { code: "de", name: "Deutsch" },
-    { code: "es", name: "Español" },
     { code: "th", name: "ไทย" }
   ];
 
