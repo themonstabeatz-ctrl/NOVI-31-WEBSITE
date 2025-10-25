@@ -3274,7 +3274,6 @@ body {
   grid-template-columns: 1fr 400px;
   column-gap: 0.5rem; /* Gap between column 1 and 2 */
   row-gap: 3rem;
-}
 
 .contact-form-card {
   background: rgba(212, 175, 55, 0.05);
@@ -3858,7 +3857,6 @@ html {
   padding: 4rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
-}
 
 .gallery-header {
   text-align: center;
@@ -4118,7 +4116,6 @@ html {
   .gallery-subtitle {
     font-size: 1rem;
   }
-}
 
 }
 
@@ -4770,7 +4767,6 @@ html {
   .cta-button-secondary-pro {
     width: 100%;
   }
-}
 
 
 
@@ -5367,7 +5363,6 @@ html {
   .about-hero-subtitle-3d {
     font-size: 1.1rem;
   }
-}
 
 
 
@@ -5801,7 +5796,6 @@ html {
   .massage-container .cta-button-secondary {
     width: 100%;
   }
-}
 
 
 
@@ -6015,7 +6009,6 @@ html {
   .spa-container .services-grid {
     grid-template-columns: 1fr;
   }
-}
 
 
 
@@ -6657,7 +6650,6 @@ html {
     grid-template-columns: 1fr;
     gap: 2rem;
   } */
-}
 
 .about-contact-social-section {
   padding: 4rem 0 2rem;
@@ -6855,7 +6847,6 @@ html {
   .cta-buttons-about {
     flex-direction: column;
   }
-}
 
 
 /* Simple Parallax Section - About Page */
@@ -7001,7 +6992,6 @@ html {
   .about-text-final {
     font-size: 1.15rem;
   }
-}
 
 /* @media (max-width: 480px) {
   .about-text-paragraph {
@@ -7284,7 +7274,6 @@ html {
   .parallax-bg-layer {
     transform: none !important;
   }
-}
 
 /* @media (max-width: 480px) {
   .parallax-text-line {
@@ -7862,7 +7851,6 @@ html {
   .gallery-image-zoom-icon {
     font-size: 2.5rem;
   }
-}
 
 /* Mobile Portrait - 480px to 600px */
 /* @media (max-width: 600px) {
@@ -8269,7 +8257,6 @@ RESPONSIVE STYLES COMMENTED OUT - DESKTOP VIEW ONLY
   .cta-section p {
     font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   }
-}
 
 /* ===== MOBILE LANDSCAPE & LARGE MOBILE - 600px to 768px ===== */
 /* @media (max-width: 600px) {
