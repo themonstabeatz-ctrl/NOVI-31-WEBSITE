@@ -310,48 +310,52 @@ html {
 }
 
 /* Language Dropdown Menu Styling */
-[data-radix-popper-content-wrapper] {
-  z-index: 9999 !important;
+.language-dropdown-custom {
+  background: linear-gradient(135deg, rgba(15, 15, 20, 0.98), rgba(30, 25, 20, 0.98)) !important;
+  border: 2px solid var(--spa-gold) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 0 !important;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4), 
+              0 0 0 1px rgba(212, 175, 55, 0.2),
+              inset 0 1px 0 rgba(212, 175, 55, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  min-width: 160px !important;
+  margin-top: 0.5rem !important;
 }
 
-.language-selector [role="menu"] {
-  background: linear-gradient(135deg, rgba(20, 20, 20, 0.98), rgba(40, 30, 20, 0.98));
-  border: 1px solid var(--spa-gold);
-  border-radius: 8px;
-  padding: 0.5rem 0;
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.1);
-  backdrop-filter: blur(10px);
-  min-width: 140px;
-  margin-top: 0.5rem;
-}
-
-.language-selector [role="menuitem"] {
-  color: var(--spa-cream);
-  padding: 0.65rem 1rem;
+.language-dropdown-custom [role="menuitem"],
+.language-dropdown-custom > div {
+  color: var(--spa-cream) !important;
+  padding: 0.75rem 1.25rem !important;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.975rem;
   font-weight: 400;
   border-left: 3px solid transparent;
+  background: transparent !important;
 }
 
-.language-selector [role="menuitem"]:hover {
-  background: rgba(212, 175, 55, 0.15);
+.language-dropdown-custom [role="menuitem"]:hover,
+.language-dropdown-custom > div:hover {
+  background: rgba(212, 175, 55, 0.2) !important;
   border-left-color: var(--spa-gold);
-  padding-left: 1.2rem;
+  padding-left: 1.5rem !important;
+  color: var(--spa-gold) !important;
 }
 
-.language-selector [role="menuitem"][data-highlighted] {
-  background: rgba(212, 175, 55, 0.15);
+.language-dropdown-custom [role="menuitem"][data-highlighted],
+.language-dropdown-custom > div[data-highlighted] {
+  background: rgba(212, 175, 55, 0.2) !important;
   border-left-color: var(--spa-gold);
   outline: none;
 }
 
-.language-selector [role="menuitem"][class*="bg-accent"] {
-  background: rgba(212, 175, 55, 0.25);
+.language-dropdown-custom .bg-accent {
+  background: rgba(212, 175, 55, 0.3) !important;
   border-left-color: var(--spa-gold);
-  color: var(--spa-gold);
-  font-weight: 500;
+  border-left-width: 3px;
+  color: var(--spa-gold) !important;
+  font-weight: 600;
 }
 
 /* Mobile Menu */
