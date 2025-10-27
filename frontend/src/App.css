@@ -7931,22 +7931,14 @@ html {
     display: none !important;
   }
   
-  /* Fix header border to not overlap logo */
+  /* Fix header border positioning for landscape */
   .header-container {
-    border-bottom: none !important; /* Remove bottom border */
     padding-bottom: 0.6rem !important;
   }
   
-  /* Add border below header that doesn't overlap logo */
   .header-container::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--spa-gold);
-    z-index: 999;
+    bottom: 0 !important;
+    z-index: 999 !important;
   }
   
   /* Hero overlay - STICKY filter that follows scroll */
