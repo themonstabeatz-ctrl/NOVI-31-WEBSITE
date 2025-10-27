@@ -557,7 +557,7 @@ body {
 /* Full-Size Buddha Hero - FIXED */
 .pim-hero {
   position: fixed;
-  top: 100px; /* Exactly below header golden line */
+  top: 0; /* Start from very top, header will overlay */
   left: 0;
   right: 0;
   width: 100vw;
