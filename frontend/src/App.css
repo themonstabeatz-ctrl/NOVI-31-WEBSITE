@@ -754,10 +754,7 @@ body {
 
 .pim-welcome {
   padding: 4rem 2rem;
-  background-image: url('https://customer-assets.emergentagent.com/job_buathaispa/artifacts/3b56d607_Pozadina%20cista%20siva.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: transparent; /* Removed background image to show video */
   position: relative;
   z-index: 50;
   transform-style: preserve-3d;
