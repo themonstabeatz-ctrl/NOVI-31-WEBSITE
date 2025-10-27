@@ -51,7 +51,7 @@ const Massage = () => {
 
   // Parallax effect for content sections
   useEffect(() => {
-    const handleParallaxScroll = throttle(() => {
+    const handleParallaxScroll = () => {
       const scrolled = window.scrollY;
       const massageHeroSection = document.querySelector('.massage-hero-fixed');
       
@@ -68,10 +68,11 @@ const Massage = () => {
           parallaxContent.style.transform = `translateY(${yPos}px)`;
         }
       }
-    }, 16); // Throttle to ~60fps
+    };
 
-    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleParallaxScroll);
+    const throttledHandleParallaxScroll = throttle(handleParallaxScroll, 16);
+    window.addEventListener('scroll', throttledHandleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
   const massageServices = [
