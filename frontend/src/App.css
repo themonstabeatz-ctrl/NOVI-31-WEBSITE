@@ -6916,9 +6916,11 @@ html {
   line-height: 1.8;
   color: #ffffff;
   margin-bottom: 1.2rem;
-  text-align: left;
+  text-align: justify;
   opacity: 0.95;
   font-weight: 300;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .about-intro-highlight {
@@ -6933,23 +6935,23 @@ html {
 }
 
 .about-text-paragraph:nth-child(3) {
-  padding-left: 3rem;
+  padding-left: 0;
 }
 
 .about-text-paragraph:nth-child(4) {
-  padding-left: 1.5rem;
+  padding-left: 0;
 }
 
 .about-text-paragraph:nth-child(5) {
-  padding-left: 4rem;
+  padding-left: 0;
 }
 
 .about-text-paragraph:nth-child(6) {
-  padding-left: 2rem;
+  padding-left: 0;
 }
 
 .about-text-paragraph:nth-child(7) {
-  padding-left: 0.5rem;
+  padding-left: 0;
 }
 
 .about-text-final {
