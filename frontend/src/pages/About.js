@@ -151,31 +151,18 @@ const About = () => {
           </div>
           
           <p className="about-text-paragraph">
-            <span className="about-intro-highlight">Mi smo Bua Luang Thai Spa</span> — mesto gde vreme usporava, a telo i duh pronalaze svoj prirodni ritam.
-            U srcu Beograda negujemo istinsku umetnost tajlandskog dodira, zasnovanu na drevnoj tradiciji isceljenja koja traje više od dva i po milenijuma. Ovde svaka masaža nije samo tretman, već ritual ravnoteže, energije i tišine.
+            <span className="about-intro-highlight">{translate("aboutIntro")}</span> {translate("aboutText1")}
           </p>
           
-          <p className="about-text-paragraph">
-            Naša filozofija počiva na umeću tradicionalne tajlandske masaže, starom više od 2.500 godina. Njen tvorac, dr Jivaka Kumar Bhaccha, legendarni lekar kraljevske porodice i prijatelj Bude, spojio je znanja ajurvede, joge i meditacije u jedinstvenu tehniku koja obnavlja telo, um i energiju.
-          </p>
+          <p className="about-text-paragraph">{translate("aboutText2")}</p>
           
-          <p className="about-text-paragraph">
-            Kroz vekove, ova umetnost negovana je u hramovima širom Tajlanda, naročito u čuvenom Wat Pho hramu u Bangkoku, danas poznatom kao svetsko središte tradicionalne masaže.
-          </p>
+          <p className="about-text-paragraph">{translate("aboutText3")}</p>
           
-          <p className="about-text-paragraph">
-            U našem spa centru sa ponosom čuvamo tu autentičnu tradiciju, uz dašak modernog luksuza i pažnje prema svakom detalju.
-            Naši terapeuti, školovani u renomiranim tajlandskim institucijama, pristupaju svakom tretmanu s potpunom posvećenošću, unoseći u svaki dodir energiju, smirenost i poštovanje prema vašem telu i duhu.
-          </p>
+          <p className="about-text-paragraph">{translate("aboutText4")}</p>
           
-          <p className="about-text-paragraph">
-            Uđite u prostor gde miris eteričnih ulja, toplina dodira i tišina trenutka buđe vaša čula i vraćaju vas sebi.
-            Doživite snagu tradicije, lepotu dodira i harmoniju koja traje vekovima.
-          </p>
+          <p className="about-text-paragraph">{translate("aboutText5")}</p>
           
-          <p className="about-text-paragraph about-text-final">
-            Bua Luang Thai Spa — vaše putovanje ka unutrašnjem miru i savršenoj ravnoteži.
-          </p>
+          <p className="about-text-paragraph about-text-final">{translate("aboutText6")}</p>
         </div>
       </div>
     </div>
