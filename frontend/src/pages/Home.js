@@ -100,21 +100,7 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Fixed Video Background - Stays in place while scrolling */}
-      <div className="fixed-video-background">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="global-fixed-video"
-        >
-          <source src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/4jyw4e6l_Unrecognizable_Osteopath_Setting_Bones_Of_Woman_During_Massage_Session_uhd_2729957.mp4" type="video/mp4" />
-        </video>
-        <div className="global-video-overlay"></div>
-      </div>
-
-      {/* Hero Banner - Now without video, just content */}
+      {/* Hero Banner - No video background */}
       <section className="pim-hero" id="hero-section">
         <div className="pim-hero-overlay" id="buddha-overlay"></div>
         <div className="pim-hero-content">
