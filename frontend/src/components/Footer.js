@@ -7,6 +7,20 @@ const Footer = () => {
 
   return (
     <footer className="footer-container">
+      {/* Video Background for Footer */}
+      <div className="footer-video-background">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="footer-video"
+        >
+          <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/wf37eua8_SVECE.mp4" type="video/mp4" />
+        </video>
+        <div className="footer-video-overlay"></div>
+      </div>
+
       <div className="footer-content">
         {/* Contact Information */}
         <div className="footer-section">
