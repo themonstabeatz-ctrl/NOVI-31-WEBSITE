@@ -229,6 +229,7 @@ export const translations = {
     galleryHeroSubtitle: "Experience the elegance and peace of our spa space through photographs",
     
     // Contact Page
+    contactTitle: "Contact Us",
     contactHeroTitle: "Contact Us",
     contactHeroSubtitle: "We are ready to answer all your questions and book your treatment",
     contactFormTitle: "Send Us a Message",
