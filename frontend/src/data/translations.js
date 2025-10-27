@@ -355,6 +355,7 @@ export const translations = {
     galleryHeroSubtitle: "Ощутите элегантность и покой нашего спа-пространства через фотографии",
     
     // Contact Page
+    contactTitle: "Связаться с нами",
     contactHeroTitle: "Связаться с нами",
     contactHeroSubtitle: "Мы готовы ответить на все ваши вопросы и забронировать вашу процедуру",
     contactFormTitle: "Отправьте нам сообщение",
