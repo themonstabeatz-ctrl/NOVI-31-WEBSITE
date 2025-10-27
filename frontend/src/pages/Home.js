@@ -178,10 +178,10 @@ const Home = () => {
       {/* Quote Section - Normal */}
       <section className="pim-quote">
         <div className="pim-quote-content">
-          <p className="pim-quote-text">Osetite harmoniju tela i duha</p>
-          <p className="pim-quote-author">Bua Luang Thai Spa-Beograd</p>
+          <p className="pim-quote-text">{translate("quoteText")}</p>
+          <p className="pim-quote-author">{translate("quoteAuthor")}</p>
           <Button asChild className="pim-quote-button">
-            <Link to="/contact">Rezervišite Online</Link>
+            <Link to="/contact">{translate("reserveOnline")}</Link>
           </Button>
         </div>
       </section>
