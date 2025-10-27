@@ -8,6 +8,73 @@ const Home = () => {
   const { translate } = useLanguage();
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const videoRef = useRef(null);
+
+  // Seamless video loop - restart before video ends to avoid any gap
+  useEffect(() => {
+    const video = videoRef.current;
+    
+    if (video) {
+      // Force video to play
+      const playVideo = async () => {
+        try {
+          await video.play();
+          console.log('✅ Video playing');
+        } catch (err) {
+          console.log('⚠️ Video autoplay prevented, retrying...', err);
+          setTimeout(playVideo, 100);
+        }
+      };
+
+      // Seamless loop - restart 200ms before end for zero gap
+      const handleTimeUpdate = () => {
+        if (video.duration && !isNaN(video.duration) && video.currentTime > 0) {
+          const timeRemaining = video.duration - video.currentTime;
+          
+          // Restart 200ms before end = seamless loop
+          if (timeRemaining <= 0.2 && timeRemaining > 0) {
+            video.currentTime = 0;
+            console.log('🔄 Seamless loop restart');
+          }
+        }
+      };
+
+      // Start playing when metadata loaded
+      const handleLoadedMetadata = () => {
+        console.log('📹 Video loaded - Duration:', video.duration.toFixed(2), 'seconds');
+        playVideo();
+      };
+
+      // Error handling
+      const handleError = (e) => {
+        console.error('❌ Video error:', e);
+        setTimeout(() => {
+          video.load();
+          playVideo();
+        }, 1000);
+      };
+
+      // Attach event listeners
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      video.addEventListener('ended', playVideo);
+      video.addEventListener('pause', playVideo);
+      video.addEventListener('timeupdate', handleTimeUpdate);
+      video.addEventListener('error', handleError);
+      
+      // Start immediately if already loaded
+      if (video.readyState >= 2) {
+        playVideo();
+      }
+
+      return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        video.removeEventListener('ended', playVideo);
+        video.removeEventListener('pause', playVideo);
+        video.removeEventListener('timeupdate', handleTimeUpdate);
+        video.removeEventListener('error', handleError);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const heroLogo = document.getElementById('hero-logo');
