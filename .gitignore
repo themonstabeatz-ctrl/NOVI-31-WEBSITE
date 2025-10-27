@@ -115,3 +115,7 @@ frontend/build/Woman_Drinking_Tea_In_Spa_fhd_2012921.mp4
 # Environment files
 *.env
 *.env.*
+-e 
+# Environment files
+*.env
+*.env.*
