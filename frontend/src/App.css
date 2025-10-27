@@ -1105,7 +1105,7 @@ body {
 .pim-gift {
   text-align: center;
   padding: 4rem 2rem;
-  background: #232222; /* Dark gray background for entire section */
+  background: transparent; /* Removed dark background to show video */
   position: relative;
 }
 
