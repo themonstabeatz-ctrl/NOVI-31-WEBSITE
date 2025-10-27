@@ -15,35 +15,56 @@ const Home = () => {
     const video = videoRef.current;
     
     if (video) {
+      let loopTimeout = null;
+
       // Force video to play
-      const playVideo = () => {
-        video.play().catch(err => {
+      const playVideo = async () => {
+        try {
+          await video.play();
+          console.log('Video playing');
+        } catch (err) {
           console.log('Video autoplay prevented:', err);
-        });
+          // Retry after a short delay
+          setTimeout(playVideo, 100);
+        }
       };
 
-      // Seamless loop - restart video slightly before it ends
+      // Seamless loop - restart video before it ends to avoid gap
       const handleTimeUpdate = () => {
-        // Only apply seamless loop after video metadata is loaded
-        if (video.duration && !isNaN(video.duration)) {
-          // Restart video 0.3 seconds before it ends for seamless loop
-          if (video.duration - video.currentTime <= 0.3) {
+        if (video.duration && !isNaN(video.duration) && video.currentTime > 0) {
+          // Calculate time remaining
+          const timeRemaining = video.duration - video.currentTime;
+          
+          // Restart 200ms before video ends for truly seamless loop
+          if (timeRemaining <= 0.2 && timeRemaining > 0) {
             video.currentTime = 0;
+            console.log('Seamless loop restart');
           }
         }
       };
 
       // Wait for video metadata to load
       const handleLoadedMetadata = () => {
-        console.log('Video loaded, duration:', video.duration);
+        console.log('Video metadata loaded, duration:', video.duration, 'seconds');
         playVideo();
       };
 
-      // Ensure video loops continuously
+      // Handle video errors
+      const handleError = (e) => {
+        console.error('Video error:', e);
+        // Try to reload and play again
+        setTimeout(() => {
+          video.load();
+          playVideo();
+        }, 1000);
+      };
+
+      // Attach all event listeners
       video.addEventListener('loadedmetadata', handleLoadedMetadata);
       video.addEventListener('ended', playVideo);
       video.addEventListener('pause', playVideo);
       video.addEventListener('timeupdate', handleTimeUpdate);
+      video.addEventListener('error', handleError);
       
       // Try to start playing immediately if already loaded
       if (video.readyState >= 2) {
@@ -51,10 +72,12 @@ const Home = () => {
       }
 
       return () => {
+        if (loopTimeout) clearTimeout(loopTimeout);
         video.removeEventListener('loadedmetadata', handleLoadedMetadata);
         video.removeEventListener('ended', playVideo);
         video.removeEventListener('pause', playVideo);
         video.removeEventListener('timeupdate', handleTimeUpdate);
+        video.removeEventListener('error', handleError);
       };
     }
   }, []);
