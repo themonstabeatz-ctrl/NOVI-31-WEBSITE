@@ -7445,6 +7445,102 @@ html {
   }
 }
 
+/* Landscape Mode Optimizations for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Hero overlay - extend to first golden line and follow scroll */
+  .pim-hero-overlay {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 70%, transparent 100%);
+    z-index: 1;
+  }
+  
+  /* Reduce hero logo size for mobile landscape */
+  .hero-logo-animated,
+  .pim-hero-content img {
+    max-width: 180px !important;
+    width: 180px !important;
+  }
+  
+  .pim-hero-content {
+    width: 35%;
+    right: 3%;
+  }
+  
+  /* Make mobile menu scrollable in landscape */
+  .mobile-nav {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem 0.75rem;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .mobile-nav-link {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    margin: 0.3rem 0;
+  }
+  
+  /* Fix header height in landscape */
+  .header-container {
+    padding: 0.5rem 1rem;
+    height: 60px;
+  }
+  
+  /* Ensure logo stays in top-left corner */
+  .nav-logo-container {
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .logo {
+    max-width: 50px !important;
+  }
+  
+  /* Hide any floating logos in mobile menu */
+  .mobile-nav img:not(.language-icon) {
+    display: none !important;
+  }
+  
+  /* Language button smaller in landscape */
+  .mobile-nav .language-button {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Additional landscape fix for very wide screens in landscape */
+@media (max-height: 400px) and (orientation: landscape) {
+  .mobile-nav {
+    max-height: calc(100vh - 60px);
+    top: 50px;
+  }
+  
+  .mobile-nav-link {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+  }
+  
+  .header-container {
+    height: 50px;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .hero-logo-animated,
+  .pim-hero-content img {
+    max-width: 150px !important;
+    width: 150px !important;
+  }
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .parallax-text-row {
