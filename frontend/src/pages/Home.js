@@ -4,6 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { throttle } from "../utils/debounce";
+import { useLazyVideo } from "../hooks/useLazyVideo";
 
 const Home = () => {
   const { translate } = useLanguage();
