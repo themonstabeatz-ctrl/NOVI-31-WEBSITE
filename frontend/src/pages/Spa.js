@@ -70,8 +70,9 @@ const Spa = () => {
       }
     };
 
-    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleParallaxScroll);
+    const throttledHandleParallaxScroll = throttle(handleParallaxScroll, 16);
+    window.addEventListener('scroll', throttledHandleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
   const spaServices = [
