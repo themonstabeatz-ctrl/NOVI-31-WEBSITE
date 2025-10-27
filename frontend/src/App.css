@@ -309,6 +309,60 @@ html {
   color: var(--spa-dark);
 }
 
+/* Language Dropdown Styling - Dark Gold Theme */
+.language-dropdown-custom {
+  min-width: 180px;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(40, 32, 25, 0.98));
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 2px solid var(--spa-gold);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 10px 40px rgba(218, 165, 32, 0.3), 
+              0 0 20px rgba(218, 165, 32, 0.15),
+              inset 0 1px 0 rgba(218, 165, 32, 0.2);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.language-dropdown-custom [role="menuitem"],
+.language-dropdown-custom > div {
+  color: var(--spa-cream);
+  padding: 12px 16px;
+  margin: 4px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.language-dropdown-custom [role="menuitem"]:hover,
+.language-dropdown-custom > div:hover {
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.15), rgba(218, 165, 32, 0.25));
+  border: 1px solid var(--spa-gold);
+  color: var(--spa-gold);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(218, 165, 32, 0.2);
+}
+
+.language-dropdown-custom [role="menuitem"][data-highlighted],
+.language-dropdown-custom > div[data-highlighted] {
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.2), rgba(218, 165, 32, 0.3));
+  border: 1px solid var(--spa-gold);
+  color: var(--spa-gold);
+}
+
+.language-dropdown-custom .bg-accent {
+  background: linear-gradient(135deg, var(--spa-gold), rgba(218, 165, 32, 0.8)) !important;
+  color: var(--spa-dark) !important;
+  font-weight: 600;
+  border: 1px solid var(--spa-gold);
+  box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
 /* Mobile Menu */
 .mobile-menu-button {
   display: none;
