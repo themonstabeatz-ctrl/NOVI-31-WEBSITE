@@ -7391,6 +7391,53 @@ html {
     font-size: 0.95rem;
     padding: 0.9rem;
   }
+  
+  /* Massage page mobile improvements */
+  .massage-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .massage-name {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+  
+  .massage-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* About page mobile improvements */
+  .about-text-paragraph {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-intro-highlight {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Spa page mobile improvements */
+  .spa-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .spa-name {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+  
+  .spa-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .benefits-list {
+    font-size: 0.9rem;
+  }
 }
   
   .parallax-text-container {
