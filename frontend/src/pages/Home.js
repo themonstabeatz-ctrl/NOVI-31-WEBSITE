@@ -18,6 +18,31 @@ const Home = () => {
     }
   }, []);
 
+  // Hide video background when scrolling past Hero section
+  useEffect(() => {
+    const handleScroll = () => {
+      const videoBackground = document.querySelector('.fixed-video-background');
+      const heroSection = document.querySelector('.pim-hero');
+      
+      if (videoBackground && heroSection) {
+        const heroBottom = heroSection.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        // Hide video when scrolled past hero section
+        if (scrollPosition > heroBottom - 100) {
+          videoBackground.style.opacity = '0';
+          videoBackground.style.visibility = 'hidden';
+        } else {
+          videoBackground.style.opacity = '1';
+          videoBackground.style.visibility = 'visible';
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const heroLogo = document.getElementById('hero-logo');
     
