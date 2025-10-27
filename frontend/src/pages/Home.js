@@ -167,7 +167,23 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Hero Banner - No video background */}
+      {/* Fixed Video Background - Hero Section with seamless loop */}
+      <div className="fixed-video-background">
+        <video 
+          ref={videoRef}
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          preload="auto"
+          className="global-fixed-video"
+        >
+          <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/vuhngjob_POCETNA.mp4" type="video/mp4" />
+        </video>
+        <div className="global-video-overlay"></div>
+      </div>
+
+      {/* Hero Banner with video background */}
       <section className="pim-hero" id="hero-section">
         <div className="pim-hero-overlay" id="buddha-overlay"></div>
         <div className="pim-hero-content">
