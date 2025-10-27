@@ -187,11 +187,9 @@ const Spa = () => {
               className="hero-logo-image"
             />
           </div>
-          <h1 className="spa-hero-title">SPA Tretmani sa Bua Luang</h1>
+          <h1 className="spa-hero-title">{translate("spaHeroTitle")}</h1>
           <div className="spa-hero-divider"></div>
-          <p className="spa-hero-subtitle">
-            Luksuzni spa tretmani koji spajaju tradicionalnu tajlandsku mudrost sa modernim tehnikama
-          </p>
+          <p className="spa-hero-subtitle">{translate("spaHeroSubtitle")}</p>
         </div>
       </section>
 
