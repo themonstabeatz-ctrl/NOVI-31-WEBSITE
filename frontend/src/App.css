@@ -503,7 +503,7 @@ body {
 
 .fixed-video-background {
   position: fixed;
-  top: 0;
+  top: 0; /* Start from very top */
   left: 0;
   width: 100vw;
   height: 100vh;
