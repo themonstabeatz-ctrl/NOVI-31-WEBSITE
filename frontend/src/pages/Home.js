@@ -143,24 +143,36 @@ const Home = () => {
         {/* Transparent footer bar below Buddha */}
         <div className="transparent-footer-bar"></div>
 
-        {/* Welcome Section - Normal */}
-        <section className="pim-welcome">
-        <div className="pim-welcome-container">
-          <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
-          <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
-          <div className="pim-welcome-content">
-            <div className="pim-welcome-text">
-              <p>
-                Bua Luang Thai Spa je posvećen spajanju tradicionalnih tajlandskih tehnika masaže sa 
-                savremenim wellness praksama. Naš tim je posvećen pružanju pomoći u postizanju opuštanja, 
-                ublažavanju napetosti mišića i poboljšanju opšteg blagostanja. Zalažemo se za holistički 
-                pristup lečenju koji integriše um, telo i duh.
-              </p>
-              <p>Pronađite nas na adresi Abebe Bikile 10A, Zemun, Beograd 11080, Srbija.</p>
+        {/* Welcome Section - Dobro došli */}
+        <section className="pim-welcome" id="welcome-section">
+          <div className="pim-welcome-video-background">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="pim-welcome-video"
+            >
+              <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/wf37eua8_SVECE.mp4" type="video/mp4" />
+            </video>
+            <div className="pim-welcome-video-overlay"></div>
+          </div>
+          <div className="pim-welcome-container">
+            <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
+            <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
+            <div className="pim-welcome-content">
+              <div className="pim-welcome-text">
+                <p>
+                  Bua Luang Thai Spa je posvećen spajanju tradicionalnih tajlandskih tehnika masaže sa 
+                  savremenim wellness praksama. Naš tim je posvećen pružanju pomoći u postizanju opuštanja, 
+                  ublažavanju napetosti mišića i poboljšanju opšteg blagostanja. Zalažemo se za holistički 
+                  pristup lečenju koji integriše um, telo i duh.
+                </p>
+                <p>Pronađite nas na adresi Abebe Bikile 10A, Zemun, Beograd 11080, Srbija.</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Quote Section - Normal */}
       <section className="pim-quote">
