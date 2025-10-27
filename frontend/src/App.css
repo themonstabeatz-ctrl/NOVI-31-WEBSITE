@@ -8054,12 +8054,8 @@ html {
     display: none !important;
   }
   
-  .header-container {
-    border-bottom: none !important;
-  }
-  
   .header-container::after {
-    bottom: -2px;
+    bottom: 0 !important;
   }
   
   .mobile-nav {
