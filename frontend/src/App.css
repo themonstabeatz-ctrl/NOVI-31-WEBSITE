@@ -7360,6 +7360,39 @@ html {
     padding: 0.5rem 0.8rem;
   }
   
+  /* Enhanced mobile menu for small screens */
+  .mobile-nav {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .mobile-nav-link {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    margin: 0.4rem 0;
+  }
+  
+  .mobile-nav-link:hover,
+  .mobile-nav-link-active {
+    padding-left: 1.5rem;
+  }
+  
+  /* Better header spacing on small screens */
+  .header-container {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logo {
+    max-width: 60px;
+  }
+  
+  /* Language button in mobile menu */
+  .mobile-nav .language-button {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+}
+  
   .parallax-text-container {
     gap: 1rem;
   }
