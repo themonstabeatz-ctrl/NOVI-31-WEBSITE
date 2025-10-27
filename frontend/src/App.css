@@ -450,6 +450,23 @@ html {
   transform: translateX(4px);
 }
 
+/* Mobile menu language selector */
+.mobile-nav .language-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--spa-gold);
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.mobile-nav .language-dropdown-custom {
+  width: calc(100% - 2rem);
+  left: 1rem;
+  right: 1rem;
+}
+
 /* Page Headers */
 .page-header {
   display: flex;
