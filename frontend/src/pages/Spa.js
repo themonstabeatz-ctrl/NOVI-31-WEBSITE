@@ -82,7 +82,8 @@ const Spa = () => {
       price: "6,500 RSD",
       description: translate("facialTreatmentDesc"),
       benefits: [translate("facialBenefit1"), translate("facialBenefit2"), translate("facialBenefit3")],
-      category: translate("categoryFace"),
+      category: "face",
+      categoryDisplay: translate("categoryFace"),
       popular: true
     },
     {
@@ -91,7 +92,8 @@ const Spa = () => {
       price: "7,000 RSD",
       description: translate("bodyWrapDesc"),
       benefits: [translate("bodyWrapBenefit1"), translate("bodyWrapBenefit2"), translate("bodyWrapBenefit3")],
-      category: translate("categoryBody"),
+      category: "body",
+      categoryDisplay: translate("categoryBody"),
       popular: false
     },
     {
@@ -100,7 +102,8 @@ const Spa = () => {
       price: "12,000 RSD",
       description: translate("goldenFacialDesc"),
       benefits: [translate("goldenBenefit1"), translate("goldenBenefit2"), translate("goldenBenefit3")],
-      category: translate("categoryPremium"),
+      category: "premium",
+      categoryDisplay: translate("categoryPremium"),
       popular: true
     },
     {
@@ -109,7 +112,8 @@ const Spa = () => {
       price: "5,500 RSD",
       description: translate("aromatherapyDesc"),
       benefits: [translate("aromaBenefit1"), translate("aromaBenefit2"), translate("aromaBenefit3")],
-      category: translate("categoryRelaxation"),
+      category: "relaxation",
+      categoryDisplay: translate("categoryRelaxation"),
       popular: false
     },
     {
@@ -118,7 +122,8 @@ const Spa = () => {
       price: "2,500 RSD",
       description: translate("steamBathDesc"),
       benefits: [translate("steamBenefit1"), translate("steamBenefit2"), translate("steamBenefit3")],
-      category: translate("categoryBody"),
+      category: "body",
+      categoryDisplay: translate("categoryBody"),
       popular: false
     },
     {
@@ -127,16 +132,17 @@ const Spa = () => {
       price: "15,000 RSD",
       description: translate("royalSpaDesc"),
       benefits: [translate("royalSpaBenefit1"), translate("royalSpaBenefit2"), translate("royalSpaBenefit3")],
-      category: translate("categoryPremium"),
+      category: "premium",
+      categoryDisplay: translate("categoryPremium"),
       popular: true
     }
   ];
 
   const getCategoryIcon = (category) => {
     switch(category) {
-      case "Premium":
+      case "premium":
         return <Sparkles className="w-4 h-4 text-amber-400" />;
-      case "Relaksacija":
+      case "relaxation":
         return <Leaf className="w-4 h-4 text-green-400" />;
       default:
         return <Clock className="w-4 h-4 text-blue-400" />;
@@ -145,11 +151,11 @@ const Spa = () => {
 
   const getCategoryColor = (category) => {
     switch(category) {
-      case "Premium":
+      case "premium":
         return "bg-gradient-to-r from-amber-500 to-yellow-600";
-      case "Relaksacija":
+      case "relaxation":
         return "bg-gradient-to-r from-green-500 to-teal-600";
-      case "Lice":
+      case "face":
         return "bg-gradient-to-r from-pink-500 to-rose-600";
       default:
         return "bg-gradient-to-r from-blue-500 to-indigo-600";
