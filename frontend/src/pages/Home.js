@@ -8,6 +8,15 @@ const Home = () => {
   const { translate } = useLanguage();
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const videoRef = useRef(null);
+
+  // Ensure video plays
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(err => console.log('Video autoplay:', err));
+    }
+  }, []);
 
   useEffect(() => {
     const heroLogo = document.getElementById('hero-logo');
