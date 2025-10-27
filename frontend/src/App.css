@@ -7446,7 +7446,16 @@ html {
 }
 
 /* Landscape Mode Optimizations for Mobile */
-@media (max-height: 500px) and (orientation: landscape) {
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+  /* Force mobile menu in landscape mode */
+  .mobile-menu-button {
+    display: block !important;
+  }
+  
+  .nav-menu {
+    display: none !important;
+  }
+  
   /* Hero overlay - extend to first golden line and follow scroll */
   .pim-hero-overlay {
     position: fixed;
@@ -7517,7 +7526,15 @@ html {
 }
 
 /* Additional landscape fix for very wide screens in landscape */
-@media (max-height: 400px) and (orientation: landscape) {
+@media (max-height: 400px) and (orientation: landscape) and (max-width: 900px) {
+  .mobile-menu-button {
+    display: block !important;
+  }
+  
+  .nav-menu {
+    display: none !important;
+  }
+  
   .mobile-nav {
     max-height: calc(100vh - 60px);
     top: 50px;
