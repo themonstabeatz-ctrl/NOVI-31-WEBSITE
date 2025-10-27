@@ -18,7 +18,7 @@ const Massage = () => {
 
   // Logo transformation and parallax effects on scroll
   useEffect(() => {
-    const handleScroll = throttle(() => {
+    const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const massageHeroSection = document.querySelector('.massage-hero-fixed');
       const massageHeroLogo = document.querySelector('.massage-hero-logo');
@@ -42,10 +42,11 @@ const Massage = () => {
         massageHeroLogo.style.transform = 'scale(1)';
         massageHeroLogo.style.filter = 'blur(0px)';
       }
-    }, 16); // Throttle to ~60fps
+    };
     
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const throttledHandleScroll = throttle(handleScroll, 16);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
   // Parallax effect for content sections
