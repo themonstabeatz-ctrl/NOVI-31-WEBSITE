@@ -250,34 +250,30 @@ const Spa = () => {
       {/* Spa Packages Section */}
       <section className="packages-section">
         <div className="packages-header">
-          <h2 className="packages-title">Spa Paketi za Posebne Prilike</h2>
-          <p className="packages-subtitle">Savršeni paketi za proslave, godisnjice i posebne trenutke</p>
+          <h2 className="packages-title">{translate("spaPackagesTitle")}</h2>
+          <p className="packages-subtitle">{translate("spaPackagesSubtitle")}</p>
         </div>
         
         <div className="packages-grid">
           <Card className="package-card">
             <CardHeader>
-              <CardTitle className="package-name">Romantični paket za parove</CardTitle>
-              <div className="package-price">18,000 RSD za dvoje</div>
+              <CardTitle className="package-name">{translate("romanticPackage")}</CardTitle>
+              <div className="package-price">{translate("romanticPackagePrice")}</div>
             </CardHeader>
             <CardContent>
-              <p className="package-description">
-                Partnerska masaža + tretmani lica + šampanjac i voće
-              </p>
-              <div className="package-duration">3 sata</div>
+              <p className="package-description">{translate("romanticPackageDesc")}</p>
+              <div className="package-duration">{translate("romanticPackageDuration")}</div>
             </CardContent>
           </Card>
           
           <Card className="package-card">
             <CardHeader>
-              <CardTitle className="package-name">Devojacka veče</CardTitle>
-              <div className="package-price">12,000 RSD po osobi</div>
+              <CardTitle className="package-name">{translate("bridalPackage")}</CardTitle>
+              <div className="package-price">{translate("bridalPackagePrice")}</div>
             </CardHeader>
             <CardContent>
-              <p className="package-description">
-                Grupni spa dan sa masažama, tretmanima lica i kokteilima
-              </p>
-              <div className="package-duration">4 sata</div>
+              <p className="package-description">{translate("bridalPackageDesc")}</p>
+              <div className="package-duration">{translate("bridalPackageDuration")}</div>
             </CardContent>
           </Card>
         </div>
@@ -286,8 +282,8 @@ const Spa = () => {
       {/* Call to Action */}
       <section className="cta-section">
         <div className="cta-content">
-          <h2 className="cta-title">Spremni za luksuzno iskustvo?</h2>
-          <p className="cta-subtitle">Kontaktirajte nas i rezervišite vaš spa tretman</p>
+          <h2 className="cta-title">{translate("ctaTitle")}</h2>
+          <p className="cta-subtitle">{translate("ctaSubtitle")}</p>
           <div className="cta-buttons">
             <Button asChild size="lg" className="cta-button-primary">
               <Link to="/contact">Rezervišite sada</Link>
