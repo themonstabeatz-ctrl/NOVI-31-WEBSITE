@@ -134,11 +134,9 @@ const About = () => {
               className="hero-logo-image"
             />
           </div>
-          <h1 className="about-hero-title">O Nama</h1>
+          <h1 className="about-hero-title">{translate("aboutHeroTitle")}</h1>
           <div className="about-hero-divider"></div>
-          <p className="about-hero-subtitle">
-            Priča o strasti, tradiciji i transformaciji kroz autentični tajlandski wellness
-          </p>
+          <p className="about-hero-subtitle">{translate("aboutHeroSubtitle")}</p>
         </div>
       </section>
 
