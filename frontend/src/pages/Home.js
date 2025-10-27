@@ -8,6 +8,33 @@ const Home = () => {
   const { translate } = useLanguage();
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
+  const videoRef = useRef(null);
+
+  // Ensure video plays continuously without stopping
+  useEffect(() => {
+    const video = videoRef.current;
+    
+    if (video) {
+      // Force video to play
+      const playVideo = () => {
+        video.play().catch(err => {
+          console.log('Video autoplay prevented:', err);
+        });
+      };
+
+      // Ensure video loops continuously
+      video.addEventListener('ended', playVideo);
+      video.addEventListener('pause', playVideo);
+      
+      // Start playing immediately
+      playVideo();
+
+      return () => {
+        video.removeEventListener('ended', playVideo);
+        video.removeEventListener('pause', playVideo);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const heroLogo = document.getElementById('hero-logo');
