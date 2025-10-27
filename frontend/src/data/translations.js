@@ -481,6 +481,7 @@ export const translations = {
     galleryHeroSubtitle: "สัมผัสความหรูหราและความสงบของพื้นที่สปาของเราผ่านภาพถ่าย",
     
     // Contact Page
+    contactTitle: "ติดต่อเรา",
     contactHeroTitle: "ติดต่อเรา",
     contactHeroSubtitle: "เราพร้อมตอบคำถามทั้งหมดของคุณและจองทรีตเมนต์ของคุณ",
     contactFormTitle: "ส่งข้อความถึงเรา",
