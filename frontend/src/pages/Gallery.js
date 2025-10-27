@@ -118,11 +118,9 @@ const Gallery = () => {
               className="hero-logo-image"
             />
           </div>
-          <h1 className="gallery-hero-title">GALERIJA</h1>
+          <h1 className="gallery-hero-title">{translate("galleryHeroTitle")}</h1>
           <div className="gallery-hero-divider"></div>
-          <p className="gallery-hero-subtitle">
-            Otkrijte lepotu naših prostora i tretmana kroz vizuelnu priču
-          </p>
+          <p className="gallery-hero-subtitle">{translate("galleryHeroSubtitle")}</p>
         </div>
       </section>
 
