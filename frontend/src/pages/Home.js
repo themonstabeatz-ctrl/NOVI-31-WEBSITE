@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
+import { throttle } from "../utils/debounce";
 
 const Home = () => {
   const { translate } = useLanguage();
@@ -21,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     const heroLogo = document.getElementById('hero-logo');
     
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       const scrollPosition = window.scrollY;
       const heroSection = document.getElementById('hero-section');
       
