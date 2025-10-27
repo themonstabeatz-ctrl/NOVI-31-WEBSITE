@@ -130,10 +130,12 @@ const Home = () => {
       {/* Fixed Video Background - Hero Section */}
       <div className="fixed-video-background">
         <video 
+          ref={videoRef}
           autoPlay 
           loop 
           muted 
           playsInline
+          preload="auto"
           className="global-fixed-video"
         >
           <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/54jdyoxu_POCETNA.mp4" type="video/mp4" />
