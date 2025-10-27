@@ -1,94 +1,96 @@
 <analysis>
-The AI engineer's work in this trajectory was highly iterative, primarily focusing on extensive UI/UX refinements across the Bua Luang Thai Spa website. Key areas of work included meticulous CSS adjustments for element positioning, spacing, and the introduction of new visual components. Significant effort was dedicated to standardizing golden lines across multiple sections, integrating and refining bamboo imagery in the Welcome section, and rebuilding the About Us page with a new parallax text section. The Header logo received detailed positioning and sizing adjustments, and a new Gallery page was introduced, culminating in a complex, dynamic image grid design. The process involved frequent CSS modifications in , iterative user feedback loops, and calls to a  to resolve persistent visual discrepancies, particularly with element overlapping and positioning. The trajectory concludes with the successful implementation of the dynamic gallery grid, awaiting user review.
+The AI engineer's work in this trajectory was extensive and highly iterative, focusing on UI/UX enhancements and technical optimizations for the Bua Luang Thai Spa website. Initially, the engineer refined the dynamic image gallery, implementing frosted glass effects and dynamic image properties as requested. A significant challenge arose during an attempt to implement a desktop-view-on-all-devices feature, leading to numerous CSS syntax errors and a prolonged troubleshooting process involving git rollbacks and agent assistance to restore the codebase to a working state. Following recovery, the engineer systematically re-implemented the gallery's visual effects, managed video content across multiple hero sections (Home, Massage, SPA, About, Welcome), ensuring seamless looping and correct positioning, and refined the language selection menu with dark-gold aesthetics. The trajectory concludes with the initiation of a new set of optimization tasks, including a React downgrade, language system overhaul with professional translations and local storage, scroll debouncing, and video lazy loading. The debouncing work for Home and Massage pages is currently in progress.
 </analysis>
 
 <product_requirements>
-The Bua Luang Thai Spa website requires a multi-language interface with a dark-gold aesthetic, offering services, an About Us page, and contact details. Key design features include parallax effects, dynamic hero images, scroll-triggered logo animations, sticky navigation, and custom fonts.
+The Bua Luang Thai Spa website requires a multi-language interface with a dark-gold aesthetic, offering services, an About Us page, and contact details, featuring parallax effects, dynamic hero images, scroll-triggered logo animations, sticky navigation, and custom fonts.
 
 **Implemented features & current state:**
-*   **Hero Sections**: Fixed video backgrounds with Bua Luang logo, golden titles, white subtitles, and parallax scrolling for content on Home, Massage, SPA, and About pages. Videos embedded for Spa () and About ().
-*   **Content Alignment**: Logos, titles, and subtitles (gold and white text) are now consistently positioned across Home, Massage, SPA, and About pages, with subtle fade-in animations for subtitles.
-*   **Scroll-to-Top**: Added to all navigation links, ensuring users return to the top of any page upon clicking a menu item.
-*   **About Us Page**: Completely rebuilt multiple times. Current state includes a fixed video hero, a black parallax section with provided text, golden lines, a floating logo, and a mandala background.
-*   **Footer**: Standardized across all pages with a dark background, two-column contact/social section, mandala pattern, copyright text, and three golden lines (top, middle, bottom). Contact section height reduced, spacing above footer increased.
-*   **Golden Lines**: Added to Voucher, Philosophy, Welcome sections, and at the very top of the page (above header), matching the 2px thickness.
-*   **Welcome Section Imagery**: Left and right bamboo images added, full-height, spanning screen edges, and positioned near text.
-*   **Text Sizing**: Home page white text and footer white text increased. Main titles and subtitles on Massage, SPA, About pages resized. Subtitles on Massage, SPA, About pages forced to single line.
-*   **Header Menu**: GALERIJA menu item added. Header logo resized, precisely positioned to the far left, vertically centered between golden lines, and fixed to avoid overlapping navigation.
-*   **Gallery Page**: A new page with a hero section (image background, consistent logo/title/subtitle with SPA) and a dynamic image grid with non-rounded, varied, tilted, overlapping images with hover effects.
-*   **Overall**: Scroll performance optimized.
+*   **Hero Sections**: Fixed video backgrounds with Bua Luang logo, golden titles, white subtitles for Home, Massage, SPA, and About pages. Videos , , ,  have been integrated and configured for seamless looping. The Home page hero video now covers the entire page background, while the Welcome section received a  video background.
+*   **Gallery Page**: Features a dynamic image grid with non-rounded, varied, tilted, overlapping images and hover effects. The section's background has a frosted glass effect () allowing the hero section's mandala image () to subtly show through.
+*   **Language Menu**: The main menu now includes a dropdown for Srpski, English, Русский, ไทย, styled with a dark-gold theme, golden border, blur effects, and hover states.
+*   **Text Alignment**: The About Us page's Mi smo Bua Luang Thai Spa text section has been reformatted for left-aligned, justified paragraphs without scattered indentations.
+*   **Overall**: Technical integrity has been verified, and the site currently functions without critical bugs or visual errors, maintaining its dark-gold aesthetic.
 </product_requirements>
 
 <key_technical_concepts>
--   **React.js**: Frontend framework for component-based UI.
--   **CSS3**: Extensive use of flexbox,  (, , ), , , , , , , ,  (, ),  (),  (, , , ) for precise visual control and dynamic effects.
--   **JavaScript Hooks**: , ,  for managing scroll effects and dynamic UI.
--   **HTML5 Video**: Embedded for hero sections with , , , .
--   **Nginx**: Reverse proxy for frontend.
+-   **React.js**: Frontend framework, downgraded to v18.
+-   **CSS3**: Extensive use of , , , , , ,  (, ),  for precise styling and dynamic effects.
+-   **JavaScript Hooks**: , ,  for managing video playback, scroll effects, and UI state.
+-   **HTML5 Video**: Embedded with , , ,  for hero sections and continuous playback.
+-   **Throttling**: Implemented using  utility for optimizing scroll event listeners.
 </key_technical_concepts>
 
 <code_architecture>
 
 
 -   
-    -   **Summary**: Global styles, extensively modified for all UI/UX requests across all pages.
-    -   **Changes Made**: Countless CSS rules for:
-        -   **Footer**:  of  ( to ),  of  ( to ),  on  (2px solid gold),  on .  for footer contact/social text (e.g.,  to ).
-        -   **Golden Lines**: Added ,  to , , .  / (converted from pseudo-elements for golden lines to direct borders). Added  to  for top-of-page line.
-        -   **Hero Sections (Massage, SPA, About, Gallery)**:  for titles ( to ),  for subtitles ( to ),  for subtitles. Logo animation ().
-        -   **Welcome Section ()**: Integrated bamboo images using  (multiple backgrounds), , , . Adjusted  and  iteratively. Reverted pseudo-elements for golden lines to direct / on  to use pseudo-elements for bamboo. , , , and staggered  for paragraphs within . CSS for  (font-size, color, weight, shadow).
-        -   **KUPITE SADA Button ()**: , , .
-        -   **About Page Parallax**: Removed previous  and  background styles. Added CSS for  (black background, , , , , ), golden lines,  (fixed, floating animation , shadow),  (margin, text-align, staggered padding for paragraphs).  for mandala (), , ,  for dark overlay.
-        -   **Header Nav Logo**:   ( to ),  ( to ), , , , , .
-        -   **Gallery Page**:  , , , .  and  , ,  matching SPA. CSS for dynamic image grid with varied sizes, rotations, and overlap (, , etc.).
+    -   **Summary**: Global styles. Heavily modified for responsive design attempts, then restored, and later updated for specific visual effects.
+    -   **Changes Made**:
+        -   Gallery styling: , varied // () for , increased negative  for overlap. Added  and  to  for frosted glass effect.
+        -   Language Dropdown: Custom CSS for  and  to apply dark-gold theme, gradients, golden borders, blur, and hover effects.
+        -   Hero Video Positioning: Adjusted  of  and  to align with the header.
+        -   Section Backgrounds: Modified  properties of , ,  to be transparent or removed backgrounds for full-page video visibility, then restored specific backgrounds as requested.
+        -   About Page Text: Removed staggered  from  and added .
+-   : No direct changes in this trajectory.
+-   : No direct changes in this trajectory.
+-   : Styling adjusted via .
 -   
-    -   **Summary**: Root component for routing and global context.
-    -   **Changes Made**: No direct functional changes; orchestrates  and pages.
+    -   **Summary**: Renders header and navigation, including the language selector.
+    -   **Changes Made**: Modified to limit language options to Serbian, English, Russian, Thai. Added a custom class () to the  component from  for custom styling. Updated GALERIJA navigation link to use .
 -   
-    -   **Summary**: Main structural wrapper for  and .
-    -   **Changes Made**: No explicit changes in this trajectory, but implicitly adapts to new  and  page structures.
--   
-    -   **Summary**: Renders the application's footer.
-    -   **Changes Made**: Styling adjusted via  (see  summary). Its conditional rendering in  was refined in previous trajectories to always be present.
--   
-    -   **Summary**: Renders the application's header and navigation.
-    -   **Changes Made**: Added new navigation link for GALERIJA between SPA and O nama. Styling adjusted via  (see  summary for logo and overall header).
--   
-    -   **Summary**: Main landing page with custom content and dynamic effects.
-    -   **Changes Made**: Styling adjusted via  for , ,  golden lines,  for white text.
--   
-    -   **Summary**: Page for contact information and form.
-    -   **Changes Made**: No direct changes in this trajectory, but footer consistency was maintained.
+    -   **Summary**: Main landing page.
+    -   **Changes Made**: Integrated  as a full-page, seamless looping background video. Removed and re-added video numerous times. Added  as a video background for the Welcome section. Implemented  and  for seamless video looping and error handling, but later simplified. Removed scroll-based video hiding. Implemented throttling for scroll event listeners using .
 -   
     -   **Summary**: Page detailing massage services.
-    -   **Changes Made**: Hero section title/subtitle font sizes adjusted in .
+    -   **Changes Made**: Replaced the hero video with , configured for continuous looping. Implemented throttling for scroll event listeners.
 -   
     -   **Summary**: Page detailing spa services.
-    -   **Changes Made**: Hero section title/subtitle font sizes adjusted in . Used as a reference for styling the Gallery page.
+    -   **Changes Made**: Replaced the hero video with , configured for continuous looping.
 -   
     -   **Summary**: Page with About Us information.
-    -   **Changes Made**:
-        -   Completely refactored multiple times. Initial content (3D cards) removed.
-        -   Rebuilt to contain a  with logo, title, divider, subtitle. Video source set to .
-        -   Added a  section with specified long text (first/last paragraph golden, rest white), including a floating logo.
-        -   HTML updated to wrap Mi smo Bua Luang Thai Spa in a  for highlighting.
+    -   **Changes Made**: Replaced the hero video with , configured for continuous looping. Modified paragraph structure within  section for justified text.
 -   
     -   **Summary**: New page for image presentation.
-    -   **Changes Made**: Created with a hero section (image background using , logo, title, subtitle) and a dynamic image grid for 14 rows, featuring 3 images per row, varied sizes, non-rounded edges, slight tilting, and increased overlap.
+    -   **Changes Made**: Adapted to CSS changes in  for the dynamic image grid and frosted glass effect.
+-   
+    -   **Summary**: Manages global language state.
+    -   **Changes Made**: Modified to store and retrieve the selected language from .
+-   
+    -   **Summary**: Stores translation data.
+    -   **Changes Made**: Replaced with  for more comprehensive translations.
+-   
+    -   **Summary**: New file created to house extensive, professional translations for all pages.
+    -   **Changes Made**: Created with a comprehensive set of translations (though the full content transfer was pending at the end of the trajectory).
+-   
+    -   **Summary**: New utility file for throttling functions.
+    -   **Changes Made**: Created to export a  function.
+-   
+    -   **Summary**: Manages frontend dependencies.
+    -   **Changes Made**: Downgraded  and  to  and  to .
+-   
+    -   **Summary**: Configuration for Create React App.
+    -   **Changes Made**: Checked, no changes needed as  was already in use.
 </code_architecture>
 
 <pending_tasks>
-- Visually inspect and confirm the new dynamic image grid design on the GALERIJA page, including image sizes, rotations, overlap, and hover effects.
+-   **Language System**: Complete integration of  across all pages.
+-   **Language Menu**: Further beautification of the language dropdown menu (though dark-gold styling is already applied).
+-   **Debouncing**: Implement throttling for  and  scroll handlers.
+-   **Lazy Loading**: Implement lazy loading for videos.
 </pending_tasks>
 
 <current_work>
-Immediately prior to this summary, the AI engineer was focused on implementing a complex and dynamic image gallery grid for the newly created GALERIJA page. The user had explicitly requested specific design characteristics for the images: they should have non-rounded edges, vary in size (some larger, some smaller, some rectangular, some vertical), be slightly tilted randomly, and exhibit increased overlapping.
+Immediately prior to this summary, the AI engineer was engaged in optimizing the application's performance by implementing **scroll debouncing (throttling)**. This task is part of a larger set of optimizations including a React downgrade, an overhaul of the language system, and video lazy loading.
 
-To address this, the AI engineer utilized a helper agent which provided a comprehensive CSS solution. This CSS was then applied by replacing the existing gallery styling in . The key CSS changes introduced intricate rules for  and various row-specific (, etc.) classes to achieve the desired visual effects. This included setting , using , , ,  properties for varied dimensions, applying  for tilting, adjusting  for overlap, and refining  effects to reset rotation and scale the images.
+The React downgrade to  and  to  has been successfully completed, and dependencies reinstalled. The  was checked and found to already use , so no action was needed there.
 
-The current state is that the GALERIJA page now displays images according to these specifications, presenting a dynamic and artistic layout. The AI engineer has completed the implementation of this design and is awaiting user feedback and confirmation.
+For the **language system**,  was modified to use  for persisting language selection. A new file, , was created to house more professional and comprehensive translations, intended to replace the existing . The integration of these new translations across all pages and the beautification of the language dropdown are still pending. The Header component was updated to correctly use .
+
+The current focus is on **debouncing scroll events**. A utility file  was created, exporting a  function. This  function has been successfully integrated into  for its  and  functions, and also into  for its  and  functions. The process involves wrapping the event listener callback with the  function to limit its execution rate. The work for  and  is next in line for this task.
 </current_work>
 
 <optional_next_step>
-Request user to verify the newly designed image grid on the GALERIJA page.
+Integrate scroll throttling into  and  to complete the debouncing task.
 </optional_next_step>
+
