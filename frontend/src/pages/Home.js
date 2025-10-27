@@ -164,17 +164,12 @@ const Home = () => {
             <div className="pim-welcome-video-overlay"></div>
           </div>
           <div className="pim-welcome-container">
-            <h3 className="pim-welcome-subtitle">Dobrodošli u Bua Luang Thai Spa-Beograd</h3>
-            <h2 className="pim-welcome-title">UMETNOST TAJLANDSKE MASAŽE</h2>
+            <h3 className="pim-welcome-subtitle">{translate("welcomeSubtitle")}</h3>
+            <h2 className="pim-welcome-title">{translate("welcomeTitle")}</h2>
             <div className="pim-welcome-content">
               <div className="pim-welcome-text">
-                <p>
-                  Bua Luang Thai Spa je posvećen spajanju tradicionalnih tajlandskih tehnika masaže sa 
-                  savremenim wellness praksama. Naš tim je posvećen pružanju pomoći u postizanju opuštanja, 
-                  ublažavanju napetosti mišića i poboljšanju opšteg blagostanja. Zalažemo se za holistički 
-                  pristup lečenju koji integriše um, telo i duh.
-                </p>
-                <p>Pronađite nas na adresi Abebe Bikile 10A, Zemun, Beograd 11080, Srbija.</p>
+                <p>{translate("welcomeText1")}</p>
+                <p>{translate("welcomeText2")}</p>
               </div>
             </div>
           </div>
