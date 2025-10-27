@@ -11,6 +11,7 @@ const Home = () => {
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
+  const { videoRef: welcomeVideoRef, isLoaded: welcomeVideoLoaded } = useLazyVideo(0.1, '100px');
 
   // Ensure video plays
   useEffect(() => {
