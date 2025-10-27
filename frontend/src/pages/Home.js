@@ -59,7 +59,7 @@ const Home = () => {
 
   // Parallax effect for sections after Buddha
   useEffect(() => {
-    const handleParallaxScroll = () => {
+    const handleParallaxScroll = throttle(() => {
       const scrolled = window.scrollY;
       const heroSection = document.getElementById('hero-section');
       const buddhaHero = document.getElementById('buddha-hero');
