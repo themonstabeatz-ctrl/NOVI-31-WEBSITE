@@ -134,7 +134,7 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
-      {/* Fixed Video Background - Perfect loop video */}
+      {/* Fixed Video Background - No overlay filter */}
       <div className="fixed-video-background">
         <video 
           ref={videoRef}
@@ -146,7 +146,6 @@ const Home = () => {
         >
           <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/flpuvnqw_POCETNA.mp4" type="video/mp4" />
         </video>
-        <div className="global-video-overlay"></div>
       </div>
 
       {/* Hero Banner */}
