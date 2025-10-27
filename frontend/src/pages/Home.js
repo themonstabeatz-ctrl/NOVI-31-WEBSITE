@@ -24,21 +24,34 @@ const Home = () => {
 
       // Seamless loop - restart video slightly before it ends
       const handleTimeUpdate = () => {
-        // Restart video 0.5 seconds before it ends for seamless loop
-        if (video.duration - video.currentTime <= 0.5) {
-          video.currentTime = 0;
+        // Only apply seamless loop after video metadata is loaded
+        if (video.duration && !isNaN(video.duration)) {
+          // Restart video 0.3 seconds before it ends for seamless loop
+          if (video.duration - video.currentTime <= 0.3) {
+            video.currentTime = 0;
+          }
         }
       };
 
+      // Wait for video metadata to load
+      const handleLoadedMetadata = () => {
+        console.log('Video loaded, duration:', video.duration);
+        playVideo();
+      };
+
       // Ensure video loops continuously
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
       video.addEventListener('ended', playVideo);
       video.addEventListener('pause', playVideo);
       video.addEventListener('timeupdate', handleTimeUpdate);
       
-      // Start playing immediately
-      playVideo();
+      // Try to start playing immediately if already loaded
+      if (video.readyState >= 2) {
+        playVideo();
+      }
 
       return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
         video.removeEventListener('ended', playVideo);
         video.removeEventListener('pause', playVideo);
         video.removeEventListener('timeupdate', handleTimeUpdate);
