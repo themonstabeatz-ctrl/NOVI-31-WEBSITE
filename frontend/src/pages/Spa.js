@@ -44,8 +44,9 @@ const Spa = () => {
       }
     };
     
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const throttledHandleScroll = throttle(handleScroll, 16);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
   // Parallax effect for content sections
