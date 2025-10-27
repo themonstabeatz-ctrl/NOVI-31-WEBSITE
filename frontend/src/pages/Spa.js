@@ -286,10 +286,10 @@ const Spa = () => {
           <p className="cta-subtitle">{translate("ctaSubtitle")}</p>
           <div className="cta-buttons">
             <Button asChild size="lg" className="cta-button-primary">
-              <Link to="/contact">Rezervišite sada</Link>
+              <Link to="/contact">{translate("ctaButtonPrimary")}</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="cta-button-secondary">
-              <Link to="/massage">Pogledajte masaže</Link>
+              <Link to="/massage">{translate("ctaButtonSecondary")}</Link>
             </Button>
           </div>
         </div>
