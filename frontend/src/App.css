@@ -7444,11 +7444,6 @@ html {
     font-size: 0.9rem;
   }
 }
-  
-  .parallax-text-container {
-    gap: 1rem;
-  }
-}
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
