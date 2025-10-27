@@ -10,7 +10,7 @@ const Home = () => {
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
 
-  // Ensure video plays continuously without stopping
+  // Ensure video plays continuously without stopping - Seamless loop
   useEffect(() => {
     const video = videoRef.current;
     
@@ -22,9 +22,18 @@ const Home = () => {
         });
       };
 
+      // Seamless loop - restart video slightly before it ends
+      const handleTimeUpdate = () => {
+        // Restart video 0.5 seconds before it ends for seamless loop
+        if (video.duration - video.currentTime <= 0.5) {
+          video.currentTime = 0;
+        }
+      };
+
       // Ensure video loops continuously
       video.addEventListener('ended', playVideo);
       video.addEventListener('pause', playVideo);
+      video.addEventListener('timeupdate', handleTimeUpdate);
       
       // Start playing immediately
       playVideo();
@@ -32,6 +41,7 @@ const Home = () => {
       return () => {
         video.removeEventListener('ended', playVideo);
         video.removeEventListener('pause', playVideo);
+        video.removeEventListener('timeupdate', handleTimeUpdate);
       };
     }
   }, []);
