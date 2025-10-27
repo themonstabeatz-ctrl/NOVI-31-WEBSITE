@@ -42,7 +42,7 @@ const Massage = () => {
         massageHeroLogo.style.transform = 'scale(1)';
         massageHeroLogo.style.filter = 'blur(0px)';
       }
-    };
+    }, 16); // Throttle to ~60fps
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
