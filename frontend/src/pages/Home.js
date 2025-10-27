@@ -173,8 +173,20 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Philosophy Section */}
+      {/* Philosophy Section with video background */}
       <section className="pim-philosophy">
+        <div className="pim-philosophy-video-background">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="pim-philosophy-video"
+          >
+            <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/wf37eua8_SVECE.mp4" type="video/mp4" />
+          </video>
+          <div className="pim-philosophy-video-overlay"></div>
+        </div>
         <h2 className="pim-philosophy-title">NAŠA UMETNOST TAJLANDSKE MASAŽE</h2>
         <div className="pim-philosophy-content">
           <div className="pim-philosophy-text">
