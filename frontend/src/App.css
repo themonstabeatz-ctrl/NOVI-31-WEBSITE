@@ -897,7 +897,7 @@ body {
   z-index: 10; /* Higher z-index to cover quote section below */
   text-align: center;
   padding: 3rem 2rem;
-  background: var(--spa-dark);
+  background: transparent; /* Removed dark background to show video */
   overflow: hidden;
   min-height: 600px;
   margin-top: -10rem;
