@@ -24,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const heroLogo = document.getElementById('hero-logo');
     
-    const handleScroll = throttle(() => {
+    const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const heroSection = document.getElementById('hero-section');
       
@@ -55,8 +55,9 @@ const Home = () => {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const throttledHandleScroll = throttle(handleScroll, 16);
+    window.addEventListener('scroll', throttledHandleScroll);
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
   // Parallax effect for sections after Buddha
