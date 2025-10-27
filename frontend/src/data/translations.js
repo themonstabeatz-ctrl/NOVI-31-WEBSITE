@@ -103,6 +103,7 @@ export const translations = {
     galleryHeroSubtitle: "Doživite eleganciju i mir našeg spa prostora kroz fotografije",
     
     // Contact Page
+    contactTitle: "Kontaktirajte nas",
     contactHeroTitle: "Kontaktirajte nas",
     contactHeroSubtitle: "Spremni smo da odgovorimo na sva vaša pitanja i rezervišemo vaš tretman",
     contactFormTitle: "Pošaljite nam poruku",
