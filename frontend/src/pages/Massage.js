@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
 import { Clock, Star } from "lucide-react";
+import { throttle } from "../utils/debounce";
 
 const Massage = () => {
   const { translate } = useLanguage();
@@ -17,7 +18,7 @@ const Massage = () => {
 
   // Logo transformation and parallax effects on scroll
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       const scrollPosition = window.scrollY;
       const massageHeroSection = document.querySelector('.massage-hero-fixed');
       const massageHeroLogo = document.querySelector('.massage-hero-logo');
