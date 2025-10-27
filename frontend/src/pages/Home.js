@@ -200,12 +200,7 @@ const Home = () => {
 
       {/* Gift Voucher Section */}
       <section className="pim-gift">
-        <h2 className="pim-gift-title">
-          Počastite voljenu osobu ili tretiraje kolegu sa poklonom opuštanja. 
-          Nema potrebe da se stresiraž vožnja okolo da pronađete savršen poklon. 
-          Sa samo nekoliko klikova, možete kupiti savršen poklon od nas. 
-          Kliknite "KUPITE SADA" da razmaziž voljenu osobu divnim poklonom opuštanja.
-        </h2>
+        <h2 className="pim-gift-title">{translate("giftTitle")}</h2>
         <div className="pim-gift-voucher-showcase">
           <img 
             src="https://customer-assets.emergentagent.com/job_serene-thai-spa/artifacts/1uemvsqg_Poklon%20vaucer%20sa%20kovertom%20srpski.png" 
@@ -214,7 +209,7 @@ const Home = () => {
           />
         </div>
         <Button asChild className="pim-gift-button-bottom">
-          <Link to="/contact">KUPITE SADA</Link>
+          <Link to="/contact">{translate("buyNow")}</Link>
         </Button>
       </section>
 
