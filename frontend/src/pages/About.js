@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { throttle } from "../utils/debounce";
 
 const About = () => {
   const { translate } = useLanguage();
