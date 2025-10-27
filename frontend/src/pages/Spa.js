@@ -206,7 +206,7 @@ const Spa = () => {
               {service.popular && (
                 <Badge className="popular-badge">
                   <Sparkles className="w-3 h-3 mr-1" />
-                  Najželjeniji
+                  {translate("mostPopular")}
                 </Badge>
               )}
               
@@ -214,7 +214,7 @@ const Spa = () => {
                 <div className="spa-category">
                   <Badge className={`category-badge ${getCategoryColor(service.category)}`}>
                     {getCategoryIcon(service.category)}
-                    <span className="ml-1">{service.category}</span>
+                    <span className="ml-1">{service.categoryDisplay}</span>
                   </Badge>
                 </div>
                 
@@ -232,7 +232,7 @@ const Spa = () => {
                 <p className="spa-description">{service.description}</p>
                 
                 <div className="benefits">
-                  <h4 className="benefits-title">Benefiti:</h4>
+                  <h4 className="benefits-title">{translate("benefits")}</h4>
                   <ul className="benefits-list">
                     {service.benefits.map((benefit, idx) => (
                       <li key={idx} className="benefit-item">{benefit}</li>
@@ -241,7 +241,7 @@ const Spa = () => {
                 </div>
                 
                 <Button className="book-button w-full">
-                  <Link to="/contact">Rezervišite</Link>
+                  <Link to="/contact">{translate("reserveNow")}</Link>
                 </Button>
               </CardContent>
             </Card>
