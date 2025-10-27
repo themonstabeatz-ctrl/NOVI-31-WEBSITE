@@ -135,7 +135,7 @@ const Massage = () => {
             playsInline
             className="massage-hero-video"
           >
-            <source src="https://customer-assets.emergentagent.com/job_buathaispa/artifacts/wkwz02tn_Hands_Of_Spa_Salon_Specialist_Applying_Lotion_On_Back_Of_Female_Client_uhd_2731745.mp4" type="video/mp4" />
+            <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/jkumv1ek_MASAZE.mp4" type="video/mp4" />
           </video>
           <div className="massage-hero-overlay"></div>
         </div>
