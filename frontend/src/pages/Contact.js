@@ -7,22 +7,38 @@ import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 const Contact = () => {
   const { translate } = useLanguage();
   const { toast } = useToast();
+  const location = useLocation();
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    message: ""
+    message: "",
+    preferredDate: "",
+    preferredTime: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Scroll to top when component mounts
+  // Scroll to top when component mounts and check for service parameter
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+    
+    // Get service parameter from URL
+    const searchParams = new URLSearchParams(location.search);
+    const service = searchParams.get('service');
+    
+    if (service) {
+      setFormData(prev => ({
+        ...prev,
+        message: `${translate("wantToBook")} ${service}`
+      }));
+    }
+  }, [location, translate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
