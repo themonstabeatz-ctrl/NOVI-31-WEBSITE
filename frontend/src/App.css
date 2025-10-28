@@ -8097,11 +8097,13 @@ html {
   .header-container {
     padding: 0.4rem 1rem !important;
     height: 60px !important;
+    background-image: none !important;
+    background: #000000 !important;
   }
   
-  /* Make header background darker in landscape */
+  /* Remove filter/overlay - make it solid black */
   .header-container::before {
-    background: rgba(0, 0, 0, 0.95) !important;
+    display: none !important;
   }
   
   /* FIX: Eliminate white/gray gap - hero starts RIGHT after header */
