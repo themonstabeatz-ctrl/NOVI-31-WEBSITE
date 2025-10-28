@@ -149,6 +149,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Updated CTA section text (massageCtaTitle) in translations.js for all 4 languages. Changed from 'Spremni za ultimativno opuštanje?' to 'Posetite mesto gde napetost nestaje' (Serbian). English: 'Visit the place where tension disappears'. Russian: 'Посетите место, где напряжение исчезает'. Thai: 'เยี่ยมชมสถานที่ที่ความเครียดหายไป'. Verified on desktop and mobile (portrait/landscape). All translations display correctly."
+      - working: true
+        agent: "main"
+        comment: "Updated background styling: Made CTA section (.cta-section) transparent to show video background. Added dark patterned background image (Pozadina cista tamna.jpg) to testimonial section (.massage-testimonial) below CTA. Both changes verified on desktop and mobile (portrait/landscape). Background images display with proper gradient overlay."
 
   - task: "SPA page with video background"
     implemented: true
