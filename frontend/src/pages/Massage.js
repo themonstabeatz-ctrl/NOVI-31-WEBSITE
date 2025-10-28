@@ -151,10 +151,10 @@ const Massage = () => {
               className="hero-logo-image"
             />
           </div>
-          <h1 className="massage-hero-title">Masaže sa Bua Luang</h1>
+          <h1 className="massage-hero-title">{translate("massageHeroTitle")}</h1>
           <div className="massage-hero-divider"></div>
           <p className="massage-hero-subtitle">
-            Otkrijte moć tradicionalnih tajlandskih masaža za potpuno opuštanje tela i duha
+            {translate("massageHeroSubtitle")}
           </p>
         </div>
       </section>
