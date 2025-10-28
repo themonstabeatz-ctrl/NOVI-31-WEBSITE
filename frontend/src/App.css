@@ -13,11 +13,6 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #000000;
-}
-
-body {
-  background: #000000;
 }
 
 /* Remove excessive GPU layers - apply only where needed */
