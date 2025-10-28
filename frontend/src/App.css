@@ -7989,11 +7989,13 @@ html {
   
   /* Fix header border positioning for landscape */
   .header-container {
+    padding: 0.4rem 1rem !important;
     padding-bottom: 0 !important;
     background-image: none !important;
     background: #000000 !important;
     border-bottom: none !important;
     box-shadow: none !important;
+    height: 50px !important;
   }
   
   /* Remove filter/overlay - make it solid black */
