@@ -8488,6 +8488,92 @@ html {
     bottom: 0 !important;
   }
   
+
+
+/* React DatePicker Custom Styling */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+}
+
+.react-datepicker {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border: 2px solid var(--spa-gold) !important;
+  color: var(--spa-cream) !important;
+  font-family: 'Agency FB', sans-serif !important;
+}
+
+.react-datepicker__header {
+  background: rgba(212, 175, 55, 0.2) !important;
+  border-bottom: 1px solid var(--spa-gold) !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker__day-name {
+  color: var(--spa-gold) !important;
+  font-weight: 600 !important;
+}
+
+.react-datepicker__day {
+  color: var(--spa-cream) !important;
+}
+
+.react-datepicker__day:hover {
+  background: var(--spa-gold) !important;
+  color: var(--spa-dark) !important;
+}
+
+.react-datepicker__day--selected {
+  background: var(--spa-gold) !important;
+  color: var(--spa-dark) !important;
+  font-weight: 700 !important;
+}
+
+.react-datepicker__day--today {
+  border: 1px solid var(--spa-gold) !important;
+  border-radius: 4px !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: var(--spa-gold) !important;
+}
+
+.react-datepicker__today-button {
+  background: rgba(212, 175, 55, 0.2) !important;
+  border-top: 1px solid var(--spa-gold) !important;
+  color: var(--spa-gold) !important;
+  font-weight: 600 !important;
+  padding: 0.5rem !important;
+}
+
+.react-datepicker__today-button:hover {
+  background: var(--spa-gold) !important;
+  color: var(--spa-dark) !important;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid var(--spa-gold) !important;
+}
+
+.react-datepicker__time-list-item {
+  color: var(--spa-cream) !important;
+}
+
+.react-datepicker__time-list-item:hover {
+  background: var(--spa-gold) !important;
+  color: var(--spa-dark) !important;
+}
+
+.react-datepicker__time-list-item--selected {
+  background: var(--spa-gold) !important;
+  color: var(--spa-dark) !important;
+  font-weight: 700 !important;
+}
+
   /* Force desktop contact container */
   .contact-container {
     padding-top: 80px !important;
