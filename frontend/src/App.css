@@ -837,7 +837,7 @@ body {
 
 .pim-welcome {
   padding: 4rem 2rem;
-  background: transparent; /* Removed background image to show video */
+  background: #2a2a2a; /* Siva pozadina */
   position: relative;
   z-index: 50;
   transform-style: preserve-3d;
