@@ -158,19 +158,19 @@ const Contact = () => {
 
             {/* Booking Information Section */}
             <div className="unified-booking-section">
-              <h3 className="unified-section-title">Informacije o rezervaciji</h3>
+              <h3 className="unified-section-title">{translate("bookingInfoTitle")}</h3>
               <div className="unified-booking-details">
                 <div className="unified-booking-item">
-                  <h4>Otkazivanje</h4>
-                  <p>Molimo vas da otkazujete termine najmanje 4 sata unapred</p>
+                  <h4>{translate("cancellationTitle")}</h4>
+                  <p>{translate("cancellationText")}</p>
                 </div>
                 <div className="unified-booking-item">
-                  <h4>Kasnjenje</h4>
-                  <p>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</p>
+                  <h4>{translate("lateArrivalTitle")}</h4>
+                  <p>{translate("lateArrivalText")}</p>
                 </div>
                 <div className="unified-booking-item">
-                  <h4>Grupne rezervacije</h4>
-                  <p>Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno</p>
+                  <h4>{translate("groupBookingTitle")}</h4>
+                  <p>{translate("groupBookingText")}</p>
                 </div>
               </div>
             </div>
