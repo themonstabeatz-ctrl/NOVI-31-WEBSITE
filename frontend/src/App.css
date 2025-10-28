@@ -8091,6 +8091,11 @@ html {
     height: 60px !important;
   }
   
+  /* Make header background darker in landscape */
+  .header-container::before {
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+  
   /* FIX: Eliminate white/gray gap - hero starts RIGHT after header */
   .massage-hero-fixed,
   .spa-hero-fixed {
