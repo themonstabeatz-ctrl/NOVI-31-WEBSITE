@@ -7391,6 +7391,12 @@ html {
     max-width: 60px;
   }
   
+  /* Lower golden line on mobile for Massage, Spa, and Contact pages */
+  .massage-hero-fixed ~ * .header-container::after,
+  .spa-hero-fixed ~ * .header-container::after {
+    bottom: -10px !important;
+  }
+  
   /* Language button in mobile menu */
   .mobile-nav .language-button {
     font-size: 0.95rem;
