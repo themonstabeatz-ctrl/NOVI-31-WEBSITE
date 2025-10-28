@@ -61,7 +61,7 @@ const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile =
     }
   };
 
-  // If mobile, use custom picker with translated buttons and portal
+  // If mobile, use custom picker with DD.MM.YYYY format
   if (isMobile) {
     return (
       <DatePicker
@@ -69,7 +69,7 @@ const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile =
         selected={parseValue()}
         onChange={handleChange}
         locale={getLocale()}
-        dateFormat={type === 'date' ? 'dd/MM/yyyy' : 'HH:mm'}
+        dateFormat={type === 'date' ? 'dd.MM.yyyy' : 'HH:mm'}
         showTimeSelect={type === 'time'}
         showTimeSelectOnly={type === 'time'}
         timeIntervals={15}
@@ -85,7 +85,7 @@ const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile =
     );
   }
 
-  // For desktop, use custom picker without portal (inline)
+  // For desktop, use custom picker with DD/MM/YYYY format (inline)
   return (
     <DatePicker
       id={id}
