@@ -351,6 +351,7 @@ export const translations = {
     preferredDate: "Preferred Date",
     preferredTime: "Preferred Time",
     wantToBook: "I want to book:",
+    clearDate: "Clear",
     address: "Address",
     workingHours: "Working Hours",
     followUs: "Follow Us",
