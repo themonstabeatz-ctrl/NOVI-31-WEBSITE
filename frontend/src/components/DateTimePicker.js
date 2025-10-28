@@ -61,7 +61,7 @@ const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile =
     }
   };
 
-  // If mobile, use custom picker with translated buttons
+  // If mobile, use custom picker with translated buttons and portal
   if (isMobile) {
     return (
       <DatePicker
@@ -69,7 +69,7 @@ const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile =
         selected={parseValue()}
         onChange={handleChange}
         locale={getLocale()}
-        dateFormat={type === 'date' ? 'dd.MM.yyyy' : 'HH:mm'}
+        dateFormat={type === 'date' ? 'dd/MM/yyyy' : 'HH:mm'}
         showTimeSelect={type === 'time'}
         showTimeSelectOnly={type === 'time'}
         timeIntervals={15}
@@ -85,8 +85,26 @@ const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile =
     );
   }
 
-  // For desktop, return null (will use native HTML5 input)
-  return null;
+  // For desktop, use custom picker without portal (inline)
+  return (
+    <DatePicker
+      id={id}
+      selected={parseValue()}
+      onChange={handleChange}
+      locale={getLocale()}
+      dateFormat={type === 'date' ? 'dd/MM/yyyy' : 'HH:mm'}
+      showTimeSelect={type === 'time'}
+      showTimeSelectOnly={type === 'time'}
+      timeIntervals={15}
+      timeCaption={translate("preferredTime")}
+      placeholderText={type === 'date' ? translate("selectDate") : translate("selectTime")}
+      className={className}
+      todayButton={getTodayText()}
+      showMonthDropdown
+      showYearDropdown
+      dropdownMode="select"
+    />
+  );
 };
 
 export default DateTimePicker;
