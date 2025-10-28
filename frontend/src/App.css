@@ -7402,9 +7402,15 @@ html {
     max-width: 60px;
   }
   
-  /* Lower golden line on mobile screens */
+  /* FIX: Eliminate white gap - hero sections start right after header */
+  .massage-hero-fixed,
+  .spa-hero-fixed {
+    top: 55px !important;
+  }
+  
+  /* Keep golden line at header bottom */
   .header-container::after {
-    bottom: -15px !important;
+    bottom: 0 !important;
   }
   
   /* Language button in mobile menu */
