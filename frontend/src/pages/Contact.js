@@ -210,14 +210,14 @@ const Contact = () => {
                       {translate("preferredDate")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
+                      <DateTimePicker
+                        type="date"
                         id="preferredDate"
                         name="preferredDate"
-                        type="date"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
                         className="form-input"
-                        lang={getHtmlLang()}
+                        isMobile={isMobile}
                       />
                       {formData.preferredDate && (
                         <Button 
@@ -248,14 +248,14 @@ const Contact = () => {
                       {translate("preferredTime")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
+                      <DateTimePicker
+                        type="time"
                         id="preferredTime"
                         name="preferredTime"
-                        type="time"
                         value={formData.preferredTime}
                         onChange={handleInputChange}
                         className="form-input"
-                        lang={getHtmlLang()}
+                        isMobile={isMobile}
                       />
                       {formData.preferredTime && (
                         <Button 
