@@ -8110,6 +8110,30 @@ html {
     background: #000000 !important;
   }
   
+  /* REDUCE ALL TEXT SIZES for landscape mobile */
+  .massage-hero-title,
+  .spa-hero-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .massage-hero-subtitle,
+  .spa-hero-subtitle {
+    font-size: 0.8rem !important;
+  }
+  
+  h1, h2, h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  .massage-name,
+  .spa-name {
+    font-size: 1.1rem !important;
+  }
+  
+  p {
+    font-size: 0.8rem !important;
+  }
+  
   /* Hero overlay - STICKY filter that follows scroll */
   .pim-hero-overlay {
     position: sticky !important;
