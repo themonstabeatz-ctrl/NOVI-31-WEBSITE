@@ -5845,12 +5845,9 @@ html {
 /* CTA Section */
 .massage-container .cta-section {
   padding: 6rem 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(212, 175, 55, 0.05) 0%,
-    #000000 50%,
-    rgba(212, 175, 55, 0.05) 100%
-  );
+  background: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 .massage-container .cta-content {
