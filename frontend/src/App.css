@@ -5857,12 +5857,13 @@ html {
   padding: 4rem 3rem;
   background: linear-gradient(
     135deg,
-    rgba(212, 175, 55, 0.08) 0%,
-    rgba(15, 15, 15, 0.9) 100%
+    rgba(20, 20, 20, 0.95) 0%,
+    rgba(10, 10, 10, 0.98) 100%
   );
   border: 2px solid rgba(212, 175, 55, 0.3);
   border-radius: 30px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
 }
 
 .massage-container .cta-title {
