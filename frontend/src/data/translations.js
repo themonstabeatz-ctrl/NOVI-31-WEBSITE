@@ -435,6 +435,12 @@ export const translations = {
     coupleBenefit2: "Романтическая атмосфера",
     coupleBenefit3: "Более глубокая связь",
     
+    // Massage CTA Section
+    massageCtaTitle: "Готовы к максимальному расслаблению?",
+    massageCtaSubtitle: "Свяжитесь с нами и забронируйте ваш массаж сегодня",
+    massageCtaButtonPrimary: "Забронировать сейчас",
+    massageCtaButtonSecondary: "Посмотреть СПА процедуры",
+    
     // SPA Page
     spaHeroTitle: "СПА процедуры в Буа Луанг",
     spaHeroSubtitle: "Роскошные спа-процедуры, сочетающие традиционную тайскую мудрость с современными техниками",
