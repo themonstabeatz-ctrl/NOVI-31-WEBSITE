@@ -170,7 +170,7 @@ const Massage = () => {
               {service.popular && (
                 <Badge className="popular-badge">
                   <Star className="w-3 h-3 mr-1" />
-                  Najpopularnija
+                  {translate("mostPopular")}
                 </Badge>
               )}
               
