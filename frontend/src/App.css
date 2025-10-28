@@ -2467,6 +2467,19 @@ body {
   border-color: var(--spa-gold);
 }
 
+/* Clear button styling */
+.clear-button {
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.clear-button:hover {
+  background: var(--spa-gold) !important;
+  color: var(--spa-dark) !important;
+  transform: scale(1.05);
+}
+
 .form-textarea {
   min-height: 35px;
 }
