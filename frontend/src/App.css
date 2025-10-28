@@ -7380,6 +7380,47 @@ html {
   .header-container::after {
     bottom: 0 !important;
   }
+  
+  /* REDUCE ALL TEXT SIZES for mobile phones */
+  .massage-hero-title,
+  .spa-hero-title,
+  .about-hero-title,
+  .page-title {
+    font-size: 2rem !important;
+  }
+  
+  .massage-hero-subtitle,
+  .spa-hero-subtitle,
+  .about-hero-subtitle,
+  .page-subtitle {
+    font-size: 0.9rem !important;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  .massage-name,
+  .spa-name {
+    font-size: 1.3rem !important;
+  }
+  
+  .massage-description,
+  .spa-description {
+    font-size: 0.85rem !important;
+  }
+  
+  p {
+    font-size: 0.9rem !important;
+  }
 }
 
 @media (max-width: 480px) {
