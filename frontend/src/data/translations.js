@@ -427,6 +427,22 @@ export const translations = {
     followUs: "Подписывайтесь",
     openHours: "Пн-Вс: 10:00 - 22:00",
     
+    // Booking Information
+    bookingInfoTitle: "Информация о бронировании",
+    cancellationTitle: "Отмена",
+    cancellationText: "Пожалуйста, отменяйте встречи как минимум за 4 часа",
+    lateArrivalTitle: "Опоздание",
+    lateArrivalText: "Опоздание более чем на 15 минут может привести к сокращению процедуры",
+    groupBookingTitle: "Групповое бронирование",
+    groupBookingText: "Для групп более 4 человек, пожалуйста, свяжитесь с нами напрямую",
+    emailLabel: "Электронная почта",
+    phoneLabel: "Телефон",
+    addressLabel: "Адрес",
+    workingHoursLabel: "Рабочие часы",
+    mondaySunday: "Понедельник - Воскресенье",
+    hours: "10:00 - 22:00",
+    instagramLabel: "Инстаграм",
+    
     // Footer
     contactInfo: "Контактная информация",
     socialMedia: "Социальные сети",
