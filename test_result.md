@@ -146,6 +146,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Minor: Video not loading due to network issues, but all core functionality works. Found 6 massage service cards with correct content (Traditional Thai, Royal Thai, Foot Massage). All 7 'Rezervišite' buttons work correctly and navigate to contact page. Service information displays properly with prices and descriptions."
+      - working: true
+        agent: "main"
+        comment: "Updated CTA section text (massageCtaTitle) in translations.js for all 4 languages. Changed from 'Spremni za ultimativno opuštanje?' to 'Posetite mesto gde napetost nestaje' (Serbian). English: 'Visit the place where tension disappears'. Russian: 'Посетите место, где напряжение исчезает'. Thai: 'เยี่ยมชมสถานที่ที่ความเครียดหายไป'. Verified on desktop and mobile (portrait/landscape). All translations display correctly."
 
   - task: "SPA page with video background"
     implemented: true
