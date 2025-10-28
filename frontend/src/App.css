@@ -8065,6 +8065,16 @@ html {
     display: none !important;
   }
   
+  /* FIX: Add spacing for very small landscape screens */
+  .nav-wrapper {
+    gap: 0.8rem !important;
+  }
+  
+  .language-selector,
+  .language-button {
+    margin-right: 0.8rem !important;
+  }
+  
   .header-container::after {
     bottom: 0 !important;
   }
