@@ -198,7 +198,7 @@ const Massage = () => {
                 </div>
                 
                 <Button className="book-button w-full">
-                  <Link to="/contact">Rezervišite</Link>
+                  <Link to="/contact">{translate("reserveNow")}</Link>
                 </Button>
               </CardContent>
             </Card>
