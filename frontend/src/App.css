@@ -8013,6 +8013,13 @@ html {
     height: calc(100vh - 50px) !important;
   }
   
+  /* Make sure hero overlay covers from the very top */
+  .massage-hero-overlay,
+  .spa-hero-overlay {
+    top: 0 !important;
+    height: 100% !important;
+  }
+  
   /* Contact page landscape - no white gap */
   .contact-container {
     padding-top: 50px !important;
