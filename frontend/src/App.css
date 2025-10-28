@@ -8124,11 +8124,12 @@ html {
     bottom: 0px !important;
   }
   
-  /* FIX: Video starts exactly at header bottom (60px) */
+  /* FIX: Video starts exactly at header bottom (60px) - NO GAP */
   .massage-hero-fixed,
   .spa-hero-fixed {
     top: 60px !important;
     height: calc(100vh - 60px) !important;
+    margin-top: -1px !important;
   }
   
   /* REMOVE video filter/overlay completely */
