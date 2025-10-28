@@ -177,12 +177,12 @@ const Contact = () => {
 
             {/* Contact Information Section */}
             <div className="unified-info-section">
-              <h3 className="unified-section-title">Kontakt informacije</h3>
+              <h3 className="unified-section-title">{translate("contactInfoTitle")}</h3>
               <div className="unified-info-items">
                 <div className="unified-info-item">
                   <Mail className="unified-info-icon" />
                   <div className="unified-info-details">
-                    <h4>Email</h4>
+                    <h4>{translate("emailLabel")}</h4>
                     <a href="mailto:bualuangthailandspa@gmail.com" className="info-link">
                       bualuangthailandspa@gmail.com
                     </a>
@@ -192,7 +192,7 @@ const Contact = () => {
                 <div className="unified-info-item">
                   <Phone className="unified-info-icon" />
                   <div className="unified-info-details">
-                    <h4>Telefon</h4>
+                    <h4>{translate("phoneLabel")}</h4>
                     <a href="tel:+381626625500" className="info-link">
                       +381 62 625 500
                     </a>
@@ -202,7 +202,7 @@ const Contact = () => {
                 <div className="unified-info-item">
                   <MapPin className="unified-info-icon" />
                   <div className="unified-info-details">
-                    <h4>Adresa</h4>
+                    <h4>{translate("addressLabel")}</h4>
                     <p className="info-text">Abebe Bikile 10A, Zemun<br />Beograd 11080, Srbija</p>
                   </div>
                 </div>
@@ -210,10 +210,10 @@ const Contact = () => {
                 <div className="unified-info-item">
                   <Clock className="unified-info-icon" />
                   <div className="unified-info-details">
-                    <h4>Radno vreme</h4>
+                    <h4>{translate("workingHoursLabel")}</h4>
                     <div className="working-hours">
-                      <p>Ponedeljak - Nedelja</p>
-                      <p className="hours">10:00 - 22:00</p>
+                      <p>{translate("mondaySunday")}</p>
+                      <p className="hours">{translate("hours")}</p>
                     </div>
                   </div>
                 </div>
@@ -231,7 +231,7 @@ const Contact = () => {
               >
                 <Instagram className="unified-social-icon" />
                 <div className="unified-social-info">
-                  <h4>Instagram</h4>
+                  <h4>{translate("instagramLabel")}</h4>
                   <p>@bualuang_thai_spa</p>
                 </div>
               </a>
