@@ -8004,22 +8004,21 @@ html {
   }
   
   .header-container::after {
-    bottom: -8px !important;
+    bottom: 0px !important;
     z-index: 999 !important;
   }
   
-  /* FIX: Eliminate white gap in landscape - hero sections OVERLAP slightly with header */
+  /* FIX: Video starts exactly at header bottom (50px) */
   .massage-hero-fixed,
   .spa-hero-fixed {
-    top: 32px !important;
-    height: calc(100vh - 32px) !important;
+    top: 50px !important;
+    height: calc(100vh - 50px) !important;
   }
   
-  /* Make sure hero overlay covers from the very top */
+  /* REMOVE video filter/overlay completely */
   .massage-hero-overlay,
   .spa-hero-overlay {
-    top: 0 !important;
-    height: 100% !important;
+    display: none !important;
   }
   
   /* Contact page landscape - no white gap */
