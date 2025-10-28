@@ -7997,6 +7997,18 @@ html {
     z-index: 999 !important;
   }
   
+  /* FIX: Eliminate white gap in landscape - hero sections start right after header */
+  .massage-hero-fixed,
+  .spa-hero-fixed {
+    top: 50px !important;
+    height: calc(100vh - 50px) !important;
+  }
+  
+  /* Contact page landscape - no white gap */
+  .contact-container {
+    padding-top: 50px !important;
+  }
+  
   /* Hero overlay - STICKY filter that follows scroll */
   .pim-hero-overlay {
     position: sticky !important;
