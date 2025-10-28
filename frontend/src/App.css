@@ -8122,9 +8122,8 @@ html {
   /* FIX: Eliminate white/gray gap - hero OVERLAPS slightly with header */
   .massage-hero-fixed,
   .spa-hero-fixed {
-    top: 52px !important;
-    height: calc(100vh - 52px) !important;
-    margin-top: -2px !important;
+    top: 48px !important;
+    height: calc(100vh - 48px) !important;
   }
   
   /* Make sure hero overlay covers from the very top */
