@@ -50,6 +50,17 @@ const DateTimePicker = ({ type, value, onChange, name, id, className }) => {
     }
   };
 
+  // Get translated "Today" text
+  const getTodayText = () => {
+    const todayMap = {
+      'sr': 'Данас',
+      'en': 'Today',
+      'ru': 'Сегодня',
+      'th': 'วันนี้'
+    };
+    return todayMap[language] || 'Данас';
+  };
+
   return (
     <DatePicker
       id={id}
@@ -63,9 +74,7 @@ const DateTimePicker = ({ type, value, onChange, name, id, className }) => {
       timeCaption={translate("preferredTime")}
       placeholderText={type === 'date' ? translate("selectDate") : translate("selectTime")}
       className={className}
-      todayButton={translate("clearDate") === "Clear" ? "Today" : 
-                   translate("clearDate") === "Обриши" ? "Данас" :
-                   translate("clearDate") === "Очистить" ? "Сегодня" : "Today"}
+      todayButton={getTodayText()}
       clearButtonClassName="custom-clear-button"
       isClearable
     />
