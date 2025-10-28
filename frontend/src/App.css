@@ -7422,12 +7422,13 @@ html {
   
   /* Contact page - start right after header with NO gap */
   .contact-container {
-    margin-top: 55px !important;
+    padding-top: 55px !important;
     background: #000000 !important;
   }
   
   .contact-container .page-header {
-    padding-top: 0.5rem !important;
+    padding-top: 0rem !important;
+    margin-top: 0 !important;
   }
   
   /* Keep golden line at header bottom */
