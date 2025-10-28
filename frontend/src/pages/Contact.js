@@ -186,14 +186,13 @@ const Contact = () => {
                   <div className="form-group">
                     <Label htmlFor="preferredDate">{translate("preferredDate")}</Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
+                      <DateTimePicker
+                        type="date"
                         id="preferredDate"
                         name="preferredDate"
-                        type="date"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
                         className="form-input"
-                        lang={getHtmlLang()}
                       />
                       {formData.preferredDate && (
                         <Button 
@@ -201,14 +200,18 @@ const Contact = () => {
                           onClick={clearDate}
                           className="clear-button"
                           style={{ 
-                            padding: '0.5rem 1rem',
+                            padding: '0.5rem 0.75rem',
                             fontSize: '0.85rem',
                             minWidth: 'auto',
                             background: 'rgba(212, 175, 55, 0.2)',
                             border: '1px solid var(--spa-gold)',
-                            color: 'var(--spa-gold)'
+                            color: 'var(--spa-gold)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.25rem'
                           }}
                         >
+                          <X className="w-4 h-4" />
                           {translate("clearDate")}
                         </Button>
                       )}
@@ -217,14 +220,13 @@ const Contact = () => {
                   <div className="form-group">
                     <Label htmlFor="preferredTime">{translate("preferredTime")}</Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
+                      <DateTimePicker
+                        type="time"
                         id="preferredTime"
                         name="preferredTime"
-                        type="time"
                         value={formData.preferredTime}
                         onChange={handleInputChange}
                         className="form-input"
-                        lang={getHtmlLang()}
                       />
                       {formData.preferredTime && (
                         <Button 
@@ -232,14 +234,18 @@ const Contact = () => {
                           onClick={clearTime}
                           className="clear-button"
                           style={{ 
-                            padding: '0.5rem 1rem',
+                            padding: '0.5rem 0.75rem',
                             fontSize: '0.85rem',
                             minWidth: 'auto',
                             background: 'rgba(212, 175, 55, 0.2)',
                             border: '1px solid var(--spa-gold)',
-                            color: 'var(--spa-gold)'
+                            color: 'var(--spa-gold)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.25rem'
                           }}
                         >
+                          <X className="w-4 h-4" />
                           {translate("clearDate")}
                         </Button>
                       )}
