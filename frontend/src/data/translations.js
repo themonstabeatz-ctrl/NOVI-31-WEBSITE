@@ -541,6 +541,7 @@ export const translations = {
     preferredDate: "Предпочитаемая дата",
     preferredTime: "Предпочитаемое время",
     wantToBook: "Я хочу забронировать:",
+    clearDate: "Очистить",
     address: "Адрес",
     workingHours: "Рабочие часы",
     followUs: "Подписывайтесь",
