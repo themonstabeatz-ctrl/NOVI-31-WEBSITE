@@ -234,6 +234,18 @@ frontend:
         agent: "testing"
         comment: "Footer working correctly. Found 1 footer link (Instagram). Copyright text displays properly: '© 2025 Bua Luang Thai Spa. Sva prava zadržana.' Contact information sections present. Instagram link (@bualuang_thai_spa) functional."
 
+  - task: "Mobile header layout in landscape mode"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/App.css"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE: Language selector and hamburger menu overlapping in ALL landscape orientations across ALL device sizes (iPhone SE, 12 Pro, 14 Pro Max, Android Small/Medium/Large). Distance: 0.0px (complete overlap). Affects all pages. Portrait mode works fine. Urgent CSS fix needed for landscape header spacing."
+
 backend:
   - task: "No backend"
     implemented: false
