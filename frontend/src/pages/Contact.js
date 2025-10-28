@@ -183,15 +183,19 @@ const Contact = () => {
                 
                 <div className="form-row">
                   <div className="form-group">
-                    <Label htmlFor="preferredDate">{translate("preferredDate")}</Label>
+                    <Label htmlFor="preferredDate">
+                      <Calendar className="w-4 h-4 inline mr-2" />
+                      {translate("preferredDate")}
+                    </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <DateTimePicker
-                        type="date"
+                      <Input
                         id="preferredDate"
                         name="preferredDate"
+                        type="date"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
                         className="form-input"
+                        lang={getHtmlLang()}
                       />
                       {formData.preferredDate && (
                         <Button 
@@ -217,15 +221,19 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="form-group">
-                    <Label htmlFor="preferredTime">{translate("preferredTime")}</Label>
+                    <Label htmlFor="preferredTime">
+                      <Clock className="w-4 h-4 inline mr-2" />
+                      {translate("preferredTime")}
+                    </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <DateTimePicker
-                        type="time"
+                      <Input
                         id="preferredTime"
                         name="preferredTime"
+                        type="time"
                         value={formData.preferredTime}
                         onChange={handleInputChange}
                         className="form-input"
+                        lang={getHtmlLang()}
                       />
                       {formData.preferredTime && (
                         <Button 
