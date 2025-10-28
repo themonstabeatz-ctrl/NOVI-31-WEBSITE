@@ -252,6 +252,12 @@ export const translations = {
     coupleBenefit2: "Romantic atmosphere",
     coupleBenefit3: "Deeper connection",
     
+    // Massage CTA Section
+    massageCtaTitle: "Ready for ultimate relaxation?",
+    massageCtaSubtitle: "Contact us and book your massage today",
+    massageCtaButtonPrimary: "Book now",
+    massageCtaButtonSecondary: "View SPA treatments",
+    
     // SPA Page
     spaHeroTitle: "SPA Treatments with Bua Luang",
     spaHeroSubtitle: "Luxurious spa treatments combining traditional Thai wisdom with modern techniques",
