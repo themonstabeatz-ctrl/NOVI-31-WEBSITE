@@ -128,6 +128,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Minor: Video files not loading due to network issues (net::ERR_ABORTED), but page structure, content sections (welcome, philosophy, gift), scrolling, and all functionality work correctly. Found 2 video elements with correct sources. Welcome section with 'Dobrodošli' text, philosophy section with 'NAŠA UMETNOST', and gift voucher section all display properly."
+      - working: true
+        agent: "main"
+        comment: "Updated VAUCER section text (giftTitle) in translations.js for all 4 languages (Serbian, English, Russian, Thai). New text: 'Darujte dodir mira, miris egzotike i trenutak koji traje zauvek. Poklon vaučer, simbol pažnje i lepote življenja. Za svaku voljenu osobu koja zaslužuje da se opusti i ponovo zablista.' Verified on desktop and mobile (portrait/landscape). All translations display correctly."
 
   - task: "Massage page with video background"
     implemented: true
