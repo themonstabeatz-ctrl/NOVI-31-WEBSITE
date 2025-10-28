@@ -5517,11 +5517,11 @@ html {
 
 /* Fixed Video Hero Section */
 .massage-hero-fixed {
-  position: fixed;
+  position: absolute;
   top: 80px;
   left: 0;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: 200vh;
   z-index: 0;
   overflow: hidden;
   will-change: transform;
