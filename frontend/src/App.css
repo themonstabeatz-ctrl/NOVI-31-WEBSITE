@@ -7992,6 +7992,8 @@ html {
     padding-bottom: 0.6rem !important;
     background-image: none !important;
     background: #000000 !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
   }
   
   /* Remove filter/overlay - make it solid black */
