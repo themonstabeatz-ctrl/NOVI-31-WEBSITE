@@ -7357,6 +7357,11 @@ html {
   .parallax-bg-layer {
     transform: none !important;
   }
+  
+  /* Lower golden line on mobile screens */
+  .header-container::after {
+    bottom: -12px !important;
+  }
 }
 
 @media (max-width: 480px) {
