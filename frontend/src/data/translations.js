@@ -640,7 +640,7 @@ export const translations = {
     coupleBenefit3: "การเชื่อมต่อที่ลึกซึ้งยิ่งขึ้น",
     
     // Massage CTA Section
-    massageCtaTitle: "พร้อมสำหรับการผ่อนคลายสูงสุดหรือยัง?",
+    massageCtaTitle: "เยี่ยมชมสถานที่ที่ความเครียดหายไป",
     massageCtaSubtitle: "ติดต่อเราและจองการนวดของคุณวันนี้",
     massageCtaButtonPrimary: "จองเลย",
     massageCtaButtonSecondary: "ดูทรีตเมนต์สปา",
