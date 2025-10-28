@@ -8008,11 +8008,12 @@ html {
     z-index: 999 !important;
   }
   
-  /* FIX: Video starts exactly at header bottom (50px) */
+  /* FIX: Video starts exactly at header bottom (50px) - NO GAP */
   .massage-hero-fixed,
   .spa-hero-fixed {
     top: 50px !important;
     height: calc(100vh - 50px) !important;
+    margin-top: -1px !important;
   }
   
   /* REMOVE video filter/overlay completely */
