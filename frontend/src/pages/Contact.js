@@ -210,15 +210,33 @@ const Contact = () => {
                       {translate("preferredDate")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
-                        id="preferredDate"
-                        name="preferredDate"
-                        type="date"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        lang={getHtmlLang()}
-                      />
+                      {!isMobile ? (
+                        <InputMask
+                          mask="99/99/9999"
+                          value={formData.preferredDate}
+                          onChange={handleInputChange}
+                        >
+                          {(inputProps) => (
+                            <Input
+                              {...inputProps}
+                              id="preferredDate"
+                              name="preferredDate"
+                              placeholder="DD/MM/YYYY"
+                              className="form-input"
+                            />
+                          )}
+                        </InputMask>
+                      ) : (
+                        <Input
+                          id="preferredDate"
+                          name="preferredDate"
+                          type="date"
+                          value={formData.preferredDate}
+                          onChange={handleInputChange}
+                          className="form-input"
+                          lang={getHtmlLang()}
+                        />
+                      )}
                       {formData.preferredDate && (
                         <Button 
                           type="button" 
@@ -248,15 +266,33 @@ const Contact = () => {
                       {translate("preferredTime")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
-                        id="preferredTime"
-                        name="preferredTime"
-                        type="time"
-                        value={formData.preferredTime}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        lang={getHtmlLang()}
-                      />
+                      {!isMobile ? (
+                        <InputMask
+                          mask="99:99"
+                          value={formData.preferredTime}
+                          onChange={handleInputChange}
+                        >
+                          {(inputProps) => (
+                            <Input
+                              {...inputProps}
+                              id="preferredTime"
+                              name="preferredTime"
+                              placeholder="HH:MM"
+                              className="form-input"
+                            />
+                          )}
+                        </InputMask>
+                      ) : (
+                        <Input
+                          id="preferredTime"
+                          name="preferredTime"
+                          type="time"
+                          value={formData.preferredTime}
+                          onChange={handleInputChange}
+                          className="form-input"
+                          lang={getHtmlLang()}
+                        />
+                      )}
                       {formData.preferredTime && (
                         <Button 
                           type="button" 
