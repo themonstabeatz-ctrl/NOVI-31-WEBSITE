@@ -210,15 +210,27 @@ const Contact = () => {
                       {translate("preferredDate")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
-                        id="preferredDate"
-                        name="preferredDate"
-                        type="date"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        lang={getHtmlLang()}
-                      />
+                      {isDesktop ? (
+                        <DateTimePicker
+                          type="date"
+                          id="preferredDate"
+                          name="preferredDate"
+                          value={formData.preferredDate}
+                          onChange={handleInputChange}
+                          className="form-input"
+                          isMobile={false}
+                        />
+                      ) : (
+                        <Input
+                          id="preferredDate"
+                          name="preferredDate"
+                          type="date"
+                          value={formData.preferredDate}
+                          onChange={handleInputChange}
+                          className="form-input"
+                          lang={getHtmlLang()}
+                        />
+                      )}
                       {formData.preferredDate && (
                         <Button 
                           type="button" 
@@ -248,15 +260,27 @@ const Contact = () => {
                       {translate("preferredTime")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
-                        id="preferredTime"
-                        name="preferredTime"
-                        type="time"
-                        value={formData.preferredTime}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        lang={getHtmlLang()}
-                      />
+                      {isDesktop ? (
+                        <DateTimePicker
+                          type="time"
+                          id="preferredTime"
+                          name="preferredTime"
+                          value={formData.preferredTime}
+                          onChange={handleInputChange}
+                          className="form-input"
+                          isMobile={false}
+                        />
+                      ) : (
+                        <Input
+                          id="preferredTime"
+                          name="preferredTime"
+                          type="time"
+                          value={formData.preferredTime}
+                          onChange={handleInputChange}
+                          className="form-input"
+                          lang={getHtmlLang()}
+                        />
+                      )}
                       {formData.preferredTime && (
                         <Button 
                           type="button" 
