@@ -2304,7 +2304,11 @@ body {
 /* Services Pages (Massage & Spa) */
 .massage-container,
 .spa-container,
-.about-container,
+.about-container {
+  position: relative;
+  min-height: 100vh;
+}
+
 /* Contact Page - EXTREME Compact Version (70% reduction) */
 .contact-container .page-header {
   padding: 0.3rem;
