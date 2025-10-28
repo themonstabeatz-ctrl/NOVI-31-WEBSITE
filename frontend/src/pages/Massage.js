@@ -80,48 +80,48 @@ const Massage = () => {
       name: translate("traditionalMassage"),
       duration: "60 min",
       price: "4,500 RSD",
-      description: "Tradicionalna tajlandska masaža koja kombinuje akupresuru, joga pozi i istezanje za potpuno oslobođanje napetosti.",
-      benefits: ["Poboljšava cirkulaciju", "Smanjuje stres", "Povećava fleksibilnost"],
+      description: translate("traditionalMassageDesc"),
+      benefits: [translate("traditionalBenefit1"), translate("traditionalBenefit2"), translate("traditionalBenefit3")],
       popular: true
     },
     {
       name: translate("oilMassage"),
       duration: "60 min",
       price: "5,000 RSD",
-      description: "Nežna masaža sa aromatičnim uljima koja duboko opušta mišiće i uma.",
-      benefits: ["Hidrira kožu", "Smiruje nervni sistem", "Poboljšava san"],
+      description: translate("oilMassageDesc"),
+      benefits: [translate("oilBenefit1"), translate("oilBenefit2"), translate("oilBenefit3")],
       popular: false
     },
     {
       name: translate("hotStone"),
       duration: "90 min", 
       price: "7,500 RSD",
-      description: "Terapeutska masaža sa vrućim vulkanskim kamenjem koji otpušta duboke mišićne napetosti.",
-      benefits: ["Poboljšava cirkulaciju", "Smanjuje bolove", "Detoksikuje telo"],
+      description: translate("hotStoneDesc"),
+      benefits: [translate("hotStoneBenefit1"), translate("hotStoneBenefit2"), translate("hotStoneBenefit3")],
       popular: false
     },
     {
-      name: "Kraljevska tajlandska masaža",
+      name: translate("royalMassage"),
       duration: "120 min",
       price: "9,500 RSD",
-      description: "Luksuzno iskustvo koje kombinuje tradiciju sa modernim tehnikama za ultimativno opuštanje.",
-      benefits: ["Kompletno opuštanje", "Energetska ravnoteža", "Mentalna jasnoća"],
+      description: translate("royalMassageDesc"),
+      benefits: [translate("royalBenefit1"), translate("royalBenefit2"), translate("royalBenefit3")],
       popular: true
     },
     {
-      name: "Masaža stopala",
+      name: translate("footMassage"),
       duration: "45 min",
       price: "3,500 RSD",
-      description: "Refleksoterapija koja stimuliše akupresurne tačke na stopalima za celokupno blagostanje.",
-      benefits: ["Smanjuje umor", "Poboljšava san", "Jača imunitet"],
+      description: translate("footMassageDesc"),
+      benefits: [translate("footBenefit1"), translate("footBenefit2"), translate("footBenefit3")],
       popular: false
     },
     {
-      name: "Partnerska masaža",
+      name: translate("coupleMassage"),
       duration: "60 min",
       price: "8,500 RSD",
-      description: "Romantična masaža za dva u istoj prostoriji sa sveći i umirujućom muzikom.",
-      benefits: ["Deljeno iskustvo", "Romantična atmosfera", "Dublje povezivanje"],
+      description: translate("coupleMassageDesc"),
+      benefits: [translate("coupleBenefit1"), translate("coupleBenefit2"), translate("coupleBenefit3")],
       popular: false
     }
   ];
