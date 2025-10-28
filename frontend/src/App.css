@@ -8002,7 +8002,7 @@ html {
   }
   
   .header-container::after {
-    bottom: 0 !important;
+    bottom: -8px !important;
     z-index: 999 !important;
   }
   
