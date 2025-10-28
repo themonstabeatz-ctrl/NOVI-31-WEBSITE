@@ -184,25 +184,65 @@ const Contact = () => {
                 <div className="form-row">
                   <div className="form-group">
                     <Label htmlFor="preferredDate">{translate("preferredDate")}</Label>
-                    <Input
-                      id="preferredDate"
-                      name="preferredDate"
-                      type="date"
-                      value={formData.preferredDate}
-                      onChange={handleInputChange}
-                      className="form-input"
-                    />
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Input
+                        id="preferredDate"
+                        name="preferredDate"
+                        type="date"
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        lang={getHtmlLang()}
+                      />
+                      {formData.preferredDate && (
+                        <Button 
+                          type="button" 
+                          onClick={clearDate}
+                          className="clear-button"
+                          style={{ 
+                            padding: '0.5rem 1rem',
+                            fontSize: '0.85rem',
+                            minWidth: 'auto',
+                            background: 'rgba(212, 175, 55, 0.2)',
+                            border: '1px solid var(--spa-gold)',
+                            color: 'var(--spa-gold)'
+                          }}
+                        >
+                          {translate("clearDate")}
+                        </Button>
+                      )}
+                    </div>
                   </div>
                   <div className="form-group">
                     <Label htmlFor="preferredTime">{translate("preferredTime")}</Label>
-                    <Input
-                      id="preferredTime"
-                      name="preferredTime"
-                      type="time"
-                      value={formData.preferredTime}
-                      onChange={handleInputChange}
-                      className="form-input"
-                    />
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Input
+                        id="preferredTime"
+                        name="preferredTime"
+                        type="time"
+                        value={formData.preferredTime}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        lang={getHtmlLang()}
+                      />
+                      {formData.preferredTime && (
+                        <Button 
+                          type="button" 
+                          onClick={clearTime}
+                          className="clear-button"
+                          style={{ 
+                            padding: '0.5rem 1rem',
+                            fontSize: '0.85rem',
+                            minWidth: 'auto',
+                            background: 'rgba(212, 175, 55, 0.2)',
+                            border: '1px solid var(--spa-gold)',
+                            color: 'var(--spa-gold)'
+                          }}
+                        >
+                          {translate("clearDate")}
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </div>
                 
