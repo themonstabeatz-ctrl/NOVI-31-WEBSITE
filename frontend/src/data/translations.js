@@ -127,6 +127,22 @@ export const translations = {
     followUs: "Pratite nas",
     openHours: "Pon-Ned: 10:00 - 22:00",
     
+    // Booking Information
+    bookingInfoTitle: "Informacije o rezervaciji",
+    cancellationTitle: "Otkazivanje",
+    cancellationText: "Molimo vas da otkazujete termine najmanje 4 sata unapred",
+    lateArrivalTitle: "Kasnjenje",
+    lateArrivalText: "Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana",
+    groupBookingTitle: "Grupne rezervacije",
+    groupBookingText: "Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno",
+    emailLabel: "Email",
+    phoneLabel: "Telefon",
+    addressLabel: "Adresa",
+    workingHoursLabel: "Radno vreme",
+    mondaySunday: "Ponedeljak - Nedelja",
+    hours: "10:00 - 22:00",
+    instagramLabel: "Instagram",
+    
     // Footer
     contactInfo: "Kontakt informacije",
     socialMedia: "Društvene mreže",
