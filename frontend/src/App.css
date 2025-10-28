@@ -7992,6 +7992,11 @@ html {
     padding-bottom: 0.6rem !important;
   }
   
+  /* Make header background darker in landscape */
+  .header-container::before {
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+  
   .header-container::after {
     bottom: 0 !important;
     z-index: 999 !important;
@@ -8007,6 +8012,7 @@ html {
   /* Contact page landscape - no white gap */
   .contact-container {
     padding-top: 50px !important;
+    background: #000000 !important;
   }
   
   /* Hero overlay - STICKY filter that follows scroll */
