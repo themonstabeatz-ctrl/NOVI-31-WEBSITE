@@ -161,6 +161,7 @@ export const translations = {
     preferredDate: "Željeni datum",
     preferredTime: "Željeno vreme",
     wantToBook: "Želim da zakažem:",
+    clearDate: "Obriši",
     address: "Adresa",
     workingHours: "Radno vreme",
     followUs: "Pratite nas",
