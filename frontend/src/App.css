@@ -8147,6 +8147,11 @@ html {
     height: auto !important;
   }
   
+  /* Lower golden line below the logo */
+  .header-container::after {
+    bottom: -8px !important;
+  }
+  
   /* Hide stray images in menu */
   .mobile-nav img:not([class*="language"]):not([alt*="language"]) {
     display: none !important;
