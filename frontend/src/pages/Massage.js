@@ -189,7 +189,7 @@ const Massage = () => {
                 <p className="massage-description">{service.description}</p>
                 
                 <div className="benefits">
-                  <h4 className="benefits-title">Benefiti:</h4>
+                  <h4 className="benefits-title">{translate("benefits")}</h4>
                   <ul className="benefits-list">
                     {service.benefits.map((benefit, idx) => (
                       <li key={idx} className="benefit-item">{benefit}</li>
