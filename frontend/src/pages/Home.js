@@ -150,19 +150,6 @@ const Home = () => {
 
         {/* Welcome Section - Dobro došli */}
         <section className="pim-welcome" id="welcome-section">
-          <div className="pim-welcome-video-background">
-            <video 
-              ref={welcomeVideoRef}
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="pim-welcome-video"
-            >
-              <source data-src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/wf37eua8_SVECE.mp4" type="video/mp4" />
-            </video>
-            <div className="pim-welcome-video-overlay"></div>
-          </div>
           <div className="pim-welcome-container">
             <h3 className="pim-welcome-subtitle">{translate("welcomeSubtitle")}</h3>
             <h2 className="pim-welcome-title">{translate("welcomeTitle")}</h2>
