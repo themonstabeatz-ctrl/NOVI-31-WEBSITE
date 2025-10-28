@@ -10,7 +10,7 @@ registerLocale('sr', sr);
 registerLocale('en', enUS);
 registerLocale('ru', ru);
 
-const DateTimePicker = ({ type, value, onChange, name, id, className }) => {
+const DateTimePicker = ({ type, value, onChange, name, id, className, isMobile = false }) => {
   const { language, translate } = useLanguage();
   
   // Map language to date-fns locale
@@ -22,6 +22,17 @@ const DateTimePicker = ({ type, value, onChange, name, id, className }) => {
       'th': 'en' // Fallback to English for Thai
     };
     return localeMap[language] || 'sr';
+  };
+
+  // Get translated button texts
+  const getTodayText = () => {
+    const todayMap = {
+      'sr': 'Данас',
+      'en': 'Today',
+      'ru': 'Сегодня',
+      'th': 'วันนี้'
+    };
+    return todayMap[language] || 'Данас';
   };
 
   const handleChange = (date) => {
@@ -50,35 +61,32 @@ const DateTimePicker = ({ type, value, onChange, name, id, className }) => {
     }
   };
 
-  // Get translated "Today" text
-  const getTodayText = () => {
-    const todayMap = {
-      'sr': 'Данас',
-      'en': 'Today',
-      'ru': 'Сегодня',
-      'th': 'วันนี้'
-    };
-    return todayMap[language] || 'Данас';
-  };
+  // If mobile, use custom picker with translated buttons
+  if (isMobile) {
+    return (
+      <DatePicker
+        id={id}
+        selected={parseValue()}
+        onChange={handleChange}
+        locale={getLocale()}
+        dateFormat={type === 'date' ? 'dd.MM.yyyy' : 'HH:mm'}
+        showTimeSelect={type === 'time'}
+        showTimeSelectOnly={type === 'time'}
+        timeIntervals={15}
+        timeCaption={translate("preferredTime")}
+        placeholderText={type === 'date' ? translate("selectDate") : translate("selectTime")}
+        className={className}
+        todayButton={getTodayText()}
+        withPortal
+        showMonthDropdown
+        showYearDropdown
+        dropdownMode="select"
+      />
+    );
+  }
 
-  return (
-    <DatePicker
-      id={id}
-      selected={parseValue()}
-      onChange={handleChange}
-      locale={getLocale()}
-      dateFormat={type === 'date' ? 'yyyy-MM-dd' : 'HH:mm'}
-      showTimeSelect={type === 'time'}
-      showTimeSelectOnly={type === 'time'}
-      timeIntervals={15}
-      timeCaption={translate("preferredTime")}
-      placeholderText={type === 'date' ? translate("selectDate") : translate("selectTime")}
-      className={className}
-      todayButton={getTodayText()}
-      clearButtonClassName="custom-clear-button"
-      isClearable
-    />
-  );
+  // For desktop, return null (will use native HTML5 input)
+  return null;
 };
 
 export default DateTimePicker;
