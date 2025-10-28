@@ -69,6 +69,12 @@ export const translations = {
     coupleBenefit2: "Romantična atmosfera",
     coupleBenefit3: "Dublje povezivanje",
     
+    // Massage CTA Section
+    massageCtaTitle: "Spremni za ultimativno opuštanje?",
+    massageCtaSubtitle: "Kontaktirajte nas i rezervišite vašu masažu danas",
+    massageCtaButtonPrimary: "Rezervišite sada",
+    massageCtaButtonSecondary: "Pogledajte SPA tretmane",
+    
     // SPA Page
     spaHeroTitle: "SPA Tretmani sa Bua Luang",
     spaHeroSubtitle: "Luksuzni spa tretmani koji spajaju tradicionalnu tajlandsku mudrost sa modernim tehnikama",
