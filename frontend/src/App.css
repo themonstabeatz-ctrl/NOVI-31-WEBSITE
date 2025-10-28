@@ -5665,7 +5665,9 @@ html {
     180deg,
     rgba(0, 0, 0, 0.95) 0%,
     #000000 5%,
-    #000000 100%
+    #000000 70%,
+    transparent 85%,
+    transparent 100%
   );
   min-height: 100vh;
   will-change: transform;
