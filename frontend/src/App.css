@@ -8091,6 +8091,19 @@ html {
     height: 60px !important;
   }
   
+  /* FIX: Eliminate white/gray gap - hero starts RIGHT after header */
+  .massage-hero-fixed,
+  .spa-hero-fixed {
+    top: 60px !important;
+    height: calc(100vh - 60px) !important;
+  }
+  
+  /* Contact page landscape - start right after header */
+  .contact-container {
+    padding-top: 60px !important;
+    background: #000000 !important;
+  }
+  
   /* Top-left logo smaller */
   .nav-logo-container {
     z-index: 1003 !important;
