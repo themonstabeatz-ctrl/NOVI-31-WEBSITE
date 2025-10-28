@@ -151,6 +151,31 @@ const Contact = () => {
                   />
                 </div>
                 
+                <div className="form-row">
+                  <div className="form-group">
+                    <Label htmlFor="preferredDate">{translate("preferredDate")}</Label>
+                    <Input
+                      id="preferredDate"
+                      name="preferredDate"
+                      type="date"
+                      value={formData.preferredDate}
+                      onChange={handleInputChange}
+                      className="form-input"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <Label htmlFor="preferredTime">{translate("preferredTime")}</Label>
+                    <Input
+                      id="preferredTime"
+                      name="preferredTime"
+                      type="time"
+                      value={formData.preferredTime}
+                      onChange={handleInputChange}
+                      className="form-input"
+                    />
+                  </div>
+                </div>
+                
                 <div className="form-group">
                   <Label htmlFor="message">{translate("message")}</Label>
                   <Textarea
