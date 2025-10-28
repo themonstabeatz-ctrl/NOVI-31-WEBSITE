@@ -209,14 +209,14 @@ const Massage = () => {
       {/* Call to Action */}
       <section className="cta-section">
         <div className="cta-content">
-          <h2 className="cta-title">Spremni za ultimativno opuštanje?</h2>
-          <p className="cta-subtitle">Kontaktirajte nas i rezervišite vašu masažu danas</p>
+          <h2 className="cta-title">{translate("massageCtaTitle")}</h2>
+          <p className="cta-subtitle">{translate("massageCtaSubtitle")}</p>
           <div className="cta-buttons">
             <Button asChild size="lg" className="cta-button-primary">
-              <Link to="/contact">Rezervišite sada</Link>
+              <Link to="/contact">{translate("massageCtaButtonPrimary")}</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="cta-button-secondary">
-              <Link to="/spa">Pogledajte SPA tretmane</Link>
+              <Link to="/spa">{translate("massageCtaButtonSecondary")}</Link>
             </Button>
           </div>
         </div>
