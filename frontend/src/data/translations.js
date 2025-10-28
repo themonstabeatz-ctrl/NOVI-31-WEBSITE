@@ -223,7 +223,7 @@ export const translations = {
     philosophyText1: "Thai massage is not just a treatment, it is a reverence for the body, mind, and spirit. At its roots lies ancient wisdom of yoga, Ayurveda, and Buddhist practices. We believe that through touch and harmonious rhythm, the therapist not only relaxes muscles but also releases energy pathways, restores flow, and establishes balance in body and spirit.",
     philosophyText2: "Each pressure, muscle relaxation, and stretch becomes a communication of the body with itself. The therapist guides not only the movement of hands but attention, compassion, and presence. Through this journey, tensions transform into relief, and the body into a space of renewal.",
     philosophyText3: "Our goal is for each client to leave the spa not only more relaxed but empowered, more connected to themselves, and inspired by stillness, because true massage is a meeting between the energy you come to receive and the harmony you discover within yourself.",
-    giftTitle: "Gift your loved one or treat a colleague with a relaxation present. No need to stress about driving around to find the perfect gift. With just a few clicks, you can purchase the perfect gift from us. Click \"BUY NOW\" to pamper your loved one with a wonderful relaxation gift.",
+    giftTitle: "Gift a touch of peace, the scent of exotic lands, and a moment that lasts forever. A gift voucher, symbol of care and the beauty of living. For every loved one who deserves to relax and shine again.",
     
     // Massage Page
     massageHeroTitle: "Massages with Bua Luang",
