@@ -8008,11 +8008,12 @@ html {
     z-index: 999 !important;
   }
   
-  /* FIX: Eliminate white gap in landscape - hero sections start right after header */
+  /* FIX: Eliminate white gap in landscape - hero sections OVERLAP slightly with header */
   .massage-hero-fixed,
   .spa-hero-fixed {
     top: 42px !important;
     height: calc(100vh - 42px) !important;
+    margin-top: -2px !important;
   }
   
   /* Make sure hero overlay covers from the very top */
