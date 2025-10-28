@@ -2801,7 +2801,7 @@ body {
 .cta-section {
   padding: 4rem 2rem;
   text-align: center;
-  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  background: transparent;
   margin-top: 3rem;
   border-top: 2px solid var(--spa-gold);
   border-bottom: 2px solid var(--spa-gold);
