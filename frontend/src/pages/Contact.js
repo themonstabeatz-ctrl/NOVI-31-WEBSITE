@@ -10,7 +10,7 @@ import { Mail, Phone, MapPin, Clock, Instagram, Send } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const Contact = () => {
-  const { translate } = useLanguage();
+  const { translate, language } = useLanguage();
   const { toast } = useToast();
   const location = useLocation();
   
@@ -23,6 +23,22 @@ const Contact = () => {
     preferredTime: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Map language codes to HTML lang attribute
+  const getHtmlLang = () => {
+    const langMap = {
+      'sr': 'sr-RS',
+      'en': 'en-US',
+      'ru': 'ru-RU',
+      'th': 'th-TH'
+    };
+    return langMap[language] || 'sr-RS';
+  };
+
+  // Set HTML lang attribute for native date picker localization
+  useEffect(() => {
+    document.documentElement.lang = getHtmlLang();
+  }, [language]);
 
   // Scroll to top when component mounts and check for service parameter
   useEffect(() => {
@@ -45,6 +61,20 @@ const Contact = () => {
     setFormData(prev => ({
       ...prev,
       [name]: value
+    }));
+  };
+
+  const clearDate = () => {
+    setFormData(prev => ({
+      ...prev,
+      preferredDate: ""
+    }));
+  };
+
+  const clearTime = () => {
+    setFormData(prev => ({
+      ...prev,
+      preferredTime: ""
     }));
   };
 
