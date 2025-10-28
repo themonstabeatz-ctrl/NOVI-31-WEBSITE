@@ -618,6 +618,12 @@ export const translations = {
     coupleBenefit2: "บรรยากาศโรแมนติก",
     coupleBenefit3: "การเชื่อมต่อที่ลึกซึ้งยิ่งขึ้น",
     
+    // Massage CTA Section
+    massageCtaTitle: "พร้อมสำหรับการผ่อนคลายสูงสุดหรือยัง?",
+    massageCtaSubtitle: "ติดต่อเราและจองการนวดของคุณวันนี้",
+    massageCtaButtonPrimary: "จองเลย",
+    massageCtaButtonSecondary: "ดูทรีตเมนต์สปา",
+    
     // SPA Page
     spaHeroTitle: "ทรีตเมนต์สปาที่บัวหลวง",
     spaHeroSubtitle: "ทรีตเมนต์สปาหรูหราที่ผสมผสานภูมิปัญญาไทยดั้งเดิมกับเทคนิคสมัยใหม่",
