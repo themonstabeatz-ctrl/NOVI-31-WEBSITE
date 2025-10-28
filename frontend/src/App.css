@@ -706,9 +706,9 @@ body {
 .pim-hero-content {
   position: absolute;
   top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  text-align: right;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
   z-index: 10;
   width: 45%;
   max-width: 600px;
