@@ -8118,18 +8118,22 @@ html {
     display: none !important;
   }
   
-  /* FIX: Eliminate white/gray gap - hero OVERLAPS slightly with header */
-  .massage-hero-fixed,
-  .spa-hero-fixed {
-    top: 42px !important;
-    height: calc(100vh - 42px) !important;
+  /* Golden line at header bottom (video top) */
+  .header-container::after {
+    bottom: 0px !important;
   }
   
-  /* Make sure hero overlay covers from the very top */
+  /* FIX: Video starts exactly at header bottom (60px) */
+  .massage-hero-fixed,
+  .spa-hero-fixed {
+    top: 60px !important;
+    height: calc(100vh - 60px) !important;
+  }
+  
+  /* REMOVE video filter/overlay completely */
   .massage-hero-overlay,
   .spa-hero-overlay {
-    top: 0 !important;
-    height: 100% !important;
+    display: none !important;
   }
   
   /* Contact page landscape - start right after header */
@@ -8146,11 +8150,6 @@ html {
   .logo {
     max-width: 45px !important;
     height: auto !important;
-  }
-  
-  /* Lower golden line below the logo */
-  .header-container::after {
-    bottom: -8px !important;
   }
   
   /* Hide stray images in menu */
