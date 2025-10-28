@@ -70,7 +70,7 @@ export const translations = {
     coupleBenefit3: "Dublje povezivanje",
     
     // Massage CTA Section
-    massageCtaTitle: "Spremni za ultimativno opuštanje?",
+    massageCtaTitle: "Posetite mesto gde napetost nestaje",
     massageCtaSubtitle: "Kontaktirajte nas i rezervišite vašu masažu danas",
     massageCtaButtonPrimary: "Rezervišite sada",
     massageCtaButtonSecondary: "Pogledajte SPA tretmane",
