@@ -277,6 +277,22 @@ export const translations = {
     followUs: "Follow Us",
     openHours: "Mon-Sun: 10:00 - 22:00",
     
+    // Booking Information
+    bookingInfoTitle: "Booking Information",
+    cancellationTitle: "Cancellation",
+    cancellationText: "Please cancel appointments at least 4 hours in advance",
+    lateArrivalTitle: "Late Arrival",
+    lateArrivalText: "Arrivals more than 15 minutes late may result in shortened treatment",
+    groupBookingTitle: "Group Bookings",
+    groupBookingText: "For groups of more than 4 people, please contact us directly",
+    emailLabel: "Email",
+    phoneLabel: "Phone",
+    addressLabel: "Address",
+    workingHoursLabel: "Working Hours",
+    mondaySunday: "Monday - Sunday",
+    hours: "10:00 - 22:00",
+    instagramLabel: "Instagram",
+    
     // Footer
     contactInfo: "Contact Information",
     socialMedia: "Social Media",
