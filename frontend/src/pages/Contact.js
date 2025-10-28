@@ -6,9 +6,8 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
-import { Mail, Phone, MapPin, Clock, Instagram, Send, X } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import DateTimePicker from "../components/DateTimePicker";
 
 const Contact = () => {
   const { translate, language } = useLanguage();
