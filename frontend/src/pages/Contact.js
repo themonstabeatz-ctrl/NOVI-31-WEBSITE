@@ -52,10 +52,12 @@ const Contact = () => {
     e.preventDefault();
     
     // Create mailto link with form data
-    const subject = encodeURIComponent(`Kontakt forma - ${formData.firstName} ${formData.lastName}`);
+    const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
     const body = encodeURIComponent(
       `Ime: ${formData.firstName} ${formData.lastName}\n` +
-      `Email: ${formData.email}\n\n` +
+      `Email: ${formData.email}\n` +
+      `Željeni datum: ${formData.preferredDate || 'Nije navedeno'}\n` +
+      `Željeno vreme: ${formData.preferredTime || 'Nije navedeno'}\n\n` +
       `Poruka:\n${formData.message}`
     );
     
@@ -77,7 +79,9 @@ const Contact = () => {
         firstName: "",
         lastName: "",
         email: "",
-        message: ""
+        message: "",
+        preferredDate: "",
+        preferredTime: ""
       });
     }, 500);
   };
