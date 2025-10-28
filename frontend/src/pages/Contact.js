@@ -8,7 +8,6 @@ import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import DateTimePicker from "../components/DateTimePicker";
 
 const Contact = () => {
   const { translate, language } = useLanguage();
@@ -24,17 +23,6 @@ const Contact = () => {
     preferredTime: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  // Detect if desktop (PC)
-  useEffect(() => {
-    const checkDesktop = () => {
-      setIsDesktop(window.innerWidth > 768);
-    };
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-    return () => window.removeEventListener('resize', checkDesktop);
-  }, []);
 
   // Map language codes to HTML lang attribute
   const getHtmlLang = () => {
