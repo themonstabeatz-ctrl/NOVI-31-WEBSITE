@@ -8,6 +8,7 @@ import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import InputMask from 'react-input-mask';
 
 const Contact = () => {
   const { translate, language } = useLanguage();
@@ -23,6 +24,17 @@ const Contact = () => {
     preferredTime: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Map language codes to HTML lang attribute
   const getHtmlLang = () => {
