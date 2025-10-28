@@ -8011,8 +8011,8 @@ html {
   /* FIX: Eliminate white gap in landscape - hero sections OVERLAP slightly with header */
   .massage-hero-fixed,
   .spa-hero-fixed {
-    top: 35px !important;
-    height: calc(100vh - 35px) !important;
+    top: 32px !important;
+    height: calc(100vh - 32px) !important;
   }
   
   /* Make sure hero overlay covers from the very top */
