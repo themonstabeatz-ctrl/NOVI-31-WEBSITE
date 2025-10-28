@@ -8362,3 +8362,70 @@ html {
     font-size: 0.85rem !important;
   }
 }
+
+
+/* =====================================================
+   FORCE DESKTOP VERSION ON MOBILE - OVERRIDE ALL MOBILE STYLES
+   Mobile devices will show exact PC version with zoom capability
+   ===================================================== */
+
+/* Disable ALL mobile-specific layouts */
+@media screen and (max-width: 768px) {
+  /* Force desktop navigation always visible */
+  .mobile-menu-button {
+    display: none !important;
+  }
+  
+  .mobile-nav {
+    display: none !important;
+  }
+  
+  .nav-desktop,
+  .nav-menu {
+    display: flex !important;
+  }
+  
+  /* Force desktop hero positioning */
+  .massage-hero-fixed,
+  .spa-hero-fixed,
+  .pim-hero-fixed,
+  .about-hero-fixed {
+    top: 80px !important;
+    height: calc(100vh - 80px) !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Restore hero overlays for desktop look */
+  .massage-hero-overlay,
+  .spa-hero-overlay,
+  .pim-hero-overlay,
+  .about-hero-overlay {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+  }
+  
+  /* Force desktop header */
+  .header-container {
+    background-image: url('https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/qh0x1l26_Pozadina%201.jpg') !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 2px solid var(--spa-gold) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
+    height: auto !important;
+    padding: 0.5rem 2rem !important;
+  }
+  
+  .header-container::before {
+    display: block !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .header-container::after {
+    bottom: 0 !important;
+  }
+  
+  /* Force desktop contact container */
+  .contact-container {
+    padding-top: 80px !important;
+  }
+}
