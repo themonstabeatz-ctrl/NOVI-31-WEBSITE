@@ -2623,6 +2623,7 @@ body {
 .contact-container {
   color: var(--spa-cream);
   min-height: 100vh;
+  background: #000000;
 }
 
 .services-section {
