@@ -577,6 +577,22 @@ export const translations = {
     followUs: "ติดตามเรา",
     openHours: "จันทร์-อาทิตย์: 10:00 - 22:00",
     
+    // Booking Information
+    bookingInfoTitle: "ข้อมูลการจอง",
+    cancellationTitle: "การยกเลิก",
+    cancellationText: "โปรดยกเลิกการนัดหมายล่วงหน้าอย่างน้อย 4 ชั่วโมง",
+    lateArrivalTitle: "การมาสาย",
+    lateArrivalText: "การมาสายมากกว่า 15 นาทีอาจส่งผลให้ทรีตเมนต์สั้นลง",
+    groupBookingTitle: "การจองกลุ่ม",
+    groupBookingText: "สำหรับกลุ่มมากกว่า 4 คน โปรดติดต่อเราโดยตรง",
+    emailLabel: "อีเมล",
+    phoneLabel: "โทรศัพท์",
+    addressLabel: "ที่อยู่",
+    workingHoursLabel: "เวลาทำการ",
+    mondaySunday: "จันทร์ - อาทิตย์",
+    hours: "10:00 - 22:00",
+    instagramLabel: "อินสตาแกรม",
+    
     // Footer
     contactInfo: "ข้อมูลติดต่อ",
     socialMedia: "โซเชียลมีเดีย",
