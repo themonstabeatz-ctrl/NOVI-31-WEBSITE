@@ -8270,6 +8270,30 @@ html {
     padding: 0.5rem 0.8rem !important;
     font-size: 0.85rem !important;
   }
+  
+  /* REDUCE ALL TEXT SIZES for very small landscape */
+  .massage-hero-title,
+  .spa-hero-title {
+    font-size: 1.6rem !important;
+  }
+  
+  .massage-hero-subtitle,
+  .spa-hero-subtitle {
+    font-size: 0.75rem !important;
+  }
+  
+  h1, h2, h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  .massage-name,
+  .spa-name {
+    font-size: 1rem !important;
+  }
+  
+  p {
+    font-size: 0.75rem !important;
+  }
 }
 
 @media (max-height: 450px) and (orientation: landscape) {
