@@ -1353,15 +1353,7 @@ body {
 .about-testimonial,
 .massage-testimonial,
 .spa-testimonial {
-  display: block; /* Show for spacing */
-  padding: 4rem 2rem; 
-  min-height: 200px;
-  margin-top: 8rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
-              url('https://customer-assets.emergentagent.com/job_thaispabooking/artifacts/l0zfo29f_Pozadina%20cista%20tamna.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  display: none;
 }
 
 .pim-testimonial-quote {
