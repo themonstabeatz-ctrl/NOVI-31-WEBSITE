@@ -7423,6 +7423,16 @@ html {
     top: 55px !important;
   }
   
+  /* Contact page - start right after header with NO gap */
+  .contact-container {
+    margin-top: 55px !important;
+    background: #000000 !important;
+  }
+  
+  .contact-container .page-header {
+    padding-top: 0.5rem !important;
+  }
+  
   /* Keep golden line at header bottom */
   .header-container::after {
     bottom: 0 !important;
