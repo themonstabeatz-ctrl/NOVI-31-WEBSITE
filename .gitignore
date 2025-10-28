@@ -124,3 +124,7 @@ frontend/build/Woman_Drinking_Tea_In_Spa_fhd_2012921.mp4
 *.env
 *.env.*
 frontend/node_modules/.cache/default-development/23.pack
+-e 
+# Environment files
+*.env
+*.env.*
