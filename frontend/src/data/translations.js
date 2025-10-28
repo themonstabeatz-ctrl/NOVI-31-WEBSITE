@@ -731,6 +731,7 @@ export const translations = {
     preferredDate: "วันที่ต้องการ",
     preferredTime: "เวลาที่ต้องการ",
     wantToBook: "ฉันต้องการจอง:",
+    clearDate: "ล้าง",
     address: "ที่อยู่",
     workingHours: "เวลาทำการ",
     followUs: "ติดตามเรา",
