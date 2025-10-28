@@ -7989,7 +7989,7 @@ html {
   
   /* Fix header border positioning for landscape */
   .header-container {
-    padding-bottom: 0.6rem !important;
+    padding-bottom: 0 !important;
     background-image: none !important;
     background: #000000 !important;
     border-bottom: none !important;
