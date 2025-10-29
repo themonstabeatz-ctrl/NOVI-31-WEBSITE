@@ -100,7 +100,7 @@ const Spa = () => {
     return () => {
       observer.disconnect();
     };
-  }, []); // Empty dependency - run only once on mount
+  }, [translate]);
 
   // Logo transformation and parallax effects on scroll
   useEffect(() => {
