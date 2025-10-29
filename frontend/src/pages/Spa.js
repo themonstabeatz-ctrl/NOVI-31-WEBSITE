@@ -23,6 +23,8 @@ const Spa = () => {
     
     if (!cardsGrid || cards.length === 0) return;
     
+    const isMobile = window.innerWidth <= 768;
+    
     // Desktop and landscape mode - Original animation with roll-out effect
     const gridStyle = window.getComputedStyle(cardsGrid);
     const gridColumns = gridStyle.gridTemplateColumns;
