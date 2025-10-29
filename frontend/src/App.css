@@ -6038,12 +6038,7 @@ html {
   position: relative;
   z-index: 5;
   margin-top: calc(100vh - 80px);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.95) 0%,
-    #000000 5%,
-    #000000 100%
-  );
+  background: transparent;
   min-height: 100vh;
   will-change: transform;
   backface-visibility: hidden;
