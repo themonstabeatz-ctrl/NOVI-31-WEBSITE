@@ -6177,8 +6177,35 @@ html {
     font-size: 2.5rem;
   }
 
-  .spa-container .services-grid {
-    grid-template-columns: 1fr;
+  /* Mobile Portrait - Carousel Mode */
+  @media (orientation: portrait) {
+    .spa-container .services-grid {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .spa-container .services-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .spa-card {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+  }
+
+  /* Mobile Landscape - Keep Grid */
+  @media (orientation: landscape) {
+    .spa-container .services-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
