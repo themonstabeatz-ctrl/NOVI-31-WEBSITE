@@ -6146,7 +6146,7 @@ html {
     font-size: 2.5rem;
   }
 
-  /* Mobile Portrait - Grid with Roll Animation */
+  /* Mobile Portrait - Simple Grid 3 Columns */
   @media (orientation: portrait) {
     .spa-container .services-grid {
       display: grid !important;
@@ -6157,18 +6157,13 @@ html {
 
     .spa-card {
       opacity: 0;
-      transform: translateY(50px) rotateX(-15deg);
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
     }
 
-    .spa-card.roll-in {
+    .spa-card.visible {
       opacity: 1 !important;
-      transform: translateY(0) rotateX(0deg) !important;
-    }
-
-    .spa-card.roll-out {
-      opacity: 0 !important;
-      transform: translateY(-50px) rotateX(15deg) !important;
+      transform: translateY(0) !important;
     }
   }
 
