@@ -8719,45 +8719,32 @@ html {
 
 
 /* ============================================
-   MOBILE PORTRAIT CAROUSEL MODE
+   MOBILE PORTRAIT GRID WITH ROLL ANIMATION
    ============================================ */
 
-/* Massage Page - Mobile Portrait Carousel */
+/* Massage Page - Mobile Portrait Grid */
 @media (max-width: 768px) and (orientation: portrait) {
-  .massage-container .services-section {
-    overflow: visible;
-    padding: 2rem 0;
-  }
-
   .massage-container .services-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: scroll;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 1rem;
-    padding: 1rem 0.75rem;
-    -webkit-overflow-scrolling: touch;
-    grid-template-columns: none !important;
-  }
-
-  .massage-container .services-grid::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .massage-container .services-grid::-webkit-scrollbar-thumb {
-    background: rgba(212, 175, 55, 0.4);
-    border-radius: 3px;
+    padding: 2rem 0.75rem;
   }
 
   .massage-card {
-    flex: 0 0 78% !important;
-    min-width: 78% !important;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 0;
+    transform: translateY(50px) rotateX(-15deg);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .massage-card.roll-in {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+
+  .massage-card.roll-out {
+    opacity: 0;
+    transform: translateY(-50px) rotateX(15deg);
   }
 }
 
