@@ -5923,51 +5923,6 @@ html {
     font-size: 1.1rem;
   }
 
-  /* Mobile Portrait - Carousel Mode */
-  @media (orientation: portrait) {
-    .massage-container .services-section {
-      overflow: visible;
-      padding: 2rem 0;
-    }
-
-    .massage-container .services-grid {
-      display: flex;
-      overflow-x: scroll;
-      overflow-y: visible;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      gap: 1rem;
-      padding: 1rem 0.75rem;
-      -webkit-overflow-scrolling: touch;
-      grid-template-columns: none;
-    }
-
-    .massage-container .services-grid::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .massage-container .services-grid::-webkit-scrollbar-thumb {
-      background: rgba(212, 175, 55, 0.4);
-      border-radius: 3px;
-    }
-
-    .massage-card {
-      flex: 0 0 78%;
-      min-width: 78%;
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
-
-  /* Mobile Landscape - Keep Grid */
-  @media (orientation: landscape) {
-    .massage-container .services-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
   .massage-container .cta-content {
     padding: 3rem 2rem;
   }
