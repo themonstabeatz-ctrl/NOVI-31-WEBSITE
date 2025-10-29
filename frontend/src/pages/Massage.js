@@ -26,7 +26,7 @@ const Massage = () => {
     const isMobile = window.innerWidth <= 768;
     const isPortrait = window.innerHeight > window.innerWidth;
     
-    // Mobile portrait mode - Simple animation from bottom
+    // Mobile portrait mode - Simple animation from bottom, cards stay visible once shown
     if (isMobile && isPortrait) {
       const observerOptions = {
         root: null,
@@ -36,6 +36,7 @@ const Massage = () => {
 
       const handleIntersection = (entries) => {
         entries.forEach((entry) => {
+          // Only add visible class, never remove it
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
           }
@@ -48,12 +49,13 @@ const Massage = () => {
         observer.observe(card);
       });
 
+      // Clean up observer on unmount
       return () => {
         observer.disconnect();
       };
     }
     
-    // Desktop and landscape mode - Original animation
+    // Desktop and landscape mode - Original animation with roll-out effect
     const gridStyle = window.getComputedStyle(cardsGrid);
     const gridColumns = gridStyle.gridTemplateColumns;
     const columns = gridColumns.split(' ').length;
