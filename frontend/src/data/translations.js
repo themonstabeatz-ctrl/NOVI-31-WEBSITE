@@ -312,7 +312,7 @@ export const translations = {
     bridalPackagePrice: "12,000 RSD per person",
     bridalPackageDesc: "Group spa day with massages, facial treatments and cocktails",
     bridalPackageDuration: "4 hours",
-    ctaTitle: "Ready for a luxurious experience?",
+    ctaTitle: "A place where tension fades and peace begins",
     ctaSubtitle: "Contact us and book your spa treatment",
     ctaButtonPrimary: "Book now",
     ctaButtonSecondary: "View massages",
