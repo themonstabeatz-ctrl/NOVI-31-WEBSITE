@@ -33,13 +33,13 @@ const Massage = () => {
       let transformStart;
       
       if (columnPosition === 0) {
-        // Left column - slide from left
+        // Left column - slide from far left with tilt
         slideDirection = 'from-left';
-        transformStart = 'translateX(-150px)';
+        transformStart = 'translateX(-300px) rotateY(-30deg)';
       } else if (columnPosition === columns - 1) {
-        // Right column - slide from right
+        // Right column - slide from far right with tilt
         slideDirection = 'from-right';
-        transformStart = 'translateX(150px)';
+        transformStart = 'translateX(300px) rotateY(30deg)';
       } else {
         // Middle column(s) - slide from bottom
         slideDirection = 'from-bottom';
@@ -49,6 +49,7 @@ const Massage = () => {
       card.setAttribute('data-slide-direction', slideDirection);
       card.setAttribute('data-transform-start', transformStart);
       card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      card.style.transformStyle = 'preserve-3d';
     });
 
     const observerOptions = {
@@ -62,11 +63,11 @@ const Massage = () => {
         const transformStart = entry.target.getAttribute('data-transform-start');
         
         if (entry.isIntersecting) {
-          // Card entering viewport - slide in
+          // Card entering viewport - slide in and straighten
           entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translate(0, 0)';
+          entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
         } else {
-          // Card leaving viewport - slide out
+          // Card leaving viewport - slide out with tilt
           entry.target.style.opacity = '0';
           entry.target.style.transform = transformStart;
         }
