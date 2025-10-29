@@ -113,7 +113,7 @@ const Massage = () => {
     return () => {
       observer.disconnect();
     };
-  }, [translate]);
+  }, []); // Empty dependency - run only once on mount
 
   // Logo transformation and parallax effects on scroll
   useEffect(() => {
