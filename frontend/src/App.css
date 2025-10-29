@@ -6156,16 +6156,10 @@ html {
     }
 
     .spa-card {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
+      opacity: 1 !important;
+      transform: none !important;
       padding: 0.75rem !important;
       min-height: auto !important;
-    }
-
-    .spa-card.visible {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
     }
 
     /* Smanjenje teksta i elemenata */
