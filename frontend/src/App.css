@@ -8719,7 +8719,7 @@ html {
 
 
 /* ============================================
-   MOBILE PORTRAIT GRID WITH ROLL ANIMATION
+   MOBILE PORTRAIT - SIMPLE GRID 3 COLUMNS
    ============================================ */
 
 /* Massage Page - Mobile Portrait Grid */
@@ -8733,18 +8733,13 @@ html {
 
   .massage-card {
     opacity: 0;
-    transform: translateY(50px) rotateX(-15deg);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
   }
 
-  .massage-card.roll-in {
+  .massage-card.visible {
     opacity: 1 !important;
-    transform: translateY(0) rotateX(0deg) !important;
-  }
-
-  .massage-card.roll-out {
-    opacity: 0 !important;
-    transform: translateY(-50px) rotateX(15deg) !important;
+    transform: translateY(0) !important;
   }
 }
 
