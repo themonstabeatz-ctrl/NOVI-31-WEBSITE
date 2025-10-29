@@ -6162,13 +6162,13 @@ html {
     }
 
     .spa-card.roll-in {
-      opacity: 1;
-      transform: translateY(0) rotateX(0deg);
+      opacity: 1 !important;
+      transform: translateY(0) rotateX(0deg) !important;
     }
 
     .spa-card.roll-out {
-      opacity: 0;
-      transform: translateY(-50px) rotateX(15deg);
+      opacity: 0 !important;
+      transform: translateY(-50px) rotateX(15deg) !important;
     }
   }
 
