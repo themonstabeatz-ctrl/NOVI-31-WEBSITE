@@ -6067,6 +6067,7 @@ html {
   position: relative;
   padding: 6rem 2rem;
   background: transparent;
+  overflow: visible;
 }
 
 .spa-container .services-grid {
@@ -6076,6 +6077,7 @@ html {
   max-width: 1400px;
   margin: 0 auto;
   animation: fadeInUp 1s ease-out;
+  overflow: visible;
 }
 
 .spa-container .spa-card {
