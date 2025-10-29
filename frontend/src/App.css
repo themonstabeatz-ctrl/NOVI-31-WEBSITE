@@ -6011,6 +6011,7 @@ html {
     0 0 40px rgba(212, 175, 55, 0.6),
     0 10px 30px rgba(0, 0, 0, 0.8);
   animation: titleGlow 3s ease-in-out infinite;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .spa-hero-divider {
