@@ -19,11 +19,35 @@ const Massage = () => {
   // Card slide-in animation on scroll
   useEffect(() => {
     const cards = document.querySelectorAll('.massage-card');
+    const cardsGrid = document.querySelector('.services-grid');
     
-    // Randomly assign slide direction to each card
+    if (!cardsGrid) return;
+    
+    // Determine grid columns by checking computed style
+    const gridStyle = window.getComputedStyle(cardsGrid);
+    const columns = gridStyle.gridTemplateColumns.split(' ').length;
+    
     cards.forEach((card, index) => {
-      const slideDirection = Math.random() > 0.5 ? 'slide-from-left' : 'slide-from-right';
+      const columnPosition = index % columns; // 0 = left, 1 = center, 2 = right (for 3 columns)
+      let slideDirection;
+      let transformStart;
+      
+      if (columnPosition === 0) {
+        // Left column - slide from left
+        slideDirection = 'from-left';
+        transformStart = 'translateX(-150px)';
+      } else if (columnPosition === columns - 1) {
+        // Right column - slide from right
+        slideDirection = 'from-right';
+        transformStart = 'translateX(150px)';
+      } else {
+        // Middle column(s) - slide from bottom
+        slideDirection = 'from-bottom';
+        transformStart = 'translateY(150px)';
+      }
+      
       card.setAttribute('data-slide-direction', slideDirection);
+      card.setAttribute('data-transform-start', transformStart);
       card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
     });
 
@@ -35,16 +59,16 @@ const Massage = () => {
 
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
-        const slideDirection = entry.target.getAttribute('data-slide-direction');
+        const transformStart = entry.target.getAttribute('data-transform-start');
         
         if (entry.isIntersecting) {
           // Card entering viewport - slide in
           entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateX(0)';
+          entry.target.style.transform = 'translate(0, 0)';
         } else {
           // Card leaving viewport - slide out
           entry.target.style.opacity = '0';
-          entry.target.style.transform = slideDirection === 'slide-from-left' ? 'translateX(-100px)' : 'translateX(100px)';
+          entry.target.style.transform = transformStart;
         }
       });
     };
