@@ -23,9 +23,8 @@ const Spa = () => {
     // Randomly assign slide direction to each card
     cards.forEach((card, index) => {
       const slideDirection = Math.random() > 0.5 ? 'slide-from-left' : 'slide-from-right';
-      card.classList.add(slideDirection);
-      card.style.opacity = '0';
-      card.style.transform = slideDirection === 'slide-from-left' ? 'translateX(-100px)' : 'translateX(100px)';
+      card.setAttribute('data-slide-direction', slideDirection);
+      card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
     });
 
     const observerOptions = {
@@ -36,10 +35,16 @@ const Spa = () => {
 
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !entry.target.classList.contains('card-animated')) {
-          entry.target.classList.add('card-animated');
+        const slideDirection = entry.target.getAttribute('data-slide-direction');
+        
+        if (entry.isIntersecting) {
+          // Card entering viewport - slide in
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateX(0)';
+        } else {
+          // Card leaving viewport - slide out
+          entry.target.style.opacity = '0';
+          entry.target.style.transform = slideDirection === 'slide-from-left' ? 'translateX(-100px)' : 'translateX(100px)';
         }
       });
     };
