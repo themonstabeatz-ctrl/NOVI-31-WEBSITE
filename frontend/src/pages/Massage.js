@@ -26,24 +26,42 @@ const Massage = () => {
     // Determine grid columns by checking computed style
     const gridStyle = window.getComputedStyle(cardsGrid);
     const columns = gridStyle.gridTemplateColumns.split(' ').length;
+    const isMobile = window.innerWidth <= 768;
     
     cards.forEach((card, index) => {
-      const columnPosition = index % columns; // 0 = left, 1 = center, 2 = right (for 3 columns)
       let slideDirection;
       let transformStart;
       
-      if (columnPosition === 0) {
-        // Left column - slide from far left with tilt
-        slideDirection = 'from-left';
-        transformStart = 'translateX(-300px) rotateY(-30deg)';
-      } else if (columnPosition === columns - 1) {
-        // Right column - slide from far right with tilt
-        slideDirection = 'from-right';
-        transformStart = 'translateX(300px) rotateY(30deg)';
+      if (isMobile || columns === 1) {
+        // Mobile or single column - alternate pattern: left, bottom, right, repeat
+        const pattern = index % 3;
+        if (pattern === 0) {
+          slideDirection = 'from-left';
+          transformStart = 'translateX(-300px) rotateY(-30deg)';
+        } else if (pattern === 1) {
+          slideDirection = 'from-bottom';
+          transformStart = 'translateY(150px)';
+        } else {
+          slideDirection = 'from-right';
+          transformStart = 'translateX(300px) rotateY(30deg)';
+        }
       } else {
-        // Middle column(s) - slide from bottom
-        slideDirection = 'from-bottom';
-        transformStart = 'translateY(150px)';
+        // Desktop - use column position
+        const columnPosition = index % columns;
+        
+        if (columnPosition === 0) {
+          // Left column - slide from far left with tilt
+          slideDirection = 'from-left';
+          transformStart = 'translateX(-300px) rotateY(-30deg)';
+        } else if (columnPosition === columns - 1) {
+          // Right column - slide from far right with tilt
+          slideDirection = 'from-right';
+          transformStart = 'translateX(300px) rotateY(30deg)';
+        } else {
+          // Middle column(s) - slide from bottom
+          slideDirection = 'from-bottom';
+          transformStart = 'translateY(150px)';
+        }
       }
       
       card.setAttribute('data-slide-direction', slideDirection);
