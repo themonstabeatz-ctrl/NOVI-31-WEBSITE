@@ -6204,24 +6204,24 @@ html {
       overflow-y: visible;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      gap: 1.5rem;
-      padding: 1rem 1.5rem;
+      gap: 1rem;
+      padding: 1rem 0.75rem;
       -webkit-overflow-scrolling: touch;
       grid-template-columns: none;
     }
 
     .spa-container .services-grid::-webkit-scrollbar {
-      height: 8px;
+      height: 6px;
     }
 
     .spa-container .services-grid::-webkit-scrollbar-thumb {
-      background: rgba(212, 175, 55, 0.3);
-      border-radius: 4px;
+      background: rgba(212, 175, 55, 0.4);
+      border-radius: 3px;
     }
 
     .spa-card {
-      flex: 0 0 85%;
-      min-width: 85%;
+      flex: 0 0 78%;
+      min-width: 78%;
       scroll-snap-align: center;
       scroll-snap-stop: always;
       opacity: 1 !important;
