@@ -6146,6 +6146,58 @@ html {
     font-size: 2.5rem;
   }
 
+  /* Mobile Portrait - Smanjene kartice */
+  @media (orientation: portrait) and (max-height: 900px) {
+    .spa-container .services-grid {
+      gap: 0.5rem !important;
+      padding: 1rem 0.5rem !important;
+    }
+
+    .spa-card {
+      padding: 0.6rem !important;
+      font-size: 0.85rem !important;
+    }
+
+    .spa-container .massage-name {
+      font-size: 1rem !important;
+      margin-bottom: 0.4rem !important;
+    }
+
+    .spa-container .massage-description {
+      font-size: 0.8rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 0.6rem !important;
+    }
+
+    .spa-container .duration {
+      font-size: 0.75rem !important;
+    }
+
+    .spa-container .price {
+      font-size: 1.1rem !important;
+    }
+
+    .spa-container .benefits-list {
+      font-size: 0.75rem !important;
+      margin-bottom: 0.6rem !important;
+    }
+
+    .spa-container .benefits-list li {
+      margin-bottom: 0.2rem !important;
+    }
+
+    .spa-container .popular-badge {
+      font-size: 0.7rem !important;
+      padding: 0.3rem 0.6rem !important;
+      top: 0.4rem !important;
+      right: 0.4rem !important;
+    }
+
+    .spa-container .massage-meta {
+      margin-top: 0.6rem !important;
+    }
+  }
+
   /* Mobile Landscape - Keep Grid */
   @media (orientation: landscape) {
     .spa-container .services-grid {
