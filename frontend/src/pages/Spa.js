@@ -27,16 +27,23 @@ const Spa = () => {
     const gridStyle = window.getComputedStyle(cardsGrid);
     const columns = gridStyle.gridTemplateColumns.split(' ').length;
     const isMobile = window.innerWidth <= 768;
-    const slideDistance = isMobile ? 120 : 300; // Shorter distance for mobile
-    const tiltAngle = isMobile ? 20 : 30; // Less tilt for mobile
+    const isPortrait = window.innerHeight > window.innerWidth;
     
     cards.forEach((card, index) => {
       let slideDirection;
       let transformStart;
       
-      if (isMobile || columns === 1) {
-        // Mobile or single column - alternate pattern: left, bottom, right, repeat
+      if (isMobile && isPortrait) {
+        // Mobile Portrait - Simple fade in with scale (no sliding)
+        slideDirection = 'fade-scale';
+        transformStart = 'scale(0.8)';
+        card.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+      } else if (isMobile || columns === 1) {
+        // Mobile Landscape - Alternate pattern with tilt
         const pattern = index % 3;
+        const slideDistance = 200;
+        const tiltAngle = 25;
+        
         if (pattern === 0) {
           slideDirection = 'from-left';
           transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
@@ -47,28 +54,28 @@ const Spa = () => {
           slideDirection = 'from-right';
           transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
         }
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
       } else {
-        // Desktop - use column position
+        // Desktop - use column position with full effects
         const columnPosition = index % columns;
+        const slideDistance = 300;
+        const tiltAngle = 30;
         
         if (columnPosition === 0) {
-          // Left column - slide from far left with tilt
           slideDirection = 'from-left';
           transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
         } else if (columnPosition === columns - 1) {
-          // Right column - slide from far right with tilt
           slideDirection = 'from-right';
           transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
         } else {
-          // Middle column(s) - slide from bottom
           slideDirection = 'from-bottom';
           transformStart = 'translateY(150px)';
         }
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
       }
       
       card.setAttribute('data-slide-direction', slideDirection);
       card.setAttribute('data-transform-start', transformStart);
-      card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
       card.style.transformStyle = 'preserve-3d';
     });
 
@@ -81,13 +88,18 @@ const Spa = () => {
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         const transformStart = entry.target.getAttribute('data-transform-start');
+        const slideDirection = entry.target.getAttribute('data-slide-direction');
         
         if (entry.isIntersecting) {
-          // Card entering viewport - slide in and straighten
+          // Card entering viewport
           entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
+          if (slideDirection === 'fade-scale') {
+            entry.target.style.transform = 'scale(1)';
+          } else {
+            entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
+          }
         } else {
-          // Card leaving viewport - slide out with tilt
+          // Card leaving viewport
           entry.target.style.opacity = '0';
           entry.target.style.transform = transformStart;
         }
