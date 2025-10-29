@@ -26,33 +26,14 @@ const Spa = () => {
     const isMobile = window.innerWidth <= 768;
     const isPortrait = window.innerHeight > window.innerWidth;
     
-    // Mobile portrait mode - Simple animation from bottom, cards stay visible once shown
+    // Mobile portrait mode - NO EFFECTS, just show cards
     if (isMobile && isPortrait) {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-      };
-
-      const handleIntersection = (entries) => {
-        entries.forEach((entry) => {
-          // Only add visible class, never remove it
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(handleIntersection, observerOptions);
-      
-      cards.forEach((card) => {
-        observer.observe(card);
+      // Simply make all cards visible without any animation
+      cards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
       });
-
-      // Clean up observer on unmount
-      return () => {
-        observer.disconnect();
-      };
+      return; // Exit early, no observer needed
     }
     
     // Desktop and landscape mode - Original animation with roll-out effect
