@@ -692,7 +692,7 @@ export const translations = {
     bridalPackagePrice: "12,000 RSD ต่อคน",
     bridalPackageDesc: "วันสปากลุ่มพร้อมนวด ทรีตเมนต์ใบหน้า และค็อกเทล",
     bridalPackageDuration: "4 ชั่วโมง",
-    ctaTitle: "พร้อมสำหรับประสบการณ์หรูหราหรือยัง?",
+    ctaTitle: "สถานที่ที่ความเครียดหายไป และความสงบเริ่มต้น",
     ctaSubtitle: "ติดต่อเราและจองทรีตเมนต์สปาของคุณ",
     ctaButtonPrimary: "จองเลย",
     ctaButtonSecondary: "ดูการนวด",
