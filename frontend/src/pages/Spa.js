@@ -23,16 +23,12 @@ const Spa = () => {
     
     if (!cardsGrid) return;
     
-    // Check if mobile portrait by detecting grid vs flex display
-    const gridStyle = window.getComputedStyle(cardsGrid);
-    const displayType = gridStyle.display;
-    const gridColumns = gridStyle.gridTemplateColumns;
     const isMobile = window.innerWidth <= 768;
     const isPortrait = window.innerHeight > window.innerWidth;
     
-    // Mobile portrait mode - Roll animation (when grid has 3 columns)
-    if (isMobile && isPortrait && displayType === 'grid' && gridColumns.split(' ').length === 3) {
-      console.log('Mobile portrait mode detected - activating roll animation');
+    // Mobile portrait mode - Roll animation (simple grid layout)
+    if (isMobile && isPortrait) {
+      console.log('Mobile portrait mode - activating roll animation');
       
       const observerOptions = {
         root: null,
@@ -68,6 +64,8 @@ const Spa = () => {
     console.log('Desktop/landscape mode - activating column-based animation');
     
     // Desktop and landscape mode - Original animation
+    const gridStyle = window.getComputedStyle(cardsGrid);
+    const gridColumns = gridStyle.gridTemplateColumns;
     const columns = gridColumns.split(' ').length;
     
     cards.forEach((card, index) => {
