@@ -8729,3 +8729,97 @@ html {
   }
 }
 
+
+/* ============================================
+   MOBILE PORTRAIT CAROUSEL MODE
+   ============================================ */
+
+/* Massage Page - Mobile Portrait Carousel */
+@media (max-width: 768px) and (orientation: portrait) {
+  .massage-container .services-section {
+    overflow: visible;
+    padding: 2rem 0;
+  }
+
+  .massage-container .services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: scroll;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    grid-template-columns: none !important;
+  }
+
+  .massage-container .services-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .massage-container .services-grid::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.4);
+    border-radius: 3px;
+  }
+
+  .massage-card {
+    flex: 0 0 78% !important;
+    min-width: 78% !important;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* SPA Page - Mobile Portrait Carousel */
+@media (max-width: 768px) and (orientation: portrait) {
+  .spa-container .services-section {
+    overflow: visible;
+    padding: 2rem 0;
+  }
+
+  .spa-container .services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: scroll;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    grid-template-columns: none !important;
+  }
+
+  .spa-container .services-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .spa-container .services-grid::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.4);
+    border-radius: 3px;
+  }
+
+  .spa-card {
+    flex: 0 0 78% !important;
+    min-width: 78% !important;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile Landscape - Keep Grid Layout */
+@media (max-width: 768px) and (orientation: landscape) {
+  .massage-container .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .spa-container .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
