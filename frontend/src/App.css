@@ -8749,59 +8749,6 @@ html {
    MOBILE PORTRAIT - SIMPLE GRID 3 COLUMNS
    ============================================ */
 
-/* Massage Page - Mobile Portrait Grid */
-@media (max-width: 768px) and (orientation: portrait) {
-  .massage-container .services-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 0.5rem;
-    padding: 1.5rem 0.5rem;
-  }
-
-  .massage-card {
-    opacity: 1 !important;
-    transform: none !important;
-    padding: 0.75rem !important;
-    min-height: auto !important;
-  }
-
-  /* Smanjenje teksta i elemenata */
-  .massage-container .massage-name {
-    font-size: 0.9rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-
-  .massage-container .massage-description {
-    font-size: 0.75rem !important;
-    line-height: 1.4 !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .massage-container .duration {
-    font-size: 0.7rem !important;
-  }
-
-  .massage-container .price {
-    font-size: 1rem !important;
-  }
-
-  .massage-container .benefits-list {
-    font-size: 0.7rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .massage-container .benefits-list li {
-    margin-bottom: 0.25rem !important;
-  }
-
-  .massage-container .popular-badge {
-    font-size: 0.65rem !important;
-    padding: 0.25rem 0.5rem !important;
-    top: 0.5rem !important;
-    right: 0.5rem !important;
-  }
-}
-
 /* Mobile Landscape - Keep Grid Layout */
 @media (max-width: 768px) and (orientation: landscape) {
   .massage-container .services-grid {
