@@ -34,10 +34,10 @@ const Massage = () => {
       let transformStart;
       
       if (isMobile && isPortrait) {
-        // Mobile Portrait - Simple fade in with scale (no sliding)
-        slideDirection = 'fade-scale';
-        transformStart = 'scale(0.8)';
-        card.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+        // Mobile Portrait - All cards slide from bottom only
+        slideDirection = 'from-bottom';
+        transformStart = 'translateY(150px)';
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
       } else if (isMobile || columns === 1) {
         // Mobile Landscape - Alternate pattern with tilt
         const pattern = index % 3;
@@ -88,18 +88,13 @@ const Massage = () => {
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         const transformStart = entry.target.getAttribute('data-transform-start');
-        const slideDirection = entry.target.getAttribute('data-slide-direction');
         
         if (entry.isIntersecting) {
-          // Card entering viewport
+          // Card entering viewport - slide in from bottom
           entry.target.style.opacity = '1';
-          if (slideDirection === 'fade-scale') {
-            entry.target.style.transform = 'scale(1)';
-          } else {
-            entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
-          }
+          entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
         } else {
-          // Card leaving viewport
+          // Card leaving viewport - slide back down
           entry.target.style.opacity = '0';
           entry.target.style.transform = transformStart;
         }
