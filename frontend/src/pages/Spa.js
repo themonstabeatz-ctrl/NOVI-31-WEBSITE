@@ -18,111 +18,16 @@ const Spa = () => {
 
   // Card slide-in animation on scroll
   useEffect(() => {
-    const initializeAnimations = () => {
-      const cards = document.querySelectorAll('.spa-card');
-      const cardsGrid = document.querySelector('.services-grid');
-      
-      if (!cardsGrid || cards.length === 0) return;
-      
-      const isMobile = window.innerWidth <= 768;
-      const isPortrait = window.innerHeight > window.innerWidth;
-      
-      console.log(`Viewport: ${window.innerWidth}x${window.innerHeight}, isMobile: ${isMobile}, isPortrait: ${isPortrait}`);
-      
-      // Remove any existing observers and classes
-      cards.forEach(card => {
-        card.classList.remove('roll-in', 'roll-out');
-        card.removeAttribute('data-slide-direction');
-        card.removeAttribute('data-transform-start');
-      });
-      
-      // Mobile portrait mode - Roll animation (simple grid layout)
-      if (isMobile && isPortrait) {
-        console.log('Mobile portrait mode - activating roll animation');
-        
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.3
-        };
-
-        const handleIntersection = (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Roll in from bottom
-              entry.target.classList.add('roll-in');
-              entry.target.classList.remove('roll-out');
-            } else {
-              // Roll out to top
-              entry.target.classList.remove('roll-in');
-              entry.target.classList.add('roll-out');
-            }
-          });
-        };
-
-        const observer = new IntersectionObserver(handleIntersection, observerOptions);
-        
-        cards.forEach((card) => {
-          observer.observe(card);
-        });
-
-        return () => {
-          observer.disconnect();
-        };
-      }
-      
-      console.log('Desktop/landscape mode - activating column-based animation');
-      
-      // Desktop and landscape mode - Original animation
-      const gridStyle = window.getComputedStyle(cardsGrid);
-      const gridColumns = gridStyle.gridTemplateColumns;
-      const columns = gridColumns.split(' ').length;
-      
-      cards.forEach((card, index) => {
-        let slideDirection;
-        let transformStart;
-        
-        if (isMobile || columns === 1) {
-          // Mobile Landscape - Alternate pattern with tilt
-          const pattern = index % 3;
-          const slideDistance = 200;
-          const tiltAngle = 25;
-          
-          if (pattern === 0) {
-            slideDirection = 'from-left';
-            transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
-          } else if (pattern === 1) {
-            slideDirection = 'from-bottom';
-            transformStart = 'translateY(150px)';
-          } else {
-            slideDirection = 'from-right';
-            transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
-          }
-          card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        } else {
-          // Desktop - use column position with full effects
-          const columnPosition = index % columns;
-          const slideDistance = 300;
-          const tiltAngle = 30;
-          
-          if (columnPosition === 0) {
-            slideDirection = 'from-left';
-            transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
-          } else if (columnPosition === columns - 1) {
-            slideDirection = 'from-right';
-            transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
-          } else {
-            slideDirection = 'from-bottom';
-            transformStart = 'translateY(150px)';
-          }
-          card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
-        
-        card.setAttribute('data-slide-direction', slideDirection);
-        card.setAttribute('data-transform-start', transformStart);
-        card.style.transformStyle = 'preserve-3d';
-      });
-
+    const cards = document.querySelectorAll('.spa-card');
+    const cardsGrid = document.querySelector('.services-grid');
+    
+    if (!cardsGrid || cards.length === 0) return;
+    
+    const isMobile = window.innerWidth <= 768;
+    const isPortrait = window.innerHeight > window.innerWidth;
+    
+    // Mobile portrait mode - Simple animation from bottom
+    if (isMobile && isPortrait) {
       const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -131,16 +36,8 @@ const Spa = () => {
 
       const handleIntersection = (entries) => {
         entries.forEach((entry) => {
-          const transformStart = entry.target.getAttribute('data-transform-start');
-          
           if (entry.isIntersecting) {
-            // Card entering viewport - slide in from bottom
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
-          } else {
-            // Card leaving viewport - slide back down
-            entry.target.style.opacity = '0';
-            entry.target.style.transform = transformStart;
+            entry.target.classList.add('visible');
           }
         });
       };
@@ -154,22 +51,84 @@ const Spa = () => {
       return () => {
         observer.disconnect();
       };
+    }
+    
+    // Desktop and landscape mode - Original animation
+    const gridStyle = window.getComputedStyle(cardsGrid);
+    const gridColumns = gridStyle.gridTemplateColumns;
+    const columns = gridColumns.split(' ').length;
+    
+    cards.forEach((card, index) => {
+      let slideDirection;
+      let transformStart;
+      
+      if (isMobile || columns === 1) {
+        const pattern = index % 3;
+        const slideDistance = 200;
+        const tiltAngle = 25;
+        
+        if (pattern === 0) {
+          slideDirection = 'from-left';
+          transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
+        } else if (pattern === 1) {
+          slideDirection = 'from-bottom';
+          transformStart = 'translateY(150px)';
+        } else {
+          slideDirection = 'from-right';
+          transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
+        }
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      } else {
+        const columnPosition = index % columns;
+        const slideDistance = 300;
+        const tiltAngle = 30;
+        
+        if (columnPosition === 0) {
+          slideDirection = 'from-left';
+          transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
+        } else if (columnPosition === columns - 1) {
+          slideDirection = 'from-right';
+          transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
+        } else {
+          slideDirection = 'from-bottom';
+          transformStart = 'translateY(150px)';
+        }
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      
+      card.setAttribute('data-slide-direction', slideDirection);
+      card.setAttribute('data-transform-start', transformStart);
+      card.style.transformStyle = 'preserve-3d';
+    });
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
     };
-    
-    // Initialize on mount
-    const cleanup = initializeAnimations();
-    
-    // Re-initialize on window resize
-    const handleResize = () => {
-      if (cleanup) cleanup();
-      initializeAnimations();
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        const transformStart = entry.target.getAttribute('data-transform-start');
+        
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
+        } else {
+          entry.target.style.opacity = '0';
+          entry.target.style.transform = transformStart;
+        }
+      });
     };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
     
-    window.addEventListener('resize', handleResize);
-    
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+
     return () => {
-      window.removeEventListener('resize', handleResize);
-      if (cleanup) cleanup();
+      observer.disconnect();
     };
   }, [translate]);
 
