@@ -26,6 +26,8 @@ const Massage = () => {
     const isMobile = window.innerWidth <= 768;
     const isPortrait = window.innerHeight > window.innerWidth;
     
+    console.log(`Viewport: ${window.innerWidth}x${window.innerHeight}, isMobile: ${isMobile}, isPortrait: ${isPortrait}`);
+    
     // Mobile portrait mode - Roll animation (simple grid layout)
     if (isMobile && isPortrait) {
       console.log('Mobile portrait mode - activating roll animation');
