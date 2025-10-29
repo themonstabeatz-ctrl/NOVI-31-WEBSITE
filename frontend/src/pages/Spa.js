@@ -29,16 +29,20 @@ const Spa = () => {
     const isMobile = window.innerWidth <= 768;
     const isPortrait = window.innerHeight > window.innerWidth;
     
+    // Skip animation for mobile portrait carousel mode
+    if (isMobile && isPortrait) {
+      cards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      });
+      return;
+    }
+    
     cards.forEach((card, index) => {
       let slideDirection;
       let transformStart;
       
-      if (isMobile && isPortrait) {
-        // Mobile Portrait - All cards slide from bottom only
-        slideDirection = 'from-bottom';
-        transformStart = 'translateY(150px)';
-        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-      } else if (isMobile || columns === 1) {
+      if (isMobile || columns === 1) {
         // Mobile Landscape - Alternate pattern with tilt
         const pattern = index % 3;
         const slideDistance = 200;
