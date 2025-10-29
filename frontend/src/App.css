@@ -5650,6 +5650,7 @@ html {
   animation: fadeInUp 1s ease-out;
   white-space: nowrap;
   overflow: visible;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 /* Parallax Content */
