@@ -5923,8 +5923,35 @@ html {
     font-size: 1.1rem;
   }
 
-  .massage-container .services-grid {
-    grid-template-columns: 1fr;
+  /* Mobile Portrait - Carousel Mode */
+  @media (orientation: portrait) {
+    .massage-container .services-grid {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .massage-container .services-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .massage-card {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+  }
+
+  /* Mobile Landscape - Keep Grid */
+  @media (orientation: landscape) {
+    .massage-container .services-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .massage-container .cta-content {
