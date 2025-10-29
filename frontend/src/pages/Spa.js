@@ -27,6 +27,8 @@ const Spa = () => {
     const gridStyle = window.getComputedStyle(cardsGrid);
     const columns = gridStyle.gridTemplateColumns.split(' ').length;
     const isMobile = window.innerWidth <= 768;
+    const slideDistance = isMobile ? 120 : 300; // Shorter distance for mobile
+    const tiltAngle = isMobile ? 20 : 30; // Less tilt for mobile
     
     cards.forEach((card, index) => {
       let slideDirection;
@@ -37,13 +39,13 @@ const Spa = () => {
         const pattern = index % 3;
         if (pattern === 0) {
           slideDirection = 'from-left';
-          transformStart = 'translateX(-300px) rotateY(-30deg)';
+          transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
         } else if (pattern === 1) {
           slideDirection = 'from-bottom';
           transformStart = 'translateY(150px)';
         } else {
           slideDirection = 'from-right';
-          transformStart = 'translateX(300px) rotateY(30deg)';
+          transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
         }
       } else {
         // Desktop - use column position
@@ -52,11 +54,11 @@ const Spa = () => {
         if (columnPosition === 0) {
           // Left column - slide from far left with tilt
           slideDirection = 'from-left';
-          transformStart = 'translateX(-300px) rotateY(-30deg)';
+          transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
         } else if (columnPosition === columns - 1) {
           // Right column - slide from far right with tilt
           slideDirection = 'from-right';
-          transformStart = 'translateX(300px) rotateY(30deg)';
+          transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
         } else {
           // Middle column(s) - slide from bottom
           slideDirection = 'from-bottom';
