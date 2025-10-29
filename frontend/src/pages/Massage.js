@@ -23,19 +23,6 @@ const Massage = () => {
     
     if (!cardsGrid || cards.length === 0) return;
     
-    const isMobile = window.innerWidth <= 768;
-    const isPortrait = window.innerHeight > window.innerWidth;
-    
-    // Mobile portrait mode - NO EFFECTS, just show cards
-    if (isMobile && isPortrait) {
-      // Simply make all cards visible without any animation
-      cards.forEach(card => {
-        card.style.opacity = '1';
-        card.style.transform = 'none';
-      });
-      return; // Exit early, no observer needed
-    }
-    
     // Desktop and landscape mode - Original animation with roll-out effect
     const gridStyle = window.getComputedStyle(cardsGrid);
     const gridColumns = gridStyle.gridTemplateColumns;
