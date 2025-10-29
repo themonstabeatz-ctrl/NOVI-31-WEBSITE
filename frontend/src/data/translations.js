@@ -122,7 +122,7 @@ export const translations = {
     bridalPackagePrice: "12,000 RSD po osobi",
     bridalPackageDesc: "Grupni spa dan sa masažama, tretmanima lica i kokteilima",
     bridalPackageDuration: "4 sata",
-    ctaTitle: "Spremni za luksuzno iskustvo?",
+    ctaTitle: "Mesto gde napetost nestaje, a mir počinje",
     ctaSubtitle: "Kontaktirajte nas i rezervišite vaš spa tretman",
     ctaButtonPrimary: "Rezervišite sada",
     ctaButtonSecondary: "Pogledajte masaže",
