@@ -22,6 +22,8 @@ const Massage = () => {
       const scrollPosition = window.scrollY;
       const massageHeroSection = document.querySelector('.massage-hero-fixed');
       const massageHeroLogo = document.querySelector('.massage-hero-logo');
+      const massageHeroTitle = document.querySelector('.massage-hero-title');
+      const massageHeroSubtitle = document.querySelector('.massage-hero-subtitle');
       
       if (!massageHeroSection || !massageHeroLogo) return;
       
@@ -36,11 +38,44 @@ const Massage = () => {
         massageHeroLogo.style.opacity = opacity;
         massageHeroLogo.style.transform = `scale(${scale})`;
         massageHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+        
+        // Fade out title and subtitle
+        if (massageHeroTitle) {
+          massageHeroTitle.style.opacity = opacity;
+          massageHeroTitle.style.transform = `translateY(${scrollPercent * 50}px)`;
+        }
+        if (massageHeroSubtitle) {
+          massageHeroSubtitle.style.opacity = opacity;
+          massageHeroSubtitle.style.transform = `translateY(${scrollPercent * 50}px)`;
+        }
       } else {
         // Scroll up - restore logo
         massageHeroLogo.style.opacity = 1;
         massageHeroLogo.style.transform = 'scale(1)';
         massageHeroLogo.style.filter = 'blur(0px)';
+        
+        // Restore title and subtitle
+        if (massageHeroTitle) {
+          massageHeroTitle.style.opacity = 1;
+          massageHeroTitle.style.transform = 'translateY(0)';
+        }
+        if (massageHeroSubtitle) {
+          massageHeroSubtitle.style.opacity = 1;
+          massageHeroSubtitle.style.transform = 'translateY(0)';
+        }
+      }
+      
+      // Fade in CTA section after cards
+      const ctaSection = document.querySelector('.cta-section');
+      if (ctaSection) {
+        const ctaOffset = ctaSection.offsetTop;
+        const windowHeight = window.innerHeight;
+        const ctaScrollPercent = Math.max(0, Math.min(1, (scrollPosition + windowHeight - ctaOffset) / windowHeight));
+        
+        if (ctaScrollPercent > 0) {
+          ctaSection.style.opacity = ctaScrollPercent;
+          ctaSection.style.transform = `translateY(${(1 - ctaScrollPercent) * 50}px)`;
+        }
       }
     };
     
