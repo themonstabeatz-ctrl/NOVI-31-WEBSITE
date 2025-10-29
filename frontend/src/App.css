@@ -5678,7 +5678,7 @@ html {
 .massage-container .services-section {
   position: relative;
   padding: 6rem 2rem;
-  background: #000000;
+  background: transparent;
 }
 
 .massage-container .services-grid {
