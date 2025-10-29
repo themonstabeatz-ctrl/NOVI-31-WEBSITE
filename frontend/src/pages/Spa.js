@@ -22,6 +22,8 @@ const Spa = () => {
       const scrollPosition = window.scrollY;
       const spaHeroSection = document.querySelector('.spa-hero-fixed');
       const spaHeroLogo = document.querySelector('.spa-hero-logo');
+      const spaHeroTitle = document.querySelector('.spa-hero-title');
+      const spaHeroSubtitle = document.querySelector('.spa-hero-subtitle');
       
       if (!spaHeroSection || !spaHeroLogo) return;
       
@@ -36,11 +38,44 @@ const Spa = () => {
         spaHeroLogo.style.opacity = opacity;
         spaHeroLogo.style.transform = `scale(${scale})`;
         spaHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+        
+        // Fade out title and subtitle
+        if (spaHeroTitle) {
+          spaHeroTitle.style.opacity = opacity;
+          spaHeroTitle.style.transform = `translateY(${scrollPercent * 50}px)`;
+        }
+        if (spaHeroSubtitle) {
+          spaHeroSubtitle.style.opacity = opacity;
+          spaHeroSubtitle.style.transform = `translateY(${scrollPercent * 50}px)`;
+        }
       } else {
         // Scroll up - restore logo
         spaHeroLogo.style.opacity = 1;
         spaHeroLogo.style.transform = 'scale(1)';
         spaHeroLogo.style.filter = 'blur(0px)';
+        
+        // Restore title and subtitle
+        if (spaHeroTitle) {
+          spaHeroTitle.style.opacity = 1;
+          spaHeroTitle.style.transform = 'translateY(0)';
+        }
+        if (spaHeroSubtitle) {
+          spaHeroSubtitle.style.opacity = 1;
+          spaHeroSubtitle.style.transform = 'translateY(0)';
+        }
+      }
+      
+      // Fade in CTA section after cards
+      const ctaSection = document.querySelector('.cta-section');
+      if (ctaSection) {
+        const ctaOffset = ctaSection.offsetTop;
+        const windowHeight = window.innerHeight;
+        const ctaScrollPercent = Math.max(0, Math.min(1, (scrollPosition + windowHeight - ctaOffset) / windowHeight));
+        
+        if (ctaScrollPercent > 0) {
+          ctaSection.style.opacity = ctaScrollPercent;
+          ctaSection.style.transform = `translateY(${(1 - ctaScrollPercent) * 50}px)`;
+        }
       }
     };
     
