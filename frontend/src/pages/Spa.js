@@ -16,6 +16,45 @@ const Spa = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  // Card slide-in animation on scroll
+  useEffect(() => {
+    const cards = document.querySelectorAll('.spa-card');
+    
+    // Randomly assign slide direction to each card
+    cards.forEach((card, index) => {
+      const slideDirection = Math.random() > 0.5 ? 'slide-from-left' : 'slide-from-right';
+      card.classList.add(slideDirection);
+      card.style.opacity = '0';
+      card.style.transform = slideDirection === 'slide-from-left' ? 'translateX(-100px)' : 'translateX(100px)';
+    });
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !entry.target.classList.contains('card-animated')) {
+          entry.target.classList.add('card-animated');
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateX(0)';
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+    
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [translate]);
+
   // Logo transformation and parallax effects on scroll
   useEffect(() => {
     const handleScroll = () => {
