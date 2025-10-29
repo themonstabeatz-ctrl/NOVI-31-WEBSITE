@@ -29,15 +29,40 @@ const Massage = () => {
     const isMobile = window.innerWidth <= 768;
     const isPortrait = window.innerHeight > window.innerWidth;
     
-    // Skip animation for mobile portrait carousel mode
+    // Mobile portrait mode - Roll animation
     if (isMobile && isPortrait) {
-      cards.forEach(card => {
-        card.style.opacity = '1';
-        card.style.transform = 'none';
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3
+      };
+
+      const handleIntersection = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Roll in from bottom
+            entry.target.classList.add('roll-in');
+            entry.target.classList.remove('roll-out');
+          } else {
+            // Roll out to top
+            entry.target.classList.remove('roll-in');
+            entry.target.classList.add('roll-out');
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersection, observerOptions);
+      
+      cards.forEach((card) => {
+        observer.observe(card);
       });
-      return;
+
+      return () => {
+        observer.disconnect();
+      };
     }
     
+    // Desktop and landscape mode - Original animation
     cards.forEach((card, index) => {
       let slideDirection;
       let transformStart;
