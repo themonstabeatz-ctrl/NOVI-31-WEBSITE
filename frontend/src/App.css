@@ -6154,7 +6154,8 @@ html {
     }
 
     .spa-container .services-grid {
-      display: flex;
+      display: flex !important;
+      flex-direction: row !important;
       overflow-x: scroll;
       overflow-y: visible;
       scroll-snap-type: x mandatory;
@@ -6162,7 +6163,7 @@ html {
       gap: 1rem;
       padding: 1rem 0.75rem;
       -webkit-overflow-scrolling: touch;
-      grid-template-columns: none;
+      grid-template-columns: none !important;
     }
 
     .spa-container .services-grid::-webkit-scrollbar {
@@ -6175,8 +6176,8 @@ html {
     }
 
     .spa-card {
-      flex: 0 0 78%;
-      min-width: 78%;
+      flex: 0 0 78% !important;
+      min-width: 78% !important;
       scroll-snap-align: center;
       scroll-snap-stop: always;
       opacity: 1 !important;
