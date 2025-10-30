@@ -175,6 +175,7 @@ export const translations = {
     lateArrivalText: "Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana",
     groupBookingTitle: "Grupne rezervacije",
     groupBookingText: "Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno",
+    phone: "Telefon",
     emailLabel: "Email",
     phoneLabel: "Telefon",
     addressLabel: "Adresa",
