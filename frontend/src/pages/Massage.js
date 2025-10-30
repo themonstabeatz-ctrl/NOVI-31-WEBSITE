@@ -23,6 +23,16 @@ const Massage = () => {
     return options[selectedTraditionalDuration];
   };
 
+  // Get aroma therapy price and duration based on selection
+  const getAromaTherapyDetails = () => {
+    const options = {
+      '60': { duration: '60 min', price: '3,000 RSD', serviceId: 'Aroma terapija - 60 min' },
+      '90': { duration: '90 min', price: '4,000 RSD', serviceId: 'Aroma terapija - 90 min' },
+      '120': { duration: '120 min', price: '5,000 RSD', serviceId: 'Aroma terapija - 120 min' }
+    };
+    return options[selectedAromaDuration];
+  };
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
