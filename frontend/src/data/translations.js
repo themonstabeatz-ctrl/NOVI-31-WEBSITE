@@ -70,6 +70,61 @@ export const translations = {
     coupleBenefit2: "Romantična atmosfera",
     coupleBenefit3: "Dublje povezivanje",
     
+    // New Massage Services
+    sportsMassage: "Sportska masaža",
+    sportsMassageDesc: "Intenzivna masaža dizajnirana za sportiste koja poboljšava performanse.",
+    sportsBenefit1: "Ubrzava oporavak",
+    sportsBenefit2: "Sprečava povrede",
+    sportsBenefit3: "Povećava fleksibilnost",
+    
+    shiatsuMassage: "Shiatsu masaža",
+    shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
+    shiatsuBenefit1: "Balansira energiju",
+    shiatsuBenefit2: "Smanjuje stres",
+    shiatsuBenefit3: "Poboljšava san",
+    
+    reflexologyMassage: "Refleksna masaža",
+    reflexologyMassageDesc: "Terapija koja stimuliše refleksne tačke na stopalima.",
+    reflexologyBenefit1: "Stimuliše organe",
+    reflexologyBenefit2: "Poboljšava cirkulaciju",
+    reflexologyBenefit3: "Balansira telo",
+    
+    backShoulderMassage: "Masaža leđa i ramena",
+    backShoulderMassageDesc: "Fokusirana masaža za napetost u gornjim leđima i ramenima.",
+    backShoulderBenefit1: "Ublažava bol",
+    backShoulderBenefit2: "Oslobađa napetost",
+    backShoulderBenefit3: "Poboljšava držanje",
+    
+    antiStressMassage: "Anti-stres masaža",
+    antiStressMassageDesc: "Opuštajuća masaža specijalno dizajnirana za smanjenje stresa.",
+    antiStressBenefit1: "Smanjuje anksioznost",
+    antiStressBenefit2: "Duboka relaksacija",
+    antiStressBenefit3: "Umiruje um",
+    
+    prenatalMassage: "Prenatal masaža",
+    prenatalMassageDesc: "Nežna masaža prilagođena trudnicama za relaksaciju i udobnost.",
+    prenatalBenefit1: "Smanjuje otok",
+    prenatalBenefit2: "Ublažava bol leđa",
+    prenatalBenefit3: "Poboljšava san",
+    
+    deepTissueMassage: "Dubinska masaža",
+    deepTissueMassageDesc: "Intenzivna masaža dubokih mišićnih slojeva.",
+    deepTissueBenefit1: "Oslobađa tenziju",
+    deepTissueBenefit2: "Ublažava hronični bol",
+    deepTissueBenefit3: "Poboljšava pokretljivost",
+    
+    bambooMassage: "Bambusova masaža",
+    bambooMassageDesc: "Jedinstvena masaža sa bambusovim štapićima za duboku relaksaciju.",
+    bambooBenefit1: "Dubinski pritisak",
+    bambooBenefit2: "Stimuliše kožu",
+    bambooBenefit3: "Ekološka metoda",
+    
+    lymphaticMassage: "Limfna drenaža",
+    lymphaticMassageDesc: "Nežna masaža koja podstiče limfni sistem i detoksikaciju.",
+    lymphaticBenefit1: "Detoksikacija tela",
+    lymphaticBenefit2: "Smanjuje otok",
+    lymphaticBenefit3: "Jača imunitet",
+    
     // Massage CTA Section
     massageCtaTitle: "Posetite mesto gde napetost nestaje",
     massageCtaSubtitle: "Kontaktirajte nas i rezervišite vašu masažu danas",
