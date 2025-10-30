@@ -40,15 +40,15 @@ class StatusCheckCreate(BaseModel):
 
 # Booking Models
 class AppointmentBooking(BaseModel):
-    client_name: str
-    client_surname: str
+    client_first_name: str
+    client_last_name: str
     client_phone: str
     client_email: str
     appointment_date: str
-    start_time: str
+    start_time: str  # ISO datetime format
     service_id: str
-    therapist_id: Optional[str] = None
-    notes: Optional[str] = None
+    therapist_id: str = ""  # Empty string by default
+    notes: Optional[str] = ""
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
