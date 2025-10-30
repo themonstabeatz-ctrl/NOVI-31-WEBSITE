@@ -79,6 +79,36 @@ async def get_status_checks():
     
     return status_checks
 
+# Booking Proxy Endpoint
+@api_router.post("/book-appointment")
+async def book_appointment(booking: AppointmentBooking):
+    """
+    Proxy endpoint to forward booking requests to spa booking system
+    """
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                'https://spa-booking-system.emergent.sh/api/appointments',
+                json=booking.model_dump(),
+                headers={'Content-Type': 'application/json'}
+            )
+            
+            if response.status_code != 200:
+                logger.error(f"Booking API error: {response.status_code} - {response.text}")
+                raise HTTPException(
+                    status_code=response.status_code,
+                    detail="Failed to create booking"
+                )
+            
+            return response.json()
+            
+    except httpx.RequestError as e:
+        logger.error(f"Booking API request error: {str(e)}")
+        raise HTTPException(
+            status_code=503,
+            detail="Booking service unavailable"
+        )
+
 # Include the router in the main app
 app.include_router(api_router)
 
