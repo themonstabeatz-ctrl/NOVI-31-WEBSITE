@@ -318,6 +318,69 @@ const Massage = () => {
               
               <CardHeader>
                 <CardTitle className="massage-name">{service.name}</CardTitle>
+                
+                {/* Duration selection buttons - only for traditional massage */}
+                {service.hasDurationOptions && (
+                  <div style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    marginTop: '0.75rem',
+                    marginBottom: '0.75rem'
+                  }}>
+                    <button
+                      onClick={() => setSelectedTraditionalDuration('60')}
+                      style={{
+                        flex: 1,
+                        padding: '0.5rem',
+                        border: selectedTraditionalDuration === '60' ? '2px solid #d4af37' : '1px solid #444',
+                        backgroundColor: selectedTraditionalDuration === '60' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        color: '#d4af37',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: selectedTraditionalDuration === '60' ? 'bold' : 'normal',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      60 min
+                    </button>
+                    <button
+                      onClick={() => setSelectedTraditionalDuration('90')}
+                      style={{
+                        flex: 1,
+                        padding: '0.5rem',
+                        border: selectedTraditionalDuration === '90' ? '2px solid #d4af37' : '1px solid #444',
+                        backgroundColor: selectedTraditionalDuration === '90' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        color: '#d4af37',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: selectedTraditionalDuration === '90' ? 'bold' : 'normal',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      90 min
+                    </button>
+                    <button
+                      onClick={() => setSelectedTraditionalDuration('120')}
+                      style={{
+                        flex: 1,
+                        padding: '0.5rem',
+                        border: selectedTraditionalDuration === '120' ? '2px solid #d4af37' : '1px solid #444',
+                        backgroundColor: selectedTraditionalDuration === '120' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        color: '#d4af37',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: selectedTraditionalDuration === '120' ? 'bold' : 'normal',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      120 min
+                    </button>
+                  </div>
+                )}
+                
                 <div className="massage-meta">
                   <div className="duration">
                     <Clock className="w-4 h-4" />
