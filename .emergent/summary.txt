@@ -1,98 +1,81 @@
 <analysis>
-This trajectory details an AI engineer's extensive work on the Bua Luang Thai Spa website, focusing on UI/UX enhancements, multi-language support, and interactive elements. Initially, the engineer tackled VAUCER section text updates and confirmed scroll throttling on  and . Subsequent tasks involved intricate styling for the Massage page (transparent CTA with video background, removal of testimonial section, border removal), followed by global visual adjustments on the Home page (logo centering, background color alignment, hero overlay removal). A significant portion of the work was dedicated to implementing complex scroll-triggered animations for service cards on the Massage and Spa pages, evolving from random slides to column-specific 3D tilts with roll-back. The final major feature was a carousel for mobile portrait mode cards, which required troubleshooting invalid nested CSS media queries. The engineer fixed this by refactoring the CSS, successfully implementing the horizontal carousel with a peek effect. The work demonstrates an iterative approach, with frequent user feedback driving continuous refinement.
+This trajectory chronicles an AI engineer's extensive work on the Bua Luang Thai Spa website, moving from UI/UX fixes to complex integrations. Initially, the focus was on resolving mobile display issues for service cards, specifically transitioning from a problematic carousel to a stable 3-column grid with roll-in/out animations, which involved numerous debugging iterations and troubleshooting viewport and  dependencies. Subsequently, a critical booking system integration was implemented. This included updating the contact form to split the email field into phone and email, connecting it to an external API, handling data formatting, and dynamically mapping website services (including newly introduced duration-based variants for specific massages) to booking system UUIDs. The final phase involved adding new service cards and their translations. The engineer demonstrated strong problem-solving skills, leveraging troubleshoot agents and adapting to user feedback, including handling API availability issues and managing multi-language content.
 </analysis>
 
 <product_requirements>
-The Bua Luang Thai Spa website aims for a visually appealing, multi-language interface with a dark-gold aesthetic, featuring dynamic hero videos, parallax effects, and sticky navigation. The Gallery page includes a dynamic image grid with frosted glass. Full multi-language support (Serbian, English, Russian, Thai) is implemented across all pages via a dropdown. Mobile responsiveness has been a continuous focus, addressing header overlaps, logo scaling, and menu visibility. Footer and welcome section backgrounds are dark grey. Scroll throttling is implemented for Home and Massage pages.
+The Bua Luang Thai Spa website is a multi-language platform with a dark-gold aesthetic, featuring dynamic hero videos and parallax effects. Key features include a booking system, multi-language support (Serbian, English, Russian, Thai), and mobile responsiveness.
 
-Recently, a booking feature was added: Zakažite (Book Now) buttons on Massage/Spa redirect to the Contact page, pre-filling the message with the chosen service and allowing date/time input. Main logos across Home, Massage, Spa, and About pages are horizontally and vertically centered.
-
-Recent user requests and implementations include:
-- Updating the VAUCER section text on the Home page (both PC and mobile) and its translations.
-- Updating the CTA text on the Massage page to Posetite mesto gde napetost nestaje across all languages.
-- Making the Massage page's CTA section transparent to reveal the background video, removing the section below it (testimonial section), and removing golden borders from the CTA section.
-- Ensuring the main logo on the Home page is centered using the same flexbox method as other pages.
-- Changing the background color of the Philosophy section on the Home page to match the Welcome section.
-- Removing the dark overlay filter from the Home page's hero section.
-- Removing all black backgrounds/gradients from below the service cards on the Massage and Spa pages to show the video background.
-- Implementing fade-out on main titles and fade-in on the CTA section for Massage and Spa pages during scroll.
-- Replacing the background image below a specific text on the About Us page with a slightly transparent frosted glass effect.
-- Updating the CTA text on the Spa page to Mesto gde napetost nestaje, a mir počinje across all languages.
-- Implementing dynamic scroll animations for service cards on Massage and Spa pages:
-    - Slower animation with scroll-back.
-    - Middle column cards slide from bottom, left cards from left, right cards from right.
-    - Side cards start further off-screen with a 30% tilt, becoming flat in the center.
-    - For mobile portrait, a carousel with scroll-snap and peek effect for adjacent cards was implemented, replacing the individual card animations.
+**Implemented features & recent requests:**
+- VAUCER section text updates and translations.
+- Massage/Spa CTA text updates, transparency, border/background removals, hero overlay removal.
+- Centering main logos and adjusting background colors.
+- Scroll animations for service cards (slide, 3D tilt, roll-back) and fade effects for titles/CTAs.
+- Frosted glass effect for About Us background.
+- **Booking Integration**:
+    - Zakažite (Book Now) buttons on Massage/Spa redirect to Contact, pre-filling message.
+    - Contact form modified to have separate Telefon and Email fields, with  placeholder removed.
+    - Form sends POST requests to  with , , , , , , , .
+    - CORS configured.
+    - Visual feedback (green/red icon) for success/failure.
+    - Website service names mapped to booking system UUIDs; missing services created in the booking system.
+- **Dynamic Pricing**:
+    - Tradicionalna tajlandska masaža card: 3 buttons (60/90/120 min) with dynamic pricing (3000/4000/5000 RSD) linked to booking system variants.
+    - Masaža sa uljima renamed to Aroma terapija: 3 buttons (60/90/120 min) with dynamic pricing, linked to booking system variants.
+    - Aroma terapija name translated across all languages.
+- **New Content**: Added 3 rows of 3 new massage and spa cards (9 per section) with effects and booking button functionality, but not yet added to the booking program.
 </product_requirements>
 
 <key_technical_concepts>
-- **React.js**: Frontend framework (v18).
-- **CSS3**: Extensive responsive design, , , , ,  (for frosted glass), .
-- **JavaScript Hooks**: , , .
-- **IntersectionObserver**: For scroll-triggered animations.
-- **Throttling**: For scroll events.
+- **React.js (v18)**: Frontend framework.
+- **CSS3**: Extensive use of , , , , , responsive .
+- **JavaScript Hooks**: , ,  for component logic and state.
+- **IntersectionObserver**: For scroll-triggered animations and visibility detection.
+- **Throttling**: For scroll event optimization.
 - **Localization**: Via  for multi-language support.
-- ****: Briefly used for custom date/time pickers.
+- **FastAPI**: Python backend framework.
+- **Pydantic**: For data validation and serialization in the backend.
+- ****: Python HTTP client for backend API proxy calls.
 </key_technical_concepts>
 
 <code_architecture>
 
 -   
-    -   **Summary**: Global styles and responsive rules. This is the most heavily modified file.
-    -   **Changes Made**: Numerous CSS adjustments for mobile landscape, logo centering, hero section layouts,  styling. Crucially, it was updated for:
-        -   Making  transparent, later re-adding opaque background to .
-        -   Removing  and  from .
-        -   Changing  of  to .
-        -   Removing  from .
-        -   Removing black backgrounds/gradients from , , , and .
-        -   Adding transitions for hero titles/subtitles (, ) and CTA sections.
-        -   Applying frosted glass effect (using  and ) to .
-        -   Changing  to  for centering.
-        -   Adding  to  for 3D card animations.
-        -   Implementing carousel CSS (, , ) and card sizing () for mobile portrait mode within specific media queries.
-        -   Refactoring invalid nested  queries into correct, distinct blocks.
+    -   **Summary**: Global styles, animations, and responsive rules. Heavily modified for mobile layout, card animations, and general UI/UX.
+    -   **Changes Made**: Refactored nested  queries; added  to crucial mobile styles (, , , , ); implemented roll-in/roll-out animations; adjusted card padding, gap, font sizes, and badge sizing for mobile portrait mode.
 -   
-    -   **Summary**: Custom component for date/time picking, primarily for mobile.
-    -   **Changes Made**: Implemented localization. Used conditionally for mobile.
+    -   **Summary**: Displays massage services with dynamic animations and booking functionality.
+    -   **Changes Made**: Implemented  for various card animations (slide, tilt, roll-in/out), incorporating  and  checks. Added state for Tradicionalna tajlandska masaža and Aroma terapija duration/price, and rendering logic for 3 buttons. Logic to handle service  for booking. Debugging for  dependency issues. New card data added for 9 new services.
 -   
-    -   **Summary**: Main landing page.
-    -   **Changes Made**: Only minor changes, primarily affected by CSS modifications.
+    -   **Summary**: Displays spa services with dynamic animations and booking functionality.
+    -   **Changes Made**: Similar to , implemented  for card animations and / checks. Debugging for  dependency issues. New card data added for 9 new services.
 -   
-    -   **Summary**: Page detailing massage services.
-    -   **Changes Made**: Implemented Zakažite buttons. Added  with  for complex card animations (random slide, column-specific 3D tilt, roll-back, and later adapted for mobile portrait carousel). Animation logic was frequently refined.
+    -   **Summary**: Handles booking requests, acting as the primary integration point with the external booking API.
+    -   **Changes Made**: Modified form structure to split the Email field into Telefon and Email. Implemented  to send  requests to the external booking API, handling data formatting (, ,  from  and ), , and  mapping. Added visual success/failure feedback. Updated service ID mapping to include variants for Tradicionalna tajlandska masaža and Aroma terapija.
 -   
-    -   **Summary**: Page detailing spa services.
-    -   **Changes Made**: Similar to , implemented Zakažite buttons and  with  for card animations, adapted for mobile portrait carousel.
+    -   **Summary**: Centralized store for all multi-language text.
+    -   **Changes Made**: Extended significantly to include translations for VAUCER, CTA texts, phone, Aroma terapija, and new massage and spa services across all four languages.
 -   
-    -   **Summary**: Page with About Us information.
-    -   **Changes Made**: Scroll throttling confirmed, and its background styling updated via .
+    -   **Summary**: Main HTML file that defines the viewport.
+    -   **Changes Made**: The  meta tag was initially fixed () to ensure correct mobile rendering, then reverted to  to force desktop view on mobile, and finally fixed again to  to resolve mobile display issues, then back to  to show desktop version on mobile as per user's final request on mobile display.
 -   
-    -   **Summary**: Handles booking requests.
-    -   **Changes Made**: Parses  parameter, pre-fills message, integrates native HTML5 date/time inputs and .
+    -   **Summary**: FastAPI backend for the application, handling API requests.
+    -   **Changes Made**: Configured CORS to allow cross-origin requests. Added a  proxy endpoint to forward requests to the external spa booking API, handling  requests and returning responses. Updated Pydantic models to match required fields (, ,  datetime object) of the external API.
 -   
-    -   **Summary**: Stores comprehensive translation data.
-    -   **Changes Made**: Extensively updated to include new keys and translated text for VAUCER section, Massage CTA, and Spa CTA.
--   
-    -   **Summary**: Manages frontend dependencies.
-    -   **Changes Made**: Added .
--   
-    -   **Summary**: Main HTML file.
-    -   **Changes Made**: Modified  meta tag for browser zoom.
+    -   **Summary**: Lists Python dependencies for the backend.
+    -   **Changes Made**: Added  for making HTTP requests from the backend proxy.
 </code_architecture>
 
 <pending_tasks>
--   The last reported issue by the user (Chat Message 499: carousel not working on their phone in portrait mode) was diagnosed by the troubleshoot agent as invalid nested  queries and missing styles. The AI engineer implemented a fix by refactoring the CSS (Chat Message 507-518) and confirmed it was working on the agent's end (Chat Message 519-521).
--   The last interaction explicitly asks the user to test on their phone (Chat Message 521). There are no pending tasks explicitly outlined within the trajectory that the AI engineer needs to *start* working on at this moment. The current state is that the engineer is awaiting user confirmation for the most recent fix.
+- Translate the newly added card names and descriptions for English, Russian, and Thai languages.
+- Test the appearance and functionality of the 9 new cards in Massage and Spa sections across all languages.
 </pending_tasks>
 
 <current_work>
-Immediately prior to this summary, the AI engineer was focused on resolving a critical issue with the service cards carousel on mobile phones in portrait mode. The user reported that cards were stacking vertically instead of displaying as a horizontal carousel. The engineer correctly diagnosed the root cause as invalid nested CSS  queries in .
+Immediately prior to this summary, the AI engineer was implementing the user's request to add 9 new cards to both the Massage and Spa sections of the website. The user specified that these cards should have the same effects and translations as existing cards, and their Zakažite (Book Now) buttons should function with the booking program, but the services themselves should *not* yet be added to the booking system.
 
-The engineer proceeded to refactor the CSS by extracting the problematic nested media queries and placing them as proper, distinct media query blocks at the end of . This modification aimed to correctly apply the , , and  properties to the  and  elements when the screen width is , along with card sizing for the peek effect.
-
-After implementing the CSS fix, the engineer performed a screenshot test (Chat Message 519-520) which confirmed that a horizontal carousel with the peek effect was now visible and functioning correctly on the simulated mobile portrait view. The engineer then reported this success to the user and requested the user to verify the fix on their physical device.
+The engineer first focused on adding the necessary translations for these new services in  (Chat Message 541-549). Currently, the Serbian translations for the new massage and spa services have been added. Following this, the engineer proceeded to update  (Chat Message 551-553) and  (Chat Message 554-557) by adding the new card data using the Serbian translations. The last action was successfully updating  and the engineer's current thought is to test how it looks (). The translations for English, Russian, and Thai are explicitly planned but not yet implemented.
 </current_work>
 
 <optional_next_step>
-Wait for user confirmation on the mobile portrait carousel fix on their device.
+Translate the newly added card names and descriptions for English, Russian, and Thai in .
 </optional_next_step>
