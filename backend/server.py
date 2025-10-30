@@ -88,7 +88,7 @@ async def book_appointment(booking: AppointmentBooking):
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
             response = await client.post(
-                'https://spa-booking-system.emergent.sh/api/appointments',
+                'https://vas-website.emergent.sh/api/appointments',
                 json=booking.model_dump(),
                 headers={'Content-Type': 'application/json'}
             )
