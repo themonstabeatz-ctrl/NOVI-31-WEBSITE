@@ -148,6 +148,16 @@ const Contact = () => {
         'Golden Facial Treatment': 'a7ff6924-d719-487a-9f94-3401430b9022',
         'Золотая процедура для лица': 'a7ff6924-d719-487a-9f94-3401430b9022',
         'ทรีตเมนต์ใบหน้าทองคำ': 'a7ff6924-d719-487a-9f94-3401430b9022',
+        
+        'Aromaterapija': '518cf430-d4e1-43b5-982b-8b783b70bb00',
+        'Aromatherapy': '518cf430-d4e1-43b5-982b-8b783b70bb00',
+        'Ароматерапия': '518cf430-d4e1-43b5-982b-8b783b70bb00',
+        'อโรมาเธอราปี': '518cf430-d4e1-43b5-982b-8b783b70bb00',
+        
+        'Parno kupatilo': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
+        'Steam Bath': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
+        'Паровая баня': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
+        'ห้องอบไอน้ำ': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
       };
       
       // Get service UUID from mapping, or use default
