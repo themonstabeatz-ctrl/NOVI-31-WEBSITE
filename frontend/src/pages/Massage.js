@@ -333,7 +333,7 @@ const Massage = () => {
               <CardHeader>
                 <CardTitle className="massage-name">{service.name}</CardTitle>
                 
-                {/* Duration selection buttons - only for traditional massage */}
+                {/* Duration selection buttons - for traditional massage and aroma therapy */}
                 {service.hasDurationOptions && (
                   <div style={{
                     display: 'flex',
@@ -342,51 +342,51 @@ const Massage = () => {
                     marginBottom: '0.75rem'
                   }}>
                     <button
-                      onClick={() => setSelectedTraditionalDuration('60')}
+                      onClick={() => service.isAroma ? setSelectedAromaDuration('60') : setSelectedTraditionalDuration('60')}
                       style={{
                         flex: 1,
                         padding: '0.5rem',
-                        border: selectedTraditionalDuration === '60' ? '2px solid #d4af37' : '1px solid #444',
-                        backgroundColor: selectedTraditionalDuration === '60' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        border: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '60' ? '2px solid #d4af37' : '1px solid #444',
+                        backgroundColor: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '60' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                         color: '#d4af37',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         fontSize: '0.875rem',
-                        fontWeight: selectedTraditionalDuration === '60' ? 'bold' : 'normal',
+                        fontWeight: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '60' ? 'bold' : 'normal',
                         transition: 'all 0.3s ease'
                       }}
                     >
                       60 min
                     </button>
                     <button
-                      onClick={() => setSelectedTraditionalDuration('90')}
+                      onClick={() => service.isAroma ? setSelectedAromaDuration('90') : setSelectedTraditionalDuration('90')}
                       style={{
                         flex: 1,
                         padding: '0.5rem',
-                        border: selectedTraditionalDuration === '90' ? '2px solid #d4af37' : '1px solid #444',
-                        backgroundColor: selectedTraditionalDuration === '90' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        border: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '90' ? '2px solid #d4af37' : '1px solid #444',
+                        backgroundColor: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '90' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                         color: '#d4af37',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         fontSize: '0.875rem',
-                        fontWeight: selectedTraditionalDuration === '90' ? 'bold' : 'normal',
+                        fontWeight: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '90' ? 'bold' : 'normal',
                         transition: 'all 0.3s ease'
                       }}
                     >
                       90 min
                     </button>
                     <button
-                      onClick={() => setSelectedTraditionalDuration('120')}
+                      onClick={() => service.isAroma ? setSelectedAromaDuration('120') : setSelectedTraditionalDuration('120')}
                       style={{
                         flex: 1,
                         padding: '0.5rem',
-                        border: selectedTraditionalDuration === '120' ? '2px solid #d4af37' : '1px solid #444',
-                        backgroundColor: selectedTraditionalDuration === '120' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        border: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '120' ? '2px solid #d4af37' : '1px solid #444',
+                        backgroundColor: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '120' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                         color: '#d4af37',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         fontSize: '0.875rem',
-                        fontWeight: selectedTraditionalDuration === '120' ? 'bold' : 'normal',
+                        fontWeight: (service.isAroma ? selectedAromaDuration : selectedTraditionalDuration) === '120' ? 'bold' : 'normal',
                         transition: 'all 0.3s ease'
                       }}
                     >
