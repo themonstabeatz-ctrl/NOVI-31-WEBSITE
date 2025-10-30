@@ -376,3 +376,38 @@ agent_communication:
       
       🔧 URGENT FIX NEEDED:
       The header layout in landscape mode needs CSS adjustments to add proper spacing between language selector and hamburger menu. This is a critical UX issue affecting all mobile users in landscape orientation.
+
+  - agent: "testing"
+    message: |
+      BOOKING API INTEGRATION TESTING COMPLETED
+      
+      🔍 COMPREHENSIVE BACKEND TESTING RESULTS:
+      
+      ✅ BACKEND SERVICE FULLY FUNCTIONAL:
+      - Root endpoint (/api/) accessible and returns correct response
+      - Status CRUD operations working perfectly (POST/GET /api/status)
+      - Database connectivity confirmed (MongoDB integration working)
+      - Input validation working correctly (422 errors for invalid data)
+      - Backend proxy implementation is correct and follows best practices
+      
+      ❌ EXTERNAL BOOKING SERVICE UNAVAILABLE:
+      - External API endpoint https://thaimassage-web.preview.emergentagent.com/api/appointments returns 404 Not Found
+      - Tested multiple HTTP methods (GET, POST, OPTIONS) - all return 404
+      - Backend proxy correctly forwards requests and handles 404 errors appropriately
+      - Backend logs show proper error handling: "Booking API error: 404 - {"detail":"Not Found"}"
+      
+      🔧 ROOT CAUSE ANALYSIS:
+      - Backend implementation is correct and working as designed
+      - The issue is that the external booking service does not exist at the expected endpoint
+      - Backend proxy returns 404 with "Failed to create booking" message as intended
+      - Service ID mapping cannot be tested due to external service unavailability
+      
+      📋 TESTED SCENARIOS:
+      1. Backend health check ✅
+      2. Status endpoint CRUD operations ✅  
+      3. External service direct access ❌ (404 Not Found)
+      4. Booking proxy endpoint ❌ (External service unavailable)
+      5. Input validation ✅ (Correctly rejects invalid data)
+      
+      🎯 CONCLUSION:
+      Backend booking integration is implemented correctly. The failure is due to external service unavailability, not backend code issues. No backend changes needed.
