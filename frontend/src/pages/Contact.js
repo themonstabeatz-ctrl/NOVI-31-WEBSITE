@@ -107,10 +107,19 @@ const Contact = () => {
         'Tradicionalna tajlandska masaža - 90 min': 'a8ac5603-6c53-45b9-9e6a-283de5287f1e',
         'Tradicionalna tajlandska masaža - 120 min': 'ecbc33c7-0758-4949-99ef-9eaa4e2fc1b2',
         
-        // Aroma therapy variants
+        // Aroma therapy variants (all languages)
         'Aroma terapija - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
         'Aroma terapija - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
         'Aroma terapija - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
+        'Aromatherapy - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
+        'Aromatherapy - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
+        'Aromatherapy - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
+        'Ароматерапия - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
+        'Ароматерапия - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
+        'Ароматерапия - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
+        'อโรมาเธอราปี - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
+        'อโรมาเธอราปี - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
+        'อโรมาเธอราปี - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
         
         // Massage services (old mapping for backwards compatibility)
         'Tradicionalna tajlandska masaža': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
