@@ -38,6 +38,18 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Booking Models
+class AppointmentBooking(BaseModel):
+    client_name: str
+    client_surname: str
+    client_phone: str
+    client_email: str
+    appointment_date: str
+    start_time: str
+    service_id: str
+    therapist_id: Optional[str] = None
+    notes: Optional[str] = None
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
