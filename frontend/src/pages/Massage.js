@@ -10,6 +10,7 @@ import { throttle } from "../utils/debounce";
 const Massage = () => {
   const { translate } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
+  const [selectedTraditionalDuration, setSelectedTraditionalDuration] = useState('60'); // Default 60 min
 
   // Scroll to top when component mounts
   useEffect(() => {
