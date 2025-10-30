@@ -17,6 +17,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    phone: "",
     email: "",
     message: "",
     preferredDate: "",
