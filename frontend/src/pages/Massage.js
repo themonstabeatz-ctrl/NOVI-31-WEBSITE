@@ -239,7 +239,7 @@ const Massage = () => {
       hasDurationOptions: true // Mark this service as having duration options
     },
     {
-      name: "Aroma terapija", // Changed from "Masaža sa uljima"
+      name: translate("aromaTherapy"), // Now using translation
       duration: aromaDetails.duration,
       price: aromaDetails.price,
       serviceId: aromaDetails.serviceId,
