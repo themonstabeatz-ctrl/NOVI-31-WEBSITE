@@ -92,42 +92,84 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
-    const body = encodeURIComponent(
-      `Ime: ${formData.firstName} ${formData.lastName}\n` +
-      `Telefon: ${formData.phone}\n` +
-      `Email: ${formData.email}\n` +
-      `Željeni datum: ${formatDate(formData.preferredDate)}\n` +
-      `Željeno vreme: ${formData.preferredTime || 'Nije navedeno'}\n\n` +
-      `Poruka:\n${formData.message}`
-    );
-    
-    const mailtoLink = `mailto:bualuangthailandspa@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Show success message
-    setTimeout(() => {
-      toast({
-        title: "Email klijent otvoren!",
-        description: "Molimo vas završite slanje poruke u vašem email klijentu.",
-        variant: "success"
-      });
+    try {
+      // Get service name from URL parameter
+      const queryParams = new URLSearchParams(location.search);
+      const serviceName = queryParams.get('service') || '';
       
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        phone: "",
-        email: "",
-        message: "",
-        preferredDate: "",
-        preferredTime: ""
+      // Prepare data for API
+      const appointmentData = {
+        client_name: formData.firstName,
+        client_surname: formData.lastName,
+        client_phone: formData.phone,
+        client_email: formData.email,
+        appointment_date: formData.preferredDate,
+        start_time: formData.preferredTime,
+        service_id: serviceName, // From URL parameter when clicking "Zakažite"
+        therapist_id: null, // Manual assignment by admin
+        notes: formData.message
+      };
+
+      // Send POST request to booking API
+      const response = await fetch('https://spa-booking-system.emergent.sh/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(appointmentData)
       });
-    }, 500);
+
+      if (!response.ok) {
+        throw new Error('Failed to book appointment');
+      }
+
+      // Success - show green checkmark
+      setSubmitStatus('success');
+      
+      // Also send email as backup
+      const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
+      const body = encodeURIComponent(
+        `Ime: ${formData.firstName} ${formData.lastName}\n` +
+        `Telefon: ${formData.phone}\n` +
+        `Email: ${formData.email}\n` +
+        `Usluga: ${serviceName}\n` +
+        `Željeni datum: ${formatDate(formData.preferredDate)}\n` +
+        `Željeno vreme: ${formData.preferredTime || 'Nije navedeno'}\n\n` +
+        `Poruka:\n${formData.message}`
+      );
+      
+      const mailtoLink = `mailto:bualuangthailandspa@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+      
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phone: "",
+          email: "",
+          message: "",
+          preferredDate: "",
+          preferredTime: ""
+        });
+        setSubmitStatus(null);
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Booking error:', error);
+      // Error - show red X
+      setSubmitStatus('error');
+      
+      // Hide error after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
