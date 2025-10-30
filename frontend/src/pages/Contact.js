@@ -116,7 +116,7 @@ const Contact = () => {
       // Try direct API call first
       let response;
       try {
-        response = await fetch('https://vas-website.emergent.sh/api/appointments', {
+        response = await fetch('https://spa-booking-system-2.emergent.sh/api/appointments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
