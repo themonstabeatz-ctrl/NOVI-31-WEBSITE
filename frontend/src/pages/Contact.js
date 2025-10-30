@@ -192,7 +192,6 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="form-input"
-                      placeholder="+381 62 625 500"
                     />
                   </div>
                   <div className="form-group">
