@@ -289,6 +289,7 @@ metadata:
 test_plan:
   current_focus:
     - "Mobile header layout in landscape mode"
+    - "Booking API Integration"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
