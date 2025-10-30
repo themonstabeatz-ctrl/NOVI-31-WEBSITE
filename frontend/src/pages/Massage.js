@@ -12,6 +12,16 @@ const Massage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [selectedTraditionalDuration, setSelectedTraditionalDuration] = useState('60'); // Default 60 min
 
+  // Get traditional massage price and duration based on selection
+  const getTraditionalMassageDetails = () => {
+    const options = {
+      '60': { duration: '60 min', price: '3,000 RSD', serviceId: 'Tradicionalna tajlandska masaža - 60 min' },
+      '90': { duration: '90 min', price: '4,000 RSD', serviceId: 'Tradicionalna tajlandska masaža - 90 min' },
+      '120': { duration: '120 min', price: '5,000 RSD', serviceId: 'Tradicionalna tajlandska masaža - 120 min' }
+    };
+    return options[selectedTraditionalDuration];
+  };
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
