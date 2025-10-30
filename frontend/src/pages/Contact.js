@@ -108,9 +108,9 @@ const Contact = () => {
         client_email: formData.email,
         appointment_date: formData.preferredDate,
         start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
-        service_id: serviceName, // From URL parameter when clicking "Zakažite"
+        service_id: "e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf", // Default service (Relax masaža celog tela) - TODO: Map actual service names to IDs
         therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist (Marko Markovic)
-        notes: formData.message || ""
+        notes: `${formData.message}\n\nTražena usluga: ${serviceName || 'Nije navedeno'}` // Include requested service name in notes
       };
 
       // Try direct API call first
