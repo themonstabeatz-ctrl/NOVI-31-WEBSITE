@@ -748,6 +748,7 @@ export const translations = {
     lateArrivalText: "การมาสายมากกว่า 15 นาทีอาจส่งผลให้ทรีตเมนต์สั้นลง",
     groupBookingTitle: "การจองกลุ่ม",
     groupBookingText: "สำหรับกลุ่มมากกว่า 4 คน โปรดติดต่อเราโดยตรง",
+    phone: "โทรศัพท์",
     emailLabel: "อีเมล",
     phoneLabel: "โทรศัพท์",
     addressLabel: "ที่อยู่",
