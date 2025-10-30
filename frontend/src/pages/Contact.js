@@ -100,6 +100,59 @@ const Contact = () => {
       const queryParams = new URLSearchParams(location.search);
       const serviceName = queryParams.get('service') || '';
       
+      // Map service names to UUIDs from booking system
+      const serviceMapping = {
+        // Massage services
+        'Tradicionalna tajlandska masaža': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
+        'Traditional Thai Massage': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
+        'Традиционный тайский массаж': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
+        'การนวดแบบไทยดั้งเดิม': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
+        
+        'Masaža sa uljima': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
+        'Oil Massage': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
+        'Масляный массаж': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
+        'การนวดน้ำมัน': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
+        
+        'Masaža vrućim kamenjem': '962341a5-fb3b-4078-a394-1b058f248718',
+        'Hot Stone Massage': '962341a5-fb3b-4078-a394-1b058f248718',
+        'Массаж горячими камнями': '962341a5-fb3b-4078-a394-1b058f248718',
+        'การนวดด้วยหินร้อน': '962341a5-fb3b-4078-a394-1b058f248718',
+        
+        'Kraljevska tajlandska masaža': '224d9654-29d6-4d37-be24-6db3b0d425c5',
+        'Royal Thai Massage': '224d9654-29d6-4d37-be24-6db3b0d425c5',
+        'Королевский тайский массаж': '224d9654-29d6-4d37-be24-6db3b0d425c5',
+        'การนวดแบบไทยหลวง': '224d9654-29d6-4d37-be24-6db3b0d425c5',
+        
+        'Masaža stopala': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
+        'Foot Massage': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
+        'Массаж стоп': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
+        'การนวดเท้า': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
+        
+        'Partnerska masaža': 'bf317c71-5953-4d61-813b-c8046b6aba42',
+        "Couple's Massage": 'bf317c71-5953-4d61-813b-c8046b6aba42',
+        'Парный массаж': 'bf317c71-5953-4d61-813b-c8046b6aba42',
+        'การนวดคู่': 'bf317c71-5953-4d61-813b-c8046b6aba42',
+        
+        // Spa services
+        'Tretman lica': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
+        'Facial Treatment': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
+        'Процедура для лица': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
+        'ทรีตเมนต์ใบหน้า': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
+        
+        'Body wrap': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
+        'Body Wrap': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
+        'Обертывание тела': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
+        'บอดี้แร็พ': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
+        
+        'Zlatni tretman lica': 'a7ff6924-d719-487a-9f94-3401430b9022',
+        'Golden Facial Treatment': 'a7ff6924-d719-487a-9f94-3401430b9022',
+        'Золотая процедура для лица': 'a7ff6924-d719-487a-9f94-3401430b9022',
+        'ทรีตเมนต์ใบหน้าทองคำ': 'a7ff6924-d719-487a-9f94-3401430b9022',
+      };
+      
+      // Get service UUID from mapping, or use default
+      const serviceId = serviceMapping[serviceName] || '44826422-d4b4-4ca0-971b-1c91b0a6ccdd'; // Default to Traditional Thai Massage
+      
       // Prepare data for API
       const appointmentData = {
         client_first_name: formData.firstName,
@@ -108,9 +161,9 @@ const Contact = () => {
         client_email: formData.email,
         appointment_date: formData.preferredDate,
         start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
-        service_id: "e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf", // Default service (Relax masaža celog tela) - TODO: Map actual service names to IDs
+        service_id: serviceId,
         therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist (Marko Markovic)
-        notes: `${formData.message}\n\nTražena usluga: ${serviceName || 'Nije navedeno'}` // Include requested service name in notes
+        notes: formData.message || ""
       };
 
       // Try direct API call first
