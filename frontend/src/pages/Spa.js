@@ -262,6 +262,89 @@ const Spa = () => {
       category: "premium",
       categoryDisplay: translate("categoryPremium"),
       popular: true
+    },
+    // New spa services
+    {
+      name: translate("hydratingBodyTreatment"),
+      duration: "75 min",
+      price: "4,500 RSD",
+      description: translate("hydratingBodyDesc"),
+      benefits: [translate("hydratingBodyBenefit1"), translate("hydratingBodyBenefit2"), translate("hydratingBodyBenefit3")],
+      category: "body",
+      categoryDisplay: translate("categoryBody")
+    },
+    {
+      name: translate("detoxWrap"),
+      duration: "90 min",
+      price: "5,000 RSD",
+      description: translate("detoxWrapDesc"),
+      benefits: [translate("detoxWrapBenefit1"), translate("detoxWrapBenefit2"), translate("detoxWrapBenefit3")],
+      category: "body",
+      categoryDisplay: translate("categoryBody")
+    },
+    {
+      name: translate("bodyScrub"),
+      duration: "45 min",
+      price: "3,000 RSD",
+      description: translate("bodyScrubDesc"),
+      benefits: [translate("bodyScrubBenefit1"), translate("bodyScrubBenefit2"), translate("bodyScrubBenefit3")],
+      category: "body",
+      categoryDisplay: translate("categoryBody")
+    },
+    {
+      name: translate("anticelluliteTreatment"),
+      duration: "60 min",
+      price: "4,200 RSD",
+      description: translate("anticelluliteTreatmentDesc"),
+      benefits: [translate("anticelluliteBenefit1"), translate("anticelluliteBenefit2"), translate("anticelluliteBenefit3")],
+      category: "body",
+      categoryDisplay: translate("categoryBody")
+    },
+    {
+      name: translate("collagenFacial"),
+      duration: "60 min",
+      price: "4,500 RSD",
+      description: translate("collagenFacialDesc"),
+      benefits: [translate("collagenBenefit1"), translate("collagenBenefit2"), translate("collagenBenefit3")],
+      category: "face",
+      categoryDisplay: translate("categoryFace")
+    },
+    {
+      name: translate("vitaminCFacial"),
+      duration: "60 min",
+      price: "4,000 RSD",
+      description: translate("vitaminCFacialDesc"),
+      benefits: [translate("vitaminCBenefit1"), translate("vitaminCBenefit2"), translate("vitaminCBenefit3")],
+      category: "face",
+      categoryDisplay: translate("categoryFace")
+    },
+    {
+      name: translate("combinedSpaDay"),
+      duration: "240 min",
+      price: "12,000 RSD",
+      description: translate("combinedSpaDayDesc"),
+      benefits: [translate("combinedSpaBenefit1"), translate("combinedSpaBenefit2"), translate("combinedSpaBenefit3")],
+      category: "premium",
+      categoryDisplay: translate("categoryPremium"),
+      popular: true
+    },
+    {
+      name: translate("chocolateWrap"),
+      duration: "90 min",
+      price: "5,500 RSD",
+      description: translate("chocolateWrapDesc"),
+      benefits: [translate("chocolateBenefit1"), translate("chocolateBenefit2"), translate("chocolateBenefit3")],
+      category: "body",
+      categoryDisplay: translate("categoryBody")
+    },
+    {
+      name: translate("thalassoTherapy"),
+      duration: "120 min",
+      price: "6,000 RSD",
+      description: translate("thalassoTherapyDesc"),
+      benefits: [translate("thalassoBenefit1"), translate("thalassoBenefit2"), translate("thalassoBenefit3")],
+      category: "body",
+      categoryDisplay: translate("categoryBody")
     }
   ];
 
