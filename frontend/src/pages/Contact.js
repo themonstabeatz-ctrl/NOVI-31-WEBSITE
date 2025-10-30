@@ -107,6 +107,11 @@ const Contact = () => {
         'Tradicionalna tajlandska masaža - 90 min': 'a8ac5603-6c53-45b9-9e6a-283de5287f1e',
         'Tradicionalna tajlandska masaža - 120 min': 'ecbc33c7-0758-4949-99ef-9eaa4e2fc1b2',
         
+        // Aroma therapy variants
+        'Aroma terapija - 60 min': 'AROMA_60_UUID', // TODO: Replace with actual UUID after creating in booking system
+        'Aroma terapija - 90 min': 'AROMA_90_UUID', // TODO: Replace with actual UUID
+        'Aroma terapija - 120 min': 'AROMA_120_UUID', // TODO: Replace with actual UUID
+        
         // Massage services (old mapping for backwards compatibility)
         'Tradicionalna tajlandska masaža': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
         'Traditional Thai Massage': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
