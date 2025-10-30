@@ -113,14 +113,28 @@ const Contact = () => {
         notes: formData.message
       };
 
-      // Send POST request to booking API
-      const response = await fetch('https://spa-booking-system.emergent.sh/api/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(appointmentData)
-      });
+      // Try direct API call first
+      let response;
+      try {
+        response = await fetch('https://spa-booking-system.emergent.sh/api/appointments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(appointmentData)
+        });
+      } catch (directError) {
+        // If direct call fails (CORS), use backend proxy
+        console.log('Direct API call failed, using proxy...');
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        response = await fetch(`${backendUrl}/api/book-appointment`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(appointmentData)
+        });
+      }
 
       if (!response.ok) {
         throw new Error('Failed to book appointment');
