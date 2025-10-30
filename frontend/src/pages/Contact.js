@@ -344,6 +344,40 @@ const Contact = () => {
                   />
                 </div>
                 
+                {/* Success/Error Feedback */}
+                {submitStatus && (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '1rem',
+                    borderRadius: '8px',
+                    backgroundColor: submitStatus === 'success' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                    border: `2px solid ${submitStatus === 'success' ? '#22c55e' : '#ef4444'}`,
+                    marginBottom: '1rem'
+                  }}>
+                    {submitStatus === 'success' ? (
+                      <>
+                        <svg style={{ width: '32px', height: '32px', color: '#22c55e', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span style={{ color: '#22c55e', fontWeight: 'bold', fontSize: '1.1rem' }}>
+                          Rezervacija uspešno poslata!
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <svg style={{ width: '32px', height: '32px', color: '#ef4444', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span style={{ color: '#ef4444', fontWeight: 'bold', fontSize: '1.1rem' }}>
+                          Greška! Molimo pokušajte ponovo.
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
+                
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
