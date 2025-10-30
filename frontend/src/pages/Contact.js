@@ -181,17 +181,32 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="form-group">
-                  <Label htmlFor="email">{translate("email")}</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="form-input"
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <Label htmlFor="phone">{translate("phone")}</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                      className="form-input"
+                      placeholder="+381 62 625 500"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <Label htmlFor="email">{translate("email")}</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="form-input"
+                    />
+                  </div>
                 </div>
                 
                 <div className="form-row">
