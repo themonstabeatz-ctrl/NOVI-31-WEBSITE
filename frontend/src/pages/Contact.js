@@ -102,15 +102,15 @@ const Contact = () => {
       
       // Prepare data for API
       const appointmentData = {
-        client_name: formData.firstName,
-        client_surname: formData.lastName,
+        client_first_name: formData.firstName,
+        client_last_name: formData.lastName,
         client_phone: formData.phone,
         client_email: formData.email,
         appointment_date: formData.preferredDate,
-        start_time: formData.preferredTime,
+        start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
         service_id: serviceName, // From URL parameter when clicking "Zakažite"
-        therapist_id: null, // Manual assignment by admin
-        notes: formData.message
+        therapist_id: "", // Empty string instead of null
+        notes: formData.message || ""
       };
 
       // Try direct API call first
