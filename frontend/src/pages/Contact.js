@@ -96,6 +96,7 @@ const Contact = () => {
     const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
     const body = encodeURIComponent(
       `Ime: ${formData.firstName} ${formData.lastName}\n` +
+      `Telefon: ${formData.phone}\n` +
       `Email: ${formData.email}\n` +
       `Željeni datum: ${formatDate(formData.preferredDate)}\n` +
       `Željeno vreme: ${formData.preferredTime || 'Nije navedeno'}\n\n` +
