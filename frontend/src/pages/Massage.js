@@ -279,6 +279,70 @@ const Massage = () => {
       description: translate("coupleMassageDesc"),
       benefits: [translate("coupleBenefit1"), translate("coupleBenefit2"), translate("coupleBenefit3")],
       popular: false
+    },
+    // New massage services
+    {
+      name: translate("sportsMassage"),
+      duration: "60 min",
+      price: "3,500 RSD",
+      description: translate("sportsMassageDesc"),
+      benefits: [translate("sportsBenefit1"), translate("sportsBenefit2"), translate("sportsBenefit3")]
+    },
+    {
+      name: translate("shiatsuMassage"),
+      duration: "60 min",
+      price: "4,000 RSD",
+      description: translate("shiatsuMassageDesc"),
+      benefits: [translate("shiatsuBenefit1"), translate("shiatsuBenefit2"), translate("shiatsuBenefit3")]
+    },
+    {
+      name: translate("reflexologyMassage"),
+      duration: "45 min",
+      price: "2,500 RSD",
+      description: translate("reflexologyMassageDesc"),
+      benefits: [translate("reflexologyBenefit1"), translate("reflexologyBenefit2"), translate("reflexologyBenefit3")]
+    },
+    {
+      name: translate("backShoulderMassage"),
+      duration: "45 min",
+      price: "2,800 RSD",
+      description: translate("backShoulderMassageDesc"),
+      benefits: [translate("backShoulderBenefit1"), translate("backShoulderBenefit2"), translate("backShoulderBenefit3")]
+    },
+    {
+      name: translate("antiStressMassage"),
+      duration: "60 min",
+      price: "3,200 RSD",
+      description: translate("antiStressMassageDesc"),
+      benefits: [translate("antiStressBenefit1"), translate("antiStressBenefit2"), translate("antiStressBenefit3")]
+    },
+    {
+      name: translate("prenatalMassage"),
+      duration: "60 min",
+      price: "3,800 RSD",
+      description: translate("prenatalMassageDesc"),
+      benefits: [translate("prenatalBenefit1"), translate("prenatalBenefit2"), translate("prenatalBenefit3")]
+    },
+    {
+      name: translate("deepTissueMassage"),
+      duration: "75 min",
+      price: "4,200 RSD",
+      description: translate("deepTissueMassageDesc"),
+      benefits: [translate("deepTissueBenefit1"), translate("deepTissueBenefit2"), translate("deepTissueBenefit3")]
+    },
+    {
+      name: translate("bambooMassage"),
+      duration: "60 min",
+      price: "3,700 RSD",
+      description: translate("bambooMassageDesc"),
+      benefits: [translate("bambooBenefit1"), translate("bambooBenefit2"), translate("bambooBenefit3")]
+    },
+    {
+      name: translate("lymphaticMassage"),
+      duration: "60 min",
+      price: "3,500 RSD",
+      description: translate("lymphaticMassageDesc"),
+      benefits: [translate("lymphaticBenefit1"), translate("lymphaticBenefit2"), translate("lymphaticBenefit3")]
     }
   ];
 
