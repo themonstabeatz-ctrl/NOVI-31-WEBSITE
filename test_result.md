@@ -268,6 +268,18 @@ backend:
         agent: "main"
         comment: "This is a static frontend-only website, no backend API"
 
+  - task: "Booking API Integration"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://thaimassage-web.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
