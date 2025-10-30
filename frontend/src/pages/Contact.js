@@ -109,7 +109,7 @@ const Contact = () => {
         appointment_date: formData.preferredDate,
         start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
         service_id: serviceName, // From URL parameter when clicking "Zakažite"
-        therapist_id: "", // Empty string instead of null
+        therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist (Marko Markovic)
         notes: formData.message || ""
       };
 
