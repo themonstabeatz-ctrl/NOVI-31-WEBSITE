@@ -11,6 +11,7 @@ const Massage = () => {
   const { translate } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   const [selectedTraditionalDuration, setSelectedTraditionalDuration] = useState('60'); // Default 60 min
+  const [selectedAromaDuration, setSelectedAromaDuration] = useState('60'); // Default 60 min for Aroma therapy
 
   // Get traditional massage price and duration based on selection
   const getTraditionalMassageDetails = () => {
