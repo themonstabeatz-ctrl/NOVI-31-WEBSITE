@@ -168,6 +168,62 @@ export const translations = {
     categoryBody: "Telo",
     categoryPremium: "Premium",
     categoryRelaxation: "Relaksacija",
+    
+    // New SPA Services
+    hydratingBodyTreatment: "Hidratantni tretman tela",
+    hydratingBodyDesc: "Dubinsko vlaženje kože sa luksuznim kremama i uljima.",
+    hydratingBodyBenefit1: "Hidratacija kože",
+    hydratingBodyBenefit2: "Meka i glatka koža",
+    hydratingBodyBenefit3: "Anti-aging efekat",
+    
+    detoxWrap: "Detoks body wrap",
+    detoxWrapDesc: "Pročišćavajući tretman koji eliminiše toksine iz tela.",
+    detoxWrapBenefit1: "Eliminiše toksine",
+    detoxWrapBenefit2: "Zatezanje kože",
+    detoxWrapBenefit3: "Osvežava telo",
+    
+    bodyScrub: "Piling tela",
+    bodyScrubDesc: "Eksfolijacija mrtvih ćelija kože za obnovu i osveženje.",
+    bodyScrubBenefit1: "Uklanja mrtve ćelije",
+    bodyScrubBenefit2: "Stimuliše cirkulaciju",
+    bodyScrubBenefit3: "Glatka koža",
+    
+    anticelluliteTreatment: "Anticelulit tretman",
+    anticelluliteTreatmentDesc: "Specijalizovani tretman za smanjenje celulita.",
+    anticelluliteBenefit1: "Redukuje celulit",
+    anticelluliteBenefit2: "Tonira kožu",
+    anticelluliteBenefit3: "Poboljšava teksturu",
+    
+    collagenFacial: "Kolagen tretman lica",
+    collagenFacialDesc: "Tretman lica sa kolagenom za mladolik izgled.",
+    collagenBenefit1: "Anti-aging",
+    collagenBenefit2: "Zatezanje kože",
+    collagenBenefit3: "Smanjuje bore",
+    
+    vitaminCFacial: "Vitamin C tretman",
+    vitaminCFacialDesc: "Osvetljujući tretman sa visokom koncentracijom vitamina C.",
+    vitaminCBenefit1: "Osvetljava kožu",
+    vitaminCBenefit2: "Ujednačava ten",
+    vitaminCBenefit3: "Zaštita od slobodnih radikala",
+    
+    combinedSpaDay: "Kombinovani spa dan",
+    combinedSpaDayDesc: "Ceo dan luksuznih tretmana: masaža, spa, tretmani.",
+    combinedSpaBenefit1: "Celodnevna relaksacija",
+    combinedSpaBenefit2: "Potpuna regeneracija",
+    combinedSpaBenefit3: "Luksuzno iskustvo",
+    
+    chocolateWrap: "Čokoladni body wrap",
+    chocolateWrapDesc: "Zavodljivi tretman sa čokoladom koji hrani i miri kožu.",
+    chocolateBenefit1: "Hrani kožu",
+    chocolateBenefit2: "Antioksidansi",
+    chocolateBenefit3: "Čulno iskustvo",
+    
+    thalassoTherapy: "Thalasso terapija",
+    thalassoTherapyDesc: "Tretman sa morskim mineralima i algama za detoksikaciju.",
+    thalassoBenefit1: "Mineralizacija",
+    thalassoBenefit2: "Detoksikacija",
+    thalassoBenefit3: "Revitalizacija",
+    
     spaPackagesTitle: "Spa Paketi za Posebne Prilike",
     spaPackagesSubtitle: "Savršeni paketi za proslave, godisnjice i posebne trenutke",
     romanticPackage: "Romantični paket za parove",
