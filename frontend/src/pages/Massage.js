@@ -213,14 +213,18 @@ const Massage = () => {
     return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
+  const traditionalDetails = getTraditionalMassageDetails();
+  
   const massageServices = [
     {
       name: translate("traditionalMassage"),
-      duration: "60 min",
-      price: "4,500 RSD",
+      duration: traditionalDetails.duration,
+      price: traditionalDetails.price,
+      serviceId: traditionalDetails.serviceId,
       description: translate("traditionalMassageDesc"),
       benefits: [translate("traditionalBenefit1"), translate("traditionalBenefit2"), translate("traditionalBenefit3")],
-      popular: true
+      popular: true,
+      hasDurationOptions: true // Mark this service as having duration options
     },
     {
       name: translate("oilMassage"),
