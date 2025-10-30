@@ -158,6 +158,11 @@ const Contact = () => {
         'Steam Bath': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
         'Паровая баня': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
         'ห้องอบไอน้ำ': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
+        
+        'Kraljevski spa paket': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
+        'Royal Spa Package': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
+        'Королевский спа-пакет': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
+        'แพ็คเกจสปาหลวง': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
       };
       
       // Get service UUID from mapping, or use default
