@@ -240,6 +240,7 @@ export const translations = {
     oilBenefit1: "Hydrates skin",
     oilBenefit2: "Calms nervous system",
     oilBenefit3: "Improves sleep",
+    aromaTherapy: "Aromatherapy",
     hotStone: "Hot Stone Massage",
     hotStoneDesc: "Therapeutic massage with hot volcanic stones that releases deep muscle tensions.",
     hotStoneBenefit1: "Improves circulation",
