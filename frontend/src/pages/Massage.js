@@ -225,6 +225,7 @@ const Massage = () => {
   }, []);
 
   const traditionalDetails = getTraditionalMassageDetails();
+  const aromaDetails = getAromaTherapyDetails();
   
   const massageServices = [
     {
@@ -238,12 +239,14 @@ const Massage = () => {
       hasDurationOptions: true // Mark this service as having duration options
     },
     {
-      name: translate("oilMassage"),
-      duration: "60 min",
-      price: "5,000 RSD",
+      name: "Aroma terapija", // Changed from "Masaža sa uljima"
+      duration: aromaDetails.duration,
+      price: aromaDetails.price,
+      serviceId: aromaDetails.serviceId,
       description: translate("oilMassageDesc"),
       benefits: [translate("oilBenefit1"), translate("oilBenefit2"), translate("oilBenefit3")],
-      popular: false
+      hasDurationOptions: true,
+      isAroma: true // Mark as aroma therapy
     },
     {
       name: translate("hotStone"),
