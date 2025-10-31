@@ -386,14 +386,22 @@ const Contact = () => {
                       {translate("preferredDate")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <Input
+                      <input
                         id="preferredDate"
                         name="preferredDate"
                         type="date"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
                         className="form-input"
-                        lang={getHtmlLang()}
+                        style={{
+                          width: '100%',
+                          padding: '0.5rem',
+                          borderRadius: '4px',
+                          border: '1px solid rgba(212, 175, 55, 0.3)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--spa-gold)',
+                          fontSize: '1rem'
+                        }}
                       />
                       {formData.preferredDate && (
                         <Button 
