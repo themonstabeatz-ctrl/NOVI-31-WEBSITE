@@ -308,6 +308,96 @@ class BookingAPITester:
         
         return all_passed
 
+    async def test_all_service_ids(self):
+        """Test all provided service IDs comprehensively"""
+        
+        # All service IDs provided by user
+        all_services = [
+            {"name": "Klasicna Tajlandska masaza", "id": "057c8535-bb25-4712-9014-60e378d06b6d"},
+            {"name": "Relax masaža celog tela", "id": "e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf"},
+            {"name": "Sportska masaža", "id": "d6cf94e7-5eac-4a8a-8a33-c92e18830021"},
+            {"name": "Spa + tradicionalna tajlandska masaza", "id": "0483de92-b1ca-49d8-bd1d-0b8a39ed50a4"},
+            {"name": "Dubinska masaža", "id": "4c135b02-641e-4f66-a13b-f420c89ff3bd"}
+        ]
+        
+        therapist_id = "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f"  # Marko Markovic
+        
+        all_passed = True
+        successful_bookings = []
+        
+        for i, service in enumerate(all_services):
+            booking_data = {
+                "client_first_name": "Comprehensive",
+                "client_last_name": "Test",
+                "client_phone": "+381621234567",
+                "client_email": f"comprehensive.test{i+1}@example.com",
+                "appointment_date": f"2025-03-0{i+1}",
+                "start_time": f"2025-03-0{i+1}T{10+i}:00:00",
+                "service_id": service["id"],
+                "therapist_id": therapist_id,
+                "notes": f"Comprehensive test for {service['name']}"
+            }
+            
+            try:
+                async with httpx.AsyncClient(timeout=30.0) as client:
+                    response = await client.post(
+                        f"{self.api_base}/book-appointment",
+                        json=booking_data,
+                        headers={'Content-Type': 'application/json'}
+                    )
+                    
+                    if response.status_code in [200, 201]:
+                        response_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
+                        successful_bookings.append({
+                            "service": service["name"],
+                            "service_id": service["id"],
+                            "response": response_data
+                        })
+                        self.log_result(
+                            f"Comprehensive Test - {service['name']}",
+                            True,
+                            f"Successfully booked {service['name']}",
+                            {
+                                "service_name": service['name'],
+                                "service_id": service["id"],
+                                "status_code": response.status_code,
+                                "appointment_id": response_data.get('id', 'N/A') if response_data else 'N/A'
+                            }
+                        )
+                    else:
+                        self.log_result(
+                            f"Comprehensive Test - {service['name']}",
+                            False,
+                            f"Failed to book {service['name']} - Status {response.status_code}",
+                            {
+                                "service_name": service['name'],
+                                "service_id": service["id"],
+                                "status_code": response.status_code,
+                                "response": response.text[:200]
+                            }
+                        )
+                        all_passed = False
+                        
+            except Exception as e:
+                self.log_result(
+                    f"Comprehensive Test - {service['name']}",
+                    False,
+                    f"Error testing {service['name']}: {str(e)}",
+                    {"error": str(e), "service_id": service["id"]}
+                )
+                all_passed = False
+        
+        # Summary of successful bookings
+        if successful_bookings:
+            self.log_result(
+                "Comprehensive Test Summary",
+                True,
+                f"Successfully created {len(successful_bookings)} bookings out of {len(all_services)} services",
+                {"successful_bookings": successful_bookings}
+            )
+        
+        return all_passed
+
     async def run_all_tests(self):
         """Run all booking API tests"""
         print("=" * 60)
