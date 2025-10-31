@@ -82,7 +82,7 @@ const Contact = () => {
   const clearDate = () => {
     setFormData(prev => ({
       ...prev,
-      preferredDate: ""
+      preferredDate: null
     }));
   };
 
