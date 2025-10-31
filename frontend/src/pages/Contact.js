@@ -49,11 +49,18 @@ const Contact = () => {
     // Get service parameter from URL
     const searchParams = new URLSearchParams(location.search);
     const service = searchParams.get('service');
+    const source = searchParams.get('source'); // 'voucher', 'massage', 'spa', or null
     
     if (service) {
       setFormData(prev => ({
         ...prev,
-        message: `${translate("wantToBook")} ${service}`
+        message: `${translate("wantToBook")} ${service}`,
+        source: source || 'booking' // Store source for success message
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        source: source || 'message' // Default to message if no service
       }));
     }
   }, [location, translate]);
