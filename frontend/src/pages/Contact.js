@@ -392,6 +392,7 @@ const Contact = () => {
                         type="date"
                         value={formData.preferredDate}
                         onChange={handleInputChange}
+                        min={new Date().toISOString().split('T')[0]}
                         className="form-input"
                         style={{
                           width: '100%',
