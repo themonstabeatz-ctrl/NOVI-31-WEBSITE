@@ -138,17 +138,17 @@ class BookingAPITester:
     async def test_booking_proxy_endpoint(self):
         """Test the backend proxy endpoint for booking"""
         
-        # Sample booking data as provided by user
+        # Sample booking data with real service IDs provided by user
         booking_data = {
             "client_first_name": "Test",
-            "client_last_name": "Korisnik",
+            "client_last_name": "User",
             "client_phone": "+381621234567",
             "client_email": "test@example.com",
-            "appointment_date": "2025-02-15",
-            "start_time": "2025-02-15T14:00:00",
-            "service_id": "44826422-d4b4-4ca0-971b-1c91b0a6ccdd",
-            "therapist_id": "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f",
-            "notes": "Test rezervacija"
+            "appointment_date": "2025-02-25",
+            "start_time": "2025-02-25T15:00:00",
+            "service_id": "057c8535-bb25-4712-9014-60e378d06b6d",  # Klasicna Tajlandska masaza
+            "therapist_id": "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f",  # Marko Markovic
+            "notes": "Backend test booking"
         }
         
         try:
