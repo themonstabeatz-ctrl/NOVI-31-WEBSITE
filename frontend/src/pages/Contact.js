@@ -220,14 +220,19 @@ const Contact = () => {
       
       // Only send to booking API if we have date and time
       if (formData.preferredDate && formData.preferredTime) {
+        // Convert Date object to YYYY-MM-DD format
+        const dateStr = formData.preferredDate instanceof Date 
+          ? formData.preferredDate.toISOString().split('T')[0]
+          : formData.preferredDate;
+        
         // Prepare data for API
         const appointmentData = {
           client_first_name: formData.firstName,
           client_last_name: formData.lastName,
           client_phone: formData.phone,
           client_email: formData.email,
-          appointment_date: formData.preferredDate,
-          start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
+          appointment_date: dateStr,
+          start_time: `${dateStr}T${formData.preferredTime}:00`, // Combine date and time
           service_id: serviceId,
           therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist
           notes: formData.message || ""
