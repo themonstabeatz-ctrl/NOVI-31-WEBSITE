@@ -104,6 +104,11 @@ const Contact = () => {
     setSubmitStatus(null);
     
     try {
+      // Validate required fields
+      if (!formData.firstName || !formData.lastName || !formData.phone || !formData.email) {
+        throw new Error('All fields are required');
+      }
+      
       // Get service name from URL parameter
       const queryParams = new URLSearchParams(location.search);
       const serviceName = queryParams.get('service') || '';
