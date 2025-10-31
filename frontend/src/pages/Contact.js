@@ -266,10 +266,10 @@ const Contact = () => {
       // Error - show red X
       setSubmitStatus('error');
       
-      // Hide error after 3 seconds
+      // Hide error after 2 seconds
       setTimeout(() => {
         setSubmitStatus(null);
-      }, 3000);
+      }, 2000);
     } finally {
       setIsSubmitting(false);
     }
