@@ -228,7 +228,7 @@ const Contact = () => {
         throw new Error('Failed to book appointment');
       }
 
-      // Success - show green checkmark
+      // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
       
       // Also send email as backup
@@ -255,10 +255,11 @@ const Contact = () => {
           email: "",
           message: "",
           preferredDate: "",
-          preferredTime: ""
+          preferredTime: "",
+          source: "message"
         });
         setSubmitStatus(null);
-      }, 3000);
+      }, 2000);
       
     } catch (error) {
       console.error('Booking error:', error);
