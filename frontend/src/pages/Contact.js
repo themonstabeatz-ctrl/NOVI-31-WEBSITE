@@ -256,6 +256,11 @@ const Contact = () => {
       // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
       
+      // Format date for email
+      const emailDate = formData.preferredDate instanceof Date
+        ? formatDate(formData.preferredDate.toISOString().split('T')[0])
+        : (formData.preferredDate ? formatDate(formData.preferredDate) : 'Nije navedeno');
+      
       // Also send email as backup
       const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
       const body = encodeURIComponent(
@@ -263,7 +268,7 @@ const Contact = () => {
         `Telefon: ${formData.phone}\n` +
         `Email: ${formData.email}\n` +
         `Usluga: ${serviceName}\n` +
-        `Željeni datum: ${formatDate(formData.preferredDate)}\n` +
+        `Željeni datum: ${emailDate}\n` +
         `Željeno vreme: ${formData.preferredTime || 'Nije navedeno'}\n\n` +
         `Poruka:\n${formData.message}`
       );
