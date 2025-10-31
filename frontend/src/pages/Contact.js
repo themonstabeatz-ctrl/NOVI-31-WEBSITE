@@ -206,31 +206,34 @@ const Contact = () => {
       // Get service UUID from mapping, or use default (Klasicna Tajlandska masaza)
       const serviceId = serviceMapping[serviceName] || '057c8535-bb25-4712-9014-60e378d06b6d';
       
-      // Prepare data for API
-      const appointmentData = {
-        client_first_name: formData.firstName,
-        client_last_name: formData.lastName,
-        client_phone: formData.phone,
-        client_email: formData.email,
-        appointment_date: formData.preferredDate,
-        start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
-        service_id: serviceId,
-        therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist
-        notes: formData.message || ""
-      };
+      // Only send to booking API if we have date and time
+      if (formData.preferredDate && formData.preferredTime) {
+        // Prepare data for API
+        const appointmentData = {
+          client_first_name: formData.firstName,
+          client_last_name: formData.lastName,
+          client_phone: formData.phone,
+          client_email: formData.email,
+          appointment_date: formData.preferredDate,
+          start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
+          service_id: serviceId,
+          therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist
+          notes: formData.message || ""
+        };
 
-      // Use backend proxy for booking
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-      const response = await fetch(`${backendUrl}/api/book-appointment`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(appointmentData)
-      });
+        // Use backend proxy for booking
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        const response = await fetch(`${backendUrl}/api/book-appointment`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(appointmentData)
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to book appointment');
+        if (!response.ok) {
+          throw new Error('Failed to book appointment');
+        }
       }
 
       // Success - show green checkmark with appropriate message
