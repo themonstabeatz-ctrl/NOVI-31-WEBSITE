@@ -247,62 +247,66 @@ class BookingAPITester:
                 "notes": f"Service ID mapping test for {service_test['name']}"
             }
         
-        try:
-            async with httpx.AsyncClient(timeout=30.0) as client:
-                response = await client.post(
-                    f"{self.api_base}/book-appointment",
-                    json=booking_data,
-                    headers={'Content-Type': 'application/json'}
-                )
-                
-                if response.status_code == 200:
-                    response_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
-                    self.log_result(
-                        "Service ID Mapping",
-                        True,
-                        f"Service ID {test_service_id} accepted by booking system",
-                        {
-                            "service_id": test_service_id,
-                            "therapist_id": test_therapist_id,
-                            "status_code": response.status_code,
-                            "response": response_data
-                        }
+            try:
+                async with httpx.AsyncClient(timeout=30.0) as client:
+                    response = await client.post(
+                        f"{self.api_base}/book-appointment",
+                        json=booking_data,
+                        headers={'Content-Type': 'application/json'}
                     )
-                    return True
-                elif response.status_code == 400:
-                    self.log_result(
-                        "Service ID Mapping",
-                        False,
-                        f"Service ID {test_service_id} rejected - Invalid service or therapist ID",
-                        {
-                            "service_id": test_service_id,
-                            "therapist_id": test_therapist_id,
-                            "status_code": response.status_code,
-                            "response": response.text
-                        }
-                    )
-                    return False
-                else:
-                    self.log_result(
-                        "Service ID Mapping",
-                        False,
-                        f"Unexpected response status {response.status_code}",
-                        {
-                            "service_id": test_service_id,
-                            "status_code": response.status_code,
-                            "response": response.text[:200]
-                        }
-                    )
-                    return False
                     
-        except Exception as e:
-            self.log_result(
-                "Service ID Mapping",
-                False,
-                f"Error testing service ID mapping: {str(e)}",
-                {"error": str(e), "service_id": test_service_id}
-            )
-            return False
+                    if response.status_code in [200, 201]:
+                        response_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
+                        self.log_result(
+                            f"Service ID Mapping - {service_test['name']}",
+                            True,
+                            f"Service ID {service_test['service_id']} accepted by booking system",
+                            {
+                                "service_name": service_test['name'],
+                                "service_id": service_test["service_id"],
+                                "therapist_id": test_therapist_id,
+                                "status_code": response.status_code,
+                                "response": response_data
+                            }
+                        )
+                    elif response.status_code == 400:
+                        self.log_result(
+                            f"Service ID Mapping - {service_test['name']}",
+                            False,
+                            f"Service ID {service_test['service_id']} rejected - Invalid service or therapist ID",
+                            {
+                                "service_name": service_test['name'],
+                                "service_id": service_test["service_id"],
+                                "therapist_id": test_therapist_id,
+                                "status_code": response.status_code,
+                                "response": response.text
+                            }
+                        )
+                        all_passed = False
+                    else:
+                        self.log_result(
+                            f"Service ID Mapping - {service_test['name']}",
+                            False,
+                            f"Unexpected response status {response.status_code}",
+                            {
+                                "service_name": service_test['name'],
+                                "service_id": service_test["service_id"],
+                                "status_code": response.status_code,
+                                "response": response.text[:200]
+                            }
+                        )
+                        all_passed = False
+                        
+            except Exception as e:
+                self.log_result(
+                    f"Service ID Mapping - {service_test['name']}",
+                    False,
+                    f"Error testing service ID mapping: {str(e)}",
+                    {"error": str(e), "service_id": service_test["service_id"]}
+                )
+                all_passed = False
+        
+        return all_passed
 
     async def run_all_tests(self):
         """Run all booking API tests"""
