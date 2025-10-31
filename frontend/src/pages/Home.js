@@ -194,7 +194,7 @@ const Home = () => {
           />
         </div>
         <Button asChild className="pim-gift-button-bottom">
-          <Link to="/contact">{translate("buyNow")}</Link>
+          <Link to="/contact?source=voucher">{translate("buyNow")}</Link>
         </Button>
       </section>
 
