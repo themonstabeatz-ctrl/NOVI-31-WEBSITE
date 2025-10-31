@@ -284,7 +284,7 @@ const Contact = () => {
           phone: "",
           email: "",
           message: "",
-          preferredDate: "",
+          preferredDate: null,
           preferredTime: "",
           source: "message"
         });
