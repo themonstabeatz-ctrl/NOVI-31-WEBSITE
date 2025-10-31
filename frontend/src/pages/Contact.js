@@ -197,41 +197,28 @@ const Contact = () => {
       // Get service UUID from mapping, or use default
       const serviceId = serviceMapping[serviceName] || '44826422-d4b4-4ca0-971b-1c91b0a6ccdd'; // Default to Traditional Thai Massage
       
-      // Prepare data for API
+      // Prepare data for API in new format
       const appointmentData = {
-        client_first_name: formData.firstName,
-        client_last_name: formData.lastName,
+        client_name: formData.firstName,
+        client_surname: formData.lastName,
         client_phone: formData.phone,
         client_email: formData.email,
-        appointment_date: formData.preferredDate,
-        start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
+        appointment_date: formatDateForAPI(formData.preferredDate), // DD-MM-YYYY format
+        start_time: formData.preferredTime, // HH:MM format
         service_id: serviceId,
-        therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist (Marko Markovic)
+        therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist
         notes: formData.message || ""
       };
 
-      // Try direct API call first
-      let response;
-      try {
-        response = await fetch('https://thaimassage-web.preview.emergentagent.com/api/appointments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(appointmentData)
-        });
-      } catch (directError) {
-        // If direct call fails (CORS), use backend proxy
-        console.log('Direct API call failed, using proxy...');
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-        response = await fetch(`${backendUrl}/api/book-appointment`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(appointmentData)
-        });
-      }
+      // Use backend proxy for booking
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+      const response = await fetch(`${backendUrl}/api/book-appointment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(appointmentData)
+      });
 
       if (!response.ok) {
         throw new Error('Failed to book appointment');
