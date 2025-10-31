@@ -668,6 +668,11 @@ export const translations = {
     preferredTime: "Предпочитаемое время",
     wantToBook: "Я хочу забронировать:",
     clearDate: "Очистить",
+    
+    // Success messages
+    successBooking: "Ваша процедура успешно забронирована",
+    successVoucher: "Вы успешно приобрели ваш ваучер",
+    successMessage: "Ваше сообщение успешно отправлено",
     address: "Адрес",
     workingHours: "Рабочие часы",
     followUs: "Подписывайтесь",
