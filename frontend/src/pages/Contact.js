@@ -65,24 +65,17 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
-    // Special handling for date input - convert from DD/MM/YYYY to YYYY-MM-DD
-    if (name === 'preferredDate' && value.includes('/')) {
-      const parts = value.split('/');
-      if (parts.length === 3) {
-        const [day, month, year] = parts;
-        const isoDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-        setFormData(prev => ({
-          ...prev,
-          [name]: isoDate
-        }));
-        return;
-      }
-    }
-    
     setFormData(prev => ({
       ...prev,
       [name]: value
+    }));
+  };
+
+  // Handle date change from DatePicker
+  const handleDateChange = (date) => {
+    setFormData(prev => ({
+      ...prev,
+      preferredDate: date
     }));
   };
 
