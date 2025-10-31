@@ -471,6 +471,11 @@ export const translations = {
     preferredTime: "Preferred Time",
     wantToBook: "I want to book:",
     clearDate: "Clear",
+    
+    // Success messages
+    successBooking: "Your treatment has been successfully booked",
+    successVoucher: "You have successfully purchased your voucher",
+    successMessage: "Your message has been successfully sent",
     address: "Address",
     workingHours: "Working Hours",
     followUs: "Follow Us",
