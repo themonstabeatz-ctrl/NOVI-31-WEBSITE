@@ -212,23 +212,40 @@ class BookingAPITester:
             return False
 
     async def test_service_id_mapping(self):
-        """Test if the service ID mapping is working correctly"""
+        """Test multiple service IDs to verify mapping works correctly"""
         
-        # Test with the provided service ID
-        test_service_id = "44826422-d4b4-4ca0-971b-1c91b0a6ccdd"
-        test_therapist_id = "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f"
+        # Test with different service IDs provided by user
+        service_tests = [
+            {
+                "name": "Klasicna Tajlandska masaza",
+                "service_id": "057c8535-bb25-4712-9014-60e378d06b6d"
+            },
+            {
+                "name": "Relax masaža celog tela", 
+                "service_id": "e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf"
+            },
+            {
+                "name": "Sportska masaža",
+                "service_id": "d6cf94e7-5eac-4a8a-8a33-c92e18830021"
+            }
+        ]
         
-        booking_data = {
-            "client_first_name": "ServiceTest",
-            "client_last_name": "User",
-            "client_phone": "+381621234567",
-            "client_email": "servicetest@example.com",
-            "appointment_date": "2025-02-16",
-            "start_time": "2025-02-16T15:00:00",
-            "service_id": test_service_id,
-            "therapist_id": test_therapist_id,
-            "notes": "Service ID mapping test"
-        }
+        test_therapist_id = "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f"  # Marko Markovic
+        
+        all_passed = True
+        
+        for i, service_test in enumerate(service_tests):
+            booking_data = {
+                "client_first_name": "ServiceTest",
+                "client_last_name": "User",
+                "client_phone": "+381621234567",
+                "client_email": f"servicetest{i+1}@example.com",
+                "appointment_date": f"2025-02-2{6+i}",
+                "start_time": f"2025-02-2{6+i}T{15+i}:00:00",
+                "service_id": service_test["service_id"],
+                "therapist_id": test_therapist_id,
+                "notes": f"Service ID mapping test for {service_test['name']}"
+            }
         
         try:
             async with httpx.AsyncClient(timeout=30.0) as client:
