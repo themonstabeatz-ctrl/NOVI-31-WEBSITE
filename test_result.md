@@ -200,10 +200,10 @@ frontend:
 
   - task: "Contact page"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/pages/Contact.js"
-    stuck_count: 0
-    priority: "medium"
+    stuck_count: 1
+    priority: "high"
     needs_retesting: false
     status_history:
       - working: "unknown"
@@ -212,6 +212,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "All functionality working perfectly. Contact form found with all 4 fields (firstName, lastName, email, message) interactive and functional. Contact information sections display correctly with email (bualuangthailandspa@gmail.com), phone (+381 62 625 500), address (Abebe Bikile 10A), and working hours (10:00-22:00). Form accepts realistic data input."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUES FOUND: 1) Success message functionality partially working but backend validation errors (422/400) prevent success messages from showing. Backend logs show 'start_time input is too short' errors when date/time fields are empty. 2) Contact page routing issues - URL redirects to home page instead of staying on /contact. 3) Form submission works but shows error messages instead of success messages due to backend validation failures. 4) Success message implementation exists in code with proper GREEN styling (#22c55e), checkmark icons, and 2-second timeout, but cannot be tested due to backend errors. 5) Language switching functionality detected but success messages in different languages cannot be verified due to form submission failures."
 
   - task: "Header with navigation and language switcher"
     implemented: true
