@@ -190,8 +190,8 @@ const Contact = () => {
         'แพ็คเกจสปาหลวง': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
       };
       
-      // Get service UUID from mapping, or use default
-      const serviceId = serviceMapping[serviceName] || '44826422-d4b4-4ca0-971b-1c91b0a6ccdd'; // Default to Traditional Thai Massage
+      // Get service UUID from mapping, or use default (Klasicna Tajlandska masaza)
+      const serviceId = serviceMapping[serviceName] || '057c8535-bb25-4712-9014-60e378d06b6d';
       
       // Prepare data for API
       const appointmentData = {
