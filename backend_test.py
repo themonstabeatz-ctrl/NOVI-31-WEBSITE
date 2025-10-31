@@ -437,6 +437,18 @@ class BookingAPITester:
                 {"reason": "Proxy endpoint failed or backend not accessible"}
             )
         
+        # Test 5: Comprehensive Service ID Testing (only if proxy is working)
+        comprehensive_test_working = False
+        if backend_healthy and proxy_working:
+            comprehensive_test_working = await self.test_all_service_ids()
+        else:
+            self.log_result(
+                "Comprehensive Service ID Test",
+                False,
+                "Skipped - Proxy endpoint not working",
+                {"reason": "Proxy endpoint failed or backend not accessible"}
+            )
+        
         # Summary
         print("=" * 60)
         print("TEST SUMMARY")
