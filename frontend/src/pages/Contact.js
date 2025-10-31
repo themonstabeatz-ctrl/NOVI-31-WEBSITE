@@ -22,7 +22,7 @@ const Contact = () => {
     phone: "",
     email: "",
     message: "",
-    preferredDate: "",
+    preferredDate: null, // Changed to null for DatePicker
     preferredTime: "",
     source: "message" // 'booking', 'voucher', or 'message'
   });
