@@ -21,7 +21,8 @@ const Contact = () => {
     email: "",
     message: "",
     preferredDate: "",
-    preferredTime: ""
+    preferredTime: "",
+    source: "message" // 'booking', 'voucher', or 'message'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
