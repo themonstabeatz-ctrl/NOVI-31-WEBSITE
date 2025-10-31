@@ -27,15 +27,10 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
 
-  // Map language codes to HTML lang attribute
+  // Map language codes to HTML lang attribute - force sr-RS for date format
   const getHtmlLang = () => {
-    const langMap = {
-      'sr': 'sr-RS',
-      'en': 'en-US',
-      'ru': 'ru-RU',
-      'th': 'th-TH'
-    };
-    return langMap[language] || 'sr-RS';
+    // Always use sr-RS for Serbian date format (DD.MM.YYYY)
+    return 'sr-RS';
   };
 
   // Set HTML lang attribute for native date picker localization
