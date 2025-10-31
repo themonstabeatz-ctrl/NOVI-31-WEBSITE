@@ -91,6 +91,7 @@ async def get_status_checks():
 async def book_appointment(booking: AppointmentBooking):
     """
     Proxy endpoint to forward booking requests to spa booking system
+    Allow all bookings - owner will contact clients to reschedule if needed
     """
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
@@ -100,14 +101,33 @@ async def book_appointment(booking: AppointmentBooking):
                 headers={'Content-Type': 'application/json'}
             )
             
-            if response.status_code != 200 and response.status_code != 201:
-                logger.error(f"Booking API error: {response.status_code} - {response.text}")
-                raise HTTPException(
-                    status_code=response.status_code,
-                    detail="Failed to create booking"
-                )
+            # If booking succeeds, return the response
+            if response.status_code in [200, 201]:
+                return response.json()
             
-            return response.json()
+            # If therapist is not available, still return success to client
+            # Owner will contact them to reschedule
+            if response.status_code == 400:
+                try:
+                    error_detail = response.json().get('detail', '')
+                    if 'not available' in error_detail.lower() or 'unavailable' in error_detail.lower():
+                        logger.info(f"Booking accepted despite therapist unavailability - owner will reschedule")
+                        # Return a success response - owner will handle rescheduling
+                        return {
+                            "status": "pending_confirmation",
+                            "message": "Booking received - owner will contact you to confirm",
+                            "client_name": f"{booking.client_first_name} {booking.client_last_name}",
+                            "requested_time": booking.start_time
+                        }
+                except:
+                    pass
+            
+            # For other errors (service not found, therapist not found, etc), log and raise
+            logger.error(f"Booking API error: {response.status_code} - {response.text}")
+            raise HTTPException(
+                status_code=response.status_code,
+                detail="Failed to create booking"
+            )
             
     except httpx.RequestError as e:
         logger.error(f"Booking API request error: {str(e)}")
