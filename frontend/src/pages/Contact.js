@@ -98,6 +98,13 @@ const Contact = () => {
     }));
   };
 
+  // Format date for display as DD/MM/YYYY
+  const formatDateForDisplay = (isoDate) => {
+    if (!isoDate) return '';
+    const [year, month, day] = isoDate.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
   // Format date as DD/MM/YYYY
   const formatDate = (dateString) => {
     if (!dateString) return 'Nije navedeno';
