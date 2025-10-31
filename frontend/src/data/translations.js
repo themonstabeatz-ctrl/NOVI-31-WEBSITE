@@ -274,6 +274,11 @@ export const translations = {
     preferredTime: "Željeno vreme",
     wantToBook: "Želim da zakažem:",
     clearDate: "Obriši",
+    
+    // Success messages
+    successBooking: "Uspešno ste zakazali vaš tretman",
+    successVoucher: "Uspešno ste kupili vaš vaučer",
+    successMessage: "Uspešno ste poslali poruku",
     address: "Adresa",
     workingHours: "Radno vreme",
     followUs: "Pratite nas",
