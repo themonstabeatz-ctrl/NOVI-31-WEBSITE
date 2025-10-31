@@ -465,7 +465,9 @@ const Contact = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
                         <span style={{ color: '#22c55e', fontWeight: 'bold', fontSize: '1.1rem' }}>
-                          Rezervacija uspešno poslata!
+                          {formData.source === 'voucher' ? translate("successVoucher") : 
+                           formData.source === 'booking' ? translate("successBooking") : 
+                           translate("successMessage")}
                         </span>
                       </>
                     ) : (
