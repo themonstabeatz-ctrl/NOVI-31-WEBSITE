@@ -102,86 +102,92 @@ const Contact = () => {
       
       // Map service names to UUIDs from booking system
       const serviceMapping = {
-        // Traditional Thai Massage variants
-        'Tradicionalna tajlandska masaža - 60 min': 'a6b610f3-e7bc-4bca-aeb1-a55ad300ac70',
-        'Tradicionalna tajlandska masaža - 90 min': 'a8ac5603-6c53-45b9-9e6a-283de5287f1e',
-        'Tradicionalna tajlandska masaža - 120 min': 'ecbc33c7-0758-4949-99ef-9eaa4e2fc1b2',
+        // Main services from booking system (matching website services)
+        // Tradicionalna tajlandska masaža - maps to "Klasicna Tajlandska masaza"
+        'Tradicionalna tajlandska masaža': '057c8535-bb25-4712-9014-60e378d06b6d',
+        'Traditional Thai Massage': '057c8535-bb25-4712-9014-60e378d06b6d',
+        'Традиционный тайский массаж': '057c8535-bb25-4712-9014-60e378d06b6d',
+        'การนวดแบบไทยดั้งเดิม': '057c8535-bb25-4712-9014-60e378d06b6d',
         
-        // Aroma therapy variants (all languages)
-        'Aroma terapija - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
-        'Aroma terapija - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
-        'Aroma terapija - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
-        'Aromatherapy - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
-        'Aromatherapy - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
-        'Aromatherapy - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
-        'Ароматерапия - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
-        'Ароматерапия - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
-        'Ароматерапия - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
-        'อโรมาเธอราปี - 60 min': '3fed599d-e54f-4e27-8035-8d21f3c6f2b9',
-        'อโรมาเธอราปี - 90 min': '8cda26cb-fc03-4d82-a824-52d446d9e113',
-        'อโรมาเธอราปี - 120 min': '70e17a25-d7a9-4e0d-9521-8008baefd28f',
+        // Traditional Thai Massage variants (60/90/120 min)
+        'Tradicionalna tajlandska masaža - 60 min': '057c8535-bb25-4712-9014-60e378d06b6d',
+        'Tradicionalna tajlandska masaža - 90 min': '4c135b02-641e-4f66-a13b-f420c89ff3bd', // Dubinska masaža
+        'Tradicionalna tajlandska masaža - 120 min': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4', // Spa + masaza
         
-        // Massage services (old mapping for backwards compatibility)
-        'Tradicionalna tajlandska masaža': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
-        'Traditional Thai Massage': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
-        'Традиционный тайский массаж': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
-        'การนวดแบบไทยดั้งเดิม': '44826422-d4b4-4ca0-971b-1c91b0a6ccdd',
+        // Aroma terapija / Relax masaža variants (all languages)
+        'Aroma terapija': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Aroma terapija - 60 min': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf', // Relax masaža
+        'Aroma terapija - 90 min': '4c135b02-641e-4f66-a13b-f420c89ff3bd', // Dubinska
+        'Aroma terapija - 120 min': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4', // Spa + masaza
+        'Aromatherapy': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Aromatherapy - 60 min': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Aromatherapy - 90 min': '4c135b02-641e-4f66-a13b-f420c89ff3bd',
+        'Aromatherapy - 120 min': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Ароматерапия': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Ароматерапия - 60 min': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Ароматерапия - 90 min': '4c135b02-641e-4f66-a13b-f420c89ff3bd',
+        'Ароматерапия - 120 min': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'อโรมาเธอราปี': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'อโรมาเธอราปี - 60 min': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'อโรมาเธอราปี - 90 min': '4c135b02-641e-4f66-a13b-f420c89ff3bd',
+        'อโรมาเธอราปี - 120 min': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
         
-        'Masaža sa uljima': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
-        'Oil Massage': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
-        'Масляный массаж': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
-        'การนวดน้ำมัน': '48c44f66-c185-4c93-9b72-ed4576e08cb5',
+        // Massage services - all map to available services in booking system
+        'Masaža sa uljima': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf', // Relax masaža
+        'Oil Massage': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Масляный массаж': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'การนวดน้ำมัน': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
         
-        'Masaža vrućim kamenjem': '962341a5-fb3b-4078-a394-1b058f248718',
-        'Hot Stone Massage': '962341a5-fb3b-4078-a394-1b058f248718',
-        'Массаж горячими камнями': '962341a5-fb3b-4078-a394-1b058f248718',
-        'การนวดด้วยหินร้อน': '962341a5-fb3b-4078-a394-1b058f248718',
+        'Masaža vrućim kamenjem': '4c135b02-641e-4f66-a13b-f420c89ff3bd', // Dubinska masaža
+        'Hot Stone Massage': '4c135b02-641e-4f66-a13b-f420c89ff3bd',
+        'Массаж горячими камнями': '4c135b02-641e-4f66-a13b-f420c89ff3bd',
+        'การนวดด้วยหินร้อน': '4c135b02-641e-4f66-a13b-f420c89ff3bd',
         
-        'Kraljevska tajlandska masaža': '224d9654-29d6-4d37-be24-6db3b0d425c5',
-        'Royal Thai Massage': '224d9654-29d6-4d37-be24-6db3b0d425c5',
-        'Королевский тайский массаж': '224d9654-29d6-4d37-be24-6db3b0d425c5',
-        'การนวดแบบไทยหลวง': '224d9654-29d6-4d37-be24-6db3b0d425c5',
+        'Kraljevska tajlandska masaža': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4', // Spa + masaza
+        'Royal Thai Massage': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Королевский тайский массаж': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'การนวดแบบไทยหลวง': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
         
-        'Masaža stopala': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
-        'Foot Massage': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
-        'Массаж стоп': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
-        'การนวดเท้า': 'f5ec1215-39eb-4bae-ac02-e214b3f18925',
+        'Masaža stopala': 'd6cf94e7-5eac-4a8a-8a33-c92e18830021', // Sportska masaža
+        'Foot Massage': 'd6cf94e7-5eac-4a8a-8a33-c92e18830021',
+        'Массаж стоп': 'd6cf94e7-5eac-4a8a-8a33-c92e18830021',
+        'การนวดเท้า': 'd6cf94e7-5eac-4a8a-8a33-c92e18830021',
         
-        'Partnerska masaža': 'bf317c71-5953-4d61-813b-c8046b6aba42',
-        "Couple's Massage": 'bf317c71-5953-4d61-813b-c8046b6aba42',
-        'Парный массаж': 'bf317c71-5953-4d61-813b-c8046b6aba42',
-        'การนวดคู่': 'bf317c71-5953-4d61-813b-c8046b6aba42',
+        'Partnerska masaža': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4', // Spa + masaza
+        "Couple's Massage": '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Парный массаж': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'การนวดคู่': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
         
-        // Spa services
-        'Tretman lica': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
-        'Facial Treatment': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
-        'Процедура для лица': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
-        'ทรีตเมนต์ใบหน้า': 'd2ae85d8-b6ab-4b82-b679-2f1cd2c769e2',
+        // Spa services - all map to available services
+        'Tretman lica': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf', // Relax masaža
+        'Facial Treatment': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Процедура для лица': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'ทรีตเมนต์ใบหน้า': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
         
-        'Body wrap': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
-        'Body Wrap': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
-        'Обертывание тела': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
-        'บอดี้แร็พ': '8c05fefa-7cab-4f31-a1c5-780047c776c1',
+        'Body wrap': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Body Wrap': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Обертывание тела': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'บอดี้แร็พ': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
         
-        'Zlatni tretman lica': 'a7ff6924-d719-487a-9f94-3401430b9022',
-        'Golden Facial Treatment': 'a7ff6924-d719-487a-9f94-3401430b9022',
-        'Золотая процедура для лица': 'a7ff6924-d719-487a-9f94-3401430b9022',
-        'ทรีตเมนต์ใบหน้าทองคำ': 'a7ff6924-d719-487a-9f94-3401430b9022',
+        'Zlatni tretman lica': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Golden Facial Treatment': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Золотая процедура для лица': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'ทรีตเมนต์ใบหน้าทองคำ': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
         
-        'Aromaterapija': '518cf430-d4e1-43b5-982b-8b783b70bb00',
-        'Aromatherapy': '518cf430-d4e1-43b5-982b-8b783b70bb00',
-        'Ароматерапия': '518cf430-d4e1-43b5-982b-8b783b70bb00',
-        'อโรมาเธอราปี': '518cf430-d4e1-43b5-982b-8b783b70bb00',
+        'Aromaterapija': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Aromatherapy': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Ароматерапия': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'อโรมาเธอราปี': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
         
-        'Parno kupatilo': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
-        'Steam Bath': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
-        'Паровая баня': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
-        'ห้องอบไอน้ำ': 'fd7e3290-6e95-4d4a-a9af-d989aa23034f',
+        'Parno kupatilo': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Steam Bath': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'Паровая баня': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
+        'ห้องอบไอน้ำ': 'e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf',
         
-        'Kraljevski spa paket': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
-        'Royal Spa Package': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
-        'Королевский спа-пакет': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
-        'แพ็คเกจสปาหลวง': '06db1837-3717-4e40-9a81-0a2ceeccfbc1',
+        'Kraljevski spa paket': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Royal Spa Package': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'Королевский спа-пакет': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
+        'แพ็คเกจสปาหลวง': '0483de92-b1ca-49d8-bd1d-0b8a39ed50a4',
       };
       
       // Get service UUID from mapping, or use default
