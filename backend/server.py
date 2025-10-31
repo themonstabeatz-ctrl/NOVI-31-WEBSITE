@@ -40,12 +40,12 @@ class StatusCheckCreate(BaseModel):
 
 # Booking Models
 class AppointmentBooking(BaseModel):
-    client_name: str
-    client_surname: str
+    client_first_name: str
+    client_last_name: str
     client_phone: str
     client_email: str
-    appointment_date: str  # DD-MM-YYYY format
-    start_time: str  # HH:MM format
+    appointment_date: str
+    start_time: str  # ISO datetime format
     service_id: str
     therapist_id: str = ""  # Empty string by default
     notes: Optional[str] = ""
