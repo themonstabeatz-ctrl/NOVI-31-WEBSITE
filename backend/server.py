@@ -96,7 +96,7 @@ async def book_appointment(booking: AppointmentBooking):
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
             response = await client.post(
-                'https://spa-booking-system-2.preview.emergentagent.com/api/appointments',
+                'https://pozdrav-kako-si.emergent.host/api/appointments',
                 json=booking.model_dump(),
                 headers={'Content-Type': 'application/json'}
             )
