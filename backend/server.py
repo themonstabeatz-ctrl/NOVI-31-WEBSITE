@@ -88,12 +88,12 @@ async def book_appointment(booking: AppointmentBooking):
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
             response = await client.post(
-                'https://thaimassage-web.preview.emergentagent.com/api/appointments',
+                'https://pozdrav-kako-si.emergent.host/appointments',
                 json=booking.model_dump(),
                 headers={'Content-Type': 'application/json'}
             )
             
-            if response.status_code != 200:
+            if response.status_code != 200 and response.status_code != 201:
                 logger.error(f"Booking API error: {response.status_code} - {response.text}")
                 raise HTTPException(
                     status_code=response.status_code,
