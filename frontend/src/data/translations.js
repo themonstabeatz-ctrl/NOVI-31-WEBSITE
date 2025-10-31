@@ -865,6 +865,11 @@ export const translations = {
     preferredTime: "เวลาที่ต้องการ",
     wantToBook: "ฉันต้องการจอง:",
     clearDate: "ล้าง",
+    
+    // Success messages
+    successBooking: "การจองทรีตเมนต์ของคุณสำเร็จแล้ว",
+    successVoucher: "คุณซื้อบัตรกำนัลของคุณสำเร็จแล้ว",
+    successMessage: "ข้อความของคุณถูกส่งสำเร็จแล้ว",
     address: "ที่อยู่",
     workingHours: "เวลาทำการ",
     followUs: "ติดตามเรา",
