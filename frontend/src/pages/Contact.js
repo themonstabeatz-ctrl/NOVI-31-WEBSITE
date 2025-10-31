@@ -187,14 +187,14 @@ const Contact = () => {
       // Get service UUID from mapping, or use default
       const serviceId = serviceMapping[serviceName] || '44826422-d4b4-4ca0-971b-1c91b0a6ccdd'; // Default to Traditional Thai Massage
       
-      // Prepare data for API in new format
+      // Prepare data for API
       const appointmentData = {
-        client_name: formData.firstName,
-        client_surname: formData.lastName,
+        client_first_name: formData.firstName,
+        client_last_name: formData.lastName,
         client_phone: formData.phone,
         client_email: formData.email,
-        appointment_date: formatDateForAPI(formData.preferredDate), // DD-MM-YYYY format
-        start_time: formData.preferredTime, // HH:MM format
+        appointment_date: formData.preferredDate,
+        start_time: `${formData.preferredDate}T${formData.preferredTime}:00`, // Combine date and time
         service_id: serviceId,
         therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist
         notes: formData.message || ""
