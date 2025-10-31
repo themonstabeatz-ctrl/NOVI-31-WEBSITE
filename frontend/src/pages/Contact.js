@@ -381,13 +381,12 @@ const Contact = () => {
                       {translate("preferredDate")}
                     </Label>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <input
-                        id="preferredDate"
-                        name="preferredDate"
-                        type="date"
-                        value={formData.preferredDate}
-                        onChange={handleInputChange}
-                        min={new Date().toISOString().split('T')[0]}
+                      <DatePicker
+                        selected={formData.preferredDate}
+                        onChange={handleDateChange}
+                        dateFormat="dd/MM/yyyy"
+                        minDate={new Date()}
+                        placeholderText="DD/MM/YYYY"
                         className="form-input"
                         style={{
                           width: '100%',
