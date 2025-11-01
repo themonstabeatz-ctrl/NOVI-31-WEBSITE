@@ -27,8 +27,8 @@ const Header = () => {
     { path: "/massage", label: translate("massage") },
     { path: "/spa", label: translate("spa") },
     { path: "/gallery", label: translate("gallery") },
-    { path: "/about", label: translate("about") },
-    { path: "/contact", label: "BOOKING" }
+    { path: "/contact", label: "BOOKING" },
+    { path: "/about", label: translate("about") }
   ];
 
   // Scroll to top when clicking navigation links
