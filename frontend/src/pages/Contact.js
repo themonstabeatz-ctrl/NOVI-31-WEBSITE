@@ -538,7 +538,7 @@ const Contact = () => {
             </div>
 
             {/* Booking Information Section - Right Side */}
-            <div className="unified-booking-section">
+            <div className="unified-booking-section" style={{ width: '100%' }}>
               <h3 className="unified-section-title" style={{ 
                 color: 'var(--spa-gold)', 
                 fontSize: '1.5rem', 
