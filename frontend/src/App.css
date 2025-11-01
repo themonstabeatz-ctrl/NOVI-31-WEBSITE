@@ -8875,18 +8875,22 @@ html {
 
 /* Booking Page Grid Layout */
 .booking-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-  width: 100%;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 3rem !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+
+.unified-form-section, .unified-booking-section {
+  max-width: 100% !important;
 }
 
 /* Responsive - mobile */
 @media (max-width: 768px) {
   .booking-grid-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
   }
 }
 
