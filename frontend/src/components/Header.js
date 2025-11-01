@@ -28,7 +28,8 @@ const Header = () => {
     { path: "/spa", label: translate("spa") },
     { path: "/gallery", label: translate("gallery") },
     { path: "/about", label: translate("about") },
-    { path: "/contact", label: translate("contact") }
+    { path: "/contact", label: translate("contact") },
+    { path: "/booking", label: "BOOKING" }
   ];
 
   // Scroll to top when clicking navigation links
