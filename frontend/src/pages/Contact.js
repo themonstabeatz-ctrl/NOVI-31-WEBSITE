@@ -52,7 +52,7 @@ const Contact = () => {
     if (service) {
       setFormData(prev => ({
         ...prev,
-        message: `${translate("wantToBook")} ${service}`,
+        message: `Izabrali ste ${service}`,
         source: source || 'booking' // Store source for success message
       }));
     } else {
