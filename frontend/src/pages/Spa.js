@@ -607,7 +607,7 @@ const Spa = () => {
                 </div>
                 
                 <Button className="book-button w-full">
-                  <Link to={`/contact?service=${encodeURIComponent(service.name)}`}>{translate("bookAppointment")}</Link>
+                  <Link to={`/contact?service=${encodeURIComponent(service.serviceId || service.name)}`}>{translate("bookAppointment")}</Link>
                 </Button>
               </CardContent>
             </Card>
