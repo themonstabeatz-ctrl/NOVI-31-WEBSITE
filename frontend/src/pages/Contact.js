@@ -325,11 +325,10 @@ const Contact = () => {
       <section className="contact-section">
         <Card className="unified-contact-card">
           <CardContent className="unified-contact-content">
-            {/* Contact Form Section */}
-            <div className="unified-form-section">
-              <h2 className="unified-section-title">{translate("contactFormTitle")}</h2>
-              <p className="unified-section-subtitle">{translate("contactFormSubtitle")}</p>
-              <form onSubmit={handleSubmit} className="unified-contact-form">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }}>
+              {/* Contact Form Section - Left Side */}
+              <div className="unified-form-section">
+                <form onSubmit={handleSubmit} className="unified-contact-form">
                 <div className="form-row">
                   <div className="form-group">
                     <Label htmlFor="firstName">{translate("firstName")}</Label>
