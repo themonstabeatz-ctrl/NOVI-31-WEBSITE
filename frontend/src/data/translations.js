@@ -688,6 +688,7 @@ export const translations = {
     lateArrivalText: "Опоздание более чем на 15 минут может привести к сокращению процедуры",
     groupBookingTitle: "Групповое бронирование",
     groupBookingText: "Для групп более 4 человек, пожалуйста, свяжитесь с нами напрямую",
+    messagePlaceholder: "Опишите, как мы можем вам помочь...",
     phone: "Телефон",
     emailLabel: "Электронная почта",
     phoneLabel: "Телефон",
