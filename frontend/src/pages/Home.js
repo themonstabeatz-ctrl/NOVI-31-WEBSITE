@@ -165,9 +165,16 @@ const Home = () => {
         <div className="pim-quote-content">
           <p className="pim-quote-text">{translate("quoteText")}</p>
           <p className="pim-quote-author">{translate("quoteAuthor")}</p>
-          <Button asChild className="pim-quote-button">
-            <Link to="/contact">{translate("reserveOnline")}</Link>
-          </Button>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Button asChild className="pim-quote-button">
+              <Link to="/contact">{translate("reserveOnline")}</Link>
+            </Button>
+            <Button asChild className="pim-quote-button" style={{ background: 'linear-gradient(135deg, #c9a961 0%, #d4af37 100%)' }}>
+              <a href="https://pozdrav-kako-si.emergent.host/" target="_blank" rel="noopener noreferrer">
+                Booking System
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
