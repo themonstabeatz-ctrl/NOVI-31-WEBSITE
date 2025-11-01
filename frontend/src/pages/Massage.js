@@ -10,27 +10,40 @@ import { throttle } from "../utils/debounce";
 const Massage = () => {
   const { translate } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
-  const [selectedTraditionalDuration, setSelectedTraditionalDuration] = useState('60'); // Default 60 min
-  const [selectedAromaDuration, setSelectedAromaDuration] = useState('60'); // Default 60 min for Aroma therapy
+  
+  // State for each massage service duration - all default to 60 min
+  const [durations, setDurations] = useState({
+    traditional: '60',
+    aroma: '60',
+    hotStone: '60',
+    royal: '60',
+    foot: '60',
+    couple: '60',
+    sports: '60',
+    shiatsu: '60',
+    reflexology: '60',
+    backShoulder: '60',
+    antiStress: '60',
+    prenatal: '60',
+    deepTissue: '60',
+    bamboo: '60',
+    lymphatic: '60'
+  });
 
-  // Get traditional massage price and duration based on selection
-  const getTraditionalMassageDetails = () => {
+  // Generic function to get massage details based on duration
+  const getMassageDetails = (serviceKey, serviceName) => {
+    const duration = durations[serviceKey];
     const options = {
-      '60': { duration: '60 min', price: '3,000 RSD', serviceId: 'Tradicionalna tajlandska masaža - 60 min' },
-      '90': { duration: '90 min', price: '4,000 RSD', serviceId: 'Tradicionalna tajlandska masaža - 90 min' },
-      '120': { duration: '120 min', price: '5,000 RSD', serviceId: 'Tradicionalna tajlandska masaža - 120 min' }
+      '60': { duration: '60 min', price: '3,000 RSD', serviceId: `${serviceName} - 60 min` },
+      '90': { duration: '90 min', price: '4,000 RSD', serviceId: `${serviceName} - 90 min` },
+      '120': { duration: '120 min', price: '5,000 RSD', serviceId: `${serviceName} - 120 min` }
     };
-    return options[selectedTraditionalDuration];
+    return options[duration];
   };
 
-  // Get aroma therapy price and duration based on selection
-  const getAromaTherapyDetails = () => {
-    const options = {
-      '60': { duration: '60 min', price: '3,000 RSD', serviceId: 'Aroma terapija - 60 min' },
-      '90': { duration: '90 min', price: '4,000 RSD', serviceId: 'Aroma terapija - 90 min' },
-      '120': { duration: '120 min', price: '5,000 RSD', serviceId: 'Aroma terapija - 120 min' }
-    };
-    return options[selectedAromaDuration];
+  // Helper to update duration for a specific service
+  const updateDuration = (serviceKey, newDuration) => {
+    setDurations(prev => ({ ...prev, [serviceKey]: newDuration }));
   };
 
   // Scroll to top when component mounts
