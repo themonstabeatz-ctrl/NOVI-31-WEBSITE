@@ -531,33 +531,61 @@ const Contact = () => {
               </form>
             </div>
 
-            {/* Booking Information Section */}
+            {/* Booking Information Section - Right Side */}
             <div className="unified-booking-section">
-              <h3 className="unified-section-title">{translate("bookingInfoTitle")}</h3>
+              <h3 className="unified-section-title" style={{ 
+                color: 'var(--spa-gold)', 
+                fontSize: '1.5rem', 
+                marginBottom: '1.5rem',
+                fontWeight: 'bold'
+              }}>
+                Informacije o rezervaciji
+              </h3>
               <div className="unified-booking-details">
-                <div className="unified-booking-item">
-                  <h4>{translate("cancellationTitle")}</h4>
-                  <p>{translate("cancellationText")}</p>
+                <div className="unified-booking-item" style={{
+                  marginBottom: '1.5rem',
+                  padding: '1rem',
+                  backgroundColor: 'rgba(212, 175, 55, 0.05)',
+                  borderLeft: '3px solid var(--spa-gold)',
+                  borderRadius: '4px'
+                }}>
+                  <h4 style={{ color: 'var(--spa-gold)', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+                    Otkazivanje
+                  </h4>
+                  <p style={{ color: 'rgba(245, 242, 232, 0.9)', lineHeight: '1.6' }}>
+                    Molimo vas da otkazujete termine najmanje 4 sata unapred
+                  </p>
                 </div>
-                <div className="unified-booking-item">
-                  <h4>{translate("lateArrivalTitle")}</h4>
-                  <p>{translate("lateArrivalText")}</p>
+                <div className="unified-booking-item" style={{
+                  marginBottom: '1.5rem',
+                  padding: '1rem',
+                  backgroundColor: 'rgba(212, 175, 55, 0.05)',
+                  borderLeft: '3px solid var(--spa-gold)',
+                  borderRadius: '4px'
+                }}>
+                  <h4 style={{ color: 'var(--spa-gold)', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+                    Kasnjenje
+                  </h4>
+                  <p style={{ color: 'rgba(245, 242, 232, 0.9)', lineHeight: '1.6' }}>
+                    Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana
+                  </p>
                 </div>
-                <div className="unified-booking-item">
-                  <h4>{translate("groupBookingTitle")}</h4>
-                  <p>{translate("groupBookingText")}</p>
+                <div className="unified-booking-item" style={{
+                  padding: '1rem',
+                  backgroundColor: 'rgba(212, 175, 55, 0.05)',
+                  borderLeft: '3px solid var(--spa-gold)',
+                  borderRadius: '4px'
+                }}>
+                  <h4 style={{ color: 'var(--spa-gold)', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+                    Grupne rezervacije
+                  </h4>
+                  <p style={{ color: 'rgba(245, 242, 232, 0.9)', lineHeight: '1.6' }}>
+                    Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno
+                  </p>
                 </div>
               </div>
             </div>
-
-            {/* Contact Information Section */}
-            <div className="unified-info-section">
-              <h3 className="unified-section-title">{translate("contactInfoTitle")}</h3>
-              <div className="unified-info-items">
-                <div className="unified-info-item">
-                  <Mail className="unified-info-icon" />
-                  <div className="unified-info-details">
-                    <h4>{translate("emailLabel")}</h4>
+            </div>
                     <a href="mailto:bualuangthailandspa@gmail.com" className="info-link">
                       bualuangthailandspa@gmail.com
                     </a>
