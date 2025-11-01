@@ -324,10 +324,15 @@ const Contact = () => {
       {/* Unified Contact Card */}
       <section className="contact-section">
         <Card className="unified-contact-card">
-          <CardContent className="unified-contact-content">
-            <div className="booking-grid-container">
+          <CardContent className="unified-contact-content" style={{ padding: '2rem' }}>
+            <div style={{ 
+              display: 'flex', 
+              gap: '2rem', 
+              alignItems: 'flex-start',
+              justifyContent: 'space-between'
+            }}>
               {/* Contact Form Section - Left Side */}
-              <div className="unified-form-section" style={{ width: '100%' }}>
+              <div style={{ flex: '0 0 55%', maxWidth: '55%' }}>
                 <form onSubmit={handleSubmit} className="unified-contact-form">
                 <div className="form-row">
                   <div className="form-group">
