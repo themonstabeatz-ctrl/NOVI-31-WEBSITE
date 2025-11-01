@@ -237,149 +237,209 @@ const Spa = () => {
     return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
+  const facialDetails = getSpaDetails('facial', 'Tretman lica');
+  const bodyWrapDetails = getSpaDetails('bodyWrap', 'Body wrap');
+  const goldenDetails = getSpaDetails('golden', 'Zlatni tretman lica');
+  const aromatherapyDetails = getSpaDetails('aromatherapy', 'Aromaterapija');
+  const steamDetails = getSpaDetails('steam', 'Parno kupatilo');
+  const royalSpaDetails = getSpaDetails('royalSpa', 'Royal Spa paket');
+  const hydratingDetails = getSpaDetails('hydrating', 'Hidratantni tretman tela');
+  const detoxDetails = getSpaDetails('detox', 'Detox wrap');
+  const bodyScrubDetails = getSpaDetails('bodyScrub', 'Piling tela');
+  const anticelluliteDetails = getSpaDetails('anticellulite', 'Anticelulit tretman');
+  const collagenDetails = getSpaDetails('collagen', 'Kolageni tretman lica');
+  const vitaminCDetails = getSpaDetails('vitaminC', 'Vitamin C tretman lica');
+  const combinedDetails = getSpaDetails('combined', 'Kombinovani spa dan');
+  const chocolateDetails = getSpaDetails('chocolate', 'Čokoladni wrap');
+  const thalassoDetails = getSpaDetails('thalasso', 'Talasoterapija');
+  
   const spaServices = [
     {
+      key: 'facial',
       name: translate("facialTreatment"),
-      duration: "75 min",
-      price: "6,500 RSD",
+      duration: facialDetails.duration,
+      price: facialDetails.price,
+      serviceId: facialDetails.serviceId,
       description: translate("facialTreatmentDesc"),
       benefits: [translate("facialBenefit1"), translate("facialBenefit2"), translate("facialBenefit3")],
       category: "face",
       categoryDisplay: translate("categoryFace"),
-      popular: true
+      popular: true,
+      hasDurationOptions: true
     },
     {
+      key: 'bodyWrap',
       name: translate("bodyWrap"),
-      duration: "90 min",
-      price: "7,000 RSD",
+      duration: bodyWrapDetails.duration,
+      price: bodyWrapDetails.price,
+      serviceId: bodyWrapDetails.serviceId,
       description: translate("bodyWrapDesc"),
       benefits: [translate("bodyWrapBenefit1"), translate("bodyWrapBenefit2"), translate("bodyWrapBenefit3")],
       category: "body",
       categoryDisplay: translate("categoryBody"),
-      popular: false
+      popular: false,
+      hasDurationOptions: true
     },
     {
+      key: 'golden',
       name: translate("goldenFacialTreatment"),
-      duration: "90 min",
-      price: "12,000 RSD",
+      duration: goldenDetails.duration,
+      price: goldenDetails.price,
+      serviceId: goldenDetails.serviceId,
       description: translate("goldenFacialDesc"),
       benefits: [translate("goldenBenefit1"), translate("goldenBenefit2"), translate("goldenBenefit3")],
       category: "premium",
       categoryDisplay: translate("categoryPremium"),
-      popular: true
+      popular: true,
+      hasDurationOptions: true
     },
     {
+      key: 'aromatherapy',
       name: translate("aromatherapy"),
-      duration: "60 min",
-      price: "5,500 RSD",
+      duration: aromatherapyDetails.duration,
+      price: aromatherapyDetails.price,
+      serviceId: aromatherapyDetails.serviceId,
       description: translate("aromatherapyDesc"),
       benefits: [translate("aromaBenefit1"), translate("aromaBenefit2"), translate("aromaBenefit3")],
       category: "relaxation",
       categoryDisplay: translate("categoryRelaxation"),
-      popular: false
+      popular: false,
+      hasDurationOptions: true
     },
     {
+      key: 'steam',
       name: translate("steamBath"),
-      duration: "30 min",
-      price: "2,500 RSD",
+      duration: steamDetails.duration,
+      price: steamDetails.price,
+      serviceId: steamDetails.serviceId,
       description: translate("steamBathDesc"),
       benefits: [translate("steamBenefit1"), translate("steamBenefit2"), translate("steamBenefit3")],
       category: "body",
       categoryDisplay: translate("categoryBody"),
-      popular: false
+      popular: false,
+      hasDurationOptions: true
     },
     {
+      key: 'royalSpa',
       name: translate("royalSpaPackage"),
-      duration: "180 min",
-      price: "15,000 RSD",
+      duration: royalSpaDetails.duration,
+      price: royalSpaDetails.price,
+      serviceId: royalSpaDetails.serviceId,
       description: translate("royalSpaDesc"),
       benefits: [translate("royalSpaBenefit1"), translate("royalSpaBenefit2"), translate("royalSpaBenefit3")],
       category: "premium",
       categoryDisplay: translate("categoryPremium"),
-      popular: true
+      popular: true,
+      hasDurationOptions: true
     },
-    // New spa services
     {
+      key: 'hydrating',
       name: translate("hydratingBodyTreatment"),
-      duration: "75 min",
-      price: "4,500 RSD",
+      duration: hydratingDetails.duration,
+      price: hydratingDetails.price,
+      serviceId: hydratingDetails.serviceId,
       description: translate("hydratingBodyDesc"),
       benefits: [translate("hydratingBodyBenefit1"), translate("hydratingBodyBenefit2"), translate("hydratingBodyBenefit3")],
       category: "body",
-      categoryDisplay: translate("categoryBody")
+      categoryDisplay: translate("categoryBody"),
+      hasDurationOptions: true
     },
     {
+      key: 'detox',
       name: translate("detoxWrap"),
-      duration: "90 min",
-      price: "5,000 RSD",
+      duration: detoxDetails.duration,
+      price: detoxDetails.price,
+      serviceId: detoxDetails.serviceId,
       description: translate("detoxWrapDesc"),
       benefits: [translate("detoxWrapBenefit1"), translate("detoxWrapBenefit2"), translate("detoxWrapBenefit3")],
       category: "body",
-      categoryDisplay: translate("categoryBody")
+      categoryDisplay: translate("categoryBody"),
+      hasDurationOptions: true
     },
     {
+      key: 'bodyScrub',
       name: translate("bodyScrub"),
-      duration: "45 min",
-      price: "3,000 RSD",
+      duration: bodyScrubDetails.duration,
+      price: bodyScrubDetails.price,
+      serviceId: bodyScrubDetails.serviceId,
       description: translate("bodyScrubDesc"),
       benefits: [translate("bodyScrubBenefit1"), translate("bodyScrubBenefit2"), translate("bodyScrubBenefit3")],
       category: "body",
-      categoryDisplay: translate("categoryBody")
+      categoryDisplay: translate("categoryBody"),
+      hasDurationOptions: true
     },
     {
+      key: 'anticellulite',
       name: translate("anticelluliteTreatment"),
-      duration: "60 min",
-      price: "4,200 RSD",
+      duration: anticelluliteDetails.duration,
+      price: anticelluliteDetails.price,
+      serviceId: anticelluliteDetails.serviceId,
       description: translate("anticelluliteTreatmentDesc"),
       benefits: [translate("anticelluliteBenefit1"), translate("anticelluliteBenefit2"), translate("anticelluliteBenefit3")],
       category: "body",
-      categoryDisplay: translate("categoryBody")
+      categoryDisplay: translate("categoryBody"),
+      hasDurationOptions: true
     },
     {
+      key: 'collagen',
       name: translate("collagenFacial"),
-      duration: "60 min",
-      price: "4,500 RSD",
+      duration: collagenDetails.duration,
+      price: collagenDetails.price,
+      serviceId: collagenDetails.serviceId,
       description: translate("collagenFacialDesc"),
       benefits: [translate("collagenBenefit1"), translate("collagenBenefit2"), translate("collagenBenefit3")],
       category: "face",
-      categoryDisplay: translate("categoryFace")
+      categoryDisplay: translate("categoryFace"),
+      hasDurationOptions: true
     },
     {
+      key: 'vitaminC',
       name: translate("vitaminCFacial"),
-      duration: "60 min",
-      price: "4,000 RSD",
+      duration: vitaminCDetails.duration,
+      price: vitaminCDetails.price,
+      serviceId: vitaminCDetails.serviceId,
       description: translate("vitaminCFacialDesc"),
       benefits: [translate("vitaminCBenefit1"), translate("vitaminCBenefit2"), translate("vitaminCBenefit3")],
       category: "face",
-      categoryDisplay: translate("categoryFace")
+      categoryDisplay: translate("categoryFace"),
+      hasDurationOptions: true
     },
     {
+      key: 'combined',
       name: translate("combinedSpaDay"),
-      duration: "240 min",
-      price: "12,000 RSD",
+      duration: combinedDetails.duration,
+      price: combinedDetails.price,
+      serviceId: combinedDetails.serviceId,
       description: translate("combinedSpaDayDesc"),
       benefits: [translate("combinedSpaBenefit1"), translate("combinedSpaBenefit2"), translate("combinedSpaBenefit3")],
       category: "premium",
       categoryDisplay: translate("categoryPremium"),
-      popular: true
+      popular: true,
+      hasDurationOptions: true
     },
     {
+      key: 'chocolate',
       name: translate("chocolateWrap"),
-      duration: "90 min",
-      price: "5,500 RSD",
+      duration: chocolateDetails.duration,
+      price: chocolateDetails.price,
+      serviceId: chocolateDetails.serviceId,
       description: translate("chocolateWrapDesc"),
       benefits: [translate("chocolateBenefit1"), translate("chocolateBenefit2"), translate("chocolateBenefit3")],
       category: "body",
-      categoryDisplay: translate("categoryBody")
+      categoryDisplay: translate("categoryBody"),
+      hasDurationOptions: true
     },
     {
+      key: 'thalasso',
       name: translate("thalassoTherapy"),
-      duration: "120 min",
-      price: "6,000 RSD",
+      duration: thalassoDetails.duration,
+      price: thalassoDetails.price,
+      serviceId: thalassoDetails.serviceId,
       description: translate("thalassoTherapyDesc"),
       benefits: [translate("thalassoBenefit1"), translate("thalassoBenefit2"), translate("thalassoBenefit3")],
       category: "body",
-      categoryDisplay: translate("categoryBody")
+      categoryDisplay: translate("categoryBody"),
+      hasDurationOptions: true
     }
   ];
 
