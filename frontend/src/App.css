@@ -3196,9 +3196,6 @@ body {
 
 .unified-contact-content {
   padding: 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
 }
 
 /* Form Section - Left column only */
