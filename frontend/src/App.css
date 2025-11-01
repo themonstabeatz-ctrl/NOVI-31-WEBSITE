@@ -8872,6 +8872,24 @@ html {
 }
 
 .react-datepicker__navigation-icon::before {
+
+/* Booking Page Grid Layout */
+.booking-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  width: 100%;
+}
+
+/* Responsive - mobile */
+@media (max-width: 768px) {
+  .booking-grid-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
   border-color: var(--spa-gold);
 }
 
