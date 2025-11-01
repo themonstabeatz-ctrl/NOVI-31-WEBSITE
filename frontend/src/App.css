@@ -3201,11 +3201,11 @@ body {
   gap: 3rem;
 }
 
-/* Form Section - Spans 2 columns, first row */
+/* Form Section - Left column only */
 .unified-form-section {
-  grid-column: 1 / -1;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  grid-column: 1;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .unified-section-title {
