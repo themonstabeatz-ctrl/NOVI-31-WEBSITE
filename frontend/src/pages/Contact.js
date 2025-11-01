@@ -220,10 +220,16 @@ const Contact = () => {
       
       // Only send to booking API if we have date and time
       if (formData.preferredDate && formData.preferredTime) {
-        // Convert Date object to YYYY-MM-DD format
-        const dateStr = formData.preferredDate instanceof Date 
-          ? formData.preferredDate.toISOString().split('T')[0]
-          : formData.preferredDate;
+        // Convert Date object to YYYY-MM-DD format using local time (Belgrade timezone)
+        let dateStr;
+        if (formData.preferredDate instanceof Date) {
+          const year = formData.preferredDate.getFullYear();
+          const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
+          const day = String(formData.preferredDate.getDate()).padStart(2, '0');
+          dateStr = `${year}-${month}-${day}`;
+        } else {
+          dateStr = formData.preferredDate;
+        }
         
         // Prepare data for API
         const appointmentData = {
