@@ -237,11 +237,25 @@ const Massage = () => {
     return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
-  const traditionalDetails = getTraditionalMassageDetails();
-  const aromaDetails = getAromaTherapyDetails();
+  const traditionalDetails = getMassageDetails('traditional', 'Tradicionalna tajlandska masaža');
+  const aromaDetails = getMassageDetails('aroma', 'Aroma terapija');
+  const hotStoneDetails = getMassageDetails('hotStone', 'Hot Stone masaža');
+  const royalDetails = getMassageDetails('royal', 'Kraljevska masaža');
+  const footDetails = getMassageDetails('foot', 'Masaža stopala');
+  const coupleDetails = getMassageDetails('couple', 'Masaža za parove');
+  const sportsDetails = getMassageDetails('sports', 'Sportska masaža');
+  const shiatsuDetails = getMassageDetails('shiatsu', 'Shiatsu masaža');
+  const reflexologyDetails = getMassageDetails('reflexology', 'Refleksologija');
+  const backShoulderDetails = getMassageDetails('backShoulder', 'Masaža leđa i ramena');
+  const antiStressDetails = getMassageDetails('antiStress', 'Anti-stress masaža');
+  const prenatalDetails = getMassageDetails('prenatal', 'Prenatalna masaža');
+  const deepTissueDetails = getMassageDetails('deepTissue', 'Masaža dubokih tkiva');
+  const bambooDetails = getMassageDetails('bamboo', 'Bamboo masaža');
+  const lymphaticDetails = getMassageDetails('lymphatic', 'Limfna drenaža');
   
   const massageServices = [
     {
+      key: 'traditional',
       name: translate("traditionalMassage"),
       duration: traditionalDetails.duration,
       price: traditionalDetails.price,
@@ -249,113 +263,151 @@ const Massage = () => {
       description: translate("traditionalMassageDesc"),
       benefits: [translate("traditionalBenefit1"), translate("traditionalBenefit2"), translate("traditionalBenefit3")],
       popular: true,
-      hasDurationOptions: true // Mark this service as having duration options
+      hasDurationOptions: true
     },
     {
-      name: translate("aromaTherapy"), // Now using translation
+      key: 'aroma',
+      name: translate("aromaTherapy"),
       duration: aromaDetails.duration,
       price: aromaDetails.price,
       serviceId: aromaDetails.serviceId,
       description: translate("oilMassageDesc"),
       benefits: [translate("oilBenefit1"), translate("oilBenefit2"), translate("oilBenefit3")],
-      hasDurationOptions: true,
-      isAroma: true // Mark as aroma therapy
+      hasDurationOptions: true
     },
     {
+      key: 'hotStone',
       name: translate("hotStone"),
-      duration: "90 min", 
-      price: "7,500 RSD",
+      duration: hotStoneDetails.duration,
+      price: hotStoneDetails.price,
+      serviceId: hotStoneDetails.serviceId,
       description: translate("hotStoneDesc"),
       benefits: [translate("hotStoneBenefit1"), translate("hotStoneBenefit2"), translate("hotStoneBenefit3")],
-      popular: false
+      popular: false,
+      hasDurationOptions: true
     },
     {
+      key: 'royal',
       name: translate("royalMassage"),
-      duration: "120 min",
-      price: "9,500 RSD",
+      duration: royalDetails.duration,
+      price: royalDetails.price,
+      serviceId: royalDetails.serviceId,
       description: translate("royalMassageDesc"),
       benefits: [translate("royalBenefit1"), translate("royalBenefit2"), translate("royalBenefit3")],
-      popular: true
+      popular: true,
+      hasDurationOptions: true
     },
     {
+      key: 'foot',
       name: translate("footMassage"),
-      duration: "45 min",
-      price: "3,500 RSD",
+      duration: footDetails.duration,
+      price: footDetails.price,
+      serviceId: footDetails.serviceId,
       description: translate("footMassageDesc"),
       benefits: [translate("footBenefit1"), translate("footBenefit2"), translate("footBenefit3")],
-      popular: false
+      popular: false,
+      hasDurationOptions: true
     },
     {
+      key: 'couple',
       name: translate("coupleMassage"),
-      duration: "60 min",
-      price: "8,500 RSD",
+      duration: coupleDetails.duration,
+      price: coupleDetails.price,
+      serviceId: coupleDetails.serviceId,
       description: translate("coupleMassageDesc"),
       benefits: [translate("coupleBenefit1"), translate("coupleBenefit2"), translate("coupleBenefit3")],
-      popular: false
+      popular: false,
+      hasDurationOptions: true
     },
-    // New massage services
     {
+      key: 'sports',
       name: translate("sportsMassage"),
-      duration: "60 min",
-      price: "3,500 RSD",
+      duration: sportsDetails.duration,
+      price: sportsDetails.price,
+      serviceId: sportsDetails.serviceId,
       description: translate("sportsMassageDesc"),
-      benefits: [translate("sportsBenefit1"), translate("sportsBenefit2"), translate("sportsBenefit3")]
+      benefits: [translate("sportsBenefit1"), translate("sportsBenefit2"), translate("sportsBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'shiatsu',
       name: translate("shiatsuMassage"),
-      duration: "60 min",
-      price: "4,000 RSD",
+      duration: shiatsuDetails.duration,
+      price: shiatsuDetails.price,
+      serviceId: shiatsuDetails.serviceId,
       description: translate("shiatsuMassageDesc"),
-      benefits: [translate("shiatsuBenefit1"), translate("shiatsuBenefit2"), translate("shiatsuBenefit3")]
+      benefits: [translate("shiatsuBenefit1"), translate("shiatsuBenefit2"), translate("shiatsuBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'reflexology',
       name: translate("reflexologyMassage"),
-      duration: "45 min",
-      price: "2,500 RSD",
+      duration: reflexologyDetails.duration,
+      price: reflexologyDetails.price,
+      serviceId: reflexologyDetails.serviceId,
       description: translate("reflexologyMassageDesc"),
-      benefits: [translate("reflexologyBenefit1"), translate("reflexologyBenefit2"), translate("reflexologyBenefit3")]
+      benefits: [translate("reflexologyBenefit1"), translate("reflexologyBenefit2"), translate("reflexologyBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'backShoulder',
       name: translate("backShoulderMassage"),
-      duration: "45 min",
-      price: "2,800 RSD",
+      duration: backShoulderDetails.duration,
+      price: backShoulderDetails.price,
+      serviceId: backShoulderDetails.serviceId,
       description: translate("backShoulderMassageDesc"),
-      benefits: [translate("backShoulderBenefit1"), translate("backShoulderBenefit2"), translate("backShoulderBenefit3")]
+      benefits: [translate("backShoulderBenefit1"), translate("backShoulderBenefit2"), translate("backShoulderBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'antiStress',
       name: translate("antiStressMassage"),
-      duration: "60 min",
-      price: "3,200 RSD",
+      duration: antiStressDetails.duration,
+      price: antiStressDetails.price,
+      serviceId: antiStressDetails.serviceId,
       description: translate("antiStressMassageDesc"),
-      benefits: [translate("antiStressBenefit1"), translate("antiStressBenefit2"), translate("antiStressBenefit3")]
+      benefits: [translate("antiStressBenefit1"), translate("antiStressBenefit2"), translate("antiStressBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'prenatal',
       name: translate("prenatalMassage"),
-      duration: "60 min",
-      price: "3,800 RSD",
+      duration: prenatalDetails.duration,
+      price: prenatalDetails.price,
+      serviceId: prenatalDetails.serviceId,
       description: translate("prenatalMassageDesc"),
-      benefits: [translate("prenatalBenefit1"), translate("prenatalBenefit2"), translate("prenatalBenefit3")]
+      benefits: [translate("prenatalBenefit1"), translate("prenatalBenefit2"), translate("prenatalBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'deepTissue',
       name: translate("deepTissueMassage"),
-      duration: "75 min",
-      price: "4,200 RSD",
+      duration: deepTissueDetails.duration,
+      price: deepTissueDetails.price,
+      serviceId: deepTissueDetails.serviceId,
       description: translate("deepTissueMassageDesc"),
-      benefits: [translate("deepTissueBenefit1"), translate("deepTissueBenefit2"), translate("deepTissueBenefit3")]
+      benefits: [translate("deepTissueBenefit1"), translate("deepTissueBenefit2"), translate("deepTissueBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'bamboo',
       name: translate("bambooMassage"),
-      duration: "60 min",
-      price: "3,700 RSD",
+      duration: bambooDetails.duration,
+      price: bambooDetails.price,
+      serviceId: bambooDetails.serviceId,
       description: translate("bambooMassageDesc"),
-      benefits: [translate("bambooBenefit1"), translate("bambooBenefit2"), translate("bambooBenefit3")]
+      benefits: [translate("bambooBenefit1"), translate("bambooBenefit2"), translate("bambooBenefit3")],
+      hasDurationOptions: true
     },
     {
+      key: 'lymphatic',
       name: translate("lymphaticMassage"),
-      duration: "60 min",
-      price: "3,500 RSD",
+      duration: lymphaticDetails.duration,
+      price: lymphaticDetails.price,
+      serviceId: lymphaticDetails.serviceId,
       description: translate("lymphaticMassageDesc"),
-      benefits: [translate("lymphaticBenefit1"), translate("lymphaticBenefit2"), translate("lymphaticBenefit3")]
+      benefits: [translate("lymphaticBenefit1"), translate("lymphaticBenefit2"), translate("lymphaticBenefit3")],
+      hasDurationOptions: true
     }
   ];
 
