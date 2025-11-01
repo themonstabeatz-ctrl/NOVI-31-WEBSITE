@@ -325,13 +325,7 @@ const Contact = () => {
       <section className="contact-section">
         <Card className="unified-contact-card">
           <CardContent className="unified-contact-content">
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr', 
-              gap: '3rem', 
-              alignItems: 'start',
-              width: '100%'
-            }}>
+            <div className="booking-grid-container">
               {/* Contact Form Section - Left Side */}
               <div className="unified-form-section" style={{ width: '100%' }}>
                 <form onSubmit={handleSubmit} className="unified-contact-form">
