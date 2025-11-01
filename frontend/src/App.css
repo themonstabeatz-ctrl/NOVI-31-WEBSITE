@@ -2215,7 +2215,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-left: 0; /* Align with contact items */
+  margin-left: -4px; /* Align Instagram icon with email icon */
 }
 
 .footer-social-link {
