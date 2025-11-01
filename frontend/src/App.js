@@ -9,6 +9,7 @@ import Spa from "./pages/Spa";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import Booking from "./pages/Booking";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
