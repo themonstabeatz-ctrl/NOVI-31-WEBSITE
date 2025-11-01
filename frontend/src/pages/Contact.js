@@ -310,7 +310,7 @@ const Contact = () => {
       {/* Header */}
       <section className="page-header">
         <div className="page-header-content">
-          <h1 className="page-title">{translate("contactTitle")}</h1>
+          <h1 className="page-title">BOOKING</h1>
         </div>
         <div className="page-decoration contact-logo-animation">
           <img 
