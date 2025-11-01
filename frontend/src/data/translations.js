@@ -490,6 +490,7 @@ export const translations = {
     lateArrivalText: "Arrivals more than 15 minutes late may result in shortened treatment",
     groupBookingTitle: "Group Bookings",
     groupBookingText: "For groups of more than 4 people, please contact us directly",
+    messagePlaceholder: "Describe how we can help you...",
     phone: "Phone",
     emailLabel: "Email",
     phoneLabel: "Phone",
