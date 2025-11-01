@@ -544,7 +544,7 @@ const Contact = () => {
                 marginBottom: '1.5rem',
                 fontWeight: 'bold'
               }}>
-                Informacije o rezervaciji
+                {translate("bookingInfoTitle")}
               </h3>
               <div className="unified-booking-details">
                 <div className="unified-booking-item" style={{
@@ -555,10 +555,10 @@ const Contact = () => {
                   borderRadius: '4px'
                 }}>
                   <h4 style={{ color: 'var(--spa-gold)', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-                    Otkazivanje
+                    {translate("cancellationTitle")}
                   </h4>
                   <p style={{ color: 'rgba(245, 242, 232, 0.9)', lineHeight: '1.6' }}>
-                    Molimo vas da otkazujete termine najmanje 4 sata unapred
+                    {translate("cancellationText")}
                   </p>
                 </div>
                 <div className="unified-booking-item" style={{
@@ -569,10 +569,10 @@ const Contact = () => {
                   borderRadius: '4px'
                 }}>
                   <h4 style={{ color: 'var(--spa-gold)', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-                    Kasnjenje
+                    {translate("lateArrivalTitle")}
                   </h4>
                   <p style={{ color: 'rgba(245, 242, 232, 0.9)', lineHeight: '1.6' }}>
-                    Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana
+                    {translate("lateArrivalText")}
                   </p>
                 </div>
                 <div className="unified-booking-item" style={{
@@ -582,10 +582,10 @@ const Contact = () => {
                   borderRadius: '4px'
                 }}>
                   <h4 style={{ color: 'var(--spa-gold)', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-                    Grupne rezervacije
+                    {translate("groupBookingTitle")}
                   </h4>
                   <p style={{ color: 'rgba(245, 242, 232, 0.9)', lineHeight: '1.6' }}>
-                    Za grupe veće od 4 osobe, molimo vas da nas kontaktirate direktno
+                    {translate("groupBookingText")}
                   </p>
                 </div>
               </div>
