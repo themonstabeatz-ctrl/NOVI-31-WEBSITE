@@ -485,7 +485,7 @@ const Contact = () => {
                     required
                     rows={5}
                     className="form-textarea"
-                    placeholder="Opišite kako možemo da vam pomognemo..."
+                    placeholder={translate("messagePlaceholder")}
                   />
                 </div>
                 
