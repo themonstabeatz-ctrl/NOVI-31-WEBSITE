@@ -65,6 +65,8 @@ class AppointmentBooking(BaseModel):
     service_id: str
     therapist_id: str = ""  # Empty string by default
     notes: Optional[str] = ""
+    language: Optional[str] = "sr"  # Default to Serbian
+    service_name: Optional[str] = ""  # For email display
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
