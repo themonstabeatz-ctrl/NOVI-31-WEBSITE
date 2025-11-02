@@ -8,7 +8,7 @@ import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import DatePicker from "react-datepicker";
+import CustomCalendarModal from "../components/CustomCalendarModal";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Contact = () => {
