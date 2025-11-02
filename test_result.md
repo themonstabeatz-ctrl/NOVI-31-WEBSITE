@@ -484,3 +484,33 @@ agent_communication:
       
       **RECOMMENDATION:**
       Success message functionality is properly implemented but cannot be verified due to backend validation issues. Main agent needs to fix backend date/time validation and Contact.js start_time construction logic.
+  
+  - agent: "main"
+    message: |
+      DUPLICATE SERVICE NAME FIX APPLIED - Ready for backend testing
+      
+      ✅ CHANGES MADE:
+      1. Removed "Aromaterapija" (spa version) to eliminate duplicate with "Aroma terapija" (massage version)
+      2. Updated /app/frontend/src/data/servicesList.js:
+         - Removed 'aromatherapySpa' from spaServices array
+         - Removed 'aromatherapySpa' mapping from bookingSystemNames
+      3. Updated /app/frontend/src/pages/Spa.js:
+         - Removed aromatherapy service card
+         - Removed aromatherapyDetails variable
+         - Removed 'aromatherapy' from durations state
+      4. Updated /app/frontend/src/pages/Contact.js:
+         - Removed 3 "Aromaterapija" entries from serviceMapping (60/90/120 min)
+      
+      📊 CURRENT SERVICE COUNT:
+      - Total services: 87 (down from 90)
+      - 15 massage services × 3 durations = 45 services
+      - 14 spa services × 3 durations = 42 services
+      
+      🎯 NEXT STEP:
+      Please test booking flow end-to-end to verify:
+      1. "Aroma terapija - 60 min" (massage) creates booking successfully
+      2. Other services create bookings successfully
+      3. Bookings appear in external system at https://pozdrav-kako-si.emergent.host/
+      4. No more 404 "Service not found" errors
+      
+      Test priority: Booking API Integration (high priority)
