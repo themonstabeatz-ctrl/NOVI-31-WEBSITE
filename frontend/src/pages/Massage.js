@@ -63,6 +63,16 @@ const Massage = () => {
       return options[duration];
     }
     
+    // Special pricing and duration for Masaža stopala
+    if (serviceKey === 'foot') {
+      const options = {
+        '60': { duration: '30 min', price: '2,400 RSD', serviceId: `${serviceName} - 30 min` },
+        '90': { duration: '45 min', price: '2,900 RSD', serviceId: `${serviceName} - 45 min` },
+        '120': { duration: '60 min', price: '3,500 RSD', serviceId: `${serviceName} - 60 min` }
+      };
+      return options[duration];
+    }
+    
     // Default pricing for all other massages
     const options = {
       '60': { duration: '60 min', price: '3,000 RSD', serviceId: `${serviceName} - 60 min` },
