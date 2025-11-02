@@ -34,8 +34,9 @@ export const spaServices = [
   { key: 'chocolateWrap', basePrice: 3000 }
 ];
 
-// Serbian service names used by booking system (always use these for API calls)
+// Serbian service names used by booking system (MUST MATCH serviceMapping keys EXACTLY!)
 export const bookingSystemNames = {
+  // Massages
   'traditionalThaiMassage': 'Tradicionalna tajlandska masaža',
   'aromaTherapyService': 'Aroma terapija',
   'hotStoneMassage': 'Masaža vrućim kamenjem',
@@ -51,10 +52,12 @@ export const bookingSystemNames = {
   'deepTissueMassageService': 'Masaža dubokih tkiva',
   'bambooMassageService': 'Bamboo masaža',
   'lymphaticDrainage': 'Limfna drenaža',
+  
+  // Spa Treatments (Note: "Aromaterapija" is DIFFERENT from "Aroma terapija"!)
   'facialTreatmentService': 'Tretman lica',
   'bodyWrapService': 'Body wrap',
   'goldenFacialService': 'Zlatni tretman lica',
-  'aromatherapySpa': 'Aromaterapija',
+  'aromatherapySpa': 'Aromaterapija',  // SPA version - different from massage "Aroma terapija"
   'steamBathService': 'Parno kupatilo',
   'royalSpaService': 'Kraljevski spa paket',
   'hydratingTreatment': 'Hidratantni tretman',
