@@ -261,7 +261,9 @@ const Contact = () => {
           start_time: `${dateStr}T${formData.preferredTime}:00`, // Combine date and time
           service_id: serviceId,
           therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81", // Generic therapist for web bookings - owner assigns real therapist in salon
-          notes: formData.message || ""
+          notes: formData.message || "",
+          language: language, // Send current language for email
+          service_name: serviceName // Send service name for email display
         };
 
         // Use backend proxy for booking
