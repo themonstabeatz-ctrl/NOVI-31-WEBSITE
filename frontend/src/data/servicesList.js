@@ -21,7 +21,6 @@ export const spaServices = [
   { key: 'facialTreatmentService', basePrice: 3000 },
   { key: 'bodyWrapService', basePrice: 3000 },
   { key: 'goldenFacialService', basePrice: 3000 },
-  { key: 'aromatherapySpa', basePrice: 3000 },
   { key: 'steamBathService', basePrice: 3000 },
   { key: 'royalSpaService', basePrice: 3000 },
   { key: 'hydratingTreatment', basePrice: 3000 },
