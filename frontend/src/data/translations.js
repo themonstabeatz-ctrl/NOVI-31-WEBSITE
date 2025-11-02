@@ -699,7 +699,7 @@ export const translations = {
     oilBenefit2: "Успокаивает нервную систему",
     oilBenefit3: "Улучшает сон",
     aromaTherapy: "Ароматерапия",
-    hotStone: "Массаж горячими камнями",
+    hotStone: "Hot oil",
     hotStoneDesc: "Терапевтический массаж с горячими вулканическими камнями, снимающий глубокие мышечные напряжения.",
     hotStoneBenefit1: "Улучшает кровообращение",
     hotStoneBenefit2: "Уменьшает боль",
