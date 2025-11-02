@@ -132,7 +132,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
                 type="button"
               >
                 <Trash2 size={16} />
-                Obriši
+                {translate('timeDelete')}
               </button>
               <button
                 className="time-btn time-btn-cancel"
@@ -140,7 +140,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
                 type="button"
               >
                 <X size={16} />
-                Otkaži
+                {translate('timeCancel')}
               </button>
               <button
                 className="time-btn time-btn-confirm"
@@ -148,7 +148,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
                 type="button"
               >
                 <Check size={16} />
-                Postavi
+                {translate('timeConfirm')}
               </button>
             </div>
           </div>
