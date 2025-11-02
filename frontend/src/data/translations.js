@@ -54,7 +54,7 @@ export const translations = {
     hotStoneBenefit1: "Dubinsko opuštanje i smanjenje stresa",
     hotStoneBenefit2: "Hidratacija i nega kože",
     hotStoneBenefit3: "Poboljšanje cirkulacije",
-    royalMassage: "Kraljevska tajlandska masaža",
+    royalMassage: "Glava, vrat, ramena i leđa",
     royalMassageDesc: "Luksuzno iskustvo koje kombinuje tradiciju sa modernim tehnikama za ultimativno opuštanje.",
     royalBenefit1: "Kompletno opuštanje",
     royalBenefit2: "Energetska ravnoteža",
