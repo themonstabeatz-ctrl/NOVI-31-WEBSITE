@@ -552,7 +552,7 @@ def send_confirmation_email(
     appointment_datetime: str,
     language: str = 'sr'
 ) -> bool:
-    """Send booking confirmation email"""
+    """Send booking confirmation email with beautiful HTML"""
     try:
         # Get template for language (default to Serbian if not found)
         template = EMAIL_TEMPLATES.get(language, EMAIL_TEMPLATES['sr'])
@@ -560,9 +560,9 @@ def send_confirmation_email(
         # Format date and time
         date_str, time_str = format_date_time(appointment_datetime, language)
         
-        # Prepare email content
+        # Prepare plain text email content (fallback)
         subject = template['confirmation_subject']
-        body = template['confirmation_body'].format(
+        plain_body = template['confirmation_body'].format(
             client_name=client_name,
             client_email=client_email,
             client_phone=client_phone,
@@ -571,7 +571,71 @@ def send_confirmation_email(
             appointment_time=time_str
         )
         
-        return send_email(client_email, subject, body)
+        # Create HTML content
+        html_content = f"""
+        <p style="font-size: 18px; color: #d4af37; margin-bottom: 20px;">
+            <strong>Uspešno ste zakazali vaš tretman u Bua Luang Thai Spa!</strong>
+        </p>
+        
+        <div class="details-box">
+            <h2 style="color: #d4af37; margin: 0 0 20px 0; font-size: 22px; text-align: center;">
+                📋 Detalji rezervacije
+            </h2>
+            
+            <div class="detail-row">
+                <div class="detail-icon">👤</div>
+                <div class="detail-label">Ime:</div>
+                <div class="detail-value">{client_name}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">📧</div>
+                <div class="detail-label">Email:</div>
+                <div class="detail-value">{client_email}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">📞</div>
+                <div class="detail-label">Telefon:</div>
+                <div class="detail-value">{client_phone}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">💆</div>
+                <div class="detail-label">Tretman:</div>
+                <div class="detail-value">{service_name}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">📅</div>
+                <div class="detail-label">Datum:</div>
+                <div class="detail-value">{date_str}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">🕐</div>
+                <div class="detail-label">Vreme:</div>
+                <div class="detail-value">{time_str}</div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>ℹ️ VAŽNE INFORMACIJE</h3>
+            <ul>
+                <li>Molimo vas da stignete <strong>10 minuta pre</strong> zakazanog termina</li>
+                <li>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</li>
+                <li>Za otkazivanje molimo kontaktirajte nas najmanje <strong>4 sata unapred</strong></li>
+            </ul>
+        </div>
+        
+        <p style="text-align: center; color: #d4af37; font-size: 18px; margin-top: 30px;">
+            <strong>Radujemo se vašoj poseti! 🌸</strong>
+        </p>
+        """
+        
+        html_body = create_html_email_template(client_name, html_content, language)
+        
+        return send_email(client_email, subject, plain_body, html_body)
         
     except Exception as e:
         logger.error(f"Error sending confirmation email: {e}")
@@ -585,7 +649,7 @@ def send_reminder_email(
     appointment_datetime: str,
     language: str = 'sr'
 ) -> bool:
-    """Send appointment reminder email"""
+    """Send appointment reminder email with beautiful HTML"""
     try:
         # Get template for language (default to Serbian if not found)
         template = EMAIL_TEMPLATES.get(language, EMAIL_TEMPLATES['sr'])
