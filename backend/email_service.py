@@ -331,19 +331,11 @@ def create_html_email_template(
 ) -> str:
     """Create beautiful HTML email template with spa theme"""
     
-    # Titles based on language
-    titles = {
-        'sr': 'Bua Luang Thai Spa',
-        'en': 'Bua Luang Thai Spa',
-        'ru': 'Bua Luang Thai Spa',
-        'th': 'Bua Luang Thai Spa'
-    }
-    
     footer_text = {
-        'sr': 'S poštovanjem,<br>Bua Luang Thai Spa Tim',
-        'en': 'Best regards,<br>Bua Luang Thai Spa Team',
-        'ru': 'С уважением,<br>Команда Bua Luang Thai Spa',
-        'th': 'ด้วยความเคารพ,<br>ทีม Bua Luang Thai Spa'
+        'sr': 'S poštovanjem, Bua Luang Thai Spa Tim',
+        'en': 'Best regards, Bua Luang Thai Spa Team',
+        'ru': 'С уважением, Команда Bua Luang Thai Spa',
+        'th': 'ด้วยความเคารพ, ทีม Bua Luang Thai Spa'
     }
     
     html = f"""
@@ -360,149 +352,114 @@ def create_html_email_template(
                 background-color: #f5f5f5;
             }}
             .email-container {{
-                max-width: 600px;
-                margin: 20px auto;
+                max-width: 500px;
+                margin: 10px auto;
                 background: #ffffff;
                 border: 1px solid #d4af37;
-                border-radius: 8px;
+                border-radius: 5px;
                 overflow: hidden;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             }}
             .header {{
-                background: linear-gradient(135deg, #1a1506 0%, #0d0a03 100%);
-                padding: 20px;
+                background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/lve6klzv_podloga.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 15px;
                 text-align: center;
                 border-bottom: 2px solid #d4af37;
+                position: relative;
+            }}
+            .header::before {{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 1;
+            }}
+            .header-content {{
+                position: relative;
+                z-index: 2;
             }}
             .logo {{
-                width: 80px;
+                width: 60px;
                 height: auto;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }}
             .header-title {{
                 color: #d4af37;
-                font-size: 18px;
+                font-size: 14px;
                 font-weight: bold;
                 margin: 0;
-                letter-spacing: 1px;
             }}
             .content {{
-                padding: 25px 20px;
+                padding: 15px;
                 color: #333333;
-                line-height: 1.6;
+                line-height: 1.4;
+                font-size: 13px;
             }}
             .greeting {{
-                font-size: 15px;
+                font-size: 13px;
                 color: #333333;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }}
             .details-box {{
-                background: #f9f9f9;
-                border: 1px solid #d4af37;
-                border-radius: 5px;
-                padding: 15px;
-                margin: 15px 0;
-            }}
-            .details-title {{
-                color: #d4af37;
-                font-size: 16px;
-                font-weight: bold;
-                margin: 0 0 12px 0;
-                text-align: center;
+                background: #fafafa;
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 10px 0;
             }}
             .detail-row {{
-                display: table;
-                width: 100%;
-                margin: 8px 0;
-                padding: 6px 0;
-                border-bottom: 1px solid #eeeeee;
-                font-size: 14px;
+                display: flex;
+                justify-content: space-between;
+                margin: 5px 0;
+                padding: 4px 0;
+                border-bottom: 1px solid #f0f0f0;
+                font-size: 12px;
             }}
             .detail-row:last-child {{
                 border-bottom: none;
             }}
-            .detail-icon {{
-                display: table-cell;
-                width: 25px;
-                font-size: 16px;
-                vertical-align: middle;
-            }}
             .detail-label {{
-                display: table-cell;
                 color: #666666;
                 font-weight: 600;
-                vertical-align: middle;
-                padding-left: 8px;
-                width: 120px;
             }}
             .detail-value {{
-                display: table-cell;
                 color: #333333;
                 text-align: right;
-                vertical-align: middle;
-                font-size: 14px;
             }}
-            .info-box {{
+            .info-text {{
                 background: #fffef8;
-                border-left: 3px solid #d4af37;
-                padding: 12px 15px;
-                margin: 15px 0;
-                border-radius: 3px;
-            }}
-            .info-box h3 {{
-                color: #d4af37;
-                margin: 0 0 8px 0;
-                font-size: 14px;
-            }}
-            .info-box ul {{
-                margin: 5px 0;
-                padding-left: 18px;
+                border-left: 2px solid #d4af37;
+                padding: 8px;
+                margin: 10px 0;
+                font-size: 11px;
                 color: #555555;
-                font-size: 13px;
-            }}
-            .info-box li {{
-                margin: 5px 0;
             }}
             .contact-info {{
-                background: #f9f9f9;
-                padding: 15px;
-                margin: 15px 0;
-                border-radius: 5px;
                 text-align: center;
-                border: 1px solid #eeeeee;
-                font-size: 13px;
+                padding: 10px;
+                font-size: 11px;
+                color: #666666;
             }}
             .contact-info a {{
                 color: #d4af37;
                 text-decoration: none;
-                font-weight: 600;
             }}
             .footer {{
-                background: linear-gradient(135deg, #1a1506 0%, #0d0a03 100%);
-                padding: 15px;
+                background: #1a1506;
+                padding: 10px;
                 text-align: center;
                 border-top: 2px solid #d4af37;
                 color: #d4af37;
-                font-size: 13px;
+                font-size: 11px;
             }}
-            .lotus {{
-                font-size: 24px;
-                margin: 10px 0;
-            }}
-            @media only screen and (max-width: 600px) {{
+            @media only screen and (max-width: 500px) {{
                 .email-container {{
                     margin: 0;
                     border-radius: 0;
-                }}
-                .content {{
-                    padding: 20px 15px;
-                }}
-                .detail-label {{
-                    width: 100px;
-                    font-size: 13px;
-                }}
-                .detail-value {{
-                    font-size: 13px;
                 }}
             }}
         </style>
@@ -510,8 +467,10 @@ def create_html_email_template(
     <body>
         <div class="email-container">
             <div class="header">
-                <img src="https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/4ws5rkri_Bua%20luang%20logo.png" alt="Bua Luang Thai Spa" class="logo">
-                <div class="header-title">{titles.get(language, titles['sr'])}</div>
+                <div class="header-content">
+                    <img src="https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/4ws5rkri_Bua%20luang%20logo.png" alt="Logo" class="logo">
+                    <div class="header-title">Bua Luang Thai Spa</div>
+                </div>
             </div>
             
             <div class="content">
@@ -520,14 +479,10 @@ def create_html_email_template(
                 {content}
                 
                 <div class="contact-info">
-                    <strong style="color: #d4af37; font-size: 14px;">Za sva pitanja:</strong><br>
                     📧 <a href="mailto:bualuangthailandspa@gmail.com">bualuangthailandspa@gmail.com</a><br>
-                    📞 <a href="tel:+381626255500">+381 62 625 500</a><br>
-                    📍 Abebe Bikile 10A, Beograd<br>
-                    🕐 10:00 - 22:00
+                    📞 <a href="tel:+381626255500">+381 62 625 500</a> | 📍 Abebe Bikile 10A<br>
+                    🌸
                 </div>
-                
-                <div class="lotus">🌸</div>
             </div>
             
             <div class="footer">
