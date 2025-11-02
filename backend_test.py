@@ -308,16 +308,23 @@ class BookingAPITester:
         
         return all_passed
 
-    async def test_all_service_ids(self):
-        """Test all provided service IDs comprehensively"""
+    async def test_specific_services_from_review(self):
+        """Test specific services mentioned in the review request"""
         
-        # All service IDs provided by user
-        all_services = [
-            {"name": "Klasicna Tajlandska masaza", "id": "057c8535-bb25-4712-9014-60e378d06b6d"},
-            {"name": "Relax masaža celog tela", "id": "e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf"},
-            {"name": "Sportska masaža", "id": "d6cf94e7-5eac-4a8a-8a33-c92e18830021"},
-            {"name": "Spa + tradicionalna tajlandska masaza", "id": "0483de92-b1ca-49d8-bd1d-0b8a39ed50a4"},
-            {"name": "Dubinska masaža", "id": "4c135b02-641e-4f66-a13b-f420c89ff3bd"}
+        # Specific services from review request
+        test_services = [
+            # Primary test case
+            {"name": "Aroma terapija - 60 min", "id": "f81ee187-1d45-4942-abf3-4b83f147bf85", "type": "massage"},
+            
+            # Massage services (3-4 random)
+            {"name": "Tradicionalna tajlandska masaža - 90 min", "id": "39f8c583-a780-4e54-9bab-f693a51287c2", "type": "massage"},
+            {"name": "Masaža stopala - 60 min", "id": "c4f3d344-73f9-4a0d-ae39-6f2be718ef19", "type": "massage"},
+            {"name": "Sportska masaža - 120 min", "id": "d3e8684a-2bbc-4a15-835e-8e43d231074a", "type": "massage"},
+            
+            # Spa services (3-4 services)
+            {"name": "Tretman lica - 60 min", "id": "75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf", "type": "spa"},
+            {"name": "Zlatni tretman lica - 90 min", "id": "7cc4d292-5d54-42f0-b511-1fb4263f6353", "type": "spa"},
+            {"name": "Kraljevski spa paket - 120 min", "id": "4a390175-9f3a-4c94-bce3-082623a7a4ce", "type": "spa"}
         ]
         
         therapist_id = "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f"  # Marko Markovic
