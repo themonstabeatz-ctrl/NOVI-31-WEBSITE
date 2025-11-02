@@ -598,7 +598,7 @@ def send_reminder_email(
         
         # Create HTML content for reminder
         html_content = f"""
-        <p style="font-size: 13px; color: #d4af37; margin: 0 0 8px 0; text-align: center;">
+        <p style="font-size: 11px; color: #d4af37; margin: 0 0 6px 0; text-align: center;">
             <strong>⏰ Podsetnik: Vaš tretman danas!</strong>
         </p>
         
