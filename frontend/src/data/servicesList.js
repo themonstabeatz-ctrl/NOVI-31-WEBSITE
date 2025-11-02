@@ -38,7 +38,7 @@ export const bookingSystemNames = {
   // Massages
   'traditionalThaiMassage': 'Tradicionalna tajlandska masaža',
   'aromaTherapyService': 'Aroma terapija',
-  'hotStoneMassage': 'Hot oil',
+  'hotStoneMassage': 'Masaža toplim uljem',
   'royalThaiMassage': 'Kraljevska tajlandska masaža',
   'footMassageService': 'Masaža stopala',
   'couplesMassage': 'Partnerska masaža',
