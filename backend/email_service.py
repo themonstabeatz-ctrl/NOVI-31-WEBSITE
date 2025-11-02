@@ -389,7 +389,7 @@ def create_html_email_template(
             }}
             .header-title {{
                 color: #d4af37;
-                font-size: 14px;
+                font-size: 12px;
                 font-weight: bold;
                 margin: 0;
             }}
