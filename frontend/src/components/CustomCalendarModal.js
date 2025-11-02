@@ -127,11 +127,17 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
   };
 
   const monthNames = [
-    'Januar', 'Februar', 'Mart', 'April', 'Maj', 'Jun',
-    'Jul', 'Avgust', 'Septembar', 'Oktobar', 'Novembar', 'Decembar'
+    translate('monthJan'), translate('monthFeb'), translate('monthMar'), 
+    translate('monthApr'), translate('monthMay'), translate('monthJun'),
+    translate('monthJul'), translate('monthAug'), translate('monthSep'), 
+    translate('monthOct'), translate('monthNov'), translate('monthDec')
   ];
 
-  const dayNames = ['Ned', 'Pon', 'Uto', 'Sre', 'Čet', 'Pet', 'Sub'];
+  const dayNames = [
+    translate('daySun'), translate('dayMon'), translate('dayTue'), 
+    translate('dayWed'), translate('dayThu'), translate('dayFri'), 
+    translate('daySat')
+  ];
 
   const days = getDaysInMonth(currentMonth);
 
