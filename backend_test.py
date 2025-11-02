@@ -374,8 +374,9 @@ class BookingAPITester:
         successful_bookings = []
         failed_bookings = []
         
-        print(f"\n🚨 CRITICAL USER BOOKING TEST - Date: {test_date} at 14:00")
-        print("Testing EXACT scenarios user reported as failing...")
+        print(f"\n🚨 WEB SLOT ROTATION TEST - Date: {test_date} at 14:00")
+        print("Testing 3 SIMULTANEOUS bookings with Web Slot therapist rotation...")
+        print("Backend should automatically assign different Web Slot therapists")
         print()
         
         for i, service in enumerate(test_services):
@@ -385,10 +386,10 @@ class BookingAPITester:
                 "client_phone": service["client_phone"],
                 "client_email": service["client_email"],
                 "appointment_date": test_date,
-                "start_time": test_time,  # Same time for all as user tested
+                "start_time": test_time,  # Same time for all - testing simultaneous bookings
                 "service_id": service["id"],
-                "therapist_id": therapist_id,
-                "notes": f"CRITICAL TEST: User reported this booking shows success but doesn't appear in external system"
+                "therapist_id": "",  # Empty - let backend assign Web Slot therapist
+                "notes": f"WEB SLOT TEST #{i+1}: Multiple simultaneous bookings at same time"
             }
             
             try:
