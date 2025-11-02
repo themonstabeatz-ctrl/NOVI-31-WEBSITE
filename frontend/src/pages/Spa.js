@@ -240,7 +240,6 @@ const Spa = () => {
   const facialDetails = getSpaDetails('facial', 'Tretman lica');
   const bodyWrapDetails = getSpaDetails('bodyWrap', 'Body wrap');
   const goldenDetails = getSpaDetails('golden', 'Zlatni tretman lica');
-  const aromatherapyDetails = getSpaDetails('aromatherapy', 'Aromaterapija');
   const steamDetails = getSpaDetails('steam', 'Parno kupatilo');
   const royalSpaDetails = getSpaDetails('royalSpa', 'Kraljevski spa paket');
   const hydratingDetails = getSpaDetails('hydrating', 'Hidratantni tretman');
