@@ -418,7 +418,6 @@ const Contact = () => {
                         name="preferredDate"
                         minDate={new Date()}
                       />
-                      )}
                     </div>
                   </div>
                   <div className="form-group">
