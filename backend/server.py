@@ -94,6 +94,9 @@ async def book_appointment(booking: AppointmentBooking):
     Allow all bookings - owner will contact clients to reschedule if needed
     """
     try:
+        # Log the booking data for debugging
+        logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}")
+        
         async with httpx.AsyncClient(timeout=30.0) as client:
             response = await client.post(
                 'https://pozdrav-kako-si.emergent.host/api/appointments',
