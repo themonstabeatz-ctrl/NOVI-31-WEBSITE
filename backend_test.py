@@ -331,18 +331,20 @@ class BookingAPITester:
         
         all_passed = True
         successful_bookings = []
+        failed_bookings = []
         
-        for i, service in enumerate(all_services):
+        for i, service in enumerate(test_services):
+            # Use realistic client data as requested
             booking_data = {
-                "client_first_name": "Comprehensive",
-                "client_last_name": "Test",
+                "client_first_name": "Ana",
+                "client_last_name": "Petrovic",
                 "client_phone": "+381621234567",
-                "client_email": f"comprehensive.test{i+1}@example.com",
-                "appointment_date": f"2025-03-0{i+1}",
-                "start_time": f"2025-03-0{i+1}T{10+i}:00:00",
+                "client_email": f"ana.petrovic{i+1}@gmail.com",
+                "appointment_date": "2025-01-25",  # Tomorrow as requested
+                "start_time": f"2025-01-25T{14+i}:00:00",  # Starting at 14:00 as requested
                 "service_id": service["id"],
                 "therapist_id": therapist_id,
-                "notes": f"Comprehensive test for {service['name']}"
+                "notes": f"Test booking for {service['name']} - {service['type']} service"
             }
             
             try:
