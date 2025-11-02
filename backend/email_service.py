@@ -580,53 +580,28 @@ def send_reminder_email(
         
         # Create HTML content for reminder
         html_content = f"""
-        <p style="font-size: 16px; color: #d4af37; margin-bottom: 15px; text-align: center;">
+        <p style="font-size: 13px; color: #d4af37; margin: 0 0 8px 0; text-align: center;">
             <strong>⏰ Podsetnik: Vaš tretman danas!</strong>
         </p>
         
         <div class="details-box">
-            <div class="details-title">📋 Detalji rezervacije</div>
-            
             <div class="detail-row">
-                <div class="detail-icon">👤</div>
-                <div class="detail-label">Ime:</div>
-                <div class="detail-value">{client_name}</div>
+                <span class="detail-label">💆 Tretman:</span>
+                <span class="detail-value">{service_name}</span>
             </div>
-            
             <div class="detail-row">
-                <div class="detail-icon">💆</div>
-                <div class="detail-label">Tretman:</div>
-                <div class="detail-value">{service_name}</div>
+                <span class="detail-label">🕐 Vreme:</span>
+                <span class="detail-value">{time_str}</span>
             </div>
-            
             <div class="detail-row">
-                <div class="detail-icon">📅</div>
-                <div class="detail-label">Datum:</div>
-                <div class="detail-value">{date_str}</div>
-            </div>
-            
-            <div class="detail-row">
-                <div class="detail-icon">🕐</div>
-                <div class="detail-label">Vreme:</div>
-                <div class="detail-value">{time_str}</div>
+                <span class="detail-label">📍 Lokacija:</span>
+                <span class="detail-value">Abebe Bikile 10A</span>
             </div>
         </div>
         
-        <div class="info-box">
-            <h3>📍 Lokacija</h3>
-            <p style="margin: 5px 0; font-size: 14px;">
-                <strong>Abebe Bikile 10A, Beograd</strong>
-            </p>
+        <div class="info-text" style="text-align: center;">
+            <strong>Stignite 10 minuta pre termina</strong>
         </div>
-        
-        <p style="text-align: center; background: #fffef8; padding: 12px; border-radius: 5px; border: 1px solid #d4af37; margin: 15px 0;">
-            <span style="font-size: 16px;">⏰</span><br>
-            <strong style="color: #333333; font-size: 14px;">Stignite 10 minuta pre termina</strong>
-        </p>
-        
-        <p style="text-align: center; color: #d4af37; font-size: 14px; margin-top: 15px;">
-            <strong>Vidimo se uskoro! 🌸</strong>
-        </p>
         """
         
         html_body = create_html_email_template(client_name, html_content, language)
