@@ -52,11 +52,10 @@ export const bookingSystemNames = {
   'bambooMassageService': 'Bamboo masaža',
   'lymphaticDrainage': 'Limfna drenaža',
   
-  // Spa Treatments (Note: "Aromaterapija" is DIFFERENT from "Aroma terapija"!)
+  // Spa Treatments
   'facialTreatmentService': 'Tretman lica',
   'bodyWrapService': 'Body wrap',
   'goldenFacialService': 'Zlatni tretman lica',
-  'aromatherapySpa': 'Aromaterapija',  // SPA version - different from massage "Aroma terapija"
   'steamBathService': 'Parno kupatilo',
   'royalSpaService': 'Kraljevski spa paket',
   'hydratingTreatment': 'Hidratantni tretman',
