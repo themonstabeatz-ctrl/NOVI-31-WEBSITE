@@ -536,7 +536,7 @@ def send_confirmation_email(
         
         # Create HTML content
         html_content = f"""
-        <p style="font-size: 13px; color: #d4af37; margin: 0 0 8px 0;">
+        <p style="font-size: 11px; color: #d4af37; margin: 0 0 6px 0;">
             <strong>✅ Uspešno zakazano!</strong>
         </p>
         
