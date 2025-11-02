@@ -663,7 +663,7 @@ export const translations = {
     reserve: "ЗАБРОНИРОВАТЬ",
     reserveNow: "Забронировать",
     buyNow: "КУПИТЬ СЕЙЧАС",
-    mostPopular: "Самый популярный",
+    mostPopular: "Популярное",
     benefits: "Преимущества:",
     duration: "Продолжительность",
     price: "Цена",
