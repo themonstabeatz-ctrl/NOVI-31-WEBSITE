@@ -327,7 +327,12 @@ const Massage = () => {
       description: translate("royalMassageDesc"),
       benefits: [translate("royalBenefit1"), translate("royalBenefit2"), translate("royalBenefit3")],
       popular: true,
-      hasDurationOptions: true
+      hasDurationOptions: true,
+      customDurationLabels: {
+        '60': '30 min',
+        '90': '45 min',
+        '120': '60 min'
+      }
     },
     {
       key: 'foot',
