@@ -260,7 +260,7 @@ const Contact = () => {
           appointment_date: dateStr,
           start_time: `${dateStr}T${formData.preferredTime}:00`, // Combine date and time
           service_id: serviceId,
-          therapist_id: "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f", // Default therapist
+          therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81", // Generic therapist for web bookings - owner assigns real therapist in salon
           notes: formData.message || ""
         };
 
