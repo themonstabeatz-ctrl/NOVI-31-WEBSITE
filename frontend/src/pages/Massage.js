@@ -44,6 +44,15 @@ const Massage = () => {
       return options[duration];
     }
     
+    // Special pricing for Hot oil (no 120 min option)
+    if (serviceKey === 'hotStone') {
+      const options = {
+        '60': { duration: '60 min', price: '4,600 RSD', serviceId: `${serviceName} - 60 min` },
+        '90': { duration: '90 min', price: '5,800 RSD', serviceId: `${serviceName} - 90 min` }
+      };
+      return options[duration] || options['60']; // Default to 60 if 120 is selected
+    }
+    
     // Default pricing for all other massages
     const options = {
       '60': { duration: '60 min', price: '3,000 RSD', serviceId: `${serviceName} - 60 min` },
