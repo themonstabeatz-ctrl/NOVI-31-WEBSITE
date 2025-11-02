@@ -202,9 +202,9 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/pages/Contact.js"
-    stuck_count: 1
+    stuck_count: 2
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "unknown"
         agent: "main"
@@ -215,6 +215,12 @@ frontend:
       - working: false
         agent: "testing"
         comment: "CRITICAL ISSUES FOUND: 1) Success message functionality partially working but backend validation errors (422/400) prevent success messages from showing. Backend logs show 'start_time input is too short' errors when date/time fields are empty. 2) Contact page routing issues - URL redirects to home page instead of staying on /contact. 3) Form submission works but shows error messages instead of success messages due to backend validation failures. 4) Success message implementation exists in code with proper GREEN styling (#22c55e), checkmark icons, and 2-second timeout, but cannot be tested due to backend errors. 5) Language switching functionality detected but success messages in different languages cannot be verified due to form submission failures."
+      - working: false
+        agent: "user"
+        comment: "User reports bookings made via website (service cards or dropdown) show 'success' but don't appear in external booking system at https://pozdrav-kako-si.emergent.host/. Issue persists even when booking at available times."
+      - working: "unknown"
+        agent: "main"
+        comment: "Investigating service name mapping. Verified: Massage.js uses 'Aroma terapija' (with space), Spa.js uses 'Aromaterapija' (without space). Both match serviceMapping in Contact.js. troubleshoot_agent confirmed mapping architecture is correct. Need to test actual booking flow end-to-end to identify where bookings fail."
 
   - task: "Header with navigation and language switcher"
     implemented: true
