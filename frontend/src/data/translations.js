@@ -512,6 +512,11 @@ export const translations = {
     wantToBook: "I want to book:",
     clearDate: "Clear",
     
+    // Service dropdown
+    selectService: "Select Service",
+    chooseService: "Choose a service",
+    massages: "MASSAGES",
+    
     // Calendar & Time Picker
     calendarDelete: "Delete",
     calendarCancel: "Cancel",
