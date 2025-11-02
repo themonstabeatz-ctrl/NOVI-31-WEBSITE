@@ -823,7 +823,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "Традиционный тайский массаж",
     aromaTherapyService: "Ароматерапия",
-    hotStoneMassage: "Массаж горячими камнями",
+    hotStoneMassage: "Hot oil",
     royalThaiMassage: "Королевский тайский массаж",
     footMassageService: "Массаж ног",
     couplesMassage: "Парный массаж",
