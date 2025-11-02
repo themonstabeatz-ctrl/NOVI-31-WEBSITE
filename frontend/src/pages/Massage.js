@@ -523,7 +523,7 @@ const Massage = () => {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        60 min
+                        {service.customDurationLabels ? service.customDurationLabels['60'] : '60 min'}
                       </button>
                     )}
                     {(!service.customDurations || service.customDurations.includes('90')) && (
@@ -542,7 +542,7 @@ const Massage = () => {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        90 min
+                        {service.customDurationLabels ? service.customDurationLabels['90'] : '90 min'}
                       </button>
                     )}
                     {(!service.customDurations || service.customDurations.includes('120')) && (
@@ -561,7 +561,7 @@ const Massage = () => {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        120 min
+                        {service.customDurationLabels ? service.customDurationLabels['120'] : '120 min'}
                       </button>
                     )}
                   </div>
