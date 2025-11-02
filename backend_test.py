@@ -482,22 +482,41 @@ class BookingAPITester:
                         all_passed = False
                         
             except Exception as e:
+                failed_bookings.append({
+                    "service": service["name"],
+                    "service_id": service["id"],
+                    "service_type": service["type"],
+                    "error": str(e),
+                    "status_code": "Exception"
+                })
                 self.log_result(
-                    f"Comprehensive Test - {service['name']}",
+                    f"Review Test - {service['name']} ({service['type']})",
                     False,
-                    f"Error testing {service['name']}: {str(e)}",
+                    f"❌ Exception: {str(e)}",
                     {"error": str(e), "service_id": service["id"]}
                 )
                 all_passed = False
         
-        # Summary of successful bookings
-        if successful_bookings:
-            self.log_result(
-                "Comprehensive Test Summary",
-                True,
-                f"Successfully created {len(successful_bookings)} bookings out of {len(all_services)} services",
-                {"successful_bookings": successful_bookings}
-            )
+        # Detailed summary
+        massage_success = len([b for b in successful_bookings if b["service_type"] == "massage"])
+        spa_success = len([b for b in successful_bookings if b["service_type"] == "spa"])
+        total_success = len(successful_bookings)
+        total_tests = len(test_services)
+        
+        self.log_result(
+            "🎯 REVIEW TEST SUMMARY",
+            total_success > 0,
+            f"SUCCESS RATE: {total_success}/{total_tests} services | Massage: {massage_success}/4 | Spa: {spa_success}/3",
+            {
+                "total_success": total_success,
+                "total_tests": total_tests,
+                "massage_success": massage_success,
+                "spa_success": spa_success,
+                "successful_bookings": successful_bookings,
+                "failed_bookings": failed_bookings,
+                "primary_test_passed": any(b["service"] == "Aroma terapija - 60 min" for b in successful_bookings)
+            }
+        )
         
         return all_passed
 
