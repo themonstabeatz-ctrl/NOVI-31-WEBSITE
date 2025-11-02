@@ -397,12 +397,30 @@ def create_html_email_template(
                 padding: 15px;
                 color: #333333;
                 line-height: 1.4;
-                font-size: 13px;
+                font-size: 11px;
+                background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/6qmohhxk_gridijent%20background.jpg');
+                background-size: cover;
+                background-position: center;
+                position: relative;
+            }}
+            .content::before {{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(255, 255, 255, 0.92);
+                z-index: 1;
+            }}
+            .content > * {{
+                position: relative;
+                z-index: 2;
             }}
             .greeting {{
-                font-size: 13px;
+                font-size: 11px;
                 color: #333333;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }}
             .details-box {{
                 background: #fafafa;
