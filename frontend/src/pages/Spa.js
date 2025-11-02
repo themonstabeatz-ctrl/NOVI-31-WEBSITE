@@ -293,19 +293,6 @@ const Spa = () => {
       hasDurationOptions: true
     },
     {
-      key: 'aromatherapy',
-      name: translate("aromatherapy"),
-      duration: aromatherapyDetails.duration,
-      price: aromatherapyDetails.price,
-      serviceId: aromatherapyDetails.serviceId,
-      description: translate("aromatherapyDesc"),
-      benefits: [translate("aromaBenefit1"), translate("aromaBenefit2"), translate("aromaBenefit3")],
-      category: "relaxation",
-      categoryDisplay: translate("categoryRelaxation"),
-      popular: false,
-      hasDurationOptions: true
-    },
-    {
       key: 'steam',
       name: translate("steamBath"),
       duration: steamDetails.duration,
