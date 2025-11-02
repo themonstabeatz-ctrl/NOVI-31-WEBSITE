@@ -739,6 +739,40 @@ export const translations = {
     wantToBook: "Я хочу забронировать:",
     clearDate: "Очистить",
     
+    // Calendar & Time Picker
+    calendarDelete: "Удалить",
+    calendarCancel: "Отменить",
+    calendarConfirm: "Установить",
+    timeDelete: "Удалить",
+    timeCancel: "Отменить",
+    timeConfirm: "Установить",
+    hours: "Часы",
+    minutes: "Минуты",
+    selectedTime: "Выбранное время",
+    
+    // Day names
+    daySun: "Вс",
+    dayMon: "Пн",
+    dayTue: "Вт",
+    dayWed: "Ср",
+    dayThu: "Чт",
+    dayFri: "Пт",
+    daySat: "Сб",
+    
+    // Month names
+    monthJan: "Январь",
+    monthFeb: "Февраль",
+    monthMar: "Март",
+    monthApr: "Апрель",
+    monthMay: "Май",
+    monthJun: "Июнь",
+    monthJul: "Июль",
+    monthAug: "Август",
+    monthSep: "Сентябрь",
+    monthOct: "Октябрь",
+    monthNov: "Ноябрь",
+    monthDec: "Декабрь",
+    
     // Success messages
     successBooking: "Ваша процедура успешно забронирована",
     successVoucher: "Вы успешно приобрели ваш ваучер",
