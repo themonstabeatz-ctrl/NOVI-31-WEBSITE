@@ -287,7 +287,7 @@ backend:
     status_history:
       - working: false
         agent: "testing"
-        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://spa-booking-pro-1.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
+        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://thaispa-booking.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
       - working: true
         agent: "testing"
         comment: "COMPREHENSIVE TESTING COMPLETED - ALL BOOKING INTEGRATION WORKING PERFECTLY! ✅ Backend proxy endpoint /api/book-appointment fully functional and correctly forwards to https://pozdrav-kako-si.emergent.host/api/appointments. ✅ All 5 service IDs tested successfully: Klasicna Tajlandska masaza (057c8535-bb25-4712-9014-60e378d06b6d), Relax masaža celog tela (e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf), Sportska masaža (d6cf94e7-5eac-4a8a-8a33-c92e18830021), Spa + tradicionalna tajlandska masaza (0483de92-b1ca-49d8-bd1d-0b8a39ed50a4), Dubinska masaža (4c135b02-641e-4f66-a13b-f420c89ff3bd). ✅ Therapist ID 4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f (Marko Markovic) working correctly. ✅ Input validation working (422 for missing fields, 404 for invalid service IDs). ✅ All bookings return proper appointment IDs and end times. Success rate: 100% (5/5 services). Backend correctly handles external API responses and error conditions."
@@ -412,7 +412,7 @@ agent_communication:
       - Backend proxy implementation is correct and follows best practices
       
       ❌ EXTERNAL BOOKING SERVICE UNAVAILABLE:
-      - External API endpoint https://spa-booking-pro-1.preview.emergentagent.com/api/appointments returns 404 Not Found
+      - External API endpoint https://thaispa-booking.preview.emergentagent.com/api/appointments returns 404 Not Found
       - Tested multiple HTTP methods (GET, POST, OPTIONS) - all return 404
       - Backend proxy correctly forwards requests and handles 404 errors appropriately
       - Backend logs show proper error handling: "Booking API error: 404 - {"detail":"Not Found"}"

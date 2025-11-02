@@ -1,81 +1,80 @@
 <analysis>
-This trajectory chronicles an AI engineer's extensive work on the Bua Luang Thai Spa website, moving from UI/UX fixes to complex integrations. Initially, the focus was on resolving mobile display issues for service cards, specifically transitioning from a problematic carousel to a stable 3-column grid with roll-in/out animations, which involved numerous debugging iterations and troubleshooting viewport and  dependencies. Subsequently, a critical booking system integration was implemented. This included updating the contact form to split the email field into phone and email, connecting it to an external API, handling data formatting, and dynamically mapping website services (including newly introduced duration-based variants for specific massages) to booking system UUIDs. The final phase involved adding new service cards and their translations. The engineer demonstrated strong problem-solving skills, leveraging troubleshoot agents and adapting to user feedback, including handling API availability issues and managing multi-language content.
+The AI engineer's trajectory focused on enhancing the Bua Luang Thai Spa website, primarily addressing booking system integration and UI/UX. Initial efforts involved resolving a critical bug where frontend bookings showed success but didn't appear in the external system. This was traced to backend misreporting errors and subsequently to therapist availability issues, leading to the creation and rotation of Web Slot dummy therapists to enable duplicate bookings as per user request. Following this, the AI implemented robust multi-language email notifications (confirmation and reminders) with custom HTML templates, logo, and design matching the website's aesthetic. Finally, a series of detailed updates were made to specific massage cards, including name changes, price adjustments, duration modifications, and corresponding updates across the frontend, backend mapping, and the external booking system, all verified with screenshots and API calls.
 </analysis>
 
 <product_requirements>
-The Bua Luang Thai Spa website is a multi-language platform with a dark-gold aesthetic, featuring dynamic hero videos and parallax effects. Key features include a booking system, multi-language support (Serbian, English, Russian, Thai), and mobile responsiveness.
+The Bua Luang Thai Spa website is a multi-language platform (Serbian, English, Russian, Thai) with a dark-gold design. The core requirement is a functional booking system integrated with .
 
-**Implemented features & recent requests:**
-- VAUCER section text updates and translations.
-- Massage/Spa CTA text updates, transparency, border/background removals, hero overlay removal.
-- Centering main logos and adjusting background colors.
-- Scroll animations for service cards (slide, 3D tilt, roll-back) and fade effects for titles/CTAs.
-- Frosted glass effect for About Us background.
-- **Booking Integration**:
-    - Zakažite (Book Now) buttons on Massage/Spa redirect to Contact, pre-filling message.
-    - Contact form modified to have separate Telefon and Email fields, with  placeholder removed.
-    - Form sends POST requests to  with , , , , , , , .
-    - CORS configured.
-    - Visual feedback (green/red icon) for success/failure.
-    - Website service names mapped to booking system UUIDs; missing services created in the booking system.
-- **Dynamic Pricing**:
-    - Tradicionalna tajlandska masaža card: 3 buttons (60/90/120 min) with dynamic pricing (3000/4000/5000 RSD) linked to booking system variants.
-    - Masaža sa uljima renamed to Aroma terapija: 3 buttons (60/90/120 min) with dynamic pricing, linked to booking system variants.
-    - Aroma terapija name translated across all languages.
-- **New Content**: Added 3 rows of 3 new massage and spa cards (9 per section) with effects and booking button functionality, but not yet added to the booking program.
+**Key features implemented:**
+- **Booking Reliability:** Ensured all bookings made via the website (cards or dropdown) successfully appear in the external booking system, even for overlapping times. This involved:
+    - Fixing a backend issue where API errors were falsely reported as success.
+    - Implementing a Web Slot therapist rotation in the backend to allow multiple bookings at the same time slot, as the user handles therapist assignment manually.
+- **Email Notifications:** Implemented instant booking confirmation emails and 2-hour pre-appointment reminder emails. These emails are multi-language, use Gmail SMTP (with App Password), include website branding (logo, custom backgrounds, dark-gold theme), and are responsively designed and compact.
+- **Service Card & Price Management:** Updated several massage services on the frontend and in the external booking system:
+    - Tradicionalna tajlandska masaža: New prices (60min: 4400, 90min: 5600, 120min: 6800 RSD), Najželjeniji changed to Popularno and repositioned.
+    - Aroma terapija: New prices (60min: 4400, 90min: 5600, 120min: 6800 RSD).
+    - Masaža vrućim kamenjem to Masaža toplim uljem: Name change, updated description and benefits, 120 min option removed, new prices (60min: 4600, 90min: 5800 RSD). Booking system descriptions updated to specify duration (e.g., tretman u trajanju od 60 minuta).
+    - Kraljevska tajlandska masaža to Glava, vrat, ramena i leđa: Name change, new durations (30, 45, 60 min with new prices), updated description and benefits, frontend buttons dynamically reflect new durations.
+    - Masaža stopala: New durations (30, 45, 60 min with new prices), frontend buttons dynamically reflect new durations.
 </product_requirements>
 
 <key_technical_concepts>
-- **React.js (v18)**: Frontend framework.
-- **CSS3**: Extensive use of , , , , , responsive .
-- **JavaScript Hooks**: , ,  for component logic and state.
-- **IntersectionObserver**: For scroll-triggered animations and visibility detection.
-- **Throttling**: For scroll event optimization.
-- **Localization**: Via  for multi-language support.
-- **FastAPI**: Python backend framework.
-- **Pydantic**: For data validation and serialization in the backend.
-- ****: Python HTTP client for backend API proxy calls.
+-   **React.js (v18)**: Frontend framework for dynamic UI updates.
+-   **FastAPI**: Python backend for API proxy, booking logic, and email scheduling.
+-   ****: Python HTTP client for external API calls.
+-   ****: For loading environment variables.
+-   **, **: Python standard libraries for sending SMTP emails.
+-   ****: For scheduling reminder emails.
+-   **Localization**:  for multi-language UI text and email content.
+-   **API Integration**: Complex handling of  requests to an external booking system, including error handling and dynamic service/therapist ID management.
+-   **Custom Modals**: Used for date/time selection.
 </key_technical_concepts>
 
 <code_architecture>
 
 -   
-    -   **Summary**: Global styles, animations, and responsive rules. Heavily modified for mobile layout, card animations, and general UI/UX.
-    -   **Changes Made**: Refactored nested  queries; added  to crucial mobile styles (, , , , ); implemented roll-in/roll-out animations; adjusted card padding, gap, font sizes, and badge sizing for mobile portrait mode.
--   
-    -   **Summary**: Displays massage services with dynamic animations and booking functionality.
-    -   **Changes Made**: Implemented  for various card animations (slide, tilt, roll-in/out), incorporating  and  checks. Added state for Tradicionalna tajlandska masaža and Aroma terapija duration/price, and rendering logic for 3 buttons. Logic to handle service  for booking. Debugging for  dependency issues. New card data added for 9 new services.
--   
-    -   **Summary**: Displays spa services with dynamic animations and booking functionality.
-    -   **Changes Made**: Similar to , implemented  for card animations and / checks. Debugging for  dependency issues. New card data added for 9 new services.
--   
-    -   **Summary**: Handles booking requests, acting as the primary integration point with the external booking API.
-    -   **Changes Made**: Modified form structure to split the Email field into Telefon and Email. Implemented  to send  requests to the external booking API, handling data formatting (, ,  from  and ), , and  mapping. Added visual success/failure feedback. Updated service ID mapping to include variants for Tradicionalna tajlandska masaža and Aroma terapija.
--   
-    -   **Summary**: Centralized store for all multi-language text.
-    -   **Changes Made**: Extended significantly to include translations for VAUCER, CTA texts, phone, Aroma terapija, and new massage and spa services across all four languages.
--   
-    -   **Summary**: Main HTML file that defines the viewport.
-    -   **Changes Made**: The  meta tag was initially fixed () to ensure correct mobile rendering, then reverted to  to force desktop view on mobile, and finally fixed again to  to resolve mobile display issues, then back to  to show desktop version on mobile as per user's final request on mobile display.
--   
-    -   **Summary**: FastAPI backend for the application, handling API requests.
-    -   **Changes Made**: Configured CORS to allow cross-origin requests. Added a  proxy endpoint to forward requests to the external spa booking API, handling  requests and returning responses. Updated Pydantic models to match required fields (, ,  datetime object) of the external API.
+    -   **Summary**: Stores environment variables for backend configuration.
+    -   **Changes Made**: Added , ,  for email functionality.
 -   
     -   **Summary**: Lists Python dependencies for the backend.
-    -   **Changes Made**: Added  for making HTTP requests from the backend proxy.
+    -   **Changes Made**: Added  and , ,  for email and scheduling functionality.
+-    (NEW)
+    -   **Summary**: Handles sending multi-language HTML emails for booking confirmations and reminders. Contains HTML templates for different languages.
+    -   **Changes Made**: Created from scratch. Implemented  and  functions. Initially sent plain text, then updated to send responsive HTML emails with branding (logo, , ), and compact design, with continuous refinement of font sizes and layout.
+-   
+    -   **Summary**: FastAPI backend, acts as a proxy for the external booking API.
+    -   **Changes Made**: Removed logic returning fake success (200 OK) when the external API returned errors (400). Modified booking endpoint () to:
+        - Dynamically find and rotate between 15 Web Slot dummy therapists to allow multiple simultaneous bookings.
+        - Integrate  to send confirmation emails and schedule reminder emails using .
+        - Added timezone-aware datetime comparisons for scheduling.
+        - Updated to handle  parameter in booking requests.
+-   
+    -   **Summary**: Global CSS styles.
+    -   **Changes Made**: Adjusted  position ( property) within  and  (including responsive versions) to prevent text overlap.
+-   
+    -   **Summary**: Main booking form.
+    -   **Changes Made**: Updated  to send  and  in the booking request payload for email customization.  updated for Aroma terapija fix, and all new/renamed services and their durations.
+-   
+    -   **Summary**: Centralized structured list of services.
+    -   **Changes Made**: Updated prices and names for Tradicionalna tajlandska masaža, Aroma terapija, Hot oil (originally Masaža vrućim kamenjem), Glava, vrat, ramena i leđa (originally Kraljevska tajlandska masaža), and Masaža stopala. Removed Aromaterapija spa service.
+-   
+    -   **Summary**: Multi-language text strings.
+    -   **Changes Made**: Updated mostPopular to Popularno. Updated names, descriptions, and benefits for Hot oil (Masaža toplim uljem) and Glava, vrat, ramena i leđa across all 4 languages.
+-   
+    -   **Summary**: Displays massage services cards.
+    -   **Changes Made**: Modified  function to handle custom pricing and duration logic for specific services (e.g., traditional, aromaTherapy, hotStone, royal, foot). Added  and  to service definitions to control which buttons are displayed and their labels (e.g., changing '60 min' button to '30 min'). Updated service names to reflect changes (e.g., Hot oil, Glava, vrat, ramena i leđa).
 </code_architecture>
 
 <pending_tasks>
-- Translate the newly added card names and descriptions for English, Russian, and Thai languages.
-- Test the appearance and functionality of the 9 new cards in Massage and Spa sections across all languages.
+-   Finalize the description updates for Masaža stopala in the external booking system to correctly reflect its duration (e.g., Masaža stopala tretman u trajanju od 30 minuta).
 </pending_tasks>
 
 <current_work>
-Immediately prior to this summary, the AI engineer was implementing the user's request to add 9 new cards to both the Massage and Spa sections of the website. The user specified that these cards should have the same effects and translations as existing cards, and their Zakažite (Book Now) buttons should function with the booking program, but the services themselves should *not* yet be added to the booking system.
+Immediately prior to this summary, the AI engineer was actively updating the Masaža stopala service in the external booking system. The frontend cards for Masaža stopala were successfully updated to display new durations (30, 45, 60 min) and corresponding prices (2400, 2900, 3500 RSD), along with the correct button labels. The booking system itself had also been updated with these new durations and prices.
 
-The engineer first focused on adding the necessary translations for these new services in  (Chat Message 541-549). Currently, the Serbian translations for the new massage and spa services have been added. Following this, the engineer proceeded to update  (Chat Message 551-553) and  (Chat Message 554-557) by adding the new card data using the Serbian translations. The last action was successfully updating  and the engineer's current thought is to test how it looks (). The translations for English, Russian, and Thai are explicitly planned but not yet implemented.
+However, the user provided feedback in the last message, indicating that the descriptions for Masaža stopala in the booking system needed further refinement. Specifically, the descriptions needed to explicitly state the duration for each variant, following the pattern tretman u trajanju od XX minuta. The AI had previously updated descriptions to include durations (e.g., Masaža toplim uljem u trajanju od 60 minuta) for another service and was in the process of applying this specific format to Masaža stopala when the trajectory concluded.
 </current_work>
 
 <optional_next_step>
-Translate the newly added card names and descriptions for English, Russian, and Thai in .
+Update the descriptions of Masaža stopala services in the external booking system to clearly state their specific durations.
 </optional_next_step>
