@@ -300,8 +300,8 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Booking API Integration"
     - "Contact page"
-    - "Mobile header layout in landscape mode"
   stuck_tasks:
     - "Contact page"
   test_all: false
