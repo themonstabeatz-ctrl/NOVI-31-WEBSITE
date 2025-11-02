@@ -291,8 +291,8 @@ def format_date_time(iso_datetime: str, language: str = 'sr') -> tuple:
         return iso_datetime.split('T')[0], iso_datetime.split('T')[1][:5]
 
 
-def send_email(to_email: str, subject: str, body: str) -> bool:
-    """Send email via Gmail SMTP"""
+def send_email(to_email: str, subject: str, body: str, html_body: str = None) -> bool:
+    """Send email via Gmail SMTP with optional HTML"""
     try:
         # Create message
         msg = MIMEMultipart('alternative')
@@ -300,15 +300,18 @@ def send_email(to_email: str, subject: str, body: str) -> bool:
         msg['To'] = to_email
         msg['Subject'] = subject
         
-        # Attach plain text body
+        # Attach plain text body (fallback)
         msg.attach(MIMEText(body, 'plain', 'utf-8'))
+        
+        # Attach HTML body if provided
+        if html_body:
+            msg.attach(MIMEText(html_body, 'html', 'utf-8'))
         
         # Remove any spaces from password
         smtp_password = SMTP_PASSWORD.replace(' ', '')
         
         # Connect to Gmail SMTP
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.set_debuglevel(1)  # Enable debug output
             server.starttls()
             server.login(SMTP_USER, smtp_password)
             server.send_message(msg)
@@ -319,6 +322,226 @@ def send_email(to_email: str, subject: str, body: str) -> bool:
     except Exception as e:
         logger.error(f"❌ Failed to send email to {to_email}: {str(e)}")
         return False
+
+
+def create_html_email_template(
+    client_name: str,
+    content: str,
+    language: str = 'sr'
+) -> str:
+    """Create beautiful HTML email template with spa theme"""
+    
+    # Titles based on language
+    titles = {
+        'sr': 'Bua Luang Thai Spa',
+        'en': 'Bua Luang Thai Spa',
+        'ru': 'Bua Luang Thai Spa',
+        'th': 'Bua Luang Thai Spa'
+    }
+    
+    footer_text = {
+        'sr': 'S poštovanjem,<br>Bua Luang Thai Spa Tim',
+        'en': 'Best regards,<br>Bua Luang Thai Spa Team',
+        'ru': 'С уважением,<br>Команда Bua Luang Thai Spa',
+        'th': 'ด้วยความเคารพ,<br>ทีม Bua Luang Thai Spa'
+    }
+    
+    html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {{
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: #0a0a0a;
+            }}
+            .email-container {{
+                max-width: 600px;
+                margin: 0 auto;
+                background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+                border: 2px solid #d4af37;
+                border-radius: 10px;
+                overflow: hidden;
+            }}
+            .header {{
+                background: linear-gradient(135deg, #1a1506 0%, #0d0a03 100%);
+                padding: 30px 20px;
+                text-align: center;
+                border-bottom: 3px solid #d4af37;
+                position: relative;
+            }}
+            .header::before {{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 100%;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="%23d4af37" opacity="0.03"/></svg>');
+                background-size: 100px 100px;
+                opacity: 0.1;
+            }}
+            .logo {{
+                width: 120px;
+                height: auto;
+                margin-bottom: 15px;
+            }}
+            .header-title {{
+                color: #d4af37;
+                font-size: 28px;
+                font-weight: bold;
+                margin: 0;
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+                letter-spacing: 2px;
+            }}
+            .content {{
+                padding: 40px 30px;
+                color: #e0e0e0;
+                line-height: 1.8;
+                background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            }}
+            .greeting {{
+                font-size: 20px;
+                color: #d4af37;
+                margin-bottom: 25px;
+                font-weight: bold;
+            }}
+            .details-box {{
+                background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+                border: 2px solid #d4af37;
+                border-radius: 8px;
+                padding: 25px;
+                margin: 25px 0;
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            }}
+            .detail-row {{
+                display: table;
+                width: 100%;
+                margin: 12px 0;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            }}
+            .detail-row:last-child {{
+                border-bottom: none;
+            }}
+            .detail-icon {{
+                display: table-cell;
+                width: 35px;
+                font-size: 24px;
+                vertical-align: middle;
+            }}
+            .detail-label {{
+                display: table-cell;
+                color: #d4af37;
+                font-weight: bold;
+                vertical-align: middle;
+                padding-left: 10px;
+            }}
+            .detail-value {{
+                display: table-cell;
+                color: #ffffff;
+                text-align: right;
+                vertical-align: middle;
+                font-size: 16px;
+            }}
+            .info-box {{
+                background: linear-gradient(135deg, #2d2416 0%, #1f1810 100%);
+                border-left: 4px solid #d4af37;
+                padding: 20px;
+                margin: 25px 0;
+                border-radius: 5px;
+            }}
+            .info-box h3 {{
+                color: #d4af37;
+                margin: 0 0 15px 0;
+                font-size: 18px;
+            }}
+            .info-box ul {{
+                margin: 10px 0;
+                padding-left: 20px;
+                color: #e0e0e0;
+            }}
+            .info-box li {{
+                margin: 8px 0;
+            }}
+            .contact-info {{
+                background: linear-gradient(135deg, #1a1506 0%, #0d0a03 100%);
+                padding: 25px;
+                margin: 25px 0;
+                border-radius: 8px;
+                text-align: center;
+                border: 1px solid rgba(212, 175, 55, 0.3);
+            }}
+            .contact-info a {{
+                color: #d4af37;
+                text-decoration: none;
+                font-weight: bold;
+            }}
+            .footer {{
+                background: linear-gradient(135deg, #0d0a03 0%, #000000 100%);
+                padding: 25px 20px;
+                text-align: center;
+                border-top: 3px solid #d4af37;
+                color: #d4af37;
+            }}
+            .lotus {{
+                font-size: 40px;
+                margin: 15px 0;
+            }}
+            @media only screen and (max-width: 600px) {{
+                .email-container {{
+                    border-radius: 0;
+                    border-left: none;
+                    border-right: none;
+                }}
+                .content {{
+                    padding: 30px 20px;
+                }}
+                .header-title {{
+                    font-size: 24px;
+                }}
+                .detail-value {{
+                    font-size: 14px;
+                }}
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <div class="header">
+                <img src="https://spa-booking-pro-1.preview.emergentagent.com/logo192.png" alt="Bua Luang Thai Spa" class="logo">
+                <h1 class="header-title">{titles.get(language, titles['sr'])}</h1>
+            </div>
+            
+            <div class="content">
+                <div class="greeting">Poštovani/a {client_name},</div>
+                
+                {content}
+                
+                <div class="contact-info">
+                    <strong style="color: #d4af37; font-size: 18px;">Za sva pitanja:</strong><br><br>
+                    📧 <a href="mailto:bualuangthailandspa@gmail.com">bualuangthailandspa@gmail.com</a><br>
+                    📞 <a href="tel:+381626255500">+381 62 625 500</a><br>
+                    📍 Abebe Bikile 10A, Beograd<br>
+                    🕐 Radno vreme: 10:00 - 22:00
+                </div>
+                
+                <div class="lotus">🌸</div>
+            </div>
+            
+            <div class="footer">
+                {footer_text.get(language, footer_text['sr'])}
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    return html
 
 
 def send_confirmation_email(
