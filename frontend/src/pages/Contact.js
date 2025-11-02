@@ -417,7 +417,7 @@ const Contact = () => {
                         onChange={handleDateChange}
                         name="preferredDate"
                         minDate={new Date()}
-                        </Button>
+                      />
                       )}
                     </div>
                   </div>
