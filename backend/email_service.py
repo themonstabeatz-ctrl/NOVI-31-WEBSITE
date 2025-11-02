@@ -645,25 +645,18 @@ def send_reminder_email(
         # Format date and time
         date_str, time_str = format_date_time(appointment_datetime, language)
         
-        # Prepare plain text email content (fallback)
+        # SHORT plain text for email preview only
         subject = template['reminder_subject']
-        plain_body = template['reminder_body'].format(
-            client_name=client_name,
-            service_name=service_name,
-            appointment_date=date_str,
-            appointment_time=time_str
-        )
+        plain_body = f"Podsetnik: {client_name}, vaš tretman danas u {time_str} - {service_name}. Vidite detalje u emailu."
         
         # Create HTML content for reminder
         html_content = f"""
-        <p style="font-size: 20px; color: #d4af37; margin-bottom: 25px; text-align: center;">
-            <strong>⏰ Podsetnik: Imate zakazani tretman danas!</strong>
+        <p style="font-size: 16px; color: #d4af37; margin-bottom: 15px; text-align: center;">
+            <strong>⏰ Podsetnik: Vaš tretman danas!</strong>
         </p>
         
         <div class="details-box">
-            <h2 style="color: #d4af37; margin: 0 0 20px 0; font-size: 22px; text-align: center;">
-                📋 Detalji rezervacije
-            </h2>
+            <div class="details-title">📋 Detalji rezervacije</div>
             
             <div class="detail-row">
                 <div class="detail-icon">👤</div>
@@ -692,17 +685,17 @@ def send_reminder_email(
         
         <div class="info-box">
             <h3>📍 Lokacija</h3>
-            <p style="margin: 10px 0; font-size: 16px;">
+            <p style="margin: 5px 0; font-size: 14px;">
                 <strong>Abebe Bikile 10A, Beograd</strong>
             </p>
         </div>
         
-        <p style="text-align: center; background: linear-gradient(135deg, #2d2416 0%, #1f1810 100%); padding: 20px; border-radius: 8px; border: 2px solid #d4af37; margin: 25px 0;">
-            <span style="font-size: 18px; color: #d4af37;">⏰</span><br>
-            <strong style="color: #ffffff; font-size: 17px;">Molimo vas da stignete 10 minuta pre zakazanog termina</strong>
+        <p style="text-align: center; background: #fffef8; padding: 12px; border-radius: 5px; border: 1px solid #d4af37; margin: 15px 0;">
+            <span style="font-size: 16px;">⏰</span><br>
+            <strong style="color: #333333; font-size: 14px;">Stignite 10 minuta pre termina</strong>
         </p>
         
-        <p style="text-align: center; color: #d4af37; font-size: 18px; margin-top: 30px;">
+        <p style="text-align: center; color: #d4af37; font-size: 14px; margin-top: 15px;">
             <strong>Vidimo se uskoro! 🌸</strong>
         </p>
         """
