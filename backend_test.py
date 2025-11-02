@@ -308,43 +308,69 @@ class BookingAPITester:
         
         return all_passed
 
-    async def test_specific_services_from_review(self):
-        """Test specific services mentioned in the review request"""
+    async def test_critical_user_booking_scenarios(self):
+        """Test EXACT scenarios from user review request - CRITICAL REAL-WORLD TEST"""
         
-        # Specific services from review request
+        # EXACT services and date/time from review request
         test_services = [
-            # Primary test case
-            {"name": "Aroma terapija - 60 min", "id": "f81ee187-1d45-4942-abf3-4b83f147bf85", "type": "massage"},
+            # Test from Massage menu
+            {
+                "name": "Partnerska masaža - 120 min", 
+                "id": "114600d6-3960-41e4-b453-32012cb6400a", 
+                "type": "massage",
+                "client_first_name": "Test",
+                "client_last_name": "Masaza", 
+                "client_email": "test.masaza@example.com",
+                "client_phone": "+381621111111"
+            },
             
-            # Massage services (3-4 random)
-            {"name": "Tradicionalna tajlandska masaža - 90 min", "id": "39f8c583-a780-4e54-9bab-f693a51287c2", "type": "massage"},
-            {"name": "Masaža stopala - 60 min", "id": "c4f3d344-73f9-4a0d-ae39-6f2be718ef19", "type": "massage"},
-            {"name": "Sportska masaža - 120 min", "id": "d3e8684a-2bbc-4a15-835e-8e43d231074a", "type": "massage"},
+            # Test from Spa menu  
+            {
+                "name": "Tretman lica - 60 min", 
+                "id": "75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf", 
+                "type": "spa",
+                "client_first_name": "Test",
+                "client_last_name": "Spa",
+                "client_email": "test.spa@example.com", 
+                "client_phone": "+381622222222"
+            },
             
-            # Spa services (3-4 services)
-            {"name": "Tretman lica - 60 min", "id": "75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf", "type": "spa"},
-            {"name": "Zlatni tretman lica - 90 min", "id": "7cc4d292-5d54-42f0-b511-1fb4263f6353", "type": "spa"},
-            {"name": "Kraljevski spa paket - 120 min", "id": "4a390175-9f3a-4c94-bce3-082623a7a4ce", "type": "spa"}
+            # Test from Booking dropdown
+            {
+                "name": "Tradicionalna tajlandska masaža - 90 min", 
+                "id": "39f8c583-a780-4e54-9bab-f693a51287c2", 
+                "type": "massage",
+                "client_first_name": "Test",
+                "client_last_name": "Booking",
+                "client_email": "test.booking@example.com",
+                "client_phone": "+381623333333"
+            }
         ]
         
+        # EXACT date/time from user report: 02.11.2025 at 14:00
+        test_date = "2025-11-02"
+        test_time = "2025-11-02T14:00:00"
         therapist_id = "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f"  # Marko Markovic
         
         all_passed = True
         successful_bookings = []
         failed_bookings = []
         
+        print(f"\n🚨 CRITICAL USER BOOKING TEST - Date: {test_date} at 14:00")
+        print("Testing EXACT scenarios user reported as failing...")
+        print()
+        
         for i, service in enumerate(test_services):
-            # Use realistic client data as requested
             booking_data = {
-                "client_first_name": "Ana",
-                "client_last_name": "Petrovic",
-                "client_phone": "+381621234567",
-                "client_email": f"ana.petrovic{i+1}@gmail.com",
-                "appointment_date": "2025-01-25",  # Tomorrow as requested
-                "start_time": f"2025-01-25T{14+i}:00:00",  # Starting at 14:00 as requested
+                "client_first_name": service["client_first_name"],
+                "client_last_name": service["client_last_name"],
+                "client_phone": service["client_phone"],
+                "client_email": service["client_email"],
+                "appointment_date": test_date,
+                "start_time": test_time,  # Same time for all as user tested
                 "service_id": service["id"],
                 "therapist_id": therapist_id,
-                "notes": f"Test booking for {service['name']} - {service['type']} service"
+                "notes": f"CRITICAL TEST: User reported this booking shows success but doesn't appear in external system"
             }
             
             try:
