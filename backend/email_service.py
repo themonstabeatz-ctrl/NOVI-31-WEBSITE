@@ -297,10 +297,14 @@ def send_email(to_email: str, subject: str, body: str) -> bool:
         # Attach plain text body
         msg.attach(MIMEText(body, 'plain', 'utf-8'))
         
+        # Remove any spaces from password
+        smtp_password = SMTP_PASSWORD.replace(' ', '')
+        
         # Connect to Gmail SMTP
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.set_debuglevel(1)  # Enable debug output
             server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.login(SMTP_USER, smtp_password)
             server.send_message(msg)
         
         logger.info(f"✅ Email sent successfully to {to_email}")
