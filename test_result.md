@@ -303,7 +303,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Booking API Integration"
     - "Contact page"
   stuck_tasks:
     - "Contact page"
