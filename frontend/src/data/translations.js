@@ -284,7 +284,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "Tradicionalna tajlandska masaža",
     aromaTherapyService: "Aroma terapija",
-    hotStoneMassage: "Hot oil",
+    hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "Kraljevska tajlandska masaža",
     footMassageService: "Masaža stopala",
     couplesMassage: "Partnerska masaža",
@@ -554,7 +554,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "Traditional Thai Massage",
     aromaTherapyService: "Aroma Therapy",
-    hotStoneMassage: "Hot oil",
+    hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "Royal Thai Massage",
     footMassageService: "Foot Massage",
     couplesMassage: "Couples Massage",
@@ -823,7 +823,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "Традиционный тайский массаж",
     aromaTherapyService: "Ароматерапия",
-    hotStoneMassage: "Hot oil",
+    hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "Королевский тайский массаж",
     footMassageService: "Массаж ног",
     couplesMassage: "Парный массаж",
@@ -1092,7 +1092,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "นวดแบบไทยโบราณ",
     aromaTherapyService: "อโรมาเธอราพี",
-    hotStoneMassage: "Hot oil",
+    hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "นวดแบบไทยหลวง",
     footMassageService: "นวดเท้า",
     couplesMassage: "นวดคู่",
