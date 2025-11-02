@@ -122,9 +122,9 @@ const Contact = () => {
         throw new Error('All fields are required');
       }
       
-      // Get service name from URL parameter
+      // Get service name from URL parameter OR from dropdown
       const queryParams = new URLSearchParams(location.search);
-      const serviceName = queryParams.get('service') || '';
+      const serviceName = queryParams.get('service') || formData.service || '';
       
       // Service Mapping - All 90 services with proper durations (30 types x 3 durations)
       const serviceMapping = {
