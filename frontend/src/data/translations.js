@@ -394,7 +394,7 @@ export const translations = {
     reserve: "RESERVE",
     reserveNow: "Reserve",
     buyNow: "BUY NOW",
-    mostPopular: "Most Popular",
+    mostPopular: "Popular",
     benefits: "Benefits:",
     duration: "Duration",
     price: "Price",
