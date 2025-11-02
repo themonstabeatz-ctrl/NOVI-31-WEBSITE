@@ -450,17 +450,17 @@ const Contact = () => {
                       name="serviceDropdown"
                       value={formData.service || ''}
                       onChange={(e) => {
-                        const selectedValue = e.target.value; // This is "translatedName - duration - price"
+                        const selectedValue = e.target.value; // This is "serviceKey|duration"
                         if (selectedValue) {
-                          // Extract the booking system name
-                          const bookingName = getBookingSystemName(selectedValue, translate);
-                          const duration = selectedValue.match(/- (\d+) min/)?.[1] || '60';
+                          const [serviceKey, duration] = selectedValue.split('|');
+                          const bookingName = bookingSystemNames[serviceKey];
                           const fullServiceName = `${bookingName} - ${duration} min`;
+                          const displayName = e.target.options[e.target.selectedIndex].text;
                           
                           setFormData(prev => ({
                             ...prev,
-                            service: fullServiceName, // This will be used for booking
-                            message: selectedValue ? `${translate('wantToBook')} ${selectedValue}` : ''
+                            service: fullServiceName, // Serbian name for booking API
+                            message: `${translate('wantToBook')} ${displayName}`
                           }));
                         } else {
                           setFormData(prev => ({
