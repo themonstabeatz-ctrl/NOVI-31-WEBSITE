@@ -239,15 +239,15 @@ const Massage = () => {
 
   const traditionalDetails = getMassageDetails('traditional', 'Tradicionalna tajlandska masaža');
   const aromaDetails = getMassageDetails('aroma', 'Aroma terapija');
-  const hotStoneDetails = getMassageDetails('hotStone', 'Hot Stone masaža');
-  const royalDetails = getMassageDetails('royal', 'Kraljevska masaža');
+  const hotStoneDetails = getMassageDetails('hotStone', 'Masaža vrućim kamenjem');
+  const royalDetails = getMassageDetails('royal', 'Kraljevska tajlandska masaža');
   const footDetails = getMassageDetails('foot', 'Masaža stopala');
-  const coupleDetails = getMassageDetails('couple', 'Masaža za parove');
+  const coupleDetails = getMassageDetails('couple', 'Partnerska masaža');
   const sportsDetails = getMassageDetails('sports', 'Sportska masaža');
   const shiatsuDetails = getMassageDetails('shiatsu', 'Shiatsu masaža');
   const reflexologyDetails = getMassageDetails('reflexology', 'Refleksologija');
-  const backShoulderDetails = getMassageDetails('backShoulder', 'Masaža leđa i ramena');
-  const antiStressDetails = getMassageDetails('antiStress', 'Anti-stress masaža');
+  const backShoulderDetails = getMassageDetails('backShoulder', 'Masaža leđa i vrata');
+  const antiStressDetails = getMassageDetails('antiStress', 'Antistres masaža');
   const prenatalDetails = getMassageDetails('prenatal', 'Prenatalna masaža');
   const deepTissueDetails = getMassageDetails('deepTissue', 'Masaža dubokih tkiva');
   const bambooDetails = getMassageDetails('bamboo', 'Bamboo masaža');
