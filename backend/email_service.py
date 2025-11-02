@@ -518,62 +518,36 @@ def send_confirmation_email(
         
         # Create HTML content
         html_content = f"""
-        <p style="font-size: 15px; color: #d4af37; margin-bottom: 15px;">
-            <strong>Uspešno ste zakazali vaš tretman!</strong>
+        <p style="font-size: 13px; color: #d4af37; margin: 0 0 8px 0;">
+            <strong>✅ Uspešno zakazano!</strong>
         </p>
         
         <div class="details-box">
-            <div class="details-title">📋 Detalji rezervacije</div>
-            
             <div class="detail-row">
-                <div class="detail-icon">👤</div>
-                <div class="detail-label">Ime:</div>
-                <div class="detail-value">{client_name}</div>
+                <span class="detail-label">💆 Tretman:</span>
+                <span class="detail-value">{service_name}</span>
             </div>
-            
             <div class="detail-row">
-                <div class="detail-icon">📧</div>
-                <div class="detail-label">Email:</div>
-                <div class="detail-value">{client_email}</div>
+                <span class="detail-label">📅 Datum:</span>
+                <span class="detail-value">{date_str}</span>
             </div>
-            
             <div class="detail-row">
-                <div class="detail-icon">📞</div>
-                <div class="detail-label">Telefon:</div>
-                <div class="detail-value">{client_phone}</div>
+                <span class="detail-label">🕐 Vreme:</span>
+                <span class="detail-value">{time_str}</span>
             </div>
-            
             <div class="detail-row">
-                <div class="detail-icon">💆</div>
-                <div class="detail-label">Tretman:</div>
-                <div class="detail-value">{service_name}</div>
+                <span class="detail-label">👤 Ime:</span>
+                <span class="detail-value">{client_name}</span>
             </div>
-            
             <div class="detail-row">
-                <div class="detail-icon">📅</div>
-                <div class="detail-label">Datum:</div>
-                <div class="detail-value">{date_str}</div>
-            </div>
-            
-            <div class="detail-row">
-                <div class="detail-icon">🕐</div>
-                <div class="detail-label">Vreme:</div>
-                <div class="detail-value">{time_str}</div>
+                <span class="detail-label">📞 Telefon:</span>
+                <span class="detail-value">{client_phone}</span>
             </div>
         </div>
         
-        <div class="info-box">
-            <h3>ℹ️ Važne informacije</h3>
-            <ul>
-                <li>Stignite 10 minuta pre termina</li>
-                <li>Kasnjenje preko 15 minuta može skratiti tretman</li>
-                <li>Otkazivanje najmanje 4 sata unapred</li>
-            </ul>
+        <div class="info-text">
+            Stignite 10 min pre termina. Otkazivanje 4h unapred.
         </div>
-        
-        <p style="text-align: center; color: #d4af37; font-size: 14px; margin-top: 20px;">
-            <strong>Radujemo se vašoj poseti! 🌸</strong>
-        </p>
         """
         
         html_body = create_html_email_template(client_name, html_content, language)
