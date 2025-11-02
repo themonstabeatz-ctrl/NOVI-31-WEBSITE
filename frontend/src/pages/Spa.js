@@ -16,7 +16,6 @@ const Spa = () => {
     facial: '60',
     bodyWrap: '60',
     golden: '60',
-    aromatherapy: '60',
     steam: '60',
     royalSpa: '60',
     hydrating: '60',
