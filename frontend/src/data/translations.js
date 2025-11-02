@@ -275,6 +275,11 @@ export const translations = {
     wantToBook: "Želim da zakažem:",
     clearDate: "Obriši",
     
+    // Service dropdown
+    selectService: "Izaberite uslugu",
+    chooseService: "Odaberite uslugu",
+    massages: "MASAŽE",
+    
     // Calendar & Time Picker
     calendarDelete: "Obriši",
     calendarCancel: "Otkaži",
