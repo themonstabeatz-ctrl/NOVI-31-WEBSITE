@@ -9,6 +9,7 @@ import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import CustomCalendarModal from "../components/CustomCalendarModal";
+import CustomTimePickerModal from "../components/CustomTimePickerModal";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Contact = () => {
