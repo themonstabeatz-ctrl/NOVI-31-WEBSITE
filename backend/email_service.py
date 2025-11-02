@@ -423,19 +423,19 @@ def create_html_email_template(
                 margin-bottom: 8px;
             }}
             .details-box {{
-                background: #fafafa;
+                background: rgba(250, 250, 250, 0.95);
                 border: 1px solid #e0e0e0;
                 border-radius: 4px;
-                padding: 10px;
-                margin: 10px 0;
+                padding: 8px;
+                margin: 8px 0;
             }}
             .detail-row {{
                 display: flex;
                 justify-content: space-between;
-                margin: 5px 0;
-                padding: 4px 0;
+                margin: 4px 0;
+                padding: 3px 0;
                 border-bottom: 1px solid #f0f0f0;
-                font-size: 12px;
+                font-size: 10px;
             }}
             .detail-row:last-child {{
                 border-bottom: none;
@@ -449,17 +449,17 @@ def create_html_email_template(
                 text-align: right;
             }}
             .info-text {{
-                background: #fffef8;
+                background: rgba(255, 254, 248, 0.95);
                 border-left: 2px solid #d4af37;
-                padding: 8px;
-                margin: 10px 0;
-                font-size: 11px;
+                padding: 6px;
+                margin: 8px 0;
+                font-size: 10px;
                 color: #555555;
             }}
             .contact-info {{
                 text-align: center;
-                padding: 10px;
-                font-size: 11px;
+                padding: 8px;
+                font-size: 10px;
                 color: #666666;
             }}
             .contact-info a {{
