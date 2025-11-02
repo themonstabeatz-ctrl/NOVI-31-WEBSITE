@@ -521,62 +521,6 @@ const Contact = () => {
                           })
                         ))}
                       </optgroup>
-                        <option value="Tretman lica - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tretman lica - 60 min (3,000 RSD)</option>
-                        <option value="Tretman lica - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tretman lica - 90 min (4,000 RSD)</option>
-                        <option value="Tretman lica - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tretman lica - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Body wrap - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Body wrap - 60 min (3,000 RSD)</option>
-                        <option value="Body wrap - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Body wrap - 90 min (4,000 RSD)</option>
-                        <option value="Body wrap - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Body wrap - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Zlatni tretman lica - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Zlatni tretman lica - 60 min (3,000 RSD)</option>
-                        <option value="Zlatni tretman lica - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Zlatni tretman lica - 90 min (4,000 RSD)</option>
-                        <option value="Zlatni tretman lica - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Zlatni tretman lica - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Aromaterapija - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Aromaterapija - 60 min (3,000 RSD)</option>
-                        <option value="Aromaterapija - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Aromaterapija - 90 min (4,000 RSD)</option>
-                        <option value="Aromaterapija - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Aromaterapija - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Parno kupatilo - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Parno kupatilo - 60 min (3,000 RSD)</option>
-                        <option value="Parno kupatilo - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Parno kupatilo - 90 min (4,000 RSD)</option>
-                        <option value="Parno kupatilo - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Parno kupatilo - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Kraljevski spa paket - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kraljevski spa paket - 60 min (3,000 RSD)</option>
-                        <option value="Kraljevski spa paket - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kraljevski spa paket - 90 min (4,000 RSD)</option>
-                        <option value="Kraljevski spa paket - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kraljevski spa paket - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Hidratantni tretman - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Hidratantni tretman - 60 min (3,000 RSD)</option>
-                        <option value="Hidratantni tretman - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Hidratantni tretman - 90 min (4,000 RSD)</option>
-                        <option value="Hidratantni tretman - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Hidratantni tretman - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Detox tretman - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Detox tretman - 60 min (3,000 RSD)</option>
-                        <option value="Detox tretman - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Detox tretman - 90 min (4,000 RSD)</option>
-                        <option value="Detox tretman - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Detox tretman - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Piling tela - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Piling tela - 60 min (3,000 RSD)</option>
-                        <option value="Piling tela - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Piling tela - 90 min (4,000 RSD)</option>
-                        <option value="Piling tela - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Piling tela - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Anticelulit tretman - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Anticelulit tretman - 60 min (3,000 RSD)</option>
-                        <option value="Anticelulit tretman - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Anticelulit tretman - 90 min (4,000 RSD)</option>
-                        <option value="Anticelulit tretman - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Anticelulit tretman - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Kolageni tretman lica - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kolageni tretman lica - 60 min (3,000 RSD)</option>
-                        <option value="Kolageni tretman lica - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kolageni tretman lica - 90 min (4,000 RSD)</option>
-                        <option value="Kolageni tretman lica - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kolageni tretman lica - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Vitamin C tretman lica - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Vitamin C tretman lica - 60 min (3,000 RSD)</option>
-                        <option value="Vitamin C tretman lica - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Vitamin C tretman lica - 90 min (4,000 RSD)</option>
-                        <option value="Vitamin C tretman lica - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Vitamin C tretman lica - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Kombinovani spa dan - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kombinovani spa dan - 60 min (3,000 RSD)</option>
-                        <option value="Kombinovani spa dan - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kombinovani spa dan - 90 min (4,000 RSD)</option>
-                        <option value="Kombinovani spa dan - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kombinovani spa dan - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Čokoladni wrap - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Čokoladni wrap - 60 min (3,000 RSD)</option>
-                        <option value="Čokoladni wrap - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Čokoladni wrap - 90 min (4,000 RSD)</option>
-                        <option value="Čokoladni wrap - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Čokoladni wrap - 120 min (5,000 RSD)</option>
-                      </optgroup>
                     </select>
                   </div>
                 )}
