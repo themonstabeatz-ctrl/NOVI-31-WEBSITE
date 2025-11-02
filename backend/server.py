@@ -175,11 +175,16 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             
             # Schedule reminder email 2 hours before appointment
             try:
-                appointment_dt = datetime.fromisoformat(booking.start_time.replace('Z', '+00:00'))
+                appointment_dt = datetime.fromisoformat(booking.start_time.replace('Z', ''))
+                # Make appointment_dt timezone-aware if it's naive
+                if appointment_dt.tzinfo is None:
+                    appointment_dt = appointment_dt.replace(tzinfo=timezone.utc)
+                
                 reminder_time = appointment_dt - timedelta(hours=2)
                 
                 # Only schedule if reminder time is in the future
-                if reminder_time > datetime.now(timezone.utc):
+                now = datetime.now(timezone.utc)
+                if reminder_time > now:
                     scheduler.add_job(
                         send_reminder_email,
                         trigger=DateTrigger(run_date=reminder_time),
