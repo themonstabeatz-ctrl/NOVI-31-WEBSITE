@@ -53,6 +53,16 @@ const Massage = () => {
       return options[duration] || options['60']; // Default to 60 if 120 is selected
     }
     
+    // Special pricing and duration for Glava, vrat, ramena i leđa
+    if (serviceKey === 'royal') {
+      const options = {
+        '60': { duration: '30 min', price: '2,400 RSD', serviceId: `${serviceName} - 30 min` },
+        '90': { duration: '45 min', price: '3,200 RSD', serviceId: `${serviceName} - 45 min` },
+        '120': { duration: '60 min', price: '3,900 RSD', serviceId: `${serviceName} - 60 min` }
+      };
+      return options[duration];
+    }
+    
     // Default pricing for all other massages
     const options = {
       '60': { duration: '60 min', price: '3,000 RSD', serviceId: `${serviceName} - 60 min` },
