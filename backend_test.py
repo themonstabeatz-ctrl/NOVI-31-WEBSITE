@@ -628,19 +628,22 @@ class BookingAPITester:
         print()
         print(f"Tests Passed: {passed}/{total}")
         
-        if backend_healthy and proxy_working and service_mapping_working and review_test_working:
-            print("🎉 ALL BOOKING API TESTS PASSED - Integration working correctly!")
-            print("✅ DUPLICATE SERVICE ISSUE RESOLVED - All services booking successfully")
-        elif backend_healthy and proxy_working and review_test_working:
-            print("✅ REVIEW TEST PASSED - Booking integration working for specified services")
-        elif backend_healthy and proxy_working and (service_mapping_working or review_test_working):
-            print("✅ BOOKING INTEGRATION WORKING - Some service IDs tested successfully")
+        if backend_healthy and proxy_working and critical_user_test_working:
+            print("🎉 CRITICAL USER ISSUE RESOLVED - All bookings work on user's date/time!")
+            print("✅ Bookings on 2025-11-02 at 14:00 are working correctly")
+            print("✅ External system verification completed")
+        elif backend_healthy and proxy_working and not critical_user_test_working:
+            print("🚨 CRITICAL USER ISSUE CONFIRMED - Bookings failing on user's date/time")
+            print("❌ User's reported issue is REAL - bookings get 400 errors")
+            print("🔧 Main agent needs to investigate why these specific services/times fail")
+        elif backend_healthy and proxy_working and (service_mapping_working or critical_user_test_working):
+            print("⚠️ PARTIAL SUCCESS - Some bookings work but user's specific scenario may still fail")
         elif backend_healthy and not external_api_working and not proxy_working:
-            print("⚠️  Backend proxy is working but external booking API is unavailable")
+            print("⚠️ Backend proxy is working but external booking API is unavailable")
         elif not backend_healthy:
             print("🚨 Backend service is not accessible - Check backend configuration")
         else:
-            print("⚠️  Some tests failed - Check individual test results above")
+            print("⚠️ Some tests failed - Check individual test results above")
         
         return self.results
 
