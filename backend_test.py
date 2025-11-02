@@ -416,65 +416,38 @@ class BookingAPITester:
                             }
                         )
                     elif response.status_code == 400:
-                        # Check if it's therapist unavailability (should return success to frontend)
+                        # CRITICAL: 400 errors are what user is experiencing
                         try:
-                            error_detail = response.json().get('detail', '')
-                            if 'not available' in error_detail.lower() or 'unavailable' in error_detail.lower():
-                                self.log_result(
-                                    f"Review Test - {service['name']} ({service['type']})",
-                                    True,
-                                    f"⚠️ Therapist unavailable but handled correctly - Backend should return success to frontend",
-                                    {
-                                        "service_name": service['name'],
-                                        "service_id": service["id"],
-                                        "service_type": service["type"],
-                                        "status_code": response.status_code,
-                                        "error_detail": error_detail,
-                                        "note": "Backend should handle this and return success to frontend"
-                                    }
-                                )
-                            else:
-                                failed_bookings.append({
-                                    "service": service["name"],
-                                    "service_id": service["id"],
-                                    "service_type": service["type"],
-                                    "error": error_detail,
-                                    "status_code": response.status_code
-                                })
-                                self.log_result(
-                                    f"Review Test - {service['name']} ({service['type']})",
-                                    False,
-                                    f"❌ 400 Error: {error_detail}",
-                                    {
-                                        "service_name": service['name'],
-                                        "service_id": service["id"],
-                                        "service_type": service["type"],
-                                        "status_code": response.status_code,
-                                        "error_detail": error_detail
-                                    }
-                                )
-                                all_passed = False
+                            error_detail = response.json().get('detail', '') if response.headers.get('content-type', '').startswith('application/json') else response.text
                         except:
-                            failed_bookings.append({
-                                "service": service["name"],
+                            error_detail = response.text
+                            
+                        failed_bookings.append({
+                            "service": service["name"],
+                            "service_id": service["id"],
+                            "service_type": service["type"],
+                            "error": error_detail,
+                            "status_code": response.status_code,
+                            "client": f"{service['client_first_name']} {service['client_last_name']}"
+                        })
+                        
+                        self.log_result(
+                            f"🚨 CRITICAL FAILURE - {service['name']} ({service['type']})",
+                            False,
+                            f"❌ 400 ERROR (User Issue): {error_detail}",
+                            {
+                                "service_name": service['name'],
                                 "service_id": service["id"],
                                 "service_type": service["type"],
-                                "error": response.text,
-                                "status_code": response.status_code
-                            })
-                            self.log_result(
-                                f"Review Test - {service['name']} ({service['type']})",
-                                False,
-                                f"❌ 400 Error: {response.text[:100]}",
-                                {
-                                    "service_name": service['name'],
-                                    "service_id": service["id"],
-                                    "service_type": service["type"],
-                                    "status_code": response.status_code,
-                                    "response": response.text[:200]
-                                }
-                            )
-                            all_passed = False
+                                "status_code": response.status_code,
+                                "error_detail": error_detail,
+                                "client": f"{service['client_first_name']} {service['client_last_name']}",
+                                "client_email": service["client_email"],
+                                "date_time": test_time,
+                                "user_issue": "This is the exact error user is experiencing - backend was returning fake success"
+                            }
+                        )
+                        all_passed = False
                     elif response.status_code == 404:
                         failed_bookings.append({
                             "service": service["name"],
