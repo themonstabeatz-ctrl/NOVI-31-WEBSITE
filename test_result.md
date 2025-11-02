@@ -291,6 +291,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "COMPREHENSIVE TESTING COMPLETED - ALL BOOKING INTEGRATION WORKING PERFECTLY! ✅ Backend proxy endpoint /api/book-appointment fully functional and correctly forwards to https://pozdrav-kako-si.emergent.host/api/appointments. ✅ All 5 service IDs tested successfully: Klasicna Tajlandska masaza (057c8535-bb25-4712-9014-60e378d06b6d), Relax masaža celog tela (e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf), Sportska masaža (d6cf94e7-5eac-4a8a-8a33-c92e18830021), Spa + tradicionalna tajlandska masaza (0483de92-b1ca-49d8-bd1d-0b8a39ed50a4), Dubinska masaža (4c135b02-641e-4f66-a13b-f420c89ff3bd). ✅ Therapist ID 4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f (Marko Markovic) working correctly. ✅ Input validation working (422 for missing fields, 404 for invalid service IDs). ✅ All bookings return proper appointment IDs and end times. Success rate: 100% (5/5 services). Backend correctly handles external API responses and error conditions."
+      - working: true
+        agent: "testing"
+        comment: "🎉 REVIEW-SPECIFIC TESTING COMPLETED - DUPLICATE SERVICE ISSUE RESOLVED! ✅ PRIMARY TEST: 'Aroma terapija - 60 min' (f81ee187-1d45-4942-abf3-4b83f147bf85) booking successful - Appointment ID: d7986189-16a0-433a-adc3-fb2a0e8a011e. ✅ MASSAGE SERVICES (3/3): Tradicionalna tajlandska masaža - 90 min (b5c70e31-9c2a-4a7f-802e-2146f07fb48c), Masaža stopala - 60 min, Sportska masaža - 120 min (822a1590-3355-463e-9d08-d4cf4cd408d0). ✅ SPA SERVICES (3/3): Tretman lica - 60 min, Zlatni tretman lica - 90 min (2903b0c1-3b3e-438a-bebb-0e86ed39e4d7), Kraljevski spa paket - 120 min. ✅ SUCCESS RATE: 7/7 services (100%). ✅ NO 404 'Service not found' errors after duplicate fix. ✅ ALL BOOKINGS VERIFIED in external system at https://pozdrav-kako-si.emergent.host/api/appointments. ✅ End-to-end integration working perfectly. Duplicate service name issue completely resolved."
 
 metadata:
   created_by: "main_agent"
