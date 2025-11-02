@@ -242,9 +242,9 @@ const Spa = () => {
   const goldenDetails = getSpaDetails('golden', 'Zlatni tretman lica');
   const aromatherapyDetails = getSpaDetails('aromatherapy', 'Aromaterapija');
   const steamDetails = getSpaDetails('steam', 'Parno kupatilo');
-  const royalSpaDetails = getSpaDetails('royalSpa', 'Royal Spa paket');
-  const hydratingDetails = getSpaDetails('hydrating', 'Hidratantni tretman tela');
-  const detoxDetails = getSpaDetails('detox', 'Detox wrap');
+  const royalSpaDetails = getSpaDetails('royalSpa', 'Kraljevski spa paket');
+  const hydratingDetails = getSpaDetails('hydrating', 'Hidratantni tretman');
+  const detoxDetails = getSpaDetails('detox', 'Detox tretman');
   const bodyScrubDetails = getSpaDetails('bodyScrub', 'Piling tela');
   const anticelluliteDetails = getSpaDetails('anticellulite', 'Anticelulit tretman');
   const collagenDetails = getSpaDetails('collagen', 'Kolageni tretman lica');
