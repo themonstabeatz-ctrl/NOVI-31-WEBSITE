@@ -275,6 +275,40 @@ export const translations = {
     wantToBook: "Želim da zakažem:",
     clearDate: "Obriši",
     
+    // Calendar & Time Picker
+    calendarDelete: "Obriši",
+    calendarCancel: "Otkaži",
+    calendarConfirm: "Postavi",
+    timeDelete: "Obriši",
+    timeCancel: "Otkaži",
+    timeConfirm: "Postavi",
+    hours: "Sati",
+    minutes: "Minuti",
+    selectedTime: "Odabrano vreme",
+    
+    // Day names
+    daySun: "Ned",
+    dayMon: "Pon",
+    dayTue: "Uto",
+    dayWed: "Sre",
+    dayThu: "Čet",
+    dayFri: "Pet",
+    daySat: "Sub",
+    
+    // Month names
+    monthJan: "Januar",
+    monthFeb: "Februar",
+    monthMar: "Mart",
+    monthApr: "April",
+    monthMay: "Maj",
+    monthJun: "Jun",
+    monthJul: "Jul",
+    monthAug: "Avgust",
+    monthSep: "Septembar",
+    monthOct: "Oktobar",
+    monthNov: "Novembar",
+    monthDec: "Decembar",
+    
     // Success messages
     successBooking: "Uspešno ste zakazali vaš tretman",
     successVoucher: "Uspešno ste kupili vaš vaučer",
