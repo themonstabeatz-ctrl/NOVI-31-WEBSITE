@@ -284,7 +284,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "Tradicionalna tajlandska masaža",
     aromaTherapyService: "Aroma terapija",
-    hotStoneMassage: "Masaža vrućim kamenjem",
+    hotStoneMassage: "Hot oil",
     royalThaiMassage: "Kraljevska tajlandska masaža",
     footMassageService: "Masaža stopala",
     couplesMassage: "Partnerska masaža",
