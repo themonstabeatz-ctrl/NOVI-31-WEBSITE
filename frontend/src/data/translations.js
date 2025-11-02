@@ -932,7 +932,7 @@ export const translations = {
     reserve: "จอง",
     reserveNow: "จอง",
     buyNow: "ซื้อเลย",
-    mostPopular: "ยอดนิยมสูงสุด",
+    mostPopular: "ยอดนิยม",
     benefits: "ประโยชน์:",
     duration: "ระยะเวลา",
     price: "ราคา",
