@@ -325,7 +325,7 @@ const Massage = () => {
       price: royalDetails.price,
       serviceId: royalDetails.serviceId,
       description: translate("royalMassageDesc"),
-      benefits: [translate("royalBenefit1"), translate("royalBenefit2"), translate("royalBenefit3")],
+      benefits: [translate("royalBenefit1"), translate("royalBenefit2"), translate("royalBenefit3"), translate("royalBenefit4")],
       popular: true,
       hasDurationOptions: true,
       customDurationLabels: {
