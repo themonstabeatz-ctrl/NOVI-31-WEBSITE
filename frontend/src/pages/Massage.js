@@ -271,7 +271,7 @@ const Massage = () => {
   const traditionalDetails = getMassageDetails('traditional', 'Tradicionalna tajlandska masaža');
   const aromaDetails = getMassageDetails('aroma', 'Aroma terapija');
   const hotStoneDetails = getMassageDetails('hotStone', 'Masaža toplim uljem');
-  const royalDetails = getMassageDetails('royal', 'Kraljevska tajlandska masaža');
+  const royalDetails = getMassageDetails('royal', 'Glava, vrat, ramena i leđa');
   const footDetails = getMassageDetails('foot', 'Masaža stopala');
   const coupleDetails = getMassageDetails('couple', 'Partnerska masaža');
   const sportsDetails = getMassageDetails('sports', 'Sportska masaža');
