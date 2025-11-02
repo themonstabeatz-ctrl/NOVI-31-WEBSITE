@@ -353,7 +353,12 @@ const Massage = () => {
       description: translate("footMassageDesc"),
       benefits: [translate("footBenefit1"), translate("footBenefit2"), translate("footBenefit3")],
       popular: false,
-      hasDurationOptions: true
+      hasDurationOptions: true,
+      customDurationLabels: {
+        '60': '30 min',
+        '90': '45 min',
+        '120': '60 min'
+      }
     },
     {
       key: 'couple',
