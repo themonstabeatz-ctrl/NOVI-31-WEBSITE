@@ -60,9 +60,9 @@
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   border: 2px solid #d4af37;
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   z-index: 9999;
-  min-width: 400px;
+  width: 360px;
   max-width: 90vw;
   max-height: 85vh;
   overflow-y: auto;
