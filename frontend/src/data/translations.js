@@ -285,7 +285,7 @@ export const translations = {
     traditionalThaiMassage: "Tradicionalna tajlandska masaža",
     aromaTherapyService: "Aroma terapija",
     hotStoneMassage: "Masaža toplim uljem",
-    royalThaiMassage: "Kraljevska tajlandska masaža",
+    royalThaiMassage: "Glava, vrat, ramena i leđa",
     footMassageService: "Masaža stopala",
     couplesMassage: "Partnerska masaža",
     sportsMassageService: "Sportska masaža",
