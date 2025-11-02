@@ -503,67 +503,24 @@ const Contact = () => {
                           })
                         ))}
                       </optgroup>
-                        <option value="Tradicionalna tajlandska masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tradicionalna tajlandska masaža - 90 min (4,000 RSD)</option>
-                        <option value="Tradicionalna tajlandska masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tradicionalna tajlandska masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Aroma terapija - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Aroma terapija - 60 min (3,000 RSD)</option>
-                        <option value="Aroma terapija - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Aroma terapija - 90 min (4,000 RSD)</option>
-                        <option value="Aroma terapija - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Aroma terapija - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Masaža vrućim kamenjem - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža vrućim kamenjem - 60 min (3,000 RSD)</option>
-                        <option value="Masaža vrućim kamenjem - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža vrućim kamenjem - 90 min (4,000 RSD)</option>
-                        <option value="Masaža vrućim kamenjem - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža vrućim kamenjem - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Kraljevska tajlandska masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kraljevska tajlandska masaža - 60 min (3,000 RSD)</option>
-                        <option value="Kraljevska tajlandska masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kraljevska tajlandska masaža - 90 min (4,000 RSD)</option>
-                        <option value="Kraljevska tajlandska masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Kraljevska tajlandska masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Masaža stopala - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža stopala - 60 min (3,000 RSD)</option>
-                        <option value="Masaža stopala - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža stopala - 90 min (4,000 RSD)</option>
-                        <option value="Masaža stopala - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža stopala - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Partnerska masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Partnerska masaža - 60 min (3,000 RSD)</option>
-                        <option value="Partnerska masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Partnerska masaža - 90 min (4,000 RSD)</option>
-                        <option value="Partnerska masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Partnerska masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Sportska masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Sportska masaža - 60 min (3,000 RSD)</option>
-                        <option value="Sportska masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Sportska masaža - 90 min (4,000 RSD)</option>
-                        <option value="Sportska masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Sportska masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Shiatsu masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Shiatsu masaža - 60 min (3,000 RSD)</option>
-                        <option value="Shiatsu masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Shiatsu masaža - 90 min (4,000 RSD)</option>
-                        <option value="Shiatsu masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Shiatsu masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Refleksologija - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Refleksologija - 60 min (3,000 RSD)</option>
-                        <option value="Refleksologija - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Refleksologija - 90 min (4,000 RSD)</option>
-                        <option value="Refleksologija - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Refleksologija - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Masaža leđa i vrata - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža leđa i vrata - 60 min (3,000 RSD)</option>
-                        <option value="Masaža leđa i vrata - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža leđa i vrata - 90 min (4,000 RSD)</option>
-                        <option value="Masaža leđa i vrata - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža leđa i vrata - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Antistres masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Antistres masaža - 60 min (3,000 RSD)</option>
-                        <option value="Antistres masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Antistres masaža - 90 min (4,000 RSD)</option>
-                        <option value="Antistres masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Antistres masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Prenatalna masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Prenatalna masaža - 60 min (3,000 RSD)</option>
-                        <option value="Prenatalna masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Prenatalna masaža - 90 min (4,000 RSD)</option>
-                        <option value="Prenatalna masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Prenatalna masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Masaža dubokih tkiva - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža dubokih tkiva - 60 min (3,000 RSD)</option>
-                        <option value="Masaža dubokih tkiva - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža dubokih tkiva - 90 min (4,000 RSD)</option>
-                        <option value="Masaža dubokih tkiva - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Masaža dubokih tkiva - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Bamboo masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Bamboo masaža - 60 min (3,000 RSD)</option>
-                        <option value="Bamboo masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Bamboo masaža - 90 min (4,000 RSD)</option>
-                        <option value="Bamboo masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Bamboo masaža - 120 min (5,000 RSD)</option>
-                        
-                        <option value="Limfna drenaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Limfna drenaža - 60 min (3,000 RSD)</option>
-                        <option value="Limfna drenaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Limfna drenaža - 90 min (4,000 RSD)</option>
-                        <option value="Limfna drenaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Limfna drenaža - 120 min (5,000 RSD)</option>
-                      </optgroup>
                       
-                      <optgroup label={translate("spa") || "SPA TRETMANI"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
+                      <optgroup label={translate("spaTreatments") || "SPA TRETMANI"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
+                        {spaServices.map(service => (
+                          durations.map(dur => {
+                            const serviceName = translate(service.key);
+                            const displayValue = `${serviceName} - ${dur.minutes} min - ${dur.price.toLocaleString()} RSD`;
+                            return (
+                              <option 
+                                key={`${service.key}-${dur.minutes}`}
+                                value={displayValue}
+                                style={{ background: '#1a1a1a', color: '#d4af37' }}
+                              >
+                                {displayValue}
+                              </option>
+                            );
+                          })
+                        ))}
+                      </optgroup>
                         <option value="Tretman lica - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tretman lica - 60 min (3,000 RSD)</option>
                         <option value="Tretman lica - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tretman lica - 90 min (4,000 RSD)</option>
                         <option value="Tretman lica - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tretman lica - 120 min (5,000 RSD)</option>
