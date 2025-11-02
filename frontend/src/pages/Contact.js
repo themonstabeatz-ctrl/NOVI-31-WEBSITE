@@ -220,7 +220,14 @@ const Contact = () => {
       };
       
       // Get service UUID from mapping, or use default (Tradicionalna tajlandska masaža - 60 min)
-      const serviceId = serviceMapping[serviceName] || 'bbd6d6f4-4b46-4d36-8a08-99dbea1b2ca1';
+      const serviceId = serviceMapping[serviceName] || 'f3c55c37-5366-4be2-a47a-12322ef735fd';
+      
+      // Debug logging
+      console.log('📌 Booking Debug:', {
+        serviceName,
+        serviceId,
+        found: !!serviceMapping[serviceName]
+      });
       
       // Only send to booking API if we have date and time
       if (formData.preferredDate && formData.preferredTime) {
