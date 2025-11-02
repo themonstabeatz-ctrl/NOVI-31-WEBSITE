@@ -88,7 +88,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
 
             <div className="time-picker-content">
               <div className="time-picker-section">
-                <div className="time-label">Sati</div>
+                <div className="time-label">{translate('hours')}</div>
                 <div className="time-scroll-container">
                   {hours.map((hour) => (
                     <div
@@ -105,7 +105,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
               <div className="time-separator">:</div>
 
               <div className="time-picker-section">
-                <div className="time-label">Minuti</div>
+                <div className="time-label">{translate('minutes')}</div>
                 <div className="time-scroll-container">
                   {minutes.map((minute) => (
                     <div
@@ -122,7 +122,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
 
             <div className="time-preview">
               <Clock size={20} />
-              <span>Odabrano vreme: {selectedHour}:{selectedMinute}</span>
+              <span>{translate('selectedTime')}: {selectedHour}:{selectedMinute}</span>
             </div>
 
             <div className="time-modal-actions">
