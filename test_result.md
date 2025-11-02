@@ -602,3 +602,45 @@ agent_communication:
       - Solution: ✅ VERIFIED (using available therapist works)
       
       🎯 CONCLUSION: User's issue is REAL and caused by frontend hardcoding unavailable therapist. Backend is working correctly.
+
+  - agent: "testing"
+    message: |
+      🚨 FINAL VERIFICATION TEST COMPLETED - GENERIC THERAPIST ISSUE IDENTIFIED
+      
+      ✅ BACKEND INTEGRATION STATUS:
+      - Backend booking API fully functional (/api/book-appointment)
+      - External system integration working (https://pozdrav-kako-si.emergent.host/)
+      - All service IDs from user scenarios are valid and working
+      - Proper error handling and logging implemented
+      
+      🔍 GENERIC THERAPIST TESTING RESULTS:
+      - Generic therapist ID: 1490364f-31c8-49a6-a370-2e19fed34e81 EXISTS and works
+      - ✅ Single bookings work at available times (e.g., 08:00, 10:00)
+      - ❌ Multiple bookings at same time FAIL - therapist becomes unavailable after first booking
+      - ❌ User's requested time (14:00) shows therapist unavailable
+      
+      🎯 USER SCENARIOS TEST RESULTS (2025-11-02 at 14:00):
+      1. Partnerska masaža - 120 min: ❌ FAILED (400 - Therapist not available)
+      2. Tretman lica - 60 min: ❌ FAILED (400 - Therapist not available)  
+      3. Tradicionalna tajlandska masaža - 90 min: ❌ FAILED (400 - Therapist not available)
+      
+      📊 SUCCESS RATE: 0/3 (0%) - All user scenarios failed
+      
+      🚨 CRITICAL FINDINGS:
+      - Generic therapist does NOT allow duplicate bookings as expected
+      - First booking at any time succeeds, subsequent bookings at same time fail
+      - User's requirement for "multiple bookings at same time (14:00)" cannot be fulfilled
+      - Backend logs confirm: "Therapist is not available at this time" after first booking
+      
+      🔧 ROOT CAUSE ANALYSIS:
+      1. Generic therapist configuration issue - not set up for simultaneous bookings
+      2. Therapist availability schedule may not include 14:00 slot
+      3. External booking system treats Generic therapist like regular therapist (no special duplicate booking logic)
+      
+      💡 SOLUTIONS NEEDED:
+      1. Configure Generic therapist to allow unlimited simultaneous bookings
+      2. OR use different time slots for each booking (stagger appointments)
+      3. OR create multiple Generic therapist entries for parallel bookings
+      4. OR implement frontend availability checking before booking
+      
+      🎯 CONCLUSION: System is working correctly, but Generic therapist configuration doesn't meet user's requirements for duplicate bookings at same time.
