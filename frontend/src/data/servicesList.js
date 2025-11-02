@@ -1,7 +1,7 @@
 // Complete list of all services with translation keys
 export const massageServices = [
   { key: 'traditionalThaiMassage', basePrice: 4400 },
-  { key: 'aromaTherapyService', basePrice: 3000 },
+  { key: 'aromaTherapyService', basePrice: 4400 },
   { key: 'hotStoneMassage', basePrice: 3000 },
   { key: 'royalThaiMassage', basePrice: 3000 },
   { key: 'footMassageService', basePrice: 3000 },
