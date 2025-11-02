@@ -507,6 +507,40 @@ export const translations = {
     wantToBook: "I want to book:",
     clearDate: "Clear",
     
+    // Calendar & Time Picker
+    calendarDelete: "Delete",
+    calendarCancel: "Cancel",
+    calendarConfirm: "Set",
+    timeDelete: "Delete",
+    timeCancel: "Cancel",
+    timeConfirm: "Set",
+    hours: "Hours",
+    minutes: "Minutes",
+    selectedTime: "Selected time",
+    
+    // Day names
+    daySun: "Sun",
+    dayMon: "Mon",
+    dayTue: "Tue",
+    dayWed: "Wed",
+    dayThu: "Thu",
+    dayFri: "Fri",
+    daySat: "Sat",
+    
+    // Month names
+    monthJan: "January",
+    monthFeb: "February",
+    monthMar: "March",
+    monthApr: "April",
+    monthMay: "May",
+    monthJun: "June",
+    monthJul: "July",
+    monthAug: "August",
+    monthSep: "September",
+    monthOct: "October",
+    monthNov: "November",
+    monthDec: "December",
+    
     // Success messages
     successBooking: "Your treatment has been successfully booked",
     successVoucher: "You have successfully purchased your voucher",
