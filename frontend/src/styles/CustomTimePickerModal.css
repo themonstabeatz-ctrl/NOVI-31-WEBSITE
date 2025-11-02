@@ -152,21 +152,37 @@
 }
 
 .time-option {
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.5rem;
   text-align: center;
   color: #d4af37;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 0.5rem;
   border: 1px solid transparent;
+  width: 100%;
+  display: block;
+  /* Ensure the entire area is clickable */
+  position: relative;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
+  /* Better touch target size */
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .time-option:hover {
   background: rgba(212, 175, 55, 0.2);
   border-color: #d4af37;
   transform: scale(1.02);
+}
+
+.time-option:active {
+  background: rgba(212, 175, 55, 0.3);
+  transform: scale(0.98);
 }
 
 .time-option.selected {
