@@ -99,10 +99,11 @@ async def get_status_checks():
 
 # Booking Proxy Endpoint
 @api_router.post("/book-appointment")
-async def book_appointment(booking: AppointmentBooking):
+async def book_appointment(booking: AppointmentBooking, background_tasks: BackgroundTasks):
     """
     Proxy endpoint to forward booking requests to spa booking system
     Automatically rotates through web slot therapists to allow multiple simultaneous bookings
+    Sends confirmation email immediately and schedules reminder 2h before appointment
     """
     try:
         # Log the booking data for debugging
@@ -126,6 +127,7 @@ async def book_appointment(booking: AppointmentBooking):
             logger.info(f"Found {len(web_slot_therapists)} Web Slot therapists")
             
             # Try each Web Slot therapist until one is available
+            booking_result = None
             for therapist in web_slot_therapists:
                 booking.therapist_id = therapist['id']
                 
@@ -135,10 +137,11 @@ async def book_appointment(booking: AppointmentBooking):
                     headers={'Content-Type': 'application/json'}
                 )
                 
-                # If booking succeeds, return the response
+                # If booking succeeds
                 if response.status_code in [200, 201]:
                     logger.info(f"✅ Booking successful with {therapist['name']} (ID: {therapist['id']})")
-                    return response.json()
+                    booking_result = response.json()
+                    break
                 
                 # If this therapist is not available, try the next one
                 if response.status_code == 400:
@@ -151,11 +154,53 @@ async def book_appointment(booking: AppointmentBooking):
                 logger.warning(f"Error with {therapist['name']}: {response.status_code} - {response.text}")
             
             # If no therapist is available
-            logger.error(f"❌ All Web Slot therapists busy for {booking.start_time}")
-            raise HTTPException(
-                status_code=400,
-                detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
+            if not booking_result:
+                logger.error(f"❌ All Web Slot therapists busy for {booking.start_time}")
+                raise HTTPException(
+                    status_code=400,
+                    detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
+                )
+            
+            # Send confirmation email immediately (in background)
+            background_tasks.add_task(
+                send_confirmation_email,
+                client_email=booking.client_email,
+                client_name=f"{booking.client_first_name} {booking.client_last_name}",
+                client_phone=booking.client_phone,
+                service_name=booking.service_name or "Tretman",
+                appointment_datetime=booking.start_time,
+                language=booking.language or 'sr'
             )
+            logger.info(f"📧 Confirmation email scheduled for {booking.client_email}")
+            
+            # Schedule reminder email 2 hours before appointment
+            try:
+                appointment_dt = datetime.fromisoformat(booking.start_time.replace('Z', '+00:00'))
+                reminder_time = appointment_dt - timedelta(hours=2)
+                
+                # Only schedule if reminder time is in the future
+                if reminder_time > datetime.now(timezone.utc):
+                    scheduler.add_job(
+                        send_reminder_email,
+                        trigger=DateTrigger(run_date=reminder_time),
+                        args=[
+                            booking.client_email,
+                            f"{booking.client_first_name} {booking.client_last_name}",
+                            booking.service_name or "Tretman",
+                            booking.start_time,
+                            booking.language or 'sr'
+                        ],
+                        id=f"reminder_{booking_result['id']}",
+                        replace_existing=True
+                    )
+                    logger.info(f"⏰ Reminder email scheduled for {reminder_time} (2h before appointment)")
+                else:
+                    logger.info(f"⚠️ Appointment too soon - no reminder scheduled")
+                    
+            except Exception as e:
+                logger.error(f"Failed to schedule reminder: {e}")
+            
+            return booking_result
             
     except httpx.RequestError as e:
         logger.error(f"Booking API request error: {str(e)}")
