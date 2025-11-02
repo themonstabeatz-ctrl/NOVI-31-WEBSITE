@@ -1092,7 +1092,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "นวดแบบไทยโบราณ",
     aromaTherapyService: "อโรมาเธอราพี",
-    hotStoneMassage: "นวดด้วยหินร้อน",
+    hotStoneMassage: "Hot oil",
     royalThaiMassage: "นวดแบบไทยหลวง",
     footMassageService: "นวดเท้า",
     couplesMassage: "นวดคู่",
