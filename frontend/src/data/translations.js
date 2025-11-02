@@ -986,6 +986,11 @@ export const translations = {
     wantToBook: "ฉันต้องการจอง:",
     clearDate: "ล้าง",
     
+    // Service dropdown
+    selectService: "เลือกบริการ",
+    chooseService: "เลือกบริการ",
+    massages: "นวด",
+    
     // Calendar & Time Picker
     calendarDelete: "ลบ",
     calendarCancel: "ยกเลิก",
