@@ -554,7 +554,7 @@ export const translations = {
     // Service names for dropdown
     traditionalThaiMassage: "Traditional Thai Massage",
     aromaTherapyService: "Aroma Therapy",
-    hotStoneMassage: "Hot Stone Massage",
+    hotStoneMassage: "Hot oil",
     royalThaiMassage: "Royal Thai Massage",
     footMassageService: "Foot Massage",
     couplesMassage: "Couples Massage",
