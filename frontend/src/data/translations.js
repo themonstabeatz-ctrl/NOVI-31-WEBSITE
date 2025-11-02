@@ -14,7 +14,7 @@ export const translations = {
     reserve: "REZERVIŠITE",
     reserveNow: "Rezervišite",
     buyNow: "KUPITE SADA",
-    mostPopular: "Najželjeniji",
+    mostPopular: "Popularno",
     benefits: "Benefiti:",
     duration: "Trajanje",
     price: "Cena",
