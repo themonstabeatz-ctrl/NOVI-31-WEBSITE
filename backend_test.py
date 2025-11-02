@@ -332,48 +332,43 @@ class BookingAPITester:
         return all_passed
 
     async def test_critical_user_booking_scenarios(self):
-        """Test EXACT scenarios from user review request - CRITICAL REAL-WORLD TEST"""
+        """Test EXACT scenarios from review request - WEB SLOT ROTATION TEST"""
         
         # EXACT services and date/time from review request
         test_services = [
-            # Test from Massage menu
             {
                 "name": "Partnerska masaža - 120 min", 
                 "id": "114600d6-3960-41e4-b453-32012cb6400a", 
                 "type": "massage",
                 "client_first_name": "Denis",
-                "client_last_name": "Test", 
-                "client_email": "denis.test@example.com",
+                "client_last_name": "Alijevic", 
+                "client_email": "denis.real@example.com",
                 "client_phone": "+381621111111"
             },
-            
-            # Test from Spa menu  
-            {
-                "name": "Tretman lica - 60 min", 
-                "id": "75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf", 
-                "type": "spa",
-                "client_first_name": "Andrijana",
-                "client_last_name": "Test",
-                "client_email": "andrijana.test@example.com", 
-                "client_phone": "+381622222222"
-            },
-            
-            # Test from Booking dropdown
             {
                 "name": "Tradicionalna tajlandska masaža - 90 min", 
                 "id": "39f8c583-a780-4e54-9bab-f693a51287c2", 
                 "type": "massage",
-                "client_first_name": "Web",
-                "client_last_name": "Test",
-                "client_email": "web.test@example.com",
+                "client_first_name": "Andrijana",
+                "client_last_name": "Vulic",
+                "client_email": "andrijana.real@example.com",
+                "client_phone": "+381622222222"
+            },
+            {
+                "name": "Tretman lica - 60 min", 
+                "id": "75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf", 
+                "type": "spa",
+                "client_first_name": "Marko",
+                "client_last_name": "Petrovic",
+                "client_email": "marko.test@example.com", 
                 "client_phone": "+381623333333"
             }
         ]
         
-        # EXACT date/time from user report: 02.11.2025 at 14:00
+        # EXACT date/time from review request: 02.11.2025 at 14:00
         test_date = "2025-11-02"
         test_time = "2025-11-02T14:00:00"
-        therapist_id = "1490364f-31c8-49a6-a370-2e19fed34e81"  # Generic therapist (allows duplicates)
+        # NOTE: Backend should automatically assign Web Slot therapists, not hardcoded therapist
         
         all_passed = True
         successful_bookings = []
