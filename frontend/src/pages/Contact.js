@@ -221,14 +221,24 @@ const Contact = () => {
         "Čokoladni wrap - 90 min": "c2c079a0-e906-4f32-ac85-8fc4a650316b"
       };
       
-      // Get service UUID from mapping, or use default (Tradicionalna tajlandska masaža - 60 min)
-      const serviceId = serviceMapping[serviceName] || 'f3c55c37-5366-4be2-a47a-12322ef735fd';
+      // Get service UUID from mapping
+      const serviceId = serviceMapping[serviceName];
+      
+      // CRITICAL: Validate service exists in mapping
+      if (!serviceId) {
+        console.error('❌ SERVICE NOT FOUND IN MAPPING!', {
+          serviceName,
+          availableServices: Object.keys(serviceMapping).filter(k => k.includes(serviceName.split(' - ')[0]))
+        });
+        setError(translate("error") || "Došlo je do greške");
+        return;
+      }
       
       // Debug logging
       console.log('📌 Booking Debug:', {
         serviceName,
         serviceId,
-        found: !!serviceMapping[serviceName]
+        found: true
       });
       
       // Only send to booking API if we have date and time
