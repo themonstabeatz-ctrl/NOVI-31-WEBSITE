@@ -487,7 +487,22 @@ const Contact = () => {
                       </option>
                       
                       <optgroup label={translate("massages") || "MASAŽE"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
-                        <option value="Tradicionalna tajlandska masaža - 60 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tradicionalna tajlandska masaža - 60 min (3,000 RSD)</option>
+                        {massageServices.map(service => (
+                          durations.map(dur => {
+                            const serviceName = translate(service.key);
+                            const displayValue = `${serviceName} - ${dur.minutes} min - ${dur.price.toLocaleString()} RSD`;
+                            return (
+                              <option 
+                                key={`${service.key}-${dur.minutes}`}
+                                value={displayValue}
+                                style={{ background: '#1a1a1a', color: '#d4af37' }}
+                              >
+                                {displayValue}
+                              </option>
+                            );
+                          })
+                        ))}
+                      </optgroup>
                         <option value="Tradicionalna tajlandska masaža - 90 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tradicionalna tajlandska masaža - 90 min (4,000 RSD)</option>
                         <option value="Tradicionalna tajlandska masaža - 120 min" style={{ background: '#1a1a1a', color: '#d4af37' }}>Tradicionalna tajlandska masaža - 120 min (5,000 RSD)</option>
                         
