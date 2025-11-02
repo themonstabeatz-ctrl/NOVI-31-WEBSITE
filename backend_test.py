@@ -36,6 +36,29 @@ class BookingAPITester:
             print(f"   Details: {details}")
         print()
 
+    async def verify_booking_in_external_system(self, appointment_id):
+        """Verify if booking actually appears in external system"""
+        if not appointment_id or appointment_id == 'N/A':
+            return "❌ No appointment ID to verify"
+            
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                # Try to get the specific appointment
+                response = await client.get(
+                    f"https://pozdrav-kako-si.emergent.host/api/appointments/{appointment_id}",
+                    headers={'Content-Type': 'application/json'}
+                )
+                
+                if response.status_code == 200:
+                    return "✅ Found in external system"
+                elif response.status_code == 404:
+                    return "❌ NOT found in external system"
+                else:
+                    return f"⚠️ External system returned {response.status_code}"
+                    
+        except Exception as e:
+            return f"⚠️ Cannot verify: {str(e)}"
+
     async def test_backend_health(self):
         """Test if backend service is accessible"""
         try:
