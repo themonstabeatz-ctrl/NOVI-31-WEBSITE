@@ -33,6 +33,18 @@ const Massage = () => {
   // Generic function to get massage details based on duration
   const getMassageDetails = (serviceKey, serviceName) => {
     const duration = durations[serviceKey];
+    
+    // Special pricing for Tradicionalna tajlandska masaža
+    if (serviceKey === 'traditional') {
+      const options = {
+        '60': { duration: '60 min', price: '4,400 RSD', serviceId: `${serviceName} - 60 min` },
+        '90': { duration: '90 min', price: '5,600 RSD', serviceId: `${serviceName} - 90 min` },
+        '120': { duration: '120 min', price: '6,800 RSD', serviceId: `${serviceName} - 120 min` }
+      };
+      return options[duration];
+    }
+    
+    // Default pricing for all other massages
     const options = {
       '60': { duration: '60 min', price: '3,000 RSD', serviceId: `${serviceName} - 60 min` },
       '90': { duration: '90 min', price: '4,000 RSD', serviceId: `${serviceName} - 90 min` },
