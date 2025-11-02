@@ -657,16 +657,71 @@ def send_reminder_email(
         # Format date and time
         date_str, time_str = format_date_time(appointment_datetime, language)
         
-        # Prepare email content
+        # Prepare plain text email content (fallback)
         subject = template['reminder_subject']
-        body = template['reminder_body'].format(
+        plain_body = template['reminder_body'].format(
             client_name=client_name,
             service_name=service_name,
             appointment_date=date_str,
             appointment_time=time_str
         )
         
-        return send_email(client_email, subject, body)
+        # Create HTML content for reminder
+        html_content = f"""
+        <p style="font-size: 20px; color: #d4af37; margin-bottom: 25px; text-align: center;">
+            <strong>⏰ Podsetnik: Imate zakazani tretman danas!</strong>
+        </p>
+        
+        <div class="details-box">
+            <h2 style="color: #d4af37; margin: 0 0 20px 0; font-size: 22px; text-align: center;">
+                📋 Detalji rezervacije
+            </h2>
+            
+            <div class="detail-row">
+                <div class="detail-icon">👤</div>
+                <div class="detail-label">Ime:</div>
+                <div class="detail-value">{client_name}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">💆</div>
+                <div class="detail-label">Tretman:</div>
+                <div class="detail-value">{service_name}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">📅</div>
+                <div class="detail-label">Datum:</div>
+                <div class="detail-value">{date_str}</div>
+            </div>
+            
+            <div class="detail-row">
+                <div class="detail-icon">🕐</div>
+                <div class="detail-label">Vreme:</div>
+                <div class="detail-value">{time_str}</div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>📍 Lokacija</h3>
+            <p style="margin: 10px 0; font-size: 16px;">
+                <strong>Abebe Bikile 10A, Beograd</strong>
+            </p>
+        </div>
+        
+        <p style="text-align: center; background: linear-gradient(135deg, #2d2416 0%, #1f1810 100%); padding: 20px; border-radius: 8px; border: 2px solid #d4af37; margin: 25px 0;">
+            <span style="font-size: 18px; color: #d4af37;">⏰</span><br>
+            <strong style="color: #ffffff; font-size: 17px;">Molimo vas da stignete 10 minuta pre zakazanog termina</strong>
+        </p>
+        
+        <p style="text-align: center; color: #d4af37; font-size: 18px; margin-top: 30px;">
+            <strong>Vidimo se uskoro! 🌸</strong>
+        </p>
+        """
+        
+        html_body = create_html_email_template(client_name, html_content, language)
+        
+        return send_email(client_email, subject, plain_body, html_body)
         
     except Exception as e:
         logger.error(f"Error sending reminder email: {e}")
