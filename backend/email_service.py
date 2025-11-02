@@ -557,27 +557,18 @@ def send_confirmation_email(
         # Format date and time
         date_str, time_str = format_date_time(appointment_datetime, language)
         
-        # Prepare plain text email content (fallback)
+        # SHORT plain text for email preview only
         subject = template['confirmation_subject']
-        plain_body = template['confirmation_body'].format(
-            client_name=client_name,
-            client_email=client_email,
-            client_phone=client_phone,
-            service_name=service_name,
-            appointment_date=date_str,
-            appointment_time=time_str
-        )
+        plain_body = f"Potvrda rezervacije za {client_name} - {service_name}, {date_str} u {time_str}. Vidite detalje u emailu."
         
         # Create HTML content
         html_content = f"""
-        <p style="font-size: 18px; color: #d4af37; margin-bottom: 20px;">
-            <strong>Uspešno ste zakazali vaš tretman u Bua Luang Thai Spa!</strong>
+        <p style="font-size: 15px; color: #d4af37; margin-bottom: 15px;">
+            <strong>Uspešno ste zakazali vaš tretman!</strong>
         </p>
         
         <div class="details-box">
-            <h2 style="color: #d4af37; margin: 0 0 20px 0; font-size: 22px; text-align: center;">
-                📋 Detalji rezervacije
-            </h2>
+            <div class="details-title">📋 Detalji rezervacije</div>
             
             <div class="detail-row">
                 <div class="detail-icon">👤</div>
@@ -617,15 +608,15 @@ def send_confirmation_email(
         </div>
         
         <div class="info-box">
-            <h3>ℹ️ VAŽNE INFORMACIJE</h3>
+            <h3>ℹ️ Važne informacije</h3>
             <ul>
-                <li>Molimo vas da stignete <strong>10 minuta pre</strong> zakazanog termina</li>
-                <li>Kasnjenje duže od 15 minuta može rezultovati skraćivanjem tretmana</li>
-                <li>Za otkazivanje molimo kontaktirajte nas najmanje <strong>4 sata unapred</strong></li>
+                <li>Stignite 10 minuta pre termina</li>
+                <li>Kasnjenje preko 15 minuta može skratiti tretman</li>
+                <li>Otkazivanje najmanje 4 sata unapred</li>
             </ul>
         </div>
         
-        <p style="text-align: center; color: #d4af37; font-size: 18px; margin-top: 30px;">
+        <p style="text-align: center; color: #d4af37; font-size: 14px; margin-top: 20px;">
             <strong>Radujemo se vašoj poseti! 🌸</strong>
         </p>
         """
