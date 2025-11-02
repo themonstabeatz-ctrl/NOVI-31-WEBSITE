@@ -450,12 +450,25 @@ const Contact = () => {
                       name="serviceDropdown"
                       value={formData.service || ''}
                       onChange={(e) => {
-                        const selectedService = e.target.value;
-                        setFormData(prev => ({
-                          ...prev,
-                          service: selectedService,
-                          message: selectedService ? `Izabrali ste ${selectedService}` : ''
-                        }));
+                        const selectedValue = e.target.value; // This is "translatedName - duration - price"
+                        if (selectedValue) {
+                          // Extract the booking system name
+                          const bookingName = getBookingSystemName(selectedValue, translate);
+                          const duration = selectedValue.match(/- (\d+) min/)?.[1] || '60';
+                          const fullServiceName = `${bookingName} - ${duration} min`;
+                          
+                          setFormData(prev => ({
+                            ...prev,
+                            service: fullServiceName, // This will be used for booking
+                            message: selectedValue ? `${translate('wantToBook')} ${selectedValue}` : ''
+                          }));
+                        } else {
+                          setFormData(prev => ({
+                            ...prev,
+                            service: '',
+                            message: ''
+                          }));
+                        }
                       }}
                       style={{
                         width: '100%',
