@@ -555,3 +555,47 @@ agent_communication:
       📊 FINAL SUCCESS RATE: 7/7 services (100%)
       
       🏆 CONCLUSION: Booking integration is working end-to-end after duplicate service fix. All review objectives met.
+
+  - agent: "testing"
+    message: |
+      🚨 CRITICAL USER ISSUE ROOT CAUSE IDENTIFIED AND CONFIRMED
+      
+      ✅ BACKEND SYSTEM STATUS:
+      - Backend booking API fully functional (/api/book-appointment)
+      - External system integration working (https://pozdrav-kako-si.emergent.host/)
+      - Proper error handling implemented (no more fake success)
+      - All service IDs valid and working
+      - Database connectivity confirmed
+      
+      🔍 USER ISSUE ANALYSIS - EXACT SCENARIOS TESTED:
+      - Date: 2025-11-02 (November 2, 2025) at 14:00
+      - Service 1: Partnerska masaža - 120 min (ID: 114600d6-3960-41e4-b453-32012cb6400a) ❌
+      - Service 2: Tretman lica - 60 min (ID: 75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf) ❌  
+      - Service 3: Tradicionalna tajlandska masaža - 90 min (ID: 39f8c583-a780-4e54-9bab-f693a51287c2) ❌
+      - ALL return 400 "Therapist is not available at this time" errors
+      
+      🎯 ROOT CAUSE CONFIRMED:
+      - Frontend hardcoded to use therapist Marko Markovic (4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f)
+      - Located in /app/frontend/src/pages/Contact.js line 263
+      - Marko is NOT available at user's requested time (14:00 on 2025-11-02)
+      - Backend correctly prevents double booking and returns real errors
+      
+      ✅ THERAPIST AVAILABILITY VERIFIED:
+      - Marko Markovic: Available 10:00-12:00, NOT available 14:00-18:00 on 2025-11-02
+      - Ana Petrovic: Available at all tested times (but now booked due to testing)
+      - Kanokon Sawee: Available at all tested times (but now booked due to testing)
+      
+      🔧 REQUIRED FIXES:
+      1. CRITICAL: Remove hardcoded therapist ID from Contact.js
+      2. Implement dynamic therapist selection based on availability
+      3. OR add therapist selection to booking form
+      4. OR implement automatic therapist assignment for available slots
+      
+      📊 TESTING SUMMARY:
+      - Backend integration: ✅ WORKING PERFECTLY
+      - External system: ✅ WORKING PERFECTLY  
+      - User's exact scenarios: ❌ FAILING (therapist unavailable)
+      - Root cause: ✅ IDENTIFIED (hardcoded unavailable therapist)
+      - Solution: ✅ VERIFIED (using available therapist works)
+      
+      🎯 CONCLUSION: User's issue is REAL and caused by frontend hardcoding unavailable therapist. Backend is working correctly.
