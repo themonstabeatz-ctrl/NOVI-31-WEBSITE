@@ -437,7 +437,7 @@ const Contact = () => {
                 </div>
                 
                 {/* Service Dropdown - if no service selected from card */}
-                {!serviceName && (
+                {!new URLSearchParams(location.search).get('service') && (
                   <div className="form-group">
                     <Label htmlFor="serviceDropdown">
                       <span style={{ fontSize: '1rem', fontWeight: '600' }}>
