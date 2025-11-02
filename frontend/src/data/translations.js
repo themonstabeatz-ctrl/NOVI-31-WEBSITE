@@ -971,6 +971,40 @@ export const translations = {
     wantToBook: "ฉันต้องการจอง:",
     clearDate: "ล้าง",
     
+    // Calendar & Time Picker
+    calendarDelete: "ลบ",
+    calendarCancel: "ยกเลิก",
+    calendarConfirm: "ตั้งค่า",
+    timeDelete: "ลบ",
+    timeCancel: "ยกเลิก",
+    timeConfirm: "ตั้งค่า",
+    hours: "ชั่วโมง",
+    minutes: "นาที",
+    selectedTime: "เวลาที่เลือก",
+    
+    // Day names
+    daySun: "อา.",
+    dayMon: "จ.",
+    dayTue: "อ.",
+    dayWed: "พ.",
+    dayThu: "พฤ.",
+    dayFri: "ศ.",
+    daySat: "ส.",
+    
+    // Month names
+    monthJan: "มกราคม",
+    monthFeb: "กุมภาพันธ์",
+    monthMar: "มีนาคม",
+    monthApr: "เมษายน",
+    monthMay: "พฤษภาคม",
+    monthJun: "มิถุนายน",
+    monthJul: "กรกฎาคม",
+    monthAug: "สิงหาคม",
+    monthSep: "กันยายน",
+    monthOct: "ตุลาคม",
+    monthNov: "พฤศจิกายน",
+    monthDec: "ธันวาคม",
+    
     // Success messages
     successBooking: "การจองทรีตเมนต์ของคุณสำเร็จแล้ว",
     successVoucher: "คุณซื้อบัตรกำนัลของคุณสำเร็จแล้ว",
