@@ -491,10 +491,12 @@ const Contact = () => {
                           durations.map(dur => {
                             const serviceName = translate(service.key);
                             const displayValue = `${serviceName} - ${dur.minutes} min - ${dur.price.toLocaleString()} RSD`;
+                            const dataValue = `${service.key}|${dur.minutes}`; // key|duration
                             return (
                               <option 
                                 key={`${service.key}-${dur.minutes}`}
-                                value={displayValue}
+                                value={dataValue}
+                                data-display={displayValue}
                                 style={{ background: '#1a1a1a', color: '#d4af37' }}
                               >
                                 {displayValue}
