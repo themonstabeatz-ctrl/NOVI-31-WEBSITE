@@ -530,24 +530,34 @@ class BookingAPITester:
                 )
                 all_passed = False
         
-        # Detailed summary
+        # CRITICAL SUMMARY for user issue
         massage_success = len([b for b in successful_bookings if b["service_type"] == "massage"])
         spa_success = len([b for b in successful_bookings if b["service_type"] == "spa"])
         total_success = len(successful_bookings)
         total_tests = len(test_services)
         
+        # Check if any of the critical services worked
+        partnerska_masaza_worked = any(b["service"] == "Partnerska masaža - 120 min" for b in successful_bookings)
+        tretman_lica_worked = any(b["service"] == "Tretman lica - 60 min" for b in successful_bookings)
+        tradicionalna_worked = any(b["service"] == "Tradicionalna tajlandska masaža - 90 min" for b in successful_bookings)
+        
         self.log_result(
-            "🎯 REVIEW TEST SUMMARY",
-            total_success > 0,
-            f"SUCCESS RATE: {total_success}/{total_tests} services | Massage: {massage_success}/4 | Spa: {spa_success}/3",
+            "🚨 CRITICAL USER ISSUE TEST SUMMARY",
+            total_success == total_tests,  # Only pass if ALL work
+            f"USER DATE/TIME TEST: {total_success}/{total_tests} services work on 2025-11-02 at 14:00",
             {
+                "test_date": "2025-11-02",
+                "test_time": "14:00",
                 "total_success": total_success,
                 "total_tests": total_tests,
                 "massage_success": massage_success,
                 "spa_success": spa_success,
                 "successful_bookings": successful_bookings,
                 "failed_bookings": failed_bookings,
-                "primary_test_passed": any(b["service"] == "Aroma terapija - 60 min" for b in successful_bookings)
+                "partnerska_masaza_worked": partnerska_masaza_worked,
+                "tretman_lica_worked": tretman_lica_worked,
+                "tradicionalna_worked": tradicionalna_worked,
+                "user_issue_resolved": total_success == total_tests and len(failed_bookings) == 0
             }
         )
         
