@@ -341,9 +341,9 @@ class BookingAPITester:
                 "name": "Partnerska masaža - 120 min", 
                 "id": "114600d6-3960-41e4-b453-32012cb6400a", 
                 "type": "massage",
-                "client_first_name": "Test",
-                "client_last_name": "Masaza", 
-                "client_email": "test.masaza@example.com",
+                "client_first_name": "Denis",
+                "client_last_name": "Test", 
+                "client_email": "denis.test@example.com",
                 "client_phone": "+381621111111"
             },
             
@@ -352,9 +352,9 @@ class BookingAPITester:
                 "name": "Tretman lica - 60 min", 
                 "id": "75c1c431-b9aa-4ed6-acc5-b2498eb8ccaf", 
                 "type": "spa",
-                "client_first_name": "Test",
-                "client_last_name": "Spa",
-                "client_email": "test.spa@example.com", 
+                "client_first_name": "Andrijana",
+                "client_last_name": "Test",
+                "client_email": "andrijana.test@example.com", 
                 "client_phone": "+381622222222"
             },
             
@@ -363,9 +363,9 @@ class BookingAPITester:
                 "name": "Tradicionalna tajlandska masaža - 90 min", 
                 "id": "39f8c583-a780-4e54-9bab-f693a51287c2", 
                 "type": "massage",
-                "client_first_name": "Test",
-                "client_last_name": "Booking",
-                "client_email": "test.booking@example.com",
+                "client_first_name": "Web",
+                "client_last_name": "Test",
+                "client_email": "web.test@example.com",
                 "client_phone": "+381623333333"
             }
         ]
@@ -373,7 +373,7 @@ class BookingAPITester:
         # EXACT date/time from user report: 02.11.2025 at 14:00
         test_date = "2025-11-02"
         test_time = "2025-11-02T14:00:00"
-        therapist_id = "4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f"  # Marko Markovic
+        therapist_id = "1490364f-31c8-49a6-a370-2e19fed34e81"  # Generic therapist (allows duplicates)
         
         all_passed = True
         successful_bookings = []
