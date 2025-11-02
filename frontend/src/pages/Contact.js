@@ -10,7 +10,7 @@ import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide
 import { useLocation } from "react-router-dom";
 import CustomCalendarModal from "../components/CustomCalendarModal";
 import CustomTimePickerModal from "../components/CustomTimePickerModal";
-import { massageServices, spaServices, durations, getBookingSystemName } from "../data/servicesList";
+import { massageServices, spaServices, durations, bookingSystemNames } from "../data/servicesList";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Contact = () => {
