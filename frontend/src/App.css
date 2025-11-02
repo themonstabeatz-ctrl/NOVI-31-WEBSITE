@@ -5744,7 +5744,7 @@ html {
 
 .massage-container .popular-badge {
   position: absolute;
-  top: 1rem;
+  top: 3.5rem;
   right: 1rem;
   background: linear-gradient(135deg, var(--spa-gold), #FFA500);
   color: var(--spa-dark);
