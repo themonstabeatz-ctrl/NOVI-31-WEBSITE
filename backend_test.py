@@ -585,9 +585,12 @@ class BookingAPITester:
         print()
         print(f"Tests Passed: {passed}/{total}")
         
-        if backend_healthy and proxy_working and service_mapping_working and comprehensive_test_working:
+        if backend_healthy and proxy_working and service_mapping_working and review_test_working:
             print("🎉 ALL BOOKING API TESTS PASSED - Integration working correctly!")
-        elif backend_healthy and proxy_working and (service_mapping_working or comprehensive_test_working):
+            print("✅ DUPLICATE SERVICE ISSUE RESOLVED - All services booking successfully")
+        elif backend_healthy and proxy_working and review_test_working:
+            print("✅ REVIEW TEST PASSED - Booking integration working for specified services")
+        elif backend_healthy and proxy_working and (service_mapping_working or review_test_working):
             print("✅ BOOKING INTEGRATION WORKING - Some service IDs tested successfully")
         elif backend_healthy and not external_api_working and not proxy_working:
             print("⚠️  Backend proxy is working but external booking API is unavailable")
