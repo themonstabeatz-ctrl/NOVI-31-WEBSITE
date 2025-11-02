@@ -383,25 +383,36 @@ class BookingAPITester:
                     
                     if response.status_code in [200, 201]:
                         response_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
+                        appointment_id = response_data.get('id', 'N/A') if response_data else 'N/A'
+                        
                         successful_bookings.append({
                             "service": service["name"],
                             "service_id": service["id"],
                             "service_type": service["type"],
                             "response": response_data,
-                            "appointment_id": response_data.get('id', 'N/A') if response_data else 'N/A'
+                            "appointment_id": appointment_id,
+                            "client": f"{service['client_first_name']} {service['client_last_name']}",
+                            "client_email": service["client_email"]
                         })
+                        
+                        # CRITICAL: Verify booking appears in external system
+                        external_verification = await self.verify_booking_in_external_system(appointment_id)
+                        
                         self.log_result(
-                            f"Review Test - {service['name']} ({service['type']})",
+                            f"🚨 CRITICAL TEST - {service['name']} ({service['type']})",
                             True,
-                            f"✅ Successfully booked {service['name']} - Appointment ID: {response_data.get('id', 'N/A') if response_data else 'N/A'}",
+                            f"✅ BOOKING SUCCESSFUL - ID: {appointment_id} | External verification: {external_verification}",
                             {
                                 "service_name": service['name'],
                                 "service_id": service["id"],
                                 "service_type": service["type"],
                                 "status_code": response.status_code,
-                                "appointment_id": response_data.get('id', 'N/A') if response_data else 'N/A',
-                                "client": "Ana Petrovic",
-                                "time": booking_data["start_time"]
+                                "appointment_id": appointment_id,
+                                "client": f"{service['client_first_name']} {service['client_last_name']}",
+                                "client_email": service["client_email"],
+                                "date_time": test_time,
+                                "external_verification": external_verification,
+                                "external_system_url": "https://pozdrav-kako-si.emergent.host/"
                             }
                         )
                     elif response.status_code == 400:
