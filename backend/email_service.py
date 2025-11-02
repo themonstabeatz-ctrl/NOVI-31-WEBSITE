@@ -468,11 +468,11 @@ def create_html_email_template(
             }}
             .footer {{
                 background: #1a1506;
-                padding: 10px;
+                padding: 8px;
                 text-align: center;
                 border-top: 2px solid #d4af37;
                 color: #d4af37;
-                font-size: 11px;
+                font-size: 10px;
             }}
             @media only screen and (max-width: 500px) {{
                 .email-container {{
