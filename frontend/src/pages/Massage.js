@@ -305,7 +305,8 @@ const Massage = () => {
       description: translate("hotStoneDesc"),
       benefits: [translate("hotStoneBenefit1"), translate("hotStoneBenefit2"), translate("hotStoneBenefit3")],
       popular: false,
-      hasDurationOptions: true
+      hasDurationOptions: true,
+      customDurations: ['60', '90'] // Only 60 and 90 min
     },
     {
       key: 'royal',
