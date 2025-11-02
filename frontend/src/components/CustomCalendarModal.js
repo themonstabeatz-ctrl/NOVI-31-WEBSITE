@@ -219,7 +219,7 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
                 type="button"
               >
                 <Trash2 size={16} />
-                Obriši
+                {translate('calendarDelete')}
               </button>
               <button
                 className="calendar-btn calendar-btn-cancel"
@@ -227,7 +227,7 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
                 type="button"
               >
                 <X size={16} />
-                Otkaži
+                {translate('calendarCancel')}
               </button>
               <button
                 className="calendar-btn calendar-btn-confirm"
@@ -236,7 +236,7 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
                 type="button"
               >
                 <Check size={16} />
-                Postavi
+                {translate('calendarConfirm')}
               </button>
             </div>
           </div>
