@@ -91,13 +91,14 @@ async def get_status_checks():
 async def book_appointment(booking: AppointmentBooking):
     """
     Proxy endpoint to forward booking requests to spa booking system
-    Allow all bookings - owner will contact clients to reschedule if needed
+    Automatically finds available therapist if the requested one is not available
     """
     try:
         # Log the booking data for debugging
         logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}")
         
         async with httpx.AsyncClient(timeout=30.0) as client:
+            # Try booking with original therapist
             response = await client.post(
                 'https://pozdrav-kako-si.emergent.host/api/appointments',
                 json=booking.model_dump(),
@@ -106,9 +107,46 @@ async def book_appointment(booking: AppointmentBooking):
             
             # If booking succeeds, return the response
             if response.status_code in [200, 201]:
+                logger.info(f"✅ Booking successful with therapist: {booking.therapist_id}")
                 return response.json()
             
-            # For ANY error, log it and raise proper exception
+            # If therapist not available (400 error), try to find another available therapist
+            if response.status_code == 400:
+                error_text = response.text.lower()
+                if 'not available' in error_text or 'unavailable' in error_text:
+                    logger.info(f"⚠️ Therapist {booking.therapist_id} not available, searching for alternatives...")
+                    
+                    # Get all active therapists
+                    therapists_response = await client.get('https://pozdrav-kako-si.emergent.host/api/therapists')
+                    if therapists_response.status_code == 200:
+                        therapists = therapists_response.json()
+                        active_therapists = [t for t in therapists if t.get('is_active', True)]
+                        
+                        # Try each therapist until one is available
+                        for therapist in active_therapists:
+                            if therapist['id'] == booking.therapist_id:
+                                continue  # Skip the one we already tried
+                            
+                            # Try booking with this therapist
+                            booking.therapist_id = therapist['id']
+                            retry_response = await client.post(
+                                'https://pozdrav-kako-si.emergent.host/api/appointments',
+                                json=booking.model_dump(),
+                                headers={'Content-Type': 'application/json'}
+                            )
+                            
+                            if retry_response.status_code in [200, 201]:
+                                logger.info(f"✅ Booking successful with alternative therapist: {therapist['name']} ({therapist['id']})")
+                                return retry_response.json()
+                        
+                        # If no therapist available
+                        logger.error(f"❌ No therapists available for requested time: {booking.start_time}")
+                        raise HTTPException(
+                            status_code=400,
+                            detail="Nema slobodnih terapeuta u željeno vreme. Molimo izaberite drugi termin."
+                        )
+            
+            # For other errors, log and raise
             logger.error(f"Booking API error: {response.status_code} - {response.text}")
             raise HTTPException(
                 status_code=response.status_code,
