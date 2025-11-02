@@ -49,7 +49,7 @@ export const translations = {
     oilBenefit2: "Smiruje nervni sistem",
     oilBenefit3: "Poboljšava san",
     aromaTherapy: "Aroma terapija",
-    hotStone: "Masaža vrućim kamenjem",
+    hotStone: "Hot oil",
     hotStoneDesc: "Terapeutska masaža sa vrućim vulkanskim kamenjem koji otpušta duboke mišićne napetosti.",
     hotStoneBenefit1: "Poboljšava cirkulaciju",
     hotStoneBenefit2: "Smanjuje bolove",
