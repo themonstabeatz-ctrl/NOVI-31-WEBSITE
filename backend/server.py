@@ -91,30 +91,67 @@ async def get_status_checks():
 async def book_appointment(booking: AppointmentBooking):
     """
     Proxy endpoint to forward booking requests to spa booking system
-    Uses generic therapist for all web bookings - owner assigns real therapist in salon
+    Automatically rotates through web slot therapists to allow multiple simultaneous bookings
     """
     try:
         # Log the booking data for debugging
         logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}")
         
         async with httpx.AsyncClient(timeout=30.0) as client:
-            response = await client.post(
-                'https://pozdrav-kako-si.emergent.host/api/appointments',
-                json=booking.model_dump(),
-                headers={'Content-Type': 'application/json'}
-            )
+            # Get all therapists and filter for "Web Slot" therapists
+            therapists_response = await client.get('https://pozdrav-kako-si.emergent.host/api/therapists')
             
-            # If booking succeeds, return the response
-            if response.status_code in [200, 201]:
-                logger.info(f"✅ Booking successful")
-                return response.json()
+            if therapists_response.status_code != 200:
+                logger.error(f"Failed to get therapists: {therapists_response.status_code}")
+                raise HTTPException(status_code=503, detail="Cannot access therapist list")
             
-            # For ANY error, log it and raise proper exception
-            logger.error(f"Booking API error: {response.status_code} - {response.text}")
+            therapists = therapists_response.json()
+            web_slot_therapists = [t for t in therapists if t.get('name', '').startswith('Web Slot') and t.get('is_active', True)]
+            
+            if not web_slot_therapists:
+                logger.error("No Web Slot therapists found")
+                raise HTTPException(status_code=500, detail="Web booking system not configured")
+            
+            logger.info(f"Found {len(web_slot_therapists)} Web Slot therapists")
+            
+            # Try each Web Slot therapist until one is available
+            for therapist in web_slot_therapists:
+                booking.therapist_id = therapist['id']
+                
+                response = await client.post(
+                    'https://pozdrav-kako-si.emergent.host/api/appointments',
+                    json=booking.model_dump(),
+                    headers={'Content-Type': 'application/json'}
+                )
+                
+                # If booking succeeds, return the response
+                if response.status_code in [200, 201]:
+                    logger.info(f"✅ Booking successful with {therapist['name']} (ID: {therapist['id']})")
+                    return response.json()
+                
+                # If this therapist is not available, try the next one
+                if response.status_code == 400:
+                    error_text = response.text.lower()
+                    if 'not available' in error_text or 'unavailable' in error_text:
+                        logger.info(f"⚠️ {therapist['name']} not available, trying next...")
+                        continue
+                
+                # For other errors, log and continue to next therapist
+                logger.warning(f"Error with {therapist['name']}: {response.status_code} - {response.text}")
+            
+            # If no therapist is available
+            logger.error(f"❌ All Web Slot therapists busy for {booking.start_time}")
             raise HTTPException(
-                status_code=response.status_code,
-                detail=f"Failed to create booking: {response.text}"
+                status_code=400,
+                detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
             )
+            
+    except httpx.RequestError as e:
+        logger.error(f"Booking API request error: {str(e)}")
+        raise HTTPException(
+            status_code=503,
+            detail="Booking service unavailable"
+        )
             
     except httpx.RequestError as e:
         logger.error(f"Booking API request error: {str(e)}")
