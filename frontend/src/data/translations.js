@@ -742,6 +742,18 @@ export const translations = {
     coupleBenefit3: "Устраняет стресс и тревогу через аромат",
     coupleBenefit4: "Помогает в детоксикации мышечной ткани",
     
+    // New Massage Services
+    sportsMassage: "Массаж для пар",
+    sportsMassageDesc: "",
+    sportsBenefit1: "",
+    sportsBenefit2: "",
+    sportsBenefit3: "",
+    selectFirstMassage: "Выберите первый массаж",
+    selectSecondMassage: "Выберите еще один массаж по вашему желанию",
+    cancel: "Отменить",
+    selectedMassages: "Выбранные массажи:",
+    totalPrice: "Общая цена (со скидкой 15%):",
+    
     // Massage CTA Section
     massageCtaTitle: "Посетите место, где напряжение исчезает",
     massageCtaSubtitle: "Свяжитесь с нами и забронируйте ваш массаж сегодня",
