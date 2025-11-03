@@ -425,8 +425,8 @@ const CouplesMassageCard = ({
                             style={{
                               padding: '0.5rem',
                               cursor: 'pointer',
-                              backgroundColor: selected ? 'rgba(144, 238, 144, 0.2)' : '#2d4a2b',
-                              color: '#90ee90',
+                              backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
+                              color: '#d4af37',
                               fontSize: '0.85rem',
                               display: 'flex',
                               alignItems: 'center',
@@ -434,10 +434,10 @@ const CouplesMassageCard = ({
                               borderBottom: '1px solid #333',
                               fontWeight: selected ? 'bold' : 'normal'
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(144, 238, 144, 0.15)'}
-                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(144, 238, 144, 0.2)' : '#2d4a2b'}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
                           >
-                            {selected && <Check className="w-4 h-4" style={{ color: '#90ee90' }} />}
+                            {selected && <Check className="w-4 h-4" style={{ color: '#d4af37' }} />}
                             ★ {massage.name} - 60 min
                           </div>
                         );
