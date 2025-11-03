@@ -13,6 +13,7 @@ const CouplesMassageCard = ({
   calculateCouplesPrice
 }) => {
   
+  // ALL available massages (excluding SPA) with CORRECT durations
   const availableMassages = [
     { key: 'traditional', name: translate("traditionalMassage") || 'Tradicionalna tajlandska masaža', basePrice: 4400, durations: ['60', '90', '120'] },
     { key: 'aroma', name: translate("aromaTherapy") || 'Aroma terapija', basePrice: 4400, durations: ['60', '90', '120'] },
@@ -30,10 +31,11 @@ const CouplesMassageCard = ({
     { key: 'lymphatic', name: translate("lymphaticDrainage") || 'Limfna drenаža', basePrice: 3000, durations: ['60', '90', '120'] }
   ];
 
-  const getFilteredMassages = () => {
-    const duration = couplesSelections.duration;
+  const getFilteredMassages = (specificDuration = null) => {
+    const duration = specificDuration || couplesSelections.duration;
     
     if (duration === '120') {
+      // For 120 min mode, show ALL massages (60 and 120)
       return availableMassages.filter(m => 
         m.durations.includes('60') || m.durations.includes('120')
       );
@@ -45,38 +47,65 @@ const CouplesMassageCard = ({
     return [];
   };
 
-  const handleMassageSelect = (e, person) => {
+  // Get only 60 min massages for second dropdown in 120 min mode
+  const get60MinMassages = () => {
+    return availableMassages.filter(m => m.durations.includes('60'));
+  };
+
+  const handleMassageSelect = (e, person, slot) => {
     const value = e.target.value;
     if (!value) return;
 
     const [key, name, price, dur] = value.split('|');
+    const massageData = { key, name, duration: dur, price: parseFloat(price) };
     
-    if (person === 1) {
-      setCouplesSelections(prev => ({
-        ...prev,
-        massage1: { key, name, duration: dur, price: parseFloat(price) }
-      }));
-    } else if (person === 2) {
-      setCouplesSelections(prev => ({
-        ...prev,
-        massage2: { key, name, duration: dur, price: parseFloat(price) }
-      }));
+    if (person === 1 && slot === 1) {
+      setCouplesSelections(prev => ({ ...prev, person1Massage1: massageData }));
+    } else if (person === 1 && slot === 2) {
+      setCouplesSelections(prev => ({ ...prev, person1Massage2: massageData }));
+    } else if (person === 2 && slot === 1) {
+      setCouplesSelections(prev => ({ ...prev, person2Massage1: massageData }));
+    } else if (person === 2 && slot === 2) {
+      setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
     }
   };
 
-  const isSelectionComplete = couplesSelections.massage1 && couplesSelections.massage2;
+  const cancelMassage = (person, slot) => {
+    if (person === 1 && slot === 1) {
+      setCouplesSelections(prev => ({ ...prev, person1Massage1: null }));
+    } else if (person === 1 && slot === 2) {
+      setCouplesSelections(prev => ({ ...prev, person1Massage2: null }));
+    } else if (person === 2 && slot === 1) {
+      setCouplesSelections(prev => ({ ...prev, person2Massage1: null }));
+    } else if (person === 2 && slot === 2) {
+      setCouplesSelections(prev => ({ ...prev, person2Massage2: null }));
+    }
+  };
+
+  // Check if selection is complete
+  const isSelectionComplete = () => {
+    if (couplesSelections.duration === '120') {
+      // For 120 min: both persons need at least first massage
+      return couplesSelections.person1Massage1 && couplesSelections.person2Massage1;
+    } else {
+      // For 60 or 90 min: both persons need exactly one massage
+      return couplesSelections.person1Massage1 && couplesSelections.person2Massage1;
+    }
+  };
   
-  // Check if person selected 60 min massage in 120 min mode
-  const person1Selected60In120 = couplesSelections.duration === '120' && 
-    couplesSelections.massage1 && 
-    couplesSelections.massage1.duration === '60';
+  // Check if person selected 60 min in first slot (120 min mode)
+  const person1NeedsSecond = couplesSelections.duration === '120' && 
+    couplesSelections.person1Massage1 && 
+    couplesSelections.person1Massage1.duration === '60';
     
-  const person2Selected60In120 = couplesSelections.duration === '120' && 
-    couplesSelections.massage2 && 
-    couplesSelections.massage2.duration === '60';
+  const person2NeedsSecond = couplesSelections.duration === '120' && 
+    couplesSelections.person2Massage1 && 
+    couplesSelections.person2Massage1.duration === '60';
+
+  const is120Mode = couplesSelections.duration === '120';
 
   return (
-    <Card className="massage-card" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column' }}>
+    <Card className="massage-card" style={{ position: 'relative', minHeight: is120Mode ? '680px' : '540px', display: 'flex', flexDirection: 'column' }}>
       <CardHeader>
         <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
         
@@ -110,220 +139,344 @@ const CouplesMassageCard = ({
       </CardHeader>
       
       <CardContent style={{ paddingTop: '0.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* First person dropdown */}
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label style={{ 
-            display: 'block', 
-            color: '#d4af37', 
-            marginBottom: '0.5rem',
-            fontSize: '1rem',
-            fontWeight: '700'
-          }}>
-            Osoba 1 - Izaberite masažu
-          </label>
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <select
-              value={couplesSelections.massage1 ? `${couplesSelections.massage1.key}|${couplesSelections.massage1.name}|${couplesSelections.massage1.price}|${couplesSelections.massage1.duration}` : ''}
-              onChange={(e) => handleMassageSelect(e, 1)}
-              style={{
-                width: 'calc(100% - 90px)',
-                padding: '0.5rem',
-                backgroundColor: '#1a1a1a',
-                color: '#d4af37',
-                border: '1px solid #444',
-                borderRadius: '8px',
-                fontSize: '0.875rem',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="">-- Izaberite masažu --</option>
-              {getFilteredMassages().map(massage => {
-                if (couplesSelections.duration === '120') {
-                  if (massage.durations.includes('120')) {
+        {/* PERSON 1 SECTION */}
+        <div style={{ marginBottom: '1rem', padding: '0.75rem', backgroundColor: 'rgba(212, 175, 55, 0.05)', borderRadius: '8px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+          <h4 style={{ color: '#d4af37', fontWeight: 'bold', marginBottom: '0.75rem', fontSize: '1.05rem' }}>Osoba 1</h4>
+          
+          {/* First dropdown for Person 1 */}
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ 
+              display: 'block', 
+              color: '#d4af37', 
+              marginBottom: '0.5rem',
+              fontSize: '0.9rem',
+              fontWeight: '600'
+            }}>
+              {is120Mode ? 'Prva masaža' : 'Izaberite masažu'}
+            </label>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <select
+                value={couplesSelections.person1Massage1 ? `${couplesSelections.person1Massage1.key}|${couplesSelections.person1Massage1.name}|${couplesSelections.person1Massage1.price}|${couplesSelections.person1Massage1.duration}` : ''}
+                onChange={(e) => handleMassageSelect(e, 1, 1)}
+                style={{
+                  width: 'calc(100% - 90px)',
+                  padding: '0.5rem',
+                  backgroundColor: '#1a1a1a',
+                  color: '#d4af37',
+                  border: '1px solid #444',
+                  borderRadius: '8px',
+                  fontSize: '0.85rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <option value="">-- Izaberite --</option>
+                {getFilteredMassages().map(massage => {
+                  if (is120Mode) {
+                    if (massage.durations.includes('120')) {
+                      return (
+                        <option key={`${massage.key}-120-p1s1`} value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}>
+                          {massage.name} - 120 min
+                        </option>
+                      );
+                    }
+                    if (massage.durations.includes('60')) {
+                      return (
+                        <option 
+                          key={`${massage.key}-60-p1s1`} 
+                          value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
+                          style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
+                        >
+                          ★ {massage.name} - 60 min
+                        </option>
+                      );
+                    }
+                  } else {
+                    const dur = couplesSelections.duration;
+                    if (!massage.durations.includes(dur)) return null;
                     return (
-                      <option 
-                        key={`${massage.key}-120-p1`} 
-                        value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
-                      >
-                        {massage.name} - 120 min
+                      <option key={`${massage.key}-${dur}-p1s1`} value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}>
+                        {massage.name} - {dur} min
                       </option>
                     );
                   }
-                  if (massage.durations.includes('60')) {
-                    return (
-                      <option 
-                        key={`${massage.key}-60-p1`} 
-                        value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
-                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
-                      >
-                        ★ {massage.name} - 60 min
-                      </option>
-                    );
-                  }
-                } else {
-                  const dur = couplesSelections.duration;
-                  if (!massage.durations.includes(dur)) return null;
-                  
-                  return (
-                    <option 
-                      key={`${massage.key}-${dur}-p1`} 
-                      value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}
-                    >
-                      {massage.name} - {dur} min
-                    </option>
-                  );
-                }
-                return null;
-              })}
-            </select>
+                  return null;
+                })}
+              </select>
+              
+              <button
+                onClick={() => cancelMassage(1, 1)}
+                disabled={!couplesSelections.person1Massage1}
+                style={{
+                  width: '80px',
+                  padding: '0.5rem',
+                  backgroundColor: couplesSelections.person1Massage1 ? '#d4af37' : '#444',
+                  color: '#1a1a1a',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: couplesSelections.person1Massage1 ? 'pointer' : 'not-allowed',
+                  fontSize: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.25rem',
+                  opacity: couplesSelections.person1Massage1 ? 1 : 0.5
+                }}
+              >
+                <X className="w-3 h-3" />
+                Otkaži
+              </button>
+            </div>
             
-            <button
-              onClick={() => setCouplesSelections(prev => ({ ...prev, massage1: null }))}
-              disabled={!couplesSelections.massage1}
-              style={{
-                width: '80px',
+            {/* Green message for 60 min selection */}
+            {person1NeedsSecond && (
+              <div style={{
+                marginTop: '0.5rem',
                 padding: '0.5rem',
-                backgroundColor: couplesSelections.massage1 ? '#d4af37' : '#444',
-                color: '#1a1a1a',
-                border: 'none',
+                backgroundColor: 'rgba(144, 238, 144, 0.15)',
+                border: '1px solid #90ee90',
                 borderRadius: '8px',
-                cursor: couplesSelections.massage1 ? 'pointer' : 'not-allowed',
-                fontSize: '0.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.25rem',
-                transition: 'all 0.3s ease',
-                opacity: couplesSelections.massage1 ? 1 : 0.5
-              }}
-            >
-              <X className="w-3 h-3" />
-              Otkaži
-            </button>
+                color: '#90ee90',
+                fontSize: '0.8rem',
+                fontWeight: '500'
+              }}>
+                ✓ Imate pravo da izaberete još jednu masažu od 60 minuta
+              </div>
+            )}
           </div>
           
-          {/* Green message box for 60 min selection in 120 min mode */}
-          {person1Selected60In120 && (
-            <div style={{
-              marginTop: '0.5rem',
-              padding: '0.5rem',
-              backgroundColor: 'rgba(144, 238, 144, 0.15)',
-              border: '1px solid #90ee90',
-              borderRadius: '8px',
-              color: '#90ee90',
-              fontSize: '0.85rem',
-              fontWeight: '500'
-            }}>
-              ✓ Imate pravo da izaberete još jednu masažu od 60 minuta
+          {/* Second dropdown for Person 1 (ONLY in 120 min mode and if first is 60 min) */}
+          {person1NeedsSecond && (
+            <div style={{ marginBottom: '0.5rem' }}>
+              <label style={{ 
+                display: 'block', 
+                color: '#d4af37', 
+                marginBottom: '0.5rem',
+                fontSize: '0.9rem',
+                fontWeight: '600'
+              }}>
+                Druga masaža (60 min)
+              </label>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <select
+                  value={couplesSelections.person1Massage2 ? `${couplesSelections.person1Massage2.key}|${couplesSelections.person1Massage2.name}|${couplesSelections.person1Massage2.price}|${couplesSelections.person1Massage2.duration}` : ''}
+                  onChange={(e) => handleMassageSelect(e, 1, 2)}
+                  style={{
+                    width: 'calc(100% - 90px)',
+                    padding: '0.5rem',
+                    backgroundColor: '#1a1a1a',
+                    color: '#d4af37',
+                    border: '1px solid #444',
+                    borderRadius: '8px',
+                    fontSize: '0.85rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="">-- Izaberite --</option>
+                  {get60MinMassages().map(massage => (
+                    <option 
+                      key={`${massage.key}-60-p1s2`} 
+                      value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
+                      style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
+                    >
+                      ★ {massage.name} - 60 min
+                    </option>
+                  ))}
+                </select>
+                
+                <button
+                  onClick={() => cancelMassage(1, 2)}
+                  disabled={!couplesSelections.person1Massage2}
+                  style={{
+                    width: '80px',
+                    padding: '0.5rem',
+                    backgroundColor: couplesSelections.person1Massage2 ? '#d4af37' : '#444',
+                    color: '#1a1a1a',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: couplesSelections.person1Massage2 ? 'pointer' : 'not-allowed',
+                    fontSize: '0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.25rem',
+                    opacity: couplesSelections.person1Massage2 ? 1 : 0.5
+                  }}
+                >
+                  <X className="w-3 h-3" />
+                  Otkaži
+                </button>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Second person dropdown */}
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label style={{ 
-            display: 'block', 
-            color: '#d4af37', 
-            marginBottom: '0.5rem',
-            fontSize: '1rem',
-            fontWeight: '700'
-          }}>
-            Osoba 2 - Izaberite masažu
-          </label>
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <select
-              value={couplesSelections.massage2 ? `${couplesSelections.massage2.key}|${couplesSelections.massage2.name}|${couplesSelections.massage2.price}|${couplesSelections.massage2.duration}` : ''}
-              onChange={(e) => handleMassageSelect(e, 2)}
-              style={{
-                width: 'calc(100% - 90px)',
-                padding: '0.5rem',
-                backgroundColor: '#1a1a1a',
-                color: '#d4af37',
-                border: '1px solid #444',
-                borderRadius: '8px',
-                fontSize: '0.875rem',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="">-- Izaberite masažu --</option>
-              {getFilteredMassages().map(massage => {
-                if (couplesSelections.duration === '120') {
-                  if (massage.durations.includes('120')) {
+        {/* PERSON 2 SECTION */}
+        <div style={{ marginBottom: '1rem', padding: '0.75rem', backgroundColor: 'rgba(212, 175, 55, 0.05)', borderRadius: '8px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+          <h4 style={{ color: '#d4af37', fontWeight: 'bold', marginBottom: '0.75rem', fontSize: '1.05rem' }}>Osoba 2</h4>
+          
+          {/* First dropdown for Person 2 */}
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ 
+              display: 'block', 
+              color: '#d4af37', 
+              marginBottom: '0.5rem',
+              fontSize: '0.9rem',
+              fontWeight: '600'
+            }}>
+              {is120Mode ? 'Prva masaža' : 'Izaberite masažu'}
+            </label>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <select
+                value={couplesSelections.person2Massage1 ? `${couplesSelections.person2Massage1.key}|${couplesSelections.person2Massage1.name}|${couplesSelections.person2Massage1.price}|${couplesSelections.person2Massage1.duration}` : ''}
+                onChange={(e) => handleMassageSelect(e, 2, 1)}
+                style={{
+                  width: 'calc(100% - 90px)',
+                  padding: '0.5rem',
+                  backgroundColor: '#1a1a1a',
+                  color: '#d4af37',
+                  border: '1px solid #444',
+                  borderRadius: '8px',
+                  fontSize: '0.85rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <option value="">-- Izaberite --</option>
+                {getFilteredMassages().map(massage => {
+                  if (is120Mode) {
+                    if (massage.durations.includes('120')) {
+                      return (
+                        <option key={`${massage.key}-120-p2s1`} value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}>
+                          {massage.name} - 120 min
+                        </option>
+                      );
+                    }
+                    if (massage.durations.includes('60')) {
+                      return (
+                        <option 
+                          key={`${massage.key}-60-p2s1`} 
+                          value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
+                          style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
+                        >
+                          ★ {massage.name} - 60 min
+                        </option>
+                      );
+                    }
+                  } else {
+                    const dur = couplesSelections.duration;
+                    if (!massage.durations.includes(dur)) return null;
                     return (
-                      <option 
-                        key={`${massage.key}-120-p2`} 
-                        value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
-                      >
-                        {massage.name} - 120 min
+                      <option key={`${massage.key}-${dur}-p2s1`} value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}>
+                        {massage.name} - {dur} min
                       </option>
                     );
                   }
-                  if (massage.durations.includes('60')) {
-                    return (
-                      <option 
-                        key={`${massage.key}-60-p2`} 
-                        value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
-                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
-                      >
-                        ★ {massage.name} - 60 min
-                      </option>
-                    );
-                  }
-                } else {
-                  const dur = couplesSelections.duration;
-                  if (!massage.durations.includes(dur)) return null;
-                  
-                  return (
-                    <option 
-                      key={`${massage.key}-${dur}-p2`} 
-                      value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}
-                    >
-                      {massage.name} - {dur} min
-                    </option>
-                  );
-                }
-                return null;
-              })}
-            </select>
+                  return null;
+                })}
+              </select>
+              
+              <button
+                onClick={() => cancelMassage(2, 1)}
+                disabled={!couplesSelections.person2Massage1}
+                style={{
+                  width: '80px',
+                  padding: '0.5rem',
+                  backgroundColor: couplesSelections.person2Massage1 ? '#d4af37' : '#444',
+                  color: '#1a1a1a',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: couplesSelections.person2Massage1 ? 'pointer' : 'not-allowed',
+                  fontSize: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.25rem',
+                  opacity: couplesSelections.person2Massage1 ? 1 : 0.5
+                }}
+              >
+                <X className="w-3 h-3" />
+                Otkaži
+              </button>
+            </div>
             
-            <button
-              onClick={() => setCouplesSelections(prev => ({ ...prev, massage2: null }))}
-              disabled={!couplesSelections.massage2}
-              style={{
-                width: '80px',
+            {/* Green message for 60 min selection */}
+            {person2NeedsSecond && (
+              <div style={{
+                marginTop: '0.5rem',
                 padding: '0.5rem',
-                backgroundColor: couplesSelections.massage2 ? '#d4af37' : '#444',
-                color: '#1a1a1a',
-                border: 'none',
+                backgroundColor: 'rgba(144, 238, 144, 0.15)',
+                border: '1px solid #90ee90',
                 borderRadius: '8px',
-                cursor: couplesSelections.massage2 ? 'pointer' : 'not-allowed',
-                fontSize: '0.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.25rem',
-                transition: 'all 0.3s ease',
-                opacity: couplesSelections.massage2 ? 1 : 0.5
-              }}
-            >
-              <X className="w-3 h-3" />
-              Otkaži
-            </button>
+                color: '#90ee90',
+                fontSize: '0.8rem',
+                fontWeight: '500'
+              }}>
+                ✓ Imate pravo da izaberete još jednu masažu od 60 minuta
+              </div>
+            )}
           </div>
           
-          {/* Green message box for 60 min selection in 120 min mode */}
-          {person2Selected60In120 && (
-            <div style={{
-              marginTop: '0.5rem',
-              padding: '0.5rem',
-              backgroundColor: 'rgba(144, 238, 144, 0.15)',
-              border: '1px solid #90ee90',
-              borderRadius: '8px',
-              color: '#90ee90',
-              fontSize: '0.85rem',
-              fontWeight: '500'
-            }}>
-              ✓ Imate pravo da izaberete još jednu masažu od 60 minuta
+          {/* Second dropdown for Person 2 (ONLY in 120 min mode and if first is 60 min) */}
+          {person2NeedsSecond && (
+            <div style={{ marginBottom: '0.5rem' }}>
+              <label style={{ 
+                display: 'block', 
+                color: '#d4af37', 
+                marginBottom: '0.5rem',
+                fontSize: '0.9rem',
+                fontWeight: '600'
+              }}>
+                Druga masaža (60 min)
+              </label>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <select
+                  value={couplesSelections.person2Massage2 ? `${couplesSelections.person2Massage2.key}|${couplesSelections.person2Massage2.name}|${couplesSelections.person2Massage2.price}|${couplesSelections.person2Massage2.duration}` : ''}
+                  onChange={(e) => handleMassageSelect(e, 2, 2)}
+                  style={{
+                    width: 'calc(100% - 90px)',
+                    padding: '0.5rem',
+                    backgroundColor: '#1a1a1a',
+                    color: '#d4af37',
+                    border: '1px solid #444',
+                    borderRadius: '8px',
+                    fontSize: '0.85rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="">-- Izaberite --</option>
+                  {get60MinMassages().map(massage => (
+                    <option 
+                      key={`${massage.key}-60-p2s2`} 
+                      value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
+                      style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
+                    >
+                      ★ {massage.name} - 60 min
+                    </option>
+                  ))}
+                </select>
+                
+                <button
+                  onClick={() => cancelMassage(2, 2)}
+                  disabled={!couplesSelections.person2Massage2}
+                  style={{
+                    width: '80px',
+                    padding: '0.5rem',
+                    backgroundColor: couplesSelections.person2Massage2 ? '#d4af37' : '#444',
+                    color: '#1a1a1a',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: couplesSelections.person2Massage2 ? 'pointer' : 'not-allowed',
+                    fontSize: '0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.25rem',
+                    opacity: couplesSelections.person2Massage2 ? 1 : 0.5
+                  }}
+                >
+                  <X className="w-3 h-3" />
+                  Otkaži
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -331,8 +484,8 @@ const CouplesMassageCard = ({
         {/* Spacer */}
         <div style={{ flex: 1 }}></div>
 
-        {/* Price display with NEW uploaded logo - BIGGER */}
-        {isSelectionComplete && (
+        {/* Price display - SMALLER so RSD is on same line */}
+        {isSelectionComplete() && (
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -341,7 +494,6 @@ const CouplesMassageCard = ({
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            {/* NEW uploaded discount logo - MUCH BIGGER */}
             <img 
               src="https://customer-assets.emergentagent.com/job_thaispa-booking/artifacts/hikv7loi_-15%25%20treca%20fotka.png" 
               alt="-15%"
@@ -352,31 +504,31 @@ const CouplesMassageCard = ({
               }}
             />
             
-            {/* BIGGER price */}
             <div style={{
               color: '#d4af37',
               fontWeight: 'bold',
-              fontSize: '2.8rem',
+              fontSize: '2.2rem',
               textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-              letterSpacing: '1px'
+              letterSpacing: '1px',
+              whiteSpace: 'nowrap'
             }}>
               {Math.round(calculateCouplesPrice()).toLocaleString()} RSD
             </div>
           </div>
         )}
 
-        {/* Book button at bottom */}
+        {/* Book button */}
         <Button 
           className="book-button w-full"
           style={{
-            opacity: isSelectionComplete ? 1 : 0.5,
-            cursor: isSelectionComplete ? 'pointer' : 'not-allowed'
+            opacity: isSelectionComplete() ? 1 : 0.5,
+            cursor: isSelectionComplete() ? 'pointer' : 'not-allowed'
           }}
-          disabled={!isSelectionComplete}
-          asChild={isSelectionComplete}
+          disabled={!isSelectionComplete()}
+          asChild={isSelectionComplete()}
         >
-          {isSelectionComplete ? (
-            <Link to={`/contact?service=couples&massage1=${couplesSelections.massage1?.key}&massage2=${couplesSelections.massage2?.key || ''}`}>
+          {isSelectionComplete() ? (
+            <Link to="/contact?service=couples">
               ZAKAŽITE
             </Link>
           ) : (
