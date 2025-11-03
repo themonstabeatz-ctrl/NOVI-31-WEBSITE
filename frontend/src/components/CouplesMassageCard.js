@@ -5,7 +5,10 @@ import { Clock } from "lucide-react";
 const CouplesMassageCard = ({ 
   translate, 
   durations, 
-  updateDuration
+  updateDuration,
+  couplesSelections,
+  setCouplesSelections,
+  calculateCouplesPrice
 }) => {
   
   return (
