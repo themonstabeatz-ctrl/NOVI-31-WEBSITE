@@ -107,13 +107,24 @@ const CouplesMassageCard = ({
     }
   };
 
-  const isSelected = (person, massageKey) => {
+  const isSelected = (person, massageKey, duration) => {
     if (person === 1) {
-      return couplesSelections.person1Massage1?.key === massageKey || 
-             couplesSelections.person1Massage2?.key === massageKey;
+      const m1 = couplesSelections.person1Massage1;
+      const m2 = couplesSelections.person1Massage2;
+      // For 120-min mode, check both key AND duration to distinguish between 60-min and 120-min selections
+      if (couplesSelections.duration === '120') {
+        return (m1?.key === massageKey && m1?.duration === duration) || 
+               (m2?.key === massageKey && m2?.duration === duration);
+      }
+      return m1?.key === massageKey || m2?.key === massageKey;
     } else {
-      return couplesSelections.person2Massage1?.key === massageKey || 
-             couplesSelections.person2Massage2?.key === massageKey;
+      const m1 = couplesSelections.person2Massage1;
+      const m2 = couplesSelections.person2Massage2;
+      if (couplesSelections.duration === '120') {
+        return (m1?.key === massageKey && m1?.duration === duration) || 
+               (m2?.key === massageKey && m2?.duration === duration);
+      }
+      return m1?.key === massageKey || m2?.key === massageKey;
     }
   };
 
