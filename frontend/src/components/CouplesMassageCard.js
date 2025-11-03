@@ -494,7 +494,7 @@ const CouplesMassageCard = ({
                       
                       {/* SECOND: All 120 min massages */}
                       {getFilteredMassages().filter(m => m.durations.includes('120')).map(massage => {
-                        const selected = isSelected(2, massage.key);
+                        const selected = isSelected(2, massage.key, '120');
                         return (
                           <div
                             key={`${massage.key}-120-p2`}
