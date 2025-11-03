@@ -65,11 +65,12 @@ export const translations = {
     footBenefit1: "Smanjuje umor",
     footBenefit2: "Poboljšava san",
     footBenefit3: "Jača imunitet",
-    coupleMassage: "Partnerska masaža",
-    coupleMassageDesc: "Romantična masaža za dva u istoj prostoriji sa sveći i umirujućom muzikom.",
-    coupleBenefit1: "Deljeno iskustvo",
-    coupleBenefit2: "Romantična atmosfera",
-    coupleBenefit3: "Dublje povezivanje",
+    coupleMassage: "Aroma duboko tkivo",
+    coupleMassageDesc: "Snažna, terapeutska masaža usmerena na oslobađanje dubokih mišićnih čvorova i tenzije, kombinovana sa eteričnim uljima za umirivanje uma i emotivno opuštanje.",
+    coupleBenefit1: "Trajno oslobađa hroničnu bol i ukočenost",
+    coupleBenefit2: "Smanjuje upale i poboljšava pokretljivost",
+    coupleBenefit3: "Eliminiše stres i anksioznost putem arome",
+    coupleBenefit4: "Pomaže u detoksikaciji mišićnog tkiva",
     
     // New Massage Services
     sportsMassage: "Sportska masaža",
