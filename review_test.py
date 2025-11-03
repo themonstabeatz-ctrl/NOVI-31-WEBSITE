@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://thaispa-booking.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://thai-spa-fix.preview.emergentagent.com')
 
 class ReviewTester:
     def __init__(self):
