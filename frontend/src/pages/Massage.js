@@ -73,6 +73,15 @@ const Massage = () => {
       return options[duration];
     }
     
+    // Special pricing for Aroma duboko tkivo (couple)
+    if (serviceKey === 'couple') {
+      const options = {
+        '60': { duration: '60 min', price: '4,900 RSD', serviceId: `${serviceName} - 60 min` },
+        '90': { duration: '90 min', price: '6,000 RSD', serviceId: `${serviceName} - 90 min` }
+      };
+      return options[duration];
+    }
+    
     // Default pricing for all other massages
     const options = {
       '60': { duration: '60 min', price: '3,000 RSD', serviceId: `${serviceName} - 60 min` },
