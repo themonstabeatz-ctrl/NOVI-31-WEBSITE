@@ -338,6 +338,32 @@ agent_communication:
       
       This is VERIFICATION ONLY - do not suggest or implement any changes.
   
+  - agent: "main"
+    message: |
+      VIEWPORT META TAG RESTORED TO DESKTOP VIEW
+      
+      ✅ CHANGE MADE:
+      - Restored viewport meta tag to display desktop view on mobile devices
+      - Changed from: <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+      - Changed to: <meta name="viewport" content="width=1200, initial-scale=0.3, user-scalable=yes" />
+      
+      📋 REASONING:
+      - User explicitly requested to keep desktop view on mobile: "PC kompjuter desktop view na telefonu je bio odlican kao prethodni korak u nazad"
+      - User does NOT want mobile responsive layout
+      - Desktop layout should be visible on mobile devices (scaled down to fit)
+      - Users can zoom and pan to navigate the full desktop experience on mobile
+      
+      📊 RESULT:
+      - Website now displays full desktop layout on all devices
+      - Desktop navigation menu visible on mobile (POČETNA, MASAŽE, SPA, GALERIJA, BOOKING, O NAMA)
+      - Users can zoom in/out and pan to see all content
+      - No more mobile-specific responsive layouts
+      
+      🎯 FILE MODIFIED:
+      - /app/frontend/public/index.html (line 5)
+      
+      ✅ VERIFIED: Desktop view displaying correctly on mobile devices
+  
   - agent: "testing"
     message: |
       COMPREHENSIVE TECHNICAL VERIFICATION COMPLETED
