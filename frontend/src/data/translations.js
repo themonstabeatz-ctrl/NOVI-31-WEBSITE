@@ -73,11 +73,16 @@ export const translations = {
     coupleBenefit4: "Pomaže u detoksikaciji mišićnog tkiva",
     
     // New Massage Services
-    sportsMassage: "Sportska masaža",
-    sportsMassageDesc: "Intenzivna masaža dizajnirana za sportiste koja poboljšava performanse.",
-    sportsBenefit1: "Ubrzava oporavak",
-    sportsBenefit2: "Sprečava povrede",
-    sportsBenefit3: "Povećava fleksibilnost",
+    sportsMassage: "Masaža za parove",
+    sportsMassageDesc: "",
+    sportsBenefit1: "",
+    sportsBenefit2: "",
+    sportsBenefit3: "",
+    selectFirstMassage: "Izaberite prvu masažu",
+    selectSecondMassage: "Izaberite još jednu masažu po vašoj želji",
+    cancel: "Otkaži",
+    selectedMassages: "Odabrane masaže:",
+    totalPrice: "Ukupna cena (sa 15% popustom):",
     
     shiatsuMassage: "Shiatsu masaža",
     shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
