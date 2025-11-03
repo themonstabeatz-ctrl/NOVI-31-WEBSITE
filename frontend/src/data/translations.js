@@ -459,6 +459,18 @@ export const translations = {
     coupleBenefit3: "Eliminates stress and anxiety through aroma",
     coupleBenefit4: "Helps detoxify muscle tissue",
     
+    // New Massage Services
+    sportsMassage: "Couples Massage",
+    sportsMassageDesc: "",
+    sportsBenefit1: "",
+    sportsBenefit2: "",
+    sportsBenefit3: "",
+    selectFirstMassage: "Select first massage",
+    selectSecondMassage: "Select another massage of your choice",
+    cancel: "Cancel",
+    selectedMassages: "Selected massages:",
+    totalPrice: "Total price (with 15% discount):",
+    
     // Massage CTA Section
     massageCtaTitle: "Visit the place where tension disappears",
     massageCtaSubtitle: "Contact us and book your massage today",
