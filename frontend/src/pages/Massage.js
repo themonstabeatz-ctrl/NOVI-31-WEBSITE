@@ -731,7 +731,8 @@ const Massage = () => {
                 </Button>
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
         </div>
       </section>
 
