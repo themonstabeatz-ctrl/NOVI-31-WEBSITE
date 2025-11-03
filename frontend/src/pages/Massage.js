@@ -30,6 +30,13 @@ const Massage = () => {
     lymphatic: '60'
   });
 
+  // State for "Masaža za parove" (couples massage) selections
+  const [couplesSelections, setCouplesSelections] = useState({
+    duration: '60',
+    massage1: null,
+    massage2: null
+  });
+
   // Generic function to get massage details based on duration
   const getMassageDetails = (serviceKey, serviceName) => {
     const duration = durations[serviceKey];
