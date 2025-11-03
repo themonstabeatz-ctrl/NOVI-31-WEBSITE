@@ -34,8 +34,10 @@ const Massage = () => {
   // State for "Masaža za parove" (couples massage) selections
   const [couplesSelections, setCouplesSelections] = useState({
     duration: '60',
-    massage1: null,
-    massage2: null
+    person1Massage1: null,
+    person1Massage2: null, // Second 60 min massage for person 1 in 120 min mode
+    person2Massage1: null,
+    person2Massage2: null  // Second 60 min massage for person 2 in 120 min mode
   });
 
   // Generic function to get massage details based on duration
