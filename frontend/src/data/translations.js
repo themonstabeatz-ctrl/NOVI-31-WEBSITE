@@ -1025,6 +1025,18 @@ export const translations = {
     coupleBenefit3: "กำจัดความเครียดและความวิตกกังวลผ่านกลิ่นหอม",
     coupleBenefit4: "ช่วยในการขับสารพิษจากเนื้อเยื่อกล้ามเนื้อ",
     
+    // New Massage Services
+    sportsMassage: "นวดคู่",
+    sportsMassageDesc: "",
+    sportsBenefit1: "",
+    sportsBenefit2: "",
+    sportsBenefit3: "",
+    selectFirstMassage: "เลือกการนวดแรก",
+    selectSecondMassage: "เลือกการนวดอื่นตามที่คุณต้องการ",
+    cancel: "ยกเลิก",
+    selectedMassages: "การนวดที่เลือก:",
+    totalPrice: "ราคารวม (ส่วนลด 15%):",
+    
     // Massage CTA Section
     massageCtaTitle: "เยี่ยมชมสถานที่ที่ความเครียดหายไป",
     massageCtaSubtitle: "ติดต่อเราและจองการนวดของคุณวันนี้",
