@@ -58,9 +58,9 @@ const CouplesMassageCard = ({
       // If 120 min mode and clicking 60 min massage
       if (couplesSelections.duration === '120' && dur === '60') {
         // Check if already selected
-        if (current1?.key === massage.key) {
+        if (current1?.key === massage.key && current1?.duration === '60') {
           setCouplesSelections(prev => ({ ...prev, person1Massage1: null }));
-        } else if (current2?.key === massage.key) {
+        } else if (current2?.key === massage.key && current2?.duration === '60') {
           setCouplesSelections(prev => ({ ...prev, person1Massage2: null }));
         } else {
           // Add to first empty slot
@@ -71,7 +71,7 @@ const CouplesMassageCard = ({
           }
         }
       } else {
-        // For 120 min massage or 60/90 mode - single selection
+        // For 120 min massage or 60/90 mode - single selection, clear ALL other selections
         setCouplesSelections(prev => ({ 
           ...prev, 
           person1Massage1: massageData,
@@ -84,9 +84,9 @@ const CouplesMassageCard = ({
       const current2 = couplesSelections.person2Massage2;
       
       if (couplesSelections.duration === '120' && dur === '60') {
-        if (current1?.key === massage.key) {
+        if (current1?.key === massage.key && current1?.duration === '60') {
           setCouplesSelections(prev => ({ ...prev, person2Massage1: null }));
-        } else if (current2?.key === massage.key) {
+        } else if (current2?.key === massage.key && current2?.duration === '60') {
           setCouplesSelections(prev => ({ ...prev, person2Massage2: null }));
         } else {
           if (!current1) {
@@ -96,6 +96,7 @@ const CouplesMassageCard = ({
           }
         }
       } else {
+        // For 120 min massage or 60/90 mode - single selection, clear ALL other selections
         setCouplesSelections(prev => ({ 
           ...prev, 
           person2Massage1: massageData,
