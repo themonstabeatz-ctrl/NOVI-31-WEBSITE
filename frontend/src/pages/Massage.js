@@ -608,7 +608,24 @@ const Massage = () => {
       {/* Services Grid */}
       <section className="services-section">
         <div className="services-grid">
-          {massageServices.map((service, index) => (
+          {massageServices.map((service, index) => {
+            // Special rendering for Couples Massage (sports)
+            if (service.key === 'sports') {
+              return (
+                <CouplesMassageCard
+                  key={index}
+                  translate={translate}
+                  durations={durations}
+                  updateDuration={updateDuration}
+                  couplesSelections={couplesSelections}
+                  setCouplesSelections={setCouplesSelections}
+                  calculateCouplesPrice={calculateCouplesPrice}
+                />
+              );
+            }
+            
+            // Regular massage cards for all other services
+            return (
             <Card key={index} className="massage-card">
               {service.popular && (
                 <Badge className="popular-badge">
