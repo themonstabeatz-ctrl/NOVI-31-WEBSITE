@@ -447,11 +447,12 @@ export const translations = {
     footBenefit1: "Reduces fatigue",
     footBenefit2: "Improves sleep",
     footBenefit3: "Strengthens immunity",
-    coupleMassage: "Couple's Massage",
-    coupleMassageDesc: "Romantic massage for two in the same room with candles and soothing music.",
-    coupleBenefit1: "Shared experience",
-    coupleBenefit2: "Romantic atmosphere",
-    coupleBenefit3: "Deeper connection",
+    coupleMassage: "Aroma Deep Tissue",
+    coupleMassageDesc: "A powerful, therapeutic massage focused on releasing deep muscle knots and tension, combined with essential oils to calm the mind and provide emotional relaxation.",
+    coupleBenefit1: "Permanently relieves chronic pain and stiffness",
+    coupleBenefit2: "Reduces inflammation and improves mobility",
+    coupleBenefit3: "Eliminates stress and anxiety through aroma",
+    coupleBenefit4: "Helps detoxify muscle tissue",
     
     // Massage CTA Section
     massageCtaTitle: "Visit the place where tension disappears",
