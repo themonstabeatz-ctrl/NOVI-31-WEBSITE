@@ -299,7 +299,7 @@ const CouplesMassageCard = ({
                     <>
                       {/* FIRST: All 60 min massages */}
                       {getFilteredMassages().filter(m => m.durations.includes('60')).map(massage => {
-                        const selected = isSelected(1, massage.key);
+                        const selected = isSelected(1, massage.key, '60');
                         return (
                           <div
                             key={`${massage.key}-60-p1`}
