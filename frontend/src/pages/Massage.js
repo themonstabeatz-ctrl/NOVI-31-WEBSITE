@@ -116,12 +116,22 @@ const Massage = () => {
   };
 
   const calculateCouplesPrice = () => {
-    if (!couplesSelections.massage1) return 0;
+    let totalPrice = 0;
     
-    let totalPrice = couplesSelections.massage1.price || 0;
+    // Add person 1 massages
+    if (couplesSelections.person1Massage1) {
+      totalPrice += couplesSelections.person1Massage1.price || 0;
+    }
+    if (couplesSelections.person1Massage2) {
+      totalPrice += couplesSelections.person1Massage2.price || 0;
+    }
     
-    if (couplesSelections.massage2) {
-      totalPrice += (couplesSelections.massage2.price || 0);
+    // Add person 2 massages
+    if (couplesSelections.person2Massage1) {
+      totalPrice += couplesSelections.person2Massage1.price || 0;
+    }
+    if (couplesSelections.person2Massage2) {
+      totalPrice += couplesSelections.person2Massage2.price || 0;
     }
     
     // Apply 15% discount
