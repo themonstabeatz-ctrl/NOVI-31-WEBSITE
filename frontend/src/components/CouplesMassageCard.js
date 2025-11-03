@@ -435,7 +435,7 @@ const CouplesMassageCard = ({
                       // 60 or 90 mode - single select
                       const dur = couplesSelections.duration;
                       if (!massage.durations.includes(dur)) return null;
-                      const selected = isSelected(2, massage.key);
+                      const selected = isSelected(2, massage.key, dur);
                       return (
                         <div
                           key={`${massage.key}-${dur}`}
