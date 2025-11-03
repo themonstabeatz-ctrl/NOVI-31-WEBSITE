@@ -109,8 +109,10 @@ const Massage = () => {
     if (serviceKey === 'sports') {
       setCouplesSelections({
         duration: newDuration,
-        massage1: null,
-        massage2: null
+        person1Massage1: null,
+        person1Massage2: null,
+        person2Massage1: null,
+        person2Massage2: null
       });
     }
   };
