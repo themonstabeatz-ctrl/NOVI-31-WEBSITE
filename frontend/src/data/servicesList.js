@@ -5,7 +5,7 @@ export const massageServices = [
   { key: 'hotStoneMassage', basePrice: 3000 },
   { key: 'royalThaiMassage', basePrice: 3000 },
   { key: 'footMassageService', basePrice: 3000 },
-  { key: 'couplesMassage', basePrice: 3000 },
+  { key: 'couplesMassage', basePrice: 4900 },
   { key: 'sportsMassageService', basePrice: 3000 },
   { key: 'shiatsuMassageService', basePrice: 3000 },
   { key: 'reflexologyService', basePrice: 3000 },
