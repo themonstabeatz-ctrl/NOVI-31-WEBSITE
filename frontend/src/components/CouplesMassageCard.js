@@ -13,7 +13,6 @@ const CouplesMassageCard = ({
   calculateCouplesPrice
 }) => {
   
-  // All available massages with CORRECT prices and durations (excluding SPA services)
   const availableMassages = [
     { key: 'traditional', name: translate("traditionalMassage") || 'Tradicionalna tajlandska masaža', basePrice: 4400, durations: ['60', '90', '120'] },
     { key: 'aroma', name: translate("aromaTherapy") || 'Aroma terapija', basePrice: 4400, durations: ['60', '90', '120'] },
@@ -66,13 +65,21 @@ const CouplesMassageCard = ({
   };
 
   const isSelectionComplete = couplesSelections.massage1 && couplesSelections.massage2;
+  
+  // Check if person selected 60 min massage in 120 min mode
+  const person1Selected60In120 = couplesSelections.duration === '120' && 
+    couplesSelections.massage1 && 
+    couplesSelections.massage1.duration === '60';
+    
+  const person2Selected60In120 = couplesSelections.duration === '120' && 
+    couplesSelections.massage2 && 
+    couplesSelections.massage2.duration === '60';
 
   return (
-    <Card className="massage-card" style={{ position: 'relative', minHeight: '520px', display: 'flex', flexDirection: 'column' }}>
+    <Card className="massage-card" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column' }}>
       <CardHeader>
         <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
         
-        {/* Duration selection buttons */}
         <div style={{
           display: 'flex',
           gap: '0.5rem',
@@ -103,7 +110,7 @@ const CouplesMassageCard = ({
       </CardHeader>
       
       <CardContent style={{ paddingTop: '0.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* First person dropdown with cancel button */}
+        {/* First person dropdown */}
         <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
             display: 'block', 
@@ -149,7 +156,7 @@ const CouplesMassageCard = ({
                         value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
                         style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
                       >
-                        ★ {massage.name} - 60 min (2x)
+                        ★ {massage.name} - 60 min
                       </option>
                     );
                   }
@@ -170,7 +177,6 @@ const CouplesMassageCard = ({
               })}
             </select>
             
-            {/* Cancel button */}
             <button
               onClick={() => setCouplesSelections(prev => ({ ...prev, massage1: null }))}
               disabled={!couplesSelections.massage1}
@@ -195,9 +201,25 @@ const CouplesMassageCard = ({
               Otkaži
             </button>
           </div>
+          
+          {/* Green message box for 60 min selection in 120 min mode */}
+          {person1Selected60In120 && (
+            <div style={{
+              marginTop: '0.5rem',
+              padding: '0.5rem',
+              backgroundColor: 'rgba(144, 238, 144, 0.15)',
+              border: '1px solid #90ee90',
+              borderRadius: '8px',
+              color: '#90ee90',
+              fontSize: '0.85rem',
+              fontWeight: '500'
+            }}>
+              ✓ Imate pravo da izaberete još jednu masažu od 60 minuta
+            </div>
+          )}
         </div>
 
-        {/* Second person dropdown with cancel button */}
+        {/* Second person dropdown */}
         <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
             display: 'block', 
@@ -243,7 +265,7 @@ const CouplesMassageCard = ({
                         value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
                         style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
                       >
-                        ★ {massage.name} - 60 min (2x)
+                        ★ {massage.name} - 60 min
                       </option>
                     );
                   }
@@ -264,7 +286,6 @@ const CouplesMassageCard = ({
               })}
             </select>
             
-            {/* Cancel button */}
             <button
               onClick={() => setCouplesSelections(prev => ({ ...prev, massage2: null }))}
               disabled={!couplesSelections.massage2}
@@ -289,45 +310,62 @@ const CouplesMassageCard = ({
               Otkaži
             </button>
           </div>
+          
+          {/* Green message box for 60 min selection in 120 min mode */}
+          {person2Selected60In120 && (
+            <div style={{
+              marginTop: '0.5rem',
+              padding: '0.5rem',
+              backgroundColor: 'rgba(144, 238, 144, 0.15)',
+              border: '1px solid #90ee90',
+              borderRadius: '8px',
+              color: '#90ee90',
+              fontSize: '0.85rem',
+              fontWeight: '500'
+            }}>
+              ✓ Imate pravo da izaberete još jednu masažu od 60 minuta
+            </div>
+          )}
         </div>
 
-        {/* Spacer to push button to bottom */}
+        {/* Spacer */}
         <div style={{ flex: 1 }}></div>
 
-        {/* Price display with uploaded discount logo */}
+        {/* Price display with NEW uploaded logo - BIGGER */}
         {isSelectionComplete && (
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            gap: '0.75rem',
+            gap: '1rem',
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            {/* Uploaded discount logo on the LEFT */}
+            {/* NEW uploaded discount logo - MUCH BIGGER */}
             <img 
-              src="https://customer-assets.emergentagent.com/job_thaispa-booking/artifacts/xcvmdbtj_-15%25.png" 
+              src="https://customer-assets.emergentagent.com/job_thaispa-booking/artifacts/hikv7loi_-15%25%20treca%20fotka.png" 
               alt="-15%"
               style={{
-                width: '80px',
+                width: '140px',
                 height: 'auto',
                 objectFit: 'contain'
               }}
             />
             
-            {/* Reduced price on the RIGHT */}
+            {/* BIGGER price */}
             <div style={{
               color: '#d4af37',
               fontWeight: 'bold',
-              fontSize: '2rem',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)'
+              fontSize: '2.8rem',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+              letterSpacing: '1px'
             }}>
               {Math.round(calculateCouplesPrice()).toLocaleString()} RSD
             </div>
           </div>
         )}
 
-        {/* Book button at bottom - SAME COLOR AS OTHER CARDS */}
+        {/* Book button at bottom */}
         <Button 
           className="book-button w-full"
           style={{
