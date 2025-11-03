@@ -113,79 +113,13 @@ const Massage = () => {
     }
   };
 
-  // Helper functions for Couples Massage
-  const getAvailableMassagesForCouples = (duration) => {
-    const allMassages = [
-      { key: 'traditional', name: 'Tradicionalna tajlandska masaža', durations: ['60', '90', '120'] },
-      { key: 'aroma', name: 'Aroma terapija', durations: ['60', '90', '120'] },
-      { key: 'hotStone', name: 'Masaža toplim uljem', durations: ['60', '90'] },
-      { key: 'royal', name: 'Glava, vrat, ramena i leđa', durations: ['60', '90', '120'] },
-      { key: 'foot', name: 'Masaža stopala', durations: ['60', '90', '120'] },
-      { key: 'shiatsu', name: 'Shiatsu masaža', durations: ['60', '90', '120'] },
-      { key: 'reflexology', name: 'Refleksologija', durations: ['60', '90', '120'] },
-      { key: 'backShoulder', name: 'Masaža leđa i vrata', durations: ['60', '90', '120'] },
-      { key: 'antiStress', name: 'Antistres masaža', durations: ['60', '90', '120'] },
-      { key: 'prenatal', name: 'Prenatalna masaža', durations: ['60', '90', '120'] },
-      { key: 'deepTissue', name: 'Masaža dubokih tkiva', durations: ['60', '90', '120'] },
-      { key: 'bamboo', name: 'Bamboo masaža', durations: ['60', '90', '120'] },
-      { key: 'lymphatic', name: 'Limfna drenaža', durations: ['60', '90', '120'] }
-    ];
-
-    if (duration === '120') {
-      // For 120 min, show both 60 and 120 min massages
-      return allMassages.filter(m => m.durations.includes('60') || m.durations.includes('120'));
-    } else {
-      // For 60 or 90, show only that specific duration
-      return allMassages.filter(m => m.durations.includes(duration));
-    }
-  };
-
-  const handleCouplesMassageSelect = (massageKey, massageName, massageDuration) => {
-    if (!couplesSelections.massage1) {
-      setCouplesSelections(prev => ({
-        ...prev,
-        massage1: { key: massageKey, name: massageName, duration: massageDuration }
-      }));
-    } else if (couplesSelections.duration === '120' && massageDuration === '60' && !couplesSelections.massage2) {
-      setCouplesSelections(prev => ({
-        ...prev,
-        massage2: { key: massageKey, name: massageName, duration: massageDuration }
-      }));
-    }
-  };
-
-  const cancelCouplesSelection = () => {
-    setCouplesSelections(prev => ({
-      ...prev,
-      massage1: null,
-      massage2: null
-    }));
-  };
-
   const calculateCouplesPrice = () => {
     if (!couplesSelections.massage1) return 0;
     
-    // Get base prices from massageServices
-    const basePrices = {
-      'traditional': 4400,
-      'aroma': 4400,
-      'hotStone': 4600,
-      'royal': 2400,
-      'foot': 2400,
-      'shiatsu': 3000,
-      'reflexology': 3000,
-      'backShoulder': 3000,
-      'antiStress': 3000,
-      'prenatal': 3000,
-      'deepTissue': 3000,
-      'bamboo': 3000,
-      'lymphatic': 3000
-    };
-
-    let totalPrice = basePrices[couplesSelections.massage1.key] || 3000;
+    let totalPrice = couplesSelections.massage1.price || 0;
     
     if (couplesSelections.massage2) {
-      totalPrice += (basePrices[couplesSelections.massage2.key] || 3000);
+      totalPrice += (couplesSelections.massage2.price || 0);
     }
     
     // Apply 15% discount
