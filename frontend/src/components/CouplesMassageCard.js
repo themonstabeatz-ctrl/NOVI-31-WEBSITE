@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Clock, Star } from "lucide-react";
+import { Star, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
@@ -88,7 +88,7 @@ const CouplesMassageCard = ({
           display: 'flex',
           gap: '0.5rem',
           marginTop: '0.75rem',
-          marginBottom: '0.75rem'
+          marginBottom: '0.5rem'
         }}>
           {['60', '90', '120'].map(dur => (
             <button
@@ -111,157 +111,212 @@ const CouplesMassageCard = ({
             </button>
           ))}
         </div>
-        
-        <div className="massage-meta">
-          <div className="duration">
-            <Clock className="w-4 h-4" />
-            <span>{durations.sports} min</span>
-          </div>
-        </div>
       </CardHeader>
       
-      <CardContent>
-        {/* First person dropdown - ALWAYS VISIBLE */}
-        <div style={{ marginBottom: '1rem' }}>
+      <CardContent style={{ paddingTop: '0.5rem' }}>
+        {/* First person dropdown */}
+        <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
             display: 'block', 
             color: '#d4af37', 
             marginBottom: '0.5rem',
-            fontSize: '0.95rem',
-            fontWeight: '600'
+            fontSize: '1rem',
+            fontWeight: '700'
           }}>
-            Osoba 1 - {translate("selectFirstMassage") || 'Izaberite masažu'}
+            Osoba 1 - Izaberite masažu
           </label>
-          <select
-            value={couplesSelections.massage1 ? `${couplesSelections.massage1.key}|${couplesSelections.massage1.name}|${couplesSelections.massage1.price}|${couplesSelections.massage1.duration}` : ''}
-            onChange={(e) => handleMassageSelect(e, 1)}
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              backgroundColor: '#1a1a1a',
-              color: '#d4af37',
-              border: '1px solid #444',
-              borderRadius: '8px',
-              fontSize: '0.875rem',
-              cursor: 'pointer'
-            }}
-          >
-            <option value="">-- Izaberite masažu --</option>
-            {getFilteredMassages().map(massage => {
-              // For 120 min duration, show both 60 and 120 options
-              if (couplesSelections.duration === '120') {
-                // Show 120 min version if available
-                if (massage.durations.includes('120')) {
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <select
+              value={couplesSelections.massage1 ? `${couplesSelections.massage1.key}|${couplesSelections.massage1.name}|${couplesSelections.massage1.price}|${couplesSelections.massage1.duration}` : ''}
+              onChange={(e) => handleMassageSelect(e, 1)}
+              style={{
+                flex: 1,
+                padding: '0.5rem',
+                backgroundColor: '#1a1a1a',
+                color: '#d4af37',
+                border: '1px solid #444',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="">-- Izaberite masažu --</option>
+              {getFilteredMassages().map(massage => {
+                // For 120 min duration, show both 60 and 120 options
+                if (couplesSelections.duration === '120') {
+                  // Show 120 min version if available
+                  if (massage.durations.includes('120')) {
+                    return (
+                      <option 
+                        key={`${massage.key}-120-p1`} 
+                        value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
+                        style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
+                      >
+                        {massage.name} - 120 min
+                      </option>
+                    );
+                  }
+                  // Mark 60 min versions with special indicator
+                  if (massage.durations.includes('60')) {
+                    return (
+                      <option 
+                        key={`${massage.key}-60-p1`} 
+                        value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
+                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90', fontWeight: 'bold' }}
+                      >
+                        ★ {massage.name} - 60 min (2x)
+                      </option>
+                    );
+                  }
+                } else {
+                  // For 60 or 90 min, show only that specific duration
+                  const dur = couplesSelections.duration;
+                  if (!massage.durations.includes(dur)) return null;
+                  
                   return (
                     <option 
-                      key={`${massage.key}-120-p1`} 
-                      value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
+                      key={`${massage.key}-${dur}-p1`} 
+                      value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}
                     >
-                      {massage.name} - 120 min
+                      {massage.name} - {dur} min
                     </option>
                   );
                 }
-                // Otherwise show 60 min version
-                if (massage.durations.includes('60')) {
-                  return (
-                    <option 
-                      key={`${massage.key}-60-p1`} 
-                      value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
-                    >
-                      {massage.name} - 60 min
-                    </option>
-                  );
-                }
-              } else {
-                // For 60 or 90 min, show only that specific duration
-                const dur = couplesSelections.duration;
-                if (!massage.durations.includes(dur)) return null;
-                
-                return (
-                  <option 
-                    key={`${massage.key}-${dur}-p1`} 
-                    value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}
-                  >
-                    {massage.name} - {dur} min
-                  </option>
-                );
-              }
-              return null;
-            })}
-          </select>
+                return null;
+              })}
+            </select>
+            
+            {/* Cancel button for person 1 */}
+            {couplesSelections.massage1 && (
+              <button
+                onClick={() => setCouplesSelections(prev => ({ ...prev, massage1: null }))}
+                style={{
+                  padding: '0.5rem',
+                  backgroundColor: '#8b0000',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  transition: 'background-color 0.3s ease',
+                  minWidth: '80px',
+                  justifyContent: 'center'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a00000'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8b0000'}
+              >
+                <X className="w-3 h-3" />
+                Otkaži
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Second person dropdown - ALWAYS VISIBLE */}
-        <div style={{ marginBottom: '1rem' }}>
+        {/* Second person dropdown */}
+        <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
             display: 'block', 
             color: '#d4af37', 
             marginBottom: '0.5rem',
-            fontSize: '0.95rem',
-            fontWeight: '600'
+            fontSize: '1rem',
+            fontWeight: '700'
           }}>
-            Osoba 2 - {translate("selectSecondMassage") || 'Izaberite masažu'}
+            Osoba 2 - Izaberite masažu
           </label>
-          <select
-            value={couplesSelections.massage2 ? `${couplesSelections.massage2.key}|${couplesSelections.massage2.name}|${couplesSelections.massage2.price}|${couplesSelections.massage2.duration}` : ''}
-            onChange={(e) => handleMassageSelect(e, 2)}
-            style={{
-              width: '100%',
-              padding: '0.5rem',
-              backgroundColor: '#1a1a1a',
-              color: '#d4af37',
-              border: '1px solid #444',
-              borderRadius: '8px',
-              fontSize: '0.875rem',
-              cursor: 'pointer'
-            }}
-          >
-            <option value="">-- Izaberite masažu --</option>
-            {getFilteredMassages().map(massage => {
-              // For 120 min duration, show both 60 and 120 options
-              if (couplesSelections.duration === '120') {
-                // Show 120 min version if available
-                if (massage.durations.includes('120')) {
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <select
+              value={couplesSelections.massage2 ? `${couplesSelections.massage2.key}|${couplesSelections.massage2.name}|${couplesSelections.massage2.price}|${couplesSelections.massage2.duration}` : ''}
+              onChange={(e) => handleMassageSelect(e, 2)}
+              style={{
+                flex: 1,
+                padding: '0.5rem',
+                backgroundColor: '#1a1a1a',
+                color: '#d4af37',
+                border: '1px solid #444',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="">-- Izaberite masažu --</option>
+              {getFilteredMassages().map(massage => {
+                // For 120 min duration, show both 60 and 120 options
+                if (couplesSelections.duration === '120') {
+                  // Show 120 min version if available
+                  if (massage.durations.includes('120')) {
+                    return (
+                      <option 
+                        key={`${massage.key}-120-p2`} 
+                        value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
+                        style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
+                      >
+                        {massage.name} - 120 min
+                      </option>
+                    );
+                  }
+                  // Mark 60 min versions with special indicator
+                  if (massage.durations.includes('60')) {
+                    return (
+                      <option 
+                        key={`${massage.key}-60-p2`} 
+                        value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
+                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90', fontWeight: 'bold' }}
+                      >
+                        ★ {massage.name} - 60 min (2x)
+                      </option>
+                    );
+                  }
+                } else {
+                  // For 60 or 90 min, show only that specific duration
+                  const dur = couplesSelections.duration;
+                  if (!massage.durations.includes(dur)) return null;
+                  
                   return (
                     <option 
-                      key={`${massage.key}-120-p2`} 
-                      value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
+                      key={`${massage.key}-${dur}-p2`} 
+                      value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}
                     >
-                      {massage.name} - 120 min
+                      {massage.name} - {dur} min
                     </option>
                   );
                 }
-                // Otherwise show 60 min version
-                if (massage.durations.includes('60')) {
-                  return (
-                    <option 
-                      key={`${massage.key}-60-p2`} 
-                      value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
-                    >
-                      {massage.name} - 60 min
-                    </option>
-                  );
-                }
-              } else {
-                // For 60 or 90 min, show only that specific duration
-                const dur = couplesSelections.duration;
-                if (!massage.durations.includes(dur)) return null;
-                
-                return (
-                  <option 
-                    key={`${massage.key}-${dur}-p2`} 
-                    value={`${massage.key}|${massage.name}|${massage.basePrice}|${dur}`}
-                  >
-                    {massage.name} - {dur} min
-                  </option>
-                );
-              }
-              return null;
-            })}
-          </select>
+                return null;
+              })}
+            </select>
+            
+            {/* Cancel button for person 2 */}
+            {couplesSelections.massage2 && (
+              <button
+                onClick={() => setCouplesSelections(prev => ({ ...prev, massage2: null }))}
+                style={{
+                  padding: '0.5rem',
+                  backgroundColor: '#8b0000',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  transition: 'background-color 0.3s ease',
+                  minWidth: '80px',
+                  justifyContent: 'center'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a00000'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8b0000'}
+              >
+                <X className="w-3 h-3" />
+                Otkaži
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Book button */}
+        {/* Book button - CHANGED TO ZAKAŽITE */}
         <Button 
           className="book-button w-full"
           style={{
@@ -275,10 +330,10 @@ const CouplesMassageCard = ({
         >
           {isSelectionComplete ? (
             <Link to={`/contact?service=couples&massage1=${couplesSelections.massage1?.key}&massage2=${couplesSelections.massage2?.key || ''}`}>
-              {translate("reserve") || "REZERVIŠITE"}
+              ZAKAŽITE
             </Link>
           ) : (
-            <span>{translate("reserve") || "REZERVIŠITE"}</span>
+            <span>ZAKAŽITE</span>
           )}
         </Button>
 
