@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Star, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
@@ -35,15 +35,12 @@ const CouplesMassageCard = ({
     const duration = couplesSelections.duration;
     
     if (duration === '120') {
-      // For 120 min, show BOTH 60 min AND 120 min massages
       return availableMassages.filter(m => 
         m.durations.includes('60') || m.durations.includes('120')
       );
     } else if (duration === '60') {
-      // For 60 min, show only 60 min massages
       return availableMassages.filter(m => m.durations.includes('60'));
     } else if (duration === '90') {
-      // For 90 min, show only 90 min massages
       return availableMassages.filter(m => m.durations.includes('90'));
     }
     return [];
@@ -68,18 +65,10 @@ const CouplesMassageCard = ({
     }
   };
 
-  const cancelSelection = () => {
-    setCouplesSelections(prev => ({
-      ...prev,
-      massage1: null,
-      massage2: null
-    }));
-  };
-
   const isSelectionComplete = couplesSelections.massage1 && couplesSelections.massage2;
 
   return (
-    <Card className="massage-card" style={{ position: 'relative', minHeight: '520px' }}>
+    <Card className="massage-card" style={{ position: 'relative', minHeight: '520px', display: 'flex', flexDirection: 'column' }}>
       <CardHeader>
         <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
         
@@ -113,8 +102,8 @@ const CouplesMassageCard = ({
         </div>
       </CardHeader>
       
-      <CardContent style={{ paddingTop: '0.5rem' }}>
-        {/* First person dropdown */}
+      <CardContent style={{ paddingTop: '0.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        {/* First person dropdown with cancel button */}
         <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
             display: 'block', 
@@ -130,7 +119,7 @@ const CouplesMassageCard = ({
               value={couplesSelections.massage1 ? `${couplesSelections.massage1.key}|${couplesSelections.massage1.name}|${couplesSelections.massage1.price}|${couplesSelections.massage1.duration}` : ''}
               onChange={(e) => handleMassageSelect(e, 1)}
               style={{
-                flex: 1,
+                width: 'calc(100% - 90px)',
                 padding: '0.5rem',
                 backgroundColor: '#1a1a1a',
                 color: '#d4af37',
@@ -142,34 +131,29 @@ const CouplesMassageCard = ({
             >
               <option value="">-- Izaberite masažu --</option>
               {getFilteredMassages().map(massage => {
-                // For 120 min duration, show both 60 and 120 options
                 if (couplesSelections.duration === '120') {
-                  // Show 120 min version if available
                   if (massage.durations.includes('120')) {
                     return (
                       <option 
                         key={`${massage.key}-120-p1`} 
                         value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
-                        style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
                       >
                         {massage.name} - 120 min
                       </option>
                     );
                   }
-                  // Mark 60 min versions with special indicator
                   if (massage.durations.includes('60')) {
                     return (
                       <option 
                         key={`${massage.key}-60-p1`} 
                         value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
-                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90', fontWeight: 'bold' }}
+                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
                       >
                         ★ {massage.name} - 60 min (2x)
                       </option>
                     );
                   }
                 } else {
-                  // For 60 or 90 min, show only that specific duration
                   const dur = couplesSelections.duration;
                   if (!massage.durations.includes(dur)) return null;
                   
@@ -186,36 +170,34 @@ const CouplesMassageCard = ({
               })}
             </select>
             
-            {/* Cancel button for person 1 */}
-            {couplesSelections.massage1 && (
-              <button
-                onClick={() => setCouplesSelections(prev => ({ ...prev, massage1: null }))}
-                style={{
-                  padding: '0.5rem',
-                  backgroundColor: '#8b0000',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '0.75rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.25rem',
-                  transition: 'background-color 0.3s ease',
-                  minWidth: '80px',
-                  justifyContent: 'center'
-                }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a00000'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8b0000'}
-              >
-                <X className="w-3 h-3" />
-                Otkaži
-              </button>
-            )}
+            {/* Cancel button */}
+            <button
+              onClick={() => setCouplesSelections(prev => ({ ...prev, massage1: null }))}
+              disabled={!couplesSelections.massage1}
+              style={{
+                width: '80px',
+                padding: '0.5rem',
+                backgroundColor: couplesSelections.massage1 ? '#d4af37' : '#444',
+                color: '#1a1a1a',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: couplesSelections.massage1 ? 'pointer' : 'not-allowed',
+                fontSize: '0.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.25rem',
+                transition: 'all 0.3s ease',
+                opacity: couplesSelections.massage1 ? 1 : 0.5
+              }}
+            >
+              <X className="w-3 h-3" />
+              Otkaži
+            </button>
           </div>
         </div>
 
-        {/* Second person dropdown */}
+        {/* Second person dropdown with cancel button */}
         <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
             display: 'block', 
@@ -231,7 +213,7 @@ const CouplesMassageCard = ({
               value={couplesSelections.massage2 ? `${couplesSelections.massage2.key}|${couplesSelections.massage2.name}|${couplesSelections.massage2.price}|${couplesSelections.massage2.duration}` : ''}
               onChange={(e) => handleMassageSelect(e, 2)}
               style={{
-                flex: 1,
+                width: 'calc(100% - 90px)',
                 padding: '0.5rem',
                 backgroundColor: '#1a1a1a',
                 color: '#d4af37',
@@ -243,34 +225,29 @@ const CouplesMassageCard = ({
             >
               <option value="">-- Izaberite masažu --</option>
               {getFilteredMassages().map(massage => {
-                // For 120 min duration, show both 60 and 120 options
                 if (couplesSelections.duration === '120') {
-                  // Show 120 min version if available
                   if (massage.durations.includes('120')) {
                     return (
                       <option 
                         key={`${massage.key}-120-p2`} 
                         value={`${massage.key}|${massage.name}|${massage.basePrice}|120`}
-                        style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
                       >
                         {massage.name} - 120 min
                       </option>
                     );
                   }
-                  // Mark 60 min versions with special indicator
                   if (massage.durations.includes('60')) {
                     return (
                       <option 
                         key={`${massage.key}-60-p2`} 
                         value={`${massage.key}|${massage.name}|${massage.basePrice}|60`}
-                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90', fontWeight: 'bold' }}
+                        style={{ backgroundColor: '#2d4a2b', color: '#90ee90' }}
                       >
                         ★ {massage.name} - 60 min (2x)
                       </option>
                     );
                   }
                 } else {
-                  // For 60 or 90 min, show only that specific duration
                   const dur = couplesSelections.duration;
                   if (!massage.durations.includes(dur)) return null;
                   
@@ -287,41 +264,73 @@ const CouplesMassageCard = ({
               })}
             </select>
             
-            {/* Cancel button for person 2 */}
-            {couplesSelections.massage2 && (
-              <button
-                onClick={() => setCouplesSelections(prev => ({ ...prev, massage2: null }))}
-                style={{
-                  padding: '0.5rem',
-                  backgroundColor: '#8b0000',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '0.75rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.25rem',
-                  transition: 'background-color 0.3s ease',
-                  minWidth: '80px',
-                  justifyContent: 'center'
-                }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a00000'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8b0000'}
-              >
-                <X className="w-3 h-3" />
-                Otkaži
-              </button>
-            )}
+            {/* Cancel button */}
+            <button
+              onClick={() => setCouplesSelections(prev => ({ ...prev, massage2: null }))}
+              disabled={!couplesSelections.massage2}
+              style={{
+                width: '80px',
+                padding: '0.5rem',
+                backgroundColor: couplesSelections.massage2 ? '#d4af37' : '#444',
+                color: '#1a1a1a',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: couplesSelections.massage2 ? 'pointer' : 'not-allowed',
+                fontSize: '0.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.25rem',
+                transition: 'all 0.3s ease',
+                opacity: couplesSelections.massage2 ? 1 : 0.5
+              }}
+            >
+              <X className="w-3 h-3" />
+              Otkaži
+            </button>
           </div>
         </div>
 
-        {/* Book button - CHANGED TO ZAKAŽITE */}
+        {/* Spacer to push button to bottom */}
+        <div style={{ flex: 1 }}></div>
+
+        {/* Price display with uploaded discount logo */}
+        {isSelectionComplete && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: '0.75rem',
+            marginBottom: '1rem',
+            paddingRight: '0.5rem'
+          }}>
+            {/* Uploaded discount logo on the LEFT */}
+            <img 
+              src="https://customer-assets.emergentagent.com/job_thaispa-booking/artifacts/xcvmdbtj_-15%25.png" 
+              alt="-15%"
+              style={{
+                width: '80px',
+                height: 'auto',
+                objectFit: 'contain'
+              }}
+            />
+            
+            {/* Reduced price on the RIGHT */}
+            <div style={{
+              color: '#d4af37',
+              fontWeight: 'bold',
+              fontSize: '2rem',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)'
+            }}>
+              {Math.round(calculateCouplesPrice()).toLocaleString()} RSD
+            </div>
+          </div>
+        )}
+
+        {/* Book button at bottom - SAME COLOR AS OTHER CARDS */}
         <Button 
           className="book-button w-full"
           style={{
-            marginTop: '1.5rem',
-            marginBottom: '1rem',
             opacity: isSelectionComplete ? 1 : 0.5,
             cursor: isSelectionComplete ? 'pointer' : 'not-allowed'
           }}
@@ -336,47 +345,6 @@ const CouplesMassageCard = ({
             <span>ZAKAŽITE</span>
           )}
         </Button>
-
-        {/* Price display at bottom right corner with HUGE discount badge */}
-        {isSelectionComplete && (
-          <div style={{
-            position: 'absolute',
-            bottom: '1.5rem',
-            right: '1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem'
-          }}>
-            {/* MASSIVE Discount badge on the left - 200% ENLARGED */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#dc2626',
-              color: 'white',
-              padding: '1.25rem 1.75rem',
-              borderRadius: '50px',
-              fontWeight: 'bold',
-              fontSize: '2.5rem',
-              boxShadow: '0 8px 16px rgba(220, 38, 38, 0.6)',
-              border: '3px solid #fff'
-            }}>
-              <Star className="w-10 h-10" style={{ fill: 'white', marginRight: '0.5rem' }} />
-              -15%
-            </div>
-            
-            {/* BIG Price on the right - 100% ENLARGED */}
-            <div style={{
-              color: '#d4af37',
-              fontWeight: 'bold',
-              fontSize: '3rem',
-              textShadow: '0 4px 8px rgba(0, 0, 0, 0.7)',
-              letterSpacing: '1px'
-            }}>
-              {Math.round(calculateCouplesPrice()).toLocaleString()} RSD
-            </div>
-          </div>
-        )}
       </CardContent>
     </Card>
   );
