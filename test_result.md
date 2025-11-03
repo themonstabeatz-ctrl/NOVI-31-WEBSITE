@@ -254,15 +254,18 @@ frontend:
 
   - task: "Mobile header layout in landscape mode"
     implemented: true
-    working: false
+    working: "NA"
     file: "/app/frontend/src/App.css"
     stuck_count: 0
-    priority: "high"
-    needs_retesting: true
+    priority: "low"
+    needs_retesting: false
     status_history:
       - working: false
         agent: "testing"
         comment: "CRITICAL ISSUE: Language selector and hamburger menu overlapping in ALL landscape orientations across ALL device sizes (iPhone SE, 12 Pro, 14 Pro Max, Android Small/Medium/Large). Distance: 0.0px (complete overlap). Affects all pages. Portrait mode works fine. Urgent CSS fix needed for landscape header spacing."
+      - working: "NA"
+        agent: "main"
+        comment: "User requested desktop view on mobile devices (not responsive mobile layout). Changed viewport meta tag from responsive 'width=device-width' to fixed 'width=1200, initial-scale=0.3' to display full desktop layout on mobile. Mobile responsiveness issues no longer applicable as site now shows desktop view on all devices. Users can zoom and pan to navigate the desktop layout on mobile devices."
 
 backend:
   - task: "No backend"
