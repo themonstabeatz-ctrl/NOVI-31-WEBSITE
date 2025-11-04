@@ -91,37 +91,37 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
               </button>
             </div>
 
-            <div className="time-picker-grid-container">
-              <div className="time-picker-section">
+            <div className="time-picker-dropdown-container">
+              <div className="time-dropdown-section">
                 <div className="time-label">{translate('hours') || 'Sati'}</div>
-                <div className="time-grid-hours">
+                <select 
+                  className="time-dropdown-select"
+                  value={selectedHour}
+                  onChange={(e) => handleTimeSelect('hour', e.target.value)}
+                >
                   {hours.map((hour) => (
-                    <button
-                      key={hour}
-                      type="button"
-                      className={`time-grid-btn ${selectedHour === hour ? 'selected' : ''}`}
-                      onClick={() => handleTimeSelect('hour', hour)}
-                    >
+                    <option key={hour} value={hour}>
                       {hour}
-                    </button>
+                    </option>
                   ))}
-                </div>
+                </select>
               </div>
 
-              <div className="time-picker-section">
+              <div className="time-separator-colon">:</div>
+
+              <div className="time-dropdown-section">
                 <div className="time-label">{translate('minutes') || 'Minuti'}</div>
-                <div className="time-grid-minutes">
+                <select 
+                  className="time-dropdown-select"
+                  value={selectedMinute}
+                  onChange={(e) => handleTimeSelect('minute', e.target.value)}
+                >
                   {minutes.map((minute) => (
-                    <button
-                      key={minute}
-                      type="button"
-                      className={`time-grid-btn ${selectedMinute === minute ? 'selected' : ''}`}
-                      onClick={() => handleTimeSelect('minute', minute)}
-                    >
+                    <option key={minute} value={minute}>
                       {minute}
-                    </button>
+                    </option>
                   ))}
-                </div>
+                </select>
               </div>
             </div>
 
