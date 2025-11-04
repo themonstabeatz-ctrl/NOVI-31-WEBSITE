@@ -847,6 +847,7 @@ export const translations = {
     email: "Электронная почта",
     phone: "Телефон",
     message: "Сообщение",
+    messagePlaceholder: "Опишите, как мы можем вам помочь...",
     send: "Отправить",
     bookAppointment: "Забронировать",
     selectDate: "Выберите дату",
@@ -856,6 +857,7 @@ export const translations = {
     wantToBook: "Я хочу забронировать:",
     clearDate: "Очистить",
     fillAllFields: "Пожалуйста, заполните все обязательные поля",
+    fillThisField: "Пожалуйста, заполните это поле",
     error: "Ошибка",
     
     // Service dropdown
