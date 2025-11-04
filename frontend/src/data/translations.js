@@ -851,6 +851,8 @@ export const translations = {
     preferredTime: "Предпочитаемое время",
     wantToBook: "Я хочу забронировать:",
     clearDate: "Очистить",
+    fillAllFields: "Пожалуйста, заполните все обязательные поля",
+    error: "Ошибка",
     
     // Service dropdown
     selectService: "Выберите услугу",
