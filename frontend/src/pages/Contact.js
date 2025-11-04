@@ -435,6 +435,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="form-input"
+                      placeholder={translate("firstName")}
                     />
                   </div>
                   <div className="form-group">
@@ -447,6 +448,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="form-input"
+                      placeholder={translate("lastName")}
                     />
                   </div>
                 </div>
@@ -462,6 +464,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="form-input"
+                      placeholder={translate("phone")}
                     />
                   </div>
                   <div className="form-group">
@@ -474,6 +477,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="form-input"
+                      placeholder={translate("email")}
                     />
                   </div>
                 </div>
