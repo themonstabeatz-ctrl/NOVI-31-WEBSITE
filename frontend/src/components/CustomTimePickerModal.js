@@ -20,26 +20,6 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
     }
   }, [value]);
 
-  // Enhanced scroll behavior - auto-scroll to selected item when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        const containers = document.querySelectorAll('.time-scroll-container');
-        containers.forEach(container => {
-          const selected = container.querySelector('.time-option.selected');
-          if (selected) {
-            // Scroll to selected item with smooth animation
-            selected.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-              inline: 'nearest'
-            });
-          }
-        });
-      }, 100);
-    }
-  }, [isOpen]);
-
   // Generate hours (10:00 - 22:00 for spa working hours)
   const hours = Array.from({ length: 13 }, (_, i) => {
     const hour = i + 10;
