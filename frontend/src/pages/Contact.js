@@ -189,8 +189,7 @@ const Contact = () => {
         return;
       }
       
-      // Get service name from URL parameter OR from dropdown
-      const queryParams = new URLSearchParams(location.search);
+      // Get service name from URL parameter OR from dropdown (reuse queryParams from validation)
       const serviceName = queryParams.get('service') || formData.service || '';
       
       // Service Mapping - All 90 services with proper durations (30 types x 3 durations)
