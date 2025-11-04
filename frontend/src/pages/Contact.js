@@ -189,8 +189,7 @@ const Contact = () => {
         return;
       }
       
-      // Get service name from URL parameter OR from dropdown (reuse queryParams from validation)
-      const serviceName = queryParams.get('service') || formData.service || '';
+      // serviceName and queryParams already defined in validation above - no need to redeclare
       
       // Service Mapping - All 90 services with proper durations (30 types x 3 durations)
       const serviceMapping = {
