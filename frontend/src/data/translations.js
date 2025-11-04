@@ -560,6 +560,7 @@ export const translations = {
     email: "Email",
     phone: "Phone",
     message: "Message",
+    messagePlaceholder: "Describe how we can help you...",
     send: "Send",
     bookAppointment: "Book Now",
     selectDate: "Select Date",
@@ -569,6 +570,7 @@ export const translations = {
     wantToBook: "I want to book:",
     clearDate: "Clear",
     fillAllFields: "Please fill in all required fields",
+    fillThisField: "Please fill out this field",
     error: "Error",
     
     // Service dropdown
