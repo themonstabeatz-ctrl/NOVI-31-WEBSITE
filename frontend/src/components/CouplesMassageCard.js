@@ -601,7 +601,19 @@ const CouplesMassageCard = ({
           asChild={isSelectionComplete()}
         >
           {isSelectionComplete() ? (
-            <Link to={`/contact?service=${encodeURIComponent(`Masaža za parove - ${couplesSelections.duration} min`)}`}>
+            <Link to={`/contact?service=${encodeURIComponent(`Masaža za parove - ${couplesSelections.duration} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
+              duration: couplesSelections.duration,
+              person1: {
+                massage1: couplesSelections.person1Massage1,
+                massage2: couplesSelections.person1Massage2
+              },
+              person2: {
+                massage1: couplesSelections.person2Massage1,
+                massage2: couplesSelections.person2Massage2
+              },
+              totalPrice: calculateCouplesPrice(),
+              discount: '15%'
+            }))}`}>
               ZAKAŽITE
             </Link>
           ) : (
