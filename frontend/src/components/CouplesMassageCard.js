@@ -601,7 +601,7 @@ const CouplesMassageCard = ({
           asChild={isSelectionComplete()}
         >
           {isSelectionComplete() ? (
-            <Link to="/contact?service=couples">
+            <Link to={`/contact?service=${encodeURIComponent(`Masaža za parove - ${couplesSelections.duration} min`)}`}>
               ZAKAŽITE
             </Link>
           ) : (
