@@ -74,6 +74,30 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
     setIsOpen(false);
   };
 
+  // Handle time selection with smooth scroll to selected item
+  const handleTimeSelect = (type, value) => {
+    if (type === 'hour') {
+      setSelectedHour(value);
+    } else {
+      setSelectedMinute(value);
+    }
+    
+    // Auto-scroll to selected item after a short delay
+    setTimeout(() => {
+      const containers = document.querySelectorAll('.time-scroll-container');
+      containers.forEach(container => {
+        const selected = container.querySelector('.time-option.selected');
+        if (selected) {
+          selected.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+      });
+    }, 50);
+  };
+
   const formatDisplayTime = (value) => {
     if (!value) return translate('selectTime') || 'Izaberite vreme';
     return value;
