@@ -84,12 +84,9 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
           <div className="time-modal-backdrop" onClick={handleOtkazi} />
           <div className="time-modal">
             <div className="time-modal-header">
+              <Clock size={24} />
               <h3>{translate('selectTime') || 'Izaberite vreme'}</h3>
-              <button 
-                className="time-close-btn"
-                onClick={handleOtkazi}
-                type="button"
-              >
+              <button onClick={handleOtkazi} className="time-close-btn">
                 <X size={20} />
               </button>
             </div>
