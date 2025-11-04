@@ -91,35 +91,35 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
               </button>
             </div>
 
-            <div className="time-picker-content">
+            <div className="time-picker-grid-container">
               <div className="time-picker-section">
-                <div className="time-label">{translate('hours')}</div>
-                <div className="time-scroll-container">
+                <div className="time-label">{translate('hours') || 'Sati'}</div>
+                <div className="time-grid-hours">
                   {hours.map((hour) => (
-                    <div
+                    <button
                       key={hour}
-                      className={`time-option ${selectedHour === hour ? 'selected' : ''}`}
+                      type="button"
+                      className={`time-grid-btn ${selectedHour === hour ? 'selected' : ''}`}
                       onClick={() => handleTimeSelect('hour', hour)}
                     >
                       {hour}
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
 
-              <div className="time-separator">:</div>
-
               <div className="time-picker-section">
-                <div className="time-label">{translate('minutes')}</div>
-                <div className="time-scroll-container">
+                <div className="time-label">{translate('minutes') || 'Minuti'}</div>
+                <div className="time-grid-minutes">
                   {minutes.map((minute) => (
-                    <div
+                    <button
                       key={minute}
-                      className={`time-option ${selectedMinute === minute ? 'selected' : ''}`}
+                      type="button"
+                      className={`time-grid-btn ${selectedMinute === minute ? 'selected' : ''}`}
                       onClick={() => handleTimeSelect('minute', minute)}
                     >
                       {minute}
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
