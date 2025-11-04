@@ -286,17 +286,11 @@ const Massage = () => {
         }
       }
       
-      // Fade in CTA section after cards
+      // CTA section - no fade animation
       const ctaSection = document.querySelector('.cta-section');
       if (ctaSection) {
-        const ctaOffset = ctaSection.offsetTop;
-        const windowHeight = window.innerHeight;
-        const ctaScrollPercent = Math.max(0, Math.min(1, (scrollPosition + windowHeight - ctaOffset) / windowHeight));
-        
-        if (ctaScrollPercent > 0) {
-          ctaSection.style.opacity = ctaScrollPercent;
-          ctaSection.style.transform = `translateY(${(1 - ctaScrollPercent) * 50}px)`;
-        }
+        ctaSection.style.opacity = 1;
+        ctaSection.style.transform = 'translateY(0)';
       }
     };
     
