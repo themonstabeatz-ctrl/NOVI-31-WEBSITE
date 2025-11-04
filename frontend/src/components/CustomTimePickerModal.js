@@ -91,37 +91,65 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
               </button>
             </div>
 
-            <div className="time-picker-dropdown-container">
-              <div className="time-dropdown-section">
+            <div className="time-picker-stepper-container">
+              <div className="time-stepper-section">
                 <div className="time-label">{translate('hours') || 'Sati'}</div>
-                <select 
-                  className="time-dropdown-select"
-                  value={selectedHour}
-                  onChange={(e) => handleTimeSelect('hour', e.target.value)}
+                <button 
+                  type="button"
+                  className="time-stepper-btn time-stepper-up"
+                  onClick={() => {
+                    const currentIndex = hours.indexOf(selectedHour);
+                    const nextIndex = (currentIndex + 1) % hours.length;
+                    handleTimeSelect('hour', hours[nextIndex]);
+                  }}
                 >
-                  {hours.map((hour) => (
-                    <option key={hour} value={hour}>
-                      {hour}
-                    </option>
-                  ))}
-                </select>
+                  ▲
+                </button>
+                <div className="time-stepper-display">
+                  {selectedHour}
+                </div>
+                <button 
+                  type="button"
+                  className="time-stepper-btn time-stepper-down"
+                  onClick={() => {
+                    const currentIndex = hours.indexOf(selectedHour);
+                    const prevIndex = (currentIndex - 1 + hours.length) % hours.length;
+                    handleTimeSelect('hour', hours[prevIndex]);
+                  }}
+                >
+                  ▼
+                </button>
               </div>
 
-              <div className="time-separator-colon">:</div>
+              <div className="time-stepper-colon">:</div>
 
-              <div className="time-dropdown-section">
+              <div className="time-stepper-section">
                 <div className="time-label">{translate('minutes') || 'Minuti'}</div>
-                <select 
-                  className="time-dropdown-select"
-                  value={selectedMinute}
-                  onChange={(e) => handleTimeSelect('minute', e.target.value)}
+                <button 
+                  type="button"
+                  className="time-stepper-btn time-stepper-up"
+                  onClick={() => {
+                    const currentIndex = minutes.indexOf(selectedMinute);
+                    const nextIndex = (currentIndex + 1) % minutes.length;
+                    handleTimeSelect('minute', minutes[nextIndex]);
+                  }}
                 >
-                  {minutes.map((minute) => (
-                    <option key={minute} value={minute}>
-                      {minute}
-                    </option>
-                  ))}
-                </select>
+                  ▲
+                </button>
+                <div className="time-stepper-display">
+                  {selectedMinute}
+                </div>
+                <button 
+                  type="button"
+                  className="time-stepper-btn time-stepper-down"
+                  onClick={() => {
+                    const currentIndex = minutes.indexOf(selectedMinute);
+                    const prevIndex = (currentIndex - 1 + minutes.length) % minutes.length;
+                    handleTimeSelect('minute', minutes[prevIndex]);
+                  }}
+                >
+                  ▼
+                </button>
               </div>
             </div>
 
