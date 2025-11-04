@@ -127,7 +127,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
 
             <div className="time-preview">
               <Clock size={20} />
-              <span>{translate('selectedTime')}: {selectedHour}:{selectedMinute}</span>
+              <span>{translate('selectedTime') || 'Izabrano vreme'}: {selectedHour}:{selectedMinute}</span>
             </div>
 
             <div className="time-modal-actions">
