@@ -50,11 +50,40 @@ const Contact = () => {
     const searchParams = new URLSearchParams(location.search);
     const service = searchParams.get('service');
     const source = searchParams.get('source'); // 'voucher', 'massage', 'spa', or null
+    const couplesData = searchParams.get('couplesData');
     
     if (service) {
+      let message = `Izabrali ste ${service}`;
+      
+      // Special handling for couples massage
+      if (couplesData) {
+        try {
+          const data = JSON.parse(decodeURIComponent(couplesData));
+          message = `Masaža za parove - ${data.duration} min\n\n`;
+          message += `OSOBA 1:\n`;
+          if (data.person1.massage1) {
+            message += `- ${data.person1.massage1.name} (${data.person1.massage1.duration} min) - ${data.person1.massage1.price} RSD\n`;
+          }
+          if (data.person1.massage2) {
+            message += `- ${data.person1.massage2.name} (${data.person1.massage2.duration} min) - ${data.person1.massage2.price} RSD\n`;
+          }
+          message += `\nOSOBA 2:\n`;
+          if (data.person2.massage1) {
+            message += `- ${data.person2.massage1.name} (${data.person2.massage1.duration} min) - ${data.person2.massage1.price} RSD\n`;
+          }
+          if (data.person2.massage2) {
+            message += `- ${data.person2.massage2.name} (${data.person2.massage2.duration} min) - ${data.person2.massage2.price} RSD\n`;
+          }
+          message += `\nPOPUST: -${data.discount}\n`;
+          message += `UKUPNA CENA SA POPUSTOM: ${data.totalPrice.toLocaleString()} RSD`;
+        } catch (e) {
+          console.error('Error parsing couples data:', e);
+        }
+      }
+      
       setFormData(prev => ({
         ...prev,
-        message: `Izabrali ste ${service}`,
+        message: message,
         source: source || 'booking' // Store source for success message
       }));
     } else {
