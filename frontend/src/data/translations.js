@@ -273,6 +273,7 @@ export const translations = {
     email: "Email",
     phone: "Telefon",
     message: "Poruka",
+    messagePlaceholder: "Opišite kako možemo da vam pomognemo...",
     send: "Pošaljite",
     bookAppointment: "Zakažite",
     selectDate: "Izaberite datum",
@@ -282,6 +283,7 @@ export const translations = {
     wantToBook: "Želim da zakažem:",
     clearDate: "Obriši",
     fillAllFields: "Molimo popunite sva obavezna polja",
+    fillThisField: "Molimo popunite ovo polje",
     error: "Greška",
     
     // Service dropdown
