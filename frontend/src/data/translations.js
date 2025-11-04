@@ -1134,6 +1134,7 @@ export const translations = {
     email: "อีเมล",
     phone: "โทรศัพท์",
     message: "ข้อความ",
+    messagePlaceholder: "อธิบายว่าเราสามารถช่วยคุณได้อย่างไร...",
     send: "ส่ง",
     bookAppointment: "จองเลย",
     selectDate: "เลือกวันที่",
@@ -1143,6 +1144,7 @@ export const translations = {
     wantToBook: "ฉันต้องการจอง:",
     clearDate: "ล้าง",
     fillAllFields: "โปรดกรอกข้อมูลในช่องที่จำเป็นทั้งหมด",
+    fillThisField: "โปรดกรอกข้อมูลในช่องนี้",
     error: "ข้อผิดพลาด",
     
     // Service dropdown
