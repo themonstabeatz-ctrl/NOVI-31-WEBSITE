@@ -155,7 +155,7 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
                     <div
                       key={minute}
                       className={`time-option ${selectedMinute === minute ? 'selected' : ''}`}
-                      onClick={() => setSelectedMinute(minute)}
+                      onClick={() => handleTimeSelect('minute', minute)}
                     >
                       {minute}
                     </div>
