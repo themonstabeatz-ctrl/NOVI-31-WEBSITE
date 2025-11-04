@@ -48,6 +48,8 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
   z-index: 9998;
+  backdrop-filter: blur(2px);
+}
   animation: fadeIn 0.2s ease;
 }
 
