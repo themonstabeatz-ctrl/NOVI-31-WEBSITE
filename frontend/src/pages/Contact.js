@@ -118,9 +118,75 @@ const Contact = () => {
     setSubmitStatus(null);
     
     try {
-      // Validate required fields
-      if (!formData.firstName || !formData.lastName || !formData.phone || !formData.email) {
-        throw new Error('All fields are required');
+      // Validate required fields with detailed error messages
+      const missingFields = [];
+      
+      if (!formData.firstName) missingFields.push('firstName');
+      if (!formData.lastName) missingFields.push('lastName');
+      if (!formData.phone) missingFields.push('phone');
+      if (!formData.email) missingFields.push('email');
+      
+      // Check if this is a booking (has service parameter)
+      const queryParams = new URLSearchParams(location.search);
+      const serviceName = queryParams.get('service') || formData.service || '';
+      const isBooking = !!serviceName;
+      
+      // For bookings, date and time are required
+      if (isBooking) {
+        if (!formData.preferredDate) missingFields.push('date');
+        if (!formData.preferredTime) missingFields.push('time');
+      }
+      
+      // If there are missing fields, show error and scroll to first missing field
+      if (missingFields.length > 0) {
+        // Create error message based on missing fields
+        let errorMessage = translate('fillAllFields') || 'Molimo popunite sva obavezna polja: ';
+        const fieldNames = {
+          firstName: translate('firstName') || 'Ime',
+          lastName: translate('lastName') || 'Prezime',
+          phone: translate('phone') || 'Telefon',
+          email: translate('email') || 'Email',
+          date: translate('selectDate') || 'Datum',
+          time: translate('selectTime') || 'Vreme'
+        };
+        
+        const missingFieldNames = missingFields.map(field => fieldNames[field]);
+        errorMessage += missingFieldNames.join(', ');
+        
+        // Show error toast
+        toast({
+          title: translate('error') || 'Greška',
+          description: errorMessage,
+          variant: "destructive",
+        });
+        
+        // Scroll to first missing field
+        const firstMissingField = missingFields[0];
+        let fieldElement = null;
+        
+        if (firstMissingField === 'date') {
+          fieldElement = document.querySelector('.calendar-input-trigger');
+        } else if (firstMissingField === 'time') {
+          fieldElement = document.querySelector('.time-input-trigger');
+        } else {
+          fieldElement = document.querySelector(`input[name="${firstMissingField}"]`);
+        }
+        
+        if (fieldElement) {
+          fieldElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Add visual indication (red border)
+          fieldElement.style.border = '2px solid #dc2626';
+          fieldElement.style.animation = 'shake 0.5s';
+          
+          // Remove red border after 3 seconds
+          setTimeout(() => {
+            fieldElement.style.border = '';
+            fieldElement.style.animation = '';
+          }, 3000);
+        }
+        
+        setIsSubmitting(false);
+        return;
       }
       
       // Get service name from URL parameter OR from dropdown
