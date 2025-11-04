@@ -566,6 +566,8 @@ export const translations = {
     preferredTime: "Preferred Time",
     wantToBook: "I want to book:",
     clearDate: "Clear",
+    fillAllFields: "Please fill in all required fields",
+    error: "Error",
     
     // Service dropdown
     selectService: "Select Service",
