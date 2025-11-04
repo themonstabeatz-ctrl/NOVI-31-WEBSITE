@@ -26,9 +26,10 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
     return String(hour).padStart(2, '0');
   });
 
-  // Generate ALL minutes (0-59)
-  const minutes = Array.from({ length: 60 }, (_, i) => {
-    return String(i).padStart(2, '0');
+  // Generate minutes in 5-minute intervals (00, 05, 10, 15, ..., 55)
+  const minutes = Array.from({ length: 12 }, (_, i) => {
+    const minute = i * 5;
+    return String(minute).padStart(2, '0');
   });
 
   const handlePostavi = () => {
