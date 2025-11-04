@@ -281,6 +281,8 @@ export const translations = {
     preferredTime: "Željeno vreme",
     wantToBook: "Želim da zakažem:",
     clearDate: "Obriši",
+    fillAllFields: "Molimo popunite sva obavezna polja",
+    error: "Greška",
     
     // Service dropdown
     selectService: "Izaberite uslugu",
