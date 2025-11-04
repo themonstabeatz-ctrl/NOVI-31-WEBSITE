@@ -68,6 +68,11 @@
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
   animation: slideUp 0.3s ease;
+  /* Enhanced scrolling feel */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 @keyframes fadeIn {
