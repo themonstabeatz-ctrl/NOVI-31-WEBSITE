@@ -225,14 +225,22 @@ const Contact = () => {
       // Special handling for "Masaža za parove" - use original duration for service_id lookup
       let serviceLookupName = serviceName;
       const couplesDataParam = queryParams.get('couplesData');
+      
+      console.log('🔍 DEBUG - serviceName:', serviceName);
+      console.log('🔍 DEBUG - couplesDataParam exists:', !!couplesDataParam);
+      
       if (couplesDataParam && serviceName.includes('Masaža za parove')) {
         try {
           const couplesData = JSON.parse(decodeURIComponent(couplesDataParam));
+          console.log('🔍 DEBUG - couplesData:', couplesData);
+          console.log('🔍 DEBUG - couplesData.duration:', couplesData.duration);
+          
           // Use original duration (60, 90, 120) for service_id lookup, not total duration
           serviceLookupName = `Masaža za parove - ${couplesData.duration} min`;
           console.log('🔄 Couples massage: using duration', couplesData.duration, 'for service lookup instead of total', couplesData.totalDuration);
+          console.log('🔍 DEBUG - serviceLookupName:', serviceLookupName);
         } catch (e) {
-          console.error('Error parsing couples data for service lookup:', e);
+          console.error('❌ Error parsing couples data for service lookup:', e);
         }
       }
       
