@@ -576,7 +576,7 @@ const Massage = () => {
             // Special rendering for Couples Massage (couple)
             if (service.key === 'couple') {
               return (
-                <CouplesMassageCard
+                <SimpleCouplesMassageCard
                   key={index}
                   translate={translate}
                   durations={durations}
