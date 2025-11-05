@@ -649,14 +649,6 @@ const CouplesMassageCard = ({
                 originalPrice: calculateOriginalPrice(),
                 discount: '15%'
               }))}`}
-              onClick={() => {
-                console.log('🔍 ZAKAŽITE clicked with couplesData:', {
-                  duration: couplesSelections.duration,
-                  totalDuration: calculateTotalDuration(),
-                  person1Massage1: couplesSelections.person1Massage1,
-                  person2Massage1: couplesSelections.person2Massage1
-                });
-              }}
             >
               ZAKAŽITE
             </Link>
