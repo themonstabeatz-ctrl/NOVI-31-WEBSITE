@@ -152,9 +152,22 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             for therapist in web_slot_therapists:
                 booking.therapist_id = therapist['id']
                 
+                # Prepare booking payload
+                booking_payload = booking.model_dump()
+                
+                # For couples massage, enhance notes with total duration and final price info
+                if is_couples_massage and couples_total_duration and couples_final_price:
+                    original_notes = booking_payload['notes']
+                    booking_payload['notes'] = (
+                        f"⭐ MASAŽA ZA PAROVE - UKUPNO TRAJANJE: {couples_total_duration} min ⭐\n"
+                        f"💰 FINALNA CENA SA POPUSTOM (-15%): {couples_final_price} RSD 💰\n\n"
+                        f"DETALJI:\n{original_notes}"
+                    )
+                    logger.info(f"📝 Enhanced couples massage notes with duration: {couples_total_duration}min, price: {couples_final_price} RSD")
+                
                 response = await client.post(
                     'https://pozdrav-kako-si.emergent.host/api/appointments',
-                    json=booking.model_dump(),
+                    json=booking_payload,
                     headers={'Content-Type': 'application/json'}
                 )
                 
