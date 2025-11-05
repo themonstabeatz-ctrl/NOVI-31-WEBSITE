@@ -811,6 +811,7 @@ const Contact = () => {
                 
                 <Button 
                   type="submit" 
+                  onClick={handleSubmit}
                   disabled={isSubmitting}
                   className="submit-button"
                 >
