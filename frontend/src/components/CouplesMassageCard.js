@@ -633,21 +633,31 @@ const CouplesMassageCard = ({
           asChild={isSelectionComplete()}
         >
           {isSelectionComplete() ? (
-            <Link to={`/contact?service=${encodeURIComponent(`Masaža za parove - ${calculateTotalDuration()} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
-              duration: couplesSelections.duration,
-              totalDuration: calculateTotalDuration(),
-              person1: {
-                massage1: couplesSelections.person1Massage1,
-                massage2: couplesSelections.person1Massage2
-              },
-              person2: {
-                massage1: couplesSelections.person2Massage1,
-                massage2: couplesSelections.person2Massage2
-              },
-              totalPrice: calculateCouplesPrice(),
-              originalPrice: calculateOriginalPrice(),
-              discount: '15%'
-            }))}`}>
+            <Link 
+              to={`/contact?service=${encodeURIComponent(`Masaža za parove - ${calculateTotalDuration()} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
+                duration: couplesSelections.duration,
+                totalDuration: calculateTotalDuration(),
+                person1: {
+                  massage1: couplesSelections.person1Massage1,
+                  massage2: couplesSelections.person1Massage2
+                },
+                person2: {
+                  massage1: couplesSelections.person2Massage1,
+                  massage2: couplesSelections.person2Massage2
+                },
+                totalPrice: calculateCouplesPrice(),
+                originalPrice: calculateOriginalPrice(),
+                discount: '15%'
+              }))}`}
+              onClick={() => {
+                console.log('🔍 ZAKAŽITE clicked with couplesData:', {
+                  duration: couplesSelections.duration,
+                  totalDuration: calculateTotalDuration(),
+                  person1Massage1: couplesSelections.person1Massage1,
+                  person2Massage1: couplesSelections.person2Massage1
+                });
+              }}
+            >
               ZAKAŽITE
             </Link>
           ) : (
