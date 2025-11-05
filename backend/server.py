@@ -104,10 +104,31 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
     Proxy endpoint to forward booking requests to spa booking system
     Automatically rotates through web slot therapists to allow multiple simultaneous bookings
     Sends confirmation email immediately and schedules reminder 2h before appointment
+    Special handling for "Masaža za parove" with custom duration and discounted price in notes
     """
     try:
         # Log the booking data for debugging
-        logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}")
+        logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Service Name: {booking.service_name}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}")
+        
+        # Special handling for "Masaža za parove" - calculate total duration from notes
+        is_couples_massage = "Masaža za parove" in (booking.service_name or "")
+        couples_total_duration = None
+        couples_final_price = None
+        
+        if is_couples_massage and booking.notes:
+            # Extract total duration and final price from notes
+            # Notes format includes "UKUPNA CENA SA POPUSTOM: X,XXX RSD"
+            import re
+            price_match = re.search(r'UKUPNA CENA SA POPUSTOM:\s*([\d,]+)\s*RSD', booking.notes)
+            if price_match:
+                couples_final_price = price_match.group(1).replace(',', '')
+                logger.info(f"💰 Couples massage final price: {couples_final_price} RSD")
+            
+            # Calculate duration from notes (count massage durations)
+            duration_matches = re.findall(r'\((\d+) min\)', booking.notes)
+            if duration_matches:
+                couples_total_duration = sum(int(d) for d in duration_matches)
+                logger.info(f"⏱️ Couples massage total duration: {couples_total_duration} min")
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get all therapists and filter for "Web Slot" therapists
