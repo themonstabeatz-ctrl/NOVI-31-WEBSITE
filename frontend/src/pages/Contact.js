@@ -437,6 +437,7 @@ const Contact = () => {
         
         const responseData = await response.json();
         console.log('✅ Booking successful:', responseData);
+      }
 
       // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
