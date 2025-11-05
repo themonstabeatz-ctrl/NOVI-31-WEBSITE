@@ -558,6 +558,20 @@ const Massage = () => {
       {/* Services Grid */}
       <section className="services-section">
         <div className="services-grid">
+          
+          {/* HARD-CODED Masaža za parove Card */}
+          <CouplesMassageCard
+            key="couples-massage-card"
+            translate={translate}
+            durations={durations}
+            updateDuration={updateDuration}
+            couplesSelections={couplesSelections}
+            setCouplesSelections={setCouplesSelections}
+            calculateCouplesPrice={calculateCouplesPrice}
+            dropdownOpen={dropdownOpen}
+            setDropdownOpen={setDropdownOpen}
+          />
+
           {massageServices.map((service, index) => {
             // Special rendering for Couples Massage (couple)
             if (service.key === 'couple') {
