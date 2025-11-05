@@ -559,8 +559,8 @@ const Massage = () => {
       <section className="services-section">
         <div className="services-grid">
           {massageServices.map((service, index) => {
-            // Special rendering for Couples Massage (couplesMassage)
-            if (service.key === 'couplesMassage') {
+            // Special rendering for Couples Massage (couple)
+            if (service.key === 'couple') {
               return (
                 <CouplesMassageCard
                   key={index}
