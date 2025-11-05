@@ -41,7 +41,7 @@ export const bookingSystemNames = {
   'hotStoneMassage': 'Masaža toplim uljem',
   'royalThaiMassage': 'Glava, vrat, ramena i leđa',
   'footMassageService': 'Masaža stopala',
-  'couplesMassage': 'Aroma duboko tkivo',
+  'couplesMassage': 'Masaža za parove',
   'sportsMassageService': 'Sportska masaža',
   'shiatsuMassageService': 'Shiatsu masaža',
   'reflexologyService': 'Refleksologija',
