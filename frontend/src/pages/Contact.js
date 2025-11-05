@@ -387,19 +387,56 @@ const Contact = () => {
           service_name: serviceName // Send service name for email display
         };
 
+        // Add connectivity health check before booking
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+        
+        console.log("🔍 DEBUG - Backend URL:", backendUrl);
+        console.log("🔍 DEBUG - Full booking URL:", `${backendUrl}/api/book-appointment`);
+        
+        // Health check first
+        try {
+          console.log("🏥 Performing health check...");
+          const healthResponse = await fetch(`${backendUrl}/api/health`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          
+          if (!healthResponse.ok) {
+            console.error("❌ Health check failed:", healthResponse.status, healthResponse.statusText);
+            throw new Error(`Backend not available (${healthResponse.status})`);
+          }
+          
+          console.log("✅ Health check passed");
+        } catch (healthError) {
+          console.error("❌ Health check error:", healthError);
+          setError(`Greška u komunikaciji sa serverom: ${healthError.message}`);
+          setIsSubmitting(false);
+          return;
+        }
+
         // Use backend proxy for booking
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        console.log("📤 Sending booking request...");
         const response = await fetch(`${backendUrl}/api/book-appointment`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(appointmentData)
         });
 
+        console.log("📥 Response status:", response.status);
+        console.log("📥 Response ok:", response.ok);
+
         if (!response.ok) {
-          throw new Error('Failed to book appointment');
+          const errorText = await response.text();
+          console.error("❌ Booking API error:", response.status, errorText);
+          throw new Error(`Booking failed: ${response.status} - ${errorText}`);
         }
+        
+        const responseData = await response.json();
+        console.log("✅ Booking successful:", responseData);
       }
 
       // Success - show green checkmark with appropriate message
