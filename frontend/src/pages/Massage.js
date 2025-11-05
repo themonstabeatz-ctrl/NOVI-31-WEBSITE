@@ -112,7 +112,7 @@ const Massage = () => {
     });
     
     // Reset couples selections when duration changes for couples massage
-    if (serviceKey === 'couplesMassage') {
+    if (serviceKey === 'couple') {
       console.log('🔴 Updating couplesSelections.duration to:', newDuration);
       setCouplesSelections({
         duration: newDuration,
