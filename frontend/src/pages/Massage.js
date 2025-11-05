@@ -564,6 +564,8 @@ const Massage = () => {
                   couplesSelections={couplesSelections}
                   setCouplesSelections={setCouplesSelections}
                   calculateCouplesPrice={calculateCouplesPrice}
+                  dropdownOpen={dropdownOpen}
+                  setDropdownOpen={setDropdownOpen}
                 />
               );
             }
