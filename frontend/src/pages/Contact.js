@@ -532,7 +532,12 @@ const Contact = () => {
       }, 5000);
 
     } finally {
+      // ALWAYS reset isSubmitting, even if error occurs
+      if (submitTimeoutRef.current) {
+        clearTimeout(submitTimeoutRef.current);
+      }
       setIsSubmitting(false);
+      console.log('✅ isSubmitting reset to false');
     }
   };
 
