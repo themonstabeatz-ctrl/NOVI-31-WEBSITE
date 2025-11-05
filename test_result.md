@@ -200,11 +200,11 @@ frontend:
 
   - task: "Contact page"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/pages/Contact.js"
-    stuck_count: 2
+    stuck_count: 3
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "unknown"
         agent: "main"
@@ -224,6 +224,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "🎉 COUPLES MASSAGE BOOKING FLOW FULLY FUNCTIONAL! ✅ COMPREHENSIVE TESTING COMPLETED: 1) Couples massage card found on massage page with proper 120min duration selection. 2) Person 1 & Person 2 massage selection working (Tradicionalna tajlandska masaža). 3) ZAKAŽITE button becomes enabled and gold-colored when selections complete. 4) Successful redirect to /contact page with populated couples massage data including total duration (240min), pricing (13,430 RSD with 15% discount), and detailed breakdown. 5) Form submission working perfectly - backend logs confirm successful bookings with service ID d3e8684a-2bbc-4a15-835e-8e43d231074a. 6) Web Slot therapist rotation working (auto-assigns available therapists). 7) Email confirmations and reminders sent successfully. 8) External booking system integration verified - appointments appear in https://pozdrav-kako-si.emergent.host/. ✅ USER'S EXACT SCENARIO TESTED: Test User, +381601234567, test@example.com, tomorrow 14:00 - SUCCESSFUL. All review request objectives met."
+      - working: false
+        agent: "testing"
+        comment: "🚨 CRITICAL COUPLES MASSAGE BOOKING FAILURE CONFIRMED! ❌ ROOT CAUSE IDENTIFIED: Dropdown selection handlers in CouplesMassageCard.js are completely broken. Debug logs show that after clicking massage options, couplesSelections state remains undefined for all fields (p1m1, p1m2, p2m1, p2m2). The handleMassageClick function is not updating the state properly. ❌ SPECIFIC ISSUES: 1) 90-minute couples massage: ZAKAŽITE button remains disabled (opacity: 0.5, cursor: not-allowed) because no selections are registered. 2) 120-minute couples massage: Same issue - selections not saving to state. 3) Even 60-minute couples massage appears broken despite previous test claims. ❌ USER IMPACT: User reports that 90-minute and 120-minute couples massage bookings don't work - submit button doesn't respond. This is confirmed - the button is disabled because the selection logic is broken. ❌ TECHNICAL DETAILS: The dropdown clicks are happening but handleMassageClick function is not properly updating setCouplesSelections state. The isSelectionComplete() function correctly returns false because no selections are saved."
 
   - task: "Header with navigation and language switcher"
     implemented: true
