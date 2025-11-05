@@ -152,6 +152,38 @@ const CouplesMassageCard = ({
     }
   };
 
+  // Calculate total duration for both persons
+  const calculateTotalDuration = () => {
+    let total = 0;
+    const p1m1 = couplesSelections.person1Massage1;
+    const p1m2 = couplesSelections.person1Massage2;
+    const p2m1 = couplesSelections.person2Massage1;
+    const p2m2 = couplesSelections.person2Massage2;
+    
+    if (p1m1) total += parseInt(p1m1.duration);
+    if (p1m2) total += parseInt(p1m2.duration);
+    if (p2m1) total += parseInt(p2m1.duration);
+    if (p2m2) total += parseInt(p2m2.duration);
+    
+    return total;
+  };
+
+  // Calculate original price (without discount)
+  const calculateOriginalPrice = () => {
+    let total = 0;
+    const p1m1 = couplesSelections.person1Massage1;
+    const p1m2 = couplesSelections.person1Massage2;
+    const p2m1 = couplesSelections.person2Massage1;
+    const p2m2 = couplesSelections.person2Massage2;
+    
+    if (p1m1) total += p1m1.price;
+    if (p1m2) total += p1m2.price;
+    if (p2m1) total += p2m1.price;
+    if (p2m2) total += p2m2.price;
+    
+    return total;
+  };
+
   const isSelectionComplete = () => {
     const p1m1 = couplesSelections.person1Massage1;
     const p1m2 = couplesSelections.person1Massage2;
