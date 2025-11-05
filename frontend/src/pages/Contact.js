@@ -387,95 +387,31 @@ const Contact = () => {
           service_name: serviceName // Send service name for email display
         };
 
-        // Add connectivity health check before booking
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
-        
-        console.log("🔍 DEBUG - Backend URL:", backendUrl);
-        console.log("🔍 DEBUG - Full booking URL:", `${backendUrl}/api/book-appointment`);
-        
-        // Health check first
-        try {
-          console.log("🏥 Performing health check...");
-          const healthResponse = await fetch(`${backendUrl}/api/health`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          
-          if (!healthResponse.ok) {
-            console.error("❌ Health check failed:", healthResponse.status, healthResponse.statusText);
-            throw new Error(`Backend not available (${healthResponse.status})`);
-          }
-          
-          console.log("✅ Health check passed");
-        } catch (healthError) {
-          console.error("❌ Health check error:", healthError);
-          setError(`Greška u komunikaciji sa serverom: ${healthError.message}`);
-          setIsSubmitting(false);
-          return;
-        }
-
         // Use backend proxy for booking
-        console.log("📤 Sending booking request...");
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         const response = await fetch(`${backendUrl}/api/book-appointment`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(appointmentData)
         });
 
-        console.log("📥 Response status:", response.status);
-        console.log("📥 Response ok:", response.ok);
-
         if (!response.ok) {
-          const errorText = await response.text();
-          console.error("❌ Booking API error:", response.status, errorText);
-          throw new Error(`Booking failed: ${response.status} - ${errorText}`);
+          throw new Error('Failed to book appointment');
         }
-        
-        const responseData = await response.json();
-        console.log("✅ Booking successful:", responseData);
       }
 
       // Success - show green checkmark with appropriate message
-    } catch (error) {
-      console.error("🚨 DETAILED BOOKING ERROR:", {
-        message: error.message,
-        stack: error.stack,
-        name: error.name,
-        cause: error.cause
-      });
+      setSubmitStatus('success');
       
-      // Detailed error handling with specific messages
-      let errorMessage = "Došlo je do greške";
+      // Format date for email
+      const emailDate = formData.preferredDate instanceof Date
+        ? formatDate(formData.preferredDate.toISOString().split('T')[0])
+        : (formData.preferredDate ? formatDate(formData.preferredDate) : 'Nije navedeno');
       
-      if (error.message.includes("Failed to fetch")) {
-        errorMessage = "Greška u komunikaciji sa serverom. Proverite internet konekciju.";
-      } else if (error.message.includes("Backend not available")) {
-        errorMessage = "Server trenutno nije dostupan. Pokušajte ponovo za nekoliko minuta.";
-      } else if (error.message.includes("Booking failed")) {
-        errorMessage = `Greška pri rezervaciji: ${error.message}`;
-      } else if (error.message.includes("NetworkError")) {
-        errorMessage = "Greška mreže. Proverite internet konekciju.";
-      } else if (error.message.includes("CORS")) {
-        errorMessage = "Greška u konfiguraciji. Kontaktirajte podršku.";
-      } else {
-        errorMessage = `Neočekivana greška: ${error.message}`;
-      }
-      
-      // Show specific error message to user
-      setError(errorMessage);
-      
-      // Error - show red X
-      setSubmitStatus("error");
-      
-      // Hide error after 5 seconds (longer for detailed messages)
-      setTimeout(() => {
-        setSubmitStatus(null);
-        setError(null);
-      }, 5000);
+      // Also send email as backup
+      const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
       const body = encodeURIComponent(
         `Ime: ${formData.firstName} ${formData.lastName}\n` +
         `Telefon: ${formData.phone}\n` +
