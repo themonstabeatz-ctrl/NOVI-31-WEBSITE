@@ -318,9 +318,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Booking API Integration"
+    - "Contact page"
   stuck_tasks:
-    - "Booking API Integration"
+    - "Contact page"
   test_all: false
   test_priority: "high_first"
 
