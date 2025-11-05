@@ -630,7 +630,7 @@ const CouplesMassageCard = ({
             cursor: isSelectionComplete() ? 'pointer' : 'not-allowed'
           }}
           disabled={!isSelectionComplete()}
-          asChild={isSelectionComplete()}
+          asChild={!!isSelectionComplete()}
         >
           {isSelectionComplete() ? (
             <Link 
