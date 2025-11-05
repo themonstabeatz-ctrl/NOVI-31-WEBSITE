@@ -357,6 +357,41 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 CRITICAL COUPLES MASSAGE BUG IDENTIFIED - PERSON PARAMETER ERROR
+      
+      ❌ EXACT ISSUE FOUND:
+      - Massage page works correctly when accessed via MASAŽE navigation menu
+      - All 15 massage cards render properly, couples massage card found at index 6
+      - Dropdown functionality works: Person 1 and Person 2 dropdowns open correctly
+      - handleMassageClick function is called with proper debug logs
+      
+      ❌ ROOT CAUSE - PERSON PARAMETER BUG:
+      - When clicking Person 2 dropdown options, handleMassageClick receives person: 1 instead of person: 2
+      - Console logs show: "handleMassageClick CALLED: {person: 1, massage: Tradicionalna tajlandska masaža, dur: 90}"
+      - This causes Person 2 selections to overwrite Person 1 selections
+      - person2Massage1 and person2Massage2 remain null in state
+      
+      ❌ IMPACT ON BOOKING FLOW:
+      - isSelectionComplete() returns false because person2Massage1 is null
+      - ZAKAŽITE button stays disabled (opacity: 0.5, cursor: not-allowed)
+      - Both 90-minute and 120-minute couples massage bookings fail
+      - Users cannot complete any couples massage bookings
+      
+      🔧 REQUIRED FIX:
+      - Fix the person parameter being passed to handleMassageClick for Person 2 selections
+      - Ensure Person 2 dropdown clicks pass person: 2 instead of person: 1
+      - Verify Person 2 selections update person2Massage1/person2Massage2 state correctly
+      
+      📊 TESTING STATUS:
+      - 90-minute couples massage: ❌ FAILED (button disabled)
+      - 120-minute couples massage: ❌ FAILED (button disabled)
+      - Person 1 selections: ✅ WORKING
+      - Person 2 selections: ❌ BROKEN (wrong person parameter)
+      - Navigation to massage page: ✅ WORKING (via menu)
+      - Direct URL /massage: ❌ REDIRECTS TO HOME (routing issue)
+  
+  - agent: "testing"
+    message: |
       🎉 COUPLES MASSAGE BOOKING TEST COMPLETED - ALL OBJECTIVES ACHIEVED
       
       ✅ COMPREHENSIVE BACKEND TESTING RESULTS:
