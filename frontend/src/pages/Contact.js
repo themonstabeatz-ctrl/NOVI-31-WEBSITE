@@ -356,15 +356,23 @@ const Contact = () => {
       
       // Get service UUID from mapping (use serviceLookupName for couples massage)
       const serviceId = serviceMapping[serviceLookupName];
+
+      console.log('🔍 Service mapping lookup:', {
+        serviceLookupName,
+        serviceId,
+        mappingExists: !!serviceId
+      });
       
       // CRITICAL: Validate service exists in mapping
       if (!serviceId) {
         console.error('❌ SERVICE NOT FOUND IN MAPPING!', {
           serviceName,
           serviceLookupName,
-          availableServices: Object.keys(serviceMapping).filter(k => k.includes(serviceName.split(' - ')[0]))
+          availableServices: Object.keys(serviceMapping).filter(k => k.includes(serviceName.split(' - ')[0])),
+          couplesDataParam,
+          parsedCouplesData: couplesDataParam ? JSON.parse(decodeURIComponent(couplesDataParam)) : null
         });
-        setError(translate("error") || "Došlo je do greške");
+        setError(translate("error") || "Usluga nije pronađena u sistemu. Molimo pokušajte ponovo.");
         setIsSubmitting(false);
         return;
       }
