@@ -435,6 +435,42 @@ agent_communication:
       📊 FINAL STATUS: COUPLES MASSAGE BOOKING FLOW 100% BROKEN
       User's report is accurate - 90-minute and 120-minute couples massage bookings don't work because the submit button doesn't respond (it's disabled due to broken selection logic).
   
+  - agent: "testing"
+    message: |
+      🚨 CRITICAL MASSAGE PAGE RENDERING FAILURE - CANNOT TEST COUPLES MASSAGE FIX!
+      
+      ❌ MASSAGE PAGE NOT RENDERING PROPERLY:
+      - URL: https://spa-form-repair.preview.emergentagent.com/massage
+      - React app loads successfully but shows HOME PAGE content instead of massage services
+      - Page displays: "Dobrodošli u Bua Luang Thai Spa-Beograd", "UMETNOST TAJLANDSKE MASAŽE" (home page content)
+      - Expected: Massage service cards with couples massage dropdown functionality
+      
+      ❌ MISSING COMPONENTS:
+      - No massage cards (.massage-card) rendered on page
+      - CouplesMassageCard component not visible
+      - No "Osoba 1" / "Osoba 2" dropdowns found
+      - No duration buttons (90 min, 120 min) available for testing
+      
+      🔍 TECHNICAL ANALYSIS:
+      - Frontend service running correctly (supervisorctl status: RUNNING)
+      - React app loads and navigation works
+      - Routing issue: /massage route not displaying correct component
+      - HTML source contains 'massage-card' but components not rendering in DOM
+      
+      ❌ IMPACT ON TESTING:
+      - Cannot test the dropdownOpen state management fix from main agent
+      - Cannot verify if moving state from CouplesMassageCard to parent Massage.js resolved the issue
+      - Cannot test 90-minute or 120-minute couples massage booking flows
+      - All massage booking functionality appears broken for users
+      
+      🎯 REQUIRED FIX:
+      - Investigate why /massage route is not rendering Massage.js component properly
+      - Check for JavaScript errors preventing massage cards from displaying
+      - Verify React Router configuration for /massage path
+      - Ensure massage services data is loading correctly
+      
+      📊 CURRENT STATUS: MASSAGE PAGE COMPLETELY BROKEN - COUPLES MASSAGE FIX CANNOT BE TESTED
+  
   - agent: "main"
     message: |
       VIEWPORT META TAG RESTORED TO DESKTOP VIEW
