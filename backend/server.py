@@ -97,6 +97,15 @@ async def get_status_checks():
     
     return status_checks
 
+
+# Health Check Endpoint
+@api_router.get("/health")
+async def health_check():
+    """
+    Simple health check endpoint to verify backend connectivity
+    """
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
 # Booking Proxy Endpoint
 @api_router.post("/book-appointment")
 async def book_appointment(booking: AppointmentBooking, background_tasks: BackgroundTasks):
