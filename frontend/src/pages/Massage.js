@@ -565,24 +565,12 @@ const Massage = () => {
           />
 
           {massageServices.map((service, index) => {
-            // Special rendering for Couples Massage (couple)
+            // Skip couples massage - it's rendered separately above
             if (service.key === 'couple') {
-              return (
-                <SimpleCouplesMassageCard
-                  key={index}
-                  translate={translate}
-                  durations={durations}
-                  updateDuration={updateDuration}
-                  couplesSelections={couplesSelections}
-                  setCouplesSelections={setCouplesSelections}
-                  calculateCouplesPrice={calculateCouplesPrice}
-                  dropdownOpen={dropdownOpen}
-                  setDropdownOpen={setDropdownOpen}
-                />
-              );
+              return null;
             }
             
-            // Regular massage cards for all other services
+            // Regular massage cards
             return (
             <Card key={index} className="massage-card">
               {service.popular && (
