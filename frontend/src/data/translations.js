@@ -74,7 +74,7 @@ export const translations = {
     
     // New Massage Services
     sportsMassage: "Masaža za parove",
-    sportsMassageDesc: "",
+    sportsMassageDesc: "Posebna ponuda za parove sa 15% popustom",
     sportsBenefit1: "",
     sportsBenefit2: "",
     sportsBenefit3: "",
