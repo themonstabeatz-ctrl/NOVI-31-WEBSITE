@@ -97,11 +97,20 @@ const SimpleCouplesMassageCard = ({ translate }) => {
         {/* Price display with discount badge */}
         <div style={{ textAlign: 'center', position: 'relative' }}>
           <div style={{ position: 'absolute', top: '-20px', right: '10px', zIndex: 10 }}>
-            <img 
-              src="/-15%.png" 
-              alt="-15%" 
-              style={{ width: '60px', height: '60px' }}
-            />
+            <div style={{ 
+              width: '60px', 
+              height: '60px', 
+              backgroundColor: '#d4af37',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              color: '#000'
+            }}>
+              -15%
+            </div>
           </div>
           
           <div style={{ fontSize: '0.875rem', color: '#888', textDecoration: 'line-through' }}>
