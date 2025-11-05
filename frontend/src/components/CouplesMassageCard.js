@@ -371,7 +371,10 @@ const CouplesMassageCard = ({
                         return (
                           <div
                             key={`${massage.key}-60-p1`}
-                            onClick={() => handleMassageClick(1, massage, '60')}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMassageClick(1, massage, '60');
+                            }}
                             style={{
                               padding: '0.5rem',
                               cursor: 'pointer',
