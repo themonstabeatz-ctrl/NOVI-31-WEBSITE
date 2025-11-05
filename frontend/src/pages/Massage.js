@@ -6,7 +6,7 @@ import { Badge } from "../components/ui/badge";
 import { Link } from "react-router-dom";
 import { Clock, Star } from "lucide-react";
 import { throttle } from "../utils/debounce";
-import CouplesMassageCard from "../components/CouplesMassageCard";
+import SimpleCouplesMassageCard from "../components/SimpleCouplesMassageCard";
 
 const Massage = () => {
   const { translate } = useLanguage();
