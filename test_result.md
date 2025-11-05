@@ -306,6 +306,9 @@ backend:
       - working: true
         agent: "main"
         comment: "✅ WEB SLOT THERAPIST ROTATION IMPLEMENTED & VERIFIED! Backend updated to automatically rotate through 15 'Web Slot' dummy therapists to allow multiple simultaneous bookings. System now finds available Web Slot therapist when primary is busy. All three 'Masaža stopala' service variants verified in external booking system with correct duration-specific descriptions: 30min (c4f3d344-73f9-4a0d-ae39-6f2be718ef19): 'Masaža stopala tretman u trajanju od 30 minuta', 45min (73e1cbf7-f6e7-44c5-abfc-070c5e57e844): 'Masaža stopala tretman u trajanju od 45 minuta', 60min (3e45f6f3-3448-41d0-9686-9d3fa5d0414d): 'Masaža stopala tretman u trajanju od 60 minuta'. Booking system working perfectly with automatic therapist assignment."
+      - working: true
+        agent: "testing"
+        comment: "🎉 COUPLES MASSAGE BOOKING TEST COMPLETED - PERFECT FUNCTIONALITY! ✅ HEALTH ENDPOINT: GET /api/health returns 200 OK with status 'healthy' ✅ COUPLES MASSAGE BOOKING: POST /api/book-appointment with service ID 'd3e8684a-2bbc-4a15-835e-8e43d231074a' (Masaža za parove - 120 min) successful ✅ APPOINTMENT CREATED: ID b40a5da0-517f-4e82-afd9-42e405930183, scheduled for 2025-11-10T14:00:00-16:00:00 ✅ EXTERNAL SYSTEM VERIFICATION: Booking confirmed in https://pozdrav-kako-si.emergent.host with status 'scheduled' ✅ WEB SLOT THERAPIST ASSIGNMENT: Automatically assigned therapist ID 9ec04fff-f8ae-43ec-ae97-4932160de842 ✅ BACKEND LOGS: Clean, no errors detected ✅ COUPLES MASSAGE PROCESSING: Backend correctly handles 240-minute total duration and 15% discount pricing in notes ✅ EMAIL NOTIFICATIONS: Confirmation and reminder emails scheduled successfully. All review request objectives met - couples massage booking flow working end-to-end."
 
 metadata:
   created_by: "main_agent"
