@@ -10,7 +10,9 @@ const CouplesMassageCard = ({
   updateDuration,
   couplesSelections,
   setCouplesSelections,
-  calculateCouplesPrice
+  calculateCouplesPrice,
+  dropdownOpen,
+  setDropdownOpen
 }) => {
   
   // ALL available massages (excluding SPA)
@@ -30,8 +32,6 @@ const CouplesMassageCard = ({
     { key: 'bamboo', name: translate("bambooMassage") || 'Bamboo masaža', basePrice: 3000, durations: ['60', '90', '120'] },
     { key: 'lymphatic', name: translate("lymphaticDrainage") || 'Limfna drenаža', basePrice: 3000, durations: ['60', '90', '120'] }
   ];
-
-  const [dropdownOpen, setDropdownOpen] = useState({ person1: false, person2: false });
 
   const getFilteredMassages = () => {
     const duration = couplesSelections.duration;
