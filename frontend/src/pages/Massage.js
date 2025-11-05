@@ -40,6 +40,8 @@ const Massage = () => {
     person2Massage2: null  // Second 60 min massage for person 2 in 120 min mode
   });
 
+  const [dropdownOpen, setDropdownOpen] = useState({ person1: false, person2: false });
+
   // Generic function to get massage details based on duration
   const getMassageDetails = (serviceKey, serviceName) => {
     const duration = durations[serviceKey];
