@@ -250,15 +250,15 @@ const Contact = () => {
       if (couplesDataParam && serviceName.includes('Masaža za parove')) {
         try {
           const couplesData = JSON.parse(decodeURIComponent(couplesDataParam));
-          console.log('🔍 DEBUG - couplesData:', couplesData);
-          console.log('🔍 DEBUG - couplesData.duration:', couplesData.duration);
+          console.log('🔍 Contact.js handleSubmit - couplesData received:', couplesData);
+          console.log('🔍 Contact.js handleSubmit - couplesData.duration:', couplesData.duration);
           
           // Use original duration (60, 90, 120) for service_id lookup, not total duration
           serviceLookupName = `Masaža za parove - ${couplesData.duration} min`;
-          console.log('🔄 Couples massage: using duration', couplesData.duration, 'for service lookup instead of total', couplesData.totalDuration);
-          console.log('🔍 DEBUG - serviceLookupName:', serviceLookupName);
+          console.log('🔍 Contact.js handleSubmit - serviceLookupName:', serviceLookupName);
+          console.log('🔍 Contact.js handleSubmit - total duration:', couplesData.totalDuration);
         } catch (e) {
-          console.error('❌ Error parsing couples data for service lookup:', e);
+          console.error('❌ Contact.js handleSubmit - Error parsing couples data for service lookup:', e);
         }
       }
       
