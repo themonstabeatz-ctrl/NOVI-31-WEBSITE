@@ -190,13 +190,21 @@ const CouplesMassageCard = ({
     const p2m1 = couplesSelections.person2Massage1;
     const p2m2 = couplesSelections.person2Massage2;
     
+    console.log('🔍 isSelectionComplete debug:', {
+      duration: couplesSelections.duration,
+      p1m1: p1m1?.name,
+      p1m2: p1m2?.name,
+      p2m1: p2m1?.name,
+      p2m2: p2m2?.name
+    });
+    
     // For 120-min mode: Each person can choose either 2x60min OR 1x120min
     if (couplesSelections.duration === '120') {
       // Check Person 1 completion
       let person1Complete = false;
       if (p1m1?.duration === '60') {
         // Person 1 is selecting 60-min massages, needs 2 selections
-        person1Complete = p1m1 && p1m2;
+        person1Complete = !!(p1m1 && p1m2);
       } else if (p1m1?.duration === '120') {
         // Person 1 is selecting 120-min massage, needs just 1 selection
         person1Complete = !!p1m1;
@@ -206,17 +214,20 @@ const CouplesMassageCard = ({
       let person2Complete = false;
       if (p2m1?.duration === '60') {
         // Person 2 is selecting 60-min massages, needs 2 selections
-        person2Complete = p2m1 && p2m2;
+        person2Complete = !!(p2m1 && p2m2);
       } else if (p2m1?.duration === '120') {
         // Person 2 is selecting 120-min massage, needs just 1 selection
         person2Complete = !!p2m1;
       }
       
+      console.log('🔍 120min mode completion:', { person1Complete, person2Complete });
       return !!(person1Complete && person2Complete);
     }
     
     // For 60 or 90 min modes: just need 1 massage per person
-    return !!(p1m1 && p2m1);
+    const result = !!(p1m1 && p2m1);
+    console.log('🔍 60/90min mode completion:', { result, hasP1: !!p1m1, hasP2: !!p2m1 });
+    return result;
   };
 
   const is120Mode = couplesSelections.duration === '120';
