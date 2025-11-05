@@ -103,10 +103,12 @@ const Massage = () => {
 
   // Helper to update duration for a specific service
   const updateDuration = (serviceKey, newDuration) => {
+    console.log('🔄 updateDuration called:', { serviceKey, newDuration });
     setDurations(prev => ({ ...prev, [serviceKey]: newDuration }));
     
     // Reset couples selections when duration changes for sports massage
     if (serviceKey === 'sports') {
+      console.log('🔄 Resetting couplesSelections with duration:', newDuration);
       setCouplesSelections({
         duration: newDuration,
         person1Massage1: null,
@@ -114,6 +116,7 @@ const Massage = () => {
         person2Massage1: null,
         person2Massage2: null
       });
+      console.log('✅ couplesSelections updated to duration:', newDuration);
     }
   };
 
