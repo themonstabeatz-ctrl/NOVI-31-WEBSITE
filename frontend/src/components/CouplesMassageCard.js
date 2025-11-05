@@ -239,6 +239,12 @@ const CouplesMassageCard = ({
 
   const is120Mode = couplesSelections.duration === '120';
 
+  console.log('🔵 CouplesMassageCard render:', {
+    'durations.sports': durations.sports,
+    'couplesSelections.duration': couplesSelections.duration,
+    is120Mode
+  });
+
   return (
     <Card className="massage-card" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column' }}>
       <CardHeader>
