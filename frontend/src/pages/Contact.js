@@ -222,6 +222,20 @@ const Contact = () => {
       
       // serviceName and queryParams already defined in validation above - no need to redeclare
       
+      // Special handling for "Masaža za parove" - use original duration for service_id lookup
+      let serviceLookupName = serviceName;
+      const couplesDataParam = queryParams.get('couplesData');
+      if (couplesDataParam && serviceName.includes('Masaža za parove')) {
+        try {
+          const couplesData = JSON.parse(decodeURIComponent(couplesDataParam));
+          // Use original duration (60, 90, 120) for service_id lookup, not total duration
+          serviceLookupName = `Masaža za parove - ${couplesData.duration} min`;
+          console.log('🔄 Couples massage: using duration', couplesData.duration, 'for service lookup instead of total', couplesData.totalDuration);
+        } catch (e) {
+          console.error('Error parsing couples data for service lookup:', e);
+        }
+      }
+      
       // Service Mapping - All 90 services with proper durations (30 types x 3 durations)
       const serviceMapping = {
         "Anti-age tretman - 120 min": "8ee6b874-4b3e-4981-a69f-0eeb50bc31bd",
