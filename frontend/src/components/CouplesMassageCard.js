@@ -603,6 +603,7 @@ const CouplesMassageCard = ({
           {isSelectionComplete() ? (
             <Link to={`/contact?service=${encodeURIComponent(`Masaža za parove - ${couplesSelections.duration} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
               duration: couplesSelections.duration,
+              totalDuration: calculateTotalDuration(),
               person1: {
                 massage1: couplesSelections.person1Massage1,
                 massage2: couplesSelections.person1Massage2
@@ -612,6 +613,7 @@ const CouplesMassageCard = ({
                 massage2: couplesSelections.person2Massage2
               },
               totalPrice: calculateCouplesPrice(),
+              originalPrice: calculateOriginalPrice(),
               discount: '15%'
             }))}`}>
               ZAKAŽITE
