@@ -529,8 +529,11 @@ const CouplesMassageCard = ({
                       const selected = isSelected(2, massage.key, dur);
                       return (
                         <div
-                          key={`${massage.key}-${dur}`}
-                          onClick={() => handleMassageClick(2, massage, dur)}
+                          key={`${massage.key}-${dur}-person2`}
+                          onClick={() => {
+                            console.log('🟢 PERSON 2 DROPDOWN - Clicked:', massage.name, dur);
+                            handleMassageClick(2, massage, dur);
+                          }}
                           style={{
                             padding: '0.5rem',
                             cursor: 'pointer',
