@@ -244,8 +244,6 @@ const Contact = () => {
       let serviceLookupName = serviceName;
       const couplesDataParam = queryParams.get('couplesData');
       
-      console.log('🔍 DEBUG - serviceName:', serviceName);
-      console.log('🔍 DEBUG - couplesDataParam exists:', !!couplesDataParam);
       
       if (couplesDataParam && serviceName.includes('Masaža za parove')) {
         try {
@@ -353,7 +351,6 @@ const Contact = () => {
       // Get service UUID from mapping (use serviceLookupName for couples massage)
       const serviceId = serviceMapping[serviceLookupName];
 
-      console.log('🔍 Service mapping lookup:', {
         serviceLookupName,
         serviceId,
         mappingExists: !!serviceId
@@ -411,8 +408,6 @@ const Contact = () => {
         // Add connectivity health check before booking
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         
-        console.log('🔍 DEBUG - Backend URL:', backendUrl);
-        console.log('🔍 DEBUG - Full booking URL:', `${backendUrl}/api/book-appointment`);
         
         // Health check first
         try {
