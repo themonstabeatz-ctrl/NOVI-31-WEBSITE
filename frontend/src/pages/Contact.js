@@ -328,22 +328,25 @@ const Contact = () => {
         "Čokoladni wrap - 90 min": "c2c079a0-e906-4f32-ac85-8fc4a650316b"
       };
       
-      // Get service UUID from mapping
-      const serviceId = serviceMapping[serviceName];
+      // Get service UUID from mapping (use serviceLookupName for couples massage)
+      const serviceId = serviceMapping[serviceLookupName];
       
       // CRITICAL: Validate service exists in mapping
       if (!serviceId) {
         console.error('❌ SERVICE NOT FOUND IN MAPPING!', {
           serviceName,
+          serviceLookupName,
           availableServices: Object.keys(serviceMapping).filter(k => k.includes(serviceName.split(' - ')[0]))
         });
         setError(translate("error") || "Došlo je do greške");
+        setIsSubmitting(false);
         return;
       }
       
       // Debug logging
       console.log('📌 Booking Debug:', {
         serviceName,
+        serviceLookupName,
         serviceId,
         found: true
       });
