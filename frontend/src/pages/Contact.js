@@ -160,6 +160,12 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
+    // Safety timeout: Auto-reset after 30 seconds if stuck
+    submitTimeoutRef.current = setTimeout(() => {
+      console.warn('⚠️ Submit timeout - resetting isSubmitting');
+      setIsSubmitting(false);
+    }, 30000);
+    
     try {
       // Validate required fields with detailed error messages
       const missingFields = [];
