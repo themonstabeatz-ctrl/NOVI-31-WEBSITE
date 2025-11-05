@@ -440,15 +440,42 @@ const Contact = () => {
       }
 
       // Success - show green checkmark with appropriate message
-      setSubmitStatus('success');
+    } catch (error) {
+      console.error("🚨 DETAILED BOOKING ERROR:", {
+        message: error.message,
+        stack: error.stack,
+        name: error.name,
+        cause: error.cause
+      });
       
-      // Format date for email
-      const emailDate = formData.preferredDate instanceof Date
-        ? formatDate(formData.preferredDate.toISOString().split('T')[0])
-        : (formData.preferredDate ? formatDate(formData.preferredDate) : 'Nije navedeno');
+      // Detailed error handling with specific messages
+      let errorMessage = "Došlo je do greške";
       
-      // Also send email as backup
-      const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
+      if (error.message.includes("Failed to fetch")) {
+        errorMessage = "Greška u komunikaciji sa serverom. Proverite internet konekciju.";
+      } else if (error.message.includes("Backend not available")) {
+        errorMessage = "Server trenutno nije dostupan. Pokušajte ponovo za nekoliko minuta.";
+      } else if (error.message.includes("Booking failed")) {
+        errorMessage = `Greška pri rezervaciji: ${error.message}`;
+      } else if (error.message.includes("NetworkError")) {
+        errorMessage = "Greška mreže. Proverite internet konekciju.";
+      } else if (error.message.includes("CORS")) {
+        errorMessage = "Greška u konfiguraciji. Kontaktirajte podršku.";
+      } else {
+        errorMessage = `Neočekivana greška: ${error.message}`;
+      }
+      
+      // Show specific error message to user
+      setError(errorMessage);
+      
+      // Error - show red X
+      setSubmitStatus("error");
+      
+      // Hide error after 5 seconds (longer for detailed messages)
+      setTimeout(() => {
+        setSubmitStatus(null);
+        setError(null);
+      }, 5000);
       const body = encodeURIComponent(
         `Ime: ${formData.firstName} ${formData.lastName}\n` +
         `Telefon: ${formData.phone}\n` +
