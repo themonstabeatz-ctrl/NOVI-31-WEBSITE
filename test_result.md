@@ -904,3 +904,40 @@ agent_communication:
       4. OR implement frontend availability checking before booking
       
       🎯 CONCLUSION: System is working correctly, but Generic therapist configuration doesn't meet user's requirements for duplicate bookings at same time.
+
+  - agent: "testing"
+    message: |
+      🚨 COUPLES MASSAGE CRITICAL BUG CONFIRMED - EXACT ROOT CAUSE IDENTIFIED
+      
+      ❌ CRITICAL STATE SYNCHRONIZATION FAILURE:
+      Console logs reveal the exact issue: When clicking duration buttons (90min/120min), durations.sports updates correctly but couplesSelections.duration remains stuck at '60'. This breaks the entire couples massage booking flow.
+      
+      🔍 TECHNICAL ROOT CAUSE:
+      - File: /app/frontend/src/pages/Massage.js, Line 115
+      - Current code: if (serviceKey === 'couple') { setCouplesSelections(...) }
+      - Problem: CouplesMassageCard uses serviceKey 'sports', NOT 'couple'
+      - Result: State sync never happens, dropdown filtering fails
+      
+      ❌ EXACT FAILURE CHAIN:
+      1. User clicks 90min/120min button ✅ (visual feedback works)
+      2. updateDuration('sports', '90') called ✅ (durations.sports updates)
+      3. Line 115 check fails ❌ (serviceKey 'sports' ≠ 'couple')
+      4. couplesSelections.duration stays '60' ❌ (state sync broken)
+      5. getFilteredMassages() uses wrong duration ❌ (shows 60min options instead of 90min/120min)
+      6. Dropdowns won't open/work properly ❌ (wrong filtering)
+      7. ZAKAŽITE button stays disabled ❌ (no valid selections possible)
+      
+      ✅ CONSOLE LOG EVIDENCE:
+      - "durations.sports: 120" (correct)
+      - "couplesSelections.duration: 60" (incorrect - should be 120)
+      - "is120Mode: false" (incorrect - should be true)
+      
+      🔧 SIMPLE ONE-LINE FIX:
+      Change Massage.js line 115 from:
+      if (serviceKey === 'couple') {
+      TO:
+      if (serviceKey === 'sports') {
+      
+      OR change CouplesMassageCard to use 'couple' instead of 'sports' serviceKey.
+      
+      📊 IMPACT: This single line fix will restore full functionality for both 90-minute and 120-minute couples massage booking flows as requested in the review.
