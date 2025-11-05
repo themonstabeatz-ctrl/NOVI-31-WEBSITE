@@ -560,7 +560,7 @@ const Massage = () => {
         <div className="services-grid">
           
           {/* HARD-CODED Masaža za parove Card */}
-          <SimpleCouplesMassageCard
+          <CouplesMassageCard
             translate={translate}
           />
 
