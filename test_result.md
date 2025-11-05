@@ -399,42 +399,36 @@ agent_communication:
   
   - agent: "testing"
     message: |
-      🎉 URGENT COUPLES MASSAGE BOOKING FLOW TEST COMPLETED - USER ISSUE RESOLVED!
+      🚨 CRITICAL COUPLES MASSAGE BOOKING FAILURE - USER ISSUE CONFIRMED!
       
-      ✅ EXACT USER SCENARIO TESTED SUCCESSFULLY:
+      ❌ EXACT USER SCENARIO TESTED - ALL FAILED:
       1. Navigate to /massage page ✅
-      2. Scroll to "Masaža za parove" card ✅ (Found as Card 7)
-      3. Click "120 min" button ✅ (Button found and clickable)
-      4. Select Person 1 - Massage 1: "Tradicionalna tajlandska masaža" ✅
-      5. Select Person 2 - Same massage ✅ (Required for couples booking)
-      6. ZAKAŽITE button enabled and gold colored ✅
-      7. Redirect to /contact page with populated message ✅
-      8. Form filled: Test User, +381601234567, test@example.com, tomorrow 14:00 ✅
-      9. Form submission successful ✅
-      10. Backend processing verified ✅
+      2. Scroll to "Masaža za parove" card ✅ (Found as Card 6)
+      3. Click "90 min" or "120 min" button ✅ (Buttons clickable)
+      4. Attempt to select Person 1 massage ❌ (Clicks register but state not updated)
+      5. Attempt to select Person 2 massage ❌ (Clicks register but state not updated)
+      6. ZAKAŽITE button remains disabled ❌ (opacity: 0.5, cursor: not-allowed)
+      7. Cannot proceed to contact page ❌ (Button disabled)
       
-      📋 BACKEND VERIFICATION (from logs):
-      - Service ID: d3e8684a-2bbc-4a15-835e-8e43d231074a ✅
-      - Total duration: 240 minutes ✅
-      - Final price: 13,430 RSD (15% discount applied) ✅
-      - Web Slot therapist auto-assignment working ✅
-      - Email confirmations sent ✅
-      - External booking system integration ✅
-      - Appointments visible in https://pozdrav-kako-si.emergent.host/ ✅
+      🔍 ROOT CAUSE IDENTIFIED - BROKEN STATE MANAGEMENT:
+      - Debug logs show couplesSelections state never updates: {p1m1: undefined, p1m2: undefined, p2m1: undefined, p2m2: undefined}
+      - handleMassageClick function in CouplesMassageCard.js is not working
+      - Dropdown clicks are detected but setCouplesSelections is not being called properly
+      - isSelectionComplete() correctly returns false because no selections are saved
       
-      🎯 ROOT CAUSE OF USER FRUSTRATION:
-      - UI interaction complexity in couples massage selection
-      - User may have missed selecting both Person 1 AND Person 2 massages
-      - ZAKAŽITE button only enables when BOTH persons have massage selections
+      ❌ AFFECTED SCENARIOS:
+      - 90-minute couples massage: BROKEN (button disabled)
+      - 120-minute couples massage: BROKEN (button disabled)  
+      - 60-minute couples massage: LIKELY BROKEN (same code path)
       
-      ✅ SOLUTION CONFIRMED WORKING:
-      - Complete both person selections → Button becomes gold and enabled
-      - Form submission processes correctly through backend
-      - Bookings appear in external system as expected
-      - No JavaScript errors or backend failures
+      🎯 TECHNICAL ISSUE:
+      - File: /app/frontend/src/components/CouplesMassageCard.js
+      - Function: handleMassageClick (lines 51-108)
+      - Problem: State updates via setCouplesSelections not working
+      - Impact: ZAKAŽITE button never enables, blocking all couples massage bookings
       
-      📊 FINAL STATUS: COUPLES MASSAGE BOOKING FLOW 100% FUNCTIONAL
-      User's 30+ minute frustration was likely due to incomplete massage selections, not system malfunction.
+      📊 FINAL STATUS: COUPLES MASSAGE BOOKING FLOW 100% BROKEN
+      User's report is accurate - 90-minute and 120-minute couples massage bookings don't work because the submit button doesn't respond (it's disabled due to broken selection logic).
   
   - agent: "main"
     message: |
