@@ -81,12 +81,14 @@ const CouplesMassageCard = ({
         }
       } else {
         // For 120 min massage or 60/90 mode - single selection, clear ALL other selections
+        console.log('✅ Person 1: Setting single selection for 60/90 mode or 120-min massage');
         setCouplesSelections(prev => {
           const newState = { 
             ...prev, 
             person1Massage1: massageData,
             person1Massage2: null 
           };
+          console.log('✅ Person 1: New state:', newState);
           return newState;
         });
         setDropdownOpen(prev => ({ ...prev, person1: false }));
