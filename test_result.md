@@ -321,9 +321,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Contact page"
-  stuck_tasks:
-    - "Contact page"
+    - "All testing completed"
+  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
