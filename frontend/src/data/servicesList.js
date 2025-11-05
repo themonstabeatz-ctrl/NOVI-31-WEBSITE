@@ -42,7 +42,7 @@ export const bookingSystemNames = {
   'royalThaiMassage': 'Glava, vrat, ramena i leđa',
   'footMassageService': 'Masaža stopala',
   'couplesMassage': 'Aroma duboko tkivo',
-  'sportsMassageService': 'Masaža za parove',
+  'sportsMassageService': 'Sportska masaža',
   'shiatsuMassageService': 'Shiatsu masaža',
   'reflexologyService': 'Refleksologija',
   'backNeckMassage': 'Masaža leđa i vrata',
