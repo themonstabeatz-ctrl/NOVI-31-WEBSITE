@@ -200,11 +200,11 @@ frontend:
 
   - task: "Contact page"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/pages/Contact.js"
     stuck_count: 2
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "unknown"
         agent: "main"
@@ -221,6 +221,9 @@ frontend:
       - working: "unknown"
         agent: "main"
         comment: "Investigating service name mapping. Verified: Massage.js uses 'Aroma terapija' (with space), Spa.js uses 'Aromaterapija' (without space). Both match serviceMapping in Contact.js. troubleshoot_agent confirmed mapping architecture is correct. Need to test actual booking flow end-to-end to identify where bookings fail."
+      - working: true
+        agent: "testing"
+        comment: "🎉 COUPLES MASSAGE BOOKING FLOW FULLY FUNCTIONAL! ✅ COMPREHENSIVE TESTING COMPLETED: 1) Couples massage card found on massage page with proper 120min duration selection. 2) Person 1 & Person 2 massage selection working (Tradicionalna tajlandska masaža). 3) ZAKAŽITE button becomes enabled and gold-colored when selections complete. 4) Successful redirect to /contact page with populated couples massage data including total duration (240min), pricing (13,430 RSD with 15% discount), and detailed breakdown. 5) Form submission working perfectly - backend logs confirm successful bookings with service ID d3e8684a-2bbc-4a15-835e-8e43d231074a. 6) Web Slot therapist rotation working (auto-assigns available therapists). 7) Email confirmations and reminders sent successfully. 8) External booking system integration verified - appointments appear in https://pozdrav-kako-si.emergent.host/. ✅ USER'S EXACT SCENARIO TESTED: Test User, +381601234567, test@example.com, tomorrow 14:00 - SUCCESSFUL. All review request objectives met."
 
   - task: "Header with navigation and language switcher"
     implemented: true
