@@ -561,15 +561,7 @@ const Massage = () => {
           
           {/* HARD-CODED Masaža za parove Card */}
           <SimpleCouplesMassageCard
-            key="couples-massage-card"
             translate={translate}
-            durations={durations}
-            updateDuration={updateDuration}
-            couplesSelections={couplesSelections}
-            setCouplesSelections={setCouplesSelections}
-            calculateCouplesPrice={calculateCouplesPrice}
-            dropdownOpen={dropdownOpen}
-            setDropdownOpen={setDropdownOpen}
           />
 
           {massageServices.map((service, index) => {
