@@ -350,11 +350,6 @@ const Contact = () => {
       
       // Get service UUID from mapping (use serviceLookupName for couples massage)
       const serviceId = serviceMapping[serviceLookupName];
-
-        serviceLookupName,
-        serviceId,
-        mappingExists: !!serviceId
-      });
       
       // CRITICAL: Validate service exists in mapping
       if (!serviceId) {
