@@ -49,8 +49,10 @@ const CouplesMassageCard = ({
   };
 
   const handleMassageClick = (person, massage, dur) => {
+    console.log('✅ handleMassageClick CALLED:', { person, massage: massage.name, dur });
     
     const massageData = { key: massage.key, name: massage.name, duration: dur, price: massage.basePrice };
+    console.log('✅ massageData created:', massageData);
     
     if (person === 1) {
       const current1 = couplesSelections.person1Massage1;
