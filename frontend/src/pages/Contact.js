@@ -438,11 +438,6 @@ const Contact = () => {
         const responseData = await response.json();
         console.log('✅ Booking successful:', responseData);
 
-        if (!response.ok) {
-          throw new Error('Failed to book appointment');
-        }
-      }
-
       // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
       
