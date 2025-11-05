@@ -59,7 +59,9 @@ const Contact = () => {
       if (couplesData) {
         try {
           const data = JSON.parse(decodeURIComponent(couplesData));
-          message = `Masaža za parove - ${data.duration} min\n\n`;
+          // Use totalDuration (sum of all massages) instead of duration (category)
+          const displayDuration = data.totalDuration || data.duration;
+          message = `Masaža za parove - UKUPNO TRAJANJE: ${displayDuration} min\n\n`;
           message += `OSOBA 1:\n`;
           if (data.person1.massage1) {
             message += `- ${data.person1.massage1.name} (${data.person1.massage1.duration} min) - ${data.person1.massage1.price} RSD\n`;
