@@ -30,6 +30,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+  const [error, setError] = useState(null); // Error message state
 
   // Map language codes to HTML lang attribute - force sr-RS for date format
   const getHtmlLang = () => {
