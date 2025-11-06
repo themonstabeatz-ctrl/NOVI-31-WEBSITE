@@ -337,6 +337,18 @@ backend:
         agent: "testing"
         comment: "🚨 CRITICAL SERVICE ID MISMATCH DISCOVERED IN COUPLES MASSAGE BOOKING! ✅ BACKEND INTEGRATION: Fully functional when using correct service ID (9407d92e-d2a9-4432-85ae-850c3446f900). Appointment ID 1c0f34bc-9f28-41c2-a802-397c992bb952 created successfully, Web Slot 4 therapist assigned, email notifications sent. ❌ FRONTEND ISSUE: Contact.js serviceMapping uses wrong service ID (3ea2757e-2fa5-4db4-a52e-9db09f573265) which doesn't exist in external system. This causes all frontend couples massage bookings to fail. ✅ EXTERNAL SYSTEM: Service 'Masaža za parove - 120 min' exists with correct ID, price=11560.0, description='Masaža za parove - dve osobe sa popustom od 15%'. ✅ BACKEND LOGS: Enhanced couples massage processing working perfectly - service_name='Masaža za parove - 240 min', duration_type=240, price=11560 RSD. 🔧 CRITICAL FIX NEEDED: Update Contact.js serviceMapping to use correct service ID: 9407d92e-d2a9-4432-85ae-850c3446f900. Backend implementation is flawless, issue is purely frontend service mapping mismatch."
 
+  - task: "Couple Booking Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "🎉 COUPLE BOOKING ENDPOINT FULLY FUNCTIONAL - ALL REVIEW OBJECTIVES ACHIEVED! ✅ SCENARIO 1 (120-min mode): POST /api/book-couple-appointment with exact review request data successful. Client: Marko Petrović (+381601234567, marko@example.com), Duration: 120min per person, Services: [98249336-b9d9-4685-b70c-81971d3cf216, 106f23bf-771b-4049-bb09-413910bbc3b9], Discount: 15%. Appointment ID: 4141d726-bf75-4814-9e8a-d120399a700f, End time: 18:00 (4h total for 2x120min), Status: 200 OK. ✅ SCENARIO 2 (60-min mode): Client: Ana Jovanović (+381601234568, ana@example.com), Duration: 60min per person, Same services, Appointment ID: 8f28a730-dd89-4ece-b2c7-d4bfffa7d379, End time: 18:00 (2h total for 2x60min), Status: 200 OK. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working (therapist ID: 20a9e9ba-a867-4286-8792-5d3f34acd068). Multiple simultaneous bookings successful. ✅ EXTERNAL SYSTEM INTEGRATION: Both appointments verified in https://therapist-booking-2.preview.emergentagent.com/api/appointments/ with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully (backend logs show '✅ Email sent successfully'). ✅ PRICE CALCULATIONS: 15% discount applied correctly. Expected prices: 11560 RSD (120-min mode), 7480 RSD (60-min mode). ✅ CURL TESTS: Both review request curl commands return 200 OK with proper JSON responses. All review request verification points achieved: Status 200 OK ✅, Web Slot therapist assigned ✅, Couple service created ✅, Pricing correct ✅, Email confirmations ✅, Reminders scheduled ✅."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
