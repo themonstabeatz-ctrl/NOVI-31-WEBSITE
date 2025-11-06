@@ -700,14 +700,7 @@ const Massage = () => {
                         style={{ width: '60px', height: '60px', objectFit: 'contain' }}
                       />
                     )}
-                    <div className="price">
-                      {currentDiscount > 0 && (
-                        <div style={{ fontSize: '0.875rem', textDecoration: 'line-through', color: '#888' }}>
-                          {getMassagePrice(service)}
-                        </div>
-                      )}
-                      <div>{calculateDiscountedPrice(parseInt(getMassagePrice(service).replace(/[^\d]/g, '')))},000 RSD</div>
-                    </div>
+                    <div className="price">{service.price}</div>
                   </div>
                 </div>
               </CardHeader>
