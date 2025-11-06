@@ -167,12 +167,16 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 # For couples massage, enhance notes with total duration and final price info
                 if is_couples_massage and couples_total_duration and couples_final_price:
                     original_notes = booking_payload['notes']
+                    
+                    # OVERRIDE service_name to show actual total duration
+                    booking_payload['service_name'] = f"Masaža za parove - {couples_total_duration} min"
+                    
                     booking_payload['notes'] = (
                         f"⭐ MASAŽA ZA PAROVE - UKUPNO TRAJANJE: {couples_total_duration} min ⭐\n"
                         f"💰 FINALNA CENA SA POPUSTOM (-15%): {couples_final_price} RSD 💰\n\n"
                         f"DETALJI:\n{original_notes}"
                     )
-                    logger.info(f"📝 Enhanced couples massage notes with duration: {couples_total_duration}min, price: {couples_final_price} RSD")
+                    logger.info(f"📝 Enhanced couples massage: service_name={booking_payload['service_name']}, duration: {couples_total_duration}min, price: {couples_final_price} RSD")
                 
                 response = await client.post(
                     'https://pozdrav-kako-si.emergent.host/api/appointments',
