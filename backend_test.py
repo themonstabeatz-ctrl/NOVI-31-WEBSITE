@@ -595,6 +595,10 @@ OSOBA 2:
 POPUST: -{couples_data['discount']}
 UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
         
+        # Test both service IDs - the one from Contact.js and the actual one in external system
+        contact_js_service_id = "3ea2757e-2fa5-4db4-a52e-9db09f573265"  # From Contact.js serviceMapping
+        actual_service_id = "9407d92e-d2a9-4432-85ae-850c3446f900"  # Actual ID in external system
+        
         booking_data = {
             "client_first_name": "Test",
             "client_last_name": "User", 
@@ -602,7 +606,7 @@ UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
             "client_email": "test@example.com",
             "appointment_date": "2025-11-10",
             "start_time": "2025-11-10T14:00:00",
-            "service_id": "3ea2757e-2fa5-4db4-a52e-9db09f573265",  # From Contact.js serviceMapping
+            "service_id": actual_service_id,  # Use actual service ID from external system
             "therapist_id": "",  # Empty - let backend assign Web Slot therapist
             "notes": notes,
             "language": "sr",
