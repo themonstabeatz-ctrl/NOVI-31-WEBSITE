@@ -247,7 +247,16 @@ const Contact = () => {
       
       if (couplesDataParam && serviceName.includes('Masaža za parove')) {
         try {
-          const couplesData = JSON.parse(decodeURIComponent(couplesDataParam));
+          // Try to decode - might already be decoded by browser
+          let decodedParam = couplesDataParam;
+          try {
+            decodedParam = decodeURIComponent(couplesDataParam);
+          } catch (decodeError) {
+            console.warn('⚠️ Could not decode URI, using as-is:', decodeError);
+            // Parameter might already be decoded by browser
+          }
+          
+          const couplesData = JSON.parse(decodedParam);
           
           // Use original duration (60, 90, 120) for service_id lookup, not total duration
           serviceLookupName = `Masaža za parove - ${couplesData.duration} min`;
@@ -258,6 +267,7 @@ const Contact = () => {
           });
         } catch (e) {
           console.error('❌ Error parsing couples data for service lookup:', e);
+          console.error('❌ Raw couplesDataParam:', couplesDataParam);
         }
       }
       
