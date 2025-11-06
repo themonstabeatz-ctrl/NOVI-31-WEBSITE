@@ -369,7 +369,6 @@ const Massage = () => {
   const hotStoneDetails = getMassageDetails('hotStone', 'Masaža toplim uljem');
   const royalDetails = getMassageDetails('royal', 'Glava, vrat, ramena i leđa');
   const footDetails = getMassageDetails('foot', 'Masaža stopala');
-  const sportsDetails = getMassageDetails('sports', 'Sportska masaža');
   const shiatsuDetails = getMassageDetails('shiatsu', 'Shiatsu masaža');
   const reflexologyDetails = getMassageDetails('reflexology', 'Refleksologija');
   const backShoulderDetails = getMassageDetails('backShoulder', 'Masaža leđa i vrata');
