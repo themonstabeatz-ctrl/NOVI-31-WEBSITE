@@ -44,16 +44,35 @@ const Massage = () => {
 
   const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages
 
-  // Fetch all service discounts from backend
+  // Fetch all service discounts from booking system
   useEffect(() => {
     const fetchDiscounts = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-        const response = await fetch(`${backendUrl}/api/discounts`);
-        const data = await response.json();
-        setServiceDiscounts(data.discounts || {});
+        // Fetch services from booking system API
+        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const services = await response.json();
+        
+        // Build discount mapping: service name -> discount percentage
+        const discountMap = {};
+        
+        services.forEach(service => {
+          const discount = service.discount_percentage || 0;
+          const serviceName = service.name; // e.g., "Tradicionalna tajlandska masaža - 60 min"
+          
+          // Extract base service name without duration
+          const baseName = serviceName.split(' - ')[0]; // e.g., "Tradicionalna tajlandska masaža"
+          
+          // Map to frontend service keys
+          // We store discount per base service, not per duration variant
+          if (!discountMap[baseName] && discount > 0) {
+            discountMap[baseName] = discount;
+          }
+        });
+        
+        console.log('📊 Discounts loaded from booking system:', discountMap);
+        setServiceDiscounts(discountMap);
       } catch (error) {
-        console.error('Error fetching discounts:', error);
+        console.error('Error fetching discounts from booking system:', error);
       }
     };
     fetchDiscounts();
