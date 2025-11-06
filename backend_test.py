@@ -621,19 +621,40 @@ UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
                 
                 if services_response.status_code == 200:
                     services = services_response.json()
-                    service_found = any(s.get('id') == booking_data['service_id'] for s in services)
+                    actual_service_found = any(s.get('id') == actual_service_id for s in services)
+                    contact_service_found = any(s.get('id') == contact_js_service_id for s in services)
+                    
+                    # Find the actual service details
+                    actual_service = next((s for s in services if s.get('id') == actual_service_id), None)
                     
                     self.log_result(
                         "Couples Massage Service Lookup",
-                        service_found,
-                        f"Service ID {booking_data['service_id']} {'found' if service_found else 'NOT found'} in booking system",
+                        actual_service_found,
+                        f"Actual service ID {actual_service_id} {'found' if actual_service_found else 'NOT found'} in booking system",
                         {
-                            "service_id": booking_data['service_id'],
+                            "actual_service_id": actual_service_id,
+                            "contact_js_service_id": contact_js_service_id,
+                            "actual_service_found": actual_service_found,
+                            "contact_service_found": contact_service_found,
                             "service_name": "Masaža za parove - 120 min",
                             "total_services": len(services),
-                            "service_found": service_found
+                            "actual_service_details": actual_service,
+                            "service_id_mismatch": contact_js_service_id != actual_service_id
                         }
                     )
+                    
+                    # Log the service ID mismatch issue
+                    if not contact_service_found:
+                        self.log_result(
+                            "🚨 Service ID Mismatch Issue",
+                            False,
+                            f"Contact.js uses wrong service ID: {contact_js_service_id} (not found in external system)",
+                            {
+                                "contact_js_service_id": contact_js_service_id,
+                                "correct_service_id": actual_service_id,
+                                "fix_needed": "Update Contact.js serviceMapping with correct service ID"
+                            }
+                        )
                 else:
                     self.log_result(
                         "Couples Massage Service Lookup",
