@@ -386,20 +386,77 @@ const Contact = () => {
           dateStr = formData.preferredDate;
         }
         
-        // Prepare data for API
-        const appointmentData = {
-          client_first_name: formData.firstName,
-          client_last_name: formData.lastName,
-          client_phone: formData.phone,
-          client_email: formData.email,
-          appointment_date: dateStr,
-          start_time: `${dateStr}T${formData.preferredTime}:00`, // Combine date and time
-          service_id: serviceId,
-          therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81", // Generic therapist for web bookings - owner assigns real therapist in salon
-          notes: formData.message || "",
-          language: language, // Send current language for email
-          service_name: serviceName // Send service name for email display
-        };
+        // Check if this is a couple booking
+        const isCoupleBooking = couplesDataParam && serviceName.includes('Masaža za parove');
+        
+        let appointmentData;
+        let bookingEndpoint;
+        
+        if (isCoupleBooking) {
+          // Parse couples data for couple endpoint
+          const couplesData = JSON.parse(decodeURIComponent(couplesDataParam));
+          
+          // Extract service IDs from massage selections
+          const person1Services = [];
+          const person2Services = [];
+          
+          if (couplesData.person1?.massage1) {
+            // Get service ID from massage name and duration
+            const massage1Name = `${couplesData.person1.massage1.name} - ${couplesData.person1.massage1.duration} min`;
+            const service1Id = serviceMapping[massage1Name];
+            if (service1Id) person1Services.push(service1Id);
+          }
+          if (couplesData.person1?.massage2) {
+            const massage2Name = `${couplesData.person1.massage2.name} - ${couplesData.person1.massage2.duration} min`;
+            const service2Id = serviceMapping[massage2Name];
+            if (service2Id) person1Services.push(service2Id);
+          }
+          
+          if (couplesData.person2?.massage1) {
+            const massage1Name = `${couplesData.person2.massage1.name} - ${couplesData.person2.massage1.duration} min`;
+            const service1Id = serviceMapping[massage1Name];
+            if (service1Id) person2Services.push(service1Id);
+          }
+          if (couplesData.person2?.massage2) {
+            const massage2Name = `${couplesData.person2.massage2.name} - ${couplesData.person2.massage2.duration} min`;
+            const service2Id = serviceMapping[massage2Name];
+            if (service2Id) person2Services.push(service2Id);
+          }
+          
+          // Prepare couple booking data
+          appointmentData = {
+            client_first_name: formData.firstName,
+            client_last_name: formData.lastName,
+            client_phone: formData.phone,
+            client_email: formData.email,
+            start_time: `${dateStr}T${formData.preferredTime}:00`,
+            duration_type: parseInt(couplesData.duration), // 60, 90, or 120 per person
+            person1_services: person1Services,
+            person2_services: person2Services,
+            discount_couples_massage: 15.0,
+            language: language
+          };
+          
+          bookingEndpoint = '/api/book-couple-appointment';
+          console.log('📌 Couple booking data:', appointmentData);
+        } else {
+          // Regular booking data
+          appointmentData = {
+            client_first_name: formData.firstName,
+            client_last_name: formData.lastName,
+            client_phone: formData.phone,
+            client_email: formData.email,
+            appointment_date: dateStr,
+            start_time: `${dateStr}T${formData.preferredTime}:00`,
+            service_id: serviceId,
+            therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81",
+            notes: formData.message || "",
+            language: language,
+            service_name: serviceName
+          };
+          
+          bookingEndpoint = '/api/book-appointment';
+        }
         // Add connectivity health check before booking
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         
