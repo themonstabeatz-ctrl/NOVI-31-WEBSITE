@@ -695,10 +695,10 @@ const Massage = () => {
                     <span>{service.duration}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {getDiscountBadge() && (
+                    {getDiscountBadge(service.key) && (
                       <img 
-                        src={getDiscountBadge()} 
-                        alt={`-${currentDiscount}%`}
+                        src={getDiscountBadge(service.key)} 
+                        alt={`-${serviceDiscounts[service.key] || 0}%`}
                         style={{ width: '60px', height: '60px', objectFit: 'contain' }}
                       />
                     )}
