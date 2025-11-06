@@ -139,9 +139,29 @@ const Massage = () => {
     return options[duration];
   };
 
+  // Map frontend keys to booking system service names
+  const serviceKeyToBookingName = {
+    'traditional': 'Tradicionalna tajlandska masaža',
+    'aroma': 'Aroma terapija',
+    'hotStone': 'Masaža toplim uljem',
+    'royal': 'Glava, vrat, ramena i leđa',
+    'foot': 'Masaža stopala',
+    'couple': 'Masaža za parove',
+    'sports': 'Sportska masaža',
+    'shiatsu': 'Shiatsu masaža',
+    'reflexology': 'Refleksologija',
+    'backShoulder': 'Masaža leđa i vrata',
+    'antiStress': 'Antistres masaža',
+    'prenatal': 'Prenatalna masaža',
+    'deepTissue': 'Masaža dubokih tkiva',
+    'bamboo': 'Bamboo masaža',
+    'lymphatic': 'Limfna drenaža'
+  };
+
   // Get discount badge image based on service discount
   const getDiscountBadge = (serviceKey) => {
-    const discount = serviceDiscounts[serviceKey] || 0;
+    const bookingName = serviceKeyToBookingName[serviceKey];
+    const discount = serviceDiscounts[bookingName] || 0;
     if (discount === 5) {
       return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/xdhih1ft_-5%25.png";
     } else if (discount === 10) {
@@ -152,9 +172,15 @@ const Massage = () => {
     return null; // No discount
   };
 
+  // Get discount percentage for a service
+  const getServiceDiscount = (serviceKey) => {
+    const bookingName = serviceKeyToBookingName[serviceKey];
+    return serviceDiscounts[bookingName] || 0;
+  };
+
   // Calculate price with discount
   const calculateDiscountedPrice = (originalPrice, serviceKey) => {
-    const discount = serviceDiscounts[serviceKey] || 0;
+    const discount = getServiceDiscount(serviceKey);
     if (discount === 0) return originalPrice;
     return Math.round(originalPrice * (1 - discount / 100));
   };
