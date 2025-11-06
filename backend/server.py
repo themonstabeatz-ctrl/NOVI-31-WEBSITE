@@ -67,6 +67,7 @@ class AppointmentBooking(BaseModel):
     notes: Optional[str] = ""
     language: Optional[str] = "sr"  # Default to Serbian
     service_name: Optional[str] = ""  # For email display
+    duration_type: Optional[int] = None  # For couples massage total duration
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
