@@ -330,7 +330,7 @@ const Contact = () => {
         "Sportska masaža - 90 min": "2c389b61-b655-4d74-a254-469a28d3f32a",
         "Masaža za parove - 60 min": "5e593ab1-4f97-4398-979b-528f92c77bf7",
         "Masaža za parove - 90 min": "8fb44950-8ec6-40a2-90d5-567a00cc7c30",
-        "Masaža za parove - 120 min": "3ea2757e-2fa5-4db4-a52e-9db09f573265",
+        "Masaža za parove - 120 min": "9407d92e-d2a9-4432-85ae-850c3446f900",
         "Tradicionalna tajlandska masaža - 120 min": "b05c9522-30e8-4841-854c-2bec395a61ff",
         "Tradicionalna tajlandska masaža - 60 min": "f3c55c37-5366-4be2-a47a-12322ef735fd",
         "Tradicionalna tajlandska masaža - 90 min": "39f8c583-a780-4e54-9bab-f693a51287c2",
