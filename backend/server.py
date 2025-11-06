@@ -331,6 +331,137 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             detail="Booking service unavailable"
         )
 
+# Couple Booking Endpoint
+@api_router.post("/book-couple-appointment")
+async def book_couple_appointment(booking: CoupleBooking, background_tasks: BackgroundTasks):
+    """
+    Proxy endpoint for couple massage bookings
+    Forwards to booking system's /api/appointments/couple endpoint
+    """
+    try:
+        logger.info(f"📌 COUPLE BOOKING REQUEST - Client: {booking.client_first_name} {booking.client_last_name}, Duration: {booking.duration_type}min per person")
+        
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            # Get available therapists
+            therapists_response = await client.get('https://therapist-booking-2.preview.emergentagent.com/api/therapists')
+            
+            if therapists_response.status_code != 200:
+                logger.error(f"Failed to get therapists: {therapists_response.status_code}")
+                raise HTTPException(status_code=503, detail="Cannot access therapist list")
+            
+            therapists = therapists_response.json()
+            web_slot_therapists = [t for t in therapists if t.get('name', '').startswith('Web Slot') and t.get('is_active', True)]
+            
+            if not web_slot_therapists:
+                logger.error("No Web Slot therapists found")
+                raise HTTPException(status_code=500, detail="Web booking system not configured")
+            
+            logger.info(f"Found {len(web_slot_therapists)} Web Slot therapists")
+            
+            # Try each Web Slot therapist until one is available
+            booking_result = None
+            for therapist in web_slot_therapists:
+                # Prepare booking payload for couple endpoint
+                couple_payload = {
+                    "client_first_name": booking.client_first_name,
+                    "client_last_name": booking.client_last_name,
+                    "client_phone": booking.client_phone,
+                    "client_email": booking.client_email or None,
+                    "therapist_id": therapist['id'],
+                    "duration_type": booking.duration_type,
+                    "person1_services": booking.person1_services,
+                    "person2_services": booking.person2_services,
+                    "start_time": booking.start_time,
+                    "status": "scheduled",
+                    "discount_couples_massage": booking.discount_couples_massage
+                }
+                
+                logger.info(f"🔄 Trying {therapist['name']} (ID: {therapist['id']})")
+                
+                response = await client.post(
+                    'https://therapist-booking-2.preview.emergentagent.com/api/appointments/couple',
+                    json=couple_payload,
+                    headers={'Content-Type': 'application/json'}
+                )
+                
+                # If booking succeeds
+                if response.status_code in [200, 201]:
+                    logger.info(f"✅ Couple booking successful with {therapist['name']} (ID: {therapist['id']})")
+                    booking_result = response.json()
+                    break
+                
+                # If this therapist is not available, try the next one
+                if response.status_code == 400:
+                    error_text = response.text.lower()
+                    if 'not available' in error_text or 'unavailable' in error_text:
+                        logger.info(f"⚠️ {therapist['name']} not available, trying next...")
+                        continue
+                
+                # For other errors, log and continue to next therapist
+                logger.warning(f"Error with {therapist['name']}: {response.status_code} - {response.text}")
+            
+            # If no therapist is available
+            if not booking_result:
+                logger.error(f"❌ All Web Slot therapists busy for {booking.start_time}")
+                raise HTTPException(
+                    status_code=400,
+                    detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
+                )
+            
+            # Send confirmation email (construct service name from booking details)
+            total_duration = booking.duration_type * 2
+            service_display_name = f"Masaža za parove - {total_duration} min (2x{booking.duration_type} min)"
+            
+            background_tasks.add_task(
+                send_confirmation_email,
+                client_email=booking.client_email or "",
+                client_name=f"{booking.client_first_name} {booking.client_last_name}",
+                client_phone=booking.client_phone,
+                service_name=service_display_name,
+                appointment_datetime=booking.start_time,
+                language=booking.language or 'sr'
+            )
+            logger.info(f"📧 Confirmation email scheduled for {booking.client_email}")
+            
+            # Schedule reminder email 2 hours before appointment
+            try:
+                appointment_dt = datetime.fromisoformat(booking.start_time.replace('Z', ''))
+                if appointment_dt.tzinfo is None:
+                    appointment_dt = appointment_dt.replace(tzinfo=timezone.utc)
+                
+                reminder_time = appointment_dt - timedelta(hours=2)
+                
+                if reminder_time > datetime.now(timezone.utc):
+                    scheduler.add_job(
+                        send_reminder_email,
+                        DateTrigger(run_date=reminder_time),
+                        args=[
+                            booking.client_email or "",
+                            f"{booking.client_first_name} {booking.client_last_name}",
+                            booking.client_phone,
+                            service_display_name,
+                            booking.start_time,
+                            booking.language or 'sr'
+                        ],
+                        id=f"reminder_{booking_result['id']}",
+                        replace_existing=True
+                    )
+                    logger.info(f"⏰ Reminder email scheduled for {reminder_time} (2h before appointment)")
+                else:
+                    logger.info(f"⚠️ Appointment too soon - no reminder scheduled")
+                    
+            except Exception as e:
+                logger.error(f"Failed to schedule reminder: {e}")
+            
+            return booking_result
+            
+    except httpx.RequestError as e:
+        logger.error(f"Couple booking API request error: {str(e)}")
+        raise HTTPException(
+            status_code=503,
+            detail="Booking service unavailable"
+        )
+
 # Include the router in the main app
 app.include_router(api_router)
 
