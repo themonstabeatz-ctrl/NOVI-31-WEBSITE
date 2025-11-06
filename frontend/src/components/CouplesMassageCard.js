@@ -664,7 +664,7 @@ const CouplesMassageCard = ({
               <img 
                 src={getDiscountBadge()} 
                 alt={`-${couplesDiscount}%`}
-                style={{ width: '30px', height: '30px', objectFit: 'contain' }}
+                style={{ width: '38px', height: '38px', objectFit: 'contain' }}
               />
             )}
             <div style={{
