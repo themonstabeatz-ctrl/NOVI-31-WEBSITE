@@ -656,9 +656,17 @@ const CouplesMassageCard = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
+            gap: '0.5rem',
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
+            {getDiscountBadge() && (
+              <img 
+                src={getDiscountBadge()} 
+                alt={`-${couplesDiscount}%`}
+                style={{ width: '60px', height: '60px', objectFit: 'contain' }}
+              />
+            )}
             <div style={{
               color: '#d4af37',
               fontWeight: 'bold',
@@ -667,7 +675,7 @@ const CouplesMassageCard = ({
               letterSpacing: '1px',
               whiteSpace: 'nowrap'
             }}>
-              {Math.round(calculateCouplesPrice()).toLocaleString()} RSD
+              {Math.round(calculateCouplesPrice()).toLocaleString('sr-RS')} RSD
             </div>
           </div>
         )}
