@@ -700,7 +700,7 @@ const Spa = () => {
                   </ul>
                 </div>
                 
-                <Button className="book-button w-full">
+                <Button asChild className="book-button w-full">
                   <Link to={`/contact?service=${encodeURIComponent(service.serviceId || service.name)}`}>{translate("bookAppointment")}</Link>
                 </Button>
               </CardContent>
