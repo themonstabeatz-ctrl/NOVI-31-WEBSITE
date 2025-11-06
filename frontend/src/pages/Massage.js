@@ -120,6 +120,24 @@ const Massage = () => {
     return options[duration];
   };
 
+  // Get discount badge image based on current discount
+  const getDiscountBadge = () => {
+    if (currentDiscount === 5) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/xdhih1ft_-5%25.png";
+    } else if (currentDiscount === 10) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/zo9fsp4t_-10%25.png";
+    } else if (currentDiscount === 15) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/0c5tq3wd_-15%25.png";
+    }
+    return null; // No discount
+  };
+
+  // Calculate price with discount
+  const calculateDiscountedPrice = (originalPrice) => {
+    if (currentDiscount === 0) return originalPrice;
+    return Math.round(originalPrice * (1 - currentDiscount / 100));
+  };
+
   // Helper to update duration for a specific service
   const updateDuration = (serviceKey, newDuration) => {
     setDurations(prev => ({ ...prev, [serviceKey]: newDuration }));
