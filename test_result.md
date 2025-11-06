@@ -357,7 +357,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Booking API Integration"
+    - "Couple Booking Endpoint"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
