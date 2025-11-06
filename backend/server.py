@@ -77,6 +77,19 @@ class AppointmentBooking(BaseModel):
     service_name: Optional[str] = ""  # For email display
     duration_type: Optional[int] = None  # For couples massage total duration
 
+# Couple Booking Model
+class CoupleBooking(BaseModel):
+    client_first_name: str
+    client_last_name: str
+    client_phone: str
+    client_email: Optional[str] = ""
+    start_time: str  # ISO datetime format
+    duration_type: int  # 60, 90, or 120 minutes per person
+    person1_services: List[str]  # List of service IDs for person 1
+    person2_services: List[str]  # List of service IDs for person 2
+    discount_couples_massage: float = 15.0  # Default 15% discount
+    language: Optional[str] = "sr"  # Default to Serbian
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
