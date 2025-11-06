@@ -400,28 +400,59 @@ const Contact = () => {
           const person1Services = [];
           const person2Services = [];
           
+          console.log('🔍 Couples Data:', couplesData);
+          
           if (couplesData.person1?.massage1) {
             // Get service ID from massage name and duration
             const massage1Name = `${couplesData.person1.massage1.name} - ${couplesData.person1.massage1.duration} min`;
+            console.log('🔍 Looking for Person 1 Massage 1:', massage1Name);
             const service1Id = serviceMapping[massage1Name];
-            if (service1Id) person1Services.push(service1Id);
+            console.log('  → Found ID:', service1Id || 'NOT FOUND');
+            if (service1Id) {
+              person1Services.push(service1Id);
+            } else {
+              console.error(`❌ Service ID not found for: ${massage1Name}`);
+            }
           }
           if (couplesData.person1?.massage2) {
             const massage2Name = `${couplesData.person1.massage2.name} - ${couplesData.person1.massage2.duration} min`;
+            console.log('🔍 Looking for Person 1 Massage 2:', massage2Name);
             const service2Id = serviceMapping[massage2Name];
-            if (service2Id) person1Services.push(service2Id);
+            console.log('  → Found ID:', service2Id || 'NOT FOUND');
+            if (service2Id) {
+              person1Services.push(service2Id);
+            } else {
+              console.error(`❌ Service ID not found for: ${massage2Name}`);
+            }
           }
           
           if (couplesData.person2?.massage1) {
             const massage1Name = `${couplesData.person2.massage1.name} - ${couplesData.person2.massage1.duration} min`;
+            console.log('🔍 Looking for Person 2 Massage 1:', massage1Name);
             const service1Id = serviceMapping[massage1Name];
-            if (service1Id) person2Services.push(service1Id);
+            console.log('  → Found ID:', service1Id || 'NOT FOUND');
+            if (service1Id) {
+              person2Services.push(service1Id);
+            } else {
+              console.error(`❌ Service ID not found for: ${massage1Name}`);
+            }
           }
           if (couplesData.person2?.massage2) {
             const massage2Name = `${couplesData.person2.massage2.name} - ${couplesData.person2.massage2.duration} min`;
+            console.log('🔍 Looking for Person 2 Massage 2:', massage2Name);
             const service2Id = serviceMapping[massage2Name];
-            if (service2Id) person2Services.push(service2Id);
+            console.log('  → Found ID:', service2Id || 'NOT FOUND');
+            if (service2Id) {
+              person2Services.push(service2Id);
+            } else {
+              console.error(`❌ Service ID not found for: ${massage2Name}`);
+            }
           }
+          
+          console.log('📋 Final Service Arrays:', {
+            person1Services,
+            person2Services
+          });
           
           // Prepare couple booking data
           appointmentData = {
