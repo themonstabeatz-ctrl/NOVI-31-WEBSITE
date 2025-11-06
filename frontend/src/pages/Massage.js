@@ -715,11 +715,31 @@ const Massage = () => {
                     {getDiscountBadge(service.key) && (
                       <img 
                         src={getDiscountBadge(service.key)} 
-                        alt={`-${serviceDiscounts[service.key] || 0}%`}
+                        alt={`-${getServiceDiscount(service.key)}%`}
                         style={{ width: '38px', height: '38px', objectFit: 'contain' }}
                       />
                     )}
-                    <div className="price">{service.price}</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                      {getServiceDiscount(service.key) > 0 ? (
+                        <>
+                          <div style={{ 
+                            textDecoration: 'line-through', 
+                            color: '#999', 
+                            fontSize: '0.85rem' 
+                          }}>
+                            {service.price}
+                          </div>
+                          <div className="price" style={{ color: '#e63946', fontWeight: 'bold' }}>
+                            {calculateDiscountedPrice(
+                              parseInt(service.price.replace(/[^\d]/g, '')),
+                              service.key
+                            ).toLocaleString()} RSD
+                          </div>
+                        </>
+                      ) : (
+                        <div className="price">{service.price}</div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </CardHeader>
