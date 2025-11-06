@@ -559,6 +559,153 @@ class BookingAPITester:
         
         return all_passed
 
+    async def test_couples_massage_120min_booking(self):
+        """Test EXACT couples massage 120-min scenario from review request"""
+        
+        print("\n🎯 COUPLES MASSAGE 120-MIN BOOKING TEST")
+        print("Testing exact scenario from review request...")
+        print()
+        
+        # EXACT test data from review request
+        couples_data = {
+            "duration": "120",
+            "totalDuration": 240,
+            "person1": {
+                "massage1": {"key": "traditional", "name": "Tradicionalna tajlandska masaža", "duration": "120", "price": 6800},
+                "massage2": None
+            },
+            "person2": {
+                "massage1": {"key": "aroma", "name": "Aroma terapija", "duration": "120", "price": 6800},
+                "massage2": None
+            },
+            "totalPrice": 11560,
+            "originalPrice": 13600,
+            "discount": "15%"
+        }
+        
+        # Construct notes as frontend would
+        notes = f"""Masaža za parove - UKUPNO TRAJANJE: {couples_data['totalDuration']} min
+
+OSOBA 1:
+- {couples_data['person1']['massage1']['name']} ({couples_data['person1']['massage1']['duration']} min) - {couples_data['person1']['massage1']['price']} RSD
+
+OSOBA 2:
+- {couples_data['person2']['massage1']['name']} ({couples_data['person2']['massage1']['duration']} min) - {couples_data['person2']['massage1']['price']} RSD
+
+POPUST: -{couples_data['discount']}
+UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
+        
+        booking_data = {
+            "client_first_name": "Test",
+            "client_last_name": "User", 
+            "client_phone": "0601234567",
+            "client_email": "test@example.com",
+            "appointment_date": "2025-11-10",
+            "start_time": "2025-11-10T14:00:00",
+            "service_id": "3ea2757e-2fa5-4db4-a52e-9db09f573265",  # From Contact.js serviceMapping
+            "therapist_id": "",  # Empty - let backend assign Web Slot therapist
+            "notes": notes,
+            "language": "sr",
+            "service_name": "Masaža za parove - 240 min",
+            "duration_type": 240
+        }
+        
+        try:
+            async with httpx.AsyncClient(timeout=30.0) as client:
+                # Test 1: Check if service exists in external booking system
+                services_response = await client.get("https://pozdrav-kako-si.emergent.host/api/services")
+                
+                if services_response.status_code == 200:
+                    services = services_response.json()
+                    service_found = any(s.get('id') == booking_data['service_id'] for s in services)
+                    
+                    self.log_result(
+                        "Couples Massage Service Lookup",
+                        service_found,
+                        f"Service ID {booking_data['service_id']} {'found' if service_found else 'NOT found'} in booking system",
+                        {
+                            "service_id": booking_data['service_id'],
+                            "service_name": "Masaža za parove - 120 min",
+                            "total_services": len(services),
+                            "service_found": service_found
+                        }
+                    )
+                else:
+                    self.log_result(
+                        "Couples Massage Service Lookup",
+                        False,
+                        f"Cannot access services list: {services_response.status_code}",
+                        {"status_code": services_response.status_code}
+                    )
+                
+                # Test 2: Backend API booking call
+                response = await client.post(
+                    f"{self.api_base}/book-appointment",
+                    json=booking_data,
+                    headers={'Content-Type': 'application/json'}
+                )
+                
+                if response.status_code in [200, 201]:
+                    response_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
+                    appointment_id = response_data.get('id', 'N/A') if response_data else 'N/A'
+                    
+                    # Test 3: Verify booking in external system
+                    external_verification = await self.verify_booking_in_external_system(appointment_id)
+                    
+                    self.log_result(
+                        "🎯 Couples Massage 120-min Booking",
+                        True,
+                        f"✅ BOOKING SUCCESSFUL - ID: {appointment_id} | External: {external_verification}",
+                        {
+                            "service_id": booking_data['service_id'],
+                            "service_name": booking_data['service_name'],
+                            "appointment_id": appointment_id,
+                            "total_duration": couples_data['totalDuration'],
+                            "person1_massage": couples_data['person1']['massage1']['name'],
+                            "person2_massage": couples_data['person2']['massage1']['name'],
+                            "total_price": couples_data['totalPrice'],
+                            "discount": couples_data['discount'],
+                            "external_verification": external_verification,
+                            "status_code": response.status_code,
+                            "response": response_data
+                        }
+                    )
+                    return True
+                    
+                else:
+                    error_detail = response.text
+                    try:
+                        if response.headers.get('content-type', '').startswith('application/json'):
+                            error_data = response.json()
+                            error_detail = error_data.get('detail', error_detail)
+                    except:
+                        pass
+                    
+                    self.log_result(
+                        "🎯 Couples Massage 120-min Booking",
+                        False,
+                        f"❌ BOOKING FAILED - {response.status_code}: {error_detail}",
+                        {
+                            "service_id": booking_data['service_id'],
+                            "service_name": booking_data['service_name'],
+                            "status_code": response.status_code,
+                            "error_detail": error_detail,
+                            "total_duration": couples_data['totalDuration'],
+                            "person1_massage": couples_data['person1']['massage1']['name'],
+                            "person2_massage": couples_data['person2']['massage1']['name']
+                        }
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "🎯 Couples Massage 120-min Booking",
+                False,
+                f"❌ Exception: {str(e)}",
+                {"error": str(e), "service_id": booking_data['service_id']}
+            )
+            return False
+
     async def run_all_tests(self):
         """Run all booking API tests"""
         print("=" * 60)
@@ -571,10 +718,22 @@ class BookingAPITester:
         # Test 1: Backend Health Check
         backend_healthy = await self.test_backend_health()
         
-        # Test 2: External API Direct Access
+        # Test 2: Couples Massage 120-min Test (REVIEW REQUEST)
+        couples_massage_working = False
+        if backend_healthy:
+            couples_massage_working = await self.test_couples_massage_120min_booking()
+        else:
+            self.log_result(
+                "Couples Massage 120-min Booking",
+                False,
+                "Skipped - Backend not accessible",
+                {"reason": "Backend health check failed"}
+            )
+        
+        # Test 3: External API Direct Access
         external_api_working = await self.test_external_booking_api_direct()
         
-        # Test 3: Booking Proxy Endpoint (only if backend is healthy)
+        # Test 4: Booking Proxy Endpoint (only if backend is healthy)
         proxy_working = False
         if backend_healthy:
             proxy_working = await self.test_booking_proxy_endpoint()
@@ -586,7 +745,7 @@ class BookingAPITester:
                 {"reason": "Backend health check failed"}
             )
         
-        # Test 4: Service ID Mapping (only if proxy is working)
+        # Test 5: Service ID Mapping (only if proxy is working)
         service_mapping_working = False
         if backend_healthy and proxy_working:
             service_mapping_working = await self.test_service_id_mapping()
@@ -598,7 +757,7 @@ class BookingAPITester:
                 {"reason": "Proxy endpoint failed or backend not accessible"}
             )
         
-        # Test 5: CRITICAL USER BOOKING TEST (only if proxy is working)
+        # Test 6: CRITICAL USER BOOKING TEST (only if proxy is working)
         critical_user_test_working = False
         if backend_healthy and proxy_working:
             critical_user_test_working = await self.test_critical_user_booking_scenarios()
@@ -623,6 +782,18 @@ class BookingAPITester:
         
         print()
         print(f"Tests Passed: {passed}/{total}")
+        
+        # Special focus on couples massage test result
+        if couples_massage_working:
+            print("🎉 COUPLES MASSAGE 120-MIN BOOKING WORKING!")
+            print("✅ Review request objective achieved")
+            print("✅ Service ID mapping working")
+            print("✅ Backend API integration working")
+            print("✅ External system integration working")
+        else:
+            print("🚨 COUPLES MASSAGE 120-MIN BOOKING FAILED!")
+            print("❌ Review request objective NOT achieved")
+            print("🔧 Main agent needs to investigate couples massage booking flow")
         
         if backend_healthy and proxy_working and critical_user_test_working:
             print("🎉 CRITICAL USER ISSUE RESOLVED - All bookings work on user's date/time!")
