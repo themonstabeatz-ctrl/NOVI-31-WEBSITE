@@ -29,6 +29,59 @@ const Spa = () => {
     thalasso: '60'
   });
 
+  const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages
+
+  // Map frontend keys to booking system service names
+  const serviceKeyToBookingName = {
+    'facial': 'Tretman lica',
+    'bodyWrap': 'Body wrap',
+    'golden': 'Zlatni tretman lica',
+    'steam': 'Parno kupatilo',
+    'royalSpa': 'Kraljevski spa paket',
+    'hydrating': 'Hidratantni tretman',
+    'detox': 'Detox tretman',
+    'bodyScrub': 'Piling tela',
+    'anticellulite': 'Anticelulit tretman',
+    'collagen': 'Kolageni tretman lica',
+    'vitaminC': 'Vitamin C tretman lica',
+    'combined': 'Kombinovani spa dan',
+    'chocolate': 'Čokoladni wrap'
+  };
+
+  // Fetch all service discounts from booking system
+  useEffect(() => {
+    const fetchDiscounts = async () => {
+      try {
+        // Fetch services from booking system API
+        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const services = await response.json();
+        
+        // Build discount mapping: service name -> discount percentage
+        const discountMap = {};
+        
+        services.forEach(service => {
+          const discount = service.discount_percentage || 0;
+          const serviceName = service.name; // e.g., "Tretman lica - 60 min"
+          
+          // Extract base service name without duration
+          const baseName = serviceName.split(' - ')[0]; // e.g., "Tretman lica"
+          
+          // Map to frontend service keys
+          // We store discount per base service, not per duration variant
+          if (!discountMap[baseName] && discount > 0) {
+            discountMap[baseName] = discount;
+          }
+        });
+        
+        console.log('📊 Spa Discounts loaded from booking system:', discountMap);
+        setServiceDiscounts(discountMap);
+      } catch (error) {
+        console.error('Error fetching spa discounts from booking system:', error);
+      }
+    };
+    fetchDiscounts();
+  }, []);
+
   // Generic function to get spa details based on duration
   const getSpaDetails = (serviceKey, serviceName) => {
     const duration = durations[serviceKey];
