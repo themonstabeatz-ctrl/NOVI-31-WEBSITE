@@ -42,6 +42,23 @@ const Massage = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState({ person1: false, person2: false });
 
+  const [currentDiscount, setCurrentDiscount] = useState(0); // Global discount percentage
+
+  // Fetch current discount from backend
+  useEffect(() => {
+    const fetchDiscount = async () => {
+      try {
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+        const response = await fetch(`${backendUrl}/api/discount`);
+        const data = await response.json();
+        setCurrentDiscount(data.discount_percentage || 0);
+      } catch (error) {
+        console.error('Error fetching discount:', error);
+      }
+    };
+    fetchDiscount();
+  }, []);
+
   // Generic function to get massage details based on duration
   const getMassageDetails = (serviceKey, serviceName) => {
     const duration = durations[serviceKey];
