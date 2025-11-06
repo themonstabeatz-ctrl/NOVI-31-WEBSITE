@@ -600,6 +600,7 @@ const Massage = () => {
             calculateCouplesPrice={calculateCouplesPrice}
             dropdownOpen={dropdownOpen}
             setDropdownOpen={setDropdownOpen}
+            serviceDiscounts={serviceDiscounts}
           />
 
           {massageServices.map((service, index) => {
