@@ -83,8 +83,8 @@ async def main():
     
     # Create 180 min service
     print("\n[1/2] Creating 'Masaža za parove - 180 min'...")
-    await create_service(
-        service_id=COUPLES_180_ID,
+    actual_id_180 = await create_service(
+        expected_id=COUPLES_180_ID,
         name="Masaža za parove - 180 min",
         duration=180,
         price=COUPLES_180_PRICE
@@ -92,8 +92,8 @@ async def main():
     
     # Create 240 min service
     print("\n[2/2] Creating 'Masaža za parove - 240 min'...")
-    await create_service(
-        service_id=COUPLES_240_ID,
+    actual_id_240 = await create_service(
+        expected_id=COUPLES_240_ID,
         name="Masaža za parove - 240 min",
         duration=240,
         price=COUPLES_240_PRICE
@@ -102,6 +102,16 @@ async def main():
     print("\n" + "=" * 80)
     print("COUPLES MASSAGE SERVICES RECREATED")
     print("=" * 80)
+    
+    # Show serviceMapping updates if needed
+    if actual_id_180 or actual_id_240:
+        print("\n📋 UPDATE Contact.js serviceMapping if IDs changed:")
+        print("-" * 80)
+        if actual_id_180:
+            print(f'  "Masaža za parove - 180 min": "{actual_id_180}",')
+        if actual_id_240:
+            print(f'  "Masaža za parove - 240 min": "{actual_id_240}",')
+        print("-" * 80)
 
 
 if __name__ == "__main__":
