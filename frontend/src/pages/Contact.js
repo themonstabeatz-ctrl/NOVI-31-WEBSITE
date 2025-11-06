@@ -485,8 +485,8 @@ const Contact = () => {
         }
 
         // Use backend proxy for booking
-        console.log('📤 Sending booking request...');
-        const response = await fetch(`${backendUrl}/api/book-appointment`, {
+        console.log(`📤 Sending ${isCoupleBooking ? 'couple' : 'regular'} booking request...`);
+        const response = await fetch(`${backendUrl}${bookingEndpoint}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
