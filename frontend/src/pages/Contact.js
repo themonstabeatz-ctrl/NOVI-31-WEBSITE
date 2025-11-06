@@ -454,6 +454,23 @@ const Contact = () => {
             person2Services
           });
           
+          // Validate that we have service IDs
+          if (person1Services.length === 0 || person2Services.length === 0) {
+            console.error('❌ Missing service IDs for couple booking!');
+            console.error('Person 1 services:', person1Services);
+            console.error('Person 2 services:', person2Services);
+            console.error('Available serviceMapping keys:', Object.keys(serviceMapping).filter(k => k.includes('masaž')));
+            
+            toast({
+              title: translate('error') || 'Greška',
+              description: 'Ne mogu da pronađem usluge za rezervaciju. Molimo kontaktirajte nas direktno.',
+              variant: "destructive",
+            });
+            
+            setIsSubmitting(false);
+            return;
+          }
+          
           // Prepare couple booking data
           appointmentData = {
             client_first_name: formData.firstName,
