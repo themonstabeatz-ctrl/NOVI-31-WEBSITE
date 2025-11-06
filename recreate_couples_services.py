@@ -20,15 +20,14 @@ COUPLES_180_PRICE = 9520   # ~2 * 5600 (Aroma 90min) * 0.85 discount
 COUPLES_240_PRICE = 11560  # ~2 * 6800 (Aroma 120min) * 0.85 discount
 
 
-async def create_service(service_id: str, name: str, duration: int, price: int):
-    """Create a new service in the booking system with specific ID"""
+async def create_service(expected_id: str, name: str, duration: int, price: int):
+    """Create a new service in the booking system"""
     async with httpx.AsyncClient(timeout=30.0) as client:
         try:
             payload = {
-                "id": service_id,
                 "name": name,
                 "duration": duration,
-                "price": price,
+                "price": float(price),
                 "description": "Masaža za parove sa popustom od 15%"
             }
             
@@ -37,18 +36,21 @@ async def create_service(service_id: str, name: str, duration: int, price: int):
                 json=payload
             )
             response.raise_for_status()
-            print(f"✓ Created: {name} (ID: {service_id}, Price: {price} RSD)")
-            return True
+            result = response.json()
+            actual_id = result.get('id')
+            print(f"✓ Created: {name} (Price: {price} RSD)")
+            print(f"  Expected ID: {expected_id}")
+            print(f"  Actual ID:   {actual_id}")
+            if actual_id != expected_id:
+                print(f"  ⚠ WARNING: IDs don't match! Update Contact.js serviceMapping!")
+            return actual_id
         except httpx.HTTPStatusError as e:
-            if e.response.status_code == 409:  # Service already exists
-                print(f"⚠ Service already exists: {name}. Updating instead...")
-                return await update_service(service_id, name, duration, price)
-            else:
-                print(f"✗ Error creating {name}: {e}")
-                return False
+            print(f"✗ Error creating {name}: {e.response.status_code}")
+            print(f"  Response: {e.response.text}")
+            return None
         except Exception as e:
             print(f"✗ Error creating {name}: {e}")
-            return False
+            return None
 
 
 async def update_service(service_id: str, name: str, duration: int, price: int):
