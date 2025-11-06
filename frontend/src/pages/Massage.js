@@ -553,8 +553,20 @@ const Massage = () => {
       <section className="services-section">
         <div className="services-grid">
           
+          {/* Masaža za parove Card sa dropdown menijima */}
+          <CouplesMassageCard
+            translate={translate}
+            durations={durations}
+            updateDuration={updateDuration}
+            couplesSelections={couplesSelections}
+            setCouplesSelections={setCouplesSelections}
+            calculateCouplesPrice={calculateCouplesPrice}
+            dropdownOpen={dropdownOpen}
+            setDropdownOpen={setDropdownOpen}
+          />
+
           {massageServices.map((service, index) => {
-            // Skip couples massage card - removed per user request
+            // Skip regular "couple" massage card - keep only CouplesMassageCard component
             if (service.key === 'couple') {
               return null;
             }
