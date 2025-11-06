@@ -147,15 +147,7 @@ const Massage = () => {
     'royal': 'Glava, vrat, ramena i leđa',
     'foot': 'Masaža stopala',
     'couple': 'Masaža za parove',
-    'sports': 'Sportska masaža',
-    'shiatsu': 'Shiatsu masaža',
-    'reflexology': 'Refleksologija',
-    'backShoulder': 'Masaža leđa i vrata',
-    'antiStress': 'Antistres masaža',
-    'prenatal': 'Prenatalna masaža',
-    'deepTissue': 'Masaža dubokih tkiva',
-    'bamboo': 'Bamboo masaža',
-    'lymphatic': 'Limfna drenaža'
+    'sports': 'Sportska masaža'
   };
 
   // Get discount badge image based on service discount
