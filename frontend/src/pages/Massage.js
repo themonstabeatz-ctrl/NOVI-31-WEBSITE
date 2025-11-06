@@ -120,13 +120,14 @@ const Massage = () => {
     return options[duration];
   };
 
-  // Get discount badge image based on current discount
-  const getDiscountBadge = () => {
-    if (currentDiscount === 5) {
+  // Get discount badge image based on service discount
+  const getDiscountBadge = (serviceKey) => {
+    const discount = serviceDiscounts[serviceKey] || 0;
+    if (discount === 5) {
       return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/xdhih1ft_-5%25.png";
-    } else if (currentDiscount === 10) {
+    } else if (discount === 10) {
       return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/zo9fsp4t_-10%25.png";
-    } else if (currentDiscount === 15) {
+    } else if (discount === 15) {
       return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/0c5tq3wd_-15%25.png";
     }
     return null; // No discount
