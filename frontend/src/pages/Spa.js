@@ -93,6 +93,33 @@ const Spa = () => {
     return options[duration];
   };
 
+  // Get discount badge image based on service discount
+  const getDiscountBadge = (serviceKey) => {
+    const bookingName = serviceKeyToBookingName[serviceKey];
+    const discount = serviceDiscounts[bookingName] || 0;
+    if (discount === 5) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/xdhih1ft_-5%25.png";
+    } else if (discount === 10) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/zo9fsp4t_-10%25.png";
+    } else if (discount === 15) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/0c5tq3wd_-15%25.png";
+    }
+    return null; // No discount
+  };
+
+  // Get discount percentage for a service
+  const getServiceDiscount = (serviceKey) => {
+    const bookingName = serviceKeyToBookingName[serviceKey];
+    return serviceDiscounts[bookingName] || 0;
+  };
+
+  // Calculate price with discount
+  const calculateDiscountedPrice = (originalPrice, serviceKey) => {
+    const discount = getServiceDiscount(serviceKey);
+    if (discount === 0) return originalPrice;
+    return Math.round(originalPrice * (1 - discount / 100));
+  };
+
   // Helper to update duration for a specific service
   const updateDuration = (serviceKey, newDuration) => {
     setDurations(prev => ({ ...prev, [serviceKey]: newDuration }));
