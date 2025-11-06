@@ -251,6 +251,11 @@ const Contact = () => {
           
           // Use original duration (60, 90, 120) for service_id lookup, not total duration
           serviceLookupName = `Masaža za parove - ${couplesData.duration} min`;
+          console.log('🔍 Couples Booking Debug:', {
+            originalServiceName: serviceName,
+            couplesData: couplesData,
+            lookupName: serviceLookupName
+          });
         } catch (e) {
           console.error('❌ Error parsing couples data for service lookup:', e);
         }
