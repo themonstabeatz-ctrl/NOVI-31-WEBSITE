@@ -82,31 +82,40 @@ class AppointmentBooking(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
-@api_router.get("/discount")
-async def get_discount():
-    """Get current discount percentage"""
+@api_router.get("/discounts")
+async def get_all_discounts():
+    """Get all service discounts"""
     try:
-        settings = await db.settings.find_one({"_id": "discount_settings"})
-        if settings:
-            return {"discount_percentage": settings.get("discount_percentage", 0)}
+        settings = await db.settings.find_one({"_id": "service_discounts"})
+        if settings and "discounts" in settings:
+            return {"discounts": settings["discounts"]}
         else:
-            # Default: no discount
-            return {"discount_percentage": 0}
+            # Default: no discounts
+            return {"discounts": {}}
     except Exception as e:
-        logger.error(f"Error fetching discount: {e}")
-        return {"discount_percentage": 0}
+        logger.error(f"Error fetching discounts: {e}")
+        return {"discounts": {}}
 
-@api_router.post("/discount")
-async def set_discount(discount: DiscountSettings):
-    """Set discount percentage (0, 5, 10, 15)"""
+@api_router.post("/discount/{service_name}")
+async def set_service_discount(service_name: str, discount: int):
+    """Set discount for a specific service (0, 5, 10, 15)"""
     try:
+        # Get current discounts
+        settings = await db.settings.find_one({"_id": "service_discounts"})
+        discounts = settings.get("discounts", {}) if settings else {}
+        
+        # Update discount for this service
+        discounts[service_name] = discount
+        
+        # Save back to database
         await db.settings.update_one(
-            {"_id": "discount_settings"},
-            {"$set": {"discount_percentage": discount.discount_percentage}},
+            {"_id": "service_discounts"},
+            {"$set": {"discounts": discounts}},
             upsert=True
         )
-        logger.info(f"✅ Discount set to {discount.discount_percentage}%")
-        return {"success": True, "discount_percentage": discount.discount_percentage}
+        
+        logger.info(f"✅ Discount for '{service_name}' set to {discount}%")
+        return {"success": True, "service_name": service_name, "discount_percentage": discount}
     except Exception as e:
         logger.error(f"Error setting discount: {e}")
         raise HTTPException(status_code=500, detail="Failed to set discount")
