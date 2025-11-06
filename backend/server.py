@@ -54,6 +54,10 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Discount Settings Model
+class DiscountSettings(BaseModel):
+    discount_percentage: int = Field(default=0, ge=0, le=100)  # 0, 5, 10, 15, etc.
+
 # Booking Models
 class AppointmentBooking(BaseModel):
     client_first_name: str
