@@ -172,12 +172,15 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                     # OVERRIDE service_name to show actual total duration
                     booking_payload['service_name'] = f"Masaža za parove - {couples_total_duration} min"
                     
+                    # Set duration_type to total duration (120, 180, or 240)
+                    booking_payload['duration_type'] = couples_total_duration
+                    
                     booking_payload['notes'] = (
                         f"⭐ MASAŽA ZA PAROVE - UKUPNO TRAJANJE: {couples_total_duration} min ⭐\n"
                         f"💰 FINALNA CENA SA POPUSTOM (-15%): {couples_final_price} RSD 💰\n\n"
                         f"DETALJI:\n{original_notes}"
                     )
-                    logger.info(f"📝 Enhanced couples massage: service_name={booking_payload['service_name']}, duration: {couples_total_duration}min, price: {couples_final_price} RSD")
+                    logger.info(f"📝 Enhanced couples massage: service_name={booking_payload['service_name']}, duration_type={couples_total_duration}, price: {couples_final_price} RSD")
                 
                 response = await client.post(
                     'https://pozdrav-kako-si.emergent.host/api/appointments',
