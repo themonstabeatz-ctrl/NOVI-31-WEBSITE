@@ -134,9 +134,10 @@ const Massage = () => {
   };
 
   // Calculate price with discount
-  const calculateDiscountedPrice = (originalPrice) => {
-    if (currentDiscount === 0) return originalPrice;
-    return Math.round(originalPrice * (1 - currentDiscount / 100));
+  const calculateDiscountedPrice = (originalPrice, serviceKey) => {
+    const discount = serviceDiscounts[serviceKey] || 0;
+    if (discount === 0) return originalPrice;
+    return Math.round(originalPrice * (1 - discount / 100));
   };
 
   // Helper to update duration for a specific service
