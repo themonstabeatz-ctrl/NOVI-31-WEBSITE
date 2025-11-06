@@ -78,6 +78,35 @@ class AppointmentBooking(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
+@api_router.get("/discount")
+async def get_discount():
+    """Get current discount percentage"""
+    try:
+        settings = await db.settings.find_one({"_id": "discount_settings"})
+        if settings:
+            return {"discount_percentage": settings.get("discount_percentage", 0)}
+        else:
+            # Default: no discount
+            return {"discount_percentage": 0}
+    except Exception as e:
+        logger.error(f"Error fetching discount: {e}")
+        return {"discount_percentage": 0}
+
+@api_router.post("/discount")
+async def set_discount(discount: DiscountSettings):
+    """Set discount percentage (0, 5, 10, 15)"""
+    try:
+        await db.settings.update_one(
+            {"_id": "discount_settings"},
+            {"$set": {"discount_percentage": discount.discount_percentage}},
+            upsert=True
+        )
+        logger.info(f"✅ Discount set to {discount.discount_percentage}%")
+        return {"success": True, "discount_percentage": discount.discount_percentage}
+    except Exception as e:
+        logger.error(f"Error setting discount: {e}")
+        raise HTTPException(status_code=500, detail="Failed to set discount")
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
