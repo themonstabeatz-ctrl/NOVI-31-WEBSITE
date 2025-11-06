@@ -446,16 +446,6 @@ const Massage = () => {
       }
     },
     {
-      key: 'sports',
-      name: translate("sportsMassage"),
-      duration: sportsDetails.duration,
-      price: sportsDetails.price,
-      serviceId: sportsDetails.serviceId,
-      description: translate("sportsMassageDesc"),
-      benefits: [translate("sportsBenefit1"), translate("sportsBenefit2"), translate("sportsBenefit3")],
-      hasDurationOptions: true
-    },
-    {
       key: 'shiatsu',
       name: translate("shiatsuMassage"),
       duration: shiatsuDetails.duration,
