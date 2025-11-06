@@ -256,11 +256,8 @@ const Contact = () => {
         }
       }
       
-      // Service Mapping - All 90 services with proper durations (30 types x 3 durations)
+      // Service Mapping - All services with proper durations
       const serviceMapping = {
-        "Anti-age tretman - 120 min": "8ee6b874-4b3e-4981-a69f-0eeb50bc31bd",
-        "Anti-age tretman - 60 min": "f335f1f3-c16f-4c11-bca3-08e4d0bd0484",
-        "Anti-age tretman - 90 min": "855ca3d1-a03b-4dc4-b24a-77f97e8f594e",
         "Anticelulit tretman - 120 min": "39ada4f4-393c-4db2-9b20-8a9068639611",
         "Anticelulit tretman - 60 min": "abae009f-abda-4a5b-b1d3-6f11cb31c25e",
         "Anticelulit tretman - 90 min": "4f50ee14-1f6f-4383-b425-6e087e1bdf64",
