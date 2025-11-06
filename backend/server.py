@@ -54,9 +54,13 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
-# Discount Settings Model
-class DiscountSettings(BaseModel):
+# Discount Settings Model - PER SERVICE
+class ServiceDiscount(BaseModel):
+    service_name: str  # e.g., "Tradicionalna tajlandska masaža - 60 min"
     discount_percentage: int = Field(default=0, ge=0, le=100)  # 0, 5, 10, 15, etc.
+
+class AllDiscounts(BaseModel):
+    discounts: dict  # service_name -> discount_percentage mapping
 
 # Booking Models
 class AppointmentBooking(BaseModel):
