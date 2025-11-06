@@ -591,11 +591,6 @@ const Massage = () => {
           />
 
           {massageServices.map((service, index) => {
-            // Skip regular "couple" massage card - keep only CouplesMassageCard component
-            if (service.key === 'couple') {
-              return null;
-            }
-            
             // Regular massage cards
             return (
             <Card key={index} className="massage-card">
