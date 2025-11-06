@@ -12,8 +12,24 @@ const CouplesMassageCard = ({
   setCouplesSelections,
   calculateCouplesPrice,
   dropdownOpen,
-  setDropdownOpen
+  setDropdownOpen,
+  serviceDiscounts = {}
 }) => {
+  
+  // Get discount for "Masaža za parove"
+  const couplesDiscount = serviceDiscounts["Masaža za parove"] || 0;
+  
+  // Get discount badge based on couples discount
+  const getDiscountBadge = () => {
+    if (couplesDiscount === 5) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/xdhih1ft_-5%25.png";
+    } else if (couplesDiscount === 10) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/zo9fsp4t_-10%25.png";
+    } else if (couplesDiscount === 15) {
+      return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/0c5tq3wd_-15%25.png";
+    }
+    return null;
+  };
   
   // ALL available massages (excluding SPA)
   const availableMassages = [
