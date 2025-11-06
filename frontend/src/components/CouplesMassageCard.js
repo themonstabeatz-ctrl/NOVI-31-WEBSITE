@@ -640,16 +640,9 @@ const CouplesMassageCard = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            gap: '1rem',
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            <img 
-              src="https://customer-assets.emergentagent.com/job_thaispa-booking/artifacts/hikv7loi_-15%25%20treca%20fotka.png" 
-              alt="-15%"
-              style={{ width: '140px', height: 'auto', objectFit: 'contain' }}
-            />
-            
             <div style={{
               color: '#d4af37',
               fontWeight: 'bold',
