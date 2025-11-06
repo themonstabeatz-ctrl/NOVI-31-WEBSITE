@@ -671,7 +671,7 @@ const Massage = () => {
                       <img 
                         src={getDiscountBadge(service.key)} 
                         alt={`-${serviceDiscounts[service.key] || 0}%`}
-                        style={{ width: '60px', height: '60px', objectFit: 'contain' }}
+                        style={{ width: '30px', height: '30px', objectFit: 'contain' }}
                       />
                     )}
                     <div className="price">{service.price}</div>
