@@ -366,6 +366,58 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🎉 COMPREHENSIVE MASSAGE CARDS DURATION TESTING COMPLETED - ALL OBJECTIVES ACHIEVED!
+      
+      ✅ EXACT USER REQUEST FULFILLED:
+      - Navigated to https://spa-form-repair.preview.emergentagent.com → MASAŽE ✅
+      - Tested ALL 14 massage cards systematically ✅
+      - Verified EVERY duration button functionality ✅
+      - Confirmed button highlighting (golden styling) ✅
+      - Tested couples massage dropdown functionality ✅
+      
+      📊 COMPLETE TEST RESULTS:
+      
+      📋 REGULAR MASSAGE CARDS (13 cards):
+      1. Masaža za parove: 60 min ✅, 90 min ✅, 120 min ✅
+      2. Tradicionalna tajlandska masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      3. Aroma terapija: 60 min ✅, 90 min ✅, 120 min ✅
+      4. Masaža toplim uljem: 60 min ✅, 90 min ✅ (no 120 min option)
+      5. Glava, vrat, ramena i leđa: 30 min ✅, 45 min ✅, 60 min ✅
+      6. Masaža stopala: 30 min ✅, 45 min ✅, 60 min ✅
+      7. Shiatsu masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      8. Refleksna masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      9. Masaža leđa i ramena: 60 min ✅, 90 min ✅, 120 min ✅
+      10. Anti-stres masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      11. Prenatal masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      12. Dubinska masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      13. Bambusova masaža: 60 min ✅, 90 min ✅, 120 min ✅
+      14. Limfna drenaža: 60 min ✅, 90 min ✅, 120 min ✅
+      
+      📋 COUPLES MASSAGE SPECIAL TESTING:
+      - "Masaža za parove" card identified and tested ✅
+      - Duration buttons (60, 90, 120 min) all working ✅
+      - Button highlighting (golden border/background) confirmed ✅
+      - Dropdown functionality tested for all duration modes ✅
+      - Person 1 and Person 2 dropdowns opening correctly ✅
+      
+      🎯 FINAL ASSESSMENT: 100% SUCCESS RATE
+      - Total cards tested: 14/14 ✅
+      - Total duration buttons tested: 40+ ✅
+      - All buttons highlight correctly when clicked ✅
+      - All couples massage dropdowns functional ✅
+      - No critical issues found ✅
+      
+      📊 TECHNICAL DETAILS:
+      - Button highlighting verified via golden styling (#d4af37 border/background)
+      - Dropdown menus open with proper z-index and positioning
+      - All massage options populate correctly in dropdowns
+      - Selection functionality working for couples massage
+      - Price updates working correctly for duration changes
+      
+      🏆 CONCLUSION: All massage cards and duration buttons are working perfectly. User's testing request fully satisfied.
+  
+  - agent: "testing"
+    message: |
       🎉 90-MINUTE COUPLES MASSAGE BOOKING VERIFICATION COMPLETED - ALL OBJECTIVES ACHIEVED!
       
       ✅ EXACT USER SCENARIO TESTED SUCCESSFULLY:
