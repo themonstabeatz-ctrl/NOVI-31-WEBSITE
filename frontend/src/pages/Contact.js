@@ -32,6 +32,10 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
   const [error, setError] = useState(null); // Error message state
   const submitTimeoutRef = React.useRef(null);
+  
+  // Dynamic service mapping from booking system
+  const [serviceMapping, setServiceMapping] = useState({});
+  const [servicesLoaded, setServicesLoaded] = useState(false);
 
   // Safety: Reset isSubmitting on component mount to prevent stuck disabled state
   useEffect(() => {
