@@ -447,18 +447,6 @@ const Massage = () => {
       }
     },
     {
-      key: 'couple',
-      name: translate("coupleMassage"),
-      duration: coupleDetails.duration,
-      price: coupleDetails.price,
-      serviceId: coupleDetails.serviceId,
-      description: translate("coupleMassageDesc"),
-      benefits: [translate("coupleBenefit1"), translate("coupleBenefit2"), translate("coupleBenefit3"), translate("coupleBenefit4")],
-      popular: false,
-      hasDurationOptions: true,
-      customDurations: ['60', '90']  // Only 60 and 90 min options
-    },
-    {
       key: 'sports',
       name: translate("sportsMassage"),
       duration: sportsDetails.duration,
