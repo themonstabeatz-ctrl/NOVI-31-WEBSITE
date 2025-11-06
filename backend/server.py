@@ -96,8 +96,8 @@ async def get_all_discounts():
         logger.error(f"Error fetching discounts: {e}")
         return {"discounts": {}}
 
-@api_router.post("/discount/{service_name}")
-async def set_service_discount(service_name: str, discount: int):
+@api_router.post("/discount/set")
+async def set_service_discount(discount: ServiceDiscount):
     """Set discount for a specific service (0, 5, 10, 15)"""
     try:
         # Get current discounts
