@@ -105,7 +105,7 @@ async def set_service_discount(discount: ServiceDiscount):
         discounts = settings.get("discounts", {}) if settings else {}
         
         # Update discount for this service
-        discounts[service_name] = discount
+        discounts[discount.service_name] = discount.discount_percentage
         
         # Save back to database
         await db.settings.update_one(
@@ -114,8 +114,8 @@ async def set_service_discount(discount: ServiceDiscount):
             upsert=True
         )
         
-        logger.info(f"✅ Discount for '{service_name}' set to {discount}%")
-        return {"success": True, "service_name": service_name, "discount_percentage": discount}
+        logger.info(f"✅ Discount for '{discount.service_name}' set to {discount.discount_percentage}%")
+        return {"success": True, "service_name": discount.service_name, "discount_percentage": discount.discount_percentage}
     except Exception as e:
         logger.error(f"Error setting discount: {e}")
         raise HTTPException(status_code=500, detail="Failed to set discount")
