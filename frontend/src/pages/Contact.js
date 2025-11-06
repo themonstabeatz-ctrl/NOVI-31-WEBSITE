@@ -404,7 +404,13 @@ const Contact = () => {
         
         if (isCoupleBooking) {
           // Parse couples data for couple endpoint
-          const couplesData = JSON.parse(decodeURIComponent(couplesDataParam));
+          let decodedParam = couplesDataParam;
+          try {
+            decodedParam = decodeURIComponent(couplesDataParam);
+          } catch (decodeError) {
+            console.warn('⚠️ Could not decode couplesData URI, using as-is');
+          }
+          const couplesData = JSON.parse(decodedParam);
           
           // Extract service IDs from massage selections
           const person1Services = [];
