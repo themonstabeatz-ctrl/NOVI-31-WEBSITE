@@ -19,6 +19,14 @@ const CouplesMassageCard = ({
   // Get discount for "Masaža za parove"
   const couplesDiscount = serviceDiscounts["Masaža za parove"] || 0;
   
+  // Helper function to get discount badge for the price display
+  const getCouplesDiscountBadge = () => {
+    if (couplesDiscount === 5) return '/discount-5.png';
+    if (couplesDiscount === 10) return '/discount-10.png';
+    if (couplesDiscount === 15) return '/discount-15.png';
+    return null;
+  };
+  
   // Load massages dynamically from booking system
   const [availableMassages, setAvailableMassages] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
