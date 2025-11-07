@@ -37,6 +37,31 @@ const Contact = () => {
   const [serviceMapping, setServiceMapping] = useState({});
   const [servicesLoaded, setServicesLoaded] = useState(false);
 
+  // Load services from booking system on mount
+  useEffect(() => {
+    const loadServices = async () => {
+      try {
+        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const services = await response.json();
+        
+        // Build service mapping: "Service Name - Duration" -> ID
+        const mapping = {};
+        services.forEach(service => {
+          mapping[service.name] = service.id;
+        });
+        
+        console.log('✅ Loaded service mapping:', Object.keys(mapping).length, 'services');
+        setServiceMapping(mapping);
+        setServicesLoaded(true);
+      } catch (error) {
+        console.error('❌ Failed to load services from booking system:', error);
+        setServicesLoaded(true); // Set to true anyway to prevent blocking
+      }
+    };
+    
+    loadServices();
+  }, []);
+
   // Safety: Reset isSubmitting on component mount to prevent stuck disabled state
   useEffect(() => {
     setIsSubmitting(false);
