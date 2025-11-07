@@ -867,6 +867,7 @@ const CouplesMassageCard = ({
                     </>
                   )}
                   </div>
+                  </div>
                 </div>
               )}
             </div>
