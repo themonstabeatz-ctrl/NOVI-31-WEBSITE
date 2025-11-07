@@ -427,21 +427,75 @@ const CouplesMassageCard = ({
               
               {/* Dropdown list */}
               {dropdownOpen.person1 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  right: 0,
-                  maxHeight: '400px',
-                  overflowY: 'auto',
-                  backgroundColor: '#1a1a1a',
-                  border: '1px solid #444',
-                  borderRadius: '8px',
-                  marginTop: '0.25rem',
-                  paddingBottom: '8px',
-                  zIndex: 1000,
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
-                }}>
+                <div style={{ position: 'relative' }}>
+                  {/* Scroll Up Button */}
+                  <button
+                    onClick={() => scrollDropdown(person1ScrollRef, 'up')}
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      zIndex: 1001,
+                      backgroundColor: '#d4af37',
+                      color: '#1a1a1a',
+                      border: 'none',
+                      borderRadius: '4px',
+                      width: '30px',
+                      height: '30px',
+                      cursor: 'pointer',
+                      fontSize: '18px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                    }}
+                  >
+                    ↑
+                  </button>
+                  
+                  {/* Scroll Down Button */}
+                  <button
+                    onClick={() => scrollDropdown(person1ScrollRef, 'down')}
+                    style={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      right: '8px',
+                      zIndex: 1001,
+                      backgroundColor: '#d4af37',
+                      color: '#1a1a1a',
+                      border: 'none',
+                      borderRadius: '4px',
+                      width: '30px',
+                      height: '30px',
+                      cursor: 'pointer',
+                      fontSize: '18px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                    }}
+                  >
+                    ↓
+                  </button>
+                  
+                  <div 
+                    ref={person1ScrollRef}
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: 0,
+                      right: 0,
+                      maxHeight: '400px',
+                      overflowY: 'auto',
+                      backgroundColor: '#1a1a1a',
+                      border: '1px solid #444',
+                      borderRadius: '8px',
+                      marginTop: '0.25rem',
+                      paddingBottom: '8px',
+                      zIndex: 1000,
+                      boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
+                    }}
+                  >
                   {getFilteredMassages().map(massage => {
                     if (is120Mode) {
                       return null; // Will render separately below
