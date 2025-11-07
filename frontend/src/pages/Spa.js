@@ -53,7 +53,7 @@ const Spa = () => {
     const fetchDiscounts = async () => {
       try {
         // Fetch services from booking system API
-        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const response = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
         const services = await response.json();
         
         // Build discount mapping: service name -> discount percentage

@@ -41,7 +41,7 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const response = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
         const services = await response.json();
         
         // Build service mapping: "Service Name - Duration" -> ID
@@ -368,7 +368,7 @@ const Contact = () => {
           console.log('📥 Fetching current services from booking system...');
           let bookingServices;
           try {
-            const servicesResponse = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+            const servicesResponse = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
             bookingServices = await servicesResponse.json();
             console.log(`✅ Loaded ${bookingServices.length} services from booking system`);
           } catch (error) {
@@ -474,7 +474,7 @@ const Contact = () => {
             language: language
           };
           
-          bookingEndpoint = 'https://therapist-booking-2.preview.emergentagent.com/api/book-couple-appointment';
+          bookingEndpoint = 'https://buluang-spa-fix.preview.emergentagent.com/api/book-couple-appointment';
           console.log('📌 Couple booking data:', appointmentData);
           console.log('📤 Calling DIRECT booking system endpoint:', bookingEndpoint);
         } else {

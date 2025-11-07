@@ -343,7 +343,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get available therapists
-            therapists_response = await client.get('https://therapist-booking-2.preview.emergentagent.com/api/therapists')
+            therapists_response = await client.get('https://buluang-spa-fix.preview.emergentagent.com/api/therapists')
             
             if therapists_response.status_code != 200:
                 logger.error(f"Failed to get therapists: {therapists_response.status_code}")
@@ -379,7 +379,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 logger.info(f"🔄 Trying {therapist['name']} (ID: {therapist['id']})")
                 
                 response = await client.post(
-                    'https://therapist-booking-2.preview.emergentagent.com/api/appointments/couple',
+                    'https://buluang-spa-fix.preview.emergentagent.com/api/appointments/couple',
                     json=couple_payload,
                     headers={'Content-Type': 'application/json'}
                 )

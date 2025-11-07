@@ -39,7 +39,7 @@ const CouplesMassageCard = ({
     const loadMassages = async () => {
       try {
         console.log('📥 Loading massages from booking system...');
-        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const response = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
         const services = await response.json();
         
         // Filter by category "Kartica Masaza za parove"
