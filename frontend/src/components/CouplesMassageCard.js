@@ -877,9 +877,9 @@ const CouplesMassageCard = ({
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            {getDiscountBadge() && (
+            {getCouplesDiscountBadge() && (
               <img 
-                src={getDiscountBadge()} 
+                src={getCouplesDiscountBadge()} 
                 alt={`-${couplesDiscount}%`}
                 style={{ width: '38px', height: '38px', objectFit: 'contain' }}
               />
