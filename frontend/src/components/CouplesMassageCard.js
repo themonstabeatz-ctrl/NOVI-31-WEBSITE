@@ -42,12 +42,18 @@ const CouplesMassageCard = ({
         const couplesServices = services.filter(s => s.name.startsWith('[PAROVI]'));
         console.log(`✅ Loaded ${couplesServices.length} services for couple massage card`);
         
-        // Group by base name (without duration)
+        // Group by base name (without duration and prefix)
         const servicesByName = {};
         couplesServices.forEach(service => {
           // Extract base name and duration from service name
-          // e.g., "Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
-          const match = service.name.match(/^(.+?)\s*-\s*(\d+)\s*min$/);
+          // e.g., "[PAROVI] Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
+          let serviceName = service.name;
+          // Remove [PAROVI] prefix
+          if (serviceName.startsWith('[PAROVI]')) {
+            serviceName = serviceName.replace('[PAROVI]', '').trim();
+          }
+          
+          const match = serviceName.match(/^(.+?)\s*-\s*(\d+)\s*min$/);
           if (match) {
             const baseName = match[1].trim();
             const duration = match[2];
