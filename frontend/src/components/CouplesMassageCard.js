@@ -501,15 +501,8 @@ const CouplesMassageCard = ({
                             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
                           >
                             {selected && <Check className="w-4 h-4" style={{ color: '#d4af37' }} />}
-                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <div style={{ flex: 1 }}>
                               <span>★ {massage.name} (60 min)</span>
-                              {massage.discounts?.['60'] > 0 && (
-                                <img 
-                                  src={getDiscountBadge(massage.discounts['60'])} 
-                                  alt={`-${massage.discounts['60']}%`}
-                                  style={{ width: '32px', height: '32px', objectFit: 'contain' }}
-                                />
-                              )}
                             </div>
                           </div>
                         );
@@ -702,15 +695,8 @@ const CouplesMassageCard = ({
                             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
                           >
                             {selected && <Check className="w-4 h-4" style={{ color: '#d4af37' }} />}
-                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <div style={{ flex: 1 }}>
                               <span>★ {massage.name} (60 min)</span>
-                              {massage.discounts?.['60'] > 0 && (
-                                <img 
-                                  src={getDiscountBadge(massage.discounts['60'])} 
-                                  alt={`-${massage.discounts['60']}%`}
-                                  style={{ width: '32px', height: '32px', objectFit: 'contain' }}
-                                />
-                              )}
                             </div>
                           </div>
                         );
