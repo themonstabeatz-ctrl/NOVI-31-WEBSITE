@@ -35,11 +35,11 @@ const CouplesMassageCard = ({
     const loadMassages = async () => {
       try {
         console.log('📥 Loading massages from booking system...');
-        const response = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
+        const response = await fetch('https://pozdrav-kako-si.emergent.host/api/services');
         const services = await response.json();
         
-        // Filter by category "Kartica Masaza za parove"
-        const couplesServices = services.filter(s => s.category === "Kartica Masaza za parove");
+        // Filter by prefix "[PAROVI]"
+        const couplesServices = services.filter(s => s.name.startsWith('[PAROVI]'));
         console.log(`✅ Loaded ${couplesServices.length} services for couple massage card`);
         
         // Group by base name (without duration)
