@@ -362,17 +362,40 @@ const Contact = () => {
           }
           const couplesData = JSON.parse(decodedParam);
           
-          // Extract service IDs from massage selections
+          console.log('🔍 Couples Data:', couplesData);
+          
+          // Fetch services directly from booking system for couple booking
+          console.log('📥 Fetching current services from booking system...');
+          let bookingServices;
+          try {
+            const servicesResponse = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+            bookingServices = await servicesResponse.json();
+            console.log(`✅ Loaded ${bookingServices.length} services from booking system`);
+          } catch (error) {
+            console.error('❌ Failed to load services:', error);
+            toast({
+              title: translate('error') || 'Greška',
+              description: 'Ne mogu da učitam trenutne usluge. Molimo pokušajte ponovo.',
+              variant: "destructive",
+            });
+            setIsSubmitting(false);
+            return;
+          }
+          
+          // Build fresh service mapping
+          const freshMapping = {};
+          bookingServices.forEach(service => {
+            freshMapping[service.name] = service.id;
+          });
+          
+          // Extract service IDs from massage selections using fresh mapping
           const person1Services = [];
           const person2Services = [];
           
-          console.log('🔍 Couples Data:', couplesData);
-          
           if (couplesData.person1?.massage1) {
-            // Get service ID from massage name and duration
             const massage1Name = `${couplesData.person1.massage1.name} - ${couplesData.person1.massage1.duration} min`;
             console.log('🔍 Looking for Person 1 Massage 1:', massage1Name);
-            const service1Id = serviceMapping[massage1Name];
+            const service1Id = freshMapping[massage1Name];
             console.log('  → Found ID:', service1Id || 'NOT FOUND');
             if (service1Id) {
               person1Services.push(service1Id);
@@ -383,7 +406,7 @@ const Contact = () => {
           if (couplesData.person1?.massage2) {
             const massage2Name = `${couplesData.person1.massage2.name} - ${couplesData.person1.massage2.duration} min`;
             console.log('🔍 Looking for Person 1 Massage 2:', massage2Name);
-            const service2Id = serviceMapping[massage2Name];
+            const service2Id = freshMapping[massage2Name];
             console.log('  → Found ID:', service2Id || 'NOT FOUND');
             if (service2Id) {
               person1Services.push(service2Id);
@@ -395,7 +418,7 @@ const Contact = () => {
           if (couplesData.person2?.massage1) {
             const massage1Name = `${couplesData.person2.massage1.name} - ${couplesData.person2.massage1.duration} min`;
             console.log('🔍 Looking for Person 2 Massage 1:', massage1Name);
-            const service1Id = serviceMapping[massage1Name];
+            const service1Id = freshMapping[massage1Name];
             console.log('  → Found ID:', service1Id || 'NOT FOUND');
             if (service1Id) {
               person2Services.push(service1Id);
@@ -406,7 +429,7 @@ const Contact = () => {
           if (couplesData.person2?.massage2) {
             const massage2Name = `${couplesData.person2.massage2.name} - ${couplesData.person2.massage2.duration} min`;
             console.log('🔍 Looking for Person 2 Massage 2:', massage2Name);
-            const service2Id = serviceMapping[massage2Name];
+            const service2Id = freshMapping[massage2Name];
             console.log('  → Found ID:', service2Id || 'NOT FOUND');
             if (service2Id) {
               person2Services.push(service2Id);
@@ -425,7 +448,7 @@ const Contact = () => {
             console.error('❌ Missing service IDs for couple booking!');
             console.error('Person 1 services:', person1Services);
             console.error('Person 2 services:', person2Services);
-            console.error('Available serviceMapping keys:', Object.keys(serviceMapping).filter(k => k.includes('masaž')));
+            console.error('Available services:', Object.keys(freshMapping));
             
             toast({
               title: translate('error') || 'Greška',
