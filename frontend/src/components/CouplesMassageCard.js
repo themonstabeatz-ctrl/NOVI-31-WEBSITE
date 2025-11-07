@@ -62,12 +62,14 @@ const CouplesMassageCard = ({
                 name: baseName,
                 serviceId: service.id,
                 prices: {},
-                durations: []
+                durations: [],
+                discounts: {} // Store discount per duration
               };
             }
             
             servicesByName[baseName].prices[duration] = service.price;
             servicesByName[baseName].durations.push(duration);
+            servicesByName[baseName].discounts[duration] = service.discount_percentage || 0;
           }
         });
         
