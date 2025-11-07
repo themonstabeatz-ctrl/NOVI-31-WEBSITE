@@ -511,20 +511,6 @@ const CouplesMassageCard = ({
                                 />
                               )}
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                              {massage.discounts?.['60'] > 0 ? (
-                                <>
-                                  <span style={{ fontSize: '0.75rem', textDecoration: 'line-through', color: '#999' }}>
-                                    {massage.prices['60']} RSD
-                                  </span>
-                                  <span style={{ fontWeight: 'bold', color: '#e63946' }}>
-                                    {Math.round(massage.prices['60'] * (1 - massage.discounts['60'] / 100))} RSD
-                                  </span>
-                                </>
-                              ) : (
-                                <span>{massage.prices['60']} RSD</span>
-                              )}
-                            </div>
                           </div>
                         );
                       })}
@@ -740,20 +726,6 @@ const CouplesMassageCard = ({
                                   alt={`-${massage.discounts['60']}%`}
                                   style={{ width: '32px', height: '32px', objectFit: 'contain' }}
                                 />
-                              )}
-                            </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                              {massage.discounts?.['60'] > 0 ? (
-                                <>
-                                  <span style={{ fontSize: '0.75rem', textDecoration: 'line-through', color: '#999' }}>
-                                    {massage.prices['60']} RSD
-                                  </span>
-                                  <span style={{ fontWeight: 'bold', color: '#e63946' }}>
-                                    {Math.round(massage.prices['60'] * (1 - massage.discounts['60'] / 100))} RSD
-                                  </span>
-                                </>
-                              ) : (
-                                <span>{massage.prices['60']} RSD</span>
                               )}
                             </div>
                           </div>
