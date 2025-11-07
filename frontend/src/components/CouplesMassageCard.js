@@ -72,8 +72,8 @@ const CouplesMassageCard = ({
             
             servicesByName[baseName].prices[duration] = service.price;
             servicesByName[baseName].durations.push(duration);
-            // Fixed 15% discount for all [PAROVI] services
-            servicesByName[baseName].discounts[duration] = 15;
+            // Get discount from booking system API (if available)
+            servicesByName[baseName].discounts[duration] = service.discount_percentage || 0;
           }
         });
         
