@@ -106,7 +106,17 @@ const CouplesMassageCard = ({
     
     // Get correct price for the specific duration
     const price = massage.prices[dur] || massage.prices['60'];
-    const massageData = { key: massage.key, name: massage.name, duration: dur, price: price };
+    
+    // Create full service name for booking system lookup
+    const fullServiceName = `${massage.name} - ${dur} min`;
+    
+    const massageData = { 
+      key: massage.key, 
+      name: massage.name, 
+      duration: dur, 
+      price: price,
+      fullServiceName: fullServiceName // For booking system lookup
+    };
     console.log('✅ massageData created:', massageData);
     
     if (person === 1) {
