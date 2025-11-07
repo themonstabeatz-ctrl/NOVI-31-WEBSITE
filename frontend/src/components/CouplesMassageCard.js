@@ -467,20 +467,6 @@ const CouplesMassageCard = ({
                               />
                             )}
                           </div>
-                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                            {massage.discounts?.[dur] > 0 ? (
-                              <>
-                                <span style={{ fontSize: '0.75rem', textDecoration: 'line-through', color: '#999' }}>
-                                  {massage.prices[dur]} RSD
-                                </span>
-                                <span style={{ fontWeight: 'bold', color: '#e63946' }}>
-                                  {Math.round(massage.prices[dur] * (1 - massage.discounts[dur] / 100))} RSD
-                                </span>
-                              </>
-                            ) : (
-                              <span>{massage.prices[dur]} RSD</span>
-                            )}
-                          </div>
                         </div>
                       );
                     }
@@ -710,20 +696,6 @@ const CouplesMassageCard = ({
                                 alt={`-${massage.discounts[dur]}%`}
                                 style={{ width: '32px', height: '32px', objectFit: 'contain' }}
                               />
-                            )}
-                          </div>
-                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                            {massage.discounts?.[dur] > 0 ? (
-                              <>
-                                <span style={{ fontSize: '0.75rem', textDecoration: 'line-through', color: '#999' }}>
-                                  {massage.prices[dur]} RSD
-                                </span>
-                                <span style={{ fontWeight: 'bold', color: '#e63946' }}>
-                                  {Math.round(massage.prices[dur] * (1 - massage.discounts[dur] / 100))} RSD
-                                </span>
-                              </>
-                            ) : (
-                              <span>{massage.prices[dur]} RSD</span>
                             )}
                           </div>
                         </div>
