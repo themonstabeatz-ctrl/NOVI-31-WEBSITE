@@ -32,6 +32,18 @@ const CouplesMassageCard = ({
   const [availableMassages, setAvailableMassages] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   
+  // Refs for scroll containers
+  const person1ScrollRef = React.useRef(null);
+  const person2ScrollRef = React.useRef(null);
+  
+  // Scroll functions
+  const scrollDropdown = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = direction === 'up' ? -100 : 100;
+      ref.current.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+    }
+  };
+  
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
