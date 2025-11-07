@@ -420,12 +420,13 @@ const CouplesMassageCard = ({
                   top: '100%',
                   left: 0,
                   right: 0,
-                  maxHeight: '300px',
+                  maxHeight: '400px',
                   overflowY: 'auto',
                   backgroundColor: '#1a1a1a',
                   border: '1px solid #444',
                   borderRadius: '8px',
                   marginTop: '0.25rem',
+                  paddingBottom: '8px',
                   zIndex: 1000,
                   boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                 }}>
@@ -623,12 +624,13 @@ const CouplesMassageCard = ({
                   top: '100%',
                   left: 0,
                   right: 0,
-                  maxHeight: '300px',
+                  maxHeight: '400px',
                   overflowY: 'auto',
                   backgroundColor: '#1a1a1a',
                   border: '1px solid #444',
                   borderRadius: '8px',
                   marginTop: '0.25rem',
+                  paddingBottom: '8px',
                   zIndex: 1000,
                   boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                 }}>
