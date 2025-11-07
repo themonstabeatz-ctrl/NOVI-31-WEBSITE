@@ -36,7 +36,7 @@ const CouplesMassageCard = ({
     const loadMassages = async () => {
       try {
         console.log('📥 Loading massages from booking system...');
-        const response = await fetch('https://pozdrav-kako-si.emergent.host/api/services');
+        const response = await fetch('https://spabooking.emergent.host/api/services');
         const services = await response.json();
         
         // Filter by prefix "[PAROVI]"
