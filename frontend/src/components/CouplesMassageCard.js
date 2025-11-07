@@ -315,7 +315,25 @@ const CouplesMassageCard = ({
   const is120Mode = couplesSelections.duration === '120';
 
   return (
-    <Card className="massage-card" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column' }}>
+    <Card className="massage-card couples-card-content" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column' }}>
+      {loading && (
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 100
+        }}>
+          <div style={{ color: '#d4af37', fontSize: '1.2rem' }}>
+            Učitavanje masaža...
+          </div>
+        </div>
+      )}
       <CardHeader>
         <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
         
