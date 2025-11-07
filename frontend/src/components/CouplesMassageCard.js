@@ -31,14 +31,44 @@ const CouplesMassageCard = ({
     return null;
   };
   
-  // ALL available massages (excluding SPA)
+  // ALL available massages (excluding SPA) with prices per duration
   const availableMassages = [
-    { key: 'traditional', name: translate("traditionalMassage") || 'Tradicionalna tajlandska masaža', basePrice: 4400, durations: ['60', '90', '120'] },
-    { key: 'aroma', name: translate("aromaTherapy") || 'Aroma terapija', basePrice: 4400, durations: ['60', '90', '120'] },
-    { key: 'hotStone', name: translate("hotStoneMassage") || 'Masaža toplim uljem', basePrice: 4600, durations: ['60', '90'] },
-    { key: 'royal', name: translate("royalMassage") || 'Glava, vrat, ramena i leđa', basePrice: 2400, durations: ['30', '45', '60'] },
-    { key: 'foot', name: translate("footMassage") || 'Masaža stopala', basePrice: 2400, durations: ['30', '45', '60'] },
-    { key: 'couple', name: translate("coupleMassage") || 'Aroma duboko tkivo', basePrice: 4900, durations: ['60', '90'] }
+    { 
+      key: 'traditional', 
+      name: translate("traditionalMassage") || 'Tradicionalna tajlandska masaža', 
+      prices: { '60': 4400, '90': 5600, '120': 6800 }, 
+      durations: ['60', '90', '120'] 
+    },
+    { 
+      key: 'aroma', 
+      name: translate("aromaTherapy") || 'Aroma terapija', 
+      prices: { '60': 4400, '90': 5600, '120': 6800 }, 
+      durations: ['60', '90', '120'] 
+    },
+    { 
+      key: 'hotStone', 
+      name: translate("hotStoneMassage") || 'Masaža toplim uljem', 
+      prices: { '60': 4600, '90': 5800 }, 
+      durations: ['60', '90'] 
+    },
+    { 
+      key: 'royal', 
+      name: translate("royalMassage") || 'Glava, vrat, ramena i leđa', 
+      prices: { '60': 2400, '90': 3200, '120': 3900 }, 
+      durations: ['60', '90', '120'] 
+    },
+    { 
+      key: 'foot', 
+      name: translate("footMassage") || 'Masaža stopala', 
+      prices: { '60': 2400, '90': 2900, '120': 3500 }, 
+      durations: ['60', '90', '120'] 
+    },
+    { 
+      key: 'couple', 
+      name: translate("coupleMassage") || 'Aroma duboko tkivo', 
+      prices: { '60': 4900, '90': 6000 }, 
+      durations: ['60', '90'] 
+    }
   ];
 
   const getFilteredMassages = () => {
