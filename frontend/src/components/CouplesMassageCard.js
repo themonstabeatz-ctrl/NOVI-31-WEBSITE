@@ -636,8 +636,12 @@ const CouplesMassageCard = ({
                   marginTop: '0.25rem',
                   paddingBottom: '8px',
                   zIndex: 1000,
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
-                }}>
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.5)',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#d4af37 #1a1a1a'
+                }}
+                className="custom-scrollbar"
+                >
                   {getFilteredMassages().map(massage => {
                     if (is120Mode) {
                       return null; // Will render separately below
