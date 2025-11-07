@@ -541,7 +541,6 @@ const CouplesMassageCard = ({
                       })}
                     </>
                   )}
-                  </div>
                 </div>
               )}
             </div>
