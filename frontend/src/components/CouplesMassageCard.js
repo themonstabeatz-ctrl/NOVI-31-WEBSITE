@@ -103,6 +103,14 @@ const CouplesMassageCard = ({
     return [];
   };
 
+  // Get discount badge image
+  const getDiscountBadge = (discount) => {
+    if (discount === 5) return '/discount-5.png';
+    if (discount === 10) return '/discount-10.png';
+    if (discount === 15) return '/discount-15.png';
+    return null;
+  };
+
   const handleMassageClick = (person, massage, dur) => {
     console.log('✅ handleMassageClick CALLED:', { person, massage: massage.name, dur });
     
