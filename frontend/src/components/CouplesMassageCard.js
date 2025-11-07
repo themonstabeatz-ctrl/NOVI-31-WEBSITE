@@ -31,45 +31,60 @@ const CouplesMassageCard = ({
     return null;
   };
   
-  // ALL available massages (excluding SPA) with prices per duration
-  const availableMassages = [
-    { 
-      key: 'traditional', 
-      name: translate("traditionalMassage") || 'Tradicionalna tajlandska masaža', 
-      prices: { '60': 4400, '90': 5600, '120': 6800 }, 
-      durations: ['60', '90', '120'] 
-    },
-    { 
-      key: 'aroma', 
-      name: translate("aromaTherapy") || 'Aroma terapija', 
-      prices: { '60': 4400, '90': 5600, '120': 6800 }, 
-      durations: ['60', '90', '120'] 
-    },
-    { 
-      key: 'hotStone', 
-      name: translate("hotStoneMassage") || 'Masaža toplim uljem', 
-      prices: { '60': 4600, '90': 5800 }, 
-      durations: ['60', '90'] 
-    },
-    { 
-      key: 'royal', 
-      name: translate("royalMassage") || 'Glava, vrat, ramena i leđa', 
-      prices: { '60': 2400, '90': 3200, '120': 3900 }, 
-      durations: ['60', '90', '120'] 
-    },
-    { 
-      key: 'foot', 
-      name: translate("footMassage") || 'Masaža stopala', 
-      prices: { '60': 2400, '90': 2900, '120': 3500 }, 
-      durations: ['60', '90', '120'] 
-    },
-    { 
-      key: 'couple', 
-      name: translate("coupleMassage") || 'Aroma duboko tkivo', 
-      prices: { '60': 4900, '90': 6000 }, 
-      durations: ['60', '90'] 
-    }
-  ];
+  // Load massages dynamically from booking system
+  const [availableMassages, setAvailableMassages] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  
+  React.useEffect(() => {
+    const loadMassages = async () => {
+      try {
+        console.log('📥 Loading massages from booking system...');
+        const response = await fetch('https://therapist-booking-2.preview.emergentagent.com/api/services');
+        const services = await response.json();
+        
+        // Filter by category "Kartica Masaza za parove"
+        const couplesServices = services.filter(s => s.category === "Kartica Masaza za parove");
+        console.log(`✅ Loaded ${couplesServices.length} services for couple massage card`);
+        
+        // Group by base name (without duration)
+        const servicesByName = {};
+        couplesServices.forEach(service => {
+          // Extract base name and duration from service name
+          // e.g., "Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
+          const match = service.name.match(/^(.+?)\s*-\s*(\d+)\s*min$/);
+          if (match) {
+            const baseName = match[1].trim();
+            const duration = match[2];
+            
+            if (!servicesByName[baseName]) {
+              servicesByName[baseName] = {
+                key: service.id, // Use service ID as key
+                name: baseName,
+                serviceId: service.id,
+                prices: {},
+                durations: []
+              };
+            }
+            
+            servicesByName[baseName].prices[duration] = service.price;
+            servicesByName[baseName].durations.push(duration);
+          }
+        });
+        
+        // Convert to array
+        const massagesArray = Object.values(servicesByName);
+        console.log('✅ Processed massages:', massagesArray);
+        
+        setAvailableMassages(massagesArray);
+        setLoading(false);
+      } catch (error) {
+        console.error('❌ Failed to load massages:', error);
+        setLoading(false);
+      }
+    };
+    
+    loadMassages();
+  }, []);
 
   const getFilteredMassages = () => {
     const duration = couplesSelections.duration;
