@@ -17,8 +17,8 @@ const CouplesMassageCard = ({
 }) => {
   
   // Get discount for "Masaža za parove"
-  // Fixed 15% discount for couples massage (as activated in booking system)
-  const couplesDiscount = 15;
+  // Try to get discount from booking system, fallback to 0 if not available
+  const couplesDiscount = serviceDiscounts["Masaža za parove"] || 0;
   
   // Helper function to get discount badge for the price display
   const getCouplesDiscountBadge = () => {
