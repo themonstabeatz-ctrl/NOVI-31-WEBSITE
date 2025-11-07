@@ -152,8 +152,11 @@ const CouplesMassageCard = ({
               const newState = { ...prev, person2Massage1: massageData };
               return newState;
             });
+            // Don't close yet - waiting for second selection
           } else if (!current2) {
             setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
+            // Both slots filled - close dropdown
+            setDropdownOpen(prev => ({ ...prev, person2: false }));
           }
         }
       } else {
