@@ -522,9 +522,13 @@ const Contact = () => {
           return;
         }
 
-        // Use backend proxy for booking
-        console.log(`📤 Sending ${isCoupleBooking ? 'couple' : 'regular'} booking request...`);
-        const response = await fetch(`${backendUrl}${bookingEndpoint}`, {
+        // Use backend proxy for booking (or direct for couple booking)
+        const finalEndpoint = bookingEndpoint.startsWith('http') 
+          ? bookingEndpoint  // Direct URL for couple booking
+          : `${backendUrl}${bookingEndpoint}`; // Backend proxy for regular booking
+          
+        console.log(`📤 Sending ${isCoupleBooking ? 'couple' : 'regular'} booking request to:`, finalEndpoint);
+        const response = await fetch(finalEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
