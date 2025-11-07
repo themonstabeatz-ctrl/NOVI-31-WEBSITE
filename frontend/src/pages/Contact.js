@@ -474,8 +474,9 @@ const Contact = () => {
             language: language
           };
           
-          bookingEndpoint = '/api/book-couple-appointment';
+          bookingEndpoint = 'https://therapist-booking-2.preview.emergentagent.com/api/book-couple-appointment';
           console.log('📌 Couple booking data:', appointmentData);
+          console.log('📤 Calling DIRECT booking system endpoint:', bookingEndpoint);
         } else {
           // Regular booking data
           appointmentData = {
