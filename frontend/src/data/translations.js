@@ -498,6 +498,13 @@ export const translations = {
     selectMassagePlaceholder: "-- Select massage --",
     bookNowBtn: "BOOK NOW",
     
+    // Massage Names (for dropdowns)
+    massageTraditionalThai: "Traditional Thai Massage",
+    massageAromaTherapy: "Aroma Therapy",
+    massageHotOil: "Hot Oil Massage",
+    massageHeadNeckShoulders: "Head, Neck, Shoulders and Back",
+    massageFoot: "Foot Massage",
+    
     // Massage CTA Section
     massageCtaTitle: "Visit the place where tension disappears",
     massageCtaSubtitle: "Contact us and book your massage today",
