@@ -476,9 +476,9 @@ const Contact = () => {
             language: language
           };
           
-          bookingEndpoint = 'https://massage-booking-hub.preview.emergentagent.com/api/book-couple-appointment';
+          bookingEndpoint = '/api/book-couple-appointment';
           console.log('📌 Couple booking data:', appointmentData);
-          console.log('📤 Calling DIRECT booking system endpoint:', bookingEndpoint);
+          console.log('📤 Calling backend couple booking endpoint:', bookingEndpoint);
         } else {
           // Regular booking data
           appointmentData = {
