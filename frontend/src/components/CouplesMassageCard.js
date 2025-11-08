@@ -358,7 +358,7 @@ const CouplesMassageCard = ({
   const is120Mode = couplesSelections.duration === '120';
 
   return (
-    <Card className="massage-card couples-card-content" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column', overflow: 'visible' }}>
+    <Card className="massage-card couples-card-content" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column', overflow: 'visible', zIndex: 100 }}>
       {loading && (
         <div style={{
           position: 'absolute',
