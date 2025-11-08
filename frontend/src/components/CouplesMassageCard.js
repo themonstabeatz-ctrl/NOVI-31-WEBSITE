@@ -659,14 +659,14 @@ const CouplesMassageCard = ({
                     top: '100%',
                     left: 0,
                     right: 0,
-                    maxHeight: '300px',
-                    overflowY: 'auto',
+                    maxHeight: 'none',
+                    overflowY: 'visible',
                     overflowX: 'hidden',
                     backgroundColor: '#1a1a1a',
                     border: '1px solid #d4af37',
                     borderRadius: '8px',
                     marginTop: '0.25rem',
-                    zIndex: 1000,
+                    zIndex: 9999,
                     boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                   }}
                 >
