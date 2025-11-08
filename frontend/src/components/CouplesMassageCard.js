@@ -547,7 +547,7 @@ const CouplesMassageCard = ({
                           >
                             {selected && <Check className="w-4 h-4" style={{ color: '#d4af37' }} />}
                             <div style={{ flex: 1 }}>
-                              <span>{massage.name} (120 min)</span>
+                              <span>{translate(getMassageTranslationKey(massage.name))} (120 min)</span>
                             </div>
                           </div>
                         );
@@ -734,7 +734,7 @@ const CouplesMassageCard = ({
                           >
                             {selected && <Check className="w-4 h-4" style={{ color: '#d4af37' }} />}
                             <div style={{ flex: 1 }}>
-                              <span>{massage.name} (120 min)</span>
+                              <span>{translate(getMassageTranslationKey(massage.name))} (120 min)</span>
                             </div>
                           </div>
                         );
