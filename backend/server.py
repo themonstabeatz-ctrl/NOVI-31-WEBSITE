@@ -362,7 +362,8 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get available therapists
-            therapists_response = await client.get('https://massage-booking-hub.preview.emergentagent.com/api/therapists')
+            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spabooking.preview.emergentagent.com')
+            therapists_response = await client.get(f'{booking_api_url}/api/therapists')
             
             if therapists_response.status_code != 200:
                 logger.error(f"Failed to get therapists: {therapists_response.status_code}")
