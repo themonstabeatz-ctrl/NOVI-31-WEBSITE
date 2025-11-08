@@ -304,6 +304,15 @@ const CouplesMassageCard = ({
     
     return total;
   };
+  
+  const calculateCouplesPrice = () => {
+    const originalPrice = calculateOriginalPrice();
+    const discountedPrice = originalPrice * (1 - couplesDiscount / 100);
+    
+    console.log(`💰 Couples price: Original ${originalPrice} RSD - ${couplesDiscount}% = ${discountedPrice} RSD`);
+    
+    return discountedPrice;
+  };
 
   const isSelectionComplete = () => {
     const p1m1 = couplesSelections.person1Massage1;
