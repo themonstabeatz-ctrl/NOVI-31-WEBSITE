@@ -524,10 +524,8 @@ const Contact = () => {
           return;
         }
 
-        // Use backend proxy for booking (or direct for couple booking)
-        const finalEndpoint = bookingEndpoint.startsWith('http') 
-          ? bookingEndpoint  // Direct URL for couple booking
-          : `${backendUrl}${bookingEndpoint}`; // Backend proxy for regular booking
+        // Use backend proxy for all bookings (both regular and couple)
+        const finalEndpoint = `${backendUrl}${bookingEndpoint}`;
           
         console.log(`📤 Sending ${isCoupleBooking ? 'couple' : 'regular'} booking request to:`, finalEndpoint);
         const response = await fetch(finalEndpoint, {
