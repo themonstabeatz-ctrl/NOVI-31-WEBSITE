@@ -378,7 +378,7 @@ const CouplesMassageCard = ({
         overflow: 'hidden',
         pointerEvents: 'none',
         zIndex: 0,
-        borderRadius: 'var(--radius, 8px)'
+        borderRadius: '20px'
       }} />
       
       {loading && (
