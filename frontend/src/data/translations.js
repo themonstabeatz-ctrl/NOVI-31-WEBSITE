@@ -313,7 +313,6 @@ export const translations = {
     hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "Glava, vrat, ramena i leđa",
     footMassageService: "Masaža stopala",
-    couplesMassage: "Partnerska masaža",
     sportsMassageService: "Sportska masaža",
     shiatsuMassageService: "Shiatsu masaža",
     reflexologyService: "Refleksologija",
