@@ -535,11 +535,18 @@ const CouplesMassageCard = ({
                             key={`${massage.key}-60-p1`}
                             onClick={(e) => {
                               e.stopPropagation();
+                              e.preventDefault();
+                              handleMassageClick(1, massage, '60');
+                            }}
+                            onMouseDown={(e) => {
+                              e.stopPropagation();
+                              e.preventDefault();
                               handleMassageClick(1, massage, '60');
                             }}
                             style={{
                               padding: '0.5rem',
                               cursor: 'pointer',
+                              pointerEvents: 'auto',
                               backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
                               color: '#d4af37',
                               fontSize: '0.85rem',
