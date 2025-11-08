@@ -92,6 +92,13 @@ export const translations = {
     selectMassagePlaceholder: "-- Izaberite masažu --",
     bookNowBtn: "ZAKAŽITE",
     
+    // Massage Names (for dropdowns)
+    massageTraditionalThai: "Tradicionalna tajlandska masaža",
+    massageAromaTherapy: "Aroma terapija",
+    massageHotOil: "Masaža toplim uljem",
+    massageHeadNeckShoulders: "Glava, vrat, ramena i leđa",
+    massageFoot: "Masaža stopala",
+    
     shiatsuMassage: "Shiatsu masaža",
     shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
     shiatsuBenefit1: "Balansira energiju",
