@@ -54,23 +54,25 @@ const Massage = () => {
         const services = await response.json();
         
         // Build discount mapping: service name -> discount percentage
+        // IMPORTANT: Only show discounts from "Obicne masaze" category on regular cards
         const discountMap = {};
         
         services.forEach(service => {
           const discount = service.discount_percentage || 0;
           const serviceName = service.name; // e.g., "Tradicionalna tajlandska masaža - 60 min"
+          const category = service.category || '';
           
           // Extract base service name without duration
           const baseName = serviceName.split(' - ')[0]; // e.g., "Tradicionalna tajlandska masaža"
           
-          // Map to frontend service keys
-          // We store discount per base service, not per duration variant
-          if (!discountMap[baseName] && discount > 0) {
+          // ONLY show discounts from "Obicne masaze" category on regular massage cards
+          // Discounts from "Kartica Masaza za parove" will be shown in couples dropdown
+          if (category === 'Obicne masaze' && !discountMap[baseName] && discount > 0) {
             discountMap[baseName] = discount;
           }
         });
         
-        console.log('📊 Discounts loaded from booking system:', discountMap);
+        console.log('📊 Discounts loaded for regular massage cards (Obicne masaze):', discountMap);
         setServiceDiscounts(discountMap);
       } catch (error) {
         console.error('Error fetching discounts from booking system:', error);
