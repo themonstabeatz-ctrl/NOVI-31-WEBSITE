@@ -41,7 +41,7 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const response = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
+        const response = await fetch('https://spabooking.preview.emergentagent.com/api/services');
         const services = await response.json();
         
         // Build service mapping: "Service Name - Duration" -> ID
