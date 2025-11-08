@@ -1073,6 +1073,14 @@ export const translations = {
     selectedMassages: "การนวดที่เลือก:",
     totalPrice: "ราคารวม (ส่วนลด 15%):",
     
+    // Couples Massage Card
+    couplesMassage: "นวดสำหรับคู่รัก",
+    person1: "บุคคลที่ 1",
+    person2: "บุคคลที่ 2",
+    selectMassage: "เลือกการนวด",
+    selectMassagePlaceholder: "-- เลือกการนวด --",
+    bookNowBtn: "จองเลย",
+    
     // Massage CTA Section
     massageCtaTitle: "เยี่ยมชมสถานที่ที่ความเครียดหายไป",
     massageCtaSubtitle: "ติดต่อเราและจองการนวดของคุณวันนี้",
