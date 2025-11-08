@@ -166,6 +166,23 @@ async def health_check():
     """
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
+# Services Proxy Endpoint
+@api_router.get("/services")
+async def get_services():
+    """
+    Proxy endpoint to fetch services from booking system
+    """
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spabooking.preview.emergentagent.com')
+    
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(f"{booking_api_url}/api/services")
+            response.raise_for_status()
+            return response.json()
+    except Exception as e:
+        logger.error(f"Error fetching services from booking system: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch services: {str(e)}")
+
 # Booking Proxy Endpoint
 @api_router.post("/book-appointment")
 async def book_appointment(booking: AppointmentBooking, background_tasks: BackgroundTasks):
