@@ -485,7 +485,7 @@ const CouplesMassageCard = ({
                     border: '1px solid #d4af37',
                     borderRadius: '8px',
                     marginTop: '0.25rem',
-                    zIndex: 9999,
+                    zIndex: 101,
                     boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                   }}
                 >
