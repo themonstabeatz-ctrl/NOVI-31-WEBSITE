@@ -48,8 +48,9 @@ const CouplesMassageCard = ({
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
-        console.log('📥 Loading massages from booking system...');
-        const response = await fetch('https://massage-booking-hub.preview.emergentagent.com/api/services');
+        console.log('📥 Loading massages from booking system via backend proxy...');
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        const response = await fetch(`${backendUrl}/api/services`);
         const services = await response.json();
         
         // Filter by prefix "[PAROVI]"
