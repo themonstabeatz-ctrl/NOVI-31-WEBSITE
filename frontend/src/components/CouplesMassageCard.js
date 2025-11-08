@@ -366,48 +366,9 @@ const CouplesMassageCard = ({
         display: 'flex', 
         flexDirection: 'column', 
         overflow: 'visible',
-        zIndex: 100,
-        backgroundColor: '#0a0a0a'
+        zIndex: 100
       }}
     >
-      {/* Background container with overflow hidden - keeps golden line inside */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        overflow: 'hidden',
-        zIndex: 0
-      }}>
-        {/* Thai pattern layer - well expressed but transparent */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: 'url(https://customer-assets.emergentagent.com/job_massage-booking-hub/artifacts/9ju11pes_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png)',
-          backgroundSize: '150%',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          filter: 'brightness(1.5) contrast(1.4) saturate(1.1)',
-          opacity: 0.35
-        }} />
-        
-        {/* Very transparent dark overlay for better pattern visibility */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(12, 12, 12, 0.60)'
-        }} />
-      </div>
-      
-      {/* Content wrapper with higher z-index */}
-      <div style={{ position: 'relative', zIndex: 3, flex: 1, display: 'flex', flexDirection: 'column' }}>
       {loading && (
         <div style={{
           position: 'absolute',
