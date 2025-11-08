@@ -366,8 +366,7 @@ const CouplesMassageCard = ({
         display: 'flex', 
         flexDirection: 'column', 
         overflow: 'visible',
-        zIndex: 100,
-        borderRadius: '8px'
+        zIndex: 100
       }}
     >
       {/* Inner wrapper to constrain golden line */}
