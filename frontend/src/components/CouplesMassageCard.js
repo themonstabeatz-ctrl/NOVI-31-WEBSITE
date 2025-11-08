@@ -478,7 +478,7 @@ const CouplesMassageCard = ({
                         >
                           {selected && <Check className="w-4 h-4" />}
                           <div style={{ flex: 1 }}>
-                            <span>{massage.name} ({dur} min)</span>
+                            <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
                           </div>
                         </div>
                       );
@@ -665,7 +665,7 @@ const CouplesMassageCard = ({
                         >
                           {selected && <Check className="w-4 h-4" />}
                           <div style={{ flex: 1 }}>
-                            <span>{massage.name} ({dur} min)</span>
+                            <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
                           </div>
                         </div>
                       );
