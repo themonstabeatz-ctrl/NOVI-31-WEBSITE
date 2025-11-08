@@ -800,6 +800,13 @@ export const translations = {
     selectMassagePlaceholder: "-- Выберите массаж --",
     bookNowBtn: "ЗАБРОНИРОВАТЬ",
     
+    // Massage Names (for dropdowns)
+    massageTraditionalThai: "Традиционный тайский массаж",
+    massageAromaTherapy: "Ароматерапия",
+    massageHotOil: "Массаж горячим маслом",
+    massageHeadNeckShoulders: "Голова, шея, плечи и спина",
+    massageFoot: "Массаж стоп",
+    
     // Massage CTA Section
     massageCtaTitle: "Посетите место, где напряжение исчезает",
     massageCtaSubtitle: "Свяжитесь с нами и забронируйте ваш массаж сегодня",
