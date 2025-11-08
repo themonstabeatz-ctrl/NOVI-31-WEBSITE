@@ -369,6 +369,18 @@ const CouplesMassageCard = ({
         zIndex: 100
       }}
     >
+      {/* Inner wrapper to constrain golden line */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        zIndex: 0
+      }} />
+      
       {loading && (
         <div style={{
           position: 'absolute',
