@@ -566,7 +566,7 @@ const CouplesMassageCard = ({
               }}
             >
               <X className="w-3 h-3" />
-              Otkaži
+              {translate('cancel')}
             </button>
           </div>
         </div>
@@ -753,7 +753,7 @@ const CouplesMassageCard = ({
               }}
             >
               <X className="w-3 h-3" />
-              Otkaži
+              {translate('cancel')}
             </button>
           </div>
         </div>
