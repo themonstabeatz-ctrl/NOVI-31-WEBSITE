@@ -478,7 +478,7 @@ const CouplesMassageCard = ({
                     top: '100%',
                     left: 0,
                     right: 0,
-                    maxHeight: '400px',
+                    maxHeight: '500px',
                     overflowY: 'auto',
                     overflowX: 'hidden',
                     backgroundColor: '#1a1a1a',
