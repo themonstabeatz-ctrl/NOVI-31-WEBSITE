@@ -5772,6 +5772,8 @@ html {
   background: linear-gradient(90deg, var(--spa-gold), #FFA500, var(--spa-gold));
   transform: scaleX(0);
   transition: transform 0.4s ease;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .couples-card-content:hover::before {
