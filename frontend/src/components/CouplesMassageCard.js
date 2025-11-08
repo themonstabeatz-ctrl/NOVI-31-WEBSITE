@@ -367,20 +367,35 @@ const CouplesMassageCard = ({
         flexDirection: 'column', 
         overflow: 'hidden',
         zIndex: 100,
-        backgroundImage: 'url(https://customer-assets.emergentagent.com/job_massage-booking-hub/artifacts/9ju11pes_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png)',
-        backgroundSize: '150%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundColor: '#0a0a0a'
       }}
     >
-      {/* Semi-transparent overlay - darker like footer bottom */}
+      {/* Thai pattern layer with enhanced visibility */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(26, 26, 26, 0.95)',
+        backgroundImage: 'url(https://customer-assets.emergentagent.com/job_massage-booking-hub/artifacts/9ju11pes_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png)',
+        backgroundSize: '150%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        filter: 'brightness(1.3) contrast(1.2)',
+        opacity: 0.25,
+        zIndex: 0
+      }} />
+      
+      {/* Frosted glass overlay - very dark with blur */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(15, 15, 15, 0.92)',
+        backdropFilter: 'blur(3px)',
+        WebkitBackdropFilter: 'blur(3px)',
         zIndex: 1
       }} />
       
