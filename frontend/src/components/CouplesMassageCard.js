@@ -836,7 +836,7 @@ const CouplesMassageCard = ({
                 discount: '15%'
               }))}`}
             >
-              ZAKAŽITE
+              {translate('bookNowBtn')}
             </Link>
           ) : (
             <span>ZAKAŽITE</span>
