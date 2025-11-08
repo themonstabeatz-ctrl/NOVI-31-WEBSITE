@@ -754,7 +754,10 @@ const CouplesMassageCard = ({
                     return (
                       <div
                         key={`${massage.key}-${dur}-p2`}
-                        onClick={() => handleMassageClick(2, massage, dur)}
+                        onClick={() => {
+                          handleMassageClick(2, massage, dur);
+                          setDropdownOpen(prev => ({ ...prev, person2: false }));
+                        }}
                         style={{
                           padding: '0.75rem',
                           cursor: 'pointer',
