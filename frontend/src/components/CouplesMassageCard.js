@@ -33,6 +33,18 @@ const CouplesMassageCard = ({
   const [availableMassages, setAvailableMassages] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   
+  // Map massage names to translation keys
+  const getMassageTranslationKey = (massageName) => {
+    const nameMap = {
+      'Tradicionalna tajlandska masaža': 'massageTraditionalThai',
+      'Aroma terapija': 'massageAromaTherapy',
+      'Masaža toplim uljem': 'massageHotOil',
+      'Glava, vrat, ramena i leđa': 'massageHeadNeckShoulders',
+      'Masaža stopala': 'massageFoot'
+    };
+    return nameMap[massageName] || massageName;
+  };
+  
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
