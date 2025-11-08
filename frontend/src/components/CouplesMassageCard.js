@@ -580,7 +580,7 @@ const CouplesMassageCard = ({
             fontSize: '1rem',
             fontWeight: '700'
           }}>
-            Osoba 2 - Izaberite masažu
+            {translate('person2')} - {translate('selectMassage')}
           </label>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
             <div style={{ width: 'calc(100% - 90px)', position: 'relative' }}>
