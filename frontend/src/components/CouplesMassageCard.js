@@ -537,6 +537,7 @@ const CouplesMassageCard = ({
                             key={`${massage.key}-120`}
                             onClick={() => {
                               handleMassageClick(1, massage, '120');
+                              // 120 min massage is complete - always close dropdown
                               setDropdownOpen(prev => ({ ...prev, person1: false }));
                             }}
                             style={{
