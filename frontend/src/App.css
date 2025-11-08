@@ -5749,20 +5749,17 @@ html {
   transform: scaleX(1);
 }
 
-/* Couples massage card golden line - same as other cards */
+/* Couples massage card golden line - EXACTLY same as other cards */
 .couples-card-content::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 10px;
-  right: 10px;
+  left: 0;
+  right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--spa-gold), #FFA500, var(--spa-gold));
   transform: scaleX(0);
   transition: transform 0.4s ease;
-  z-index: 10;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
 }
 
 .couples-card-content:hover::before {
