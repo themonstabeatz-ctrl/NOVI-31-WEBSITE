@@ -1102,6 +1102,13 @@ export const translations = {
     selectMassagePlaceholder: "-- เลือกการนวด --",
     bookNowBtn: "จองเลย",
     
+    // Massage Names (for dropdowns)
+    massageTraditionalThai: "นวดแผนไทยดั้งเดิม",
+    massageAromaTherapy: "อโรมาเธอราปี",
+    massageHotOil: "นวดน้ำมันร้อน",
+    massageHeadNeckShoulders: "ศีรษะ คอ ไหล่ และหลัง",
+    massageFoot: "นวดเท้า",
+    
     // Massage CTA Section
     massageCtaTitle: "เยี่ยมชมสถานที่ที่ความเครียดหายไป",
     massageCtaSubtitle: "ติดต่อเราและจองการนวดของคุณวันนี้",
