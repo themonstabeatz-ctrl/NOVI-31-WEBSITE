@@ -44,12 +44,13 @@ const Massage = () => {
 
   const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages
 
-  // Fetch all service discounts from booking system
+  // Fetch all service discounts from booking system via backend proxy
   useEffect(() => {
     const fetchDiscounts = async () => {
       try {
-        // Fetch services from booking system API
-        const response = await fetch('https://massage-booking-hub.preview.emergentagent.com/api/services');
+        // Fetch services from booking system API via backend proxy
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        const response = await fetch(`${backendUrl}/api/services`);
         const services = await response.json();
         
         // Build discount mapping: service name -> discount percentage
