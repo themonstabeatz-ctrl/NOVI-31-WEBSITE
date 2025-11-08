@@ -648,24 +648,25 @@ const CouplesMassageCard = ({
               </div>
               
               {dropdownOpen.person2 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  right: 0,
-                  maxHeight: '400px',
-                  overflowY: 'auto',
-                  backgroundColor: '#1a1a1a',
-                  border: '1px solid #444',
-                  borderRadius: '8px',
-                  marginTop: '0.25rem',
-                  paddingBottom: '8px',
-                  zIndex: 1000,
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.5)',
-                  scrollbarWidth: 'thin',
-                  scrollbarColor: '#d4af37 #1a1a1a'
-                }}
-                className="custom-scrollbar"
+                <div 
+                  className="custom-scrollbar"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    right: 0,
+                    maxHeight: '350px',
+                    overflowY: 'scroll',
+                    overflowX: 'hidden',
+                    backgroundColor: '#1a1a1a',
+                    border: '1px solid #444',
+                    borderRadius: '8px',
+                    marginTop: '0.25rem',
+                    paddingBottom: '8px',
+                    zIndex: 1000,
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.5)',
+                    WebkitOverflowScrolling: 'touch'
+                  }}
                 >
                   {getFilteredMassages().map(massage => {
                     if (is120Mode) {
