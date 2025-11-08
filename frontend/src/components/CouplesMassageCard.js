@@ -828,29 +828,16 @@ const CouplesMassageCard = ({
               </div>
             )}
             
-            {/* Discounted Price with Badge */}
+            {/* Discounted Price */}
             <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
+              color: '#d4af37',
+              fontWeight: 'bold',
+              fontSize: '2.2rem',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+              letterSpacing: '1px',
+              whiteSpace: 'nowrap'
             }}>
-              {getCouplesDiscountBadge() && (
-                <img 
-                  src={getCouplesDiscountBadge()} 
-                  alt={`-${couplesDiscount}%`}
-                  style={{ width: '38px', height: '38px', objectFit: 'contain' }}
-                />
-              )}
-              <div style={{
-                color: '#d4af37',
-                fontWeight: 'bold',
-                fontSize: '2.2rem',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-                letterSpacing: '1px',
-                whiteSpace: 'nowrap'
-              }}>
-                {Math.round(calculateCouplesPrice()).toLocaleString('sr-RS')} RSD
-              </div>
+              {Math.round(calculateCouplesPrice()).toLocaleString('sr-RS')} RSD
             </div>
           </div>
         )}
