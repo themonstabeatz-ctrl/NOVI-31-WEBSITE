@@ -48,25 +48,21 @@ const CouplesMassageCard = ({
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
-        console.log('📥 Loading massages from booking system via backend proxy...');
+        console.log('📥 Loading couples massages from "Kartica Masaza za parove" category...');
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         const response = await fetch(`${backendUrl}/api/services`);
         const services = await response.json();
         
-        // Filter by prefix "[PAROVI]"
-        const couplesServices = services.filter(s => s.name.startsWith('[PAROVI]'));
-        console.log(`✅ Loaded ${couplesServices.length} services for couple massage card`);
+        // Filter by category "Kartica Masaza za parove" (with discounts)
+        const couplesServices = services.filter(s => s.category === 'Kartica Masaza za parove');
+        console.log(`✅ Loaded ${couplesServices.length} services from "Kartica Masaza za parove" category`);
         
-        // Group by base name (without duration and prefix)
+        // Group by base name (without duration)
         const servicesByName = {};
         couplesServices.forEach(service => {
           // Extract base name and duration from service name
-          // e.g., "[PAROVI] Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
-          let serviceName = service.name;
-          // Remove [PAROVI] prefix
-          if (serviceName.startsWith('[PAROVI]')) {
-            serviceName = serviceName.replace('[PAROVI]', '').trim();
-          }
+          // e.g., "Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
+          const serviceName = service.name;
           
           const match = serviceName.match(/^(.+?)\s*-\s*(\d+)\s*min$/);
           if (match) {
@@ -86,19 +82,19 @@ const CouplesMassageCard = ({
             
             servicesByName[baseName].prices[duration] = service.price;
             servicesByName[baseName].durations.push(duration);
-            // Get discount from booking system API (if available)
+            // Get discount from "Kartica Masaza za parove" category
             servicesByName[baseName].discounts[duration] = service.discount_percentage || 0;
           }
         });
         
         // Convert to array
         const massagesArray = Object.values(servicesByName);
-        console.log('✅ Processed massages:', massagesArray);
+        console.log('✅ Processed couples massages with discounts:', massagesArray);
         
         setAvailableMassages(massagesArray);
         setLoading(false);
       } catch (error) {
-        console.error('❌ Failed to load massages:', error);
+        console.error('❌ Failed to load couples massages:', error);
         setLoading(false);
       }
     };
