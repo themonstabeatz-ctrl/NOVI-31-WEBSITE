@@ -483,6 +483,14 @@ export const translations = {
     selectedMassages: "Selected massages:",
     totalPrice: "Total price (with 15% discount):",
     
+    // Couples Massage Card
+    couplesMassage: "Couples Massage",
+    person1: "Person 1",
+    person2: "Person 2",
+    selectMassage: "Select massage",
+    selectMassagePlaceholder: "-- Select massage --",
+    bookNowBtn: "BOOK NOW",
+    
     // Massage CTA Section
     massageCtaTitle: "Visit the place where tension disappears",
     massageCtaSubtitle: "Contact us and book your massage today",
