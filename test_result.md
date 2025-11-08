@@ -501,6 +501,50 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 CRITICAL BOOKING FLOW ISSUES IDENTIFIED AFTER URL MIGRATION TESTING
+      
+      ❌ FAILED TESTS:
+      
+      📋 TEST 1 - REGULAR MASSAGE BOOKING (Tradicionalna tajlandska masaža - 60 min):
+      ✅ Navigation to MASAŽE page: WORKING
+      ✅ Service card selection and redirect to contact: WORKING  
+      ✅ Form filling (Test User, +381601234567, test@example.com): WORKING
+      ✅ Backend API integration: WORKING (POST /api/book-appointment returns 200 OK)
+      ❌ SUCCESS MESSAGE DISPLAY: FAILED - No green success message appears despite successful backend booking
+      ❌ FORM SUBMISSION UX: Calendar modal backdrop interferes with form submission
+      ❌ TIME PICKER: Unreliable interaction, cannot consistently select 14:00
+      
+      📋 TEST 2 - COUPLES MASSAGE BOOKING (90-min):
+      ✅ Navigation and couples card identification: WORKING
+      ✅ Duration selection (90 min): WORKING (visual feedback)
+      ✅ Dropdown functionality: WORKING (Person 1 & Person 2 dropdowns open)
+      ✅ Massage selection: WORKING (selections register in console)
+      ❌ ZAKAŻITE BUTTON: CRITICAL FAILURE - Remains disabled (opacity: 0.5, cursor: not-allowed)
+      ❌ STATE MANAGEMENT: Button enable logic broken - selections don't trigger button activation
+      ❌ BOOKING COMPLETION: IMPOSSIBLE - Users cannot proceed to contact page
+      
+      🎯 ROOT CAUSES IDENTIFIED:
+      1. Frontend success message logic not triggering despite backend success (200 OK responses)
+      2. Couples massage state synchronization between selection and button enable logic broken
+      3. Modal backdrop interference preventing smooth form submission
+      4. Time picker component has interaction stability issues
+      
+      ⚠️ USER IMPACT CONFIRMED:
+      User's report "trenutno pokazuje da ne moze" (currently shows it cannot book) is accurate:
+      - Regular bookings: Appear to fail due to missing success feedback (backend actually succeeds)
+      - Couples bookings: Actually fail due to disabled submit button preventing completion
+      
+      🔧 URGENT FIXES NEEDED:
+      1. Fix success message display logic in Contact.js
+      2. Debug and fix couples massage button enable state management
+      3. Resolve modal backdrop interference issues
+      4. Improve time picker interaction reliability
+      
+      📊 BACKEND STATUS: ✅ FULLY FUNCTIONAL (all API endpoints returning 200 OK)
+      📊 FRONTEND STATUS: ❌ CRITICAL UX ISSUES BLOCKING USER BOOKINGS
+  
+  - agent: "testing"
+    message: |
       🎉 90-MINUTE COUPLES MASSAGE BOOKING VERIFICATION COMPLETED - ALL OBJECTIVES ACHIEVED!
       
       ✅ EXACT USER SCENARIO TESTED SUCCESSFULLY:
