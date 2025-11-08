@@ -365,11 +365,12 @@ const Contact = () => {
           
           console.log('🔍 Couples Data:', couplesData);
           
-          // Fetch services directly from booking system for couple booking
-          console.log('📥 Fetching current services from booking system...');
+          // Fetch services directly from booking system for couple booking via backend proxy
+          console.log('📥 Fetching current services from booking system via backend proxy...');
           let bookingServices;
           try {
-            const servicesResponse = await fetch('https://massage-booking-hub.preview.emergentagent.com/api/services');
+            const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+            const servicesResponse = await fetch(`${backendUrl}/api/services`);
             bookingServices = await servicesResponse.json();
             console.log(`✅ Loaded ${bookingServices.length} services from booking system`);
           } catch (error) {
