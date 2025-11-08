@@ -200,11 +200,11 @@ frontend:
 
   - task: "Contact page"
     implemented: true
-    working: true
+    working: "unknown"
     file: "/app/frontend/src/pages/Contact.js"
     stuck_count: 3
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: "unknown"
         agent: "main"
