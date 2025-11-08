@@ -222,10 +222,12 @@ const Massage = () => {
       totalPrice += couplesSelections.person2Massage2.price || 0;
     }
     
-    // Apply discount from booking system (get from first [PAROVI] service)
-    const paroviKey = Object.keys(serviceDiscounts).find(key => key.startsWith('[PAROVI]'));
-    const couplesDiscount = paroviKey ? serviceDiscounts[paroviKey] : 0;
-    return totalPrice * (1 - couplesDiscount / 100);
+    // Apply discount from "Kartica Masaza za parove" category
+    const discountedPrice = totalPrice * (1 - couplesDiscountPercent / 100);
+    
+    console.log(`💰 Couples price calculation: Original ${totalPrice} RSD - ${couplesDiscountPercent}% = ${discountedPrice} RSD`);
+    
+    return discountedPrice;
   };
 
   // Scroll to top when component mounts
