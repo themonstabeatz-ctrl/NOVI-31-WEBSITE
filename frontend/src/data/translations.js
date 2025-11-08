@@ -1216,7 +1216,6 @@ export const translations = {
     hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "นวดแบบไทยหลวง",
     footMassageService: "นวดเท้า",
-    couplesMassage: "นวดคู่",
     sportsMassageService: "นวดกีฬา",
     shiatsuMassageService: "นวดชิอัตสึ",
     reflexologyService: "กดจุด",
