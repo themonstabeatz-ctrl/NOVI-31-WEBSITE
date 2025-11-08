@@ -311,6 +311,14 @@ const CouplesMassageCard = ({
     const p2m1 = couplesSelections.person2Massage1;
     const p2m2 = couplesSelections.person2Massage2;
     
+    console.log('🔍 isSelectionComplete check:', {
+      duration: couplesSelections.duration,
+      p1m1: p1m1?.name || 'null',
+      p1m2: p1m2?.name || 'null',
+      p2m1: p2m1?.name || 'null',
+      p2m2: p2m2?.name || 'null'
+    });
+    
     // For 120-min mode: Each person can choose either 2x60min OR 1x120min
     if (couplesSelections.duration === '120') {
       // Check Person 1 completion
