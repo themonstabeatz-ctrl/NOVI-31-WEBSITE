@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend API Testing for Thai Spa Booking System
-Tests the booking API integration and proxy functionality
+Backend API Testing for Thai Spa Booking System - NEW BOOKING SYSTEM
+Tests the booking API integration with https://spabooking.preview.emergentagent.com
 """
 
 import asyncio
