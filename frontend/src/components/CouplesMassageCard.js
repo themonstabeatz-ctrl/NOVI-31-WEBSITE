@@ -358,7 +358,34 @@ const CouplesMassageCard = ({
   const is120Mode = couplesSelections.duration === '120';
 
   return (
-    <Card className="massage-card couples-card-content" style={{ position: 'relative', minHeight: '540px', display: 'flex', flexDirection: 'column', overflow: 'visible', zIndex: 100 }}>
+    <Card 
+      className="massage-card couples-card-content" 
+      style={{ 
+        position: 'relative', 
+        minHeight: '540px', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        overflow: 'hidden',
+        zIndex: 100,
+        backgroundImage: 'url(https://customer-assets.emergentagent.com/job_massage-booking-hub/artifacts/9ju11pes_%E2%80%94Pngtree%E2%80%94thai%20retro%20pattern%20exotic%20border_9031382.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Semi-transparent overlay to make pattern subtle */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        zIndex: 1
+      }} />
+      
+      {/* Content wrapper with higher z-index */}
+      <div style={{ position: 'relative', zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
       {loading && (
         <div style={{
           position: 'absolute',
