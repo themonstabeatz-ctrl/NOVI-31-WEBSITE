@@ -386,14 +386,14 @@ const CouplesMassageCard = ({
         zIndex: 0
       }} />
       
-      {/* Semi-transparent dark overlay for pattern visibility */}
+      {/* Very transparent dark overlay for better pattern visibility */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(12, 12, 12, 0.75)',
+        backgroundColor: 'rgba(12, 12, 12, 0.60)',
         zIndex: 1
       }} />
       
