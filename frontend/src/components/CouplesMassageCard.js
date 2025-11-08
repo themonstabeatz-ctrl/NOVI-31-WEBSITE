@@ -663,8 +663,7 @@ const CouplesMassageCard = ({
                     marginTop: '0.25rem',
                     paddingBottom: '8px',
                     zIndex: 1000,
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.5)',
-                    WebkitOverflowScrolling: 'touch'
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                   }}
                 >
                   {getFilteredMassages().map(massage => {
