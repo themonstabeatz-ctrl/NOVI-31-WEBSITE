@@ -535,23 +535,62 @@ const CouplesMassageCard = ({
           </label>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
             <div style={{ width: 'calc(100% - 90px)', position: 'relative' }}>
-              <div
-                onClick={() => setDropdownOpen(prev => ({ ...prev, person2: !prev.person2 }))}
+              {/* Person 2 - Native Select Dropdown */}
+              <select
+                value={couplesSelections.person2Massage1 ? `${couplesSelections.person2Massage1.key}-${couplesSelections.person2Massage1.duration}` : ''}
+                onChange={(e) => {
+                  if (!e.target.value) return;
+                  const [key, dur] = e.target.value.split('-');
+                  const massage = availableMassages.find(m => m.key === key);
+                  if (massage) {
+                    handleMassageClick(2, massage, dur);
+                  }
+                }}
                 style={{
-                  padding: '0.5rem',
-                  backgroundColor: '#1a1a1a',
-                  color: '#d4af37',
+                  width: '100%',
+                  padding: '0.75rem',
+                  backgroundColor: '#2a2a2a',
                   border: '1px solid #444',
                   borderRadius: '8px',
-                  fontSize: '0.875rem',
+                  color: couplesSelections.person2Massage1 ? '#d4af37' : '#888',
+                  fontSize: '0.85rem',
                   cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis'
+                  outline: 'none'
                 }}
               >
-                {getSelectedText(2)}
-              </div>
+                <option value="">{translate("person2SelectMassage") || "Osoba 2 - Izaberite masažu"}</option>
+                {availableMassages.map(massage => {
+                  const dur = couplesSelections.duration;
+                  
+                  // For 120 min mode: show both 60 and 120 min options
+                  if (dur === '120') {
+                    const options = [];
+                    if (massage.durations.includes('60')) {
+                      options.push(
+                        <option key={`${massage.key}-60-p2`} value={`${massage.key}-60`}>
+                          {translate(getMassageTranslationKey(massage.name))} (60 min)
+                        </option>
+                      );
+                    }
+                    if (massage.durations.includes('120')) {
+                      options.push(
+                        <option key={`${massage.key}-120-p2`} value={`${massage.key}-120`}>
+                          {translate(getMassageTranslationKey(massage.name))} (120 min)
+                        </option>
+                      );
+                    }
+                    return options;
+                  }
+                  
+                  // For 60 or 90 min mode
+                  if (!massage.durations.includes(dur)) return null;
+                  return (
+                    <option key={`${massage.key}-${dur}-p2`} value={`${massage.key}-${dur}`}>
+                      {translate(getMassageTranslationKey(massage.name))}
+                    </option>
+                  );
+                })}
+              </select>
               
               {dropdownOpen.person2 && (
                 <div 
