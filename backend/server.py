@@ -261,7 +261,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                     logger.info(f"📝 Enhanced couples massage: service_name={booking_payload['service_name']}, duration_type={couples_total_duration}, price: {couples_final_price} RSD")
                 
                 response = await client.post(
-                    'https://pozdrav-kako-si.emergent.host/api/appointments',
+                    f'{booking_api_url}/api/appointments',
                     json=booking_payload,
                     headers={'Content-Type': 'application/json'}
                 )
