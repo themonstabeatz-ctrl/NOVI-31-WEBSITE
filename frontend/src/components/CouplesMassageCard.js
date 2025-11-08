@@ -242,13 +242,13 @@ const CouplesMassageCard = ({
       const m2 = couplesSelections.person1Massage2;
       if (m1 && m2) return `${m1.name.substring(0, 20)}... + ${m2.name.substring(0, 20)}...`;
       if (m1) return m1.name;
-      return '-- Izaberite masažu --';
+      return translate('selectMassagePlaceholder');
     } else {
       const m1 = couplesSelections.person2Massage1;
       const m2 = couplesSelections.person2Massage2;
       if (m1 && m2) return `${m1.name.substring(0, 20)}... + ${m2.name.substring(0, 20)}...`;
       if (m1) return m1.name;
-      return '-- Izaberite masažu --';
+      return translate('selectMassagePlaceholder');
     }
   };
 
