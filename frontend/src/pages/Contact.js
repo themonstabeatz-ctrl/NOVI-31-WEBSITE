@@ -41,7 +41,7 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://massage-booking-hub.preview.emergentagent.com';
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         const response = await fetch(`${backendUrl}/api/services`);
         const services = await response.json();
         
