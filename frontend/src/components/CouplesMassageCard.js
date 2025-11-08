@@ -380,7 +380,23 @@ const CouplesMassageCard = ({
         </div>
       )}
       <CardHeader>
-        <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
+          
+          {/* Discount Badge - Always visible when discount > 0 */}
+          {getCouplesDiscountBadge() && (
+            <img 
+              src={getCouplesDiscountBadge()} 
+              alt={`-${couplesDiscount}%`}
+              style={{ 
+                width: '54px',  // Increased by 20% (38px * 1.2 ≈ 46px, but using 54px for better visibility)
+                height: '54px', 
+                objectFit: 'contain',
+                marginRight: '1rem' // Move to left by adding right margin
+              }}
+            />
+          )}
+        </div>
         
         <div style={{
           display: 'flex',
