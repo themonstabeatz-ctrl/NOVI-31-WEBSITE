@@ -59,36 +59,36 @@ class BookingAPITester:
         except Exception as e:
             return f"⚠️ Cannot verify: {str(e)}"
 
-    async def test_backend_health(self):
-        """Test if backend service is accessible"""
+    async def test_health_endpoint(self):
+        """Test GET /api/health endpoint - Review Request Test 1"""
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
-                response = await client.get(f"{self.api_base}/")
+                response = await client.get(f"{self.api_base}/health")
                 
                 if response.status_code == 200:
                     data = response.json()
                     self.log_result(
-                        "Backend Health Check",
+                        "Health Check Endpoint",
                         True,
-                        f"Backend accessible at {self.api_base}",
+                        f"✅ GET /api/health returns 200 OK - Backend is running",
                         {"response": data, "status_code": response.status_code}
                     )
                     return True
                 else:
                     self.log_result(
-                        "Backend Health Check",
+                        "Health Check Endpoint",
                         False,
-                        f"Backend returned status {response.status_code}",
+                        f"❌ GET /api/health returned status {response.status_code}",
                         {"status_code": response.status_code, "response": response.text}
                     )
                     return False
                     
         except Exception as e:
             self.log_result(
-                "Backend Health Check",
+                "Health Check Endpoint",
                 False,
-                f"Cannot connect to backend: {str(e)}",
-                {"error": str(e), "backend_url": self.api_base}
+                f"❌ Cannot connect to /api/health: {str(e)}",
+                {"error": str(e), "endpoint": f"{self.api_base}/health"}
             )
             return False
 
