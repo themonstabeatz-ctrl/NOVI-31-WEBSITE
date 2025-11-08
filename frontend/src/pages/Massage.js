@@ -212,8 +212,8 @@ const Massage = () => {
       totalPrice += couplesSelections.person2Massage2.price || 0;
     }
     
-    // Apply discount from booking system (default 15% if not set)
-    const couplesDiscount = serviceDiscounts["Masaža za parove"] || 15;
+    // Apply discount from booking system (no default, use 0% if not set)
+    const couplesDiscount = serviceDiscounts["Masaža za parove"] || 0;
     return totalPrice * (1 - couplesDiscount / 100);
   };
 
