@@ -1014,72 +1014,62 @@ UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
             return False
 
     async def run_all_tests(self):
-        """Run all booking API tests"""
-        print("=" * 60)
-        print("BOOKING API INTEGRATION TESTING")
-        print("=" * 60)
+        """Run all booking API tests for NEW BOOKING SYSTEM"""
+        print("=" * 80)
+        print("BOOKING FLOW END-TO-END TESTING - NEW BOOKING SYSTEM")
+        print("=" * 80)
         print(f"Backend URL: {self.backend_url}")
         print(f"API Base: {self.api_base}")
+        print(f"New Booking System: https://spabooking.preview.emergentagent.com")
         print()
         
-        # Test 1: Backend Health Check
-        backend_healthy = await self.test_backend_health()
+        # Test 1: Health Check - GET /api/health
+        print("🔍 TEST 1: Health Check")
+        health_working = await self.test_health_endpoint()
         
-        # Test 2: Couples Massage 120-min Test (REVIEW REQUEST)
-        couples_massage_working = False
-        if backend_healthy:
-            couples_massage_working = await self.test_couples_massage_120min_booking()
+        # Test 2: Services Endpoint - GET /api/services
+        print("\n🔍 TEST 2: Services Endpoint")
+        services_working = False
+        if health_working:
+            services_working = await self.test_services_endpoint()
         else:
             self.log_result(
-                "Couples Massage 120-min Booking",
+                "Services Endpoint",
                 False,
-                "Skipped - Backend not accessible",
+                "Skipped - Health check failed",
                 {"reason": "Backend health check failed"}
             )
         
-        # Test 3: External API Direct Access
-        external_api_working = await self.test_external_booking_api_direct()
-        
-        # Test 4: Booking Proxy Endpoint (only if backend is healthy)
-        proxy_working = False
-        if backend_healthy:
-            proxy_working = await self.test_booking_proxy_endpoint()
+        # Test 3: Regular Booking Test - POST /api/book-appointment
+        print("\n🔍 TEST 3: Regular Booking Test")
+        regular_booking_working = False
+        if health_working and services_working:
+            regular_booking_working = await self.test_regular_booking()
         else:
             self.log_result(
-                "Booking Proxy Endpoint",
+                "Regular Booking Test",
                 False,
-                "Skipped - Backend not accessible",
-                {"reason": "Backend health check failed"}
+                "Skipped - Prerequisites failed",
+                {"health_working": health_working, "services_working": services_working}
             )
         
-        # Test 5: Service ID Mapping (only if proxy is working)
-        service_mapping_working = False
-        if backend_healthy and proxy_working:
-            service_mapping_working = await self.test_service_id_mapping()
+        # Test 4: Couple Booking Test - POST /api/book-couple-appointment
+        print("\n🔍 TEST 4: Couple Booking Test")
+        couple_booking_working = False
+        if health_working and services_working:
+            couple_booking_working = await self.test_couple_booking()
         else:
             self.log_result(
-                "Service ID Mapping",
+                "Couple Booking Test",
                 False,
-                "Skipped - Proxy endpoint not working",
-                {"reason": "Proxy endpoint failed or backend not accessible"}
-            )
-        
-        # Test 6: CRITICAL USER BOOKING TEST (only if proxy is working)
-        critical_user_test_working = False
-        if backend_healthy and proxy_working:
-            critical_user_test_working = await self.test_critical_user_booking_scenarios()
-        else:
-            self.log_result(
-                "Critical User Booking Test",
-                False,
-                "Skipped - Proxy endpoint not working",
-                {"reason": "Proxy endpoint failed or backend not accessible"}
+                "Skipped - Prerequisites failed",
+                {"health_working": health_working, "services_working": services_working}
             )
         
         # Summary
-        print("=" * 60)
-        print("TEST SUMMARY")
-        print("=" * 60)
+        print("\n" + "=" * 80)
+        print("TEST SUMMARY - NEW BOOKING SYSTEM INTEGRATION")
+        print("=" * 80)
         
         passed = sum(1 for r in self.results if "✅ PASS" in r['status'])
         total = len(self.results)
@@ -1089,35 +1079,39 @@ UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
         
         print()
         print(f"Tests Passed: {passed}/{total}")
+        print()
         
-        # Special focus on couples massage test result
-        if couples_massage_working:
-            print("🎉 COUPLES MASSAGE 120-MIN BOOKING WORKING!")
-            print("✅ Review request objective achieved")
-            print("✅ Service ID mapping working")
-            print("✅ Backend API integration working")
-            print("✅ External system integration working")
+        # Review Request Assessment
+        if health_working and services_working and regular_booking_working and couple_booking_working:
+            print("🎉 ALL REVIEW REQUEST OBJECTIVES ACHIEVED!")
+            print("✅ Health Check: Backend is running")
+            print("✅ Services Endpoint: Returns services from new booking system")
+            print("✅ Regular Booking: Creates appointments successfully")
+            print("✅ Couple Booking: [PAROVI] services working with Web Slot rotation")
+            print("✅ External System Integration: Bookings appear in external system")
+            print()
+            print("🔧 NEW BOOKING SYSTEM URL INTEGRATION: FULLY FUNCTIONAL")
+        elif health_working and services_working:
+            print("⚠️ PARTIAL SUCCESS - Basic endpoints working but booking issues found")
+            print(f"✅ Health Check: {'Working' if health_working else 'Failed'}")
+            print(f"✅ Services Endpoint: {'Working' if services_working else 'Failed'}")
+            print(f"❌ Regular Booking: {'Working' if regular_booking_working else 'Failed'}")
+            print(f"❌ Couple Booking: {'Working' if couple_booking_working else 'Failed'}")
+            print()
+            print("🔧 BOOKING FUNCTIONALITY NEEDS INVESTIGATION")
+        elif health_working:
+            print("🚨 CRITICAL ISSUES FOUND")
+            print("✅ Health Check: Backend accessible")
+            print("❌ Services Endpoint: Cannot fetch services from new booking system")
+            print("❌ Booking Tests: Skipped due to services endpoint failure")
+            print()
+            print("🔧 NEW BOOKING SYSTEM INTEGRATION BROKEN")
         else:
-            print("🚨 COUPLES MASSAGE 120-MIN BOOKING FAILED!")
-            print("❌ Review request objective NOT achieved")
-            print("🔧 Main agent needs to investigate couples massage booking flow")
-        
-        if backend_healthy and proxy_working and critical_user_test_working:
-            print("🎉 CRITICAL USER ISSUE RESOLVED - All bookings work on user's date/time!")
-            print("✅ Bookings on 2025-11-02 at 14:00 are working correctly")
-            print("✅ External system verification completed")
-        elif backend_healthy and proxy_working and not critical_user_test_working:
-            print("🚨 CRITICAL USER ISSUE CONFIRMED - Bookings failing on user's date/time")
-            print("❌ User's reported issue is REAL - bookings get 400 errors")
-            print("🔧 Main agent needs to investigate why these specific services/times fail")
-        elif backend_healthy and proxy_working and (service_mapping_working or critical_user_test_working):
-            print("⚠️ PARTIAL SUCCESS - Some bookings work but user's specific scenario may still fail")
-        elif backend_healthy and not external_api_working and not proxy_working:
-            print("⚠️ Backend proxy is working but external booking API is unavailable")
-        elif not backend_healthy:
-            print("🚨 Backend service is not accessible - Check backend configuration")
-        else:
-            print("⚠️ Some tests failed - Check individual test results above")
+            print("🚨 BACKEND SERVICE NOT ACCESSIBLE")
+            print("❌ Health Check: Backend not responding")
+            print("❌ All other tests: Skipped")
+            print()
+            print("🔧 BACKEND SERVICE NEEDS TO BE STARTED/FIXED")
         
         return self.results
 
