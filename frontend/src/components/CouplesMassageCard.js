@@ -503,7 +503,12 @@ const CouplesMassageCard = ({
                             key={`${massage.key}-60`}
                             onClick={() => {
                               handleMassageClick(1, massage, '60');
-                              setDropdownOpen(prev => ({ ...prev, person1: false }));
+                              // In 120 mode with 60 min: close only if this is the second 60 min massage
+                              const hasFirstMassage = couplesSelections.person1Massage1;
+                              if (hasFirstMassage) {
+                                setDropdownOpen(prev => ({ ...prev, person1: false }));
+                              }
+                              // Otherwise keep dropdown open for second selection
                             }}
                             style={{
                               padding: '0.75rem',
