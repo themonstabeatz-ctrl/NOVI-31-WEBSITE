@@ -588,7 +588,7 @@ const CouplesMassageCard = ({
                   if (!massage.durations.includes(dur)) return null;
                   return (
                     <option key={`${massage.key}-${dur}-p2`} value={`${massage.key}-${dur}`}>
-                      {translate(getMassageTranslationKey(massage.name))}
+                      {translate(getMassageTranslationKey(massage.name))} ({dur} min)
                     </option>
                   );
                 })}
