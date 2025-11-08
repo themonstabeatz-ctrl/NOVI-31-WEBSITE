@@ -778,6 +778,14 @@ export const translations = {
     selectedMassages: "Выбранные массажи:",
     totalPrice: "Общая цена (со скидкой 15%):",
     
+    // Couples Massage Card
+    couplesMassage: "Массаж для пар",
+    person1: "Персона 1",
+    person2: "Персона 2",
+    selectMassage: "Выберите массаж",
+    selectMassagePlaceholder: "-- Выберите массаж --",
+    bookNowBtn: "ЗАБРОНИРОВАТЬ",
+    
     // Massage CTA Section
     massageCtaTitle: "Посетите место, где напряжение исчезает",
     massageCtaSubtitle: "Свяжитесь с нами и забронируйте ваш массаж сегодня",
