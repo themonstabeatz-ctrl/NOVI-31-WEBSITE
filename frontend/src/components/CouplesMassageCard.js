@@ -664,9 +664,15 @@ const CouplesMassageCard = ({
                 }}
               >
                 <span>
-                  {couplesSelections.person2Massage1
-                    ? `${translate(getMassageTranslationKey(couplesSelections.person2Massage1.name))} (${couplesSelections.person2Massage1.duration} min)`
-                    : "Klikni ovde..."}
+                  {couplesSelections.person2Massage1 ? (
+                    couplesSelections.person2Massage2 ? (
+                      // Two 60-min massages selected
+                      `${translate(getMassageTranslationKey(couplesSelections.person2Massage1.name))} + ${translate(getMassageTranslationKey(couplesSelections.person2Massage2.name))}`
+                    ) : (
+                      // Single massage selected
+                      `${translate(getMassageTranslationKey(couplesSelections.person2Massage1.name))} (${couplesSelections.person2Massage1.duration} min)`
+                    )
+                  ) : "Klikni ovde..."}
                 </span>
                 <ChevronDown className="w-4 h-4" />
               </div>
