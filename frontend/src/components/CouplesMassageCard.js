@@ -435,7 +435,7 @@ const CouplesMassageCard = ({
         </div>
       </CardHeader>
       
-      <CardContent style={{ position: 'relative', zIndex: 3, paddingTop: '0.5rem', flex: 1, display: 'flex', flexDirection: 'column', overflow: 'visible' }}>
+      <CardContent style={{ paddingTop: '0.5rem', flex: 1, display: 'flex', flexDirection: 'column', overflow: 'visible' }}>
         {/* PERSON 1 */}
         <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ 
