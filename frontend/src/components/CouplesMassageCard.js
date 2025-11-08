@@ -17,9 +17,10 @@ const CouplesMassageCard = ({
 }) => {
   
   // Get discount for "Masaža za parove"
-  // Get discount from first [PAROVI] service (all have same discount)
-  const paroviKey = Object.keys(serviceDiscounts).find(key => key.startsWith('[PAROVI]'));
-  const couplesDiscount = paroviKey ? serviceDiscounts[paroviKey] : 0;
+  // Load massages dynamically from booking system
+  const [availableMassages, setAvailableMassages] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [couplesDiscount, setCouplesDiscount] = React.useState(0);
   
   // Helper function to get discount badge for the price display
   const getCouplesDiscountBadge = () => {
@@ -28,10 +29,6 @@ const CouplesMassageCard = ({
     if (couplesDiscount === 15) return '/discount-15.png';
     return null;
   };
-  
-  // Load massages dynamically from booking system
-  const [availableMassages, setAvailableMassages] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
   
   // Map massage names to translation keys
   const getMassageTranslationKey = (massageName) => {
