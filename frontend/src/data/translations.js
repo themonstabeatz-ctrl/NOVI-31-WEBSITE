@@ -84,6 +84,14 @@ export const translations = {
     selectedMassages: "Odabrane masaže:",
     totalPrice: "Ukupna cena (sa 15% popustom):",
     
+    // Couples Massage Card
+    couplesMassage: "Masaža za parove",
+    person1: "Osoba 1",
+    person2: "Osoba 2",
+    selectMassage: "Izaberite masažu",
+    selectMassagePlaceholder: "-- Izaberite masažu --",
+    bookNowBtn: "ZAKAŽITE",
+    
     shiatsuMassage: "Shiatsu masaža",
     shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
     shiatsuBenefit1: "Balansira energiju",
