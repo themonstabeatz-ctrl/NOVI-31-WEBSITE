@@ -86,7 +86,14 @@ const CouplesMassageCard = ({
         
         // Convert to array
         const massagesArray = Object.values(servicesByName);
+        
+        // Get discount percentage from first service (all have same discount in "Kartica Masaza za parove")
+        const firstService = couplesServices[0];
+        const discount = firstService ? (firstService.discount_percentage || 0) : 0;
+        setCouplesDiscount(discount);
+        
         console.log('✅ Processed couples massages with discounts:', massagesArray);
+        console.log(`✅ Couples discount: ${discount}%`);
         
         setAvailableMassages(massagesArray);
         setLoading(false);
