@@ -370,7 +370,7 @@ const CouplesMassageCard = ({
         backgroundColor: '#0a0a0a'
       }}
     >
-      {/* Thai pattern layer with enhanced visibility */}
+      {/* Thai pattern layer - well expressed but transparent */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -381,21 +381,19 @@ const CouplesMassageCard = ({
         backgroundSize: '150%',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        filter: 'brightness(1.3) contrast(1.2)',
-        opacity: 0.25,
+        filter: 'brightness(1.5) contrast(1.4) saturate(1.1)',
+        opacity: 0.35,
         zIndex: 0
       }} />
       
-      {/* Frosted glass overlay - very dark with blur */}
+      {/* Dark overlay without blur for clear pattern visibility */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(15, 15, 15, 0.92)',
-        backdropFilter: 'blur(3px)',
-        WebkitBackdropFilter: 'blur(3px)',
+        backgroundColor: 'rgba(12, 12, 12, 0.88)',
         zIndex: 1
       }} />
       
