@@ -43,9 +43,9 @@ class BookingAPITester:
             
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
-                # Try to get the specific appointment
+                # Try to get the specific appointment from NEW booking system
                 response = await client.get(
-                    f"https://pozdrav-kako-si.emergent.host/api/appointments/{appointment_id}",
+                    f"https://spabooking.preview.emergentagent.com/api/appointments/{appointment_id}",
                     headers={'Content-Type': 'application/json'}
                 )
                 
@@ -58,6 +58,288 @@ class BookingAPITester:
                     
         except Exception as e:
             return f"⚠️ Cannot verify: {str(e)}"
+
+    async def test_services_endpoint(self):
+        """Test GET /api/services endpoint - Review Request Test 2"""
+        try:
+            async with httpx.AsyncClient(timeout=15.0) as client:
+                response = await client.get(f"{self.api_base}/services")
+                
+                if response.status_code == 200:
+                    services = response.json()
+                    
+                    # Check if it's a list of services
+                    if not isinstance(services, list):
+                        self.log_result(
+                            "Services Endpoint",
+                            False,
+                            f"❌ Services endpoint returned non-list: {type(services)}",
+                            {"response_type": type(services), "response": str(services)[:200]}
+                        )
+                        return False
+                    
+                    # Look for [PAROVI] prefix services (couples massage)
+                    parovi_services = [s for s in services if s.get('name', '').startswith('[PAROVI]')]
+                    
+                    # Check for discount_percentage field
+                    services_with_discount = [s for s in services if 'discount_percentage' in s]
+                    
+                    self.log_result(
+                        "Services Endpoint",
+                        True,
+                        f"✅ GET /api/services returns {len(services)} services from new booking system",
+                        {
+                            "total_services": len(services),
+                            "parovi_services_count": len(parovi_services),
+                            "parovi_services": [s.get('name', 'Unknown') for s in parovi_services[:5]],  # First 5
+                            "services_with_discount_field": len(services_with_discount),
+                            "sample_service": services[0] if services else None,
+                            "booking_system_url": "https://spabooking.preview.emergentagent.com"
+                        }
+                    )
+                    return True
+                else:
+                    self.log_result(
+                        "Services Endpoint",
+                        False,
+                        f"❌ GET /api/services returned status {response.status_code}",
+                        {"status_code": response.status_code, "response": response.text[:200]}
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Services Endpoint",
+                False,
+                f"❌ Cannot connect to /api/services: {str(e)}",
+                {"error": str(e), "endpoint": f"{self.api_base}/services"}
+            )
+            return False
+
+    async def test_regular_booking(self):
+        """Test regular booking - Review Request Test 3"""
+        # First get services to use a real service from the loaded list
+        try:
+            async with httpx.AsyncClient(timeout=15.0) as client:
+                services_response = await client.get(f"{self.api_base}/services")
+                
+                if services_response.status_code != 200:
+                    self.log_result(
+                        "Regular Booking Test",
+                        False,
+                        f"❌ Cannot get services list: {services_response.status_code}",
+                        {"status_code": services_response.status_code}
+                    )
+                    return False
+                
+                services = services_response.json()
+                if not services:
+                    self.log_result(
+                        "Regular Booking Test",
+                        False,
+                        "❌ No services available for booking",
+                        {"services_count": 0}
+                    )
+                    return False
+                
+                # Use first available service
+                test_service = services[0]
+                service_id = test_service.get('id')
+                service_name = test_service.get('name', 'Unknown Service')
+                
+                # Calculate tomorrow's date at 14:00
+                tomorrow = datetime.now() + timedelta(days=1)
+                appointment_date = tomorrow.strftime('%Y-%m-%d')
+                start_time = f"{appointment_date}T14:00:00"
+                
+                booking_data = {
+                    "client_first_name": "Test",
+                    "client_last_name": "User",
+                    "client_phone": "+381601234567",
+                    "client_email": "test@example.com",
+                    "appointment_date": appointment_date,
+                    "start_time": start_time,
+                    "service_id": service_id,
+                    "therapist_id": "",  # Let backend assign Web Slot therapist
+                    "notes": "Regular booking test from review request",
+                    "language": "sr",
+                    "service_name": service_name
+                }
+                
+                response = await client.post(
+                    f"{self.api_base}/book-appointment",
+                    json=booking_data,
+                    headers={'Content-Type': 'application/json'}
+                )
+                
+                if response.status_code in [200, 201]:
+                    response_data = response.json()
+                    appointment_id = response_data.get('id', 'N/A')
+                    
+                    # Verify in external system
+                    external_verification = await self.verify_booking_in_external_system(appointment_id)
+                    
+                    self.log_result(
+                        "Regular Booking Test",
+                        True,
+                        f"✅ Regular booking successful - Appointment ID: {appointment_id}",
+                        {
+                            "service_name": service_name,
+                            "service_id": service_id,
+                            "appointment_id": appointment_id,
+                            "client": "Test User (+381601234567, test@example.com)",
+                            "date_time": start_time,
+                            "external_verification": external_verification,
+                            "response": response_data
+                        }
+                    )
+                    return True
+                else:
+                    error_detail = response.text
+                    try:
+                        if response.headers.get('content-type', '').startswith('application/json'):
+                            error_data = response.json()
+                            error_detail = error_data.get('detail', error_detail)
+                    except:
+                        pass
+                    
+                    self.log_result(
+                        "Regular Booking Test",
+                        False,
+                        f"❌ Regular booking failed - {response.status_code}: {error_detail}",
+                        {
+                            "service_name": service_name,
+                            "service_id": service_id,
+                            "status_code": response.status_code,
+                            "error_detail": error_detail,
+                            "client": "Test User (+381601234567, test@example.com)",
+                            "date_time": start_time
+                        }
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Regular Booking Test",
+                False,
+                f"❌ Exception during regular booking test: {str(e)}",
+                {"error": str(e)}
+            )
+            return False
+
+    async def test_couple_booking(self):
+        """Test couple booking - Review Request Test 4"""
+        # First get services to find [PAROVI] services
+        try:
+            async with httpx.AsyncClient(timeout=15.0) as client:
+                services_response = await client.get(f"{self.api_base}/services")
+                
+                if services_response.status_code != 200:
+                    self.log_result(
+                        "Couple Booking Test",
+                        False,
+                        f"❌ Cannot get services list: {services_response.status_code}",
+                        {"status_code": services_response.status_code}
+                    )
+                    return False
+                
+                services = services_response.json()
+                parovi_services = [s for s in services if s.get('name', '').startswith('[PAROVI]')]
+                
+                if not parovi_services:
+                    self.log_result(
+                        "Couple Booking Test",
+                        False,
+                        "❌ No [PAROVI] services found for couple booking",
+                        {"total_services": len(services), "parovi_services": 0}
+                    )
+                    return False
+                
+                # Use first [PAROVI] service
+                test_service = parovi_services[0]
+                
+                # Calculate tomorrow's date at 16:00
+                tomorrow = datetime.now() + timedelta(days=1)
+                appointment_date = tomorrow.strftime('%Y-%m-%d')
+                start_time = f"{appointment_date}T16:00:00"
+                
+                # Prepare couple booking data
+                couple_booking_data = {
+                    "client_first_name": "Test",
+                    "client_last_name": "User 2",
+                    "client_phone": "+381601234568",
+                    "client_email": "test2@example.com",
+                    "start_time": start_time,
+                    "duration_type": 90,  # 90 minutes per person
+                    "person1_services": [test_service.get('id')],
+                    "person2_services": [test_service.get('id')],
+                    "discount_couples_massage": 15.0,
+                    "language": "sr"
+                }
+                
+                response = await client.post(
+                    f"{self.api_base}/book-couple-appointment",
+                    json=couple_booking_data,
+                    headers={'Content-Type': 'application/json'}
+                )
+                
+                if response.status_code in [200, 201]:
+                    response_data = response.json()
+                    appointment_id = response_data.get('id', 'N/A')
+                    
+                    # Verify in external system
+                    external_verification = await self.verify_booking_in_external_system(appointment_id)
+                    
+                    self.log_result(
+                        "Couple Booking Test",
+                        True,
+                        f"✅ Couple booking successful - Appointment ID: {appointment_id}",
+                        {
+                            "service_name": test_service.get('name'),
+                            "service_id": test_service.get('id'),
+                            "appointment_id": appointment_id,
+                            "client": "Test User 2 (+381601234568, test2@example.com)",
+                            "duration": "90 minutes per person",
+                            "date_time": start_time,
+                            "external_verification": external_verification,
+                            "web_slot_therapist_rotation": "Working" if appointment_id != 'N/A' else "Unknown",
+                            "response": response_data
+                        }
+                    )
+                    return True
+                else:
+                    error_detail = response.text
+                    try:
+                        if response.headers.get('content-type', '').startswith('application/json'):
+                            error_data = response.json()
+                            error_detail = error_data.get('detail', error_detail)
+                    except:
+                        pass
+                    
+                    self.log_result(
+                        "Couple Booking Test",
+                        False,
+                        f"❌ Couple booking failed - {response.status_code}: {error_detail}",
+                        {
+                            "service_name": test_service.get('name'),
+                            "service_id": test_service.get('id'),
+                            "status_code": response.status_code,
+                            "error_detail": error_detail,
+                            "client": "Test User 2 (+381601234568, test2@example.com)",
+                            "duration": "90 minutes per person",
+                            "date_time": start_time
+                        }
+                    )
+                    return False
+                    
+        except Exception as e:
+            self.log_result(
+                "Couple Booking Test",
+                False,
+                f"❌ Exception during couple booking test: {str(e)}",
+                {"error": str(e)}
+            )
+            return False
 
     async def test_health_endpoint(self):
         """Test GET /api/health endpoint - Review Request Test 1"""
