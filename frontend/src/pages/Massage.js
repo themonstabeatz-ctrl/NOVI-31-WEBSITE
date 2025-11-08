@@ -42,7 +42,8 @@ const Massage = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState({ person1: false, person2: false });
 
-  const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages
+  const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages for regular cards
+  const [couplesDiscountPercent, setCouplesDiscountPercent] = useState(0); // Discount for couples massage
 
   // Fetch all service discounts from booking system via backend proxy
   useEffect(() => {
@@ -72,7 +73,13 @@ const Massage = () => {
           }
         });
         
+        // Get couples massage discount from "Kartica Masaza za parove" category
+        const couplesService = services.find(s => s.category === 'Kartica Masaza za parove');
+        const couplesDiscount = couplesService ? (couplesService.discount_percentage || 0) : 0;
+        setCouplesDiscountPercent(couplesDiscount);
+        
         console.log('📊 Discounts loaded for regular massage cards (Obicne masaze):', discountMap);
+        console.log(`📊 Couples massage discount: ${couplesDiscount}%`);
         setServiceDiscounts(discountMap);
       } catch (error) {
         console.error('Error fetching discounts from booking system:', error);
