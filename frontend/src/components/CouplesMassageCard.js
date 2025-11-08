@@ -439,63 +439,147 @@ const CouplesMassageCard = ({
           </label>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
             <div style={{ width: 'calc(100% - 90px)', position: 'relative' }}>
-              {/* Person 1 - Native Select Dropdown */}
-              <select
-                value={couplesSelections.person1Massage1 ? `${couplesSelections.person1Massage1.key}-${couplesSelections.person1Massage1.duration}` : ''}
-                onChange={(e) => {
-                  if (!e.target.value) return;
-                  const [key, dur] = e.target.value.split('-');
-                  const massage = availableMassages.find(m => m.key === key);
-                  if (massage) {
-                    handleMassageClick(1, massage, dur);
-                  }
+              {/* Person 1 - Dropdown */}
+              <div
+                onClick={() => {
+                  setDropdownOpen(prev => ({ ...prev, person1: !prev.person1 }));
                 }}
                 style={{
-                  width: '100%',
-                  height: '50px',
-                  padding: '0.75rem',
+                  height: '40px',
+                  padding: '0.5rem',
                   backgroundColor: '#2a2a2a',
                   border: '1px solid #d4af37',
                   borderRadius: '8px',
                   color: couplesSelections.person1Massage1 ? '#d4af37' : '#d4af37',
-                  fontSize: '0.9rem',
+                  fontSize: '0.875rem',
                   cursor: 'pointer',
-                  outline: 'none'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}
               >
-                <option value="" disabled hidden style={{ color: '#d4af37' }}>Klikni ovde...</option>
-                {availableMassages.map(massage => {
-                  const dur = couplesSelections.duration;
-                  
-                  // For 120 min mode: show both 60 and 120 min options
-                  if (dur === '120') {
-                    const options = [];
-                    if (massage.durations.includes('60')) {
-                      options.push(
-                        <option key={`${massage.key}-60`} value={`${massage.key}-60`}>
-                          {translate(getMassageTranslationKey(massage.name))} (60 min)
-                        </option>
-                      );
+                <span>
+                  {couplesSelections.person1Massage1
+                    ? `${translate(getMassageTranslationKey(couplesSelections.person1Massage1.name))} (${couplesSelections.person1Massage1.duration} min)`
+                    : "Klikni ovde..."}
+                </span>
+                <ChevronDown className="w-4 h-4" />
+              </div>
+              
+              {/* Dropdown list */}
+              {dropdownOpen.person1 && (
+                <div 
+                  className="custom-scrollbar"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    right: 0,
+                    maxHeight: '300px',
+                    overflowY: 'auto',
+                    overflowX: 'hidden',
+                    backgroundColor: '#1a1a1a',
+                    border: '1px solid #d4af37',
+                    borderRadius: '8px',
+                    marginTop: '0.25rem',
+                    zIndex: 1000,
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
+                  }}
+                >
+                  {availableMassages.map(massage => {
+                    const dur = couplesSelections.duration;
+                    
+                    // For 120 min mode: show both 60 and 120 min options
+                    if (dur === '120') {
+                      const options = [];
+                      
+                      if (massage.durations.includes('60')) {
+                        const selected = isSelected(1, massage.key, '60');
+                        options.push(
+                          <div
+                            key={`${massage.key}-60`}
+                            onClick={() => handleMassageClick(1, massage, '60')}
+                            style={{
+                              padding: '0.75rem',
+                              cursor: 'pointer',
+                              backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
+                              color: '#d4af37',
+                              fontSize: '0.9rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.5rem',
+                              borderBottom: '1px solid #333'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
+                          >
+                            {selected && <Check className="w-4 h-4" />}
+                            <span>{translate(getMassageTranslationKey(massage.name))} (60 min)</span>
+                          </div>
+                        );
+                      }
+                      
+                      if (massage.durations.includes('120')) {
+                        const selected = isSelected(1, massage.key, '120');
+                        options.push(
+                          <div
+                            key={`${massage.key}-120`}
+                            onClick={() => handleMassageClick(1, massage, '120')}
+                            style={{
+                              padding: '0.75rem',
+                              cursor: 'pointer',
+                              backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
+                              color: '#d4af37',
+                              fontSize: '0.9rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.5rem',
+                              borderBottom: '1px solid #333'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
+                          >
+                            {selected && <Check className="w-4 h-4" />}
+                            <span>{translate(getMassageTranslationKey(massage.name))} (120 min)</span>
+                          </div>
+                        );
+                      }
+                      
+                      return options;
                     }
-                    if (massage.durations.includes('120')) {
-                      options.push(
-                        <option key={`${massage.key}-120`} value={`${massage.key}-120`}>
-                          {translate(getMassageTranslationKey(massage.name))} (120 min)
-                        </option>
-                      );
-                    }
-                    return options;
-                  }
-                  
-                  // For 60 or 90 min mode
-                  if (!massage.durations.includes(dur)) return null;
-                  return (
-                    <option key={`${massage.key}-${dur}`} value={`${massage.key}-${dur}`}>
-                      {translate(getMassageTranslationKey(massage.name))} ({dur} min)
-                    </option>
-                  );
-                })}
-              </select>
+                    
+                    // For 60 or 90 min mode
+                    if (!massage.durations.includes(dur)) return null;
+                    
+                    const selected = isSelected(1, massage.key, dur);
+                    return (
+                      <div
+                        key={`${massage.key}-${dur}`}
+                        onClick={() => handleMassageClick(1, massage, dur)}
+                        style={{
+                          padding: '0.75rem',
+                          cursor: 'pointer',
+                          backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
+                          color: '#d4af37',
+                          fontSize: '0.9rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          borderBottom: '1px solid #333'
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
+                      >
+                        {selected && <Check className="w-4 h-4" />}
+                        <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
             
             <button
