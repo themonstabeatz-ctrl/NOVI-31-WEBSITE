@@ -399,7 +399,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 logger.info(f"🔄 Trying {therapist['name']} (ID: {therapist['id']})")
                 
                 response = await client.post(
-                    'https://massage-booking-hub.preview.emergentagent.com/api/appointments/couple',
+                    f'{booking_api_url}/api/appointments/couple',
                     json=couple_payload,
                     headers={'Content-Type': 'application/json'}
                 )
