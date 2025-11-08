@@ -1,73 +1,88 @@
 <analysis>
-The previous AI engineer's work involved extensive feature development and bug fixing for the Bua Luang Thai Spa website. The core activities revolved around two major areas: stabilizing the complex Masaža za parove booking logic and implementing dynamic per-service discounts.
-
-The Masaža za parove booking faced recurring issues, primarily due to inconsistent service IDs between the frontend and the external booking system, leading to malformed URI errors and failed submissions. The AI initially attempted to proxy booking requests through its own backend but eventually shifted to a direct frontend-to-external-booking-system API call for couple bookings, as guided by the booking system agent.
-
-Dynamic discount implementation required fetching discount percentages directly from the external booking API and visually representing them with image badges and adjusted prices on service cards (, ) and within the Masaža za parove dropdowns. Throughout these tasks, the agent frequently used debug logging and consulted a  to identify and resolve persistent issues, which often stemmed from mismatches in data structures or API usage. The last identified issue is a JavaScript redeclaration error in the  component.
+The previous AI engineer's work primarily focused on integrating the Bua Luang Thai Spa website with an external booking system for dynamic discounts and complex couples massage bookings. Key efforts involved resolving a JavaScript  in , implementing dynamic discount badge display with original and discounted prices, and ensuring multi-language support for the couples massage card. A significant portion of the work revolved around adapting to the external booking system's API limitations, such as the initial lack of a  field, leading to a  prefix workaround for service identification. The AI also diligently managed environment URLs, switching from an older booking system to a new preview one. Towards the end, the focus shifted to fixing booking submission issues, adding a backend proxy, and rectifying numerous URL mismatches and data formatting problems between the frontend, backend, and the external booking API. The final unresolved item is debugging the frontend's booking submission process, for which detailed instructions have been provided to the user.
 </analysis>
 
 <product_requirements>
-The Bua Luang Thai Spa website is a multi-language platform with a dark-gold theme, requiring a robust booking system integrated with .
-**Key Features:**
+The Bua Luang Thai Spa website is a multi-language platform with a dark-gold theme, requiring robust integration with the  booking system. The core problem is to provide reliable booking, dynamic pricing, and a smooth user experience.
+
+**Key Features Implemented/Refined:**
+
 *   **Booking Reliability:** Integration with Web Slot therapist rotation for accurate scheduling.
-*   **Multi-language Support:** Email notifications and all UI elements must be localized.
-*   **Service Card Management:** Flexible handling of different massage services.
-*   **Masaža za parove (Couples Massage):** Dynamic dropdowns for two individuals to select separate massages, custom price calculation with initial 15% discount, and accurate transmission of individual selections, total duration (e.g., 240min), and discounted price to the booking system. This feature was later refined to use a dedicated  endpoint for couple bookings, filtering services by , and including  and  in the payload.
-*   **UI/UX:** Maintain desktop view on mobile, enhance date/time pickers, comprehensive form validation.
-*   **Dynamic Discounts:** Per-service discounts (5%, 10%, 15%) controlled by a backend setting, displayed as an image badge (e.g., -5%.png) to the left of the price, active only when a discount percentage is greater than 0%. These discounts are now fetched directly from the external booking system API.
+*   **Multi-language Support:** All UI elements and massage names on the Masaža za parove card must be localized in Serbian, English, Russian, and Thai. Email notifications are configured for localization.
+*   **Masaža za parove (Couples Massage):** Dynamic dropdowns for two individuals to select massages (60, 90, 120 min, with 120 min including 60 min options). Custom price calculation with dynamic discounts. Accurate transmission of individual selections, total duration (e.g., 240min), and discounted price to the booking system via a dedicated  endpoint. Services are filtered using a  prefix in their names due to API limitations.
+*   **UI/UX:** Enhanced dropdown scroll functionality (mouse scroll, golden scrollbar). Original (crossed-out) price displayed above the discounted price, visible only when a discount is active. Discount badges are displayed to the left of the final price. Prices are hidden from dropdown options.
+*   **Dynamic Discounts:** Per-service discounts (5%, 10%, 15%) are fetched directly from the external booking system API, displayed as an image badge (e.g., -5%.png) next to the price, and only active when the percentage is greater than 0%. Discounts are applied to the total price for couples massages.
 </product_requirements>
 
 <key_technical_concepts>
--   **React.js**: Frontend UI development.
--   **FastAPI**: Python backend for API proxy, booking, and email scheduling.
--   **API Integration**: External booking system (), dynamic service/therapist ID handling, direct API calls for couple booking.
--   **State Management**: , prop drilling for , .
--   **UI Components**: , , , ShadCN .
--   **Localization**: .
--   **Event Handling**: , .
+-   **React.js**: Frontend UI development, state management (),  for data fetching.
+-   **FastAPI**: Python backend acting as an API gateway and proxy to the external booking system.
+-   **API Integration**:  for external booking system calls, dynamic service/therapist ID handling, direct API calls for couples booking.
+-   **Localization**:  for multi-language support.
+-   **UI Components**: , , .
+-   **Environment Variables**: Secure management of API URLs (, ).
+-   **Troubleshooting & Debugging**: Systematic identification and resolution of complex cross-service issues.
 </key_technical_concepts>
 
 <code_architecture>
 
+
 -   :
-    -   **Importance**: Central FastAPI backend, acts as an API gateway.
-    -   **Changes**: Added  Pydantic model and a proxy endpoint  to forward couple booking requests, injecting  and . This proxy was later bypassed by frontend direct calls.
+    -   **Importance**: Central FastAPI backend. Acts as an API gateway, proxying requests to the external booking system.
+    -   **Changes**: Added  endpoint to proxy service fetching from the external booking system. Modified  endpoint to ensure it uses the correct  (from ) and correctly formats booking data (e.g., splitting  to /,  to ISO format).
 -   :
-    -   **Importance**: Handles all booking form submissions.
-    -   **Changes**: Fixed syntax errors, removed hardcoded , implemented dynamic service ID loading. Added robust error handling for URI decoding. Modified API call logic to first target the backend proxy and then directly the external booking system's  endpoint.
+    -   **Importance**: Stores environment variables for backend configuration.
+    -   **Changes**: Added  to point to the  for API calls to the external booking system.
 -   :
-    -   **Importance**: Renders individual massage service cards.
-    -   **Changes**: Integrated dynamic discount fetching from the booking system API and displayed badges/prices. Fixed  prop on  components. Removed several massage cards and their mappings as per user request.
+    -   **Importance**: Handles all booking form submissions and displays pre-selected service details.
+    -   **Changes**: Updated service fetching to use the backend's  proxy instead of calling the booking system directly. Ensured  environment variable is used for backend API calls. Fixed issues related to booking payload format (client names, date/time, service IDs as arrays). Corrected displaying Masaža za parove instead of Partnerska masaža.
+-   :
+    -   **Importance**: Renders individual massage service cards and provides context for .
+    -   **Changes**: Updated  to use the  API. Fixed  logic to correctly retrieve the discount percentage from individual  services (instead of a general Masaža za parove key) and apply it to the total price. Removed fallback hardcoded 15% discount.
 -   :
     -   **Importance**: Displays spa service cards.
-    -   **Changes**: Implemented dynamic discount fetching and display logic mirroring . Fixed  prop on  components.
+    -   **Changes**: Updated  to use the  API, mirroring  changes.
 -   :
-    -   **Importance**: Manages the complex UI, pricing, and booking for couples massages.
-    -   **Changes**: Fixed  prop and . Implemented dynamic discount display and calculation. Updated dropdown filtering for 60/90/120 min durations, ensuring correct prices. Added auto-closing for 120-min mode dropdowns. Implemented fetching and filtering of services by  category for dropdown options, including dynamic discount badges and prices in the options.
+    -   **Importance**: Manages complex UI, pricing, and booking for couples massages.
+    -   **Changes**: Fixed  (redeclaration of ). Implemented  for dynamic discount badge display. Updated service filtering to use  prefix. Removed price display from dropdown options. Implemented original (crossed-out) and discounted price display, active only when a discount is > 0%. Improved dropdown scroll styling (mouse scroll, golden scrollbar, increased height). Replaced hardcoded text with  function calls for multi-language support. Added logic to map API massage names to translation keys. Updated API calls to the new preview booking system URL.
 -   :
-    -   **Importance**: Defines initial service data.
-    -   **Changes**: Primarily modified to adapt to dynamic service loading from the external booking system.
+    -   **Importance**: Centralized file for all UI text translations.
+    -   **Changes**: Added new translation keys for Masaža za parove card elements (title, labels, buttons) for Serbian, English, Russian, and Thai. Added specific translation keys for individual massage names used in dropdowns. Cleaned up duplicate translation keys.
+-   :
+    -   **Importance**: Global CSS styles.
+    -   **Changes**: Added custom CSS for styling the scrollbars () with a golden theme.
 -   :
     -   **Importance**: Image assets for displaying dynamic discount badges.
-    -   **Changes**: Newly downloaded and added to the public folder.
+    -   **Changes**: Downloaded and added , ,  images.
+-   :
+    -   **Importance**: Script to create  prefixed services in the external booking system.
+    -   **Changes**: Created to automatically populate the booking system with specific massage services for the couples card, including durations and prices.
+-   :
+    -   **Importance**: Script to update discount percentages for  services.
+    -   **Changes**: Created to allow bulk updating of  for services with the  prefix in the booking system.
+-   :
+    -   **Importance**: Script to assign categories to services in the booking system.
+    -   **Changes**: Created to correctly categorize services (e.g., Obicne masaze, Kartica Masaza za parove) so they appear in the admin panel's filtered tabs.
+-   :
+    -   **Importance**: Debugging guide for the website agent to diagnose frontend booking issues.
+    -   **Changes**: Created to provide detailed steps for checking console logs, network requests, payload format, and common errors when booking fails.
 </code_architecture>
 
 <pending_tasks>
--   **Fix  redeclaration**: Resolve the  in .
--   **Booking System Cleanup**: The external booking system still contains duplicate Masaža za parove services that need to be deleted.
+-   **Frontend Booking Submission Fix:** The booking form on the frontend still displays a Greška! Molimo pokušajte ponovo. error despite the backend being able to successfully create appointments. The user needs to follow the debugging instructions provided in  to diagnose the frontend-specific problem.
 </pending_tasks>
 
 <current_work>
-Immediately before this summary request, the AI engineer was addressing a  in . This error occurred during the final stages of implementing dynamic discount display for the Masaža za parove card.
+Immediately before this summary request, the AI engineer was addressing the persistent issue of booking submission failures from the frontend. While the backend's  endpoint was confirmed to be functional and successfully creating appointments in the  system, the frontend UI was still presenting an error message (Greška! Molimo pokušajte ponovo.).
 
-The work leading up to this involved:
-1.  Downloading discount badge images (, , ) to the  folder.
-2.  Updating  to fetch available services from the booking system API, specifically filtering by .
-3.  Modifying the rendering logic within  to display the appropriate discount badge next to service options in the dropdowns for both Person 1 and Person 2, along with the calculated discounted prices. This involved changes in how service details and prices were retrieved and presented in the UI for 60/90 minute modes and the various combinations within the 120-minute mode.
+The work involved:
+1.  **Ensuring Backend API Consistency:** Rectifying URL mismatches where  and  endpoints in  were targeting different external booking system URLs. Both are now correctly pointed to .
+2.  **Frontend-Backend Communication:** Updating  to correctly call the local backend's  proxy and  endpoint, using environment variables () instead of hardcoded URLs.
+3.  **Debugging Instructions:** Recognizing the problem likely lies within the frontend's data preparation or API call mechanism, the AI created a detailed  document. This document guides the next agent on how to inspect network requests, payload data, and common issues for the frontend booking form.
 
-The  indicates that a function named  was defined twice within the  file, causing a JavaScript compilation failure during the frontend build. The previous engineer's last action was to acknowledge this error and plan to identify and remove the redundant declaration.
+The product is currently in a state where the core logic for dynamic discounts and multi-language support on the Masaža za parove card is fully functional and synchronized with the preview booking system. Individual massage cards also correctly reflect dynamic discounts. The backend can successfully process booking requests, but the final step of the frontend successfully sending these requests is pending user feedback after debugging.
 </current_work>
 
 <optional_next_step>
-Find and remove the duplicate declaration of the  function in .
+Await user's feedback from debugging the frontend booking submission using the provided  instructions.
 </optional_next_step>

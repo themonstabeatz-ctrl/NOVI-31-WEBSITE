@@ -49,7 +49,7 @@ const CouplesMassageCard = ({
     const loadMassages = async () => {
       try {
         console.log('📥 Loading massages from booking system...');
-        const response = await fetch('https://spabooking.preview.emergentagent.com/api/services');
+        const response = await fetch('https://massage-booking-hub.preview.emergentagent.com/api/services');
         const services = await response.json();
         
         // Filter by prefix "[PAROVI]"

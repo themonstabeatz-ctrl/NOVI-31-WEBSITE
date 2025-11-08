@@ -314,7 +314,7 @@ backend:
     status_history:
       - working: false
         agent: "testing"
-        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://buluang-spa-fix.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
+        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://massage-booking-hub.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
       - working: true
         agent: "testing"
         comment: "COMPREHENSIVE TESTING COMPLETED - ALL BOOKING INTEGRATION WORKING PERFECTLY! ✅ Backend proxy endpoint /api/book-appointment fully functional and correctly forwards to https://pozdrav-kako-si.emergent.host/api/appointments. ✅ All 5 service IDs tested successfully: Klasicna Tajlandska masaza (057c8535-bb25-4712-9014-60e378d06b6d), Relax masaža celog tela (e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf), Sportska masaža (d6cf94e7-5eac-4a8a-8a33-c92e18830021), Spa + tradicionalna tajlandska masaza (0483de92-b1ca-49d8-bd1d-0b8a39ed50a4), Dubinska masaža (4c135b02-641e-4f66-a13b-f420c89ff3bd). ✅ Therapist ID 4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f (Marko Markovic) working correctly. ✅ Input validation working (422 for missing fields, 404 for invalid service IDs). ✅ All bookings return proper appointment IDs and end times. Success rate: 100% (5/5 services). Backend correctly handles external API responses and error conditions."
@@ -338,7 +338,7 @@ backend:
         comment: "🚨 CRITICAL SERVICE ID MISMATCH DISCOVERED IN COUPLES MASSAGE BOOKING! ✅ BACKEND INTEGRATION: Fully functional when using correct service ID (9407d92e-d2a9-4432-85ae-850c3446f900). Appointment ID 1c0f34bc-9f28-41c2-a802-397c992bb952 created successfully, Web Slot 4 therapist assigned, email notifications sent. ❌ FRONTEND ISSUE: Contact.js serviceMapping uses wrong service ID (3ea2757e-2fa5-4db4-a52e-9db09f573265) which doesn't exist in external system. This causes all frontend couples massage bookings to fail. ✅ EXTERNAL SYSTEM: Service 'Masaža za parove - 120 min' exists with correct ID, price=11560.0, description='Masaža za parove - dve osobe sa popustom od 15%'. ✅ BACKEND LOGS: Enhanced couples massage processing working perfectly - service_name='Masaža za parove - 240 min', duration_type=240, price=11560 RSD. 🔧 CRITICAL FIX NEEDED: Update Contact.js serviceMapping to use correct service ID: 9407d92e-d2a9-4432-85ae-850c3446f900. Backend implementation is flawless, issue is purely frontend service mapping mismatch."
       - working: true
         agent: "testing"
-        comment: "🎉 REVIEW REQUEST TESTING COMPLETED - ALL OBJECTIVES ACHIEVED! ✅ SERVICE ID MISMATCH FIXED: Updated backend /api/services endpoint to use correct external system (https://pozdrav-kako-si.emergent.host) instead of wrong system (https://spabooking.preview.emergentagent.com). Service IDs now match between services endpoint and booking system. ✅ REQUIREMENT 1: /api/services endpoint returns array of 168 services including 'Tradicionalna tajlandska masaža - 60 min' with correct service ID (f3c55c37-5366-4be2-a47a-12322ef735fd). ✅ REQUIREMENT 2: /api/book-appointment endpoint successfully creates bookings with exact review request format. Appointment ID: f29d9a43-91fd-4907-81a3-21d5d1be160b created and verified in external system with status 'scheduled'. ✅ REQUIREMENT 3: Complete booking flow works without errors - service lookup → booking creation → external verification → email notifications. ✅ EMAIL INTEGRATION: Confirmation emails sent to bualuangthailandspa@gmail.com, reminder emails scheduled 2h before appointments. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working, multiple simultaneous bookings supported. ✅ BACKEND LOGS: Clean, no errors, all operations successful. Root cause was service endpoint URL mismatch - now resolved."
+        comment: "🎉 REVIEW REQUEST TESTING COMPLETED - ALL OBJECTIVES ACHIEVED! ✅ SERVICE ID MISMATCH FIXED: Updated backend /api/services endpoint to use correct external system (https://pozdrav-kako-si.emergent.host) instead of wrong system (https://massage-booking-hub.preview.emergentagent.com). Service IDs now match between services endpoint and booking system. ✅ REQUIREMENT 1: /api/services endpoint returns array of 168 services including 'Tradicionalna tajlandska masaža - 60 min' with correct service ID (f3c55c37-5366-4be2-a47a-12322ef735fd). ✅ REQUIREMENT 2: /api/book-appointment endpoint successfully creates bookings with exact review request format. Appointment ID: f29d9a43-91fd-4907-81a3-21d5d1be160b created and verified in external system with status 'scheduled'. ✅ REQUIREMENT 3: Complete booking flow works without errors - service lookup → booking creation → external verification → email notifications. ✅ EMAIL INTEGRATION: Confirmation emails sent to bualuangthailandspa@gmail.com, reminder emails scheduled 2h before appointments. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working, multiple simultaneous bookings supported. ✅ BACKEND LOGS: Clean, no errors, all operations successful. Root cause was service endpoint URL mismatch - now resolved."
 
   - task: "Couple Booking Endpoint"
     implemented: true
@@ -350,7 +350,7 @@ backend:
     status_history:
       - working: true
         agent: "testing"
-        comment: "🎉 COUPLE BOOKING ENDPOINT FULLY FUNCTIONAL - ALL REVIEW OBJECTIVES ACHIEVED! ✅ SCENARIO 1 (120-min mode): POST /api/book-couple-appointment with exact review request data successful. Client: Marko Petrović (+381601234567, marko@example.com), Duration: 120min per person, Services: [98249336-b9d9-4685-b70c-81971d3cf216, 106f23bf-771b-4049-bb09-413910bbc3b9], Discount: 15%. Appointment ID: 4141d726-bf75-4814-9e8a-d120399a700f, End time: 18:00 (4h total for 2x120min), Status: 200 OK. ✅ SCENARIO 2 (60-min mode): Client: Ana Jovanović (+381601234568, ana@example.com), Duration: 60min per person, Same services, Appointment ID: 8f28a730-dd89-4ece-b2c7-d4bfffa7d379, End time: 18:00 (2h total for 2x60min), Status: 200 OK. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working (therapist ID: 20a9e9ba-a867-4286-8792-5d3f34acd068). Multiple simultaneous bookings successful. ✅ EXTERNAL SYSTEM INTEGRATION: Both appointments verified in https://buluang-spa-fix.preview.emergentagent.com/api/appointments/ with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully (backend logs show '✅ Email sent successfully'). ✅ PRICE CALCULATIONS: 15% discount applied correctly. Expected prices: 11560 RSD (120-min mode), 7480 RSD (60-min mode). ✅ CURL TESTS: Both review request curl commands return 200 OK with proper JSON responses. All review request verification points achieved: Status 200 OK ✅, Web Slot therapist assigned ✅, Couple service created ✅, Pricing correct ✅, Email confirmations ✅, Reminders scheduled ✅."
+        comment: "🎉 COUPLE BOOKING ENDPOINT FULLY FUNCTIONAL - ALL REVIEW OBJECTIVES ACHIEVED! ✅ SCENARIO 1 (120-min mode): POST /api/book-couple-appointment with exact review request data successful. Client: Marko Petrović (+381601234567, marko@example.com), Duration: 120min per person, Services: [98249336-b9d9-4685-b70c-81971d3cf216, 106f23bf-771b-4049-bb09-413910bbc3b9], Discount: 15%. Appointment ID: 4141d726-bf75-4814-9e8a-d120399a700f, End time: 18:00 (4h total for 2x120min), Status: 200 OK. ✅ SCENARIO 2 (60-min mode): Client: Ana Jovanović (+381601234568, ana@example.com), Duration: 60min per person, Same services, Appointment ID: 8f28a730-dd89-4ece-b2c7-d4bfffa7d379, End time: 18:00 (2h total for 2x60min), Status: 200 OK. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working (therapist ID: 20a9e9ba-a867-4286-8792-5d3f34acd068). Multiple simultaneous bookings successful. ✅ EXTERNAL SYSTEM INTEGRATION: Both appointments verified in https://massage-booking-hub.preview.emergentagent.com/api/appointments/ with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully (backend logs show '✅ Email sent successfully'). ✅ PRICE CALCULATIONS: 15% discount applied correctly. Expected prices: 11560 RSD (120-min mode), 7480 RSD (60-min mode). ✅ CURL TESTS: Both review request curl commands return 200 OK with proper JSON responses. All review request verification points achieved: Status 200 OK ✅, Web Slot therapist assigned ✅, Couple service created ✅, Pricing correct ✅, Email confirmations ✅, Reminders scheduled ✅."
 
 metadata:
   created_by: "main_agent"
@@ -387,7 +387,7 @@ agent_communication:
       🎉 COMPREHENSIVE MASSAGE CARDS DURATION TESTING COMPLETED - ALL OBJECTIVES ACHIEVED!
       
       ✅ EXACT USER REQUEST FULFILLED:
-      - Navigated to https://buluang-spa-fix.preview.emergentagent.com → MASAŽE ✅
+      - Navigated to https://massage-booking-hub.preview.emergentagent.com → MASAŽE ✅
       - Tested ALL 14 massage cards systematically ✅
       - Verified EVERY duration button functionality ✅
       - Confirmed button highlighting (golden styling) ✅
@@ -439,7 +439,7 @@ agent_communication:
       🎉 90-MINUTE COUPLES MASSAGE BOOKING VERIFICATION COMPLETED - ALL OBJECTIVES ACHIEVED!
       
       ✅ EXACT USER SCENARIO TESTED SUCCESSFULLY:
-      1. Navigate to https://buluang-spa-fix.preview.emergentagent.com ✅
+      1. Navigate to https://massage-booking-hub.preview.emergentagent.com ✅
       2. Click MASAŽE menu ✅ (Navigation working perfectly)
       3. Scroll to find "Masaža za parove" card ✅ (Found at index 6 - Sports massage card with couples functionality)
       4. Click "90 min" duration button ✅ (Duration selection working)
@@ -749,7 +749,7 @@ agent_communication:
       - Backend proxy implementation is correct and follows best practices
       
       ❌ EXTERNAL BOOKING SERVICE UNAVAILABLE:
-      - External API endpoint https://buluang-spa-fix.preview.emergentagent.com/api/appointments returns 404 Not Found
+      - External API endpoint https://massage-booking-hub.preview.emergentagent.com/api/appointments returns 404 Not Found
       - Tested multiple HTTP methods (GET, POST, OPTIONS) - all return 404
       - Backend proxy correctly forwards requests and handles 404 errors appropriately
       - Backend logs show proper error handling: "Booking API error: 404 - {"detail":"Not Found"}"
@@ -1108,7 +1108,7 @@ agent_communication:
       4. ✅ Email notifications working (backend logs: "✅ Email sent successfully")
       5. ✅ Prices calculated correctly with 15% discount
       6. ✅ Both curl commands from review request return 200 OK
-      7. ✅ External system verification: Both appointments found in https://buluang-spa-fix.preview.emergentagent.com/api/appointments/
+      7. ✅ External system verification: Both appointments found in https://massage-booking-hub.preview.emergentagent.com/api/appointments/
       
       📋 ADDITIONAL TESTING:
       - ✅ Web Slot therapist rotation: Multiple simultaneous bookings successful
@@ -1156,7 +1156,7 @@ agent_communication:
       - ✅ All HTTP requests returning 200 OK
       
       🔧 CRITICAL FIX IMPLEMENTED:
-      - ROOT CAUSE: Backend was fetching services from https://spabooking.preview.emergentagent.com but making bookings to https://pozdrav-kako-si.emergent.host
+      - ROOT CAUSE: Backend was fetching services from https://massage-booking-hub.preview.emergentagent.com but making bookings to https://pozdrav-kako-si.emergent.host
       - SOLUTION: Updated /api/services endpoint to use same external system as bookings
       - RESULT: Service IDs now match, no more "Service not found" errors
       

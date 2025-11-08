@@ -41,7 +41,7 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://buluang-spa-fix.preview.emergentagent.com';
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://massage-booking-hub.preview.emergentagent.com';
         const response = await fetch(`${backendUrl}/api/services`);
         const services = await response.json();
         
@@ -369,7 +369,7 @@ const Contact = () => {
           console.log('📥 Fetching current services from booking system...');
           let bookingServices;
           try {
-            const servicesResponse = await fetch('https://buluang-spa-fix.preview.emergentagent.com/api/services');
+            const servicesResponse = await fetch('https://massage-booking-hub.preview.emergentagent.com/api/services');
             bookingServices = await servicesResponse.json();
             console.log(`✅ Loaded ${bookingServices.length} services from booking system`);
           } catch (error) {
@@ -475,7 +475,7 @@ const Contact = () => {
             language: language
           };
           
-          bookingEndpoint = 'https://buluang-spa-fix.preview.emergentagent.com/api/book-couple-appointment';
+          bookingEndpoint = 'https://massage-booking-hub.preview.emergentagent.com/api/book-couple-appointment';
           console.log('📌 Couple booking data:', appointmentData);
           console.log('📤 Calling DIRECT booking system endpoint:', bookingEndpoint);
         } else {

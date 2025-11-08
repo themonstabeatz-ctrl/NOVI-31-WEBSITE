@@ -173,7 +173,7 @@ async def get_services():
     Proxy endpoint to fetch services from booking system
     """
     # Use preview booking system
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spabooking.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-booking-hub.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -219,7 +219,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get all therapists and filter for "Web Slot" therapists
-            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spabooking.preview.emergentagent.com')
+            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-booking-hub.preview.emergentagent.com')
             therapists_response = await client.get(f'{booking_api_url}/api/therapists')
             
             if therapists_response.status_code != 200:
@@ -362,7 +362,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get available therapists
-            therapists_response = await client.get('https://buluang-spa-fix.preview.emergentagent.com/api/therapists')
+            therapists_response = await client.get('https://massage-booking-hub.preview.emergentagent.com/api/therapists')
             
             if therapists_response.status_code != 200:
                 logger.error(f"Failed to get therapists: {therapists_response.status_code}")
@@ -398,7 +398,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 logger.info(f"🔄 Trying {therapist['name']} (ID: {therapist['id']})")
                 
                 response = await client.post(
-                    'https://buluang-spa-fix.preview.emergentagent.com/api/appointments/couple',
+                    'https://massage-booking-hub.preview.emergentagent.com/api/appointments/couple',
                     json=couple_payload,
                     headers={'Content-Type': 'application/json'}
                 )

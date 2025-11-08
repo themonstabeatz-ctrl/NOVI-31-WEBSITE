@@ -49,7 +49,7 @@ const Massage = () => {
     const fetchDiscounts = async () => {
       try {
         // Fetch services from booking system API
-        const response = await fetch('https://spabooking.preview.emergentagent.com/api/services');
+        const response = await fetch('https://massage-booking-hub.preview.emergentagent.com/api/services');
         const services = await response.json();
         
         // Build discount mapping: service name -> discount percentage
