@@ -363,7 +363,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Couple Booking Endpoint"
+    - "New Booking System Integration Testing Complete"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
