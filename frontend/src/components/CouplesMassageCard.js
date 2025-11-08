@@ -17,8 +17,9 @@ const CouplesMassageCard = ({
 }) => {
   
   // Get discount for "Masaža za parove"
-  // Try to get discount from booking system, fallback to 0 if not available
-  const couplesDiscount = serviceDiscounts["Masaža za parove"] || 0;
+  // Get discount from first [PAROVI] service (all have same discount)
+  const paroviKey = Object.keys(serviceDiscounts).find(key => key.startsWith('[PAROVI]'));
+  const couplesDiscount = paroviKey ? serviceDiscounts[paroviKey] : 0;
   
   // Helper function to get discount badge for the price display
   const getCouplesDiscountBadge = () => {
