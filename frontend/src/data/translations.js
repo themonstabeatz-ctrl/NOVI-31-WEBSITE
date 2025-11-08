@@ -614,7 +614,6 @@ export const translations = {
     hotStoneMassage: "Masaža toplim uljem",
     royalThaiMassage: "Royal Thai Massage",
     footMassageService: "Foot Massage",
-    couplesMassage: "Couples Massage",
     sportsMassageService: "Sports Massage",
     shiatsuMassageService: "Shiatsu Massage",
     reflexologyService: "Reflexology",
