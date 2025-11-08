@@ -549,17 +549,18 @@ const CouplesMassageCard = ({
                 }}
                 style={{
                   width: '100%',
+                  height: '50px',
                   padding: '0.75rem',
                   backgroundColor: '#2a2a2a',
-                  border: '1px solid #444',
+                  border: '1px solid #d4af37',
                   borderRadius: '8px',
-                  color: couplesSelections.person2Massage1 ? '#d4af37' : '#888',
-                  fontSize: '0.85rem',
+                  color: couplesSelections.person2Massage1 ? '#d4af37' : '#d4af37',
+                  fontSize: '0.9rem',
                   cursor: 'pointer',
                   outline: 'none'
                 }}
               >
-                <option value="">{translate("person2SelectMassage") || "Osoba 2 - Izaberite masažu"}</option>
+                <option value="" disabled hidden style={{ color: '#d4af37' }}>Klikni ovde...</option>
                 {availableMassages.map(massage => {
                   const dur = couplesSelections.duration;
                   
