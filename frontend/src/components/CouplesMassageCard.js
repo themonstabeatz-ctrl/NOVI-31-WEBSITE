@@ -929,6 +929,7 @@ const CouplesMassageCard = ({
           )}
         </Button>
       </CardContent>
+      </div>
     </Card>
   );
 };
