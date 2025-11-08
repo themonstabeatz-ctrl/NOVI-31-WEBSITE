@@ -5749,6 +5749,17 @@ html {
   transform: scaleX(1);
 }
 
+/* Couples massage card - same styling as other massage cards */
+.couples-card-content {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(15px);
+}
+
+.couples-card-content:hover {
+  border-color: var(--spa-gold);
+}
+
 /* Couples massage card golden line - EXACTLY same as other cards */
 .couples-card-content::before {
   content: '';
