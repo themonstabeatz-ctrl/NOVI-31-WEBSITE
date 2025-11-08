@@ -10,10 +10,8 @@ const CouplesMassageCard = ({
   updateDuration,
   couplesSelections,
   setCouplesSelections,
-  calculateCouplesPrice,
   dropdownOpen,
-  setDropdownOpen,
-  serviceDiscounts = {}
+  setDropdownOpen
 }) => {
   
   // Get discount for "Masaža za parove"
