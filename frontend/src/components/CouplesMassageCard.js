@@ -365,6 +365,7 @@ const CouplesMassageCard = ({
         minHeight: '540px', 
         display: 'flex', 
         flexDirection: 'column',
+        overflow: 'visible',
         zIndex: 100
       }}
     >
