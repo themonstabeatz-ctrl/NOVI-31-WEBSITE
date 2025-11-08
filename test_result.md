@@ -200,11 +200,11 @@ frontend:
 
   - task: "Contact page"
     implemented: true
-    working: "unknown"
+    working: false
     file: "/app/frontend/src/pages/Contact.js"
     stuck_count: 3
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "unknown"
         agent: "main"
@@ -248,6 +248,9 @@ frontend:
       - working: "unknown"
         agent: "main"
         comment: "URL MIGRATION COMPLETED - All URLs updated to https://spabooking.preview.emergentagent.com: 1) Backend .env: BOOKING_API_URL updated. 2) Backend server.py: Removed hardcoded URLs in couple booking endpoint. 3) Frontend (Contact.js, CouplesMassageCard.js, Massage.js, Spa.js): All now use backend proxy instead of direct booking system calls. 4) Backend testing: 4/4 tests passed (health check, services endpoint, regular booking, couple booking). NEEDS RETESTING: Complete end-to-end booking flow from frontend to verify bookings appear in external system and emails are sent correctly. User reports current issue: 'trenutno pokazuje da ne moze' - need to verify if booking submission works and if appointments appear in admin panel."
+      - working: false
+        agent: "testing"
+        comment: "🚨 COMPREHENSIVE BOOKING FLOW TESTING COMPLETED - CRITICAL ISSUES IDENTIFIED! ✅ TEST 1 - REGULAR MASSAGE BOOKING: Navigation to MASAŽE page works, traditional massage card found, 60-min duration selection works, ZAKAŽITE button redirects to contact page with service pre-filled ('Tradicionalna tajlandska masaža - 60 min'). Form fields fill correctly (Test User, +381601234567, test@example.com). ❌ FORM SUBMISSION ISSUES: 1) Calendar modal backdrop interferes with form submission (calendar-modal-backdrop intercepts pointer events). 2) Time picker has interaction issues - cannot reliably select 14:00 time slot. 3) Form submission completes but NO SUCCESS MESSAGE appears despite backend logs showing successful booking API calls (POST /api/book-appointment HTTP/1.1 200 OK). 4) No error messages appear either, indicating silent failure in success message display. ✅ TEST 2 - COUPLES MASSAGE BOOKING: Couples massage card found with Person 1/Person 2 dropdowns, 90-min duration selection works visually. ❌ CRITICAL COUPLES BOOKING FAILURE: ZAKAŽITE button remains disabled (opacity: 0.5, cursor: not-allowed) after selecting massages for both persons. Console shows massage selections are made but button never enables, preventing couples booking completion. ❌ ROOT CAUSE: State management issues in couples massage selection logic - selections register but don't properly update button enable state. ⚠️ IMPACT: User's report 'trenutno pokazuje da ne moze' is confirmed - couples massage bookings fail due to disabled submit button, regular bookings may appear to fail due to missing success messages despite backend success."
 
   - task: "Header with navigation and language switcher"
     implemented: true
