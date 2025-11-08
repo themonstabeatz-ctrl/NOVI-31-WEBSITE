@@ -768,16 +768,18 @@ const CouplesMassageCard = ({
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            {/* Original Price (strikethrough) */}
-            <div style={{
-              color: '#e63946',
-              fontSize: '1.2rem',
-              textDecoration: 'line-through',
-              textDecorationColor: 'white',
-              marginBottom: '0.25rem'
-            }}>
-              {Math.round(calculateOriginalPrice()).toLocaleString('sr-RS')} RSD
-            </div>
+            {/* Original Price (strikethrough) - only show if there's a discount */}
+            {couplesDiscount > 0 && (
+              <div style={{
+                color: '#e63946',
+                fontSize: '1.2rem',
+                textDecoration: 'line-through',
+                textDecorationColor: 'white',
+                marginBottom: '0.25rem'
+              }}>
+                {Math.round(calculateOriginalPrice()).toLocaleString('sr-RS')} RSD
+              </div>
+            )}
             
             {/* Discounted Price with Badge */}
             <div style={{
