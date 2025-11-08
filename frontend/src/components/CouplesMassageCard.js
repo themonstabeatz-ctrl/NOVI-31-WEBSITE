@@ -387,7 +387,7 @@ const CouplesMassageCard = ({
           </div>
         </div>
       )}
-      <CardHeader style={{ position: 'relative', zIndex: 3 }}>
+      <CardHeader>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
           
