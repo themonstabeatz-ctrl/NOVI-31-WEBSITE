@@ -212,8 +212,9 @@ const Massage = () => {
       totalPrice += couplesSelections.person2Massage2.price || 0;
     }
     
-    // Apply discount from booking system (no default, use 0% if not set)
-    const couplesDiscount = serviceDiscounts["Masaža za parove"] || 0;
+    // Apply discount from booking system (get from first [PAROVI] service)
+    const paroviKey = Object.keys(serviceDiscounts).find(key => key.startsWith('[PAROVI]'));
+    const couplesDiscount = paroviKey ? serviceDiscounts[paroviKey] : 0;
     return totalPrice * (1 - couplesDiscount / 100);
   };
 
