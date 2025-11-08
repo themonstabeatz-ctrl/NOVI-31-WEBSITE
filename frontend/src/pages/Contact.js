@@ -552,27 +552,10 @@ const Contact = () => {
       // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
       
-      // Format date for email
-      const emailDate = formData.preferredDate instanceof Date
-        ? formatDate(formData.preferredDate.toISOString().split('T')[0])
-        : (formData.preferredDate ? formatDate(formData.preferredDate) : 'Nije navedeno');
+      // Backend already sends confirmation email via SMTP
+      // No need for mailto: link
       
-      // Also send email as backup
-      const subject = encodeURIComponent(`Rezervacija tretmana - ${formData.firstName} ${formData.lastName}`);
-      const body = encodeURIComponent(
-        `Ime: ${formData.firstName} ${formData.lastName}\n` +
-        `Telefon: ${formData.phone}\n` +
-        `Email: ${formData.email}\n` +
-        `Usluga: ${serviceName}\n` +
-        `Željeni datum: ${emailDate}\n` +
-        `Željeno vreme: ${formData.preferredTime || 'Nije navedeno'}\n\n` +
-        `Poruka:\n${formData.message}`
-      );
-      
-      const mailtoLink = `mailto:bualuangthailandspa@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
-      
-      // Reset form after 2 seconds
+      // Reset form after 3 seconds to allow user to see success message
       setTimeout(() => {
         setFormData({
           firstName: "",
@@ -585,7 +568,7 @@ const Contact = () => {
           source: "message"
         });
         setSubmitStatus(null);
-      }, 2000);
+      }, 3000);
       
     } catch (error) {
       console.error('🚨 DETAILED BOOKING ERROR:', {
