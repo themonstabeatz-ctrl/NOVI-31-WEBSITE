@@ -5761,6 +5761,7 @@ html {
   transform: scaleX(0);
   transition: transform 0.4s ease;
   z-index: 10;
+  border-radius: 12px 12px 0 0;
 }
 
 .couples-card-content:hover::before {
