@@ -5749,7 +5749,12 @@ html {
   transform: scaleX(1);
 }
 
-/* Couples massage card golden line - above overlay */
+/* Couples massage card - constrain golden line */
+.couples-card-content {
+  overflow: hidden;
+}
+
+/* Couples massage card golden line - same as other cards */
 .couples-card-content::before {
   content: '';
   position: absolute;
@@ -5761,7 +5766,7 @@ html {
   transform: scaleX(0);
   transition: transform 0.4s ease;
   z-index: 10;
-  border-radius: 8px 8px 0 0;
+  border-radius: inherit;
 }
 
 .couples-card-content:hover::before {
