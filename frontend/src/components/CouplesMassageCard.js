@@ -643,13 +643,14 @@ const CouplesMassageCard = ({
               {dropdownOpen.person2 && (
                 <div 
                   className="custom-scrollbar"
+                  onMouseDown={(e) => e.stopPropagation()}
                   style={{
                     position: 'absolute',
                     top: '100%',
                     left: 0,
                     right: 0,
                     maxHeight: '350px',
-                    overflowY: 'scroll',
+                    overflowY: 'auto',
                     overflowX: 'hidden',
                     backgroundColor: '#1a1a1a',
                     border: '1px solid #444',
@@ -660,33 +661,28 @@ const CouplesMassageCard = ({
                     boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                   }}
                 >
-                  {getFilteredMassages().map(massage => {
-                    if (is120Mode) {
-                      return null; // Will render separately below
-                    } else {
-                      // 60 or 90 mode - single select
-                      const dur = couplesSelections.duration;
-                      if (!massage.durations.includes(dur)) return null;
-                      const selected = isSelected(2, massage.key, dur);
-                      return (
-                        <div
-                          key={`${massage.key}-${dur}-person2`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            handleMassageClick(2, massage, dur);
-                          }}
-                          onMouseDown={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            handleMassageClick(2, massage, dur);
-                          }}
-                          style={{
-                            padding: '0.5rem',
-                            cursor: 'pointer',
-                            pointerEvents: 'auto',
-                            backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
-                            color: '#d4af37',
+                  {availableMassages.map(massage => {
+                    const dur = couplesSelections.duration;
+                    
+                    // For 120 min mode: show both 60 and 120 min options
+                    if (dur === '120') {
+                      const options = [];
+                      
+                      // Add 60 min option if available
+                      if (massage.durations.includes('60')) {
+                        const selected = isSelected(2, massage.key, '60');
+                        options.push(
+                          <div
+                            key={`${massage.key}-60-p2`}
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              handleMassageClick(2, massage, '60');
+                            }}
+                            style={{
+                              padding: '0.75rem',
+                              cursor: 'pointer',
+                              backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
+                              color: '#d4af37',
                             fontSize: '0.85rem',
                             display: 'flex',
                             alignItems: 'center',
