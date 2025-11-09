@@ -1168,6 +1168,7 @@ export const translations = {
     massageHeadNeckShoulders: "ศีรษะ คอ ไหล่ และหลัง",
     massageFoot: "นวดเท้า",
     massageAromaDeepTissue: "อโรมาดีพทิชชู่",
+    massageAromaHotStone: "อโรมาเธอราปีและหินร้อน",
     
     // Massage CTA Section
     massageCtaTitle: "เยี่ยมชมสถานที่ที่ความเครียดหายไป",
