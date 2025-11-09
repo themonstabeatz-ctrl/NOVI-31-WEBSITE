@@ -874,6 +874,14 @@ export const translations = {
     goldenBenefit2: "Естественное сияние",
     goldenBenefit3: "Омоложение",
 
+    aromaHotStoneMassage: "Ароматерапия и горячие камни",
+    aromaHotStoneMassageDesc: "Сочетание эфирных масел и горячих камней для глубокого расслабления тела и ума.",
+    aromaHotStoneBenefit1: "Расслабляет напряженные мышцы",
+    aromaHotStoneBenefit2: "Стимулирует кровообращение",
+    aromaHotStoneBenefit3: "Снимает стресс и напряжение",
+    aromaHotStoneBenefit4: "Создает ощущение тепла и гармонии",
+
+
     aromaDeepTissueMassage: "Арома глубоких тканей",
     aromaDeepTissueMassageDesc: "Сочетание глубокого массажа и ароматерапии для интенсивного расслабления мышц и ума.",
     aromaDeepTissueBenefit1: "Устраняет напряжение и боль в мышцах",
