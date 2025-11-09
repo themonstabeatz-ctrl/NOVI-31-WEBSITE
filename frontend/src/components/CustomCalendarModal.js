@@ -156,37 +156,16 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
       {isOpen && (
         <>
           <div className="calendar-modal-backdrop" onClick={handleOtkazi} />
-          <div className="calendar-modal" style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'center center' }}>
+          <div className="calendar-modal">
             <div className="calendar-modal-header">
               <h3>{translate('selectDate') || 'Izaberite datum'}</h3>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <button 
-                  className="calendar-zoom-btn"
-                  onClick={() => setZoomLevel(Math.max(0.7, zoomLevel - 0.1))}
-                  type="button"
-                  title="Zoom Out"
-                >
-                  -
-                </button>
-                <span style={{ color: '#d4af37', fontSize: '0.85rem', minWidth: '45px', textAlign: 'center' }}>
-                  {Math.round(zoomLevel * 100)}%
-                </span>
-                <button 
-                  className="calendar-zoom-btn"
-                  onClick={() => setZoomLevel(Math.min(1.3, zoomLevel + 0.1))}
-                  type="button"
-                  title="Zoom In"
-                >
-                  +
-                </button>
-                <button 
-                  className="calendar-close-btn"
-                  onClick={handleOtkazi}
-                  type="button"
-                >
-                  <X size={20} />
-                </button>
-              </div>
+              <button 
+                className="calendar-close-btn"
+                onClick={handleOtkazi}
+                type="button"
+              >
+                <X size={20} />
+              </button>
             </div>
 
             <div className="calendar-navigation">
