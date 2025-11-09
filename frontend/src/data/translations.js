@@ -801,6 +801,8 @@ export const translations = {
     selectMassage: "Выберите массаж",
     selectMassagePlaceholder: "-- Выберите массаж --",
     bookNowBtn: "ЗАБРОНИРОВАТЬ",
+    couplesMassageSimpleDesc: "Традиционный тайский массаж для двоих - 60 минут на человека",
+    totalDuration: "Всего",
     
     // Massage Names (for dropdowns)
     massageTraditionalThai: "Традиционный тайский массаж",
