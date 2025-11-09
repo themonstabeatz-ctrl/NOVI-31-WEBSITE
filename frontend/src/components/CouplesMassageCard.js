@@ -131,140 +131,27 @@ const CouplesMassageCard = ({
       name: massage.name, 
       duration: dur, 
       price: price,
-      fullServiceName: fullServiceName // For booking system lookup
+      fullServiceName: fullServiceName
     };
-    console.log('✅ massageData created:', massageData);
     
+    // Simple logic: set the massage for the person and close dropdown
     if (person === 1) {
-      const current1 = couplesSelections.person1Massage1;
-      const current2 = couplesSelections.person1Massage2;
-      
-      
-      // If 120 min mode and clicking 60 min massage
-      if (durations.sports === '120' && dur === '60') {
-        // Check if already selected
-        if (current1?.key === massage.key && current1?.duration === '60') {
-          setCouplesSelections(prev => {
-            return { ...prev, person1Massage1: null };
-          });
-        } else if (current2?.key === massage.key && current2?.duration === '60') {
-          setCouplesSelections(prev => ({ ...prev, person1Massage2: null }));
-        } else {
-          // IMPORTANT: If there's already a 120 min massage selected, clear it first
-          if (current1?.duration === '120') {
-            // Clear 120 min and start fresh with 60 min
-            setCouplesSelections(prev => ({
-              ...prev,
-              person1Massage1: massageData,
-              person1Massage2: null
-            }));
-            // Don't close - waiting for second 60 min
-          } else if (!current1) {
-            // First slot empty - add here
-            setCouplesSelections(prev => {
-              const newState = { ...prev, person1Massage1: massageData };
-              return newState;
-            });
-            // Don't close yet - waiting for second selection
-          } else if (!current2) {
-            // First slot has 60 min, add second 60 min
-            setCouplesSelections(prev => ({ ...prev, person1Massage2: massageData }));
-            // Both slots filled with 60+60 - close dropdown
-            setDropdownOpen(prev => ({ ...prev, person1: false }));
-          } else {
-            // Both slots full with 60+60, user clicking new 60 - replace second
-            setCouplesSelections(prev => ({ ...prev, person1Massage2: massageData }));
-          }
-        }
-      } else if (durations.sports === '120' && dur === '120') {
-        // Clicking 120 min massage - CLEAR everything and set only this
-        console.log('✅ Person 1: Setting 120-min massage, clearing any 60 min selections');
-        setCouplesSelections(prev => {
-          const newState = { 
-            ...prev, 
-            person1Massage1: massageData,
-            person1Massage2: null  // Clear second slot
-          };
-          return newState;
-        });
-        setDropdownOpen(prev => ({ ...prev, person1: false }));
-      } else {
-        // For 60/90 mode - single selection, clear ALL other selections
-        console.log('✅ Person 1: Setting single selection for 60/90 mode');
-        setCouplesSelections(prev => {
-          const newState = { 
-            ...prev, 
-            person1Massage1: massageData,
-            person1Massage2: null 
-          };
-          console.log('✅ Person 1: New state:', newState);
-          return newState;
-        });
-        setDropdownOpen(prev => ({ ...prev, person1: false }));
-      }
+      setCouplesSelections(prev => ({
+        ...prev,
+        person1Massage1: massageData,
+        person1Massage2: null
+      }));
+      setDropdownOpen(prev => ({ ...prev, person1: false }));
     } else {
-      const current1 = couplesSelections.person2Massage1;
-      const current2 = couplesSelections.person2Massage2;
-      
-      
-      if (durations.sports === '120' && dur === '60') {
-        if (current1?.key === massage.key && current1?.duration === '60') {
-          setCouplesSelections(prev => ({ ...prev, person2Massage1: null }));
-        } else if (current2?.key === massage.key && current2?.duration === '60') {
-          setCouplesSelections(prev => ({ ...prev, person2Massage2: null }));
-        } else {
-          // IMPORTANT: If there's already a 120 min massage selected, clear it first
-          if (current1?.duration === '120') {
-            // Clear 120 min and start fresh with 60 min
-            setCouplesSelections(prev => ({
-              ...prev,
-              person2Massage1: massageData,
-              person2Massage2: null
-            }));
-            // Don't close - waiting for second 60 min
-          } else if (!current1) {
-            // First slot empty - add here
-            setCouplesSelections(prev => {
-              const newState = { ...prev, person2Massage1: massageData };
-              return newState;
-            });
-            // Don't close yet - waiting for second selection
-          } else if (!current2) {
-            // First slot has 60 min, add second 60 min
-            setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
-            // Both slots filled with 60+60 - close dropdown
-            setDropdownOpen(prev => ({ ...prev, person2: false }));
-          } else {
-            // Both slots full with 60+60, user clicking new 60 - replace second
-            setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
-          }
-        }
-      } else if (durations.sports === '120' && dur === '120') {
-        // Clicking 120 min massage - CLEAR everything and set only this
-        console.log('✅ Person 2: Setting 120-min massage, clearing any 60 min selections');
-        setCouplesSelections(prev => {
-          const newState = { 
-            ...prev, 
-            person2Massage1: massageData,
-            person2Massage2: null  // Clear second slot
-          };
-          return newState;
-        });
-        setDropdownOpen(prev => ({ ...prev, person2: false }));
-      } else {
-        // For 60/90 mode - single selection, clear ALL other selections
-        setCouplesSelections(prev => {
-          const newState = { 
-            ...prev, 
-            person2Massage1: massageData,
-            person2Massage2: null
-          };
-          return newState;
-        });
-        setDropdownOpen(prev => ({ ...prev, person2: false }));
-      }
+      setCouplesSelections(prev => ({
+        ...prev,
+        person2Massage1: massageData,
+        person2Massage2: null
+      }));
+      setDropdownOpen(prev => ({ ...prev, person2: false }));
     }
     
+    console.log('✅ Selection updated for Person', person);
   };
 
   const isSelected = (person, massageKey, duration) => {
