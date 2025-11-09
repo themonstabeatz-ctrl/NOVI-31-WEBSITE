@@ -1196,7 +1196,7 @@ export const translations = {
     massageFoot: "นวดเท้า",
     massageAromaDeepTissue: "อโรมาดีพทิชชู่",
     massageAromaHotStone: "อโรมาเธอราปีและหินร้อน",
-    massageAromaThaiHerbal: "อโรมาไทยกับประคบสมุนไพรร้อน",
+    massageAromaThaiHerbal: "อโรมากับประคบสมุนไพรร้อน",
     
     // Massage CTA Section
     massageCtaTitle: "เยี่ยมชมสถานที่ที่ความเครียดหายไป",
