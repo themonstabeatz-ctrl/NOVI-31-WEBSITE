@@ -756,37 +756,27 @@ const CouplesMassageCard = ({
           </div>
         )}
 
-        {isSelectionComplete() && (
+        {isSelectionComplete() ? (
           <Button asChild className="book-button w-full">
-            <Link 
-              to={`/contact?service=${encodeURIComponent(translate('couplesMassage'))}`}
-              onClick={(e) => {
-                // Save couples data to localStorage before navigation
-                const couplesData = {
-                  duration: durations.sports,
-                  totalDuration: calculateTotalDuration(),
-                  person1: {
-                    massage1: couplesSelections.person1Massage1,
-                    massage2: couplesSelections.person1Massage2
-                  },
-                  person2: {
-                    massage1: couplesSelections.person2Massage1,
-                    massage2: couplesSelections.person2Massage2
-                  },
-                  totalPrice: calculateCouplesPrice(),
-                  originalPrice: calculateOriginalPrice(),
-                  discount: `${couplesDiscount}%`
-                };
-                localStorage.setItem('couplesBookingData', JSON.stringify(couplesData));
-                console.log('✅ Couples data saved to localStorage');
-              }}
-            >
+            <Link to={`/contact?service=${encodeURIComponent(translate('couplesMassage'))}&couplesData=${encodeURIComponent(JSON.stringify({
+              duration: durations.sports,
+              totalDuration: calculateTotalDuration(),
+              person1: {
+                massage1: couplesSelections.person1Massage1,
+                massage2: couplesSelections.person1Massage2
+              },
+              person2: {
+                massage1: couplesSelections.person2Massage1,
+                massage2: couplesSelections.person2Massage2
+              },
+              totalPrice: calculateCouplesPrice(),
+              originalPrice: calculateOriginalPrice(),
+              discount: `${couplesDiscount}%`
+            }))}`}>
               {translate('bookNowBtn')}
             </Link>
           </Button>
-        )}
-        
-        {!isSelectionComplete() && (
+        ) : (
           <Button disabled className="book-button w-full" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
             {translate('bookNowBtn')}
           </Button>
