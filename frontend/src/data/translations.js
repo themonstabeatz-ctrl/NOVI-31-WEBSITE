@@ -924,7 +924,12 @@ export const translations = {
     aromaThaiHerbalBenefit3: "Успокаивает тело и ум",
     aromaThaiHerbalBenefit4: "Восстанавливает энергию и жизненную силу",
 
-
+    thaiHerbalMassage: "Тайский массаж с горячими травяными компрессами",
+    thaiHerbalMassageDesc: "Традиционная тайская техника с горячими травяными припарками для глубокого расслабления и восстановления энергии.",
+    thaiHerbalBenefit1: "Расслабляет мышцы и суставы",
+    thaiHerbalBenefit2: "Снимает боль и напряжение в теле",
+    thaiHerbalBenefit3: "Уменьшает стресс и усталость",
+    thaiHerbalBenefit4: "Повышает гибкость и жизненную силу",
 
     aromaDeepTissueMassage: "Арома глубоких тканей",
     aromaDeepTissueMassageDesc: "Сочетание глубокого массажа и ароматерапии для интенсивного расслабления мышц и ума.",
