@@ -828,6 +828,7 @@ export const translations = {
     massageHotOil: "Массаж горячим маслом",
     massageHeadNeckShoulders: "Голова, шея, плечи и спина",
     massageFoot: "Массаж стоп",
+    massageAromaDeepTissue: "Арома глубоких тканей",
     
     // Massage CTA Section
     massageCtaTitle: "Посетите место, где напряжение исчезает",
