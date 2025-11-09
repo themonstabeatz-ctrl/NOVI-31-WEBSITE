@@ -683,12 +683,15 @@ const Contact = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        paddingLeft: 'calc(50vw - 50%)',
+        paddingRight: 'calc(50vw - 50%)'
       }}>
-        {/* Logo pored booking forme */}
+        {/* Logo skroz levo */}
         <div style={{
           position: 'absolute',
-          left: 'calc(50% - 520px)',
+          left: '2rem',
           top: '50%',
           transform: 'translateY(-50%) scale(1.2)',
           zIndex: 3
