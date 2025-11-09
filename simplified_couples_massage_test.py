@@ -132,30 +132,76 @@ class SimplifiedCouplesMassageTest:
     async def test_simplified_couples_booking(self):
         """Test simplified couples massage booking - Review Requirement 3"""
         
-        # Exact test data from review request
-        test_data = {
-            "client_name": "Test User",
-            "client_phone": "+381601234567",
-            "client_email": "test@example.com",
-            "service_id": "Masaža za parove - 120 min",
-            "start_time": "2025-11-10T14:00:00",
-            "language": "sr"
-        }
-        
-        # Convert to backend API format
-        booking_data = {
-            "client_first_name": "Test",
-            "client_last_name": "User",
-            "client_phone": test_data["client_phone"],
-            "client_email": test_data["client_email"],
-            "appointment_date": "2025-11-10",
-            "start_time": test_data["start_time"],
-            "service_id": test_data["service_id"],  # This might need to be mapped to actual service ID
-            "therapist_id": "",  # Let backend assign Web Slot therapist
-            "notes": "Simplified couples massage booking test - 120 min total (60 min per person), 7,920 RSD with 10% discount",
-            "language": test_data["language"],
-            "service_name": "Masaža za parove - 120 min"
-        }
+        # First get services to find the correct couples massage service ID
+        try:
+            async with httpx.AsyncClient(timeout=15.0) as client:
+                services_response = await client.get(f"{self.api_base}/services")
+                
+                if services_response.status_code != 200:
+                    self.log_result(
+                        "Simplified Couples Booking",
+                        False,
+                        f"❌ Cannot get services list: {services_response.status_code}",
+                        {"status_code": services_response.status_code}
+                    )
+                    return False, None
+                
+                services = services_response.json()
+                
+                # Look for 120-minute couples massage service
+                couples_120_service = None
+                for service in services:
+                    service_name = service.get('name', '')
+                    if ('[PAROVI]' in service_name and 
+                        'Tradicionalna tajlandska masaža' in service_name and 
+                        '120 min' in service_name):
+                        couples_120_service = service
+                        break
+                
+                if not couples_120_service:
+                    # Try to find any couples service as fallback
+                    for service in services:
+                        service_name = service.get('name', '')
+                        if '[PAROVI]' in service_name and '120 min' in service_name:
+                            couples_120_service = service
+                            break
+                
+                if not couples_120_service:
+                    self.log_result(
+                        "Simplified Couples Booking",
+                        False,
+                        "❌ No 120-minute couples massage service found",
+                        {
+                            "total_services": len(services),
+                            "couples_services": [s.get('name') for s in services if '[PAROVI]' in s.get('name', '')]
+                        }
+                    )
+                    return False, None
+                
+                # Exact test data from review request
+                test_data = {
+                    "client_name": "Test User",
+                    "client_phone": "+381601234567",
+                    "client_email": "test@example.com",
+                    "service_id": couples_120_service.get('id'),  # Use actual service ID
+                    "start_time": "2025-11-10T14:00:00",
+                    "language": "sr"
+                }
+                
+                # Convert to backend API format
+                booking_data = {
+                    "client_first_name": "Test",
+                    "client_last_name": "User",
+                    "client_phone": test_data["client_phone"],
+                    "client_email": test_data["client_email"],
+                    "appointment_date": "2025-11-10",
+                    "start_time": test_data["start_time"],
+                    "service_id": test_data["service_id"],  # Use actual service ID from services list
+                    "therapist_id": "",  # Let backend assign Web Slot therapist
+                    "notes": "Simplified couples massage booking test - 120 min total (60 min per person), 7,920 RSD with 10% discount",
+                    "language": test_data["language"],
+                    "service_name": couples_120_service.get('name', 'Masaža za parove - 120 min')
+                }
         
         try:
             async with httpx.AsyncClient(timeout=30.0) as client:
