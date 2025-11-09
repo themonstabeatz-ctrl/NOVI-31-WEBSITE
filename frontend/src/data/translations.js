@@ -91,6 +91,8 @@ export const translations = {
     selectMassage: "Izaberite masažu",
     selectMassagePlaceholder: "-- Izaberite masažu --",
     bookNowBtn: "ZAKAŽITE",
+    couplesMassageSimpleDesc: "Tradicionalna tajlandska masaža za dvoje - 60 minuta po osobi",
+    totalDuration: "Ukupno",
     
     // Massage Names (for dropdowns)
     massageTraditionalThai: "Tradicionalna tajlandska masaža",
