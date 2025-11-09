@@ -776,7 +776,7 @@ const CouplesMassageCard = ({
                   }}
                 >
                   {availableMassages.map(massage => {
-                    const dur = couplesSelections.duration;
+                    const dur = durations.sports;
                     
                     // For 120 min mode: show both 60 and 120 min options
                     if (dur === '120') {
