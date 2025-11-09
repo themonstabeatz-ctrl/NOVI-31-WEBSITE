@@ -30,7 +30,8 @@ const Massage = () => {
     bamboo: '60',
     lymphatic: '60',
     aromaDeepTissue: '60',
-    aromaHotStone: '90'
+    aromaHotStone: '90',
+    aromaThaiHerbal: '90'
   });
 
   // State for "Masaža za parove" (couples massage) selections
