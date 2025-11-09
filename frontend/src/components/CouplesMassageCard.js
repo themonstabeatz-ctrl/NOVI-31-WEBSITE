@@ -966,7 +966,7 @@ const CouplesMassageCard = ({
                 },
                 totalPrice: calculateCouplesPrice(),
                 originalPrice: calculateOriginalPrice(),
-                discount: '15%'
+                discount: `${couplesDiscount}%`
               }))}`}
             >
               {translate('bookNowBtn')}
