@@ -677,6 +677,47 @@ export const translations = {
     ctaButtonPrimary: "Book now",
     ctaButtonSecondary: "View massages",
     
+    // New Luxury SPA Packages
+    royalThaiRitual: "Royal Thai Ritual",
+    royalThaiRitualDesc: "Luxurious royal ritual for complete relaxation of body and mind.",
+    royalThaiRitualIncluded: "Sauna, steam bath, Thai aroma massage (60 min), jacuzzi for two, tea and fruits in relaxation zone",
+    royalThaiRitualNote: "Exclusive package for couples and special occasions",
+    
+    detoxHarmony: "Detox Harmony",
+    detoxHarmonyDesc: "Ritual for body purification and energy renewal.",
+    detoxHarmonyIncluded: "Steam bath, coconut & Himalayan salt body scrub, oil massage (60 min), jacuzzi, herbal tea",
+    detoxHarmonyNote: "For detox, circulation and refreshed complexion",
+    
+    aromaEscape: "Aroma Escape",
+    aromaEscapeDesc: "Warm aroma oils and soothing massage combined with jacuzzi.",
+    aromaEscapeIncluded: "Jacuzzi, full body aroma massage (60 min), relaxation zone & tea",
+    aromaEscapeNote: "Perfect choice for daily escape from stress",
+    
+    thaiBalance: "Thai Balance",
+    thaiBalanceDesc: "Authentic traditional Thai massage for body balance.",
+    thaiBalanceIncluded: "Sauna, Thai massage without oil (45 min), herbal tea",
+    thaiBalanceNote: "Stretching, pressure and energy harmonization",
+    
+    buaLuangRelax: "Bua Luang Relax Ritual",
+    buaLuangRelaxDesc: "Classic aroma massage and short spa ritual for complete peace.",
+    buaLuangRelaxIncluded: "Sauna (10 min), aroma massage (60 min), jacuzzi or relaxation zone (20 min)",
+    buaLuangRelaxNote: "Ideal after a tiring day or workout",
+    
+    gentleTouchCouple: "Gentle Touch Couple Package",
+    gentleTouchCoupleDesc: "Ritual for two in private atmosphere with fragrant notes and candlelight.",
+    gentleTouchCoupleIncluded: "Steam bath for two, oil massage for couples (60 min), jacuzzi with fruits and wine, tea or champagne by choice",
+    gentleTouchCoupleNote: "For couples who want shared experience of peace",
+    
+    goldenRevive: "Golden Revive",
+    goldenReviveDesc: "Renewal ritual with golden oil and hot stones.",
+    goldenReviveIncluded: "Sauna, hot stone massage (60 min), golden oil for skin, jacuzzi or relaxation zone",
+    goldenReviveNote: "For muscle regeneration and glowing skin",
+    
+    spiritOfSiam: "Spirit of Siam",
+    spiritOfSiamDesc: "Authentic Thai ritual inspired by ancient Siam.",
+    spiritOfSiamIncluded: "Sauna, Thai massage & oil combination (75 min), herbal compress and ginger tea, relaxation zone with dim light and music",
+    spiritOfSiamNote: "Spiritual experience and energy balance",
+    
     // About Page
     aboutHeroTitle: "About Us",
     aboutHeroSubtitle: "A story of passion, tradition, and transformation through authentic Thai wellness",
