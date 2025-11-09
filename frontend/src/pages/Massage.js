@@ -132,7 +132,16 @@ const Massage = () => {
       return options[duration];
     }
     
-    // Special pricing for Aroma duboko tkivo (couple)
+    // Special pricing for Aroma duboko tkivo
+    if (serviceKey === 'aromaDeepTissue') {
+      const options = {
+        '60': { duration: '60 min', price: '4,900 RSD', serviceId: `${serviceName} - 60 min` },
+        '90': { duration: '90 min', price: '6,000 RSD', serviceId: `${serviceName} - 90 min` }
+      };
+      return options[duration] || options['60']; // Default to 60
+    }
+    
+    // Special pricing for couple
     if (serviceKey === 'couple') {
       const options = {
         '60': { duration: '60 min', price: '4,900 RSD', serviceId: `${serviceName} - 60 min` },
