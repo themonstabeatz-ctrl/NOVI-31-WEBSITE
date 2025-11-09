@@ -101,25 +101,26 @@ const Contact = () => {
       if (couplesData) {
         try {
           const data = JSON.parse(decodeURIComponent(couplesData));
-          // Use totalDuration (sum of all massages) instead of duration (category)
+          // Use totalDuration (sum of all massages)
           const displayDuration = data.totalDuration || data.duration;
-          message = `Masaža za parove - UKUPNO TRAJANJE: ${displayDuration} min\n\n`;
-          message += `OSOBA 1:\n`;
+          message = `Masaža za parove - Ukupno trajanje: ${displayDuration} min\n\n`;
+          message += `Osoba 1:\n`;
           if (data.person1.massage1) {
-            message += `- ${data.person1.massage1.name} (${data.person1.massage1.duration} min) - ${data.person1.massage1.price} RSD\n`;
+            message += `  • ${data.person1.massage1.name} (${data.person1.massage1.duration} min)\n`;
           }
           if (data.person1.massage2) {
-            message += `- ${data.person1.massage2.name} (${data.person1.massage2.duration} min) - ${data.person1.massage2.price} RSD\n`;
+            message += `  • ${data.person1.massage2.name} (${data.person1.massage2.duration} min)\n`;
           }
-          message += `\nOSOBA 2:\n`;
+          message += `\nOsoba 2:\n`;
           if (data.person2.massage1) {
-            message += `- ${data.person2.massage1.name} (${data.person2.massage1.duration} min) - ${data.person2.massage1.price} RSD\n`;
+            message += `  • ${data.person2.massage1.name} (${data.person2.massage1.duration} min)\n`;
           }
           if (data.person2.massage2) {
-            message += `- ${data.person2.massage2.name} (${data.person2.massage2.duration} min) - ${data.person2.massage2.price} RSD\n`;
+            message += `  • ${data.person2.massage2.name} (${data.person2.massage2.duration} min)\n`;
           }
-          message += `\nPOPUST: -${data.discount}\n`;
-          message += `UKUPNA CENA SA POPUSTOM: ${data.totalPrice.toLocaleString()} RSD`;
+          message += `\nPopust: ${data.discount}\n`;
+          message += `Originalna cena: ${data.originalPrice.toLocaleString()} RSD\n`;
+          message += `Cena sa popustom: ${data.totalPrice.toLocaleString()} RSD`;
         } catch (e) {
           console.error('Error parsing couples data:', e);
         }
