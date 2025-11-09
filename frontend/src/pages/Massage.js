@@ -583,6 +583,23 @@ const Massage = () => {
       popular: false,
       hasDurationOptions: true,
       customDurations: ['90', '120'] // Only 90 and 120 min
+    },
+    {
+      key: 'thaiHerbal',
+      name: translate("thaiHerbalMassage"),
+      duration: thaiHerbalDetails.duration,
+      price: thaiHerbalDetails.price,
+      serviceId: thaiHerbalDetails.serviceId,
+      description: translate("thaiHerbalMassageDesc"),
+      benefits: [
+        translate("thaiHerbalBenefit1"), 
+        translate("thaiHerbalBenefit2"), 
+        translate("thaiHerbalBenefit3"),
+        translate("thaiHerbalBenefit4")
+      ],
+      popular: false,
+      hasDurationOptions: true,
+      customDurations: ['90', '120'] // Only 90 and 120 min
     }
   ];
 
