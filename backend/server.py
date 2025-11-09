@@ -173,7 +173,7 @@ async def get_services():
     Proxy endpoint to fetch services from booking system
     """
     # Use preview booking system
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-state-sync.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://thaibookingspa.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -219,7 +219,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get all therapists and filter for "Web Slot" therapists
-            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-state-sync.preview.emergentagent.com')
+            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://thaibookingspa.preview.emergentagent.com')
             therapists_response = await client.get(f'{booking_api_url}/api/therapists')
             
             if therapists_response.status_code != 200:
@@ -362,7 +362,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get available therapists
-            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-state-sync.preview.emergentagent.com')
+            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://thaibookingspa.preview.emergentagent.com')
             therapists_response = await client.get(f'{booking_api_url}/api/therapists')
             
             if therapists_response.status_code != 200:

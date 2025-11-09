@@ -9,7 +9,7 @@ import json
 
 async def test_endpoints():
     """Test various possible endpoints"""
-    base_url = "https://massage-state-sync.preview.emergentagent.com"
+    base_url = "https://thaibookingspa.preview.emergentagent.com"
     
     endpoints_to_test = [
         "/api",
