@@ -651,10 +651,16 @@ const CouplesMassageCard = ({
                     boxShadow: '0 4px 8px rgba(0,0,0,0.5)'
                   }}
                 >
-                  {availableMassages.map(massage => {
+                  {getFilteredMassages().map(massage => {
                     const options = [];
+                    const selectedDuration = durations.sports;
                     
                     massage.durations.forEach(dur => {
+                      // Skip if duration doesn't match the filter
+                      if (selectedDuration === '60' && dur !== '60') return;
+                      if (selectedDuration === '90' && dur !== '90') return;
+                      if (selectedDuration === '120' && dur !== '60' && dur !== '120') return;
+                      
                       const selected = isSelected(2, massage.key, dur);
                       
                       options.push(
