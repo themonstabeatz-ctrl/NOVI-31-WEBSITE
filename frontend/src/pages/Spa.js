@@ -638,14 +638,48 @@ const Spa = () => {
               <CardContent>
                 <p className="spa-description">{service.description}</p>
                 
-                <div className="benefits">
-                  <h4 className="benefits-title">{translate("benefits")}</h4>
-                  <ul className="benefits-list">
-                    {service.benefits.map((benefit, idx) => (
-                      <li key={idx} className="benefit-item">{benefit}</li>
-                    ))}
-                  </ul>
-                </div>
+                {/* Display included items for new packages */}
+                {service.included && (
+                  <div className="benefits">
+                    <h4 className="benefits-title">Uključeno:</h4>
+                    <p className="benefit-item" style={{ 
+                      fontSize: '0.9rem', 
+                      color: '#d4af37',
+                      marginBottom: '0.75rem',
+                      lineHeight: '1.6'
+                    }}>
+                      {service.included}
+                    </p>
+                  </div>
+                )}
+                
+                {/* Display benefits for old packages */}
+                {service.benefits && (
+                  <div className="benefits">
+                    <h4 className="benefits-title">{translate("benefits")}</h4>
+                    <ul className="benefits-list">
+                      {service.benefits.map((benefit, idx) => (
+                        <li key={idx} className="benefit-item">{benefit}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {/* Display note for new packages */}
+                {service.note && (
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#aaa',
+                    fontStyle: 'italic',
+                    marginTop: '0.75rem',
+                    marginBottom: '0.75rem',
+                    padding: '0.5rem',
+                    borderLeft: '3px solid #d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.05)'
+                  }}>
+                    {service.note}
+                  </p>
+                )}
                 
                 <Button asChild className="book-button w-full">
                   <Link to={`/contact?service=${encodeURIComponent(service.serviceId || service.name)}`}>{translate("bookAppointment")}</Link>
