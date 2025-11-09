@@ -592,6 +592,13 @@ export const translations = {
     aromaThaiHerbalBenefit3: "Calms body and mind",
     aromaThaiHerbalBenefit4: "Revitalizes energy and vitality",
 
+    thaiHerbalMassage: "Thai Massage with Hot Herbal Compresses",
+    thaiHerbalMassageDesc: "Traditional Thai technique with hot herbal poultices for deep relaxation and energy renewal.",
+    thaiHerbalBenefit1: "Relaxes muscles and joints",
+    thaiHerbalBenefit2: "Relieves pain and tension in the body",
+    thaiHerbalBenefit3: "Reduces stress and fatigue",
+    thaiHerbalBenefit4: "Increases flexibility and vitality",
+
     aromaDeepTissueBenefit3: "Reduces stress and fatigue",
     aromaDeepTissueBenefit4: "Boosts mood and energy",
 
