@@ -244,10 +244,25 @@ const CouplesMassageCard = ({
             setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
             // Both slots filled with 60+60 - close dropdown
             setDropdownOpen(prev => ({ ...prev, person2: false }));
+          } else {
+            // Both slots full with 60+60, user clicking new 60 - replace second
+            setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
           }
         }
+      } else if (couplesSelections.duration === '120' && dur === '120') {
+        // Clicking 120 min massage - CLEAR everything and set only this
+        console.log('✅ Person 2: Setting 120-min massage, clearing any 60 min selections');
+        setCouplesSelections(prev => {
+          const newState = { 
+            ...prev, 
+            person2Massage1: massageData,
+            person2Massage2: null  // Clear second slot
+          };
+          return newState;
+        });
+        setDropdownOpen(prev => ({ ...prev, person2: false }));
       } else {
-        // For 120 min massage or 60/90 mode - single selection, clear ALL other selections
+        // For 60/90 mode - single selection, clear ALL other selections
         setCouplesSelections(prev => {
           const newState = { 
             ...prev, 
