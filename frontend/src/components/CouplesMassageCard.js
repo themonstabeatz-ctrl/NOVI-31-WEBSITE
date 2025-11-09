@@ -105,18 +105,8 @@ const CouplesMassageCard = ({
   }, []);
 
   const getFilteredMassages = () => {
-    const duration = durations.sports;
-    
-    if (duration === '120') {
-      return availableMassages.filter(m => 
-        m.durations.includes('60') || m.durations.includes('120')
-      );
-    } else if (duration === '60') {
-      return availableMassages.filter(m => m.durations.includes('60'));
-    } else if (duration === '90') {
-      return availableMassages.filter(m => m.durations.includes('90'));
-    }
-    return [];
+    // Return ALL available massages - no filtering
+    return availableMassages;
   };
 
   // Get discount badge image
