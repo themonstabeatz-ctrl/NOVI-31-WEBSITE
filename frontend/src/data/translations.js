@@ -866,7 +866,7 @@ export const translations = {
     massageFoot: "Массаж стоп",
     massageAromaDeepTissue: "Арома глубоких тканей",
     massageAromaHotStone: "Ароматерапия и горячие камни",
-    massageAromaThaiHerbal: "Арома Тай с горячими травяными компрессами",
+    massageAromaThaiHerbal: "Арома с горячими травяными компрессами",
     
     // Massage CTA Section
     massageCtaTitle: "Посетите место, где напряжение исчезает",
