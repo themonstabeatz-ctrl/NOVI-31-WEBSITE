@@ -1433,6 +1433,47 @@ export const translations = {
     ctaButtonPrimary: "จองเลย",
     ctaButtonSecondary: "ดูการนวด",
     
+    // New Luxury SPA Packages
+    royalThaiRitual: "Royal Thai Ritual",
+    royalThaiRitualDesc: "พิธีกรรมหลวงหรูหราเพื่อการผ่อนคลายร่างกายและจิตใจอย่างสมบูรณ์",
+    royalThaiRitualIncluded: "ซาวน่า ห้องอบไอน้ำ นวดไทยอโรม่า (60 นาที) จากุซซี่สำหรับสองคน ชาและผลไม้ในโซนผ่อนคลาย",
+    royalThaiRitualNote: "แพ็คเกจพิเศษสำหรับคู่รักและโอกาสพิเศษ",
+    
+    detoxHarmony: "Detox Harmony",
+    detoxHarmonyDesc: "พิธีกรรมเพื่อการชำระล้างร่างกายและฟื้นฟูพลังงาน",
+    detoxHarmonyIncluded: "ห้องอบไอน้ำ สครับมะพร้าวและเกลือหิมาลัย นวดน้ำมัน (60 นาที) จากุซซี่ ชาสมุนไพร",
+    detoxHarmonyNote: "เพื่อการดีท็อกซ์ การไหลเวียนเลือด และผิวที่สดชื่น",
+    
+    aromaEscape: "Aroma Escape",
+    aromaEscapeDesc: "น้ำมันอโรม่าอุ่นและการนวดผ่อนคลายผสมผสานกับจากุซซี่",
+    aromaEscapeIncluded: "จากุซซี่ นวดอโรม่าทั่วตัว (60 นาที) โซนผ่อนคลายและชา",
+    aromaEscapeNote: "ตัวเลือกที่สมบูรณ์แบบสำหรับการหนีความเครียดในแต่ละวัน",
+    
+    thaiBalance: "Thai Balance",
+    thaiBalanceDesc: "นวดไทยดั้งเดิมที่แท้จริงเพื่อความสมดุลของร่างกาย",
+    thaiBalanceIncluded: "ซาวน่า นวดไทยไม่ใช้น้ำมัน (45 นาที) ชาสมุนไพร",
+    thaiBalanceNote: "การยืด แรงกด และการปรับพลังงานให้กลมกลืน",
+    
+    buaLuangRelax: "Bua Luang Relax Ritual",
+    buaLuangRelaxDesc: "นวดอโรม่าคลาสสิกและพิธีกรรมสปาสั้นเพื่อความสงบสุขอย่างสมบูรณ์",
+    buaLuangRelaxIncluded: "ซาวน่า (10 นาที) นวดอโรม่า (60 นาที) จากุซซี่หรือโซนผ่อนคลาย (20 นาที)",
+    buaLuangRelaxNote: "เหมาะอย่างยิ่งหลังจากวันที่เหนื่อยล้าหรือการออกกำลังกาย",
+    
+    gentleTouchCouple: "Gentle Touch Couple Package",
+    gentleTouchCoupleDesc: "พิธีกรรมสำหรับสองคนในบรรยากาศส่วนตัวพร้อมกลิ่นหอมและแสงเทียน",
+    gentleTouchCoupleIncluded: "ห้องอบไอน้ำสำหรับสองคน นวดน้ำมันสำหรับคู่รัก (60 นาที) จากุซซี่พร้อมผลไม้และไวน์ ชาหรือแชมเปญตามเลือก",
+    gentleTouchCoupleNote: "สำหรับคู่รักที่ต้องการแบ่งปันประสบการณ์แห่งความสงบ",
+    
+    goldenRevive: "Golden Revive",
+    goldenReviveDesc: "พิธีกรรมฟื้นฟูด้วยน้ำมันทองคำและหินร้อน",
+    goldenReviveIncluded: "ซาวน่า นวดหินร้อน (60 นาที) น้ำมันทองคำสำหรับผิว จากุซซี่หรือโซนผ่อนคลาย",
+    goldenReviveNote: "เพื่อการฟื้นฟูกล้ามเนื้อและผิวที่เปล่งประกาย",
+    
+    spiritOfSiam: "Spirit of Siam",
+    spiritOfSiamDesc: "พิธีกรรมไทยที่แท้จริงได้รับแรงบันดาลใจจากสยามโบราณ",
+    spiritOfSiamIncluded: "ซาวน่า นวดไทยและน้ำมันผสมผสาน (75 นาที) ประคบสมุนไพรและชาขิง โซนผ่อนคลายพร้อมแสงสลัวและดนตรี",
+    spiritOfSiamNote: "ประสบการณ์ทางจิตวิญญาณและความสมดุลของพลังงาน",
+    
     // About Page
     aboutHeroTitle: "เกี่ยวกับเรา",
     aboutHeroSubtitle: "เรื่องราวของความหลงใหล ประเพณี และการเปลี่ยนแปลงผ่านเวลเนสไทยที่แท้จริง",
