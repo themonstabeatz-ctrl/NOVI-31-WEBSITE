@@ -101,6 +101,7 @@ export const translations = {
     massageHeadNeckShoulders: "Glava, vrat, ramena i leđa",
     massageFoot: "Masaža stopala",
     massageAromaDeepTissue: "Aroma duboko tkivo",
+    massageAromaHotStone: "Aromaterapija & topli kamen",
     
     shiatsuMassage: "Shiatsu masaža",
     shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
