@@ -223,15 +223,26 @@ const CouplesMassageCard = ({
         } else if (current2?.key === massage.key && current2?.duration === '60') {
           setCouplesSelections(prev => ({ ...prev, person2Massage2: null }));
         } else {
-          if (!current1) {
+          // IMPORTANT: If there's already a 120 min massage selected, clear it first
+          if (current1?.duration === '120') {
+            // Clear 120 min and start fresh with 60 min
+            setCouplesSelections(prev => ({
+              ...prev,
+              person2Massage1: massageData,
+              person2Massage2: null
+            }));
+            // Don't close - waiting for second 60 min
+          } else if (!current1) {
+            // First slot empty - add here
             setCouplesSelections(prev => {
               const newState = { ...prev, person2Massage1: massageData };
               return newState;
             });
             // Don't close yet - waiting for second selection
           } else if (!current2) {
+            // First slot has 60 min, add second 60 min
             setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
-            // Both slots filled - close dropdown
+            // Both slots filled with 60+60 - close dropdown
             setDropdownOpen(prev => ({ ...prev, person2: false }));
           }
         }
