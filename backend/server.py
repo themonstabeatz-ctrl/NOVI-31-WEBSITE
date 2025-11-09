@@ -429,16 +429,24 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 )
             
             # Send confirmation email (construct detailed service name with massage choices)
-            total_duration = booking.duration_type * 2
+            # Get service names from booking system
+            services_response = await client.get(f'{booking_api_url}/api/services')
+            all_services = services_response.json() if services_response.status_code == 200 else []
+            
+            # Create service name lookup
+            service_names = {s['id']: s['name'] for s in all_services}
             
             # Build detailed service description with massage choices
+            total_duration = booking.duration_type * 2
             service_display_name = f"Masaža za parove - Ukupno {total_duration} min\n\n"
             service_display_name += "Osoba 1:\n"
             for service_id in booking.person1_services:
-                service_display_name += f"  • Service ID: {service_id}\n"
+                service_name = service_names.get(service_id, service_id)
+                service_display_name += f"  • {service_name}\n"
             service_display_name += "\nOsoba 2:\n"
             for service_id in booking.person2_services:
-                service_display_name += f"  • Service ID: {service_id}\n"
+                service_name = service_names.get(service_id, service_id)
+                service_display_name += f"  • {service_name}\n"
             
             background_tasks.add_task(
                 send_confirmation_email,
