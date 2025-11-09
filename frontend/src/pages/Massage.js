@@ -152,6 +152,15 @@ const Massage = () => {
       return options[duration] || options['90']; // Default to 90
     }
     
+    // Special pricing for Aroma Thai sa toplim biljnim kompresama
+    if (serviceKey === 'aromaThaiHerbal') {
+      const options = {
+        '90': { duration: '90 min', price: '6,200 RSD', serviceId: `${serviceName} - 90 min` },
+        '120': { duration: '120 min', price: '7,200 RSD', serviceId: `${serviceName} - 120 min` }
+      };
+      return options[duration] || options['90']; // Default to 90
+    }
+    
     // Special pricing for couple
     if (serviceKey === 'couple') {
       const options = {
