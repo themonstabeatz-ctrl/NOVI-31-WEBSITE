@@ -575,6 +575,14 @@ export const translations = {
 
     aromaDeepTissueBenefit1: "Relieves muscle tension and pain",
     aromaDeepTissueBenefit2: "Improves circulation",
+
+    aromaThaiHerbalMassage: "Aroma Thai with Hot Herbal Compresses",
+    aromaThaiHerbalMassageDesc: "Traditional Thai massage with essential oils and hot herbal compresses for deep relaxation.",
+    aromaThaiHerbalBenefit1: "Releases muscle tension and pain",
+    aromaThaiHerbalBenefit2: "Promotes circulation and detoxification",
+    aromaThaiHerbalBenefit3: "Calms body and mind",
+    aromaThaiHerbalBenefit4: "Revitalizes energy and vitality",
+
     aromaDeepTissueBenefit3: "Reduces stress and fatigue",
     aromaDeepTissueBenefit4: "Boosts mood and energy",
 
