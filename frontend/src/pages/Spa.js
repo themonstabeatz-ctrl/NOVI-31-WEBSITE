@@ -453,6 +453,21 @@ const Spa = () => {
       categoryDisplay: translate("categoryPremium"),
       popular: true,
       hasDurationOptions: false
+    },
+    // Serenity Blossom Ritual
+    {
+      key: 'serenityBlossom',
+      name: translate("serenityBlossom"),
+      duration: serenityBlossomDetails.duration,
+      price: serenityBlossomDetails.price,
+      serviceId: serenityBlossomDetails.serviceId,
+      description: translate("serenityBlossomDesc"),
+      included: translate("serenityBlossomIncluded"),
+      note: translate("serenityBlossomNote"),
+      category: "face",
+      categoryDisplay: translate("categoryFace"),
+      popular: true,
+      hasDurationOptions: false
     }
   ];
 
