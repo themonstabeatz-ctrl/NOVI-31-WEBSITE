@@ -1185,6 +1185,14 @@ export const translations = {
     facialBenefit2: "ให้ความชุ่มชื้นผิว",
     facialBenefit3: "ผลต้านอายุ",
     bodyWrap: "บอดี้แร็พ",
+
+    aromaHotStoneMassage: "อโรมาเธอราปีและหินร้อน",
+    aromaHotStoneMassageDesc: "การผสมผสานระหว่างน้ำมันหอมระเหยและหินร้อนเพื่อผ่อนคลายร่างกายและจิตใจอย่างลึกซึ้ง",
+    aromaHotStoneBenefit1: "ผ่อนคลายกล้ามเนื้อที่ตึงเครียด",
+    aromaHotStoneBenefit2: "กระตุ้นการไหลเวียนเลือด",
+    aromaHotStoneBenefit3: "ขจัดความเครียดและความตึงเครียด",
+    aromaHotStoneBenefit4: "ให้ความรู้สึกอบอุ่นและกลมกลืน",
+
     bodyWrapDesc: "ทรีตเมนต์ล้างพิษร่างกายด้วยโคลนและน้ำมันหอมระเหยเพื่อฟื้นฟูผิว",
     bodyWrapBenefit1: "ล้างพิษ",
     bodyWrapBenefit2: "กระชับผิว",
