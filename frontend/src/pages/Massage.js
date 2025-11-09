@@ -455,7 +455,7 @@ const Massage = () => {
   const footDetails = getMassageDetails('foot', 'Masaža stopala');
   const aromaDeepTissueDetails = getMassageDetails('aromaDeepTissue', 'Aroma duboko tkivo');
   const aromaHotStoneDetails = getMassageDetails('aromaHotStone', 'Aromaterapija & topli kamen');
-  const aromaThaiHerbalDetails = getMassageDetails('aromaThaiHerbal', 'Aroma Thai sa toplim biljnim kompresama');
+  const aromaThaiHerbalDetails = getMassageDetails('aromaThaiHerbal', 'Aroma sa toplim biljnim kompresama');
   
   const massageServices = [
     {
