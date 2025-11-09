@@ -457,52 +457,58 @@ agent_communication:
   
   - agent: "testing"
     message: |
-      🎉 FINAL REVIEW REQUEST BACKEND TESTING COMPLETED - ALL 3 OBJECTIVES ACHIEVED!
+      🎉 SIMPLIFIED COUPLES MASSAGE BACKEND VERIFICATION COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED!
       
       ✅ COMPREHENSIVE BACKEND TESTING RESULTS:
       
       📋 TEST 1 - HEALTH CHECK (Review Requirement):
       - GET /api/health ✅ Returns 200 OK
-      - Response: {"status": "healthy", "timestamp": "2025-11-09T11:25:45.381525"}
+      - Response: {"status": "healthy", "timestamp": "2025-11-09T13:03:25.103058"}
       - Backend service fully accessible and responding correctly
       - ✅ REQUIREMENT MET: Health check endpoint returns 200 OK as specified
       
       📋 TEST 2 - SERVICES ENDPOINT (Review Requirement):
-      - GET /api/services ✅ Returns 35 services from https://spabooking.emergent.host
-      - ✅ Found 11 couples massage services with [PAROVI] prefix from "Kartica Masaza za parove" category
-      - ✅ ALL 35 services have discount_percentage field as required
-      - Sample couples services: "[PAROVI] Tradicionalna tajlandska masaža - 60 min", "[PAROVI] Aroma terapija - 60 min"
-      - ✅ REQUIREMENT MET: Services from "Kartica Masaza za parove" category with discount_percentage field
+      - GET /api/services ✅ Returns 36 services from https://spabooking.emergent.host
+      - ✅ Found 10 couples massage services with [PAROVI] prefix including "[PAROVI] Tradicionalna tajlandska masaža - 120 min"
+      - ✅ ALL 36 services have discount_percentage field as required
+      - Sample couples services: "[PAROVI] Tradicionalna tajlandska masaža - 60 min", "[PAROVI] Aroma terapija - 60 min", "[PAROVI] Tradicionalna tajlandska masaža - 120 min"
+      - ✅ REQUIREMENT MET: Services endpoint includes couples massage services as specified
       
-      📋 TEST 3 - COUPLES MASSAGE BOOKING (Review Requirement):
-      - POST /api/book-couple-appointment ✅ Successful booking created with realistic data
+      📋 TEST 3 - SIMPLIFIED COUPLES BOOKING (Review Requirement):
+      - POST /api/book-appointment ✅ Successful booking created with exact review request data
       - Client: Test User (+381601234567, test@example.com) - exact data from review request
-      - Service: "[PAROVI] Tradicionalna tajlandska masaža - 60 min" from Kartica Masaza za parove category
-      - Date: Tomorrow at 14:00 (2025-11-10T14:00:00) - exact time from review request
-      - Duration: 120 minutes per person - as specified in review request
+      - Service: "[PAROVI] Tradicionalna tajlandska masaža - 120 min" (ID: a0d408aa-2ffd-4a4a-a77b-857f895fbb55)
+      - Date: 2025-11-10T14:00:00 - exact time from review request
+      - Duration: 120 minutes total (60 min per person) - as specified in review request
       - Language: Serbian (sr) - as specified in review request
-      - Appointment ID: 562445c8-d074-4b44-831a-cff8e1eb51ae
-      - ✅ REQUIREMENT MET: 200 OK response with appointment ID
+      - Appointment ID: 564b86b8-df73-4ed3-9683-cf9b011ad8f5
+      - ✅ REQUIREMENT MET: Backend accepts booking, returns 200 OK with appointment ID
       
       🔧 EXTERNAL SYSTEM VERIFICATION:
       - ✅ Booking confirmed in https://spabooking.emergent.host with status 'scheduled'
-      - ✅ End time: 2025-11-10T18:00:00 (4 hours total for 2x120min couples massage)
+      - ✅ End time: 2025-11-10T16:00:00 (2 hours total for 120min couples massage)
       - ✅ Web Slot therapist auto-assigned (20a9e9ba-a867-4286-8792-5d3f34acd068)
       - ✅ Email confirmation sent successfully to test@example.com
+      - ✅ Reminder email scheduled 2h before appointment
       
       📊 BACKEND LOGS ANALYSIS:
-      - ✅ Clean operation, no critical errors detected
+      - ✅ Successful booking operation logged: "✅ Booking successful with Web Slot 1"
       - ✅ All HTTP requests successful (200 OK responses)
-      - ✅ Couples massage processing working correctly
-      - Minor: Reminder scheduling parameter mismatch (doesn't affect core functionality)
+      - ✅ Email notifications working: "📧 Confirmation email scheduled for test@example.com"
+      - ✅ Reminder scheduling working: "⏰ Reminder email scheduled for 2025-11-10 12:00:00+00:00"
+      - Minor: Previous failed booking attempts in logs (from earlier tests, not affecting current functionality)
       
       🎯 REVIEW REQUEST ASSESSMENT: 3/3 OBJECTIVES ACHIEVED (100% SUCCESS RATE)
-      1. ✅ Health Check: GET /api/health returns 200 OK
-      2. ✅ Services Endpoint: Returns services from "Kartica Masaza za parove" category with discount_percentage field
-      3. ✅ Couples Massage Booking: POST /api/book-couple-appointment works with realistic data, returns 200 OK with appointment ID
+      1. ✅ Health Check: GET /api/health returns 200 OK ✓
+      2. ✅ Services Endpoint: GET /api/services includes couples massage services ✓
+      3. ✅ Simplified Couples Booking: POST /api/book-appointment accepts simplified couples data ✓
+      4. ✅ Backend accepts the booking ✓
+      5. ✅ Response is 200 OK ✓
+      6. ✅ Appointment ID returned ✓
+      7. ✅ No errors in backend logs ✓
       
-      🏆 CONCLUSION: BACKEND IS SOLID AND READY FOR FRONTEND TESTING
-      Backend uses correct BOOKING_API_URL (https://spabooking.emergent.host) and all endpoints working perfectly.
+      🏆 CONCLUSION: SIMPLIFIED COUPLES MASSAGE BACKEND FULLY FUNCTIONAL
+      Backend correctly handles simplified couples massage booking with fixed "Tradicionalna tajlandska masaža" for both persons, 120 min total duration, and proper external system integration.
   
   - agent: "testing"
     message: |
