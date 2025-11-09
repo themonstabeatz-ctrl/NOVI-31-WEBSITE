@@ -8,6 +8,7 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [zoomLevel, setZoomLevel] = useState(1); // 1 = 100%, 0.8 = 80%, 1.2 = 120%
   
   // Parse value to Date object
   useEffect(() => {
