@@ -674,13 +674,6 @@ const Contact = () => {
         <div className="page-header-content">
           <h1 className="page-title">BOOKING</h1>
         </div>
-        <div className="page-decoration contact-logo-animation">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png"
-            alt="Bua Luang Thai Spa Logo"
-            className="contact-animated-logo"
-          />
-        </div>
       </section>
 
       {/* Unified Contact Card */}
