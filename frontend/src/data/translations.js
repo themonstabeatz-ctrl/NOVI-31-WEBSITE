@@ -723,6 +723,11 @@ export const translations = {
     spiritOfSiamIncluded: "Sauna, Thai massage & oil combination (75 min), herbal compress and ginger tea, relaxation zone with dim light and music",
     spiritOfSiamNote: "Spiritual experience and energy balance",
     
+    serenityBlossom: "Serenity Blossom Ritual",
+    serenityBlossomDesc: "Ritual that awakens peace, beauty and feminine energy through scents of orchid and lotus.",
+    serenityBlossomIncluded: "Steam bath (10 min), lotus & sugar body scrub, orchid oil massage (60 min), hand and foot mask, jacuzzi with jasmine essence, herbal lotus and honey tea",
+    serenityBlossomNote: "Inspired by the lotus flower — symbol of purity and inner peace",
+    
     // About Page
     aboutHeroTitle: "About Us",
     aboutHeroSubtitle: "A story of passion, tradition, and transformation through authentic Thai wellness",
