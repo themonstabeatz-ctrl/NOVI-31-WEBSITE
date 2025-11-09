@@ -94,6 +94,11 @@ const Spa = () => {
     return options[duration];
   };
 
+  // Fixed package details (no duration options)
+  const getFixedPackageDetails = (serviceName, duration, price) => {
+    return { duration, price, serviceId: `${serviceName} - ${duration}` };
+  };
+
   // Get discount badge image based on service discount
   const getDiscountBadge = (serviceKey) => {
     const bookingName = serviceKeyToBookingName[serviceKey];
