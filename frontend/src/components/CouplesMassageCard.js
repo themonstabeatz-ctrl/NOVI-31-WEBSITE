@@ -378,7 +378,7 @@ const CouplesMassageCard = ({
     });
     
     // For 120-min mode: Each person can choose either 2x60min OR 1x120min
-    if (couplesSelections.duration === '120') {
+    if (durations.sports === '120') {
       // Check Person 1 completion
       let person1Complete = false;
       if (p1m1?.duration === '60') {
