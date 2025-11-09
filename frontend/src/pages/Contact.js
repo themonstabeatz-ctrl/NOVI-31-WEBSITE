@@ -103,7 +103,15 @@ const Contact = () => {
       // Special handling for couples massage
       if (couplesData) {
         try {
-          const data = JSON.parse(decodeURIComponent(couplesData));
+          // Try to decode, but if it fails, use the raw string
+          let decodedData = couplesData;
+          try {
+            decodedData = decodeURIComponent(couplesData);
+          } catch (decodeError) {
+            console.warn('⚠️ Could not decode URI, using raw string:', decodeError);
+          }
+          
+          const data = JSON.parse(decodedData);
           console.log('✅ Parsed couples data:', data);
           
           // Use totalDuration (sum of all massages)
