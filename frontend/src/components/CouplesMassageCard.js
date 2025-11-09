@@ -370,7 +370,7 @@ const CouplesMassageCard = ({
     const p2m2 = couplesSelections.person2Massage2;
     
     console.log('🔍 isSelectionComplete check:', {
-      duration: couplesSelections.duration,
+      duration: durations.sports,
       p1m1: p1m1?.name || 'null',
       p1m2: p1m2?.name || 'null',
       p2m1: p2m1?.name || 'null',
