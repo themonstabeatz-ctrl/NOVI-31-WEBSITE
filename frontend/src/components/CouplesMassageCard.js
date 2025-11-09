@@ -43,18 +43,24 @@ const CouplesMassageCard = ({
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
-        console.log('📥 Loading couples massages from "Kartica Masaza za parove" category...');
+        console.log('📥 Loading massages from "Obične masaže" category for couples booking...');
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         const response = await fetch(`${backendUrl}/api/services`);
         const services = await response.json();
         
-        // Filter by category "Kartica Masaza za parove" (with discounts)
+        // Filter by category "Obične masaže" - FULL menu of regular massages
+        const regularMassages = services.filter(s => s.category === 'Obične masaže');
+        console.log(`✅ Loaded ${regularMassages.length} services from "Obične masaže" category`);
+        
+        // Get discount from "Kartica Masaza za parove" category (for pricing calculation)
         const couplesServices = services.filter(s => s.category === 'Kartica Masaza za parove');
-        console.log(`✅ Loaded ${couplesServices.length} services from "Kartica Masaza za parove" category`);
+        const discount = couplesServices[0] ? (couplesServices[0].discount_percentage || 0) : 0;
+        setCouplesDiscount(discount);
+        console.log(`✅ Couples discount: ${discount}%`);
         
         // Group by base name (without duration)
         const servicesByName = {};
-        couplesServices.forEach(service => {
+        regularMassages.forEach(service => {
           // Extract base name and duration from service name
           // e.g., "Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
           const serviceName = service.name;
@@ -70,33 +76,24 @@ const CouplesMassageCard = ({
                 name: baseName,
                 serviceId: service.id,
                 prices: {},
-                durations: [],
-                discounts: {} // Store discount per duration
+                durations: []
               };
             }
             
             servicesByName[baseName].prices[duration] = service.price;
             servicesByName[baseName].durations.push(duration);
-            // Get discount from "Kartica Masaza za parove" category
-            servicesByName[baseName].discounts[duration] = service.discount_percentage || 0;
           }
         });
         
         // Convert to array
         const massagesArray = Object.values(servicesByName);
         
-        // Get discount percentage from first service (all have same discount in "Kartica Masaza za parove")
-        const firstService = couplesServices[0];
-        const discount = firstService ? (firstService.discount_percentage || 0) : 0;
-        setCouplesDiscount(discount);
-        
-        console.log('✅ Processed couples massages with discounts:', massagesArray);
-        console.log(`✅ Couples discount: ${discount}%`);
+        console.log('✅ Processed regular massages for couples:', massagesArray);
         
         setAvailableMassages(massagesArray);
         setLoading(false);
       } catch (error) {
-        console.error('❌ Failed to load couples massages:', error);
+        console.error('❌ Failed to load massages:', error);
         setLoading(false);
       }
     };
