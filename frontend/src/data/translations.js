@@ -555,6 +555,14 @@ export const translations = {
 
     aromaDeepTissueMassage: "Aroma Deep Tissue",
     aromaDeepTissueMassageDesc: "A combination of deep tissue massage and aromatherapy for intense muscle and mind relaxation.",
+
+    aromaHotStoneMassage: "Aromatherapy & Hot Stone",
+    aromaHotStoneMassageDesc: "A blend of essential oils and hot stones for deep relaxation of body and mind.",
+    aromaHotStoneBenefit1: "Relaxes tense muscles",
+    aromaHotStoneBenefit2: "Promotes circulation",
+    aromaHotStoneBenefit3: "Removes stress and tension",
+    aromaHotStoneBenefit4: "Provides a feeling of warmth and harmony",
+
     aromaDeepTissueBenefit1: "Relieves muscle tension and pain",
     aromaDeepTissueBenefit2: "Improves circulation",
     aromaDeepTissueBenefit3: "Reduces stress and fatigue",
