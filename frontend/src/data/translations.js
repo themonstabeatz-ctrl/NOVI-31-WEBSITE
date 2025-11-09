@@ -1054,6 +1054,47 @@ export const translations = {
     ctaButtonPrimary: "Забронировать сейчас",
     ctaButtonSecondary: "Посмотреть массажи",
     
+    // New Luxury SPA Packages
+    royalThaiRitual: "Royal Thai Ritual",
+    royalThaiRitualDesc: "Роскошный королевский ритуал для полного расслабления тела и ума.",
+    royalThaiRitualIncluded: "Сауна, паровая баня, тайский ароматический массаж (60 мин), джакузи для двоих, чай и фрукты в зоне отдыха",
+    royalThaiRitualNote: "Эксклюзивный пакет для пар и особых случаев",
+    
+    detoxHarmony: "Detox Harmony",
+    detoxHarmonyDesc: "Ритуал для очищения тела и восстановления энергии.",
+    detoxHarmonyIncluded: "Паровая баня, скраб для тела кокос и гималайская соль, масляный массаж (60 мин), джакузи, травяной чай",
+    detoxHarmonyNote: "Для детокса, циркуляции и свежего цвета лица",
+    
+    aromaEscape: "Aroma Escape",
+    aromaEscapeDesc: "Теплые ароматические масла и успокаивающий массаж в сочетании с джакузи.",
+    aromaEscapeIncluded: "Джакузи, ароматический массаж всего тела (60 мин), зона отдыха и чай",
+    aromaEscapeNote: "Идеальный выбор для ежедневного побега от стресса",
+    
+    thaiBalance: "Thai Balance",
+    thaiBalanceDesc: "Аутентичный традиционный тайский массаж для баланса тела.",
+    thaiBalanceIncluded: "Сауна, тайский массаж без масла (45 мин), травяной чай",
+    thaiBalanceNote: "Растяжка, давление и энергетическая гармонизация",
+    
+    buaLuangRelax: "Bua Luang Relax Ritual",
+    buaLuangRelaxDesc: "Классический ароматический массаж и короткий спа-ритуал для полного покоя.",
+    buaLuangRelaxIncluded: "Сауна (10 мин), ароматический массаж (60 мин), джакузи или зона отдыха (20 мин)",
+    buaLuangRelaxNote: "Идеально после утомительного дня или тренировки",
+    
+    gentleTouchCouple: "Gentle Touch Couple Package",
+    gentleTouchCoupleDesc: "Ритуал для двоих в приватной атмосфере с ароматическими нотами и свечами.",
+    gentleTouchCoupleIncluded: "Паровая баня для двоих, масляный массаж для пар (60 мин), джакузи с фруктами и вином, чай или шампанское по выбору",
+    gentleTouchCoupleNote: "Для пар, желающих разделить опыт умиротворения",
+    
+    goldenRevive: "Golden Revive",
+    goldenReviveDesc: "Ритуал восстановления с золотым маслом и горячими камнями.",
+    goldenReviveIncluded: "Сауна, массаж горячими камнями (60 мин), золотое масло для кожи, джакузи или зона отдыха",
+    goldenReviveNote: "Для регенерации мышц и сияющей кожи",
+    
+    spiritOfSiam: "Spirit of Siam",
+    spiritOfSiamDesc: "Аутентичный тайский ритуал, вдохновленный древним Сиамом.",
+    spiritOfSiamIncluded: "Сауна, тайский массаж и масляная комбинация (75 мин), травяной компресс и имбирный чай, зона отдыха с приглушенным светом и музыкой",
+    spiritOfSiamNote: "Духовный опыт и энергетический баланс",
+    
     // About Page
     aboutHeroTitle: "О нас",
     aboutHeroSubtitle: "История страсти, традиций и трансформации через подлинный тайский велнес",
