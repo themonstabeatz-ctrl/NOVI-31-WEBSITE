@@ -100,6 +100,7 @@ export const translations = {
     massageHotOil: "Masaža toplim uljem",
     massageHeadNeckShoulders: "Glava, vrat, ramena i leđa",
     massageFoot: "Masaža stopala",
+    massageAromaDeepTissue: "Aroma duboko tkivo",
     
     shiatsuMassage: "Shiatsu masaža",
     shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
