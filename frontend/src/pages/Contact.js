@@ -356,21 +356,35 @@ const Contact = () => {
           dateStr = formData.preferredDate;
         }
         
-        // Check if this is a couple booking
-        const isCoupleBooking = couplesDataParam && serviceName.includes('Masaža za parove');
+        // Check if this is a couple booking and get couples data
+        let couplesBookingData = null;
+        if (serviceName.includes('Masaža za parove')) {
+          // Try localStorage first
+          const storedData = localStorage.getItem('couplesBookingData');
+          if (storedData) {
+            couplesBookingData = JSON.parse(storedData);
+          } else {
+            // Fallback to URL param
+            const couplesDataParam = queryParams.get('couplesData');
+            if (couplesDataParam) {
+              let decodedParam = couplesDataParam;
+              try {
+                decodedParam = decodeURIComponent(couplesDataParam);
+              } catch (decodeError) {
+                console.warn('⚠️ Could not decode couplesData URI, using as-is');
+              }
+              couplesBookingData = JSON.parse(decodedParam);
+            }
+          }
+        }
+        
+        const isCoupleBooking = couplesBookingData && serviceName.includes('Masaža za parove');
         
         let appointmentData;
         let bookingEndpoint;
         
         if (isCoupleBooking) {
-          // Parse couples data for couple endpoint
-          let decodedParam = couplesDataParam;
-          try {
-            decodedParam = decodeURIComponent(couplesDataParam);
-          } catch (decodeError) {
-            console.warn('⚠️ Could not decode couplesData URI, using as-is');
-          }
-          const couplesData = JSON.parse(decodedParam);
+          const couplesData = couplesBookingData;
           
           console.log('🔍 Couples Data:', couplesData);
           
