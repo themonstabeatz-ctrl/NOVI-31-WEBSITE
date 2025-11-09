@@ -750,9 +750,12 @@ const CouplesMassageCard = ({
         )}
 
         {isSelectionComplete() ? (
-          <Button asChild className="book-button w-full">
-            <Link 
-              to={`/contact?service=${encodeURIComponent(`${translate('couplesMassage')} - ${calculateTotalDuration()} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
+          <Button 
+            asChild 
+            className="book-button w-full"
+            onClick={() => {
+              // Save couples data to localStorage before navigation
+              const couplesData = {
                 duration: durations.sports,
                 totalDuration: calculateTotalDuration(),
                 person1: {
@@ -766,8 +769,12 @@ const CouplesMassageCard = ({
                 totalPrice: calculateCouplesPrice(),
                 originalPrice: calculateOriginalPrice(),
                 discount: `${couplesDiscount}%`
-              }))}`}
-            >
+              };
+              localStorage.setItem('couplesBookingData', JSON.stringify(couplesData));
+              console.log('✅ Couples data saved to localStorage:', couplesData);
+            }}
+          >
+            <Link to={`/contact?service=${encodeURIComponent(translate('couplesMassage'))}`}>
               {translate('bookNowBtn')}
             </Link>
           </Button>
