@@ -633,40 +633,27 @@ const CouplesMassageCard = ({
                 >
                   {availableMassages.map(massage => {
                     const options = [];
-                    const selectedDuration = durations.sports;
                     
                     massage.durations.forEach(dur => {
                       const selected = isSelected(2, massage.key, dur);
                       
-                      // Determine if this option should be strikethrough
-                      let isDisabled = false;
-                      if (selectedDuration === '60' && dur !== '60') {
-                        isDisabled = true;
-                      } else if (selectedDuration === '90' && dur !== '90') {
-                        isDisabled = true;
-                      } else if (selectedDuration === '120' && dur === '90') {
-                        isDisabled = true;
-                      }
-                      
                       options.push(
                         <div
                           key={`${massage.key}-${dur}-p2`}
-                          onClick={() => !isDisabled && handleMassageClick(2, massage, dur)}
+                          onClick={() => handleMassageClick(2, massage, dur)}
                           style={{
                             padding: '0.75rem',
-                            cursor: isDisabled ? 'not-allowed' : 'pointer',
+                            cursor: 'pointer',
                             backgroundColor: selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
-                            color: isDisabled ? '#666' : '#d4af37',
+                            color: '#d4af37',
                             fontSize: '0.9rem',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
-                            borderBottom: '1px solid #333',
-                            textDecoration: isDisabled ? 'line-through' : 'none',
-                            opacity: isDisabled ? 0.5 : 1
+                            borderBottom: '1px solid #333'
                           }}
-                          onMouseEnter={(e) => !isDisabled && (e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)')}
-                          onMouseLeave={(e) => !isDisabled && (e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent')}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
                         >
                           {selected && <Check className="w-4 h-4" />}
                           <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
