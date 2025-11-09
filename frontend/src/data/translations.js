@@ -113,6 +113,14 @@ export const translations = {
     aromaDeepTissueMassageDesc: "Kombinacija duboke masaže i aromaterapije za intenzivno opuštanje mišića i uma.",
     aromaDeepTissueBenefit1: "Uklanja napetost i bol u mišićima",
     aromaDeepTissueBenefit2: "Poboljšava cirkulaciju",
+
+    aromaHotStoneMassage: "Aromaterapija & topli kamen",
+    aromaHotStoneMassageDesc: "Spoj eteričnih ulja i toplih kamenova za dubinsko opuštanje tela i uma.",
+    aromaHotStoneBenefit1: "Opušta napete mišiće",
+    aromaHotStoneBenefit2: "Potiče cirkulaciju",
+    aromaHotStoneBenefit3: "Uklanja stres i napetost",
+    aromaHotStoneBenefit4: "Pruža osećaj topline i harmonije",
+
     aromaDeepTissueBenefit3: "Smanjuje stres i umor",
     aromaDeepTissueBenefit4: "Podiže raspoloženje i energiju",
 
