@@ -528,6 +528,23 @@ const Massage = () => {
       popular: false,
       hasDurationOptions: true,
       customDurations: ['60', '90'] // Only 60 and 90 min
+    },
+    {
+      key: 'aromaHotStone',
+      name: translate("aromaHotStoneMassage"),
+      duration: aromaHotStoneDetails.duration,
+      price: aromaHotStoneDetails.price,
+      serviceId: aromaHotStoneDetails.serviceId,
+      description: translate("aromaHotStoneMassageDesc"),
+      benefits: [
+        translate("aromaHotStoneBenefit1"), 
+        translate("aromaHotStoneBenefit2"), 
+        translate("aromaHotStoneBenefit3"),
+        translate("aromaHotStoneBenefit4")
+      ],
+      popular: false,
+      hasDurationOptions: true,
+      customDurations: ['90', '120'] // Only 90 and 120 min
     }
   ];
 
