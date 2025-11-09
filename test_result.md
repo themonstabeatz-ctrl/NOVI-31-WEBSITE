@@ -375,7 +375,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Couple Booking Endpoint - Review request testing completed"
+    - "Contact page - Couples massage booking flow critical failure"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
