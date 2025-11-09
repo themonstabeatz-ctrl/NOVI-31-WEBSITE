@@ -145,24 +145,83 @@ const CouplesMassageCard = ({
       fullServiceName: fullServiceName
     };
     
-    // Simple: each person selects one massage independently
     if (person === 1) {
-      setCouplesSelections(prev => ({
-        ...prev,
-        person1Massage1: massageData,
-        person1Massage2: null
-      }));
-      setDropdownOpen(prev => ({ ...prev, person1: false }));
+      const current1 = couplesSelections.person1Massage1;
+      const current2 = couplesSelections.person1Massage2;
+      
+      // For 120 min mode: can select 2x60 or 1x120
+      if (durations.sports === '120' && dur === '60') {
+        if (!current1 || current1.duration === '120') {
+          // First 60 min or replacing 120
+          setCouplesSelections(prev => ({
+            ...prev,
+            person1Massage1: massageData,
+            person1Massage2: null
+          }));
+        } else if (!current2) {
+          // Second 60 min
+          setCouplesSelections(prev => ({ ...prev, person1Massage2: massageData }));
+          setDropdownOpen(prev => ({ ...prev, person1: false }));
+        } else {
+          // Replace second
+          setCouplesSelections(prev => ({ ...prev, person1Massage2: massageData }));
+        }
+      } else if (durations.sports === '120' && dur === '120') {
+        // Single 120 min
+        setCouplesSelections(prev => ({
+          ...prev,
+          person1Massage1: massageData,
+          person1Massage2: null
+        }));
+        setDropdownOpen(prev => ({ ...prev, person1: false }));
+      } else {
+        // 60 or 90 mode: single selection
+        setCouplesSelections(prev => ({
+          ...prev,
+          person1Massage1: massageData,
+          person1Massage2: null
+        }));
+        setDropdownOpen(prev => ({ ...prev, person1: false }));
+      }
     } else {
-      setCouplesSelections(prev => ({
-        ...prev,
-        person2Massage1: massageData,
-        person2Massage2: null
-      }));
-      setDropdownOpen(prev => ({ ...prev, person2: false }));
+      const current1 = couplesSelections.person2Massage1;
+      const current2 = couplesSelections.person2Massage2;
+      
+      // For 120 min mode: can select 2x60 or 1x120
+      if (durations.sports === '120' && dur === '60') {
+        if (!current1 || current1.duration === '120') {
+          // First 60 min or replacing 120
+          setCouplesSelections(prev => ({
+            ...prev,
+            person2Massage1: massageData,
+            person2Massage2: null
+          }));
+        } else if (!current2) {
+          // Second 60 min
+          setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
+          setDropdownOpen(prev => ({ ...prev, person2: false }));
+        } else {
+          // Replace second
+          setCouplesSelections(prev => ({ ...prev, person2Massage2: massageData }));
+        }
+      } else if (durations.sports === '120' && dur === '120') {
+        // Single 120 min
+        setCouplesSelections(prev => ({
+          ...prev,
+          person2Massage1: massageData,
+          person2Massage2: null
+        }));
+        setDropdownOpen(prev => ({ ...prev, person2: false }));
+      } else {
+        // 60 or 90 mode: single selection
+        setCouplesSelections(prev => ({
+          ...prev,
+          person2Massage1: massageData,
+          person2Massage2: null
+        }));
+        setDropdownOpen(prev => ({ ...prev, person2: false }));
+      }
     }
-    
-    console.log('✅ Selection updated for Person', person);
   };
 
   const isSelected = (person, massageKey, duration) => {
