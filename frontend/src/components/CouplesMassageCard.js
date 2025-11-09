@@ -186,7 +186,7 @@ const CouplesMassageCard = ({
             setCouplesSelections(prev => ({ ...prev, person1Massage2: massageData }));
           }
         }
-      } else if (couplesSelections.duration === '120' && dur === '120') {
+      } else if (durations.sports === '120' && dur === '120') {
         // Clicking 120 min massage - CLEAR everything and set only this
         console.log('✅ Person 1: Setting 120-min massage, clearing any 60 min selections');
         setCouplesSelections(prev => {
