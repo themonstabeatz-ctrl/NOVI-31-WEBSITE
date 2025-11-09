@@ -628,16 +628,8 @@ const CouplesMassageCard = ({
           </div>
         )}
 
-        <Button 
-          className="book-button w-full"
-          style={{
-            opacity: isSelectionComplete() ? 1 : 0.5,
-            cursor: isSelectionComplete() ? 'pointer' : 'not-allowed'
-          }}
-          disabled={!isSelectionComplete()}
-          asChild={!!isSelectionComplete()}
-        >
-          {isSelectionComplete() ? (
+        {isSelectionComplete() ? (
+          <Button asChild className="book-button w-full">
             <Link 
               to={`/contact?service=${encodeURIComponent(`${translate('couplesMassage')} - ${calculateTotalDuration()} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
                 duration: durations.sports,
@@ -657,10 +649,12 @@ const CouplesMassageCard = ({
             >
               {translate('bookNowBtn')}
             </Link>
-          ) : (
-            <span>ZAKAŽITE</span>
-          )}
-        </Button>
+          </Button>
+        ) : (
+          <Button disabled className="book-button w-full" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+            {translate('bookNowBtn')}
+          </Button>
+        )}
       </CardContent>
     </Card>
   );
