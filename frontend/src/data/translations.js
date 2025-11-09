@@ -900,7 +900,7 @@ export const translations = {
     aromaHotStoneBenefit3: "Снимает стресс и напряжение",
     aromaHotStoneBenefit4: "Создает ощущение тепла и гармонии",
 
-    aromaThaiHerbalMassage: "Арома Тай с горячими травяными компрессами",
+    aromaThaiHerbalMassage: "Арома с горячими травяными компрессами",
     aromaThaiHerbalMassageDesc: "Традиционный тайский массаж с эфирными маслами и горячими травяными компрессами для глубокого расслабления.",
     aromaThaiHerbalBenefit1: "Снимает напряжение и боль в мышцах",
     aromaThaiHerbalBenefit2: "Стимулирует кровообращение и детоксикацию",
