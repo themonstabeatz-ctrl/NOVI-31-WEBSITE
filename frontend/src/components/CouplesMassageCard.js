@@ -101,7 +101,22 @@ const CouplesMassageCard = ({
   }, []);
 
   const getFilteredMassages = () => {
-    // Return ALL available massages - no filtering
+    const duration = durations.sports;
+    
+    // Filter based on selected duration
+    if (duration === '120') {
+      // For 120 min mode: show both 60 and 120 min options
+      return availableMassages.filter(m => 
+        m.durations.includes('60') || m.durations.includes('120')
+      );
+    } else if (duration === '60') {
+      // For 60 min mode: show only 60 min options
+      return availableMassages.filter(m => m.durations.includes('60'));
+    } else if (duration === '90') {
+      // For 90 min mode: show only 90 min options
+      return availableMassages.filter(m => m.durations.includes('90'));
+    }
+    
     return availableMassages;
   };
 
