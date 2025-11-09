@@ -6156,7 +6156,7 @@ html {
 
 .spa-container .popular-badge {
   position: absolute;
-  top: 3.5rem;
+  top: 1rem;
   right: 1rem;
   background: linear-gradient(135deg, var(--spa-gold), #FFA500);
   color: var(--spa-dark);
