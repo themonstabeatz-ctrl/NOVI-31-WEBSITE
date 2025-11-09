@@ -1166,6 +1166,14 @@ export const translations = {
     goldenBenefit1: "ผลยกกระชับ",
     goldenBenefit2: "ความเปล่งประกายธรรมชาติ",
     goldenBenefit3: "ต้านอายุ",
+
+    aromaDeepTissueMassage: "อโรมาดีพทิชชู่",
+    aromaDeepTissueMassageDesc: "การผสมผสานระหว่างการนวดเนื้อเยื่อลึกและอโรมาเธอราปีเพื่อผ่อนคลายกล้ามเนื้อและจิตใจอย่างเข้มข้น",
+    aromaDeepTissueBenefit1: "ขจัดความตึงเครียดและปวดกล้ามเนื้อ",
+    aromaDeepTissueBenefit2: "ปรับปรุงการไหลเวียนเลือด",
+    aromaDeepTissueBenefit3: "ลดความเครียดและความเหนื่อยล้า",
+    aromaDeepTissueBenefit4: "เพิ่มอารมณ์และพลังงาน",
+
     aromatherapy: "อโรมาเธอราปี",
     aromatherapyDesc: "ทรีตเมนต์ผ่อนคลายด้วยน้ำมันหอมระเหยที่ปรับสมดุลจิตใจ ร่างกาย และจิตวิญญาณ",
     aromaBenefit1: "ลดความเครียด",
