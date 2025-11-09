@@ -381,8 +381,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Simplified couples massage card implementation verification completed"
-  stuck_tasks: []
+    - "Contact page couples massage booking flow - frontend routing issue"
+  stuck_tasks:
+    - "Contact page"
   test_all: false
   test_priority: "high_first"
 
