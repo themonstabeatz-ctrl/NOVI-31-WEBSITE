@@ -331,6 +331,7 @@ const Spa = () => {
   const gentleTouchCoupleDetails = getFixedPackageDetails('Gentle Touch Couple Package', '120 min', '11,900 RSD');
   const goldenReviveDetails = getFixedPackageDetails('Golden Revive', '90 min', '8,900 RSD');
   const spiritOfSiamDetails = getFixedPackageDetails('Spirit of Siam', '120 min', '10,900 RSD');
+  const serenityBlossomDetails = getFixedPackageDetails('Serenity Blossom Ritual', '120 min', '9,400 RSD');
   
   const spaServices = [
     // Royal Thai Ritual
