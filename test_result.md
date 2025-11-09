@@ -457,58 +457,64 @@ agent_communication:
   
   - agent: "testing"
     message: |
-      🎉 SIMPLIFIED COUPLES MASSAGE BACKEND VERIFICATION COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED!
+      🚨 COUPLES MASSAGE E2E BOOKING FLOW TEST COMPLETED - CRITICAL FRONTEND ISSUES IDENTIFIED!
       
-      ✅ COMPREHENSIVE BACKEND TESTING RESULTS:
+      ✅ SUCCESSFUL COMPONENTS TESTED:
       
-      📋 TEST 1 - HEALTH CHECK (Review Requirement):
-      - GET /api/health ✅ Returns 200 OK
-      - Response: {"status": "healthy", "timestamp": "2025-11-09T13:03:25.103058"}
-      - Backend service fully accessible and responding correctly
-      - ✅ REQUIREMENT MET: Health check endpoint returns 200 OK as specified
+      📋 PHASE 1 - NAVIGATION & CARD DISCOVERY:
+      - ✅ Navigation to massage page via MASAŽE menu: WORKING
+      - ✅ Couples massage card found with "Masaža za parove" title: WORKING
+      - ✅ -15% discount badge displays correctly: WORKING
+      - ✅ Duration buttons (60 min, 90 min, 120 min) present and clickable: WORKING
+      - ✅ 60 min duration selection works with golden styling: WORKING
+      - ✅ Console logs show proper state management: "🎯 Updating couples massage duration to 60"
       
-      📋 TEST 2 - SERVICES ENDPOINT (Review Requirement):
-      - GET /api/services ✅ Returns 36 services from https://spabooking.emergent.host
-      - ✅ Found 10 couples massage services with [PAROVI] prefix including "[PAROVI] Tradicionalna tajlandska masaža - 120 min"
-      - ✅ ALL 36 services have discount_percentage field as required
-      - Sample couples services: "[PAROVI] Tradicionalna tajlandska masaža - 60 min", "[PAROVI] Aroma terapija - 60 min", "[PAROVI] Tradicionalna tajlandska masaža - 120 min"
-      - ✅ REQUIREMENT MET: Services endpoint includes couples massage services as specified
+      ❌ CRITICAL FRONTEND ISSUES IDENTIFIED:
       
-      📋 TEST 3 - SIMPLIFIED COUPLES BOOKING (Review Requirement):
-      - POST /api/book-appointment ✅ Successful booking created with exact review request data
-      - Client: Test User (+381601234567, test@example.com) - exact data from review request
-      - Service: "[PAROVI] Tradicionalna tajlandska masaža - 120 min" (ID: a0d408aa-2ffd-4a4a-a77b-857f895fbb55)
-      - Date: 2025-11-10T14:00:00 - exact time from review request
-      - Duration: 120 minutes total (60 min per person) - as specified in review request
-      - Language: Serbian (sr) - as specified in review request
-      - Appointment ID: 564b86b8-df73-4ed3-9683-cf9b011ad8f5
-      - ✅ REQUIREMENT MET: Backend accepts booking, returns 200 OK with appointment ID
+      📋 PHASE 1 - DROPDOWN FUNCTIONALITY FAILURE:
+      - ❌ Person 1 dropdown ("Osoba 1 - Izaberite masažu") not interactive: BROKEN
+      - ❌ Person 2 dropdown ("Osoba 2 - Izaberite masažu") not interactive: BROKEN
+      - ❌ Dropdown elements visible in UI but not accessible via DOM selectors: BROKEN
+      - ❌ No clickable elements found with cursor: pointer styling: BROKEN
+      - ❌ Text content shows only "Masaža za parove60 min90 min120 min" - missing dropdown content
       
-      🔧 EXTERNAL SYSTEM VERIFICATION:
-      - ✅ Booking confirmed in https://spabooking.emergent.host with status 'scheduled'
-      - ✅ End time: 2025-11-10T16:00:00 (2 hours total for 120min couples massage)
-      - ✅ Web Slot therapist auto-assigned (20a9e9ba-a867-4286-8792-5d3f34acd068)
-      - ✅ Email confirmation sent successfully to test@example.com
-      - ✅ Reminder email scheduled 2h before appointment
+      📋 ROOT CAUSE ANALYSIS:
+      - ✅ Backend services loading correctly: 10 couples massage services from "Kartica Masaza za parove"
+      - ✅ Component state management working: Duration updates trigger proper state resets
+      - ❌ Dropdown rendering issue: Visual dropdowns present but DOM elements not accessible
+      - ❌ Possible async loading issue: Dropdowns may not be fully rendered when tested
+      - ❌ CSS/JavaScript interaction problem: Elements visible but not interactive
       
-      📊 BACKEND LOGS ANALYSIS:
-      - ✅ Successful booking operation logged: "✅ Booking successful with Web Slot 1"
-      - ✅ All HTTP requests successful (200 OK responses)
-      - ✅ Email notifications working: "📧 Confirmation email scheduled for test@example.com"
-      - ✅ Reminder scheduling working: "⏰ Reminder email scheduled for 2025-11-10 12:00:00+00:00"
-      - Minor: Previous failed booking attempts in logs (from earlier tests, not affecting current functionality)
+      📋 TESTING METHODOLOGY:
+      - ✅ Used multiple selector strategies: text content, CSS selectors, DOM traversal
+      - ✅ Waited for network idle and added delays for async loading
+      - ✅ Debugged card structure with comprehensive element counting
+      - ✅ Verified console logs show proper backend integration
       
-      🎯 REVIEW REQUEST ASSESSMENT: 3/3 OBJECTIVES ACHIEVED (100% SUCCESS RATE)
-      1. ✅ Health Check: GET /api/health returns 200 OK ✓
-      2. ✅ Services Endpoint: GET /api/services includes couples massage services ✓
-      3. ✅ Simplified Couples Booking: POST /api/book-appointment accepts simplified couples data ✓
-      4. ✅ Backend accepts the booking ✓
-      5. ✅ Response is 200 OK ✓
-      6. ✅ Appointment ID returned ✓
-      7. ✅ No errors in backend logs ✓
+      🎯 IMPACT ASSESSMENT:
+      - ❌ COMPLETE E2E FLOW BLOCKED: Cannot proceed past dropdown selection
+      - ❌ localStorage testing impossible: Cannot complete selections to trigger navigation
+      - ❌ Contact form testing blocked: Cannot reach contact page via couples booking
+      - ❌ User experience severely impacted: Couples massage booking non-functional
       
-      🏆 CONCLUSION: SIMPLIFIED COUPLES MASSAGE BACKEND FULLY FUNCTIONAL
-      Backend correctly handles simplified couples massage booking with fixed "Tradicionalna tajlandska masaža" for both persons, 120 min total duration, and proper external system integration.
+      📊 REVIEW REQUEST OBJECTIVES STATUS:
+      1. ❌ Card selection & navigation: PARTIALLY WORKING (duration selection works, dropdowns broken)
+      2. ❌ Person 1 & Person 2 massage selection: BROKEN
+      3. ❌ ZAKAŽITE button verification: CANNOT TEST (selections required)
+      4. ❌ Contact page redirect: CANNOT TEST (button disabled without selections)
+      5. ❌ localStorage verification: CANNOT TEST (no data saved without selections)
+      6. ❌ Contact form filling: CANNOT TEST (cannot reach contact page)
+      7. ❌ Form submission: CANNOT TEST (cannot complete flow)
+      
+      🔧 URGENT FIXES REQUIRED:
+      1. Fix dropdown interactivity in CouplesMassageCard.js component
+      2. Ensure DOM elements are properly accessible for automation testing
+      3. Verify async loading of massage options doesn't break dropdown functionality
+      4. Test dropdown click handlers and state management
+      5. Add data-testid attributes to dropdown elements for reliable testing
+      
+      🏆 CONCLUSION: COUPLES MASSAGE E2E BOOKING FLOW COMPLETELY BROKEN
+      While backend integration and basic UI rendering work correctly, the core interactive elements (dropdowns) are non-functional, preventing any couples massage bookings from being completed.
   
   - agent: "testing"
     message: |
