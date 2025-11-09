@@ -1104,6 +1104,8 @@ export const translations = {
     selectMassage: "เลือกการนวด",
     selectMassagePlaceholder: "-- เลือกการนวด --",
     bookNowBtn: "จองเลย",
+    couplesMassageSimpleDesc: "นวดแผนไทยดั้งเดิมสำหรับสองคน - 60 นาทีต่อคน",
+    totalDuration: "รวม",
     
     // Massage Names (for dropdowns)
     massageTraditionalThai: "นวดแผนไทยดั้งเดิม",
