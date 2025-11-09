@@ -107,6 +107,14 @@ export const translations = {
     shiatsuBenefit1: "Balansira energiju",
     shiatsuBenefit2: "Smanjuje stres",
     shiatsuBenefit3: "Poboljšava san",
+
+    aromaDeepTissueMassage: "Aroma duboko tkivo",
+    aromaDeepTissueMassageDesc: "Kombinacija duboke masaže i aromaterapije za intenzivno opuštanje mišića i uma.",
+    aromaDeepTissueBenefit1: "Uklanja napetost i bol u mišićima",
+    aromaDeepTissueBenefit2: "Poboljšava cirkulaciju",
+    aromaDeepTissueBenefit3: "Smanjuje stres i umor",
+    aromaDeepTissueBenefit4: "Podiže raspoloženje i energiju",
+
     
     reflexologyMassage: "Refleksna masaža",
     reflexologyMassageDesc: "Terapija koja stimuliše refleksne tačke na stopalima.",
