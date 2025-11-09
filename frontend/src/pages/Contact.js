@@ -297,12 +297,11 @@ const Contact = () => {
           }
           
           if (couplesData) {
-            // Use original duration (60, 90, 120) for service_id lookup, not total duration
-            serviceLookupName = `Masaža za parove - ${couplesData.duration} min`;
+            // For couples booking, we don't need single service ID lookup
+            // We'll use couple-specific endpoint with individual service names
             console.log('🔍 Couples Booking Debug:', {
               originalServiceName: serviceName,
-              couplesData: couplesData,
-              lookupName: serviceLookupName
+              couplesData: couplesData
             });
           }
         } catch (e) {
