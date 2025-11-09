@@ -127,7 +127,7 @@ export const translations = {
 
     
 
-    aromaThaiHerbalMassage: "Aroma Thai sa toplim biljnim kompresama",
+    aromaThaiHerbalMassage: "Aroma sa toplim biljnim kompresama",
     aromaThaiHerbalMassageDesc: "Tradicionalna tajlandska masaža uz eterična ulja i biljne tople komprese za dubinsko opuštanje.",
     aromaThaiHerbalBenefit1: "Oslobađa napetost i bol u mišićima",
     aromaThaiHerbalBenefit2: "Potiče cirkulaciju i detoksikaciju",
