@@ -119,8 +119,15 @@ const Spa = () => {
 
   // Get discount badge image based on service discount
   const getDiscountBadge = (serviceKey) => {
-    const bookingName = serviceKeyToBookingName[serviceKey];
-    const discount = serviceDiscounts[bookingName] || 0;
+    // First try direct key lookup (for new SPA services)
+    let discount = serviceDiscounts[serviceKey];
+    
+    // If not found, try booking name mapping (for old services)
+    if (!discount) {
+      const bookingName = serviceKeyToBookingName[serviceKey];
+      discount = serviceDiscounts[bookingName] || 0;
+    }
+    
     if (discount === 5) {
       return "https://customer-assets.emergentagent.com/job_spa-form-repair/artifacts/xdhih1ft_-5%25.png";
     } else if (discount === 10) {
@@ -133,8 +140,16 @@ const Spa = () => {
 
   // Get discount percentage for a service
   const getServiceDiscount = (serviceKey) => {
-    const bookingName = serviceKeyToBookingName[serviceKey];
-    return serviceDiscounts[bookingName] || 0;
+    // First try direct key lookup (for new SPA services)
+    let discount = serviceDiscounts[serviceKey];
+    
+    // If not found, try booking name mapping (for old services)
+    if (!discount) {
+      const bookingName = serviceKeyToBookingName[serviceKey];
+      discount = serviceDiscounts[bookingName] || 0;
+    }
+    
+    return discount || 0;
   };
 
   // Calculate price with discount
