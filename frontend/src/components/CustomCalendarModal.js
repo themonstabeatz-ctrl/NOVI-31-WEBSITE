@@ -191,7 +191,13 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
       {isOpen && (
         <>
           <div className="calendar-modal-backdrop" onClick={handleOtkazi} />
-          <div className="calendar-modal">
+          <div 
+            className="calendar-modal"
+            style={{ transform: `scale(${scale})`, transformOrigin: 'center center', transition: 'transform 0.1s ease-out' }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className="calendar-modal-header">
               <h3>{translate('selectDate') || 'Izaberite datum'}</h3>
               <button 
