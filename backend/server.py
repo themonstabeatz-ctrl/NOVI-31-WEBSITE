@@ -428,9 +428,17 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                     detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
                 )
             
-            # Send confirmation email (construct service name from booking details)
+            # Send confirmation email (construct detailed service name with massage choices)
             total_duration = booking.duration_type * 2
-            service_display_name = f"Masaža za parove - {total_duration} min (2x{booking.duration_type} min)"
+            
+            # Build detailed service description with massage choices
+            service_display_name = f"Masaža za parove - Ukupno {total_duration} min\n\n"
+            service_display_name += "Osoba 1:\n"
+            for service_id in booking.person1_services:
+                service_display_name += f"  • Service ID: {service_id}\n"
+            service_display_name += "\nOsoba 2:\n"
+            for service_id in booking.person2_services:
+                service_display_name += f"  • Service ID: {service_id}\n"
             
             background_tasks.add_task(
                 send_confirmation_email,
