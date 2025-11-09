@@ -290,7 +290,7 @@ const CouplesMassageCard = ({
     } else {
       const m1 = couplesSelections.person2Massage1;
       const m2 = couplesSelections.person2Massage2;
-      if (couplesSelections.duration === '120') {
+      if (durations.sports === '120') {
         return (m1?.key === massageKey && m1?.duration === duration) || 
                (m2?.key === massageKey && m2?.duration === duration);
       }
