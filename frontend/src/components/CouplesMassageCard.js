@@ -756,49 +756,41 @@ const CouplesMassageCard = ({
           </div>
         )}
 
-        <Button 
-          className="book-button w-full"
-          disabled={!isSelectionComplete()}
-          style={{
-            opacity: isSelectionComplete() ? 1 : 0.5,
-            cursor: isSelectionComplete() ? 'pointer' : 'not-allowed'
-          }}
-          onClick={() => {
-            if (!isSelectionComplete()) return;
-            
-            try {
-              // Save couples data to localStorage before navigation
-              const couplesData = {
-                duration: durations.sports,
-                totalDuration: calculateTotalDuration(),
-                person1: {
-                  massage1: couplesSelections.person1Massage1,
-                  massage2: couplesSelections.person1Massage2
-                },
-                person2: {
-                  massage1: couplesSelections.person2Massage1,
-                  massage2: couplesSelections.person2Massage2
-                },
-                totalPrice: calculateCouplesPrice(),
-                originalPrice: calculateOriginalPrice(),
-                discount: `${couplesDiscount}%`
-              };
-              
-              console.log('💾 Saving couples data to localStorage:', couplesData);
-              localStorage.setItem('couplesBookingData', JSON.stringify(couplesData));
-              console.log('✅ Data saved successfully');
-              
-              // Navigate to contact page
-              const serviceName = translate('couplesMassage') || 'Masaža za parove';
-              window.location.href = `/contact?service=${encodeURIComponent(serviceName)}`;
-            } catch (error) {
-              console.error('❌ Error saving couples data:', error);
-              alert('Greška pri čuvanju podataka. Molim vas pokušajte ponovo.');
-            }
-          }}
-        >
-          {translate('bookNowBtn')}
-        </Button>
+        {isSelectionComplete() && (
+          <Button asChild className="book-button w-full">
+            <Link 
+              to={`/contact?service=${encodeURIComponent(translate('couplesMassage'))}`}
+              onClick={(e) => {
+                // Save couples data to localStorage before navigation
+                const couplesData = {
+                  duration: durations.sports,
+                  totalDuration: calculateTotalDuration(),
+                  person1: {
+                    massage1: couplesSelections.person1Massage1,
+                    massage2: couplesSelections.person1Massage2
+                  },
+                  person2: {
+                    massage1: couplesSelections.person2Massage1,
+                    massage2: couplesSelections.person2Massage2
+                  },
+                  totalPrice: calculateCouplesPrice(),
+                  originalPrice: calculateOriginalPrice(),
+                  discount: `${couplesDiscount}%`
+                };
+                localStorage.setItem('couplesBookingData', JSON.stringify(couplesData));
+                console.log('✅ Couples data saved to localStorage');
+              }}
+            >
+              {translate('bookNowBtn')}
+            </Link>
+          </Button>
+        )}
+        
+        {!isSelectionComplete() && (
+          <Button disabled className="book-button w-full" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+            {translate('bookNowBtn')}
+          </Button>
+        )}
       </CardContent>
     </Card>
   );
