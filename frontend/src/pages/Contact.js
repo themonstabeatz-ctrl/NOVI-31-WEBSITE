@@ -685,14 +685,35 @@ const Contact = () => {
 
       {/* Unified Contact Card */}
       <section className="contact-section">
-        <Card className="unified-contact-card">
-          <CardContent className="unified-contact-content" style={{ padding: '2rem' }}>
+        <Card className="unified-contact-card" style={{
+          position: 'relative',
+          backgroundImage: 'url(/booking-background.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}>
+          <CardContent className="unified-contact-content" style={{ padding: '2rem', position: 'relative', zIndex: 2 }}>
             <div style={{ 
               display: 'flex', 
               gap: '2rem', 
               alignItems: 'flex-start',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              position: 'relative'
             }}>
+              {/* Logo pored forme */}
+              <div style={{
+                position: 'absolute',
+                left: '-180px',
+                top: '50%',
+                transform: 'translateY(-50%) scale(1.2)',
+                zIndex: 3
+              }}>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png"
+                  alt="Bua Luang Thai Spa Logo"
+                  style={{ width: '150px', height: 'auto' }}
+                />
+              </div>
               {/* Contact Form Section - Left Side */}
               <div style={{ flex: '0 0 55%', maxWidth: '55%' }}>
                 <form onSubmit={handleSubmit} className="unified-contact-form">
