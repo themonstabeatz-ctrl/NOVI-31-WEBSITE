@@ -542,6 +542,14 @@ export const translations = {
     goldenBenefit1: "Lifting effect",
     goldenBenefit2: "Natural glow",
     goldenBenefit3: "Anti-aging",
+
+    aromaDeepTissueMassage: "Aroma Deep Tissue",
+    aromaDeepTissueMassageDesc: "A combination of deep tissue massage and aromatherapy for intense muscle and mind relaxation.",
+    aromaDeepTissueBenefit1: "Relieves muscle tension and pain",
+    aromaDeepTissueBenefit2: "Improves circulation",
+    aromaDeepTissueBenefit3: "Reduces stress and fatigue",
+    aromaDeepTissueBenefit4: "Boosts mood and energy",
+
     aromatherapy: "Aromatherapy",
     aromatherapyDesc: "Relaxation treatment with essential oils that balances mind, body and spirit.",
     aromaBenefit1: "Reduces stress",
