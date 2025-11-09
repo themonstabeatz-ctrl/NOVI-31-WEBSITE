@@ -581,6 +581,10 @@ const Contact = () => {
       // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
       
+      // Clear couples booking data from localStorage after successful booking
+      localStorage.removeItem('couplesBookingData');
+      console.log('✅ Cleared couples booking data from localStorage');
+      
       // Backend already sends confirmation email via SMTP
       // No need for mailto: link
       
