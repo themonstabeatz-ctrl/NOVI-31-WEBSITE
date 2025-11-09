@@ -298,6 +298,47 @@ export const translations = {
     ctaButtonPrimary: "Rezervišite sada",
     ctaButtonSecondary: "Pogledajte masaže",
     
+    // New Luxury SPA Packages
+    royalThaiRitual: "Royal Thai Ritual",
+    royalThaiRitualDesc: "Luksuzni kraljevski ritual za potpuno opuštanje tela i uma.",
+    royalThaiRitualIncluded: "Sauna, parno kupatilo, Thai aroma masaža (60 min), đakuzi za dvoje, čaj i voće u relaks zoni",
+    royalThaiRitualNote: "Ekskluzivni paket za parove i posebne prilike",
+    
+    detoxHarmony: "Detox Harmony",
+    detoxHarmonyDesc: "Ritual za pročišćenje tela i obnovu energije.",
+    detoxHarmonyIncluded: "Parno kupatilo, piling tela kokos & himalajska so, uljna masaža (60 min), đakuzi, biljni čaj",
+    detoxHarmonyNote: "Za detoks, cirkulaciju i osvežen ten",
+    
+    aromaEscape: "Aroma Escape",
+    aromaEscapeDesc: "Topla aroma ulja i umirujuća masaža u kombinaciji sa đakuzijem.",
+    aromaEscapeIncluded: "Đakuzi, aroma masaža celog tela (60 min), relaks zona & čaj",
+    aromaEscapeNote: "Savršen izbor za dnevni beg od stresa",
+    
+    thaiBalance: "Thai Balance",
+    thaiBalanceDesc: "Autentična tradicionalna tajlandska masaža za balans tela.",
+    thaiBalanceIncluded: "Sauna, Thai masaža bez ulja (45 min), biljni čaj",
+    thaiBalanceNote: "Razvlačenje, pritisak i energijska harmonizacija",
+    
+    buaLuangRelax: "Bua Luang Relax Ritual",
+    buaLuangRelaxDesc: "Klasična aroma masaža i kratki spa ritual za potpuni mir.",
+    buaLuangRelaxIncluded: "Sauna (10 min), aroma masaža (60 min), đakuzi ili relaks zona (20 min)",
+    buaLuangRelaxNote: "Idealno posle napornog dana ili treninga",
+    
+    gentleTouchCouple: "Gentle Touch Couple Package",
+    gentleTouchCoupleDesc: "Ritual za dvoje u privatnoj atmosferi uz mirisne note i svetlost sveća.",
+    gentleTouchCoupleIncluded: "Parno kupatilo za dvoje, uljna masaža za parove (60 min), đakuzi uz voće i vino, čaj ili šampanjac po izboru",
+    gentleTouchCoupleNote: "Za parove koji žele deljeno iskustvo mira",
+    
+    goldenRevive: "Golden Revive",
+    goldenReviveDesc: "Ritual obnove sa zlatnim uljem i toplim kamenjem.",
+    goldenReviveIncluded: "Sauna, masaža toplim kamenjem (60 min), zlato ulje za kožu, đakuzi ili relaks zona",
+    goldenReviveNote: "Za regeneraciju mišića i blistavu kožu",
+    
+    spiritOfSiam: "Spirit of Siam",
+    spiritOfSiamDesc: "Autentični tajlandski ritual inspirisan drevnim Siamom.",
+    spiritOfSiamIncluded: "Sauna, Thai masaža & uljna kombinacija (75 min), biljni oblog i čaj od đumbira, relaks zona sa tamnim svetlom i muzikom",
+    spiritOfSiamNote: "Duhovno iskustvo i balans energije",
+    
     // About Page
     aboutHeroTitle: "O Nama",
     aboutHeroSubtitle: "Priča o strasti, tradiciji i transformaciji kroz autentični tajlandski wellness",
