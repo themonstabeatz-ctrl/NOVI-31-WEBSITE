@@ -339,6 +339,11 @@ export const translations = {
     spiritOfSiamIncluded: "Sauna, Thai masaža & uljna kombinacija (75 min), biljni oblog i čaj od đumbira, relaks zona sa tamnim svetlom i muzikom",
     spiritOfSiamNote: "Duhovno iskustvo i balans energije",
     
+    serenityBlossom: "Serenity Blossom Ritual",
+    serenityBlossomDesc: "Ritual koji budi mir, lepotu i ženstvenu energiju kroz mirise orhideje i lotosa.",
+    serenityBlossomIncluded: "Parno kupatilo (10 min), piling tela lotos & šećer, masaža orhideja-uljem (60 min), maska za ruke i stopala, đakuzi sa esencijom jasmina, biljni čaj od lotosa i meda",
+    serenityBlossomNote: "Inspirisano cvetom lotosa — simbolom čistoće i unutrašnjeg mira",
+    
     // About Page
     aboutHeroTitle: "O Nama",
     aboutHeroSubtitle: "Priča o strasti, tradiciji i transformaciji kroz autentični tajlandski wellness",
