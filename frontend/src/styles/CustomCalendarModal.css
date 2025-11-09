@@ -130,6 +130,35 @@
   transform: rotate(90deg);
 }
 
+/* Calendar Zoom Buttons */
+.calendar-zoom-btn {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+}
+
+.calendar-zoom-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #d4af37;
+  transform: scale(1.1);
+}
+
+.calendar-zoom-btn:active {
+  transform: scale(0.95);
+}
+
+
 /* Calendar Navigation */
 .calendar-navigation {
   display: flex;
