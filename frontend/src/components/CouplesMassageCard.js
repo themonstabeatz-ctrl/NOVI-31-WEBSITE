@@ -217,7 +217,7 @@ const CouplesMassageCard = ({
       const current2 = couplesSelections.person2Massage2;
       
       
-      if (couplesSelections.duration === '120' && dur === '60') {
+      if (durations.sports === '120' && dur === '60') {
         if (current1?.key === massage.key && current1?.duration === '60') {
           setCouplesSelections(prev => ({ ...prev, person2Massage1: null }));
         } else if (current2?.key === massage.key && current2?.duration === '60') {
