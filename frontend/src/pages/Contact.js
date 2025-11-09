@@ -97,10 +97,15 @@ const Contact = () => {
     if (service) {
       let message = `Izabrali ste ${service}`;
       
+      console.log('🔍 Contact page - service:', service);
+      console.log('🔍 Contact page - couplesData param:', couplesData);
+      
       // Special handling for couples massage
       if (couplesData) {
         try {
           const data = JSON.parse(decodeURIComponent(couplesData));
+          console.log('✅ Parsed couples data:', data);
+          
           // Use totalDuration (sum of all massages)
           const displayDuration = data.totalDuration || data.duration;
           message = `Masaža za parove - Ukupno trajanje: ${displayDuration} min\n\n`;
@@ -121,9 +126,13 @@ const Contact = () => {
           message += `\nPopust: ${data.discount}\n`;
           message += `Originalna cena: ${data.originalPrice.toLocaleString()} RSD\n`;
           message += `Cena sa popustom: ${data.totalPrice.toLocaleString()} RSD`;
+          
+          console.log('📝 Final message:', message);
         } catch (e) {
-          console.error('Error parsing couples data:', e);
+          console.error('❌ Error parsing couples data:', e);
         }
+      } else if (service.includes('Masaža za parove')) {
+        console.log('⚠️ Couples service but no couplesData param - checking for service in name');
       }
       
       setFormData(prev => ({
