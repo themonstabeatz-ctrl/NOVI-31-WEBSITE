@@ -60,16 +60,34 @@ const Spa = () => {
         // Build discount mapping: service name -> discount percentage
         const discountMap = {};
         
+        // Map of full service names to frontend keys for SPA Special kartica
+        const spaServiceMapping = {
+          'Royal Thai Ritual': 'royalThaiRitual',
+          'Detox Harmony': 'detoxHarmony',
+          'Aroma Escape': 'aromaEscape',
+          'Thai Balance': 'thaiBalance',
+          'Bua Luang Relax Ritual': 'buaLuangRelax',
+          'Gentle Touch Couple Package': 'gentleTouchCouple',
+          'Golden Revive': 'goldenRevive',
+          'Spirit of Siam': 'spiritOfSiam',
+          'Serenity Blossom Ritual': 'serenityBlossom'
+        };
+        
         services.forEach(service => {
           const discount = service.discount_percentage || 0;
-          const serviceName = service.name; // e.g., "Tretman lica - 60 min"
+          const serviceName = service.name; // e.g., "Royal Thai Ritual - 180 min"
           
           // Extract base service name without duration
-          const baseName = serviceName.split(' - ')[0]; // e.g., "Tretman lica"
+          const baseName = serviceName.split(' - ')[0]; // e.g., "Royal Thai Ritual"
           
-          // Map to frontend service keys
-          // We store discount per base service, not per duration variant
-          if (!discountMap[baseName] && discount > 0) {
+          // Check if it's a SPA Special service
+          if (spaServiceMapping[baseName] && discount > 0) {
+            const frontendKey = spaServiceMapping[baseName];
+            discountMap[frontendKey] = discount;
+            console.log(`✨ SPA Discount: ${baseName} (${frontendKey}) -> ${discount}%`);
+          } 
+          // Otherwise use base name for regular services
+          else if (!discountMap[baseName] && discount > 0) {
             discountMap[baseName] = discount;
           }
         });
