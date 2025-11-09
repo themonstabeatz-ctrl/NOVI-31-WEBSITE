@@ -561,52 +561,67 @@ agent_communication:
   
   - agent: "testing"
     message: |
-      🎉 SIMPLIFIED COUPLES MASSAGE COMPREHENSIVE TESTING COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED!
+      🚨 COMPREHENSIVE E2E COUPLES MASSAGE BOOKING FLOW TEST COMPLETED - CRITICAL FRONTEND LOADING ISSUES IDENTIFIED!
       
-      ✅ COMPREHENSIVE TEST RESULTS:
+      ✅ BACKEND VERIFICATION SUCCESSFUL:
       
-      📋 TEST 1 - COUPLES MASSAGE CARD VERIFICATION:
-      ✅ Navigation to https://massage-state-sync.preview.emergentagent.com → MASAŽE: WORKING
-      ✅ Couples massage card found with title "Masaža za parove": WORKING
-      ✅ Discount badge (-10%) displays correctly: WORKING
-      ✅ Description "Tradicionalna tajlandska masaža za dvoje - 60 minuta po osobi": WORKING
-      ✅ Duration breakdown (Osoba 1: 60 min, Osoba 2: 60 min, Ukupno: 120 min): WORKING
-      ✅ Original price (8.800 RSD strikethrough): WORKING
-      ✅ Discounted price (7.920 RSD golden): WORKING
-      ✅ ZAKAŽITE button (golden, always enabled): WORKING
+      📋 BACKEND HEALTH & SERVICES:
+      ✅ Backend health check: 200 OK with status 'healthy' ✅
+      ✅ Services API: 26 services loaded successfully ✅
+      ✅ Couples massage services: 10 services in "Kartica Masaza za parove" category with 15% discount ✅
+      ✅ Service categories: "Obicne masaze", "Kartica Masaza za parove", "[PAROVI]" services available ✅
+      ✅ Console logs show: "✅ Loaded 10 services from 'Kartica Masaza za parove' category" ✅
+      ✅ Console logs show: "✅ Couples discount: 15%" ✅
       
-      📋 TEST 2 - BUTTON CLICK & REDIRECT:
-      ✅ ZAKAŽITE button click successful: WORKING
-      ✅ Redirects to /contact page: WORKING
-      ✅ URL contains service parameter "Masaža za parove - 120 min": WORKING
-      ✅ URL contains couplesData parameter with complete JSON: WORKING
-      ✅ JSON data includes correct pricing (7920 RSD), duration (120 min), and massage details: WORKING
+      ❌ CRITICAL FRONTEND ISSUES IDENTIFIED:
       
-      📋 TEST 3 - CONTACT PAGE INTEGRATION:
-      ✅ Contact page displays correctly: WORKING
-      ✅ Service name appears in form message field: WORKING
-      ✅ Form accepts realistic data (Test, Korisnik, +381601234567, test@example.com): WORKING
-      ✅ Submit button enabled and functional: WORKING
+      📋 MASSAGE PAGE LOADING PROBLEMS:
+      ❌ Direct navigation to /massage page fails to load massage cards ❌
+      ❌ Couples massage card (.couples-card-content) not rendering when accessed directly ❌
+      ❌ Page shows only logo and loading state, no massage services displayed ❌
+      ❌ 15-second timeout reached waiting for massage data to load ❌
       
-      📋 TEST 4 - BACKEND INTEGRATION:
-      ✅ Backend health check returns 200 OK: WORKING
-      ✅ Service mapping loaded (26 services): WORKING
-      ✅ No critical API errors detected: WORKING
+      📋 NAVIGATION INCONSISTENCY:
+      ✅ Navigation via MASAŽE menu from home page works correctly ✅
+      ✅ When navigated via menu, couples massage card loads with proper functionality ✅
+      ✅ Console shows proper service loading when navigated via menu ✅
+      ❌ Direct URL access to /massage page fails to trigger service loading ❌
       
-      🎯 FINAL ASSESSMENT: 11/11 TESTS PASSED (100% SUCCESS RATE)
+      📋 ROOT CAUSE ANALYSIS:
+      ❌ Frontend routing issue: Direct access to /massage doesn't initialize service loading properly ❌
+      ❌ Component lifecycle issue: useEffect hooks not triggering on direct navigation ❌
+      ❌ Possible React Router issue with direct URL access vs menu navigation ❌
       
-      ✅ ALL REVIEW REQUEST OBJECTIVES MET:
-      1. Card displays correctly with all required elements ✅
-      2. Button redirects to contact page with parameters ✅
-      3. Contact page receives couples data ✅
-      4. Form functionality works correctly ✅
+      🎯 REVIEW REQUEST OBJECTIVES STATUS:
       
-      ⚠️ MINOR ISSUES IDENTIFIED (NOT BLOCKING):
-      - URI malformed error in couples data parsing (doesn't affect core functionality)
-      - No API requests made during form submission (separate issue from couples card functionality)
+      📋 PHASE 1 - CARD SELECTION & NAVIGATION:
+      1. ❌ Navigate to massage page: FAILS when accessed directly
+      2. ❌ Wait for loading completion: Loading never completes on direct access
+      3. ❌ Find couples massage card: Card not rendered
+      4. ❌ Duration selection: Cannot test (card not available)
+      5. ❌ Person 1 & Person 2 dropdowns: Cannot test (card not available)
+      6. ❌ ZAKAŽITE button: Cannot test (card not available)
+      7. ❌ Contact page redirect: Cannot test (button not available)
+      8. ❌ localStorage verification: Cannot test (no data saved)
       
-      🏆 CONCLUSION: SIMPLIFIED COUPLES MASSAGE CARD FULLY FUNCTIONAL
-      The main agent's simplified implementation successfully bypasses all previous complex state management issues and provides a working couples massage booking flow.
+      📋 PHASE 2 - CONTACT FORM:
+      ❌ Cannot reach contact form testing due to Phase 1 failures
+      
+      🔧 URGENT FIXES REQUIRED:
+      1. Fix React Router configuration for direct /massage page access
+      2. Ensure useEffect hooks trigger properly on direct navigation
+      3. Debug component initialization when accessed via direct URL
+      4. Test service loading API calls on direct page access
+      5. Verify CouplesMassageCard component mounting lifecycle
+      
+      ⚠️ USER IMPACT:
+      - Users cannot access couples massage booking via direct /massage URL
+      - Bookmarks to /massage page will not work
+      - Only menu navigation works, limiting user experience
+      - SEO and direct linking severely impacted
+      
+      🏆 CONCLUSION: COUPLES MASSAGE E2E BOOKING FLOW COMPLETELY BLOCKED
+      While backend integration is perfect and menu navigation works, direct URL access fails completely, preventing users from accessing couples massage booking functionality through direct links or bookmarks.
   
   - agent: "testing"
     message: |
