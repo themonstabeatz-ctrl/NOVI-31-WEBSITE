@@ -498,6 +498,8 @@ export const translations = {
     selectMassage: "Select massage",
     selectMassagePlaceholder: "-- Select massage --",
     bookNowBtn: "BOOK NOW",
+    couplesMassageSimpleDesc: "Traditional Thai massage for two - 60 minutes per person",
+    totalDuration: "Total",
     
     // Massage Names (for dropdowns)
     massageTraditionalThai: "Traditional Thai Massage",
