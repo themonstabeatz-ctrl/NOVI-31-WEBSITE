@@ -1217,6 +1217,14 @@ export const translations = {
     aromaHotStoneMassage: "อโรมาเธอราปีและหินร้อน",
     aromaHotStoneMassageDesc: "การผสมผสานระหว่างน้ำมันหอมระเหยและหินร้อนเพื่อผ่อนคลายร่างกายและจิตใจอย่างลึกซึ้ง",
     aromaHotStoneBenefit1: "ผ่อนคลายกล้ามเนื้อที่ตึงเครียด",
+
+    aromaThaiHerbalMassage: "อโรมาไทยกับประคบสมุนไพรร้อน",
+    aromaThaiHerbalMassageDesc: "นวดแผนไทยดั้งเดิมกับน้ำมันหอมระเหยและประคบสมุนไพรร้อนเพื่อผ่อนคลายอย่างลึกซึ้ง",
+    aromaThaiHerbalBenefit1: "ปลดปล่อยความตึงเครียดและความเจ็บปวดในกล้ามเนื้อ",
+    aromaThaiHerbalBenefit2: "กระตุ้นการไหลเวียนเลือดและการขับพิษ",
+    aromaThaiHerbalBenefit3: "ทำให้ร่างกายและจิตใจสงบ",
+    aromaThaiHerbalBenefit4: "ฟื้นฟูพลังงานและความมีชีวิตชีวา",
+
     aromaHotStoneBenefit2: "กระตุ้นการไหลเวียนเลือด",
     aromaHotStoneBenefit3: "ขจัดความเครียดและความตึงเครียด",
     aromaHotStoneBenefit4: "ให้ความรู้สึกอบอุ่นและกลมกลืน",
