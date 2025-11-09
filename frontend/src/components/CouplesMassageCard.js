@@ -479,7 +479,11 @@ const CouplesMassageCard = ({
           {['60', '90', '120'].map(dur => (
             <button
               key={dur}
-              onClick={() => updateDuration('sports', dur)}
+              onClick={() => {
+                console.log(`🔵 COUPLES CARD: Duration button clicked: ${dur} min`);
+                updateDuration('sports', dur);
+                console.log(`🔵 COUPLES CARD: After updateDuration called`);
+              }}
               style={{
                 flex: 1,
                 padding: '0.5rem',
