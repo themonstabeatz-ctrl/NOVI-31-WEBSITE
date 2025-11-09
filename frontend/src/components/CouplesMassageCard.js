@@ -441,7 +441,9 @@ const CouplesMassageCard = ({
               {/* Person 1 - Dropdown */}
               <div
                 onClick={() => {
-                  setDropdownOpen(prev => ({ ...prev, person1: !prev.person1 }));
+                  if (!loading && availableMassages.length > 0) {
+                    setDropdownOpen(prev => ({ ...prev, person1: !prev.person1 }));
+                  }
                 }}
                 style={{
                   height: '40px',
@@ -451,7 +453,8 @@ const CouplesMassageCard = ({
                   borderRadius: '8px',
                   color: couplesSelections.person1Massage1 ? '#d4af37' : '#d4af37',
                   fontSize: '0.875rem',
-                  cursor: 'pointer',
+                  cursor: (loading || availableMassages.length === 0) ? 'not-allowed' : 'pointer',
+                  opacity: (loading || availableMassages.length === 0) ? 0.5 : 1,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
