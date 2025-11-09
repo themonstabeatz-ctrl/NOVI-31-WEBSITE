@@ -1248,6 +1248,13 @@ export const translations = {
     aromaThaiHerbalBenefit3: "ทำให้ร่างกายและจิตใจสงบ",
     aromaThaiHerbalBenefit4: "ฟื้นฟูพลังงานและความมีชีวิตชีวา",
 
+    thaiHerbalMassage: "นวดไทยประคบสมุนไพรร้อน",
+    thaiHerbalMassageDesc: "เทคนิคไทยดั้งเดิมด้วยประคบสมุนไพรร้อนเพื่อผ่อนคลายอย่างลึกซึ้งและฟื้นฟูพลังงาน",
+    thaiHerbalBenefit1: "ผ่อนคลายกล้ามเนื้อและข้อต่อ",
+    thaiHerbalBenefit2: "บรรเทาอาการปวดและความตึงเครียดในร่างกาย",
+    thaiHerbalBenefit3: "ลดความเครียดและความเหนื่อยล้า",
+    thaiHerbalBenefit4: "เพิ่มความยืดหยุ่นและความมีชีวิตชีวา",
+
     aromaHotStoneBenefit2: "กระตุ้นการไหลเวียนเลือด",
     aromaHotStoneBenefit3: "ขจัดความเครียดและความตึงเครียด",
     aromaHotStoneBenefit4: "ให้ความรู้สึกอบอุ่นและกลมกลืน",
