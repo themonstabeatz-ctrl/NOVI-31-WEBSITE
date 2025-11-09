@@ -491,6 +491,23 @@ const Massage = () => {
         '90': '45 min',
         '120': '60 min'
       }
+    },
+    {
+      key: 'aromaDeepTissue',
+      name: translate("aromaDeepTissueMassage"),
+      duration: aromaDeepTissueDetails.duration,
+      price: aromaDeepTissueDetails.price,
+      serviceId: aromaDeepTissueDetails.serviceId,
+      description: translate("aromaDeepTissueMassageDesc"),
+      benefits: [
+        translate("aromaDeepTissueBenefit1"), 
+        translate("aromaDeepTissueBenefit2"), 
+        translate("aromaDeepTissueBenefit3"),
+        translate("aromaDeepTissueBenefit4")
+      ],
+      popular: false,
+      hasDurationOptions: true,
+      customDurations: ['60', '90'] // Only 60 and 90 min
     }
   ];
 
