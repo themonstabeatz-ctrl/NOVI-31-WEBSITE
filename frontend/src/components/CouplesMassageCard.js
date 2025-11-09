@@ -151,7 +151,7 @@ const CouplesMassageCard = ({
       
       
       // If 120 min mode and clicking 60 min massage
-      if (couplesSelections.duration === '120' && dur === '60') {
+      if (durations.sports === '120' && dur === '60') {
         // Check if already selected
         if (current1?.key === massage.key && current1?.duration === '60') {
           setCouplesSelections(prev => {
