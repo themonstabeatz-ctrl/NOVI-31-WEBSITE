@@ -28,7 +28,8 @@ const Massage = () => {
     prenatal: '60',
     deepTissue: '60',
     bamboo: '60',
-    lymphatic: '60'
+    lymphatic: '60',
+    aromaDeepTissue: '60'
   });
 
   // State for "Masaža za parove" (couples massage) selections
