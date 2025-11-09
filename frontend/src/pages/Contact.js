@@ -463,6 +463,10 @@ const Contact = () => {
           }
           
           // Prepare couple booking data
+          // Extract discount percentage from couplesData (e.g., "10%" -> 10.0)
+          const discountStr = couplesData.discount || '0%';
+          const discountPercent = parseFloat(discountStr.replace('%', '')) || 0;
+          
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
@@ -472,9 +476,11 @@ const Contact = () => {
             duration_type: parseInt(couplesData.duration), // 60, 90, or 120 per person
             person1_services: person1Services,
             person2_services: person2Services,
-            discount_couples_massage: 15.0,
+            discount_couples_massage: discountPercent,
             language: language
           };
+          
+          console.log(`📊 Using discount: ${discountPercent}% from couplesData`);
           
           bookingEndpoint = '/api/book-couple-appointment';
           console.log('📌 Couple booking data:', appointmentData);
