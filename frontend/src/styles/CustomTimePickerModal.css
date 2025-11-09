@@ -65,7 +65,8 @@
   z-index: 9999;
   min-width: 420px;
   max-width: 90vw;
-  max-height: 60vh;
+  min-height: 380px;
+  max-height: 65vh;
   overflow-y: hidden;
   box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
   animation: slideUp 0.3s ease;
