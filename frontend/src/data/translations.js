@@ -516,6 +516,7 @@ export const translations = {
     massageHotOil: "Hot Oil Massage",
     massageHeadNeckShoulders: "Head, Neck, Shoulders and Back",
     massageFoot: "Foot Massage",
+    massageAromaDeepTissue: "Aroma Deep Tissue",
     
     // Massage CTA Section
     massageCtaTitle: "Visit the place where tension disappears",
