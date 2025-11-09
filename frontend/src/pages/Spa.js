@@ -322,22 +322,138 @@ const Spa = () => {
     return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
-  const facialDetails = getSpaDetails('facial', 'Tretman lica');
-  const bodyWrapDetails = getSpaDetails('bodyWrap', 'Body wrap');
-  const goldenDetails = getSpaDetails('golden', 'Zlatni tretman lica');
-  const steamDetails = getSpaDetails('steam', 'Parno kupatilo');
-  const royalSpaDetails = getSpaDetails('royalSpa', 'Kraljevski spa paket');
-  const hydratingDetails = getSpaDetails('hydrating', 'Hidratantni tretman');
-  const detoxDetails = getSpaDetails('detox', 'Detox tretman');
-  const bodyScrubDetails = getSpaDetails('bodyScrub', 'Piling tela');
-  const anticelluliteDetails = getSpaDetails('anticellulite', 'Anticelulit tretman');
-  const collagenDetails = getSpaDetails('collagen', 'Kolageni tretman lica');
-  const vitaminCDetails = getSpaDetails('vitaminC', 'Vitamin C tretman lica');
-  const combinedDetails = getSpaDetails('combined', 'Kombinovani spa dan');
-  const chocolateDetails = getSpaDetails('chocolate', 'Čokoladni wrap');
-  const thalassoDetails = getSpaDetails('thalasso', 'Talasoterapija');
+  // New luxury package details (fixed duration and price)
+  const royalThaiRitualDetails = getFixedPackageDetails('Royal Thai Ritual', '180 min', '12,900 RSD');
+  const detoxHarmonyDetails = getFixedPackageDetails('Detox Harmony', '120 min', '9,900 RSD');
+  const aromaEscapeDetails = getFixedPackageDetails('Aroma Escape', '90 min', '7,900 RSD');
+  const thaiBalanceDetails = getFixedPackageDetails('Thai Balance', '60 min', '6,500 RSD');
+  const buaLuangRelaxDetails = getFixedPackageDetails('Bua Luang Relax Ritual', '90 min', '8,500 RSD');
+  const gentleTouchCoupleDetails = getFixedPackageDetails('Gentle Touch Couple Package', '120 min', '11,900 RSD');
+  const goldenReviveDetails = getFixedPackageDetails('Golden Revive', '90 min', '8,900 RSD');
+  const spiritOfSiamDetails = getFixedPackageDetails('Spirit of Siam', '120 min', '10,900 RSD');
   
-  const spaServices = [];
+  const spaServices = [
+    // Royal Thai Ritual
+    {
+      key: 'royalThaiRitual',
+      name: translate("royalThaiRitual"),
+      duration: royalThaiRitualDetails.duration,
+      price: royalThaiRitualDetails.price,
+      serviceId: royalThaiRitualDetails.serviceId,
+      description: translate("royalThaiRitualDesc"),
+      included: translate("royalThaiRitualIncluded"),
+      note: translate("royalThaiRitualNote"),
+      category: "premium",
+      categoryDisplay: translate("categoryPremium"),
+      popular: true,
+      hasDurationOptions: false
+    },
+    // Detox Harmony
+    {
+      key: 'detoxHarmony',
+      name: translate("detoxHarmony"),
+      duration: detoxHarmonyDetails.duration,
+      price: detoxHarmonyDetails.price,
+      serviceId: detoxHarmonyDetails.serviceId,
+      description: translate("detoxHarmonyDesc"),
+      included: translate("detoxHarmonyIncluded"),
+      note: translate("detoxHarmonyNote"),
+      category: "body",
+      categoryDisplay: translate("categoryBody"),
+      popular: false,
+      hasDurationOptions: false
+    },
+    // Aroma Escape
+    {
+      key: 'aromaEscape',
+      name: translate("aromaEscape"),
+      duration: aromaEscapeDetails.duration,
+      price: aromaEscapeDetails.price,
+      serviceId: aromaEscapeDetails.serviceId,
+      description: translate("aromaEscapeDesc"),
+      included: translate("aromaEscapeIncluded"),
+      note: translate("aromaEscapeNote"),
+      category: "relaxation",
+      categoryDisplay: translate("categoryRelaxation"),
+      popular: true,
+      hasDurationOptions: false
+    },
+    // Thai Balance
+    {
+      key: 'thaiBalance',
+      name: translate("thaiBalance"),
+      duration: thaiBalanceDetails.duration,
+      price: thaiBalanceDetails.price,
+      serviceId: thaiBalanceDetails.serviceId,
+      description: translate("thaiBalanceDesc"),
+      included: translate("thaiBalanceIncluded"),
+      note: translate("thaiBalanceNote"),
+      category: "body",
+      categoryDisplay: translate("categoryBody"),
+      popular: false,
+      hasDurationOptions: false
+    },
+    // Bua Luang Relax Ritual
+    {
+      key: 'buaLuangRelax',
+      name: translate("buaLuangRelax"),
+      duration: buaLuangRelaxDetails.duration,
+      price: buaLuangRelaxDetails.price,
+      serviceId: buaLuangRelaxDetails.serviceId,
+      description: translate("buaLuangRelaxDesc"),
+      included: translate("buaLuangRelaxIncluded"),
+      note: translate("buaLuangRelaxNote"),
+      category: "relaxation",
+      categoryDisplay: translate("categoryRelaxation"),
+      popular: true,
+      hasDurationOptions: false
+    },
+    // Gentle Touch Couple Package
+    {
+      key: 'gentleTouchCouple',
+      name: translate("gentleTouchCouple"),
+      duration: gentleTouchCoupleDetails.duration,
+      price: gentleTouchCoupleDetails.price,
+      serviceId: gentleTouchCoupleDetails.serviceId,
+      description: translate("gentleTouchCoupleDesc"),
+      included: translate("gentleTouchCoupleIncluded"),
+      note: translate("gentleTouchCoupleNote"),
+      category: "premium",
+      categoryDisplay: translate("categoryPremium"),
+      popular: true,
+      hasDurationOptions: false
+    },
+    // Golden Revive
+    {
+      key: 'goldenRevive',
+      name: translate("goldenRevive"),
+      duration: goldenReviveDetails.duration,
+      price: goldenReviveDetails.price,
+      serviceId: goldenReviveDetails.serviceId,
+      description: translate("goldenReviveDesc"),
+      included: translate("goldenReviveIncluded"),
+      note: translate("goldenReviveNote"),
+      category: "face",
+      categoryDisplay: translate("categoryFace"),
+      popular: false,
+      hasDurationOptions: false
+    },
+    // Spirit of Siam
+    {
+      key: 'spiritOfSiam',
+      name: translate("spiritOfSiam"),
+      duration: spiritOfSiamDetails.duration,
+      price: spiritOfSiamDetails.price,
+      serviceId: spiritOfSiamDetails.serviceId,
+      description: translate("spiritOfSiamDesc"),
+      included: translate("spiritOfSiamIncluded"),
+      note: translate("spiritOfSiamNote"),
+      category: "premium",
+      categoryDisplay: translate("categoryPremium"),
+      popular: true,
+      hasDurationOptions: false
+    }
+  ];
 
   const getCategoryIcon = (category) => {
     switch(category) {
