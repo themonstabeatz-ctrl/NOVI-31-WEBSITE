@@ -406,7 +406,7 @@ const CouplesMassageCard = ({
     return !!(p1m1 && p2m1);
   };
 
-  const is120Mode = couplesSelections.duration === '120';
+  const is120Mode = durations.sports === '120';
 
   return (
     <Card 
