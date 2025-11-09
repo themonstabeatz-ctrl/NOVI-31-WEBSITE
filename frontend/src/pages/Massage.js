@@ -532,15 +532,9 @@ const Massage = () => {
       <section className="services-section">
         <div className="services-grid">
           
-          {/* Masaža za parove Card sa dropdown menijima */}
-          <CouplesMassageCard
+          {/* Masaža za parove Card - Simplified 60-min only version */}
+          <CouplesMassageCardSimple
             translate={translate}
-            durations={durations}
-            updateDuration={updateDuration}
-            couplesSelections={couplesSelections}
-            setCouplesSelections={setCouplesSelections}
-            dropdownOpen={dropdownOpen}
-            setDropdownOpen={setDropdownOpen}
           />
 
           {massageServices.map((service, index) => {
