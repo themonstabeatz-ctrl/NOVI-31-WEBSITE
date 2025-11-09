@@ -126,6 +126,14 @@ export const translations = {
     aromaDeepTissueBenefit4: "Podiže raspoloženje i energiju",
 
     
+
+    aromaThaiHerbalMassage: "Aroma Thai sa toplim biljnim kompresama",
+    aromaThaiHerbalMassageDesc: "Tradicionalna tajlandska masaža uz eterična ulja i biljne tople komprese za dubinsko opuštanje.",
+    aromaThaiHerbalBenefit1: "Oslobađa napetost i bol u mišićima",
+    aromaThaiHerbalBenefit2: "Potiče cirkulaciju i detoksikaciju",
+    aromaThaiHerbalBenefit3: "Umiruje telo i um",
+    aromaThaiHerbalBenefit4: "Oživljava energiju i vitalnost",
+
     reflexologyMassage: "Refleksna masaža",
     reflexologyMassageDesc: "Terapija koja stimuliše refleksne tačke na stopalima.",
     reflexologyBenefit1: "Stimuliše organe",
