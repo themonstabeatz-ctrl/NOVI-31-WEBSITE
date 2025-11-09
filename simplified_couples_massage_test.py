@@ -203,8 +203,6 @@ class SimplifiedCouplesMassageTest:
                     "service_name": couples_120_service.get('name', 'Masaža za parove - 120 min')
                 }
         
-        try:
-            async with httpx.AsyncClient(timeout=30.0) as client:
                 response = await client.post(
                     f"{self.api_base}/book-appointment",
                     json=booking_data,
@@ -221,7 +219,8 @@ class SimplifiedCouplesMassageTest:
                         f"✅ Backend accepts simplified couples booking - Appointment ID: {appointment_id}",
                         {
                             "test_scenario": "Simplified couples massage - 120 min total",
-                            "service_name": "Masaža za parove - 120 min", 
+                            "service_name": couples_120_service.get('name'),
+                            "service_id": couples_120_service.get('id'),
                             "duration": "120 minutes total (60 min per person)",
                             "price": "7,920 RSD (with 10% discount from 8,800 RSD)",
                             "massage_type": "Tradicionalna tajlandska masaža for both persons",
@@ -249,7 +248,8 @@ class SimplifiedCouplesMassageTest:
                         f"❌ Backend rejected simplified couples booking - {response.status_code}: {error_detail}",
                         {
                             "test_scenario": "Simplified couples massage - 120 min total",
-                            "service_name": "Masaža za parove - 120 min",
+                            "service_name": couples_120_service.get('name'),
+                            "service_id": couples_120_service.get('id'),
                             "status_code": response.status_code,
                             "error_detail": error_detail,
                             "client": f"{test_data['client_name']} ({test_data['client_phone']}, {test_data['client_email']})",
