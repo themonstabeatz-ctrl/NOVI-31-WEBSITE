@@ -958,7 +958,7 @@ const CouplesMassageCard = ({
           {isSelectionComplete() ? (
             <Link 
               to={`/contact?service=${encodeURIComponent(`${translate('couplesMassage')} - ${calculateTotalDuration()} min`)}&couplesData=${encodeURIComponent(JSON.stringify({
-                duration: couplesSelections.duration,
+                duration: durations.sports,
                 totalDuration: calculateTotalDuration(),
                 person1: {
                   massage1: couplesSelections.person1Massage1,
