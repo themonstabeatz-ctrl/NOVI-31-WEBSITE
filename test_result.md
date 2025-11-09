@@ -500,6 +500,49 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 COUPLES MASSAGE 90-MIN BOOKING FLOW CRITICAL FAILURE - EXACT REVIEW REQUEST TESTING COMPLETED
+      
+      ✅ COMPREHENSIVE TESTING RESULTS:
+      
+      📋 NAVIGATION & PAGE LOADING:
+      - ✅ Navigate to https://thai-spa-booking.preview.emergentagent.com → Click MASAŽE menu: WORKING
+      - ✅ Massage page loads with 6 massage cards: WORKING
+      - ✅ Couples massage card found ('Masaža za parove') with Person 1 & Person 2 dropdowns: WORKING
+      
+      📋 90-MINUTE BOOKING FLOW TESTING:
+      - ✅ Click "90 min" duration button: WORKING (golden styling confirmed: border: 2px solid rgb(212, 175, 55))
+      - ✅ Click "Osoba 1 - Izaberite masažu" dropdown: WORKING (dropdown opens, massage options visible)
+      - ✅ Select 90-min massage for Person 1: WORKING (selection registers correctly)
+      - ✅ Click "Osoba 2 - Izaberite masažu" dropdown: WORKING (dropdown opens, massage options visible)
+      - ✅ Select 90-min massage for Person 2: WORKING (selection registers correctly)
+      - ❌ ZAKAŽITE button becomes enabled: CRITICAL FAILURE (opacity: 0.5, cursor: not-allowed)
+      - ❌ Click ZAKAŽITE button: IMPOSSIBLE (button remains disabled)
+      - ❌ Redirect to /contact page: CANNOT TEST (button disabled)
+      
+      📋 BACKEND VERIFICATION:
+      - ✅ Backend health check: WORKING (GET /api/health returns 200 OK with status 'healthy')
+      - ✅ Backend integration: FULLY FUNCTIONAL (confirmed in previous tests)
+      
+      🎯 ROOT CAUSE IDENTIFIED:
+      - Frontend state management bug in CouplesMassageCard.js
+      - The isSelectionComplete() function fails to detect valid 90-min selections for both persons
+      - Button enable logic is broken despite successful dropdown selections
+      
+      ⚠️ USER IMPACT CONFIRMED:
+      - User's report "trenutno pokazuje da ne moze" is 100% accurate
+      - 90-minute couples massage bookings are completely non-functional
+      - Users cannot proceed past the selection stage due to disabled submit button
+      
+      🔧 URGENT ACTION REQUIRED:
+      - Fix state synchronization in CouplesMassageCard.js isSelectionComplete() function
+      - Ensure button enables when both Person 1 and Person 2 have valid 90-min massage selections
+      - Test end-to-end booking flow after fix
+      
+      📊 FINAL ASSESSMENT: COUPLES MASSAGE 90-MIN BOOKING FLOW IS BROKEN
+      All review request objectives tested - critical failure in button enable logic prevents booking completion.
+  
+  - agent: "testing"
+    message: |
       🚨 CRITICAL BOOKING FLOW ISSUES IDENTIFIED AFTER URL MIGRATION TESTING
       
       ❌ FAILED TESTS:
