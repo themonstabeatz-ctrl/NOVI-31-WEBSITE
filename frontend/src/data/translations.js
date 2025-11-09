@@ -103,6 +103,7 @@ export const translations = {
     massageAromaDeepTissue: "Aroma duboko tkivo",
     massageAromaHotStone: "Aromaterapija & topli kamen",
     massageAromaThaiHerbal: "Aroma sa toplim biljnim kompresama",
+    massageThaiHerbal: "Thai masaža sa toplim biljnim kompresama",
     
     shiatsuMassage: "Shiatsu masaža",
     shiatsuMassageDesc: "Japanska terapija pritiskom prstiju koja balansira energiju tela.",
