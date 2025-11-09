@@ -103,6 +103,39 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
     setIsOpen(false);
   };
 
+  // Pinch-to-zoom handlers
+  const getDistance = (touches) => {
+    const [touch1, touch2] = touches;
+    const dx = touch1.clientX - touch2.clientX;
+    const dy = touch1.clientY - touch2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const distance = getDistance(e.touches);
+      setInitialDistance(distance);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches.length === 2 && initialDistance) {
+      e.preventDefault();
+      const currentDistance = getDistance(e.touches);
+      const scaleChange = currentDistance / initialDistance;
+      const newScale = Math.min(Math.max(0.7, scale * scaleChange), 1.5);
+      setScale(newScale);
+      setInitialDistance(currentDistance);
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (e.touches.length < 2) {
+      setInitialDistance(null);
+    }
+  };
+
   const formatDisplayDate = (date) => {
     if (!date) return translate('selectDate') || 'Izaberite datum';
     const d = new Date(date);
