@@ -674,36 +674,18 @@ const Contact = () => {
         <div className="page-header-content">
           <h1 className="page-title">BOOKING</h1>
         </div>
-      </section>
-
-      {/* Unified Contact Card */}
-      <section className="contact-section" style={{
-        position: 'relative',
-        backgroundImage: 'url(/booking-background.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width: '100vw',
-        marginLeft: 'calc(-50vw + 50%)',
-        paddingLeft: 'calc(50vw - 50%)',
-        paddingRight: 'calc(50vw - 50%)'
-      }}>
-        {/* Logo skroz levo */}
-        <div style={{
-          position: 'absolute',
-          left: '2rem',
-          top: '50%',
-          transform: 'translateY(-50%) scale(1.2)',
-          zIndex: 3
-        }}>
+        <div className="page-decoration contact-logo-animation">
           <img 
             src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png"
             alt="Bua Luang Thai Spa Logo"
-            style={{ width: '150px', height: 'auto' }}
+            className="contact-animated-logo"
           />
         </div>
-        
-        <Card className="unified-contact-card" style={{ position: 'relative', zIndex: 2 }}>
+      </section>
+
+      {/* Unified Contact Card */}
+      <section className="contact-section">
+        <Card className="unified-contact-card">
           <CardContent className="unified-contact-content" style={{ padding: '2rem' }}>
             <div style={{ 
               display: 'flex', 
