@@ -309,25 +309,25 @@ const Contact = () => {
         }
       }
       
-      // Get service UUID from dynamically loaded mapping (use serviceLookupName for couples massage)
-      const serviceId = serviceMapping[serviceLookupName];
+      // Get service UUID from dynamically loaded mapping (skip for couples - they use different endpoint)
+      const isCouplesBooking = couplesData && serviceName.includes('Masaža za parove');
+      const serviceId = isCouplesBooking ? null : serviceMapping[serviceLookupName];
       
       console.log('🔍 Service lookup:', {
         serviceName,
         serviceLookupName,
-        foundId: serviceId || 'NOT FOUND',
+        isCouplesBooking,
+        foundId: serviceId || (isCouplesBooking ? 'COUPLES BOOKING - NO ID NEEDED' : 'NOT FOUND'),
         mappingLoaded: servicesLoaded,
         availableKeys: Object.keys(serviceMapping).length
       });
       
-      // CRITICAL: Validate service exists in mapping
-      if (!serviceId) {
+      // CRITICAL: Validate service exists in mapping (skip for couples booking)
+      if (!isCouplesBooking && !serviceId) {
         console.error('❌ SERVICE NOT FOUND IN MAPPING!', {
           serviceName,
           serviceLookupName,
-          availableServices: Object.keys(serviceMapping).filter(k => k.includes(serviceName.split(' - ')[0])),
-          couplesDataParam,
-          parsedCouplesData: couplesDataParam ? JSON.parse(decodeURIComponent(couplesDataParam)) : null
+          availableServices: Object.keys(serviceMapping).filter(k => k.includes(serviceName.split(' - ')[0]))
         });
         setError(translate("error") || "Usluga nije pronađena u sistemu. Molimo pokušajte ponovo.");
         setIsSubmitting(false);
