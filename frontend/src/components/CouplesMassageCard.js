@@ -105,7 +105,7 @@ const CouplesMassageCard = ({
   }, []);
 
   const getFilteredMassages = () => {
-    const duration = couplesSelections.duration;
+    const duration = durations.sports;
     
     if (duration === '120') {
       return availableMassages.filter(m => 
