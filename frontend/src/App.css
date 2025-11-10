@@ -9190,3 +9190,52 @@ html {
     font-size: 0.95rem;
   }
 }
+
+
+/* ================================================
+   FORCE DESKTOP LAYOUT ON ALL DEVICES
+   ================================================ */
+/* Override all responsive behavior - Force desktop grid layout */
+.services-grid,
+.massage-container .services-grid,
+.spa-container .services-grid,
+.treatments-grid,
+.values-grid,
+.team-grid,
+.packages-grid,
+.benefits-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+  gap: 2rem !important;
+}
+
+/* Always show desktop navigation */
+.nav-desktop {
+  display: flex !important;
+}
+
+.mobile-menu-button {
+  display: none !important;
+}
+
+.mobile-nav {
+  display: none !important;
+}
+
+/* Force desktop flex layouts */
+.hero-content,
+.about-content,
+.page-header,
+.story-content,
+.welcome-content {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4rem !important;
+}
+
+/* Ensure body doesn't have min-width constraints */
+body {
+  min-width: 1200px !important;
+}
+
