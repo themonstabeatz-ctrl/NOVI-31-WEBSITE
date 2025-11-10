@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
@@ -11,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import CustomCalendarModal from "../components/CustomCalendarModal";
 import CustomTimePickerModal from "../components/CustomTimePickerModal";
 import { massageServices, spaServices, durations, bookingSystemNames } from "../data/servicesList";
+import { getSEO } from "../utils/seoConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Contact = () => {
