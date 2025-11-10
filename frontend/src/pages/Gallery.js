@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useLanguage } from "../context/LanguageContext";
+import { getSEO } from "../utils/seoConfig";
 
 const Gallery = () => {
   const { translate } = useLanguage();
