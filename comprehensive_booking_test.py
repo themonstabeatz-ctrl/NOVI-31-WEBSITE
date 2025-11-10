@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://thaibookingspa.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://thaispa-mobile.preview.emergentagent.com')
 
 async def test_comprehensive_booking():
     """Test all service IDs with backend proxy"""
