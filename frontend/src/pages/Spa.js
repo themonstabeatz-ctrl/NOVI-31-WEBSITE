@@ -229,8 +229,8 @@ const Spa = () => {
 
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.2
+      rootMargin: '100px',
+      threshold: 0.1
     };
 
     const handleIntersection = (entries) => {
