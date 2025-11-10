@@ -759,26 +759,8 @@ const Spa = () => {
         </div>
         
         <div className="packages-grid">
-          {/* Romantic Package with Background Image, Border Frame and Heart Button */}
+          {/* Romantic Package with Background Image and Heart Button */}
           <Card className="package-card romantic-card-special">
-            {/* Golden Border Frame */}
-            <div 
-              className="golden-frame-border"
-              style={{
-                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/dsikrx99_ram.png)',
-                backgroundSize: '100% 100%',
-                backgroundRepeat: 'no-repeat',
-                position: 'absolute',
-                top: '-5px',
-                left: '-5px',
-                right: '-5px',
-                bottom: '-5px',
-                zIndex: 2,
-                pointerEvents: 'none'
-              }}
-            />
-            
-            {/* Background Image */}
             <div 
               className="romantic-card-background"
               style={{
@@ -794,7 +776,6 @@ const Spa = () => {
                 zIndex: 0
               }}
             />
-            
             <CardHeader style={{ position: 'relative', zIndex: 1 }}>
               <CardTitle className="package-name">{translate("romanticPackage")}</CardTitle>
             </CardHeader>
