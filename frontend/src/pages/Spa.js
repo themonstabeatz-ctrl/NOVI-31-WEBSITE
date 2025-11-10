@@ -225,6 +225,9 @@ const Spa = () => {
       card.setAttribute('data-slide-direction', slideDirection);
       card.setAttribute('data-transform-start', transformStart);
       card.style.transformStyle = 'preserve-3d';
+      // Set initial hidden state
+      card.style.opacity = '0';
+      card.style.transform = transformStart;
     });
 
     const observerOptions = {
