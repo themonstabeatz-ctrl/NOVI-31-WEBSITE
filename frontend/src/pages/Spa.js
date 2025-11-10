@@ -787,7 +787,7 @@ const Spa = () => {
               <div className="romantic-price-container">
                 <button className="luxury-price-button">
                   <span className="price-glow"></span>
-                  <span className="price-amount">18,000 RSD</span>
+                  <span className="price-amount">18.000 RSD</span>
                   <span className="price-shine"></span>
                 </button>
                 <div className="price-subtitle">Za dve osobe</div>
