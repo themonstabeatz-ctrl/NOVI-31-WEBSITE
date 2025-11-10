@@ -9012,13 +9012,13 @@ html {
 /* Luxury Price Button */
 .luxury-price-button {
   position: relative;
-  padding: 1.5rem 3rem;
-  font-size: 1.75rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #1a1a1a;
   background: linear-gradient(135deg, #d4af37 0%, #f4e676 50%, #d4af37 100%);
-  border: 3px solid #b8941f;
-  border-radius: 50px;
+  border: 2px solid #b8941f;
+  border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
