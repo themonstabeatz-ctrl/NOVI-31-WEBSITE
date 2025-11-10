@@ -8985,11 +8985,10 @@ html {
 /* Romantic Package Special Card Styles */
 .romantic-card-special {
   position: relative;
-  overflow: visible !important;
+  overflow: hidden;
   background: linear-gradient(135deg, #1a1a1a 0%, #2a1810 100%) !important;
-  border: none !important;
+  border: 2px solid #d4af37 !important;
   box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3) !important;
-  padding: 15px !important;
 }
 
 .romantic-card-background {
@@ -8998,18 +8997,6 @@ html {
 
 .romantic-card-special:hover .romantic-card-background {
   opacity: 0.5 !important;
-}
-
-/* Golden Frame Border */
-.golden-frame-border {
-  opacity: 1;
-  transition: all 0.5s ease;
-  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
-}
-
-.romantic-card-special:hover .golden-frame-border {
-  opacity: 1;
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
 }
 
 /* Luxury Price Button Container */
