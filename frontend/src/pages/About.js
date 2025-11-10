@@ -111,8 +111,17 @@ const About = () => {
     return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
   }, []);
 
+  const aboutSEO = getSEO('about');
+
   return (
     <div className="about-container">
+      <Helmet>
+        <title>{aboutSEO.title}</title>
+        <meta name="description" content={aboutSEO.description} />
+        <meta name="keywords" content={aboutSEO.keywords} />
+        <link rel="canonical" href={aboutSEO.canonical} />
+      </Helmet>
+
       {/* Fixed Video Hero Section */}
       <section className="about-hero-fixed">
         <div className="about-hero-video-container">
