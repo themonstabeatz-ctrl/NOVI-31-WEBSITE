@@ -113,6 +113,17 @@ const Home = () => {
 
   return (
     <div className="pim-style-homepage">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Bua Luang Thai Spa Beograd | #1 Tradicionalna Thai Masaža & Luksuzni SPA</title>
+        <meta name="description" content="Bua Luang Thai Spa - autentičan tajlandski spa centar u Beogradu. Tradicionalne thai masaže, luksuzni SPA rituali, aroma terapija. Rezervišite termin online! ☎️ Najbolja masaža u Beogradu." />
+        <meta name="keywords" content="masaža beograd, spa beograd, tajlandska masaža, thai masaža, wellness beograd, relaks masaža, bua luang, thai spa beograd" />
+        <link rel="canonical" href="https://www.bualuangthaispa.rs/" />
+        <meta property="og:title" content="Bua Luang Thai Spa Beograd | #1 Tradicionalna Thai Masaža" />
+        <meta property="og:url" content="https://www.bualuangthaispa.rs/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      
       {/* Fixed Video Background - No overlay filter */}
       <div className="fixed-video-background">
         <video 
