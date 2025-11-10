@@ -783,50 +783,14 @@ const Spa = () => {
               <p className="package-description">{translate("romanticPackageDesc")}</p>
               <div className="package-duration">{translate("romanticPackageDuration")}</div>
               
-              {/* Heart-Shaped Price Button */}
-              <div className="heart-price-container">
-                <div className="double-hearts-wrapper">
-                  <svg className="double-hearts-svg" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#ff6b9d', stopOpacity: 1 }} />
-                        <stop offset="50%" style={{ stopColor: '#c94b7c', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#ff6b9d', stopOpacity: 1 }} />
-                      </linearGradient>
-                      <filter id="heartGlow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    
-                    {/* Left Heart */}
-                    <path 
-                      d="M 45,30 C 45,20 35,15 28,20 C 21,15 11,20 11,30 C 11,42 28,55 28,55 C 28,55 45,42 45,30 Z"
-                      fill="url(#heartGradient)"
-                      filter="url(#heartGlow)"
-                      stroke="#d4af37"
-                      strokeWidth="1.5"
-                    />
-                    
-                    {/* Right Heart */}
-                    <path 
-                      d="M 90,30 C 90,20 80,15 73,20 C 66,15 56,20 56,30 C 56,42 73,55 73,55 C 73,55 90,42 90,30 Z"
-                      fill="url(#heartGradient)"
-                      filter="url(#heartGlow)"
-                      stroke="#d4af37"
-                      strokeWidth="1.5"
-                    />
-                  </svg>
-                  
-                  {/* Price Text on Hearts */}
-                  <div className="heart-price-text">
-                    <span className="price-amount">18,000 RSD</span>
-                  </div>
-                </div>
-                <div className="heart-price-subtitle">Za dve osobe</div>
+              {/* Luxury Price Button */}
+              <div className="romantic-price-container">
+                <button className="luxury-price-button">
+                  <span className="price-glow"></span>
+                  <span className="price-amount">18,000 RSD</span>
+                  <span className="price-shine"></span>
+                </button>
+                <div className="price-subtitle">Za dve osobe</div>
               </div>
             </CardContent>
           </Card>
