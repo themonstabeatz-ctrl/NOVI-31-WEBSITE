@@ -9151,11 +9151,11 @@ html {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .luxury-price-button {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1.1rem;
   }
   
   .price-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
