@@ -531,6 +531,17 @@ const Spa = () => {
 
   return (
     <div className="spa-container">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Luksuzni SPA Tretmani Beograd | Royal Thai Ritual & Wellness - Bua Luang</title>
+        <meta name="description" content="Ekskluzivni SPA paketi u Beogradu. Royal Thai Ritual, Detox Harmony, Aroma Escape, spa tretmani za parove. Cene od 6,500 RSD. Rezervišite luksuzno opuštanje!" />
+        <meta name="keywords" content="spa beograd, luksuzni spa, royal thai ritual, detox tretman, spa za parove, wellness beograd, spa paketi, relaksacija beograd" />
+        <link rel="canonical" href="https://www.bualuangthaispa.rs/spa" />
+        <meta property="og:title" content="Luksuzni SPA Tretmani Beograd | Royal Thai Ritual - Bua Luang" />
+        <meta property="og:url" content="https://www.bualuangthaispa.rs/spa" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      
       {/* Fixed Video Hero Section */}
       <section className="spa-hero-fixed">
         <div className="spa-hero-video-container">
