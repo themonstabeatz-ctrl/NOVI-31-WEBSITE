@@ -606,6 +606,17 @@ const Massage = () => {
 
   return (
     <div className="massage-container">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Thai Masaže Beograd | Cenovnik & Online Rezervacija - Bua Luang Spa</title>
+        <meta name="description" content="Tradicionalne thai masaže u Beogradu. Aroma terapija, masaža toplim uljem, masaža za parove, refleksna masaža. Cene od 2,400 RSD. Rezervišite online na Bua Luang Thai Spa!" />
+        <meta name="keywords" content="thai masaža beograd, tajlandska masaža, masaža za parove, aroma terapija, masaža toplim uljem, refleksna masaža, cenovnik masaža beograd" />
+        <link rel="canonical" href="https://www.bualuangthaispa.rs/massage" />
+        <meta property="og:title" content="Thai Masaže Beograd | Cenovnik & Rezervacija - Bua Luang" />
+        <meta property="og:url" content="https://www.bualuangthaispa.rs/massage" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      
       {/* Fixed Video Hero Section */}
       <section className="massage-hero-fixed">
         <div className="massage-hero-video-container">
