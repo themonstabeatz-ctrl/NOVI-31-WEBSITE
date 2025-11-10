@@ -103,8 +103,17 @@ const Gallery = () => {
     imageRows.push(allImages.slice(i, i + 3));
   }
 
+  const gallerySEO = getSEO('gallery');
+
   return (
     <div className="gallery-container">
+      <Helmet>
+        <title>{gallerySEO.title}</title>
+        <meta name="description" content={gallerySEO.description} />
+        <meta name="keywords" content={gallerySEO.keywords} />
+        <link rel="canonical" href={gallerySEO.canonical} />
+      </Helmet>
+
       {/* Fixed Hero Section with Background Image */}
       <section className="gallery-hero-fixed">
         <div className="gallery-hero-video-container">
