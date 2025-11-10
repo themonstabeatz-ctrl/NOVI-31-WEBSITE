@@ -9234,8 +9234,23 @@ html {
   gap: 4rem !important;
 }
 
-/* Ensure body doesn't have min-width constraints */
+/* Ensure body has fixed width for desktop layout */
 body {
+  min-width: 1200px !important;
+  overflow-x: auto !important;
+}
+
+html {
+  overflow-x: auto !important;
+}
+
+/* Force minimum content width */
+.spa-container,
+.massage-container,
+.home-container,
+.about-container,
+.contact-container,
+.gallery-container {
   min-width: 1200px !important;
 }
 
