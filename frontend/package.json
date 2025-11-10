@@ -45,6 +45,7 @@
     "react-datepicker": "^8.8.0",
     "react-day-picker": "8.10.1",
     "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.56.2",
     "react-input-mask": "^2.0.4",
     "react-resizable-panels": "^3.0.1",
