@@ -3357,7 +3357,8 @@ body {
 }
 
 /* Responsive Design for Unified Card */
-@media (max-width: 1024px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 1024px) { */
+@media (max-width: 0px) {
   .unified-contact-content {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -3373,7 +3374,8 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .unified-contact-content {
     padding: 1.5rem;
     gap: 1.5rem;
@@ -3757,7 +3759,8 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   /* Hide desktop navigation on mobile */
   .nav-menu {
     display: none !important;
@@ -4233,7 +4236,8 @@ html {
 }
 
 /* Responsive Gallery */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .gallery-carousel {
     flex-direction: column;
   }
@@ -4855,7 +4859,8 @@ html {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 1024px) { */
+@media (max-width: 0px) {
   .story-grid {
     grid-template-columns: 1fr;
     gap: 4rem;
@@ -4880,7 +4885,8 @@ html {
   }
 }
 
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .about-pro-hero {
     height: 70vh;
   }
@@ -5503,7 +5509,8 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .about-hero-title-3d {
     font-size: 3rem;
   }
@@ -5946,7 +5953,8 @@ html {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .massage-hero-title {
     font-size: 2.5rem;
   }
@@ -6185,13 +6193,15 @@ html {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .spa-hero-title {
     font-size: 2.5rem;
   }
 
   /* Mobile Portrait - Smanjene kartice */
-  @media (orientation: portrait) and (max-height: 900px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (orientation: portrait) and (max-height: 900px) { */
+@media (max-width: 0px) {
     .spa-container .services-grid {
       gap: 0.5rem !important;
       padding: 1rem 0.5rem !important;
@@ -6243,7 +6253,8 @@ html {
   }
 
   /* Mobile Landscape - Keep Grid */
-  @media (orientation: landscape) {
+/* DISABLED FOR DESKTOP-ONLY: @media (orientation: landscape) { */
+@media (max-width: 0px) {
     .spa-container .services-grid {
       grid-template-columns: 1fr;
     }
@@ -6885,7 +6896,8 @@ html {
   color: var(--spa-gold);
 }
 
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .contact-footer-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -7053,7 +7065,8 @@ html {
 }
 
 /* Responsive */
-@media (max-width: 968px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 968px) { */
+@media (max-width: 0px) {
   .about-contact-grid {
     grid-template-columns: 1fr;
   }
@@ -7068,7 +7081,8 @@ html {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .about-hero-title {
     font-size: 2.5rem;
   }
@@ -7217,7 +7231,8 @@ html {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .about-simple-parallax {
     padding: 4rem 0;
     min-height: auto;
@@ -7242,7 +7257,8 @@ html {
   }
 }
 
-@media (max-width: 480px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 480px) { */
+@media (max-width: 0px) {
   .about-text-paragraph {
     font-size: 1rem;
   }
@@ -7482,7 +7498,8 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 1024px) { */
+@media (max-width: 0px) {
   .parallax-section {
     min-height: 100vh;
   }
@@ -7498,7 +7515,8 @@ html {
   }
 }
 
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .parallax-section {
     min-height: 90vh;
     padding: 2rem 0;
@@ -7588,7 +7606,8 @@ html {
   }
 }
 
-@media (max-width: 480px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 480px) { */
+@media (max-width: 0px) {
   .parallax-text-line {
     font-size: clamp(1rem, 3vw, 2rem);
     padding: 0.5rem 0.8rem;
@@ -8141,7 +8160,8 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 1200px) { */
+@media (max-width: 0px) {
   .gallery-image {
     width: 300px;
     height: 240px;
@@ -8152,7 +8172,8 @@ html {
   }
 }
 
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .gallery-hero-title {
     font-size: 3rem;
   }
@@ -8182,7 +8203,8 @@ html {
   }
 }
 
-@media (max-width: 480px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 480px) { */
+@media (max-width: 0px) {
   .gallery-hero-title {
     font-size: 2.5rem;
   }
@@ -8208,7 +8230,8 @@ html {
 /* ================================================
    LANDSCAPE MODE CRITICAL OVERRIDES - MUST BE LAST!
    ================================================ */
-@media (max-height: 600px) and (orientation: landscape) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-height: 600px) and (orientation: landscape) { */
+@media (max-width: 0px) {
   /* FORCE mobile menu on ALL landscape orientations */
   .mobile-menu-button {
     display: block !important;
@@ -8461,7 +8484,8 @@ html {
   }
 }
 
-@media (max-height: 450px) and (orientation: landscape) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-height: 450px) and (orientation: landscape) { */
+@media (max-width: 0px) {
   .mobile-menu-button {
     display: block !important;
   }
@@ -8535,7 +8559,8 @@ html {
    ===================================================== */
 
 /* Disable ALL mobile-specific layouts */
-@media screen and (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media screen and (max-width: 768px) { */
+@media (max-width: 0px) {
   /* Force desktop navigation always visible */
   .mobile-menu-button {
     display: none !important;
@@ -8725,7 +8750,8 @@ html {
 }
 
 
-@media screen and (max-width: 480px) {
+/* DISABLED FOR DESKTOP-ONLY: @media screen and (max-width: 480px) { */
+@media (max-width: 0px) {
   /* Same overrides for smaller screens */
   .mobile-menu-button {
     display: none !important;
@@ -8751,7 +8777,8 @@ html {
   }
 }
 
-@media screen and (orientation: landscape) and (max-height: 600px) {
+/* DISABLED FOR DESKTOP-ONLY: @media screen and (orientation: landscape) and (max-height: 600px) { */
+@media (max-width: 0px) {
   /* Force desktop even in landscape */
   .mobile-menu-button {
     display: none !important;
@@ -8797,7 +8824,8 @@ html {
    ============================================ */
 
 /* Massage Page - Mobile Portrait - Smanjene kartice */
-@media (orientation: portrait) and (max-height: 900px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (orientation: portrait) and (max-height: 900px) { */
+@media (max-width: 0px) {
   .massage-container .services-grid {
     gap: 0.5rem !important;
     padding: 1rem 0.5rem !important;
@@ -8849,7 +8877,8 @@ html {
 }
 
 /* Mobile Landscape - Keep Grid Layout */
-@media (max-width: 768px) and (orientation: landscape) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) and (orientation: landscape) { */
+@media (max-width: 0px) {
   .massage-container .services-grid {
     grid-template-columns: 1fr !important;
   }
@@ -8948,7 +8977,8 @@ html {
 }
 
 /* Responsive - mobile */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .booking-grid-container {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
@@ -9149,7 +9179,8 @@ html {
 }
 
 /* Mobile responsiveness */
-@media (max-width: 768px) {
+/* DISABLED FOR DESKTOP-ONLY: @media (max-width: 768px) { */
+@media (max-width: 0px) {
   .luxury-price-button {
     padding: 0.6rem 1.2rem;
     font-size: 1.1rem;
