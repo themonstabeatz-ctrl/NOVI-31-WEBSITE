@@ -669,8 +669,17 @@ const Contact = () => {
     }
   };
 
+  const contactSEO = getSEO('contact');
+
   return (
     <div className="contact-container">
+      <Helmet>
+        <title>{contactSEO.title}</title>
+        <meta name="description" content={contactSEO.description} />
+        <meta name="keywords" content={contactSEO.keywords} />
+        <link rel="canonical" href={contactSEO.canonical} />
+      </Helmet>
+
       {/* Header */}
       <section className="page-header">
         <div className="page-header-content">
