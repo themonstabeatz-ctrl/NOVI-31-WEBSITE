@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
 import { useLanguage } from "../context/LanguageContext";
 import { throttle } from "../utils/debounce";
+import { getSEO } from "../utils/seoConfig";
 
 const About = () => {
   const { translate } = useLanguage();
