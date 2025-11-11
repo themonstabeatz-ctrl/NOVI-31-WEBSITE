@@ -9208,11 +9208,19 @@ html {
 .treatments-grid,
 .values-grid,
 .team-grid,
-.packages-grid,
 .benefits-grid {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
   gap: 2rem !important;
+}
+
+/* Special layout for packages: 2 columns side by side */
+.packages-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2rem !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
 }
 
 /* Always show desktop navigation */
