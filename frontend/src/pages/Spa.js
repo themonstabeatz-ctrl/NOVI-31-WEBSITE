@@ -256,18 +256,16 @@ const Spa = () => {
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         const transformStart = entry.target.getAttribute('data-transform-start');
-        const isPortrait = window.innerHeight > window.innerWidth;
         
         if (entry.isIntersecting) {
           // Card entering viewport - show it
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
-        } else if (!isPortrait) {
-          // Card leaving viewport - hide ONLY on desktop/landscape (not portrait)
+        } else {
+          // Card leaving viewport - hide it
           entry.target.style.opacity = '0';
           entry.target.style.transform = transformStart;
         }
-        // If portrait mode: do nothing when card leaves viewport (keep it visible)
       });
     };
 
