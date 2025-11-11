@@ -9369,6 +9369,16 @@ html {
   font-size: 0.7rem !important;
 }
 
+
+/* Ensure packages cards are always visible (no animation hiding) */
+.package-card.romantic-card-special,
+.package-card.bridal-card-special {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+
 .portrait-mode-packages .luxury-price-button-small .price-amount {
   font-size: 0.7rem !important;
 }
