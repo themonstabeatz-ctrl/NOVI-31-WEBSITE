@@ -145,9 +145,15 @@ const Home = () => {
           loop 
           muted 
           playsInline
+          preload="auto"
           className="global-fixed-video"
         >
-          <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/flpuvnqw_POCETNA.mp4" type="video/mp4" />
+          {/* Mobile gets optimized smaller video (2.62 MB vs 4.09 MB) */}
+          {isMobile ? (
+            <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/fmiknawg_POCETNA.mp4" type="video/mp4" />
+          ) : (
+            <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/flpuvnqw_POCETNA.mp4" type="video/mp4" />
+          )}
         </video>
       </div>
 
