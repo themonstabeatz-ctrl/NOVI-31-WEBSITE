@@ -171,20 +171,35 @@ const Spa = () => {
   }, []);
 
 
-  // Portrait mode adjustment for packages grid
+  // Portrait mode adjustment for packages grid - make cards fit side by side
   useEffect(() => {
     const adjustPackagesForPortrait = () => {
       const isPortrait = window.innerHeight > window.innerWidth;
       const packagesGrid = document.querySelector('.packages-grid');
       
       if (packagesGrid && isPortrait && window.innerWidth < 600) {
-        // On portrait mode, make cards smaller to fit both in viewport
-        packagesGrid.style.gridTemplateColumns = '1fr 1fr';
+        // On portrait mode, use calc to fit both cards perfectly
+        packagesGrid.style.gridTemplateColumns = 'calc(50% - 0.25rem) calc(50% - 0.25rem)';
         packagesGrid.style.gap = '0.5rem';
-        packagesGrid.style.padding = '0 0.5rem';
+        packagesGrid.style.padding = '0';
+        packagesGrid.style.maxWidth = '100%';
         
+        // Make card content smaller
         document.querySelectorAll('.package-card').forEach(card => {
-          card.style.fontSize = '0.85rem';
+          card.style.padding = '0.75rem';
+        });
+        
+        document.querySelectorAll('.package-name').forEach(name => {
+          name.style.fontSize = '1rem';
+        });
+        
+        document.querySelectorAll('.package-description').forEach(desc => {
+          desc.style.fontSize = '0.75rem';
+        });
+        
+        document.querySelectorAll('.luxury-price-button-small').forEach(btn => {
+          btn.style.padding = '0.35rem 0.6rem';
+          btn.style.fontSize = '0.75rem';
         });
       }
     };
