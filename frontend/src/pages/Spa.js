@@ -181,29 +181,10 @@ const Spa = () => {
       const actualWidth = window.visualViewport ? window.visualViewport.width : window.screen.width;
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
-        // On portrait mode, use calc to fit both cards perfectly
-        packagesGrid.style.gridTemplateColumns = 'calc(50% - 0.25rem) calc(50% - 0.25rem)';
-        packagesGrid.style.gap = '0.5rem';
-        packagesGrid.style.padding = '0';
-        packagesGrid.style.maxWidth = '100%';
-        
-        // Make card content smaller
-        document.querySelectorAll('.package-card').forEach(card => {
-          card.style.padding = '0.75rem';
-        });
-        
-        document.querySelectorAll('.package-name').forEach(name => {
-          name.style.fontSize = '1rem';
-        });
-        
-        document.querySelectorAll('.package-description').forEach(desc => {
-          desc.style.fontSize = '0.75rem';
-        });
-        
-        document.querySelectorAll('.luxury-price-button-small').forEach(btn => {
-          btn.style.padding = '0.35rem 0.6rem';
-          btn.style.fontSize = '0.75rem';
-        });
+        // Add portrait mode class
+        packagesGrid.classList.add('portrait-mode-packages');
+      } else if (packagesGrid) {
+        packagesGrid.classList.remove('portrait-mode-packages');
       }
     };
     
