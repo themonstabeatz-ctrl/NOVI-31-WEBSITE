@@ -197,32 +197,10 @@ const Spa = () => {
       console.log('Portrait adjustment:', { isPortrait, actualWidth, innerWidth: window.innerWidth });
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
-        // Portrait mode: Enable horizontal scroll with fixed-size cards
-        packagesGrid.style.cssText = `
-          display: flex !important;
-          flex-direction: row !important;
-          gap: 1rem !important;
-          overflow-x: auto !important;
-          scroll-snap-type: x mandatory !important;
-          padding: 1rem !important;
-          -webkit-overflow-scrolling: touch !important;
-        `;
-        
-        // Make cards fixed width and snap to position
-        document.querySelectorAll('.package-card').forEach(card => {
-          card.style.cssText = `
-            flex: 0 0 85% !important;
-            scroll-snap-align: center !important;
-          `;
-        });
-        
+        // Portrait mode: Keep desktop layout, enable horizontal scroll
         packagesGrid.classList.add('portrait-mode-packages');
       } else if (packagesGrid) {
         packagesGrid.classList.remove('portrait-mode-packages');
-        packagesGrid.style.cssText = '';
-        document.querySelectorAll('.package-card').forEach(card => {
-          card.style.cssText = '';
-        });
       }
     };
     
