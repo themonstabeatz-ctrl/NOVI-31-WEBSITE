@@ -190,7 +190,10 @@ const Spa = () => {
   // Card slide-in animation on scroll
   useEffect(() => {
     const cards = document.querySelectorAll('.spa-card');
-    if (cards.length === 0) return;
+    const cardsGrid = document.querySelector('.services-grid');
+    
+    if (!cardsGrid || cards.length === 0) return;
+    
     const gridStyle = window.getComputedStyle(cardsGrid);
     const gridColumns = gridStyle.gridTemplateColumns;
     const columns = gridColumns.split(' ').length;
