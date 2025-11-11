@@ -184,41 +184,8 @@ const Spa = () => {
   }, []);
 
 
-  // Portrait mode adjustment for packages grid - make cards fit side by side
-  useEffect(() => {
-    const adjustPackagesForPortrait = () => {
-      const isPortrait = window.innerHeight > window.innerWidth;
-      const packagesGrid = document.querySelector('.packages-grid');
-      
-      // Use visualViewport or screen width for actual physical device width
-      const actualWidth = window.visualViewport ? window.visualViewport.width : (window.screen.availWidth || window.screen.width);
-      
-      // Debug log
-      console.log('Portrait adjustment:', { isPortrait, actualWidth, innerWidth: window.innerWidth });
-      
-      if (packagesGrid && isPortrait && actualWidth < 600) {
-        // Portrait mode: Keep desktop layout, enable horizontal scroll with inline styles
-        packagesGrid.style.overflowX = 'auto';
-        packagesGrid.style.webkitOverflowScrolling = 'touch';
-        packagesGrid.classList.add('portrait-mode-packages');
-        
-        console.log('Portrait mode enabled - horizontal scroll active');
-      } else if (packagesGrid) {
-        packagesGrid.classList.remove('portrait-mode-packages');
-        packagesGrid.style.overflowX = '';
-        packagesGrid.style.webkitOverflowScrolling = '';
-      }
-    };
-    
-    adjustPackagesForPortrait();
-    window.addEventListener('resize', adjustPackagesForPortrait);
-    window.addEventListener('orientationchange', adjustPackagesForPortrait);
-    
-    return () => {
-      window.removeEventListener('resize', adjustPackagesForPortrait);
-      window.removeEventListener('orientationchange', adjustPackagesForPortrait);
-    };
-  }, []);
+  // No portrait mode adjustments - mobile gets desktop layout with zoom
+  // Video optimization (isMobile state) is handled separately above
 
   // Card slide-in animation on scroll
   useEffect(() => {
