@@ -197,26 +197,22 @@ const Spa = () => {
       console.log('Portrait adjustment:', { isPortrait, actualWidth, innerWidth: window.innerWidth });
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
-        // Portrait mode: Make both cards fit side by side
-        const gap = 4; // Small gap
-        const cardWidth = Math.floor((actualWidth - gap) / 2);
-        
-        console.log(`Portrait adjustment: actualWidth=${actualWidth}, cardWidth=${cardWidth}`);
-        
-        // Force grid with inline styles (highest priority)
+        // Portrait mode: Enable horizontal scroll with fixed-size cards
         packagesGrid.style.cssText = `
-          display: grid !important;
-          grid-template-columns: ${cardWidth}px ${cardWidth}px !important;
-          gap: ${gap}px !important;
-          padding: 0 !important;
-          max-width: 100% !important;
+          display: flex !important;
+          flex-direction: row !important;
+          gap: 1rem !important;
+          overflow-x: auto !important;
+          scroll-snap-type: x mandatory !important;
+          padding: 1rem !important;
+          -webkit-overflow-scrolling: touch !important;
         `;
         
-        // Shrink card content
+        // Make cards fixed width and snap to position
         document.querySelectorAll('.package-card').forEach(card => {
           card.style.cssText = `
-            padding: 0.5rem !important;
-            font-size: 0.7rem !important;
+            flex: 0 0 85% !important;
+            scroll-snap-align: center !important;
           `;
         });
         
