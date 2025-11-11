@@ -10,6 +10,21 @@ const About = () => {
   const parallaxSection2Ref = useRef(null);
   const textRowsRef = useRef([]);
 
+  // Detect mobile device for video optimization
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+    // Check if mobile using visualViewport or screen width
+    const checkMobile = () => {
+      const width = window.visualViewport ? window.visualViewport.width : window.screen.width;
+      setIsMobile(width < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
