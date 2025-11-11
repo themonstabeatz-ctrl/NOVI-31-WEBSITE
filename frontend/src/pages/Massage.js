@@ -307,7 +307,7 @@ const Massage = () => {
       let slideDirection;
       let transformStart;
       
-      if (isMobile || columns === 1) {
+      if (window.innerWidth <= 768 || columns === 1) {
         const pattern = index % 3;
         const slideDistance = 200;
         const tiltAngle = 25;
