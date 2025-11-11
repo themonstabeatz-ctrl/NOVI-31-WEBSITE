@@ -9053,7 +9053,12 @@ html {
       inset 0 0 20px rgba(212, 175, 55, 0.1);
   }
   50% {
-
+    box-shadow: 
+      0 0 50px rgba(212, 175, 55, 0.8),
+      0 15px 60px rgba(212, 175, 55, 0.6),
+      inset 0 0 30px rgba(212, 175, 55, 0.2);
+  }
+}
 
 /* Bridal Package Special Card Styles - Same luxury border */
 .bridal-card-special {
