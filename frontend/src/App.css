@@ -9339,34 +9339,53 @@ html {
 /* Portrait mode class applied via JavaScript - strongest selector */
 .packages-grid.portrait-mode-packages,
 .portrait-mode-packages.packages-grid {
-  grid-template-columns: calc(50% - 0.25rem) calc(50% - 0.25rem) !important;
-  gap: 0.5rem !important;
+  display: grid !important;
+  gap: 4px !important;
   padding: 0 !important;
   max-width: 100% !important;
 }
 
 .portrait-mode-packages .package-card {
-  padding: 0.5rem !important;
-  font-size: 0.75rem !important;
+  padding: 0.4rem !important;
+  font-size: 0.7rem !important;
+  min-height: auto !important;
 }
 
 .portrait-mode-packages .package-name {
-  font-size: 0.85rem !important;
+  font-size: 0.75rem !important;
   letter-spacing: 0px !important;
+  margin-bottom: 0.25rem !important;
 }
 
 .portrait-mode-packages .package-description {
-  font-size: 0.65rem !important;
-  line-height: 1.2 !important;
+  font-size: 0.6rem !important;
+  line-height: 1.1 !important;
+  margin-bottom: 0.25rem !important;
 }
 
 .portrait-mode-packages .package-duration {
-  font-size: 0.6rem !important;
+  font-size: 0.55rem !important;
+  margin-bottom: 0.25rem !important;
 }
 
 .portrait-mode-packages .luxury-price-button-small {
-  padding: 0.3rem 0.5rem !important;
-  font-size: 0.7rem !important;
+  padding: 0.25rem 0.4rem !important;
+  font-size: 0.65rem !important;
+  border-radius: 4px !important;
+}
+
+.portrait-mode-packages .luxury-price-button-small .price-amount {
+  font-size: 0.65rem !important;
+}
+
+.portrait-mode-packages .price-subtitle {
+  font-size: 0.55rem !important;
+  margin-top: 0.15rem !important;
+}
+
+.portrait-mode-packages .bridal-card-overlay,
+.portrait-mode-packages .romantic-card-background {
+  opacity: 0.2 !important;
 }
 
 
@@ -9376,15 +9395,6 @@ html {
   opacity: 1 !important;
   transform: none !important;
   visibility: visible !important;
-}
-
-
-.portrait-mode-packages .luxury-price-button-small .price-amount {
-  font-size: 0.7rem !important;
-}
-
-.portrait-mode-packages .price-subtitle {
-  font-size: 0.65rem !important;
 }
 
     font-size: 0.75rem !important;
