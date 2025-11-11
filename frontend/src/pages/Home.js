@@ -11,6 +11,19 @@ const Home = () => {
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device for video optimization
+  useEffect(() => {
+    const checkMobile = () => {
+      const width = window.visualViewport ? window.visualViewport.width : window.screen.width;
+      setIsMobile(width < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Ensure video plays
   useEffect(() => {
