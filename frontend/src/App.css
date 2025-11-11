@@ -9336,24 +9336,6 @@ html {
   .price-subtitle {
 
 
-/* Portrait mode - enable horizontal scroll, keep desktop layout */
-.packages-grid.portrait-mode-packages {
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  scrollbar-width: thin !important;
-}
-
-/* Optional: hide scrollbar for cleaner look */
-.portrait-mode-packages::-webkit-scrollbar {
-  height: 4px !important;
-}
-
-.portrait-mode-packages::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.5) !important;
-  border-radius: 2px !important;
-}
-
-
 /* Ensure packages cards are always visible (no animation hiding) */
 .package-card.romantic-card-special,
 .package-card.bridal-card-special {
