@@ -798,12 +798,27 @@ const Spa = () => {
             </CardContent>
           </Card>
           
-          <Card className="package-card">
-            <CardHeader>
+          <Card className="package-card bridal-card-special">
+            <div 
+              className="bridal-card-background"
+              style={{
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/i1p5m5qv_Devojacko%20vece%20fotka.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                opacity: 0.3,
+                zIndex: 0
+              }}
+            />
+            <CardHeader style={{ position: 'relative', zIndex: 1 }}>
               <CardTitle className="package-name">{translate("bridalPackage")}</CardTitle>
               <div className="package-price">{translate("bridalPackagePrice")}</div>
             </CardHeader>
-            <CardContent>
+            <CardContent style={{ position: 'relative', zIndex: 1 }}>
               <p className="package-description">{translate("bridalPackageDesc")}</p>
               <div className="package-duration">{translate("bridalPackageDuration")}</div>
             </CardContent>
