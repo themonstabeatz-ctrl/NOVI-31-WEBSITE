@@ -2902,8 +2902,14 @@ body {
 
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.packages-grid .package-card {
+  width: 100%;
 }
 
 .package-card {
