@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://thaispa-mobile.preview.emergentagent.com/robots.txt
+**Test URL:** https://bualuang-anim.preview.emergentagent.com/robots.txt
 
 ---
 
