@@ -9332,8 +9332,9 @@ html {
   .price-subtitle {
 
 
-/* Portrait mode class applied via JavaScript */
-.portrait-mode-packages {
+/* Portrait mode class applied via JavaScript - strongest selector */
+.packages-grid.portrait-mode-packages,
+.portrait-mode-packages.packages-grid {
   grid-template-columns: calc(50% - 0.25rem) calc(50% - 0.25rem) !important;
   gap: 0.5rem !important;
   padding: 0 !important;
