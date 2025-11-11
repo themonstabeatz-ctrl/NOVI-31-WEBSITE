@@ -295,6 +295,10 @@ const Massage = () => {
   useEffect(() => {
     const cards = document.querySelectorAll('.massage-card');
     if (cards.length === 0) return;
+    
+    const cardsGrid = document.querySelector('.services-grid');
+    if (!cardsGrid) return;
+    
     const gridStyle = window.getComputedStyle(cardsGrid);
     const gridColumns = gridStyle.gridTemplateColumns;
     const columns = gridColumns.split(' ').length;
