@@ -9320,13 +9320,7 @@ html {
 .hero-content,
 
 
-/* All service cards always visible on initial render */
-.spa-card,
-.massage-card {
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
-}
+ 
 
 .about-content,
 .page-header,
