@@ -197,22 +197,36 @@ const Spa = () => {
       console.log('Portrait adjustment:', { isPortrait, actualWidth, innerWidth: window.innerWidth });
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
-        // Calculate exact pixel width to fit both cards
-        const gap = 8; // 0.5rem = 8px
+        // Portrait mode: Make both cards fit side by side
+        const gap = 4; // Small gap
         const cardWidth = Math.floor((actualWidth - gap) / 2);
         
-        // Set grid to exact pixel widths
-        packagesGrid.style.gridTemplateColumns = `${cardWidth}px ${cardWidth}px`;
-        packagesGrid.style.gap = `${gap}px`;
-        packagesGrid.style.padding = '0';
-        packagesGrid.style.maxWidth = '100%';
+        console.log(`Portrait adjustment: actualWidth=${actualWidth}, cardWidth=${cardWidth}`);
+        
+        // Force grid with inline styles (highest priority)
+        packagesGrid.style.cssText = `
+          display: grid !important;
+          grid-template-columns: ${cardWidth}px ${cardWidth}px !important;
+          gap: ${gap}px !important;
+          padding: 0 !important;
+          max-width: 100% !important;
+        `;
+        
+        // Shrink card content
+        document.querySelectorAll('.package-card').forEach(card => {
+          card.style.cssText = `
+            padding: 0.5rem !important;
+            font-size: 0.7rem !important;
+          `;
+        });
+        
         packagesGrid.classList.add('portrait-mode-packages');
       } else if (packagesGrid) {
         packagesGrid.classList.remove('portrait-mode-packages');
-        packagesGrid.style.gridTemplateColumns = '';
-        packagesGrid.style.gap = '';
-        packagesGrid.style.padding = '';
-        packagesGrid.style.maxWidth = '';
+        packagesGrid.style.cssText = '';
+        document.querySelectorAll('.package-card').forEach(card => {
+          card.style.cssText = '';
+        });
       }
     };
     
