@@ -11,6 +11,19 @@ import { throttle } from "../utils/debounce";
 const Spa = () => {
   const { translate } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device for video optimization
+  useEffect(() => {
+    const checkMobile = () => {
+      const width = window.visualViewport ? window.visualViewport.width : window.screen.width;
+      setIsMobile(width < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // State for each spa service duration - all default to 60 min
   const [durations, setDurations] = useState({
