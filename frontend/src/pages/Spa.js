@@ -197,10 +197,16 @@ const Spa = () => {
       console.log('Portrait adjustment:', { isPortrait, actualWidth, innerWidth: window.innerWidth });
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
-        // Portrait mode: Keep desktop layout, enable horizontal scroll
+        // Portrait mode: Keep desktop layout, enable horizontal scroll with inline styles
+        packagesGrid.style.overflowX = 'auto';
+        packagesGrid.style.webkitOverflowScrolling = 'touch';
         packagesGrid.classList.add('portrait-mode-packages');
+        
+        console.log('Portrait mode enabled - horizontal scroll active');
       } else if (packagesGrid) {
         packagesGrid.classList.remove('portrait-mode-packages');
+        packagesGrid.style.overflowX = '';
+        packagesGrid.style.webkitOverflowScrolling = '';
       }
     };
     
