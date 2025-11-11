@@ -170,6 +170,35 @@ const Spa = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+
+  // Portrait mode adjustment for packages grid
+  useEffect(() => {
+    const adjustPackagesForPortrait = () => {
+      const isPortrait = window.innerHeight > window.innerWidth;
+      const packagesGrid = document.querySelector('.packages-grid');
+      
+      if (packagesGrid && isPortrait && window.innerWidth < 600) {
+        // On portrait mode, make cards smaller to fit both in viewport
+        packagesGrid.style.gridTemplateColumns = '1fr 1fr';
+        packagesGrid.style.gap = '0.5rem';
+        packagesGrid.style.padding = '0 0.5rem';
+        
+        document.querySelectorAll('.package-card').forEach(card => {
+          card.style.fontSize = '0.85rem';
+        });
+      }
+    };
+    
+    adjustPackagesForPortrait();
+    window.addEventListener('resize', adjustPackagesForPortrait);
+    window.addEventListener('orientationchange', adjustPackagesForPortrait);
+    
+    return () => {
+      window.removeEventListener('resize', adjustPackagesForPortrait);
+      window.removeEventListener('orientationchange', adjustPackagesForPortrait);
+    };
+  }, []);
+
   // Card slide-in animation on scroll
   useEffect(() => {
     const cards = document.querySelectorAll('.spa-card');
