@@ -178,7 +178,10 @@ const Spa = () => {
       const packagesGrid = document.querySelector('.packages-grid');
       
       // Use visualViewport or screen width for actual physical device width
-      const actualWidth = window.visualViewport ? window.visualViewport.width : window.screen.width;
+      const actualWidth = window.visualViewport ? window.visualViewport.width : (window.screen.availWidth || window.screen.width);
+      
+      // Debug log
+      console.log('Portrait adjustment:', { isPortrait, actualWidth, innerWidth: window.innerWidth });
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
         // Calculate exact pixel width to fit both cards
