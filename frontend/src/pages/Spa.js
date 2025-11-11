@@ -597,7 +597,6 @@ const Spa = () => {
             loop 
             playsInline
             preload="auto"
-            poster="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/xhozz0qf_Romanticni%20paket%20za%20parove.jpg"
             className="spa-hero-video"
           >
             <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
