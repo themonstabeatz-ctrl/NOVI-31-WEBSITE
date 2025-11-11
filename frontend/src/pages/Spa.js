@@ -287,7 +287,7 @@ const Spa = () => {
     return () => {
       observer.disconnect();
     };
-  }, [translate]);
+  }, [isMobile]);
 
   // Logo transformation and parallax effects on scroll
   useEffect(() => {
