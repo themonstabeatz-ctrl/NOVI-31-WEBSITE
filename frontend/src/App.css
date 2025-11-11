@@ -9197,6 +9197,22 @@ html {
   }
 }
 
+/* Smaller version of luxury button */
+.luxury-price-button-small {
+  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
+  border-radius: 6px !important;
+}
+
+.luxury-price-button-small .price-amount {
+  font-size: 1rem !important;
+}
+
+.luxury-price-button-small:hover {
+  transform: scale(1.05) translateY(-2px) !important;
+}
+
+
 
 /* ================================================
    FORCE DESKTOP LAYOUT ON ALL DEVICES
