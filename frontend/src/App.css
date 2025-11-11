@@ -9318,6 +9318,18 @@ html {
 
 /* Force desktop flex layouts */
 .hero-content,
+
+
+/* Mobile only: All cards always visible, no animations */
+@media (max-width: 768px) {
+  .spa-card,
+  .massage-card {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+}
+
 .about-content,
 .page-header,
 .story-content,
