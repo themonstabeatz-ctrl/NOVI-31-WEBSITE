@@ -289,7 +289,7 @@ export const translations = {
     romanticPackagePrice: "18,000 RSD za dvoje",
     romanticPackageDesc: "Partnerska masaža + tretmani lica + šampanjac i voće",
     romanticPackageDuration: "3 sata",
-    bridalPackage: "Devojacka veče",
+    bridalPackage: "Devojačko veče",
     bridalPackagePrice: "12,000 RSD po osobi",
     bridalPackageDesc: "Grupni spa dan sa masažama, tretmanima lica i kokteilima",
     bridalPackageDuration: "4 sata",
