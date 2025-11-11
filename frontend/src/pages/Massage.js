@@ -291,25 +291,10 @@ const Massage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Card slide-in animation on scroll (desktop only, mobile shows immediately)
+  // Card slide-in animation on scroll
   useEffect(() => {
     const cards = document.querySelectorAll('.massage-card');
-    const cardsGrid = document.querySelector('.services-grid');
-    
-    if (!cardsGrid || cards.length === 0) return;
-    
-    // On mobile, show cards immediately without animation
-    if (isMobile) {
-      cards.forEach(card => {
-        card.style.opacity = '1';
-        card.style.transform = 'none';
-      });
-      return; // Exit early, no animations on mobile
-    }
-    
-    const isMobile = window.innerWidth <= 768;
-    
-    // Desktop and landscape mode - Original animation with roll-out effect
+    if (cards.length === 0) return;
     const gridStyle = window.getComputedStyle(cardsGrid);
     const gridColumns = gridStyle.gridTemplateColumns;
     const columns = gridColumns.split(' ').length;
