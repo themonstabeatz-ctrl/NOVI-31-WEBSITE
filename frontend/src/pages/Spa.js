@@ -612,7 +612,12 @@ const Spa = () => {
             preload="auto"
             className="spa-hero-video"
           >
-            <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
+            {/* Mobile gets optimized smaller video (2.07 MB vs 2.57 MB) */}
+            {isMobile ? (
+              <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/a5g7ogwu_SPA.mp4" type="video/mp4" />
+            ) : (
+              <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
+            )}
           </video>
           <div className="spa-hero-overlay"></div>
         </div>
