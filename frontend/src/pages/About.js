@@ -11,7 +11,7 @@ const About = () => {
   const textRowsRef = useRef([]);
 
   // Detect mobile device for video optimization
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Check if mobile using visualViewport or screen width
