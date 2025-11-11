@@ -9336,56 +9336,26 @@ html {
   .price-subtitle {
 
 
-/* Portrait mode class applied via JavaScript - strongest selector */
+/* Portrait mode - horizontal scroll with fixed cards */
 .packages-grid.portrait-mode-packages,
 .portrait-mode-packages.packages-grid {
-  display: grid !important;
-  gap: 4px !important;
-  padding: 0 !important;
-  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.portrait-mode-packages::-webkit-scrollbar {
+  display: none !important;
 }
 
 .portrait-mode-packages .package-card {
-  padding: 0.4rem !important;
-  font-size: 0.7rem !important;
-  min-height: auto !important;
-}
-
-.portrait-mode-packages .package-name {
-  font-size: 0.75rem !important;
-  letter-spacing: 0px !important;
-  margin-bottom: 0.25rem !important;
-}
-
-.portrait-mode-packages .package-description {
-  font-size: 0.6rem !important;
-  line-height: 1.1 !important;
-  margin-bottom: 0.25rem !important;
-}
-
-.portrait-mode-packages .package-duration {
-  font-size: 0.55rem !important;
-  margin-bottom: 0.25rem !important;
-}
-
-.portrait-mode-packages .luxury-price-button-small {
-  padding: 0.25rem 0.4rem !important;
-  font-size: 0.65rem !important;
-  border-radius: 4px !important;
-}
-
-.portrait-mode-packages .luxury-price-button-small .price-amount {
-  font-size: 0.65rem !important;
-}
-
-.portrait-mode-packages .price-subtitle {
-  font-size: 0.55rem !important;
-  margin-top: 0.15rem !important;
-}
-
-.portrait-mode-packages .bridal-card-overlay,
-.portrait-mode-packages .romantic-card-background {
-  opacity: 0.2 !important;
+  flex: 0 0 85% !important;
+  scroll-snap-align: center !important;
+  min-width: 85% !important;
 }
 
 
