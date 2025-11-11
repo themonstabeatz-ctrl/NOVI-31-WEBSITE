@@ -2881,6 +2881,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 10;
+  background: #000000;
+  min-height: 500px;
 }
 
 .packages-header {
