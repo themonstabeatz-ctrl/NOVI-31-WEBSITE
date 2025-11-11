@@ -9293,7 +9293,7 @@ html {
   gap: 2rem !important;
   max-width: 1400px !important;
   margin: 0 auto !important;
-
+}
 
 /* Ensure packages cards are always visible (no animation hiding) */
 .package-card.romantic-card-special,
