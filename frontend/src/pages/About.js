@@ -145,9 +145,15 @@ const About = () => {
             muted 
             loop 
             playsInline
+            preload="auto"
             className="about-hero-video"
           >
-            <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/9eowsbkd_CAJ.mp4" type="video/mp4" />
+            {/* Mobile gets optimized smaller video (9.68 MB vs 19.76 MB) */}
+            {isMobile ? (
+              <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/z9z4vnsa_CAJ-3.mp4" type="video/mp4" />
+            ) : (
+              <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/9eowsbkd_CAJ.mp4" type="video/mp4" />
+            )}
           </video>
           <div className="about-hero-overlay"></div>
         </div>
