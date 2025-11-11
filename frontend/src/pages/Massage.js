@@ -641,9 +641,15 @@ const Massage = () => {
             muted 
             loop 
             playsInline
+            preload="auto"
             className="massage-hero-video"
           >
-            <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/jkumv1ek_MASAZE.mp4" type="video/mp4" />
+            {/* Mobile gets optimized smaller video (2.75 MB vs 4.69 MB) */}
+            {isMobile ? (
+              <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/90yarq0d_MASAZE.mp4" type="video/mp4" />
+            ) : (
+              <source src="https://customer-assets.emergentagent.com/job_goldenlinesdesign/artifacts/jkumv1ek_MASAZE.mp4" type="video/mp4" />
+            )}
           </video>
           <div className="massage-hero-overlay"></div>
         </div>
