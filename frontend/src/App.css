@@ -9292,43 +9292,45 @@ html {
 
 
 /* Portrait mode (vertical phone) - make both cards visible without horizontal scroll */
-@media (orientation: portrait) and (max-width: 600px) {
+/* Use smaller max-width since viewport is 1200px with 30% zoom */
+@media (orientation: portrait) and (max-width: 1200px) {
   .packages-grid {
     grid-template-columns: 1fr 1fr !important;
-    gap: 0.5rem !important;
-    padding: 0 0.5rem !important;
+    gap: 1rem !important;
+    padding: 0 1rem !important;
+    max-width: 100% !important;
   }
   
   .package-card.romantic-card-special,
   .package-card.bridal-card-special {
     min-width: 0 !important;
-    padding: 0.75rem !important;
+    padding: 1rem !important;
   }
   
-  .package-name {
-    font-size: 0.9rem !important;
-    letter-spacing: 0.5px !important;
+  .romantic-card-special .package-name,
+  .bridal-card-special .package-name {
+    font-size: 1.2rem !important;
   }
   
   .package-description {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
   }
   
   .package-duration {
-    font-size: 0.7rem !important;
+    font-size: 0.8rem !important;
   }
   
   .luxury-price-button-small {
-    padding: 0.35rem 0.65rem !important;
-    font-size: 0.8rem !important;
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.85rem !important;
   }
   
   .luxury-price-button-small .price-amount {
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
   }
   
   .price-subtitle {
-    font-size: 0.7rem !important;
+    font-size: 0.75rem !important;
   }
 }
 
