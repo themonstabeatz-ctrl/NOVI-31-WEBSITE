@@ -815,12 +815,12 @@ const Spa = () => {
                 zIndex: 0
               }}
             />
-            {/* PNG overlay at bottom */}
+            {/* PNG overlay at bottom - larger roses to edges */}
             <div 
               className="bridal-card-overlay"
               style={{
                 backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/h0f5okmx_Untitled-1.png)',
-                backgroundSize: 'contain',
+                backgroundSize: '100% auto',
                 backgroundPosition: 'bottom center',
                 backgroundRepeat: 'no-repeat',
                 position: 'absolute',
