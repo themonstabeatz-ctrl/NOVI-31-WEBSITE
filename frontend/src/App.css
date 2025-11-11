@@ -9303,12 +9303,6 @@ html {
   visibility: visible !important;
 }
 
-    font-size: 0.75rem !important;
-  }
-}
-
-}
-
 /* Always show desktop navigation */
 .nav-desktop {
   display: flex !important;
