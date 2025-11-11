@@ -181,10 +181,16 @@ const Spa = () => {
       const actualWidth = window.visualViewport ? window.visualViewport.width : window.screen.width;
       
       if (packagesGrid && isPortrait && actualWidth < 600) {
-        // Add portrait mode class
+        // Add portrait mode class AND inline styles to override !important
         packagesGrid.classList.add('portrait-mode-packages');
+        packagesGrid.style.setProperty('grid-template-columns', 'calc(50% - 0.25rem) calc(50% - 0.25rem)', 'important');
+        packagesGrid.style.setProperty('gap', '0.5rem', 'important');
+        packagesGrid.style.setProperty('padding', '0', 'important');
       } else if (packagesGrid) {
         packagesGrid.classList.remove('portrait-mode-packages');
+        packagesGrid.style.removeProperty('grid-template-columns');
+        packagesGrid.style.removeProperty('gap');
+        packagesGrid.style.removeProperty('padding');
       }
     };
     
