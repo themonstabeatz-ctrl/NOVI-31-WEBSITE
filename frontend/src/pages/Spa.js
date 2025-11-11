@@ -799,6 +799,7 @@ const Spa = () => {
           </Card>
           
           <Card className="package-card bridal-card-special">
+            {/* Background photo */}
             <div 
               className="bridal-card-background"
               style={{
@@ -814,13 +815,38 @@ const Spa = () => {
                 zIndex: 0
               }}
             />
-            <CardHeader style={{ position: 'relative', zIndex: 1 }}>
+            {/* PNG overlay at bottom */}
+            <div 
+              className="bridal-card-overlay"
+              style={{
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/h0f5okmx_Untitled-1.png)',
+                backgroundSize: 'contain',
+                backgroundPosition: 'bottom center',
+                backgroundRepeat: 'no-repeat',
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: '100%',
+                zIndex: 1
+              }}
+            />
+            <CardHeader style={{ position: 'relative', zIndex: 2 }}>
               <CardTitle className="package-name">{translate("bridalPackage")}</CardTitle>
-              <div className="package-price">{translate("bridalPackagePrice")}</div>
             </CardHeader>
-            <CardContent style={{ position: 'relative', zIndex: 1 }}>
+            <CardContent style={{ position: 'relative', zIndex: 2 }}>
               <p className="package-description">{translate("bridalPackageDesc")}</p>
               <div className="package-duration">{translate("bridalPackageDuration")}</div>
+              
+              {/* Luxury Price Button - same style as romantic package */}
+              <div className="romantic-price-container">
+                <button className="luxury-price-button luxury-price-button-small">
+                  <span className="price-glow"></span>
+                  <span className="price-amount">8.500 RSD</span>
+                  <span className="price-shine"></span>
+                </button>
+                <div className="price-subtitle">Po osobi</div>
+              </div>
             </CardContent>
           </Card>
         </div>
