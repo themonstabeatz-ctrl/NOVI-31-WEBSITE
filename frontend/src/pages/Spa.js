@@ -177,7 +177,10 @@ const Spa = () => {
       const isPortrait = window.innerHeight > window.innerWidth;
       const packagesGrid = document.querySelector('.packages-grid');
       
-      if (packagesGrid && isPortrait && window.innerWidth < 600) {
+      // Use visualViewport or screen width for actual physical device width
+      const actualWidth = window.visualViewport ? window.visualViewport.width : window.screen.width;
+      
+      if (packagesGrid && isPortrait && actualWidth < 600) {
         // On portrait mode, use calc to fit both cards perfectly
         packagesGrid.style.gridTemplateColumns = 'calc(50% - 0.25rem) calc(50% - 0.25rem)';
         packagesGrid.style.gap = '0.5rem';
