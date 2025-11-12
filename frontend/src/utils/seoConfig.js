@@ -10,6 +10,14 @@ export const seoConfig = {
     ogImage: "https://www.bualuangthaispa.rs/og-cover.jpg"
   },
   
+  homeEn: {
+    title: "Bua Luang Thai Spa Belgrade — Traditional Thai Massage & Luxury SPA",
+    description: "Thai massages, sauna, steam room and SPA packages in Zemun. Online booking, gift vouchers, professional therapists.",
+    keywords: "massage belgrade, spa belgrade, thai massage, wellness belgrade, relax massage, bua luang, thai spa belgrade",
+    canonical: "https://www.bualuangthaispa.rs/en",
+    ogImage: "https://www.bualuangthaispa.rs/og-cover-en.jpg"
+  },
+  
   massage: {
     title: "Thai Masaže Beograd | Cenovnik & Online Rezervacija - Bua Luang Spa",
     description: "Tradicionalne thai masaže u Beogradu. Aroma terapija, masaža toplim uljem, masaža za parove, refleksna masaža. Cene od 2,400 RSD. Rezervišite online na Bua Luang Thai Spa!",
