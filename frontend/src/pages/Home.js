@@ -8,8 +8,7 @@ import { throttle } from "../utils/debounce";
 import { getSEO } from "../utils/seoConfig";
 
 const Home = ({ lang }) => {
-  const { translate, setLanguage } = useLanguage();
-  const homeSEO = getSEO('home');
+  const { translate, setLanguage, language } = useLanguage();
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
@@ -21,6 +20,9 @@ const Home = ({ lang }) => {
       setLanguage(lang);
     }
   }, [lang, setLanguage]);
+
+  // Get SEO config based on current language
+  const homeSEO = language === 'en' || lang === 'en' ? getSEO('homeEn') : getSEO('home');
 
   // Detect mobile device for video optimization
   useEffect(() => {
