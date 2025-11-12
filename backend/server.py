@@ -329,7 +329,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                     )
                     logger.info(f"⏰ Reminder email scheduled for {reminder_time} (2h before appointment)")
                 else:
-                    logger.info(f"⚠️ Appointment too soon - no reminder scheduled")
+                    logger.info("⚠️ Appointment too soon - no reminder scheduled")
                     
             except Exception as e:
                 logger.error(f"Failed to schedule reminder: {e}")
@@ -484,7 +484,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                     )
                     logger.info(f"⏰ Reminder email scheduled for {reminder_time} (2h before appointment)")
                 else:
-                    logger.info(f"⚠️ Appointment too soon - no reminder scheduled")
+                    logger.info("⚠️ Appointment too soon - no reminder scheduled")
                     
             except Exception as e:
                 logger.error(f"Failed to schedule reminder: {e}")
