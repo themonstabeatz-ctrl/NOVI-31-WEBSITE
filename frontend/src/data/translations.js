@@ -74,15 +74,15 @@ export const translations = {
     
     // New Massage Services
     sportsMassage: "Masaža za parove",
-    sportsMassageDesc: "Posebna ponuda za parove sa 15% popustom. Izaberite masaže za dvoje i uživajte zajedno.",
-    sportsBenefit1: "15% popust na ukupnu cenu",
-    sportsBenefit2: "Mogućnost izbora različitih masaža",
-    sportsBenefit3: "Zajednički wellness doživljaj",
+    sportsMassageDesc: "Posebna ponuda za parove. Izaberite masaže za dvoje i uživajte zajedno.",
+    sportsBenefit1: "Mogućnost izbora različitih masaža",
+    sportsBenefit2: "Zajednički wellness doživljaj",
+    sportsBenefit3: "Personalizovano iskustvo",
     selectFirstMassage: "Izaberite prvu masažu",
     selectSecondMassage: "Izaberite još jednu masažu po vašoj želji",
     cancel: "Otkaži",
     selectedMassages: "Odabrane masaže:",
-    totalPrice: "Ukupna cena (sa 15% popustom):",
+    totalPrice: "Ukupna cena:",
     
     // Couples Massage Card
     couplesMassage: "Masaža za parove",
