@@ -30,9 +30,17 @@ function App() {
               <Route path="usluge" element={<Navigate to="/massage" replace />} />
               <Route path="cenovnik" element={<Navigate to="/spa" replace />} />
               <Route path="rezervacije" element={<Navigate to="/contact" replace />} />
+              <Route path="vauceri" element={<Navigate to="/contact" replace />} />
               <Route path="kontakt" element={<Navigate to="/contact" replace />} />
               <Route path="o-nama" element={<Navigate to="/about" replace />} />
               <Route path="galerija" element={<Navigate to="/gallery" replace />} />
+              
+              {/* English URL Aliases - 301 Redirects */}
+              <Route path="en/services" element={<Navigate to="/massage" replace />} />
+              <Route path="en/pricing" element={<Navigate to="/spa" replace />} />
+              <Route path="en/booking" element={<Navigate to="/contact" replace />} />
+              <Route path="en/vouchers" element={<Navigate to="/contact" replace />} />
+              <Route path="en/contact" element={<Navigate to="/contact" replace />} />
             </Route>
           </Routes>
           <Toaster 
