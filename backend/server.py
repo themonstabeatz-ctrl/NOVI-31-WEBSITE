@@ -231,7 +231,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             web_slot_therapists = [t for t in therapists if (t.get('name', '').startswith('Web Slot') or t.get('name', '').startswith('Web Rezervacije')) and t.get('is_active', True)]
             
             if not web_slot_therapists:
-                logger.error("No Web Slot therapists found")
+                logger.error("No Web Slot or Web Rezervacije therapists found")
                 raise HTTPException(status_code=500, detail="Web booking system not configured")
             
             logger.info(f"Found {len(web_slot_therapists)} Web Slot therapists")
@@ -375,7 +375,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
             web_slot_therapists = [t for t in therapists if (t.get('name', '').startswith('Web Slot') or t.get('name', '').startswith('Web Rezervacije')) and t.get('is_active', True)]
             
             if not web_slot_therapists:
-                logger.error("No Web Slot therapists found")
+                logger.error("No Web Slot or Web Rezervacije therapists found")
                 raise HTTPException(status_code=500, detail="Web booking system not configured")
             
             logger.info(f"Found {len(web_slot_therapists)} Web Slot therapists")
