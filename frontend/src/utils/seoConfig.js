@@ -3,11 +3,11 @@
 
 export const seoConfig = {
   home: {
-    title: "Bua Luang Thai Spa Beograd | #1 Tradicionalna Thai Masaža & Luksuzni SPA",
-    description: "Bua Luang Thai Spa - autentičan tajlandski spa centar u Beogradu. Tradicionalne thai masaže, luksuzni SPA rituali, aroma terapija. Rezervišite termin online! ☎️ Najbolja masaža u Beogradu.",
+    title: "Bua Luang Thai Spa Beograd — Tradicionalna Thai masaža & luksuzni SPA",
+    description: "Thai masaže, sauna, parno kupatilo i spa paketi u Zemunu. Online rezervacije, poklon vaučeri, profesionalni terapeuti.",
     keywords: "masaža beograd, spa beograd, tajlandska masaža, thai masaža, wellness beograd, relaks masaža, bua luang, thai spa beograd",
     canonical: "https://www.bualuangthaispa.rs/",
-    ogImage: "https://www.bualuangthaispa.rs/og-image.jpg"
+    ogImage: "https://www.bualuangthaispa.rs/og-cover.jpg"
   },
   
   massage: {
