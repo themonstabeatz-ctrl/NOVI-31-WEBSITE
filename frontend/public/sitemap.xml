@@ -5,7 +5,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.bualuangthaispa.rs/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,7 +13,7 @@
   <!-- Massage Page -->
   <url>
     <loc>https://www.bualuangthaispa.rs/massage</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -21,7 +21,7 @@
   <!-- SPA Page -->
   <url>
     <loc>https://www.bualuangthaispa.rs/spa</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -29,7 +29,7 @@
   <!-- Contact Page -->
   <url>
     <loc>https://www.bualuangthaispa.rs/contact</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -37,7 +37,7 @@
   <!-- About Page -->
   <url>
     <loc>https://www.bualuangthaispa.rs/about</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -45,7 +45,7 @@
   <!-- Gallery Page -->
   <url>
     <loc>https://www.bualuangthaispa.rs/gallery</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
