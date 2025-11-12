@@ -13,16 +13,23 @@ const Home = ({ lang }) => {
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentLang, setCurrentLang] = useState(lang || language || 'sr');
 
   // Auto-set language if lang prop is provided
   useEffect(() => {
     if (lang) {
       setLanguage(lang);
+      setCurrentLang(lang);
     }
   }, [lang, setLanguage]);
 
+  // Track language changes
+  useEffect(() => {
+    setCurrentLang(language);
+  }, [language]);
+
   // Get SEO config based on current language
-  const homeSEO = language === 'en' || lang === 'en' ? getSEO('homeEn') : getSEO('home');
+  const homeSEO = currentLang === 'en' ? getSEO('homeEn') : getSEO('home');
 
   // Detect mobile device for video optimization
   useEffect(() => {
