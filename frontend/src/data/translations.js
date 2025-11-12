@@ -954,7 +954,7 @@ export const translations = {
     selectSecondMassage: "Выберите еще один массаж по вашему желанию",
     cancel: "Отменить",
     selectedMassages: "Выбранные массажи:",
-    totalPrice: "Общая цена (со скидкой 15%):",
+    totalPrice: "Общая цена:",
     
     // Couples Massage Card
     couplesMassage: "Массаж для пар",
