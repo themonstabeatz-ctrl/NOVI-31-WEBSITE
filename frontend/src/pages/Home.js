@@ -5,9 +5,11 @@ import { useLanguage } from "../context/LanguageContext";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { throttle } from "../utils/debounce";
+import { getSEO } from "../utils/seoConfig";
 
 const Home = () => {
   const { translate } = useLanguage();
+  const homeSEO = getSEO('home');
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
