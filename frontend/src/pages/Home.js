@@ -7,13 +7,20 @@ import { Card, CardContent } from "../components/ui/card";
 import { throttle } from "../utils/debounce";
 import { getSEO } from "../utils/seoConfig";
 
-const Home = () => {
-  const { translate } = useLanguage();
+const Home = ({ lang }) => {
+  const { translate, setLanguage } = useLanguage();
   const homeSEO = getSEO('home');
   const heroTitleRef = useRef(null);
   const [scrollY, setScrollY] = useState(0);
   const videoRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Auto-set language if lang prop is provided
+  useEffect(() => {
+    if (lang) {
+      setLanguage(lang);
+    }
+  }, [lang, setLanguage]);
 
   // Detect mobile device for video optimization
   useEffect(() => {
