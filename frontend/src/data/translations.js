@@ -562,15 +562,15 @@ export const translations = {
     
     // New Massage Services
     sportsMassage: "Couples Massage",
-    sportsMassageDesc: "Special offer for couples with 15% discount. Choose massages for two and enjoy together.",
-    sportsBenefit1: "15% discount on total price",
-    sportsBenefit2: "Choose different massages",
-    sportsBenefit3: "Shared wellness experience",
+    sportsMassageDesc: "Special offer for couples. Choose massages for two and enjoy together.",
+    sportsBenefit1: "Choose different massages",
+    sportsBenefit2: "Shared wellness experience",
+    sportsBenefit3: "Personalized experience",
     selectFirstMassage: "Select first massage",
     selectSecondMassage: "Select another massage of your choice",
     cancel: "Cancel",
     selectedMassages: "Selected massages:",
-    totalPrice: "Total price (with 15% discount):",
+    totalPrice: "Total price:",
     
     // Couples Massage Card
     couplesMassage: "Couples Massage",
