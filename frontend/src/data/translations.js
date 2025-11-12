@@ -1336,7 +1336,7 @@ export const translations = {
     selectSecondMassage: "เลือกการนวดอื่นตามที่คุณต้องการ",
     cancel: "ยกเลิก",
     selectedMassages: "การนวดที่เลือก:",
-    totalPrice: "ราคารวม (ส่วนลด 15%):",
+    totalPrice: "ราคารวม:",
     
     // Couples Massage Card
     couplesMassage: "นวดสำหรับคู่รัก",
