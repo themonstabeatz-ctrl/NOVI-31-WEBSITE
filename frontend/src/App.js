@@ -19,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path="en" element={<Home lang="en" />} />
               <Route path="massage" element={<Massage />} />
               <Route path="spa" element={<Spa />} />
               <Route path="about" element={<About />} />
