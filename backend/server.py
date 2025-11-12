@@ -227,7 +227,8 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 raise HTTPException(status_code=503, detail="Cannot access therapist list")
             
             therapists = therapists_response.json()
-            web_slot_therapists = [t for t in therapists if t.get('name', '').startswith('Web Slot') and t.get('is_active', True)]
+            # Support both "Web Slot" and "Web Rezervacije" therapist names
+            web_slot_therapists = [t for t in therapists if (t.get('name', '').startswith('Web Slot') or t.get('name', '').startswith('Web Rezervacije')) and t.get('is_active', True)]
             
             if not web_slot_therapists:
                 logger.error("No Web Slot therapists found")
@@ -370,7 +371,8 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 raise HTTPException(status_code=503, detail="Cannot access therapist list")
             
             therapists = therapists_response.json()
-            web_slot_therapists = [t for t in therapists if t.get('name', '').startswith('Web Slot') and t.get('is_active', True)]
+            # Support both "Web Slot" and "Web Rezervacije" therapist names
+            web_slot_therapists = [t for t in therapists if (t.get('name', '').startswith('Web Slot') or t.get('name', '').startswith('Web Rezervacije')) and t.get('is_active', True)]
             
             if not web_slot_therapists:
                 logger.error("No Web Slot therapists found")
