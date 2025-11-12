@@ -285,7 +285,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             
             # If no therapist is available
             if not booking_result:
-                logger.error(f"❌ All Web Slot therapists busy for {booking.start_time}")
+                logger.error(f"❌ All web booking therapists busy for {booking.start_time}")
                 raise HTTPException(
                     status_code=400,
                     detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
@@ -424,7 +424,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
             
             # If no therapist is available
             if not booking_result:
-                logger.error(f"❌ All Web Slot therapists busy for {booking.start_time}")
+                logger.error(f"❌ All web booking therapists busy for {booking.start_time}")
                 raise HTTPException(
                     status_code=400,
                     detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
