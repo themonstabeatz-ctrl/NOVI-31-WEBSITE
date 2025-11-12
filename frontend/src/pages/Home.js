@@ -143,11 +143,15 @@ const Home = ({ lang }) => {
         <meta name="description" content={homeSEO.description} />
         <meta name="keywords" content={homeSEO.keywords} />
         <link rel="canonical" href={homeSEO.canonical} />
-        <meta property="og:title" content="Bua Luang Thai Spa Beograd" />
-        <meta property="og:description" content="Thai masaže i luksuzni SPA tretmani. Online rezervacije i poklon vaučeri." />
+        <meta property="og:title" content={language === 'en' || lang === 'en' ? "Bua Luang Thai Spa Belgrade" : "Bua Luang Thai Spa Beograd"} />
+        <meta property="og:description" content={language === 'en' || lang === 'en' ? "Thai massages & luxury SPA treatments. Online booking and gift vouchers." : "Thai masaže i luksuzni SPA tretmani. Online rezervacije i poklon vaučeri."} />
         <meta property="og:image" content={homeSEO.ogImage} />
         <meta property="og:url" content={homeSEO.canonical} />
         <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="alternate" href="https://www.bualuangthaispa.rs/" hreflang="sr-RS" />
+        <link rel="alternate" href="https://www.bualuangthaispa.rs/en" hreflang="en" />
+        <link rel="alternate" href="https://www.bualuangthaispa.rs/" hreflang="x-default" />
       </Helmet>
       
       {/* Fixed Video Background - No overlay filter */}
