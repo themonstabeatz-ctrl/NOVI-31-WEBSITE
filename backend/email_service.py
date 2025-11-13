@@ -419,8 +419,9 @@ def create_html_email_template(
             }}
             .greeting {{
                 font-size: 11px;
-                color: #333333;
+                color: #d4af37;
                 margin-bottom: 8px;
+                font-weight: bold;
             }}
             .details-box {{
                 background: rgba(250, 250, 250, 0.95);
