@@ -624,9 +624,9 @@ def send_reminder_email(
                     background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/lve6klzv_podloga.jpg');
                     background-size: cover;
                     background-position: center;
-                    padding: 30px 20px;
+                    padding: 15px 10px;
                     text-align: center;
-                    border-bottom: 3px solid #d4af37;
+                    border-bottom: 2px solid #d4af37;
                     position: relative;
                 }}
                 .header::before {{
