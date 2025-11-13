@@ -727,12 +727,12 @@ def send_reminder_email(
                 }}
                 .contact-info {{
                     text-align: center;
-                    padding: 15px;
-                    font-size: 10px;
+                    padding: 8px;
+                    font-size: 6px;
                     color: #c9a961;
                     border-top: 1px solid rgba(212, 175, 55, 0.3);
-                    margin-top: 15px;
-                    line-height: 1.4;
+                    margin-top: 8px;
+                    line-height: 1.2;
                 }}
                 .contact-info a {{
                     color: #d4af37;
@@ -741,18 +741,18 @@ def send_reminder_email(
                 }}
                 .footer {{
                     background: #0a0a0a;
-                    padding: 12px;
+                    padding: 6px;
                     text-align: center;
-                    border-top: 2px solid #d4af37;
+                    border-top: 1px solid #d4af37;
                     color: #d4af37;
-                    font-size: 10px;
+                    font-size: 6px;
                     font-style: italic;
-                    line-height: 1.3;
+                    line-height: 1.2;
                 }}
                 .divider {{
                     height: 1px;
                     background: linear-gradient(to right, transparent, #d4af37, transparent);
-                    margin: 12px 0;
+                    margin: 6px 0;
                 }}
                 @media only screen and (max-width: 600px) {{
                     .email-container {{
