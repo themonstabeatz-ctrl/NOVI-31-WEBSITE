@@ -585,7 +585,7 @@ def send_reminder_email(
     appointment_datetime: str,
     language: str = 'sr'
 ) -> bool:
-    """Send appointment reminder email with beautiful HTML"""
+    """Send appointment reminder email with beautiful HTML - Bua Luang Style"""
     try:
         # Get template for language (default to Serbian if not found)
         template = EMAIL_TEMPLATES.get(language, EMAIL_TEMPLATES['sr'])
@@ -597,45 +597,247 @@ def send_reminder_email(
         subject = template['reminder_subject']
         plain_body = f"Podsetnik: {client_name}, vaš tretman danas u {time_str} - {service_name}. Vidite detalje u emailu."
         
-        # Create HTML content for reminder
-        html_content = f"""
-        <p style="font-size: 12px; margin: 10px 0;">
-            Podsećamo Vas da Vaš termin za masažu počinje za oko 2 sata.
-        </p>
-        
-        <p style="font-size: 11px; margin: 8px 0;">
-            Molimo Vas da dođete 5–10 minuta ranije kako bismo sve pripremili na vreme.
-        </p>
-        
-        <p style="font-size: 11px; margin: 8px 0;">
-            U slučaju kašnjenja ili potrebe za odlaganjem, ljubazno nas obavestite.
-        </p>
-        
-        <p style="font-size: 11px; margin: 10px 0;">
-            <strong>Radujemo se Vašoj poseti!</strong>
-        </p>
-        
-        <div class="details-box">
-            <div class="detail-row">
-                <span class="detail-label">💆 Tretman:</span>
-                <span class="detail-value">{service_name}</span>
+        # Create LUXURY HTML content for reminder - Golden text on dark elegant background
+        html_body = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body {{
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Georgia', serif;
+                    background-color: #0a0a0a;
+                }}
+                .email-container {{
+                    max-width: 600px;
+                    margin: 20px auto;
+                    background: linear-gradient(135deg, #1a1506 0%, #2d2410 100%);
+                    border: 2px solid #d4af37;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+                }}
+                .header {{
+                    background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/lve6klzv_podloga.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    padding: 30px 20px;
+                    text-align: center;
+                    border-bottom: 3px solid #d4af37;
+                    position: relative;
+                }}
+                .header::before {{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(10, 10, 10, 0.85);
+                    z-index: 1;
+                }}
+                .header-content {{
+                    position: relative;
+                    z-index: 2;
+                }}
+                .logo {{
+                    width: 80px;
+                    height: auto;
+                    margin-bottom: 10px;
+                    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.6));
+                }}
+                .header-title {{
+                    color: #d4af37;
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin: 10px 0;
+                    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+                    letter-spacing: 1px;
+                }}
+                .header-subtitle {{
+                    color: #c9a961;
+                    font-size: 14px;
+                    margin: 5px 0;
+                    font-style: italic;
+                }}
+                .content {{
+                    padding: 40px 30px;
+                    background: linear-gradient(to bottom, #1a1506 0%, #0f0f0a 100%);
+                    position: relative;
+                }}
+                .greeting {{
+                    font-size: 18px;
+                    color: #d4af37;
+                    margin-bottom: 20px;
+                    font-weight: bold;
+                    text-align: center;
+                    text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
+                }}
+                .message {{
+                    color: #e6d5b8;
+                    font-size: 15px;
+                    line-height: 1.8;
+                    margin: 15px 0;
+                    text-align: center;
+                }}
+                .highlight {{
+                    color: #d4af37;
+                    font-weight: bold;
+                }}
+                .details-box {{
+                    background: rgba(212, 175, 55, 0.1);
+                    border: 2px solid #d4af37;
+                    border-radius: 8px;
+                    padding: 25px;
+                    margin: 30px 0;
+                    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+                }}
+                .detail-row {{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 12px 0;
+                    padding: 12px 0;
+                    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+                }}
+                .detail-row:last-child {{
+                    border-bottom: none;
+                }}
+                .detail-label {{
+                    color: #c9a961;
+                    font-weight: 600;
+                    font-size: 14px;
+                }}
+                .detail-value {{
+                    color: #d4af37;
+                    text-align: right;
+                    font-size: 15px;
+                    font-weight: bold;
+                }}
+                .closing {{
+                    color: #d4af37;
+                    font-size: 16px;
+                    text-align: center;
+                    margin-top: 25px;
+                    font-weight: bold;
+                    text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
+                }}
+                .contact-info {{
+                    text-align: center;
+                    padding: 20px;
+                    font-size: 13px;
+                    color: #c9a961;
+                    border-top: 1px solid rgba(212, 175, 55, 0.3);
+                    margin-top: 20px;
+                }}
+                .contact-info a {{
+                    color: #d4af37;
+                    text-decoration: none;
+                    font-weight: bold;
+                }}
+                .footer {{
+                    background: #0a0a0a;
+                    padding: 20px;
+                    text-align: center;
+                    border-top: 2px solid #d4af37;
+                    color: #d4af37;
+                    font-size: 12px;
+                    font-style: italic;
+                }}
+                .divider {{
+                    height: 2px;
+                    background: linear-gradient(to right, transparent, #d4af37, transparent);
+                    margin: 20px 0;
+                }}
+                @media only screen and (max-width: 600px) {{
+                    .email-container {{
+                        margin: 0;
+                        border-radius: 0;
+                    }}
+                    .content {{
+                        padding: 30px 20px;
+                    }}
+                    .detail-row {{
+                        flex-direction: column;
+                        text-align: center;
+                    }}
+                    .detail-value {{
+                        text-align: center;
+                        margin-top: 5px;
+                    }}
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="email-container">
+                <div class="header">
+                    <div class="header-content">
+                        <img src="https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/4ws5rkri_Bua%20luang%20logo.png" alt="Logo" class="logo">
+                        <div class="header-title">⏰ Podsetnik za Vaš Termin</div>
+                        <div class="header-subtitle">Bua Luang Thai Spa</div>
+                    </div>
+                </div>
+                
+                <div class="content">
+                    <div class="greeting">Poštovani/a {client_name},</div>
+                    
+                    <div class="divider"></div>
+                    
+                    <p class="message">
+                        Podsećamo Vas da Vaš termin za masažu počinje <span class="highlight">za oko 2 sata</span>.
+                    </p>
+                    
+                    <p class="message">
+                        Molimo Vas da dođete <span class="highlight">5–10 minuta ranije</span> kako bismo sve pripremili na vreme.
+                    </p>
+                    
+                    <p class="message">
+                        U slučaju kašnjenja ili potrebe za odlaganjem, ljubazno nas obavestite.
+                    </p>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="details-box">
+                        <div class="detail-row">
+                            <span class="detail-label">💆 Tretman</span>
+                            <span class="detail-value">{service_name}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">📅 Datum</span>
+                            <span class="detail-value">{date_str}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">🕐 Vreme</span>
+                            <span class="detail-value">{time_str}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">📍 Lokacija</span>
+                            <span class="detail-value">Abebe Bikile 10A, Zemun</span>
+                        </div>
+                    </div>
+                    
+                    <div class="closing">
+                        ✨ Radujemo se Vašoj poseti! ✨
+                    </div>
+                    
+                    <div class="contact-info">
+                        📧 <a href="mailto:bualuangthailandspa@gmail.com">bualuangthailandspa@gmail.com</a><br>
+                        📞 <a href="tel:+381626255500">+381 62 625 500</a><br>
+                        🌸
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    S poštovanjem,<br>
+                    Bua Luang Thai Spa Tim
+                </div>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">📅 Datum:</span>
-                <span class="detail-value">{date_str}</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">🕐 Vreme:</span>
-                <span class="detail-value">{time_str}</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">📍 Lokacija:</span>
-                <span class="detail-value">Abebe Bikile 10A, Zemun</span>
-            </div>
-        </div>
+        </body>
+        </html>
         """
-        
-        html_body = create_html_email_template(client_name, html_content, language)
         
         return send_email(client_email, subject, plain_body, html_body)
         
