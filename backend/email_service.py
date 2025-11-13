@@ -669,18 +669,18 @@ def send_reminder_email(
                     position: relative;
                 }}
                 .greeting {{
-                    font-size: 18px;
+                    font-size: 14px;
                     color: #d4af37;
-                    margin-bottom: 20px;
+                    margin-bottom: 12px;
                     font-weight: bold;
                     text-align: center;
                     text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
                 }}
                 .message {{
                     color: #e6d5b8;
-                    font-size: 15px;
-                    line-height: 1.8;
-                    margin: 15px 0;
+                    font-size: 12px;
+                    line-height: 1.4;
+                    margin: 8px 0;
                     text-align: center;
                 }}
                 .highlight {{
@@ -691,16 +691,16 @@ def send_reminder_email(
                     background: rgba(212, 175, 55, 0.1);
                     border: 2px solid #d4af37;
                     border-radius: 8px;
-                    padding: 25px;
-                    margin: 30px 0;
+                    padding: 15px;
+                    margin: 20px 0;
                     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
                 }}
                 .detail-row {{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin: 12px 0;
-                    padding: 12px 0;
+                    margin: 8px 0;
+                    padding: 8px 0;
                     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
                 }}
                 .detail-row:last-child {{
@@ -709,19 +709,19 @@ def send_reminder_email(
                 .detail-label {{
                     color: #c9a961;
                     font-weight: 600;
-                    font-size: 14px;
+                    font-size: 11px;
                 }}
                 .detail-value {{
                     color: #d4af37;
                     text-align: right;
-                    font-size: 15px;
+                    font-size: 12px;
                     font-weight: bold;
                 }}
                 .closing {{
                     color: #d4af37;
-                    font-size: 16px;
+                    font-size: 13px;
                     text-align: center;
-                    margin-top: 25px;
+                    margin-top: 15px;
                     font-weight: bold;
                     text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
                 }}
