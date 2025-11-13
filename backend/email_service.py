@@ -787,15 +787,15 @@ def send_reminder_email(
                     <div class="divider"></div>
                     
                     <p class="message">
-                        Podsećamo Vas da Vaš termin za masažu počinje <span class="highlight">za oko 2 sata</span>.
+                        Podsećamo Vas da Vaš termin za masažu počinje za oko 2 sata.
                     </p>
                     
                     <p class="message">
-                        Molimo Vas da dođete <span class="highlight">5–10 minuta ranije</span> kako bismo sve pripremili na vreme.
+                        Molimo Vas da dođete 5–10 minuta ranije kako bismo sve pripremili na vreme.
                     </p>
                     
                     <p class="message">
-                        U slučaju kašnjenja ili potrebe za odlaganjem, ljubazno nas obavestite.
+                        U slučaju kašnjenja ili potrebe za odlaganjem molimo vas obavestite nas.
                     </p>
                     
                     <div class="divider"></div>
