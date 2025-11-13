@@ -599,8 +599,20 @@ def send_reminder_email(
         
         # Create HTML content for reminder
         html_content = f"""
-        <p style="font-size: 11px; color: #d4af37; margin: 0 0 6px 0; text-align: center;">
-            <strong>⏰ Podsetnik: Vaš tretman danas!</strong>
+        <p style="font-size: 12px; margin: 10px 0;">
+            Podsećamo Vas da Vaš termin za masažu počinje za oko 2 sata.
+        </p>
+        
+        <p style="font-size: 11px; margin: 8px 0;">
+            Molimo Vas da dođete 5–10 minuta ranije kako bismo sve pripremili na vreme.
+        </p>
+        
+        <p style="font-size: 11px; margin: 8px 0;">
+            U slučaju kašnjenja ili potrebe za odlaganjem, ljubazno nas obavestite.
+        </p>
+        
+        <p style="font-size: 11px; margin: 10px 0;">
+            <strong>Radujemo se Vašoj poseti!</strong>
         </p>
         
         <div class="details-box">
@@ -609,17 +621,17 @@ def send_reminder_email(
                 <span class="detail-value">{service_name}</span>
             </div>
             <div class="detail-row">
+                <span class="detail-label">📅 Datum:</span>
+                <span class="detail-value">{date_str}</span>
+            </div>
+            <div class="detail-row">
                 <span class="detail-label">🕐 Vreme:</span>
                 <span class="detail-value">{time_str}</span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">📍 Lokacija:</span>
-                <span class="detail-value">Abebe Bikile 10A</span>
+                <span class="detail-value">Abebe Bikile 10A, Zemun</span>
             </div>
-        </div>
-        
-        <div class="info-text" style="text-align: center;">
-            <strong>Stignite 10 minuta pre termina</strong>
         </div>
         """
         
