@@ -30,7 +30,7 @@ EMAIL_FROM_NAME = os.getenv('EMAIL_FROM_NAME', 'Bua Luang Thai Spa')
 EMAIL_TEMPLATES = {
     'sr': {
         'confirmation_subject': 'Potvrda rezervacije - Bua Luang Thai Spa',
-        'reminder_subject': 'Podsetnik: Vaš tretman danas - Bua Luang Thai Spa',
+        'reminder_subject': 'Podsetnik za Vaš termin - Bua Luang Thai Spa',
         'confirmation_body': """
 Poštovani/a {client_name},
 
