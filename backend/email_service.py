@@ -644,10 +644,10 @@ def send_reminder_email(
                     z-index: 2;
                 }}
                 .logo {{
-                    width: 80px;
+                    width: 40px;
                     height: auto;
-                    margin-bottom: 10px;
-                    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.6));
+                    margin-bottom: 5px;
+                    filter: drop-shadow(0 1px 4px rgba(212, 175, 55, 0.6));
                 }}
                 .header-title {{
                     color: #d4af37;
