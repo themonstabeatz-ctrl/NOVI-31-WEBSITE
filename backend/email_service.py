@@ -651,16 +651,16 @@ def send_reminder_email(
                 }}
                 .header-title {{
                     color: #d4af37;
-                    font-size: 24px;
+                    font-size: 18px;
                     font-weight: bold;
-                    margin: 10px 0;
+                    margin: 8px 0;
                     text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
                     letter-spacing: 1px;
                 }}
                 .header-subtitle {{
                     color: #c9a961;
-                    font-size: 14px;
-                    margin: 5px 0;
+                    font-size: 11px;
+                    margin: 4px 0;
                     font-style: italic;
                 }}
                 .content {{
