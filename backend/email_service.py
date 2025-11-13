@@ -750,9 +750,9 @@ def send_reminder_email(
                     line-height: 1.3;
                 }}
                 .divider {{
-                    height: 2px;
+                    height: 1px;
                     background: linear-gradient(to right, transparent, #d4af37, transparent);
-                    margin: 20px 0;
+                    margin: 12px 0;
                 }}
                 @media only screen and (max-width: 600px) {{
                     .email-container {{
