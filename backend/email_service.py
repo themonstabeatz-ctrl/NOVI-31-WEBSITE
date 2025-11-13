@@ -669,18 +669,18 @@ def send_reminder_email(
                     position: relative;
                 }}
                 .greeting {{
-                    font-size: 14px;
+                    font-size: 8px;
                     color: #d4af37;
-                    margin-bottom: 12px;
+                    margin-bottom: 6px;
                     font-weight: bold;
                     text-align: center;
                     text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
                 }}
                 .message {{
                     color: #e6d5b8;
-                    font-size: 12px;
-                    line-height: 1.4;
-                    margin: 8px 0;
+                    font-size: 7px;
+                    line-height: 1.2;
+                    margin: 4px 0;
                     text-align: center;
                 }}
                 .highlight {{
@@ -689,18 +689,18 @@ def send_reminder_email(
                 }}
                 .details-box {{
                     background: rgba(212, 175, 55, 0.1);
-                    border: 2px solid #d4af37;
-                    border-radius: 8px;
-                    padding: 15px;
-                    margin: 20px 0;
-                    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+                    border: 1px solid #d4af37;
+                    border-radius: 6px;
+                    padding: 8px;
+                    margin: 10px 0;
+                    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
                 }}
                 .detail-row {{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin: 8px 0;
-                    padding: 8px 0;
+                    margin: 4px 0;
+                    padding: 4px 0;
                     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
                 }}
                 .detail-row:last-child {{
@@ -709,19 +709,19 @@ def send_reminder_email(
                 .detail-label {{
                     color: #c9a961;
                     font-weight: 600;
-                    font-size: 11px;
+                    font-size: 7px;
                 }}
                 .detail-value {{
                     color: #d4af37;
                     text-align: right;
-                    font-size: 12px;
+                    font-size: 7px;
                     font-weight: bold;
                 }}
                 .closing {{
                     color: #d4af37;
-                    font-size: 13px;
+                    font-size: 8px;
                     text-align: center;
-                    margin-top: 15px;
+                    margin-top: 8px;
                     font-weight: bold;
                     text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
                 }}
