@@ -664,7 +664,7 @@ def send_reminder_email(
                     font-style: italic;
                 }}
                 .content {{
-                    padding: 40px 30px;
+                    padding: 25px 20px;
                     background: linear-gradient(to bottom, #1a1506 0%, #0f0f0a 100%);
                     position: relative;
                 }}
