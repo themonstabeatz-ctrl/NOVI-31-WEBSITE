@@ -306,6 +306,18 @@ frontend:
         agent: "main"
         comment: "User requested desktop view on mobile devices (not responsive mobile layout). Changed viewport meta tag from responsive 'width=device-width' to fixed 'width=1200, initial-scale=0.3' to display full desktop layout on mobile. Mobile responsiveness issues no longer applicable as site now shows desktop view on all devices. Users can zoom and pan to navigate the desktop layout on mobile devices."
 
+  - task: "ZAKAŽITE buttons for 4 specific massage cards"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Massage.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "🎉 ALL REVIEW REQUEST OBJECTIVES ACHIEVED! ✅ COMPREHENSIVE TESTING COMPLETED: Tested all 4 specified massage cards (Aroma duboko tkivo, Aromaterapija & topli kamen, Aroma sa toplim biljnim kompresama, Thai masaža sa toplim biljnim kompresama). All cards found with working ZAKAŽITE buttons that correctly navigate to /contact page with proper service parameters. Duration selection buttons (60/90/120 min) working correctly with golden styling. Service parameters properly URL-encoded and passed to contact page. Backend integration working (35 services loaded). Success rate: 100% (4/4 tests passed). All massage cards have .massage-card class as expected. Navigation via MASAŽE menu working correctly. Cards visible at 3500px scroll position as specified in review request."
+
 backend:
   - task: "No backend"
     implemented: false
