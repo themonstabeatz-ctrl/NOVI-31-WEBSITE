@@ -211,7 +211,11 @@ const Massage = () => {
     'royal': 'Glava, vrat, ramena i leđa',
     'foot': 'Masaža stopala',
     'couple': 'Masaža za parove',
-    'sports': 'Sportska masaža'
+    'sports': 'Sportska masaža',
+    'aromaDeepTissue': 'Aroma duboko tkivo',
+    'aromaHotStone': 'Aromaterapija & topli kamen',
+    'aromaThaiHerbal': 'Aroma sa toplim biljnim kompresama',
+    'thaiHerbal': 'Thai masaža sa toplim biljnim kompresama'
   };
 
   // Get discount badge image based on service discount
