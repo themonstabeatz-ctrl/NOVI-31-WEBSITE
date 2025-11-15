@@ -383,7 +383,7 @@ const Contact = () => {
       }
       
       // Get service UUID from dynamically loaded mapping (skip for couples - they use different endpoint)
-      const isCouplesBooking = couplesData && serviceName.includes('Masaža za parove');
+      const isCouplesBooking = couplesData && isCouplesMassage(serviceName);
       const serviceId = isCouplesBooking ? null : serviceMapping[serviceLookupName];
       
       console.log('🔍 Service lookup:', {
