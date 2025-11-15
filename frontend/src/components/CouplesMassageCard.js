@@ -35,7 +35,11 @@ const CouplesMassageCard = ({
       'Aroma terapija': 'massageAromaTherapy',
       'Masaža toplim uljem': 'massageHotOil',
       'Glava, vrat, ramena i leđa': 'massageHeadNeckShoulders',
-      'Masaža stopala': 'massageFoot'
+      'Masaža stopala': 'massageFoot',
+      'Aroma duboko tkivo': 'massageAromaDeepTissue',
+      'Aromaterapija & topli kamen': 'massageAromaHotStone',
+      'Aroma sa toplim biljnim kompresama': 'massageAromaThaiHerbal',
+      'Thai masaža sa toplim biljnim kompresama': 'massageThaiHerbal'
     };
     return nameMap[massageName] || massageName;
   };
