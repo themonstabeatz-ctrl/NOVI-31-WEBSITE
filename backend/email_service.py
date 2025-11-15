@@ -389,15 +389,15 @@ def create_html_email_template(
             }}
             .header-title {{
                 color: #d4af37;
-                font-size: 12px;
+                font-size: 10px;
                 font-weight: bold;
                 margin: 0;
             }}
             .content {{
-                padding: 15px;
+                padding: 12px;
                 color: #333333;
-                line-height: 1.4;
-                font-size: 11px;
+                line-height: 1.3;
+                font-size: 9px;
                 background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/6qmohhxk_gridijent%20background.jpg');
                 background-size: cover;
                 background-position: center;
