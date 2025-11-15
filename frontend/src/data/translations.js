@@ -597,6 +597,13 @@ export const translations = {
     clickHere: "Click here...",
     noAvailableMassages: "No available massages",
     
+    // Contact form booking messages
+    youSelected: "You selected",
+    couplesMassageBooking: "Couples Massage - Total duration",
+    originalPrice: "Original price",
+    priceWithDiscount: "Discounted price",
+    discount: "Discount",
+    
     // Massage Names (for dropdowns)
     massageTraditionalThai: "Traditional Thai Massage",
     massageAromaTherapy: "Aroma Therapy",
