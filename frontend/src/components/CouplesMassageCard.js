@@ -475,7 +475,7 @@ const CouplesMassageCard = ({
                 }}
               >
                 <span>
-                  {loading ? "Učitavanje..." : (
+                  {loading ? translate('loading') : (
                     couplesSelections.person1Massage1 ? (
                       couplesSelections.person1Massage2 ? (
                         // Two 60-min massages selected
@@ -484,7 +484,7 @@ const CouplesMassageCard = ({
                         // Single massage selected
                         `${translate(getMassageTranslationKey(couplesSelections.person1Massage1.name))} (${couplesSelections.person1Massage1.duration} min)`
                       )
-                    ) : (availableMassages.length > 0 ? "Klikni ovde..." : "Nema dostupnih masaža")
+                    ) : (availableMassages.length > 0 ? translate('clickHere') : translate('noAvailableMassages'))
                   )}
                 </span>
                 <ChevronDown className="w-4 h-4" />
