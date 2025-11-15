@@ -450,7 +450,7 @@ const Contact = () => {
           }
         }
         
-        const isCoupleBooking = couplesBookingData && serviceName.includes('Masaža za parove');
+        const isCoupleBooking = couplesBookingData && isCouplesMassage(serviceName);
         
         let appointmentData;
         let bookingEndpoint;
