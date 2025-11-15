@@ -1359,6 +1359,10 @@ export const translations = {
     bookNowBtn: "จองเลย",
     couplesMassageSimpleDesc: "นวดแผนไทยดั้งเดิมสำหรับสองคน - 60 นาทีต่อคน",
     totalDuration: "รวม",
+    loadingMassages: "กำลังโหลดการนวด...",
+    loading: "กำลังโหลด...",
+    clickHere: "คลิกที่นี่...",
+    noAvailableMassages: "ไม่มีการนวดที่พร้อมให้บริการ",
     
     // Massage Names (for dropdowns)
     massageTraditionalThai: "นวดแผนไทยดั้งเดิม",
