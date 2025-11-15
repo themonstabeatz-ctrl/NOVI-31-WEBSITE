@@ -638,6 +638,8 @@ def send_reminder_email(
 ) -> bool:
     """Send appointment reminder email with beautiful HTML - Bua Luang Style"""
     try:
+        logger.info(f"📧 Sending REMINDER email to {client_email} in language: {language}")
+        
         # Get template for language (default to Serbian if not found)
         template = EMAIL_TEMPLATES.get(language, EMAIL_TEMPLATES['sr'])
         
