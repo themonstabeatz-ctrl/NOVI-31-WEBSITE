@@ -30,6 +30,9 @@ const CouplesMassageCard = ({
   
   // Map massage names to translation keys
   const getMassageTranslationKey = (massageName) => {
+    // Remove [PAROVI] prefix if present
+    const cleanName = massageName.replace(/^\[PAROVI\]\s*/, '');
+    
     const nameMap = {
       'Tradicionalna tajlandska masaža': 'massageTraditionalThai',
       'Aroma terapija': 'massageAromaTherapy',
@@ -41,7 +44,7 @@ const CouplesMassageCard = ({
       'Aroma sa toplim biljnim kompresama': 'massageAromaThaiHerbal',
       'Thai masaža sa toplim biljnim kompresama': 'massageThaiHerbal'
     };
-    return nameMap[massageName] || massageName;
+    return nameMap[cleanName] || cleanName;
   };
   
   React.useEffect(() => {
