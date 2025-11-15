@@ -127,7 +127,9 @@ const Contact = () => {
     const couplesData = searchParams.get('couplesData');
     
     if (service) {
-      let message = `${translate('youSelected')} ${service}`;
+      // Translate the service name
+      const translatedService = translateMassageName(service);
+      let message = `${translate('youSelected')} ${translatedService}`;
       
       console.log('🔍 Contact page - service:', service);
       console.log('🔍 Contact page - couplesData param:', couplesData);
@@ -151,17 +153,21 @@ const Contact = () => {
           message = `${translate('couplesMassageBooking')}: ${displayDuration} min\n\n`;
           message += `${translate('person1')}:\n`;
           if (data.person1.massage1) {
-            message += `  • ${data.person1.massage1.name} (${data.person1.massage1.duration} min)\n`;
+            const translatedMassage1 = translateMassageName(data.person1.massage1.name);
+            message += `  • ${translatedMassage1} (${data.person1.massage1.duration} min)\n`;
           }
           if (data.person1.massage2) {
-            message += `  • ${data.person1.massage2.name} (${data.person1.massage2.duration} min)\n`;
+            const translatedMassage2 = translateMassageName(data.person1.massage2.name);
+            message += `  • ${translatedMassage2} (${data.person1.massage2.duration} min)\n`;
           }
           message += `\n${translate('person2')}:\n`;
           if (data.person2.massage1) {
-            message += `  • ${data.person2.massage1.name} (${data.person2.massage1.duration} min)\n`;
+            const translatedMassage1 = translateMassageName(data.person2.massage1.name);
+            message += `  • ${translatedMassage1} (${data.person2.massage1.duration} min)\n`;
           }
           if (data.person2.massage2) {
-            message += `  • ${data.person2.massage2.name} (${data.person2.massage2.duration} min)\n`;
+            const translatedMassage2 = translateMassageName(data.person2.massage2.name);
+            message += `  • ${translatedMassage2} (${data.person2.massage2.duration} min)\n`;
           }
           message += `\n${translate('discount')}: ${data.discount}\n`;
           message += `${translate('originalPrice')}: ${data.originalPrice.toLocaleString()} RSD\n`;
