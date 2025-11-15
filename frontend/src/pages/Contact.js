@@ -97,7 +97,7 @@ const Contact = () => {
     const couplesData = searchParams.get('couplesData');
     
     if (service) {
-      let message = `Izabrali ste ${service}`;
+      let message = `${translate('youSelected')} ${service}`;
       
       console.log('🔍 Contact page - service:', service);
       console.log('🔍 Contact page - couplesData param:', couplesData);
@@ -118,24 +118,24 @@ const Contact = () => {
           
           // Use totalDuration (sum of all massages)
           const displayDuration = data.totalDuration || data.duration;
-          message = `Masaža za parove - Ukupno trajanje: ${displayDuration} min\n\n`;
-          message += `Osoba 1:\n`;
+          message = `${translate('couplesMassageBooking')}: ${displayDuration} min\n\n`;
+          message += `${translate('person1')}:\n`;
           if (data.person1.massage1) {
             message += `  • ${data.person1.massage1.name} (${data.person1.massage1.duration} min)\n`;
           }
           if (data.person1.massage2) {
             message += `  • ${data.person1.massage2.name} (${data.person1.massage2.duration} min)\n`;
           }
-          message += `\nOsoba 2:\n`;
+          message += `\n${translate('person2')}:\n`;
           if (data.person2.massage1) {
             message += `  • ${data.person2.massage1.name} (${data.person2.massage1.duration} min)\n`;
           }
           if (data.person2.massage2) {
             message += `  • ${data.person2.massage2.name} (${data.person2.massage2.duration} min)\n`;
           }
-          message += `\nPopust: ${data.discount}\n`;
-          message += `Originalna cena: ${data.originalPrice.toLocaleString()} RSD\n`;
-          message += `Cena sa popustom: ${data.totalPrice.toLocaleString()} RSD`;
+          message += `\n${translate('discount')}: ${data.discount}\n`;
+          message += `${translate('originalPrice')}: ${data.originalPrice.toLocaleString()} RSD\n`;
+          message += `${translate('priceWithDiscount')}: ${data.totalPrice.toLocaleString()} RSD`;
           
           console.log('📝 Final message:', message);
         } catch (e) {
