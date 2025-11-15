@@ -840,51 +840,51 @@ def send_reminder_email(
                 <div class="header">
                     <div class="header-content">
                         <img src="https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/4ws5rkri_Bua%20luang%20logo.png" alt="Logo" class="logo">
-                        <div class="header-title">⏰ Podsetnik za Vaš Termin</div>
+                        <div class="header-title">{content['title']}</div>
                         <div class="header-subtitle">Bua Luang Thai Spa</div>
                     </div>
                 </div>
                 
                 <div class="content">
-                    <div class="greeting">Poštovani/a {client_name},</div>
+                    <div class="greeting">{content['greeting']}</div>
                     
                     <div class="divider"></div>
                     
                     <p class="message">
-                        Podsećamo Vas da Vaš termin za masažu počinje za oko 2 sata.
+                        {content['message1']}
                     </p>
                     
                     <p class="message">
-                        Molimo Vas da dođete 5–10 minuta ranije kako bismo sve pripremili na vreme.
+                        {content['message2']}
                     </p>
                     
                     <p class="message">
-                        U slučaju kašnjenja ili potrebe za odlaganjem molimo vas obavestite nas.
+                        {content['message3']}
                     </p>
                     
                     <div class="divider"></div>
                     
                     <div class="details-box">
                         <div class="detail-row">
-                            <span class="detail-label">💆 Tretman</span>
+                            <span class="detail-label">{content['treatment']}</span>
                             <span class="detail-value">{service_name}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">📅 Datum</span>
+                            <span class="detail-label">{content['date']}</span>
                             <span class="detail-value">{date_str}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">🕐 Vreme</span>
+                            <span class="detail-label">{content['time']}</span>
                             <span class="detail-value">{time_str}</span>
                         </div>
                         <div class="detail-row">
-                            <span class="detail-label">📍 Lokacija</span>
-                            <span class="detail-value">Abebe Bikile 10A, Zemun</span>
+                            <span class="detail-label">{content['location_label']}</span>
+                            <span class="detail-value">{content['location_value']}</span>
                         </div>
                     </div>
                     
                     <div class="closing">
-                        ✨ Radujemo se Vašoj poseti! ✨
+                        {content['closing']}
                     </div>
                     
                     <div class="contact-info">
@@ -895,8 +895,7 @@ def send_reminder_email(
                 </div>
                 
                 <div class="footer">
-                    S poštovanjem,<br>
-                    Bua Luang Thai Spa Tim
+                    {content['regards']}
                 </div>
             </div>
         </body>
