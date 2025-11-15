@@ -98,6 +98,13 @@ export const translations = {
     clickHere: "Klikni ovde...",
     noAvailableMassages: "Nema dostupnih masaža",
     
+    // Contact form booking messages
+    youSelected: "Izabrali ste",
+    couplesMassageBooking: "Masaža za parove - Ukupno trajanje",
+    originalPrice: "Originalna cena",
+    priceWithDiscount: "Cena sa popustom",
+    discount: "Popust",
+    
     // Massage Names (for dropdowns)
     massageTraditionalThai: "Tradicionalna tajlandska masaža",
     massageAromaTherapy: "Aroma terapija",
