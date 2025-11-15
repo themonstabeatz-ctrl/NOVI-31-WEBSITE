@@ -593,9 +593,71 @@ def send_reminder_email(
         # Format date and time
         date_str, time_str = format_date_time(appointment_datetime, language)
         
+        # Multilingual content
+        translations = {
+            'sr': {
+                'title': '⏰ Podsetnik za Vaš Termin',
+                'greeting': f'Poštovani/a {client_name},',
+                'message1': 'Podsećamo Vas da Vaš termin za masažu počinje za oko 2 sata.',
+                'message2': 'Molimo Vas da dođete 5–10 minuta ranije kako bismo sve pripremili na vreme.',
+                'message3': 'U slučaju kašnjenja ili potrebe za odlaganjem molimo vas obavestite nas.',
+                'treatment': '💆 Tretman',
+                'date': '📅 Datum',
+                'time': '🕐 Vreme',
+                'location_label': '📍 Lokacija',
+                'location_value': 'Abebe Bikile 10A, Zemun',
+                'closing': '✨ Radujemo se Vašoj poseti! ✨',
+                'regards': 'S poštovanjem,<br>Bua Luang Thai Spa Tim'
+            },
+            'en': {
+                'title': '⏰ Reminder: Your Treatment Today',
+                'greeting': f'Dear {client_name},',
+                'message1': 'This is a reminder that your massage treatment starts in approximately 2 hours.',
+                'message2': 'Please arrive 5–10 minutes early so we can prepare everything on time.',
+                'message3': 'In case of delay or need to reschedule, please let us know.',
+                'treatment': '💆 Treatment',
+                'date': '📅 Date',
+                'time': '🕐 Time',
+                'location_label': '📍 Location',
+                'location_value': 'Abebe Bikile 10A, Zemun',
+                'closing': '✨ We look forward to seeing you! ✨',
+                'regards': 'Best regards,<br>Bua Luang Thai Spa Team'
+            },
+            'ru': {
+                'title': '⏰ Напоминание о Вашем Сеансе',
+                'greeting': f'Уважаемый/ая {client_name},',
+                'message1': 'Напоминаем, что Ваш сеанс массажа начинается примерно через 2 часа.',
+                'message2': 'Пожалуйста, приходите на 5–10 минут раньше, чтобы мы могли все подготовить вовремя.',
+                'message3': 'В случае задержки или необходимости переноса, пожалуйста, сообщите нам.',
+                'treatment': '💆 Процедура',
+                'date': '📅 Дата',
+                'time': '🕐 Время',
+                'location_label': '📍 Адрес',
+                'location_value': 'Abebe Bikile 10A, Земун',
+                'closing': '✨ Ждем Вас с нетерпением! ✨',
+                'regards': 'С уважением,<br>Команда Bua Luang Thai Spa'
+            },
+            'th': {
+                'title': '⏰ เตือนความจำ: การนัดหมายของคุณวันนี้',
+                'greeting': f'เรียนคุณ {client_name},',
+                'message1': 'นี่คือการเตือนความจำว่าการนวดของคุณจะเริ่มในอีกประมาณ 2 ชั่วโมง',
+                'message2': 'กรุณามาถึงก่อนเวลา 5-10 นาทีเพื่อให้เราได้เตรียมทุกอย่างทันเวลา',
+                'message3': 'หากล่าช้าหรือต้องการเลื่อนนัด กรุณาแจ้งให้เราทราบ',
+                'treatment': '💆 การรักษา',
+                'date': '📅 วันที่',
+                'time': '🕐 เวลา',
+                'location_label': '📍 สถานที่',
+                'location_value': 'Abebe Bikile 10A, Zemun',
+                'closing': '✨ เรารอคอยที่จะพบคุณ! ✨',
+                'regards': 'ด้วยความนับถือ<br>ทีม Bua Luang Thai Spa'
+            }
+        }
+        
+        content = translations.get(language, translations['sr'])
+        
         # SHORT plain text for email preview only
         subject = template['reminder_subject']
-        plain_body = f"Podsetnik: {client_name}, vaš tretman danas u {time_str} - {service_name}. Vidite detalje u emailu."
+        plain_body = f"{content['title']}: {client_name}, {time_str} - {service_name}."
         
         # Create LUXURY HTML content for reminder - Golden text on dark elegant background
         html_body = f"""
