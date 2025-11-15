@@ -430,7 +430,7 @@ const Contact = () => {
         
         // Check if this is a couple booking and get couples data
         let couplesBookingData = null;
-        if (serviceName.includes('Masaža za parove')) {
+        if (isCouplesMassage(serviceName)) {
           // Try localStorage first
           const storedData = localStorage.getItem('couplesBookingData');
           if (storedData) {
