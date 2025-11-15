@@ -403,6 +403,7 @@ test_plan:
   test_priority: "high_first"
   completed_tests:
     - "ZAKAŽITE buttons for 4 specific massage cards - ALL WORKING"
+    - "Massage name translations in Contact form message field - MOSTLY WORKING"
 
 agent_communication:
   - agent: "main"
