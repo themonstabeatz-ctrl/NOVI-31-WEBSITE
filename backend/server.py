@@ -195,7 +195,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
     """
     try:
         # Log the booking data for debugging
-        logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Service Name: {booking.service_name}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}")
+        logger.info(f"📌 BOOKING REQUEST - Service ID: {booking.service_id}, Service Name: {booking.service_name}, Client: {booking.client_first_name} {booking.client_last_name}, Time: {booking.start_time}, Language: {booking.language}")
         
         # Special handling for "Masaža za parove" - calculate total duration from notes
         is_couples_massage = "Masaža za parove" in (booking.service_name or "")
