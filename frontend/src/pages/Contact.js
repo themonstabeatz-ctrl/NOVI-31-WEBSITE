@@ -343,12 +343,12 @@ const Contact = () => {
       
       // serviceName and queryParams already defined in validation above - no need to redeclare
       
-      // Special handling for "Masaža za parove" - use original duration for service_id lookup
+      // Special handling for couples massage - use original duration for service_id lookup
       let serviceLookupName = serviceName;
       let couplesData = null;
       
       // Try to get couples data from localStorage first, then fall back to URL param
-      if (serviceName.includes('Masaža za parove')) {
+      if (isCouplesMassage(serviceName)) {
         try {
           const storedData = localStorage.getItem('couplesBookingData');
           if (storedData) {
