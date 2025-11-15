@@ -418,25 +418,25 @@ def create_html_email_template(
                 z-index: 2;
             }}
             .greeting {{
-                font-size: 11px;
+                font-size: 9px;
                 color: #d4af37;
-                margin-bottom: 8px;
+                margin-bottom: 6px;
                 font-weight: bold;
             }}
             .details-box {{
                 background: rgba(250, 250, 250, 0.95);
                 border: 1px solid #e0e0e0;
                 border-radius: 4px;
-                padding: 8px;
-                margin: 8px 0;
+                padding: 6px;
+                margin: 6px 0;
             }}
             .detail-row {{
                 display: flex;
                 justify-content: space-between;
-                margin: 4px 0;
-                padding: 3px 0;
+                margin: 3px 0;
+                padding: 2px 0;
                 border-bottom: 1px solid #f0f0f0;
-                font-size: 10px;
+                font-size: 8px;
             }}
             .detail-row:last-child {{
                 border-bottom: none;
@@ -452,15 +452,15 @@ def create_html_email_template(
             .info-text {{
                 background: rgba(255, 254, 248, 0.95);
                 border-left: 2px solid #d4af37;
-                padding: 6px;
-                margin: 8px 0;
-                font-size: 10px;
+                padding: 5px;
+                margin: 6px 0;
+                font-size: 8px;
                 color: #555555;
             }}
             .contact-info {{
                 text-align: center;
-                padding: 8px;
-                font-size: 10px;
+                padding: 6px;
+                font-size: 8px;
                 color: #666666;
             }}
             .contact-info a {{
@@ -469,11 +469,11 @@ def create_html_email_template(
             }}
             .footer {{
                 background: #1a1506;
-                padding: 8px;
+                padding: 6px;
                 text-align: center;
                 border-top: 2px solid #d4af37;
                 color: #d4af37;
-                font-size: 10px;
+                font-size: 8px;
             }}
             @media only screen and (max-width: 500px) {{
                 .email-container {{
