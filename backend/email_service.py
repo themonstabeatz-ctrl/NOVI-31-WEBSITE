@@ -532,6 +532,8 @@ def send_confirmation_email(
 ) -> bool:
     """Send booking confirmation email with beautiful HTML"""
     try:
+        logger.info(f"📧 Sending CONFIRMATION email to {client_email} in language: {language}")
+        
         # Get template for language (default to Serbian if not found)
         template = EMAIL_TEMPLATES.get(language, EMAIL_TEMPLATES['sr'])
         
