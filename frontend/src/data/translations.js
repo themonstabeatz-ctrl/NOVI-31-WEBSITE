@@ -1385,6 +1385,13 @@ export const translations = {
     clickHere: "คลิกที่นี่...",
     noAvailableMassages: "ไม่มีการนวดที่พร้อมให้บริการ",
     
+    // Contact form booking messages
+    youSelected: "คุณเลือก",
+    couplesMassageBooking: "นวดสำหรับคู่รัก - ระยะเวลารวม",
+    originalPrice: "ราคาเดิม",
+    priceWithDiscount: "ราคาหลังหักส่วนลด",
+    discount: "ส่วนลด",
+    
     // Massage Names (for dropdowns)
     massageTraditionalThai: "นวดแผนไทยดั้งเดิม",
     massageAromaTherapy: "อโรมาเธอราปี",
