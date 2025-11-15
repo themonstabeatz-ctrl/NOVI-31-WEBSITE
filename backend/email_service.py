@@ -331,6 +331,13 @@ def create_html_email_template(
 ) -> str:
     """Create beautiful HTML email template with spa theme"""
     
+    greeting_text = {
+        'sr': f'Poštovani/a {client_name},',
+        'en': f'Dear {client_name},',
+        'ru': f'Уважаемый/ая {client_name},',
+        'th': f'เรียนคุณ {client_name},'
+    }
+    
     footer_text = {
         'sr': 'S poštovanjem, Bua Luang Thai Spa Tim',
         'en': 'Best regards, Bua Luang Thai Spa Team',
