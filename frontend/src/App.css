@@ -2907,13 +2907,14 @@ body {
 .packages-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1400px;
+  gap: 3rem;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 .packages-grid .package-card {
   width: 100%;
+  min-height: 600px;
 }
 
 .package-card {
