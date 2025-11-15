@@ -992,6 +992,13 @@ export const translations = {
     clickHere: "Нажмите здесь...",
     noAvailableMassages: "Нет доступных массажей",
     
+    // Contact form booking messages
+    youSelected: "Вы выбрали",
+    couplesMassageBooking: "Массаж для пар - Общая продолжительность",
+    originalPrice: "Оригинальная цена",
+    priceWithDiscount: "Цена со скидкой",
+    discount: "Скидка",
+    
     // Massage Names (for dropdowns)
     massageTraditionalThai: "Традиционный тайский массаж",
     massageAromaTherapy: "Ароматерапия",
