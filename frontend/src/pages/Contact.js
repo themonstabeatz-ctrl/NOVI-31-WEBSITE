@@ -20,6 +20,36 @@ const Contact = () => {
   const { toast } = useToast();
   const location = useLocation();
   
+  // Helper function to translate massage names
+  const translateMassageName = (massageName) => {
+    // Remove [PAROVI] prefix if present
+    const cleanName = massageName.replace(/^\[PAROVI\]\s*/, '');
+    
+    // Remove duration suffix like " - 60 min", " - 90 min", etc.
+    const nameWithoutDuration = cleanName.replace(/\s*-\s*\d+\s*min\s*$/i, '').trim();
+    
+    const nameMap = {
+      'Tradicionalna tajlandska masaža': 'massageTraditionalThai',
+      'Aroma terapija': 'massageAromaTherapy',
+      'Masaža toplim uljem': 'massageHotOil',
+      'Glava, vrat, ramena i leđa': 'massageHeadNeckShoulders',
+      'Masaža stopala': 'massageFoot',
+      'Aroma duboko tkivo': 'massageAromaDeepTissue',
+      'Aromaterapija & topli kamen': 'massageAromaHotStone',
+      'Aroma sa toplim biljnim kompresama': 'massageAromaThaiHerbal',
+      'Thai masaža sa toplim biljnim kompresama': 'massageThaiHerbal',
+      'Masaža za parove': 'couplesMassage'
+    };
+    
+    const translationKey = nameMap[nameWithoutDuration];
+    if (translationKey) {
+      return translate(translationKey);
+    }
+    
+    // If no mapping found, return original name
+    return massageName;
+  };
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
