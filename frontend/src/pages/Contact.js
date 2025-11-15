@@ -192,7 +192,7 @@ const Contact = () => {
         source: source || 'message' // Default to message if no service
       }));
     }
-  }, [location, translate]);
+  }, [location, translate, language]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
