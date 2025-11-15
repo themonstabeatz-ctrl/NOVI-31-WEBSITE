@@ -771,29 +771,29 @@ def send_reminder_email(
                 .detail-label {{
                     color: #c9a961;
                     font-weight: 600;
-                    font-size: 7px;
+                    font-size: 6px;
                 }}
                 .detail-value {{
                     color: #d4af37;
                     text-align: right;
-                    font-size: 7px;
+                    font-size: 6px;
                     font-weight: bold;
                 }}
                 .closing {{
                     color: #d4af37;
-                    font-size: 8px;
+                    font-size: 7px;
                     text-align: center;
-                    margin-top: 8px;
+                    margin-top: 6px;
                     font-weight: bold;
                     text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
                 }}
                 .contact-info {{
                     text-align: center;
-                    padding: 8px;
-                    font-size: 6px;
+                    padding: 6px;
+                    font-size: 5px;
                     color: #c9a961;
                     border-top: 1px solid rgba(212, 175, 55, 0.3);
-                    margin-top: 8px;
+                    margin-top: 6px;
                     line-height: 1.2;
                 }}
                 .contact-info a {{
@@ -803,11 +803,11 @@ def send_reminder_email(
                 }}
                 .footer {{
                     background: #0a0a0a;
-                    padding: 6px;
+                    padding: 5px;
                     text-align: center;
                     border-top: 1px solid #d4af37;
                     color: #d4af37;
-                    font-size: 6px;
+                    font-size: 5px;
                     font-style: italic;
                     line-height: 1.2;
                 }}
