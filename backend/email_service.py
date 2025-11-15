@@ -713,36 +713,36 @@ def send_reminder_email(
                 }}
                 .header-title {{
                     color: #d4af37;
-                    font-size: 10px;
+                    font-size: 8px;
                     font-weight: bold;
-                    margin: 4px 0;
+                    margin: 3px 0;
                     text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
                     letter-spacing: 0.5px;
                 }}
                 .header-subtitle {{
                     color: #c9a961;
-                    font-size: 7px;
+                    font-size: 6px;
                     margin: 2px 0;
                     font-style: italic;
                 }}
                 .content {{
-                    padding: 12px 10px;
+                    padding: 10px 8px;
                     background: linear-gradient(to bottom, #1a1506 0%, #0f0f0a 100%);
                     position: relative;
                 }}
                 .greeting {{
-                    font-size: 8px;
+                    font-size: 7px;
                     color: #d4af37;
-                    margin-bottom: 6px;
+                    margin-bottom: 5px;
                     font-weight: bold;
                     text-align: center;
                     text-shadow: 0 1px 4px rgba(212, 175, 55, 0.3);
                 }}
                 .message {{
                     color: #e6d5b8;
-                    font-size: 7px;
+                    font-size: 6px;
                     line-height: 1.2;
-                    margin: 4px 0;
+                    margin: 3px 0;
                     text-align: center;
                 }}
                 .highlight {{
