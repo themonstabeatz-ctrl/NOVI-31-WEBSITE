@@ -500,7 +500,7 @@ def create_html_email_template(
             </div>
             
             <div class="content">
-                <div class="greeting">Poštovani/a {client_name},</div>
+                <div class="greeting">{greeting_text.get(language, greeting_text['sr'])}</div>
                 
                 {content}
                 
