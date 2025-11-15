@@ -194,7 +194,7 @@ const Contact = () => {
         } catch (e) {
           console.error('❌ Error parsing couples data:', e);
         }
-      } else if (service.includes('Masaža za parove')) {
+      } else if (isCouplesMassage(service)) {
         console.log('⚠️ Couples service but no couplesData param - checking for service in name');
       }
       
