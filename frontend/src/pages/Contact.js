@@ -50,6 +50,23 @@ const Contact = () => {
     return massageName;
   };
   
+  // Helper function to check if service is couples massage (works in all languages)
+  const isCouplesMassage = (serviceName) => {
+    if (!serviceName) return false;
+    
+    // Check against all language variations of "Couples Massage"
+    const couplesTranslations = [
+      'Masaža za parove',           // Serbian
+      'Couples Massage',             // English
+      'Массаж для пар',              // Russian
+      'นวดสำหรับคู่รัก'              // Thai
+    ];
+    
+    return couplesTranslations.some(translation => 
+      serviceName.includes(translation)
+    );
+  };
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
