@@ -531,41 +531,83 @@ def send_confirmation_email(
         # Format date and time
         date_str, time_str = format_date_time(appointment_datetime, language)
         
+        # Multilingual content
+        translations = {
+            'sr': {
+                'success': '✅ Uspešno zakazano!',
+                'treatment': '💆 Tretman:',
+                'date': '📅 Datum:',
+                'time': '🕐 Vreme:',
+                'name': '👤 Ime:',
+                'phone': '📞 Telefon:',
+                'info': 'Stignite 10 min pre termina. Otkazivanje 4h unapred.'
+            },
+            'en': {
+                'success': '✅ Successfully Booked!',
+                'treatment': '💆 Treatment:',
+                'date': '📅 Date:',
+                'time': '🕐 Time:',
+                'name': '👤 Name:',
+                'phone': '📞 Phone:',
+                'info': 'Arrive 10 min before. Cancellation 4h in advance.'
+            },
+            'ru': {
+                'success': '✅ Успешно забронировано!',
+                'treatment': '💆 Процедура:',
+                'date': '📅 Дата:',
+                'time': '🕐 Время:',
+                'name': '👤 Имя:',
+                'phone': '📞 Телефон:',
+                'info': 'Приходите за 10 мин. Отмена за 4ч.'
+            },
+            'th': {
+                'success': '✅ จองสำเร็จ!',
+                'treatment': '💆 การรักษา:',
+                'date': '📅 วันที่:',
+                'time': '🕐 เวลา:',
+                'name': '👤 ชื่อ:',
+                'phone': '📞 โทรศัพท์:',
+                'info': 'มาก่อน 10 นาที ยกเลิกก่อน 4 ชม.'
+            }
+        }
+        
+        content = translations.get(language, translations['sr'])
+        
         # SHORT plain text for email preview only
         subject = template['confirmation_subject']
-        plain_body = f"Potvrda rezervacije za {client_name} - {service_name}, {date_str} u {time_str}. Vidite detalje u emailu."
+        plain_body = f"{content['success']} {client_name} - {service_name}, {date_str} {time_str}."
         
-        # Create HTML content
+        # Create HTML content with smaller fonts (9px instead of 11px)
         html_content = f"""
-        <p style="font-size: 11px; color: #d4af37; margin: 0 0 6px 0;">
-            <strong>✅ Uspešno zakazano!</strong>
+        <p style="font-size: 9px; color: #d4af37; margin: 0 0 5px 0;">
+            <strong>{content['success']}</strong>
         </p>
         
         <div class="details-box">
             <div class="detail-row">
-                <span class="detail-label">💆 Tretman:</span>
+                <span class="detail-label">{content['treatment']}</span>
                 <span class="detail-value">{service_name}</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">📅 Datum:</span>
+                <span class="detail-label">{content['date']}</span>
                 <span class="detail-value">{date_str}</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">🕐 Vreme:</span>
+                <span class="detail-label">{content['time']}</span>
                 <span class="detail-value">{time_str}</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">👤 Ime:</span>
+                <span class="detail-label">{content['name']}</span>
                 <span class="detail-value">{client_name}</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">📞 Telefon:</span>
+                <span class="detail-label">{content['phone']}</span>
                 <span class="detail-value">{client_phone}</span>
             </div>
         </div>
         
         <div class="info-text">
-            Stignite 10 min pre termina. Otkazivanje 4h unapred.
+            {content['info']}
         </div>
         """
         
