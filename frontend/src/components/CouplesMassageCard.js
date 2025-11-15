@@ -380,7 +380,7 @@ const CouplesMassageCard = ({
           zIndex: 100
         }}>
           <div style={{ color: '#d4af37', fontSize: '1.2rem' }}>
-            Učitavanje masaža...
+            {translate('loadingMassages')}
           </div>
         </div>
       )}
