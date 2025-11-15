@@ -817,11 +817,11 @@ const Spa = () => {
           </Card>
           
           <Card className="package-card bridal-card-special">
-            {/* Background photo */}
+            {/* Background photo - Nova fotografija */}
             <div 
               className="bridal-card-background"
               style={{
-                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/i1p5m5qv_Devojacko%20vece%20fotka.jpg)',
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thai-reserve/artifacts/48xkbz3e_Zena%20sa%20casom%20bualuang.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 position: 'absolute',
@@ -831,22 +831,6 @@ const Spa = () => {
                 bottom: 0,
                 opacity: 0.3,
                 zIndex: 0
-              }}
-            />
-            {/* PNG overlay at bottom - larger roses to edges */}
-            <div 
-              className="bridal-card-overlay"
-              style={{
-                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/h0f5okmx_Untitled-1.png)',
-                backgroundSize: '100% auto',
-                backgroundPosition: 'bottom center',
-                backgroundRepeat: 'no-repeat',
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                bottom: 0,
-                height: '100%',
-                zIndex: 1
               }}
             />
             <CardHeader style={{ position: 'relative', zIndex: 2 }}>
