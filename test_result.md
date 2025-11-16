@@ -414,14 +414,17 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Contact page couples massage booking flow - dropdown interaction failure"
+    - "Contact page couples massage booking flow - person parameter bug"
+    - "Price Correction System for Kartica Masaza za parove - backend pricing data"
   stuck_tasks:
     - "Contact page"
+    - "Price Correction System for Kartica Masaza za parove"
   test_all: false
   test_priority: "high_first"
   completed_tests:
     - "ZAKAŽITE buttons for 4 specific massage cards - ALL WORKING"
     - "Massage name translations in Contact form message field - MOSTLY WORKING"
+    - "Couples massage price verification - FAILED due to person parameter bug and incorrect backend pricing"
 
 agent_communication:
   - agent: "main"
