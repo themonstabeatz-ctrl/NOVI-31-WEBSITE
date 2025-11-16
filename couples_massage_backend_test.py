@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://thai-reserve.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://couples-discount-fix.preview.emergentagent.com')
 
 class CouplesMassageBackendTester:
     def __init__(self):

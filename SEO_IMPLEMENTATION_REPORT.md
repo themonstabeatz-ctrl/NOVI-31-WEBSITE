@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://thai-reserve.preview.emergentagent.com/robots.txt
+**Test URL:** https://couples-discount-fix.preview.emergentagent.com/robots.txt
 
 ---
 

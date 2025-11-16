@@ -20,7 +20,7 @@ Web sajt (`thaimassage-web`) je uspešno integrisan sa booking sistemom za učit
 
 #### API Endpoint
 ```
-GET https://thai-reserve.preview.emergentagent.com/api/services
+GET https://couples-discount-fix.preview.emergentagent.com/api/services
 ```
 
 #### Implementacija u Frontend-u
@@ -176,7 +176,7 @@ const serviceKeyToBookingName = {
 
 ### API Request
 ```javascript
-const response = await fetch('https://thai-reserve.preview.emergentagent.com/api/services');
+const response = await fetch('https://couples-discount-fix.preview.emergentagent.com/api/services');
 const services = await response.json();
 ```
 

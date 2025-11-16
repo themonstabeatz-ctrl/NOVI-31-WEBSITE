@@ -8,7 +8,7 @@ import httpx
 import json
 from datetime import datetime, timedelta
 
-BACKEND_URL = "https://thai-reserve.preview.emergentagent.com"
+BACKEND_URL = "https://couples-discount-fix.preview.emergentagent.com"
 
 async def test_corrected_booking():
     """Test booking with correct service ID from external system"""
