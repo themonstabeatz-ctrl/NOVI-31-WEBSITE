@@ -53,6 +53,11 @@ const CouplesMassageCard = ({
         console.log('📥 Loading massages from "Kartica Masaza za parove" category...');
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         const response = await fetch(`${backendUrl}/api/services`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const services = await response.json();
         
         // Filter by category "Kartica Masaza za parove" - special couples category with discounts
