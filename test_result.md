@@ -391,6 +391,18 @@ backend:
         agent: "testing"
         comment: "🎉 SIMPLIFIED COUPLES MASSAGE BACKEND VERIFICATION COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED! ✅ TEST 1 - HEALTH CHECK: GET /api/health returns 200 OK with status 'healthy' and timestamp '2025-11-09T13:03:25.103058'. Backend service fully accessible and responding correctly. ✅ TEST 2 - SERVICES ENDPOINT: GET /api/services returns 36 services from https://spabooking.emergent.host including 10 couples massage services with [PAROVI] prefix. Found '[PAROVI] Tradicionalna tajlandska masaža - 120 min' service (ID: a0d408aa-2ffd-4a4a-a77b-857f895fbb55) matching review request requirements. ✅ TEST 3 - SIMPLIFIED COUPLES BOOKING: POST /api/book-appointment successful with exact review request data (Test User, +381601234567, test@example.com, 2025-11-10T14:00:00, 120 min total duration, Serbian language). Service: '[PAROVI] Tradicionalna tajlandska masaža - 120 min' representing simplified couples massage with fixed 'Tradicionalna tajlandska masaža' for both persons. Appointment ID: 564b86b8-df73-4ed3-9683-cf9b011ad8f5 created successfully. ✅ EXTERNAL SYSTEM VERIFICATION: Booking confirmed in https://spabooking.emergent.host with status 'scheduled', end_time '2025-11-10T16:00:00' (2h total for 120min couples massage). ✅ WEB SLOT THERAPIST ASSIGNMENT: Automatically assigned therapist ID 20a9e9ba-a867-4286-8792-5d3f34acd068. ✅ EMAIL INTEGRATION: Confirmation email sent successfully to test@example.com, reminder scheduled 2h before appointment. ✅ BACKEND LOGS: Successful operation logged with no critical errors. All review request objectives met: Backend accepts booking ✓, Response is 200 OK ✓, Appointment ID returned ✓, No errors in backend logs ✓. Simplified couples massage backend fully functional."
 
+  - task: "Price Correction System for Kartica Masaza za parove"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "🚨 CRITICAL BUSINESS ISSUE IDENTIFIED - DOUBLE DISCOUNT BUG CONFIRMED! ✅ BACKEND SYSTEM ANALYSIS: Health check (200 OK), Services API returns 52 services including 18 [PAROVI] couples services, booking system fully functional with Web Slot therapist rotation. ❌ PRICE CORRECTION ISSUE: Successfully identified 22 services in 'Kartica Masaza za parove' category with incorrect (already discounted) base prices causing double discount application. Current prices are 5-15% lower than correct original prices. Example: 'Tradicionalna tajlandska masaža - 60 min' currently 4,180 RSD (should be 4,400 RSD), when 10% discount applied becomes 3,762 RSD (effective 14.5% total discount instead of 10%). Revenue loss: ~638 RSD per booking. ❌ TECHNICAL LIMITATIONS: No API endpoints available for automated price updates (tested PATCH, PUT, POST methods). ✅ WEB INTERFACE: Admin interface accessible at https://couples-discount-fix.preview.emergentagent.com/admin, services management found at /admin/services. ⚠️ MANUAL CORRECTION REQUIRED: 22 services need price updates through web interface. Complete price mapping provided with differences ranging from 120-930 RSD per service. Backend booking system working perfectly - issue is purely pricing data correction needed."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
