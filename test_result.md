@@ -532,36 +532,37 @@ agent_communication:
   
   - agent: "testing"
     message: |
-      🚨 CRITICAL COUPLES MASSAGE E2E TEST FAILURE - BACKEND API INTEGRATION ISSUE IDENTIFIED!
+      🚨 FINAL E2E COUPLES MASSAGE TEST COMPLETED - CRITICAL BACKEND API INTEGRATION FAILURE CONFIRMED!
       
-      ❌ REVIEW REQUEST SCENARIO FAILED: Complete end-to-end test of "Masaža za parove" with 3 different massage durations (Person 1: 60min + 60min, Person 2: 90min) could not be completed due to critical backend API failures.
+      ❌ EXACT REVIEW REQUEST SCENARIO FAILED: Complete E2E test of couples massage booking flow (Navigate → Select 60min → Person 1: Tradicionalna → Person 2: Aroma → Verify 7,920 RSD → Complete booking) could not be completed due to critical backend API integration failure.
       
-      🔍 ROOT CAUSE ANALYSIS:
+      🔍 ROOT CAUSE IDENTIFIED:
       • Backend /api/services endpoint returning 500 Internal Server Error
-      • External booking system (https://couples-discount-fix.preview.emergentagent.com/api/services) experiencing intermittent 404 errors
-      • Frontend console shows: "Failed to load couples massages: TypeError: Failed to execute 'clone' on 'Response': Response body is already used"
-      • Couples massage dropdown cannot load available massage options
+      • External booking system (https://discount-fixer.preview.emergentagent.com/api/services) returning 404 Not Found errors
+      • Frontend console error: "Failed to execute 'clone' on 'Response': Response body is already used"
+      • Backend logs confirm: "Error fetching services from booking system: Client error '404 Not Found'"
       
       ✅ VERIFIED WORKING COMPONENTS:
-      • Navigation to massage page via MASAŽE menu
-      • Couples massage card rendering with -10% discount badge
-      • Duration selection buttons (60/90/120 min) with golden styling
-      • Backend health check (200 OK)
-      • External booking system API (47 services including 18 [PAROVI] services available)
+      • Navigation to massage page via MASAŽE menu (✅)
+      • Couples massage card rendering (✅)
+      • 60-min duration selection with golden styling (✅)
+      • Person 1 dropdown interaction (✅)
+      • Backend booking functionality when API available (7920 RSD price confirmed in logs)
       
       ❌ CRITICAL FAILURE POINTS:
-      • Person 1 and Person 2 dropdowns open but show no massage options
-      • ZAKAŽITE button remains disabled (opacity: 0.5, cursor: not-allowed)
-      • Cannot select massages, cannot calculate pricing, cannot complete booking
+      • No discount badge displayed (API failure prevents discount loading)
+      • Person 2 dropdown not found (API failure prevents rendering)
+      • ZAKAŽITE button disabled (opacity: 0.5, cursor: not-allowed)
+      • No price display (selections cannot be completed)
       • Complete E2E booking flow blocked at massage selection stage
       
       🔧 URGENT ACTION REQUIRED:
-      1. Fix backend API Response cloning issue in /api/services endpoint
-      2. Resolve intermittent 404 errors from external booking system
-      3. Ensure couples massage dropdown can load [PAROVI] services from "Kartica Masaza za parove" category
-      4. Test complete E2E flow after backend fixes
+      1. Fix external booking system API 404 errors at https://discount-fixer.preview.emergentagent.com/api/services
+      2. Resolve backend Response cloning issue in /api/services endpoint
+      3. Ensure couples massage dropdown can load available massages from "Kartica Masaza za parove" category
+      4. Test complete E2E pricing verification (7,920 RSD) after backend fixes
       
-      ⚠️ IMPACT: All couples massage bookings are currently non-functional. Users cannot select massages or complete bookings due to this critical backend integration failure.
+      ⚠️ IMPACT: Complete couples massage booking flow is non-functional. Users cannot select massages, cannot see pricing (7,920 RSD), cannot complete bookings. All review request objectives failed due to this critical backend integration issue.
   
   - agent: "testing"
     message: |
