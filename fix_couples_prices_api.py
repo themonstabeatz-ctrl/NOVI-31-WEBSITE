@@ -8,8 +8,8 @@ import requests
 import json
 from typing import Dict, List
 
-# Booking system API base URL
-API_BASE = "https://discount-fixer.preview.emergentagent.com/api"
+# Booking system API base URL - PRODUCTION
+API_BASE = "https://couples-discount-fix.preview.emergentagent.com/api"
 
 # Correct price mapping from /app/frontend/src/pages/Massage.js
 # Note: Services have [PAROVI] prefix in the booking system
