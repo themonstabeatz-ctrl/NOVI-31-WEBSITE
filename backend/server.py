@@ -87,7 +87,7 @@ class CoupleBooking(BaseModel):
     duration_type: int  # 60, 90, or 120 minutes per person
     person1_services: List[str]  # List of service IDs for person 1
     person2_services: List[str]  # List of service IDs for person 2
-    discount_couples_massage: float = 10.0  # Default 10% discount
+    discount_couples_massage: float = 0.0  # NO discount - already applied in frontend
     language: Optional[str] = "sr"  # Default to Serbian
 
 # Add your routes to the router instead of directly to app
