@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Review Request Testing for Spa Website Backend Booking Flow
-Tests the specific endpoints and scenarios mentioned in the review request
+Review Request Specific Test - Couples Massage Booking Flow
+Tests the EXACT scenario from review request with corrected prices
 """
 
 import asyncio
