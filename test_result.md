@@ -417,7 +417,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Contact page couples massage booking flow - person parameter bug"
+    - "Contact page couples massage booking flow - backend API integration failure"
     - "Price Correction System for Kartica Masaza za parove - backend pricing data"
   stuck_tasks:
     - "Contact page"
@@ -427,7 +427,7 @@ test_plan:
   completed_tests:
     - "ZAKAŽITE buttons for 4 specific massage cards - ALL WORKING"
     - "Massage name translations in Contact form message field - MOSTLY WORKING"
-    - "Couples massage price verification - FAILED due to person parameter bug and incorrect backend pricing"
+    - "Couples massage E2E booking flow - FAILED due to backend API 500 errors and external system 404 errors"
 
 agent_communication:
   - agent: "main"
