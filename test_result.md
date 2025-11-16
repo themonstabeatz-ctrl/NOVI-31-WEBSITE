@@ -612,6 +612,54 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 COUPLES MASSAGE PRICE VERIFICATION TESTING COMPLETED - CRITICAL ISSUES IDENTIFIED!
+      
+      ❌ REVIEW REQUEST OBJECTIVES FAILED:
+      The requested E2E verification of corrected couples massage pricing could not be completed due to two critical issues that prevent the couples massage booking flow from functioning.
+      
+      🔍 CRITICAL BUG #1 - PERSON PARAMETER ERROR:
+      • Root Cause: handleMassageClick function in CouplesMassageCard.js receives incorrect person parameter
+      • Specific Issue: When clicking Person 1 dropdown, function receives person: 2 instead of person: 1
+      • Impact: All Person 1 selections are saved as Person 2 selections, leaving Person 1 state always null
+      • Evidence: Console logs show "handleMassageClick CALLED: {person: 2, massage: Aroma terapija, dur: 60}" when clicking Person 1 dropdown
+      • Result: ZAKAŽITE button remains disabled (opacity: 0.5, cursor: not-allowed) because isSelectionComplete() returns false
+      
+      🔍 CRITICAL ISSUE #2 - BACKEND PRICING DATA NOT CORRECTED:
+      • Backend API still returns incorrect (already discounted) base prices
+      • Examples from API response:
+        - Tradicionalna tajlandska masaža - 60 min: 4,180 RSD (should be 4,400 RSD)
+        - Tradicionalna tajlandska masaža - 90 min: 5,320 RSD (should be 5,600 RSD)  
+        - Tradicionalna tajlandska masaža - 120 min: 6,460 RSD (should be 6,800 RSD)
+      • This confirms the double discount issue has NOT been resolved
+      • Current prices are ~5% lower than expected original prices
+      
+      ✅ WORKING COMPONENTS VERIFIED:
+      • Navigation to massage page via MASAŽE menu: WORKING
+      • Couples massage card rendering with -10% discount badge: WORKING
+      • Duration selection buttons (60/90/120 min) with golden styling: WORKING
+      • Backend API returning 53 services: WORKING
+      • Dropdown visual appearance and opening: WORKING
+      
+      ❌ BLOCKED TEST SCENARIOS:
+      Cannot verify the requested pricing calculations due to broken selection logic:
+      • Test A (60 min): Expected 8,800 → 7,920 RSD - BLOCKED
+      • Test B (90 min): Expected 12,200 → 10,980 RSD - BLOCKED  
+      • Test C (120 min): Expected 13,600 → 12,240 RSD - BLOCKED
+      
+      ❌ UI ELEMENTS NOT VERIFIABLE:
+      • Strikethrough original prices: NOT FOUND (price calculation never triggers)
+      • Red final prices (#e63946): NOT FOUND (price calculation never triggers)
+      • Price calculation display: BLOCKED due to disabled button
+      
+      🔧 URGENT FIXES REQUIRED:
+      1. Fix person parameter bug in CouplesMassageCard.js handleMassageClick function
+      2. Update backend pricing data to correct original prices (as identified in previous price correction task)
+      3. Re-test complete E2E pricing verification after both fixes
+      
+      ⚠️ IMPACT: Couples massage booking is completely non-functional. Users cannot select massages or see pricing calculations, preventing any couples massage bookings from being completed.
+  
+  - agent: "testing"
+    message: |
       🎯 COUPLES MASSAGE DROPDOWN TRANSLATION TESTING COMPLETED
       
       ✅ SUCCESSFUL VERIFICATIONS:
