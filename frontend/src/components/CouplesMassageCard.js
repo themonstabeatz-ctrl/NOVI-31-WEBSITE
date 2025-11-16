@@ -68,8 +68,11 @@ const CouplesMassageCard = ({
         const servicesByName = {};
         couplesServices.forEach(service => {
           // Extract base name and duration from service name
-          // e.g., "Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
-          const serviceName = service.name;
+          // e.g., "[PAROVI] Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
+          let serviceName = service.name;
+          
+          // Remove [PAROVI] prefix if present
+          serviceName = serviceName.replace(/^\[PAROVI\]\s*/, '');
           
           const match = serviceName.match(/^(.+?)\s*-\s*(\d+)\s*min$/);
           if (match) {
