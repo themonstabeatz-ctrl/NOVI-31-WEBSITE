@@ -202,7 +202,7 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/pages/Contact.js"
-    stuck_count: 7
+    stuck_count: 8
     priority: "high"
     needs_retesting: false
     status_history:
@@ -260,6 +260,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "🚨 FINAL COMPREHENSIVE E2E COUPLES MASSAGE BOOKING TEST COMPLETED - CRITICAL DROPDOWN INTERACTION FAILURE! ✅ SUCCESSFUL COMPONENTS: 1) Navigation via MASAŽE menu: WORKING (loads massage page correctly). 2) Couples massage card rendering: WORKING (found with -15% discount badge, 60/90/120 min buttons). 3) Backend integration: WORKING (10 couples services loaded from 'Kartica Masaza za parove' category). 4) Duration selection: WORKING (60-min button highlights with golden styling, console shows state updates). 5) Dropdown visibility: WORKING (Person 1 and Person 2 dropdowns show 'Klikni ovde...' placeholders). ❌ CRITICAL FAILURE POINT: Dropdown interaction completely broken. When clicking Person 1 dropdown, it opens but dropdown options are not accessible via DOM selectors. The dropdown menu appears visually but Playwright cannot find the clickable massage options inside. This prevents massage selection, which prevents ZAKAŽITE button from enabling, which blocks the entire E2E booking flow. ❌ ROOT CAUSE: Frontend dropdown implementation issue in CouplesMassageCard.js - dropdown options render but are not properly accessible for automated testing or potentially user interaction. The handleMassageClick function cannot be triggered because the dropdown options cannot be clicked. ❌ IMPACT: Complete couples massage booking flow is non-functional. Users cannot select massages for Person 1 or Person 2, preventing booking completion. ⚠️ URGENT FIX REQUIRED: Fix dropdown option rendering and click handlers in CouplesMassageCard component to make massage selection functional. All review request objectives failed due to this critical frontend dropdown interaction bug."
+      - working: false
+        agent: "testing"
+        comment: "🚨 CRITICAL COUPLES MASSAGE E2E TEST FAILURE - BACKEND API 500 ERRORS BLOCKING DROPDOWN FUNCTIONALITY! ❌ ROOT CAUSE IDENTIFIED: Backend /api/services endpoint returning 500 Internal Server Error due to intermittent 404 errors from external booking system (https://discount-fixer.preview.emergentagent.com/api/services). Console logs show 'Failed to load couples massages: TypeError: Failed to execute clone on Response: Response body is already used'. ✅ BACKEND INTEGRATION WORKING: Direct API calls to booking system return 200 OK with 47 services including 18 [PAROVI] services in 'Kartica Masaza za parove' category with 10% discount. ❌ FRONTEND IMPACT: Couples massage dropdown cannot load available massages due to API failures, causing ZAKAŽITE button to remain disabled (opacity: 0.5, cursor: not-allowed). Duration selection works but massage selection fails completely. ❌ EXACT REVIEW REQUEST SCENARIO RESULTS: 1) Navigate to massage page ✅ 2) Find couples card ✅ (with -10% discount badge) 3) Select duration ✅ (60/90/120 min buttons work) 4) Select Person 1 massage ❌ (dropdown opens but no options load) 5) Select Person 2 massage ❌ (dropdown opens but no options load) 6) ZAKAŽITE button ❌ (disabled due to no selections) 7) Complete booking flow ❌ (blocked at selection stage). ⚠️ URGENT FIX REQUIRED: Resolve backend API 500 errors and Response cloning issues to restore couples massage dropdown functionality. All review request objectives failed due to this critical backend integration issue preventing massage selection."
 
   - task: "Header with navigation and language switcher"
     implemented: true
