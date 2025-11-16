@@ -427,6 +427,39 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 CRITICAL COUPLES MASSAGE E2E TEST FAILURE - BACKEND API INTEGRATION ISSUE IDENTIFIED!
+      
+      ❌ REVIEW REQUEST SCENARIO FAILED: Complete end-to-end test of "Masaža za parove" with 3 different massage durations (Person 1: 60min + 60min, Person 2: 90min) could not be completed due to critical backend API failures.
+      
+      🔍 ROOT CAUSE ANALYSIS:
+      • Backend /api/services endpoint returning 500 Internal Server Error
+      • External booking system (https://discount-fixer.preview.emergentagent.com/api/services) experiencing intermittent 404 errors
+      • Frontend console shows: "Failed to load couples massages: TypeError: Failed to execute 'clone' on 'Response': Response body is already used"
+      • Couples massage dropdown cannot load available massage options
+      
+      ✅ VERIFIED WORKING COMPONENTS:
+      • Navigation to massage page via MASAŽE menu
+      • Couples massage card rendering with -10% discount badge
+      • Duration selection buttons (60/90/120 min) with golden styling
+      • Backend health check (200 OK)
+      • External booking system API (47 services including 18 [PAROVI] services available)
+      
+      ❌ CRITICAL FAILURE POINTS:
+      • Person 1 and Person 2 dropdowns open but show no massage options
+      • ZAKAŽITE button remains disabled (opacity: 0.5, cursor: not-allowed)
+      • Cannot select massages, cannot calculate pricing, cannot complete booking
+      • Complete E2E booking flow blocked at massage selection stage
+      
+      🔧 URGENT ACTION REQUIRED:
+      1. Fix backend API Response cloning issue in /api/services endpoint
+      2. Resolve intermittent 404 errors from external booking system
+      3. Ensure couples massage dropdown can load [PAROVI] services from "Kartica Masaza za parove" category
+      4. Test complete E2E flow after backend fixes
+      
+      ⚠️ IMPACT: All couples massage bookings are currently non-functional. Users cannot select massages or complete bookings due to this critical backend integration failure.
+  
+  - agent: "testing"
+    message: |
       🎉 MASSAGE NAME TRANSLATION TESTING COMPLETED - CORE FUNCTIONALITY WORKING!
       
       ✅ SUCCESSFUL VERIFICATIONS:
