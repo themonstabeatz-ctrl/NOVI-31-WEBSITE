@@ -64,10 +64,11 @@ const CouplesMassageCard = ({
         const couplesServices = services.filter(s => s.category === 'Kartica Masaza za parove');
         console.log(`✅ Loaded ${couplesServices.length} services from "Kartica Masaza za parove" category`);
         
-        // Get discount from this category
-        const discount = couplesServices[0] ? (couplesServices[0].discount_percentage || 0) : 0;
+        // OPCIJA 1 TEST: Frontend ne primenjuje dodatni popust
+        // Booking sistem već primenjuje popust, pa frontend samo prikazuje finalnu cenu
+        const discount = 0;  // FORCE 0% - booking system handles discount
         setCouplesDiscount(discount);
-        console.log(`✅ Couples discount: ${discount}%`);
+        console.log(`✅ Frontend discount disabled (booking system handles discount)`);
         
         // Group by base name (without duration)
         const servicesByName = {};
