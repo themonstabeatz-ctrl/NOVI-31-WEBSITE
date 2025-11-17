@@ -451,6 +451,93 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 CRITICAL COUPLES MASSAGE DISCOUNT SYSTEM COMPARISON COMPLETED - ROOT CAUSE IDENTIFIED!
+      
+      ✅ COMPREHENSIVE API COMPARISON RESULTS:
+      
+      📊 WORKING VERSION (PERFECT):
+      • API: https://bualuang-anim.preview.emergentagent.com/api/services
+      • Total services: 59
+      • Couples services: 17 (in "Kartica Masaza za parove" category)
+      • ALL couples services have discount_percentage = 0.0%
+      • Uses internal booking system (self-hosted)
+      • Has ALL massage types including: Aroma duboko tkivo, Aromaterapija & topli kamen, Aroma sa toplim biljnim kompresama, Thai masaža sa toplim biljnim kompresama
+      
+      📊 MY VERSION:
+      • API: https://couples-discount-fix.preview.emergentagent.com/api/services
+      • Total services: 66
+      • Couples services: 10 (in "Kartica Masaza za parove" category)
+      • ALL couples services have discount_percentage = 10.0%
+      • Uses external booking system: https://spabooking.emergent.host
+      • Missing 7 massage types that working version has
+      
+      🔍 SPECIFIC SERVICE COMPARISON - "Aroma terapija - 60 min":
+      
+      WORKING VERSION:
+      • Name: [PAROVI] Aroma terapija - 60 min
+      • Price: 4,400 RSD
+      • Discount: 0.0%
+      • ID: df52cf25-beb8-45e9-9590-6c59b488b8c9
+      
+      MY VERSION:
+      • Name: [PAROVI] Aroma terapija - 60 min
+      • Price: 4,400 RSD
+      • Discount: 10.0%
+      • ID: 38104bdc-d738-474f-beee-0d6ffbbd7707
+      
+      🚨 ROOT CAUSE IDENTIFIED:
+      
+      1. ❌ DISCOUNT IMPLEMENTATION DIFFERENCE:
+         • Working version: discount_percentage = 0.0% (discount applied in FRONTEND)
+         • My version: discount_percentage = 10.0% (discount stored in BACKEND data)
+      
+      2. ❌ SERVICE COUNT MISMATCH:
+         • Working version: 17 couples services
+         • My version: 10 couples services (missing 7 services)
+      
+      3. ❌ BACKEND CONFIGURATION DIFFERENCE:
+         • Working version: Uses internal booking system (same domain)
+         • My version: Uses external system (https://spabooking.emergent.host)
+      
+      4. ❌ MISSING SERVICES IN MY VERSION:
+         • [PAROVI] Aroma duboko tkivo - 60 min & 90 min
+         • [PAROVI] Aroma sa toplim biljnim kompresama - 90 min & 120 min
+         • [PAROVI] Aromaterapija & topli kamen - 90 min & 120 min
+         • [PAROVI] Thai masaža sa toplim biljnim kompresama - 90 min & 120 min
+         • [PAROVI] Tradicionalna tajlandska masaža - 60 min (my version has this but working doesn't)
+      
+      💡 WHY WORKING VERSION WORKS PERFECTLY:
+      • Backend stores original prices with 0% discount
+      • Frontend calculates and applies 10-15% discount dynamically
+      • This prevents double discount application
+      • All 17 massage types are available for couples booking
+      
+      💡 WHY MY VERSION HAS ISSUES:
+      • Backend already has 10% discount in data
+      • If frontend also applies discount = double discount bug
+      • Only 10 massage types available (missing 7 popular ones)
+      • External booking system has different service catalog
+      
+      🔧 URGENT FIXES REQUIRED:
+      1. Change all couples services discount_percentage from 10.0% to 0.0%
+      2. Add missing 7 massage services to external booking system
+      3. Ensure frontend applies discount calculation (not backend)
+      4. Verify price calculations match working version exactly
+      
+      📋 BACKEND CONFIGURATION ANALYSIS:
+      • My backend .env: BOOKING_API_URL="https://spabooking.emergent.host"
+      • My frontend .env: REACT_APP_BACKEND_URL=https://couples-discount-fix.preview.emergentagent.com
+      • Working version appears to use self-hosted booking system
+      
+      ⚠️ BUSINESS IMPACT:
+      • Working version: Correct 10-15% couples discount
+      • My version: Potential double discount or incorrect pricing
+      • Missing services reduce booking options for customers
+      
+      All review request objectives achieved - root cause of discount functionality differences identified and documented.
+  
+  - agent: "testing"
+    message: |
       🎯 COUPLES MASSAGE PRICE CORRECTION TASK COMPLETED - CRITICAL BUSINESS BUG IDENTIFIED AND PROCESS ESTABLISHED
       
       ✅ TASK OBJECTIVES ACHIEVED:
