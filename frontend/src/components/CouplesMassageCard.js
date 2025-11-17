@@ -104,6 +104,12 @@ const CouplesMassageCard = ({
         
         console.log('✅ Processed couples massages:', massagesArray);
         
+        // Debug: Log specific prices
+        const aroma60 = massagesArray.find(m => m.key === 'aromaTerapija' && m.prices['60']);
+        const aromaDuboko60 = massagesArray.find(m => m.key === 'aromaDubokoTkivo' && m.prices['60']);
+        if (aroma60) console.log(`🔍 Aroma terapija 60min: ${aroma60.prices['60']} RSD`);
+        if (aromaDuboko60) console.log(`🔍 Aroma duboko tkivo 60min: ${aromaDuboko60.prices['60']} RSD`);
+        
         setAvailableMassages(massagesArray);
         setLoading(false);
       } catch (error) {
