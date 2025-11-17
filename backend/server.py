@@ -172,8 +172,8 @@ async def get_services():
     """
     Proxy endpoint to fetch services from booking system
     """
-    # Use preview booking system
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://couples-discount-fix.preview.emergentagent.com')
+    # Use production booking system
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spabooking.emergent.host')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
