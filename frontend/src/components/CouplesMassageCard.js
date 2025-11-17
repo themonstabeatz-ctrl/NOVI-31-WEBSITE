@@ -314,10 +314,24 @@ const CouplesMassageCard = ({
     const p2m1 = couplesSelections.person2Massage1;
     const p2m2 = couplesSelections.person2Massage2;
     
-    if (p1m1) total += p1m1.price;
-    if (p1m2) total += p1m2.price;
-    if (p2m1) total += p2m1.price;
-    if (p2m2) total += p2m2.price;
+    // VAŽNO: Ako booking sistem ima popust, service.price je VEĆ DISKONTOVANA cena
+    // Moramo vratiti originalnu cenu pre popusta
+    if (p1m1) {
+      const originalP1M1 = couplesDiscount > 0 ? p1m1.price / (1 - couplesDiscount / 100) : p1m1.price;
+      total += originalP1M1;
+    }
+    if (p1m2) {
+      const originalP1M2 = couplesDiscount > 0 ? p1m2.price / (1 - couplesDiscount / 100) : p1m2.price;
+      total += originalP1M2;
+    }
+    if (p2m1) {
+      const originalP2M1 = couplesDiscount > 0 ? p2m1.price / (1 - couplesDiscount / 100) : p2m1.price;
+      total += originalP2M1;
+    }
+    if (p2m2) {
+      const originalP2M2 = couplesDiscount > 0 ? p2m2.price / (1 - couplesDiscount / 100) : p2m2.price;
+      total += originalP2M2;
+    }
     
     return total;
   };
