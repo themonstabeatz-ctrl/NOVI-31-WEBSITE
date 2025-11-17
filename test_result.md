@@ -262,13 +262,13 @@ frontend:
         comment: "🚨 FINAL COMPREHENSIVE E2E COUPLES MASSAGE BOOKING TEST COMPLETED - CRITICAL DROPDOWN INTERACTION FAILURE! ✅ SUCCESSFUL COMPONENTS: 1) Navigation via MASAŽE menu: WORKING (loads massage page correctly). 2) Couples massage card rendering: WORKING (found with -15% discount badge, 60/90/120 min buttons). 3) Backend integration: WORKING (10 couples services loaded from 'Kartica Masaza za parove' category). 4) Duration selection: WORKING (60-min button highlights with golden styling, console shows state updates). 5) Dropdown visibility: WORKING (Person 1 and Person 2 dropdowns show 'Klikni ovde...' placeholders). ❌ CRITICAL FAILURE POINT: Dropdown interaction completely broken. When clicking Person 1 dropdown, it opens but dropdown options are not accessible via DOM selectors. The dropdown menu appears visually but Playwright cannot find the clickable massage options inside. This prevents massage selection, which prevents ZAKAŽITE button from enabling, which blocks the entire E2E booking flow. ❌ ROOT CAUSE: Frontend dropdown implementation issue in CouplesMassageCard.js - dropdown options render but are not properly accessible for automated testing or potentially user interaction. The handleMassageClick function cannot be triggered because the dropdown options cannot be clicked. ❌ IMPACT: Complete couples massage booking flow is non-functional. Users cannot select massages for Person 1 or Person 2, preventing booking completion. ⚠️ URGENT FIX REQUIRED: Fix dropdown option rendering and click handlers in CouplesMassageCard component to make massage selection functional. All review request objectives failed due to this critical frontend dropdown interaction bug."
       - working: false
         agent: "testing"
-        comment: "🚨 CRITICAL COUPLES MASSAGE E2E TEST FAILURE - BACKEND API 500 ERRORS BLOCKING DROPDOWN FUNCTIONALITY! ❌ ROOT CAUSE IDENTIFIED: Backend /api/services endpoint returning 500 Internal Server Error due to intermittent 404 errors from external booking system (https://couples-discount-fix.preview.emergentagent.com/api/services). Console logs show 'Failed to load couples massages: TypeError: Failed to execute clone on Response: Response body is already used'. ✅ BACKEND INTEGRATION WORKING: Direct API calls to booking system return 200 OK with 47 services including 18 [PAROVI] services in 'Kartica Masaza za parove' category with 10% discount. ❌ FRONTEND IMPACT: Couples massage dropdown cannot load available massages due to API failures, causing ZAKAŽITE button to remain disabled (opacity: 0.5, cursor: not-allowed). Duration selection works but massage selection fails completely. ❌ EXACT REVIEW REQUEST SCENARIO RESULTS: 1) Navigate to massage page ✅ 2) Find couples card ✅ (with -10% discount badge) 3) Select duration ✅ (60/90/120 min buttons work) 4) Select Person 1 massage ❌ (dropdown opens but no options load) 5) Select Person 2 massage ❌ (dropdown opens but no options load) 6) ZAKAŽITE button ❌ (disabled due to no selections) 7) Complete booking flow ❌ (blocked at selection stage). ⚠️ URGENT FIX REQUIRED: Resolve backend API 500 errors and Response cloning issues to restore couples massage dropdown functionality. All review request objectives failed due to this critical backend integration issue preventing massage selection."
+        comment: "🚨 CRITICAL COUPLES MASSAGE E2E TEST FAILURE - BACKEND API 500 ERRORS BLOCKING DROPDOWN FUNCTIONALITY! ❌ ROOT CAUSE IDENTIFIED: Backend /api/services endpoint returning 500 Internal Server Error due to intermittent 404 errors from external booking system (https://massage-bookfix.preview.emergentagent.com/api/services). Console logs show 'Failed to load couples massages: TypeError: Failed to execute clone on Response: Response body is already used'. ✅ BACKEND INTEGRATION WORKING: Direct API calls to booking system return 200 OK with 47 services including 18 [PAROVI] services in 'Kartica Masaza za parove' category with 10% discount. ❌ FRONTEND IMPACT: Couples massage dropdown cannot load available massages due to API failures, causing ZAKAŽITE button to remain disabled (opacity: 0.5, cursor: not-allowed). Duration selection works but massage selection fails completely. ❌ EXACT REVIEW REQUEST SCENARIO RESULTS: 1) Navigate to massage page ✅ 2) Find couples card ✅ (with -10% discount badge) 3) Select duration ✅ (60/90/120 min buttons work) 4) Select Person 1 massage ❌ (dropdown opens but no options load) 5) Select Person 2 massage ❌ (dropdown opens but no options load) 6) ZAKAŽITE button ❌ (disabled due to no selections) 7) Complete booking flow ❌ (blocked at selection stage). ⚠️ URGENT FIX REQUIRED: Resolve backend API 500 errors and Response cloning issues to restore couples massage dropdown functionality. All review request objectives failed due to this critical backend integration issue preventing massage selection."
       - working: false
         agent: "testing"
         comment: "🚨 CRITICAL COUPLES MASSAGE PRICE VERIFICATION FAILURE - PERSON PARAMETER BUG CONFIRMED! ❌ EXACT REVIEW REQUEST TESTING COMPLETED: Verified couples massage card with -10% discount badge, duration selection (60/90/120 min) working with golden styling, backend API returning 53 services with correct pricing data. ❌ CRITICAL BUG IDENTIFIED: Person parameter bug in handleMassageClick function - when selecting massages for Person 1, the function incorrectly receives person: 2 instead of person: 1. Console logs show 'handleMassageClick CALLED: {person: 2, massage: Aroma terapija, dur: 60}' when clicking Person 1 dropdown. This causes all Person 1 selections to be saved as Person 2 selections, leaving Person 1 state always null. ❌ PRICING VERIFICATION BLOCKED: Cannot test the exact pricing scenarios (Test A: 8800→7920 RSD, Test B: 12200→10980 RSD, Test C: 13600→12240 RSD) because massage selection is broken. ZAKAŽITE button remains disabled (opacity: 0.5, cursor: not-allowed) preventing price calculation display. ❌ BACKEND PRICING DATA ISSUES: API shows incorrect base prices - Tradicionalna tajlandska masaža 60min: 4180 RSD (should be 4400), 90min: 5320 RSD (should be 5600), 120min: 6460 RSD (should be 6800). This confirms the double discount issue has NOT been fixed - prices are still ~5% lower than expected. ❌ UI ELEMENTS: No strikethrough prices or red final prices found because price calculation never triggers due to broken selection logic. ⚠️ URGENT FIXES REQUIRED: 1) Fix person parameter bug in CouplesMassageCard.js handleMassageClick function 2) Update backend pricing data to correct original prices 3) Test complete E2E pricing verification after fixes. All review request objectives failed due to these critical issues."
       - working: false
         agent: "testing"
-        comment: "🚨 COUPLES MASSAGE PRICE DEBUGGING COMPLETED - ROOT CAUSE IDENTIFIED! ✅ BACKEND API INTEGRATION FIXED: Updated backend .env BOOKING_API_URL from 'https://discount-fixer.preview.emergentagent.com' to 'https://spabooking.emergent.host' - API now working correctly. ✅ API DATA VERIFIED: Loading 18 services from 'Kartica Masaza za parove' category with correct prices: Aroma terapija 60min = 4,400 RSD, Aroma duboko tkivo 60min = 4,900 RSD, Total = 9,300 RSD. ❌ CRITICAL DISCOUNT ISSUE IDENTIFIED: All services in 'Kartica Masaza za parove' category have discount_percentage = 0.0 instead of 10.0. Console logs show 'Couples discount: 0%' instead of expected 10%. ❌ PRICE CALCULATION IMPACT: Without 10% discount, final price would be 9,300 RSD instead of expected 8,370 RSD (9,300 - 10% = 8,370). ✅ FRONTEND FUNCTIONALITY: Couples card renders correctly, 60min duration selection works with golden styling, API integration successful. ❌ UI INTERACTION ISSUE: Person 1 dropdown not opening during automated testing (likely due to animation/timing issues in test environment). ⚠️ URGENT FIX REQUIRED: Update discount_percentage from 0.0 to 10.0 for all services in 'Kartica Masaza za parove' category in the external booking system (https://spabooking.emergent.host). This is the root cause preventing correct couples massage pricing calculation."
+        comment: "🚨 COUPLES MASSAGE PRICE DEBUGGING COMPLETED - ROOT CAUSE IDENTIFIED! ✅ BACKEND API INTEGRATION FIXED: Updated backend .env BOOKING_API_URL from 'https://massage-bookfix.preview.emergentagent.com' to 'https://spabooking.emergent.host' - API now working correctly. ✅ API DATA VERIFIED: Loading 18 services from 'Kartica Masaza za parove' category with correct prices: Aroma terapija 60min = 4,400 RSD, Aroma duboko tkivo 60min = 4,900 RSD, Total = 9,300 RSD. ❌ CRITICAL DISCOUNT ISSUE IDENTIFIED: All services in 'Kartica Masaza za parove' category have discount_percentage = 0.0 instead of 10.0. Console logs show 'Couples discount: 0%' instead of expected 10%. ❌ PRICE CALCULATION IMPACT: Without 10% discount, final price would be 9,300 RSD instead of expected 8,370 RSD (9,300 - 10% = 8,370). ✅ FRONTEND FUNCTIONALITY: Couples card renders correctly, 60min duration selection works with golden styling, API integration successful. ❌ UI INTERACTION ISSUE: Person 1 dropdown not opening during automated testing (likely due to animation/timing issues in test environment). ⚠️ URGENT FIX REQUIRED: Update discount_percentage from 0.0 to 10.0 for all services in 'Kartica Masaza za parove' category in the external booking system (https://spabooking.emergent.host). This is the root cause preventing correct couples massage pricing calculation."
 
   - task: "Header with navigation and language switcher"
     implemented: true
@@ -350,7 +350,7 @@ backend:
     status_history:
       - working: false
         agent: "testing"
-        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://couples-discount-fix.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
+        comment: "CRITICAL ISSUE: Backend proxy endpoint /api/book-appointment is implemented correctly and working, but external booking service at https://massage-bookfix.preview.emergentagent.com/api/appointments returns 404 Not Found. Backend service is fully functional (root endpoint ✅, status CRUD operations ✅, database connectivity ✅, input validation ✅). The issue is that the external booking API endpoint does not exist on the target server. Backend proxy correctly forwards requests and handles errors appropriately."
       - working: true
         agent: "testing"
         comment: "COMPREHENSIVE TESTING COMPLETED - ALL BOOKING INTEGRATION WORKING PERFECTLY! ✅ Backend proxy endpoint /api/book-appointment fully functional and correctly forwards to https://pozdrav-kako-si.emergent.host/api/appointments. ✅ All 5 service IDs tested successfully: Klasicna Tajlandska masaza (057c8535-bb25-4712-9014-60e378d06b6d), Relax masaža celog tela (e7ee5fb3-1688-41fb-9c74-a2e0d0b79fbf), Sportska masaža (d6cf94e7-5eac-4a8a-8a33-c92e18830021), Spa + tradicionalna tajlandska masaza (0483de92-b1ca-49d8-bd1d-0b8a39ed50a4), Dubinska masaža (4c135b02-641e-4f66-a13b-f420c89ff3bd). ✅ Therapist ID 4cd2ce85-3e9e-41cd-83fc-81a4a48dda2f (Marko Markovic) working correctly. ✅ Input validation working (422 for missing fields, 404 for invalid service IDs). ✅ All bookings return proper appointment IDs and end times. Success rate: 100% (5/5 services). Backend correctly handles external API responses and error conditions."
@@ -374,7 +374,7 @@ backend:
         comment: "🚨 CRITICAL SERVICE ID MISMATCH DISCOVERED IN COUPLES MASSAGE BOOKING! ✅ BACKEND INTEGRATION: Fully functional when using correct service ID (9407d92e-d2a9-4432-85ae-850c3446f900). Appointment ID 1c0f34bc-9f28-41c2-a802-397c992bb952 created successfully, Web Slot 4 therapist assigned, email notifications sent. ❌ FRONTEND ISSUE: Contact.js serviceMapping uses wrong service ID (3ea2757e-2fa5-4db4-a52e-9db09f573265) which doesn't exist in external system. This causes all frontend couples massage bookings to fail. ✅ EXTERNAL SYSTEM: Service 'Masaža za parove - 120 min' exists with correct ID, price=11560.0, description='Masaža za parove - dve osobe sa popustom od 15%'. ✅ BACKEND LOGS: Enhanced couples massage processing working perfectly - service_name='Masaža za parove - 240 min', duration_type=240, price=11560 RSD. 🔧 CRITICAL FIX NEEDED: Update Contact.js serviceMapping to use correct service ID: 9407d92e-d2a9-4432-85ae-850c3446f900. Backend implementation is flawless, issue is purely frontend service mapping mismatch."
       - working: true
         agent: "testing"
-        comment: "🎉 REVIEW REQUEST TESTING COMPLETED - ALL OBJECTIVES ACHIEVED! ✅ SERVICE ID MISMATCH FIXED: Updated backend /api/services endpoint to use correct external system (https://pozdrav-kako-si.emergent.host) instead of wrong system (https://couples-discount-fix.preview.emergentagent.com). Service IDs now match between services endpoint and booking system. ✅ REQUIREMENT 1: /api/services endpoint returns array of 168 services including 'Tradicionalna tajlandska masaža - 60 min' with correct service ID (f3c55c37-5366-4be2-a47a-12322ef735fd). ✅ REQUIREMENT 2: /api/book-appointment endpoint successfully creates bookings with exact review request format. Appointment ID: f29d9a43-91fd-4907-81a3-21d5d1be160b created and verified in external system with status 'scheduled'. ✅ REQUIREMENT 3: Complete booking flow works without errors - service lookup → booking creation → external verification → email notifications. ✅ EMAIL INTEGRATION: Confirmation emails sent to bualuangthailandspa@gmail.com, reminder emails scheduled 2h before appointments. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working, multiple simultaneous bookings supported. ✅ BACKEND LOGS: Clean, no errors, all operations successful. Root cause was service endpoint URL mismatch - now resolved."
+        comment: "🎉 REVIEW REQUEST TESTING COMPLETED - ALL OBJECTIVES ACHIEVED! ✅ SERVICE ID MISMATCH FIXED: Updated backend /api/services endpoint to use correct external system (https://pozdrav-kako-si.emergent.host) instead of wrong system (https://massage-bookfix.preview.emergentagent.com). Service IDs now match between services endpoint and booking system. ✅ REQUIREMENT 1: /api/services endpoint returns array of 168 services including 'Tradicionalna tajlandska masaža - 60 min' with correct service ID (f3c55c37-5366-4be2-a47a-12322ef735fd). ✅ REQUIREMENT 2: /api/book-appointment endpoint successfully creates bookings with exact review request format. Appointment ID: f29d9a43-91fd-4907-81a3-21d5d1be160b created and verified in external system with status 'scheduled'. ✅ REQUIREMENT 3: Complete booking flow works without errors - service lookup → booking creation → external verification → email notifications. ✅ EMAIL INTEGRATION: Confirmation emails sent to bualuangthailandspa@gmail.com, reminder emails scheduled 2h before appointments. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working, multiple simultaneous bookings supported. ✅ BACKEND LOGS: Clean, no errors, all operations successful. Root cause was service endpoint URL mismatch - now resolved."
       - working: false
         agent: "testing"
         comment: "🚨 COMPREHENSIVE COMPARISON TEST COMPLETED - CRITICAL BOOKING SYSTEM CONFIGURATION ISSUE IDENTIFIED! ✅ API COMPARISON: Both working version and my version have IDENTICAL service catalogs (73 services, 17 couples services, same names, prices, discount percentages, and service IDs). ✅ HEALTH ENDPOINTS: Both versions return 200 OK status. ✅ SERVICE DATA: Perfect match between versions - same [PAROVI] prefixes, same 0.0% discount percentages, same pricing structure. ❌ CRITICAL DIFFERENCE: My version uses external booking system (https://spabooking.emergent.host) which has 0 therapists configured, causing all bookings to fail with 'Web booking system not configured' error. Working version uses internal booking system with proper therapist configuration. ✅ BACKEND IMPLEMENTATION: My backend code is correct and functional - issue is purely external system configuration. 🔧 ROOT CAUSE: External booking system needs Web Slot therapists configured to enable booking functionality. Service catalog and discount logic are identical between versions."
@@ -389,10 +389,10 @@ backend:
     status_history:
       - working: true
         agent: "testing"
-        comment: "🎉 COUPLE BOOKING ENDPOINT FULLY FUNCTIONAL - ALL REVIEW OBJECTIVES ACHIEVED! ✅ SCENARIO 1 (120-min mode): POST /api/book-couple-appointment with exact review request data successful. Client: Marko Petrović (+381601234567, marko@example.com), Duration: 120min per person, Services: [98249336-b9d9-4685-b70c-81971d3cf216, 106f23bf-771b-4049-bb09-413910bbc3b9], Discount: 15%. Appointment ID: 4141d726-bf75-4814-9e8a-d120399a700f, End time: 18:00 (4h total for 2x120min), Status: 200 OK. ✅ SCENARIO 2 (60-min mode): Client: Ana Jovanović (+381601234568, ana@example.com), Duration: 60min per person, Same services, Appointment ID: 8f28a730-dd89-4ece-b2c7-d4bfffa7d379, End time: 18:00 (2h total for 2x60min), Status: 200 OK. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working (therapist ID: 20a9e9ba-a867-4286-8792-5d3f34acd068). Multiple simultaneous bookings successful. ✅ EXTERNAL SYSTEM INTEGRATION: Both appointments verified in https://couples-discount-fix.preview.emergentagent.com/api/appointments/ with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully (backend logs show '✅ Email sent successfully'). ✅ PRICE CALCULATIONS: 15% discount applied correctly. Expected prices: 11560 RSD (120-min mode), 7480 RSD (60-min mode). ✅ CURL TESTS: Both review request curl commands return 200 OK with proper JSON responses. All review request verification points achieved: Status 200 OK ✅, Web Slot therapist assigned ✅, Couple service created ✅, Pricing correct ✅, Email confirmations ✅, Reminders scheduled ✅."
+        comment: "🎉 COUPLE BOOKING ENDPOINT FULLY FUNCTIONAL - ALL REVIEW OBJECTIVES ACHIEVED! ✅ SCENARIO 1 (120-min mode): POST /api/book-couple-appointment with exact review request data successful. Client: Marko Petrović (+381601234567, marko@example.com), Duration: 120min per person, Services: [98249336-b9d9-4685-b70c-81971d3cf216, 106f23bf-771b-4049-bb09-413910bbc3b9], Discount: 15%. Appointment ID: 4141d726-bf75-4814-9e8a-d120399a700f, End time: 18:00 (4h total for 2x120min), Status: 200 OK. ✅ SCENARIO 2 (60-min mode): Client: Ana Jovanović (+381601234568, ana@example.com), Duration: 60min per person, Same services, Appointment ID: 8f28a730-dd89-4ece-b2c7-d4bfffa7d379, End time: 18:00 (2h total for 2x60min), Status: 200 OK. ✅ WEB SLOT THERAPIST ROTATION: Automatic assignment working (therapist ID: 20a9e9ba-a867-4286-8792-5d3f34acd068). Multiple simultaneous bookings successful. ✅ EXTERNAL SYSTEM INTEGRATION: Both appointments verified in https://massage-bookfix.preview.emergentagent.com/api/appointments/ with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully (backend logs show '✅ Email sent successfully'). ✅ PRICE CALCULATIONS: 15% discount applied correctly. Expected prices: 11560 RSD (120-min mode), 7480 RSD (60-min mode). ✅ CURL TESTS: Both review request curl commands return 200 OK with proper JSON responses. All review request verification points achieved: Status 200 OK ✅, Web Slot therapist assigned ✅, Couple service created ✅, Pricing correct ✅, Email confirmations ✅, Reminders scheduled ✅."
       - working: true
         agent: "testing"
-        comment: "🎉 NEW BOOKING SYSTEM INTEGRATION TESTING COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED! ✅ TEST 1 - HEALTH CHECK: GET /api/health returns 200 OK with status 'healthy' - Backend is running correctly. ✅ TEST 2 - SERVICES ENDPOINT: GET /api/services returns 25 services from https://couples-discount-fix.preview.emergentagent.com including 10 [PAROVI] services with discount_percentage field. Sample: 'Tradicionalna tajlandska masaža - 60 min' (ID: 98249336-b9d9-4685-b70c-81971d3cf216). ✅ TEST 3 - REGULAR BOOKING: POST /api/book-appointment successful with Test User (+381601234567, test@example.com) for tomorrow 14:00. Appointment ID: 05b7338e-18db-454b-a4cc-ad8996685ac7, verified in external system. Web Slot therapist auto-assigned (20a9e9ba-a867-4286-8792-5d3f34acd068). ✅ TEST 4 - COUPLE BOOKING: POST /api/book-couple-appointment successful with [PAROVI] service for Test User 2 (+381601234568, test2@example.com), 90min per person, tomorrow 16:00. Appointment ID: 43ef405b-b4cc-4af7-a137-2ee05b3daee5, verified in external system. ✅ WEB SLOT THERAPIST ROTATION: Working perfectly - multiple simultaneous bookings supported. ✅ EXTERNAL SYSTEM VERIFICATION: Both appointments confirmed in https://couples-discount-fix.preview.emergentagent.com with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully, reminder emails scheduled 2h before appointments. Minor: Couple booking reminder scheduling has parameter mismatch error but doesn't affect core functionality. ✅ BACKEND LOGS: Clean operation, all HTTP requests successful (200 OK). NEW BOOKING SYSTEM URL INTEGRATION: FULLY FUNCTIONAL - All 4 test scenarios passed (4/4)."
+        comment: "🎉 NEW BOOKING SYSTEM INTEGRATION TESTING COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED! ✅ TEST 1 - HEALTH CHECK: GET /api/health returns 200 OK with status 'healthy' - Backend is running correctly. ✅ TEST 2 - SERVICES ENDPOINT: GET /api/services returns 25 services from https://massage-bookfix.preview.emergentagent.com including 10 [PAROVI] services with discount_percentage field. Sample: 'Tradicionalna tajlandska masaža - 60 min' (ID: 98249336-b9d9-4685-b70c-81971d3cf216). ✅ TEST 3 - REGULAR BOOKING: POST /api/book-appointment successful with Test User (+381601234567, test@example.com) for tomorrow 14:00. Appointment ID: 05b7338e-18db-454b-a4cc-ad8996685ac7, verified in external system. Web Slot therapist auto-assigned (20a9e9ba-a867-4286-8792-5d3f34acd068). ✅ TEST 4 - COUPLE BOOKING: POST /api/book-couple-appointment successful with [PAROVI] service for Test User 2 (+381601234568, test2@example.com), 90min per person, tomorrow 16:00. Appointment ID: 43ef405b-b4cc-4af7-a137-2ee05b3daee5, verified in external system. ✅ WEB SLOT THERAPIST ROTATION: Working perfectly - multiple simultaneous bookings supported. ✅ EXTERNAL SYSTEM VERIFICATION: Both appointments confirmed in https://massage-bookfix.preview.emergentagent.com with status 'scheduled'. ✅ EMAIL NOTIFICATIONS: Confirmation emails sent successfully, reminder emails scheduled 2h before appointments. Minor: Couple booking reminder scheduling has parameter mismatch error but doesn't affect core functionality. ✅ BACKEND LOGS: Clean operation, all HTTP requests successful (200 OK). NEW BOOKING SYSTEM URL INTEGRATION: FULLY FUNCTIONAL - All 4 test scenarios passed (4/4)."
       - working: true
         agent: "testing"
         comment: "🎉 COUPLES MASSAGE REVIEW REQUEST TEST COMPLETED - ALL OBJECTIVES ACHIEVED! ✅ EXACT SCENARIO TESTED: POST /api/book-couple-appointment with realistic data (Test Korisnik, +381601234567, test@example.com, 2025-11-12T14:00:00, 120 min mode 2x60 min, 10% discount, Serbian language). ✅ SERVICES FROM KARTICA MASAZA ZA PAROVE: Found 10 services in 'Kartica Masaza za parove' category with 10% discount_percentage. Used 'Tradicionalna tajlandska masaža - 60 min' (ID: 2e420770-ba34-4c54-a25b-59f198290ca0) for Person 1 and 'Tradicionalna tajlandska masaža - 90 min' (ID: 797e5c3a-d6bb-4292-b64e-625ea0a4ea2e) for Person 2. ✅ BOOKING SUCCESS: Appointment ID 6b4bc1d5-fcca-4935-bc52-16b34e2f6d38 created successfully with 200 OK response. End time: 16:00 (2h total duration). Web Slot therapist auto-assigned (20a9e9ba-a867-4286-8792-5d3f34acd068). ✅ EXTERNAL SYSTEM VERIFICATION: Booking confirmed in https://spabooking.emergent.host with status 'scheduled'. ✅ EMAIL CONFIRMATION: Confirmation email sent successfully to test@example.com (backend logs show '✅ Email sent successfully'). ✅ BACKEND LOGS: No critical errors, only minor reminder scheduling parameter mismatch (doesn't affect functionality). ✅ ALL REVIEW REQUIREMENTS MET: 200 OK response ✅, Appointment created with ID ✅, Email confirmation sent ✅, No critical errors in backend logs ✅. Couples massage booking endpoint working perfectly with realistic data from Kartica Masaza za parove category."
@@ -410,10 +410,10 @@ backend:
     status_history:
       - working: false
         agent: "testing"
-        comment: "🚨 CRITICAL BUSINESS ISSUE IDENTIFIED - DOUBLE DISCOUNT BUG CONFIRMED! ✅ BACKEND SYSTEM ANALYSIS: Health check (200 OK), Services API returns 52 services including 18 [PAROVI] couples services, booking system fully functional with Web Slot therapist rotation. ❌ PRICE CORRECTION ISSUE: Successfully identified 22 services in 'Kartica Masaza za parove' category with incorrect (already discounted) base prices causing double discount application. Current prices are 5-15% lower than correct original prices. Example: 'Tradicionalna tajlandska masaža - 60 min' currently 4,180 RSD (should be 4,400 RSD), when 10% discount applied becomes 3,762 RSD (effective 14.5% total discount instead of 10%). Revenue loss: ~638 RSD per booking. ❌ TECHNICAL LIMITATIONS: No API endpoints available for automated price updates (tested PATCH, PUT, POST methods). ✅ WEB INTERFACE: Admin interface accessible at https://couples-discount-fix.preview.emergentagent.com/admin, services management found at /admin/services. ⚠️ MANUAL CORRECTION REQUIRED: 22 services need price updates through web interface. Complete price mapping provided with differences ranging from 120-930 RSD per service. Backend booking system working perfectly - issue is purely pricing data correction needed."
+        comment: "🚨 CRITICAL BUSINESS ISSUE IDENTIFIED - DOUBLE DISCOUNT BUG CONFIRMED! ✅ BACKEND SYSTEM ANALYSIS: Health check (200 OK), Services API returns 52 services including 18 [PAROVI] couples services, booking system fully functional with Web Slot therapist rotation. ❌ PRICE CORRECTION ISSUE: Successfully identified 22 services in 'Kartica Masaza za parove' category with incorrect (already discounted) base prices causing double discount application. Current prices are 5-15% lower than correct original prices. Example: 'Tradicionalna tajlandska masaža - 60 min' currently 4,180 RSD (should be 4,400 RSD), when 10% discount applied becomes 3,762 RSD (effective 14.5% total discount instead of 10%). Revenue loss: ~638 RSD per booking. ❌ TECHNICAL LIMITATIONS: No API endpoints available for automated price updates (tested PATCH, PUT, POST methods). ✅ WEB INTERFACE: Admin interface accessible at https://massage-bookfix.preview.emergentagent.com/admin, services management found at /admin/services. ⚠️ MANUAL CORRECTION REQUIRED: 22 services need price updates through web interface. Complete price mapping provided with differences ranging from 120-930 RSD per service. Backend booking system working perfectly - issue is purely pricing data correction needed."
       - working: true
         agent: "testing"
-        comment: "🎉 FINALNI TEST COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED! ✅ COMPREHENSIVE TESTING RESULTS: 1) Discount Verification: All 18 [PAROVI] services have discount_percentage = 0% ✓ 2) Base Price Verification: Both target services ([PAROVI] Tradicionalna tajlandska masaža - 60 min, [PAROVI] Aroma terapija - 60 min) have correct price of 4400 RSD ✓ 3) Couples Booking Test: Exact scenario booking successful with Appointment ID 55948e41-5741-48e0-8ae2-68964a8bc22c ✓ 4) Final Price Calculation: 8800 - 880 (10%) = 7920 RSD matches expected price ✓ ✅ BACKEND INTEGRATION: Fully functional with Web Slot therapist rotation, email confirmations sent successfully. ✅ EXTERNAL SYSTEM: Bookings confirmed in https://couples-discount-fix.preview.emergentagent.com with proper pricing. ✅ PRICE CORRECTION COMPLETED: [PAROVI] services now have correct original prices (4400 RSD) with 0% discount, ensuring accurate 10% couples discount calculation. Minor: Some existing couples services still have old pricing but new bookings use correct [PAROVI] services. 📊 TEST RESULTS: 4/4 review request objectives achieved (100% success rate). Couples massage pricing system fully corrected and functional."
+        comment: "🎉 FINALNI TEST COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED! ✅ COMPREHENSIVE TESTING RESULTS: 1) Discount Verification: All 18 [PAROVI] services have discount_percentage = 0% ✓ 2) Base Price Verification: Both target services ([PAROVI] Tradicionalna tajlandska masaža - 60 min, [PAROVI] Aroma terapija - 60 min) have correct price of 4400 RSD ✓ 3) Couples Booking Test: Exact scenario booking successful with Appointment ID 55948e41-5741-48e0-8ae2-68964a8bc22c ✓ 4) Final Price Calculation: 8800 - 880 (10%) = 7920 RSD matches expected price ✓ ✅ BACKEND INTEGRATION: Fully functional with Web Slot therapist rotation, email confirmations sent successfully. ✅ EXTERNAL SYSTEM: Bookings confirmed in https://massage-bookfix.preview.emergentagent.com with proper pricing. ✅ PRICE CORRECTION COMPLETED: [PAROVI] services now have correct original prices (4400 RSD) with 0% discount, ensuring accurate 10% couples discount calculation. Minor: Some existing couples services still have old pricing but new bookings use correct [PAROVI] services. 📊 TEST RESULTS: 4/4 review request objectives achieved (100% success rate). Couples massage pricing system fully corrected and functional."
 
 metadata:
   created_by: "main_agent"
@@ -459,8 +459,8 @@ agent_communication:
       🎯 FINAL COMPREHENSIVE COMPARISON COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED!
       
       ✅ DETAILED API COMPARISON RESULTS:
-      • Working Version API: https://thaibookingspa.preview.emergentagent.com/api/services
-      • My Version API: https://couples-discount-fix.preview.emergentagent.com/api/services
+      • Working Version API: https://massage-bookfix.preview.emergentagent.com/api/services
+      • My Version API: https://massage-bookfix.preview.emergentagent.com/api/services
       • Both return IDENTICAL data: 73 total services, 17 couples services
       • All couples services in "Kartica Masaza za parove" category
       • All have [PAROVI] prefix, same prices (4400-7200 RSD), same 0.0% discount_percentage
@@ -496,7 +496,7 @@ agent_communication:
       ✅ COMPREHENSIVE API COMPARISON RESULTS:
       
       📊 WORKING VERSION (PERFECT):
-      • API: https://bualuang-anim.preview.emergentagent.com/api/services
+      • API: https://massage-bookfix.preview.emergentagent.com/api/services
       • Total services: 59
       • Couples services: 17 (in "Kartica Masaza za parove" category)
       • ALL couples services have discount_percentage = 0.0%
@@ -504,7 +504,7 @@ agent_communication:
       • Has ALL massage types including: Aroma duboko tkivo, Aromaterapija & topli kamen, Aroma sa toplim biljnim kompresama, Thai masaža sa toplim biljnim kompresama
       
       📊 MY VERSION:
-      • API: https://couples-discount-fix.preview.emergentagent.com/api/services
+      • API: https://massage-bookfix.preview.emergentagent.com/api/services
       • Total services: 66
       • Couples services: 10 (in "Kartica Masaza za parove" category)
       • ALL couples services have discount_percentage = 10.0%
@@ -566,7 +566,7 @@ agent_communication:
       
       📋 BACKEND CONFIGURATION ANALYSIS:
       • My backend .env: BOOKING_API_URL="https://spabooking.emergent.host"
-      • My frontend .env: REACT_APP_BACKEND_URL=https://couples-discount-fix.preview.emergentagent.com
+      • My frontend .env: REACT_APP_BACKEND_URL=https://massage-bookfix.preview.emergentagent.com
       • Working version appears to use self-hosted booking system
       
       ⚠️ BUSINESS IMPACT:
@@ -582,14 +582,14 @@ agent_communication:
       
       ✅ DETAILED API COMPARISON RESULTS:
       
-      📊 WORKING VERSION (PERFECT): https://thaispa-mobile.preview.emergentagent.com/api/services
+      📊 WORKING VERSION (PERFECT): https://massage-bookfix.preview.emergentagent.com/api/services
       • Total services: 73
       • Couples services: 17 (in "Kartica Masaza za parove" category)
       • ALL couples services have discount_percentage = 0.0%
       • ALL services have [PAROVI] prefix
       • Uses internal booking system (same domain)
       
-      📊 MY VERSION: https://couples-discount-fix.preview.emergentagent.com/api/services
+      📊 MY VERSION: https://massage-bookfix.preview.emergentagent.com/api/services
       • Total services: 73
       • Couples services: 17 (in "Kartica Masaza za parove" category)  
       • ALL couples services have discount_percentage = 0.0%
@@ -637,7 +637,7 @@ agent_communication:
       
       📋 BACKEND CONFIGURATION VERIFIED:
       • My backend .env: BOOKING_API_URL="https://spabooking.emergent.host" ✅
-      • My frontend .env: REACT_APP_BACKEND_URL=https://couples-discount-fix.preview.emergentagent.com ✅
+      • My frontend .env: REACT_APP_BACKEND_URL=https://massage-bookfix.preview.emergentagent.com ✅
       • Health endpoints: Both return 200 OK ✅
       
       ⚠️ BUSINESS IMPACT:
@@ -725,7 +725,7 @@ agent_communication:
       
       🔍 ROOT CAUSE IDENTIFIED:
       • Backend /api/services endpoint returning 500 Internal Server Error
-      • External booking system (https://discount-fixer.preview.emergentagent.com/api/services) returning 404 Not Found errors
+      • External booking system (https://massage-bookfix.preview.emergentagent.com/api/services) returning 404 Not Found errors
       • Frontend console error: "Failed to execute 'clone' on 'Response': Response body is already used"
       • Backend logs confirm: "Error fetching services from booking system: Client error '404 Not Found'"
       
@@ -744,7 +744,7 @@ agent_communication:
       • Complete E2E booking flow blocked at massage selection stage
       
       🔧 URGENT ACTION REQUIRED:
-      1. Fix external booking system API 404 errors at https://discount-fixer.preview.emergentagent.com/api/services
+      1. Fix external booking system API 404 errors at https://massage-bookfix.preview.emergentagent.com/api/services
       2. Resolve backend Response cloning issue in /api/services endpoint
       3. Ensure couples massage dropdown can load available massages from "Kartica Masaza za parove" category
       4. Test complete E2E pricing verification (7,920 RSD) after backend fixes
@@ -810,7 +810,7 @@ agent_communication:
       🧪 TEST 1 - DISCOUNT PERCENTAGE VERIFICATION:
       • Status: ✅ PASSED
       • Result: All 18 [PAROVI] services have discount_percentage = 0%
-      • Verification: Fetched 55 services from https://couples-discount-fix.preview.emergentagent.com/api/services
+      • Verification: Fetched 55 services from https://massage-bookfix.preview.emergentagent.com/api/services
       • Sample verified services: [PAROVI] Thai masaža sa toplim biljnim kompresama - 90 min, [PAROVI] Aroma terapija - 60 min, [PAROVI] Tradicionalna tajlandska masaža - 60 min
       
       🧪 TEST 2 - BASE PRICE VERIFICATION:
@@ -1071,7 +1071,7 @@ agent_communication:
       🎉 COMPREHENSIVE MASSAGE CARDS DURATION TESTING COMPLETED - ALL OBJECTIVES ACHIEVED!
       
       ✅ EXACT USER REQUEST FULFILLED:
-      - Navigated to https://couples-discount-fix.preview.emergentagent.com → MASAŽE ✅
+      - Navigated to https://massage-bookfix.preview.emergentagent.com → MASAŽE ✅
       - Tested ALL 14 massage cards systematically ✅
       - Verified EVERY duration button functionality ✅
       - Confirmed button highlighting (golden styling) ✅
@@ -1186,7 +1186,7 @@ agent_communication:
       ✅ COMPREHENSIVE TESTING RESULTS:
       
       📋 NAVIGATION & PAGE LOADING:
-      - ✅ Navigate to https://couples-discount-fix.preview.emergentagent.com → Click MASAŽE menu: WORKING
+      - ✅ Navigate to https://massage-bookfix.preview.emergentagent.com → Click MASAŽE menu: WORKING
       - ✅ Massage page loads with 6 massage cards: WORKING
       - ✅ Couples massage card found ('Masaža za parove') with Person 1 & Person 2 dropdowns: WORKING
       
@@ -1291,7 +1291,7 @@ agent_communication:
       🎉 90-MINUTE COUPLES MASSAGE BOOKING VERIFICATION COMPLETED - ALL OBJECTIVES ACHIEVED!
       
       ✅ EXACT USER SCENARIO TESTED SUCCESSFULLY:
-      1. Navigate to https://couples-discount-fix.preview.emergentagent.com ✅
+      1. Navigate to https://massage-bookfix.preview.emergentagent.com ✅
       2. Click MASAŽE menu ✅ (Navigation working perfectly)
       3. Scroll to find "Masaža za parove" card ✅ (Found at index 6 - Sports massage card with couples functionality)
       4. Click "90 min" duration button ✅ (Duration selection working)
@@ -1647,7 +1647,7 @@ agent_communication:
       - Backend proxy implementation is correct and follows best practices
       
       ❌ EXTERNAL BOOKING SERVICE UNAVAILABLE:
-      - External API endpoint https://couples-discount-fix.preview.emergentagent.com/api/appointments returns 404 Not Found
+      - External API endpoint https://massage-bookfix.preview.emergentagent.com/api/appointments returns 404 Not Found
       - Tested multiple HTTP methods (GET, POST, OPTIONS) - all return 404
       - Backend proxy correctly forwards requests and handles 404 errors appropriately
       - Backend logs show proper error handling: "Booking API error: 404 - {"detail":"Not Found"}"
@@ -2006,7 +2006,7 @@ agent_communication:
       4. ✅ Email notifications working (backend logs: "✅ Email sent successfully")
       5. ✅ Prices calculated correctly with 15% discount
       6. ✅ Both curl commands from review request return 200 OK
-      7. ✅ External system verification: Both appointments found in https://couples-discount-fix.preview.emergentagent.com/api/appointments/
+      7. ✅ External system verification: Both appointments found in https://massage-bookfix.preview.emergentagent.com/api/appointments/
       
       📋 ADDITIONAL TESTING:
       - ✅ Web Slot therapist rotation: Multiple simultaneous bookings successful
@@ -2054,7 +2054,7 @@ agent_communication:
       - ✅ All HTTP requests returning 200 OK
       
       🔧 CRITICAL FIX IMPLEMENTED:
-      - ROOT CAUSE: Backend was fetching services from https://couples-discount-fix.preview.emergentagent.com but making bookings to https://pozdrav-kako-si.emergent.host
+      - ROOT CAUSE: Backend was fetching services from https://massage-bookfix.preview.emergentagent.com but making bookings to https://pozdrav-kako-si.emergent.host
       - SOLUTION: Updated /api/services endpoint to use same external system as bookings
       - RESULT: Service IDs now match, no more "Service not found" errors
       
@@ -2079,7 +2079,7 @@ agent_communication:
       • Services API: ✅ Returns 52 services including 18 [PAROVI] couples services
       • Regular Booking: ✅ Creates appointments successfully with Web Slot therapist rotation
       • Couple Booking: ✅ Handles couples massage bookings with proper discount calculation
-      • External Integration: ✅ All bookings processed through https://couples-discount-fix.preview.emergentagent.com
+      • External Integration: ✅ All bookings processed through https://massage-bookfix.preview.emergentagent.com
       
       🔍 PRICE CORRECTION ANALYSIS RESULTS:
       • Successfully identified 22 services in "Kartica Masaza za parove" category requiring price corrections
@@ -2096,7 +2096,7 @@ agent_communication:
       
       🔧 TECHNICAL ASSESSMENT:
       • ❌ No API endpoints available for automated price updates (tested PATCH, PUT, POST methods)
-      • ✅ Web admin interface accessible at https://couples-discount-fix.preview.emergentagent.com/admin
+      • ✅ Web admin interface accessible at https://massage-bookfix.preview.emergentagent.com/admin
       • ✅ Services management interface found at /admin/services
       • ⚠️ Manual price correction required through web interface
       

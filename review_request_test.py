@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://couples-discount-fix.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://massage-bookfix.preview.emergentagent.com')
 
 class ReviewRequestTester:
     def __init__(self):
@@ -39,7 +39,7 @@ class ReviewRequestTester:
     async def test_services_endpoint(self):
         """
         Test /api/services endpoint as specified in review request:
-        - GET https://couples-discount-fix.preview.emergentagent.com/api/services
+        - GET https://massage-bookfix.preview.emergentagent.com/api/services
         - Should return array of 24 services
         - Verify it has "Tradicionalna tajlandska masaža - 60 min" and other services
         """
@@ -136,7 +136,7 @@ class ReviewRequestTester:
     async def test_book_appointment_endpoint(self, service_id=None):
         """
         Test /api/book-appointment endpoint as specified in review request:
-        - POST https://couples-discount-fix.preview.emergentagent.com/api/book-appointment
+        - POST https://massage-bookfix.preview.emergentagent.com/api/book-appointment
         - Use exact body from review request
         - Should return success response
         - Should send email to bualuangthailandspa@gmail.com
