@@ -324,11 +324,15 @@ const CouplesMassageCard = ({
   
   const calculateCouplesPrice = () => {
     const originalPrice = calculateOriginalPrice();
-    const discountedPrice = originalPrice * (1 - couplesDiscount / 100);
     
-    console.log(`💰 Couples price: Original ${originalPrice} RSD - ${couplesDiscount}% = ${discountedPrice} RSD`);
+    // VAŽNO: Booking sistem već primenjuje popust na cene!
+    // service.price je VEĆ SNIŽENA cena ako postoji discount_percentage
+    // Frontend NE SME da primenjuje dodatni popust!
     
-    return discountedPrice;
+    console.log(`💰 Couples price: ${originalPrice} RSD (cene su već snižene u booking sistemu)`);
+    
+    // Vraćamo originalPrice bez dodatnog popusta
+    return originalPrice;
   };
 
   const isSelectionComplete = () => {
