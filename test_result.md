@@ -456,6 +456,36 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 COUPLES MASSAGE BOOKING FLOW TEST RESULTS - CRITICAL DROPDOWN ISSUE IDENTIFIED!
+      
+      ✅ SUCCESSFUL COMPONENTS VERIFIED:
+      • Massage page loads correctly at https://massage-bookfix.preview.emergentagent.com/massage
+      • Couples massage card renders with proper title "Masaža za parove" and -5% discount badge
+      • Backend integration working: 19 services loaded from "Kartica Masaza za parove" category
+      • 5% discount correctly applied from booking system (console logs confirm)
+      • Duration selection functional: 60 min button works with proper state management
+      • State reset working correctly when duration changes
+      
+      ❌ CRITICAL ISSUE BLOCKING BOOKING FLOW:
+      • Dropdown options not rendering after Person 1 dropdown click
+      • Despite services loading correctly (19 services in console), dropdown options don't appear in DOM
+      • This prevents massage selection for both persons, blocking entire booking flow
+      • Root cause: Frontend dropdown rendering issue in CouplesMassageCard.js
+      
+      ⚠️ URL DISCREPANCY:
+      • User requested testing at https://discount-fixer.preview.emergentagent.com/massage (has routing issues)
+      • Working version found at https://massage-bookfix.preview.emergentagent.com/massage
+      • Frontend .env configured for massage-bookfix URL, not discount-fixer URL
+      
+      🔧 URGENT FIX REQUIRED:
+      • Debug dropdown option rendering in CouplesMassageCard component
+      • Ensure dropdown options are properly added to DOM after services load
+      • Test complete E2E flow after dropdown fix
+      
+      📊 PRICING VERIFICATION STATUS: Cannot verify expected pricing (8,800 → 8,360 RSD) due to dropdown blocking massage selection step.
+  
+  - agent: "testing"
+    message: |
       🎯 FINAL COMPREHENSIVE COMPARISON COMPLETED - ALL REVIEW REQUEST OBJECTIVES ACHIEVED!
       
       ✅ DETAILED API COMPARISON RESULTS:
