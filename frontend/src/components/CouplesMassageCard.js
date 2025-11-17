@@ -756,8 +756,20 @@ const CouplesMassageCard = ({
           }}>
             {/* VAŽNO: Booking sistem već primenjuje popust na cene!
               service.price je VEĆ SNIŽENA cena.
-              Ne prikazujemo "originalnu" precrtanu cenu jer to bi bilo zbunjujuće.
-              Samo prikazujemo finalnu cenu koja je već sa popustom. */}
+              Prikazujemo originalnu (precrtanu) i finalnu cenu. */}
+            
+            {/* Original Price (precrtana) - samo ako ima popust */}
+            {couplesDiscount > 0 && (
+              <div style={{
+                color: '#e63946',
+                fontSize: '1.2rem',
+                textDecoration: 'line-through',
+                textDecorationColor: 'white',
+                marginBottom: '0.25rem'
+              }}>
+                {Math.round(calculateCouplesPrice() / (1 - couplesDiscount / 100)).toLocaleString('sr-RS')} RSD
+              </div>
+            )}
             
             {/* Final Price (već sa popustom iz booking sistema) */}
             <div style={{
