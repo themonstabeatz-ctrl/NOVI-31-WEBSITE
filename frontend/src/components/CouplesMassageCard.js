@@ -754,20 +754,12 @@ const CouplesMassageCard = ({
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            {/* Original Price (strikethrough) - only show if there's a discount */}
-            {couplesDiscount > 0 && (
-              <div style={{
-                color: '#e63946',
-                fontSize: '1.2rem',
-                textDecoration: 'line-through',
-                textDecorationColor: 'white',
-                marginBottom: '0.25rem'
-              }}>
-                {Math.round(calculateOriginalPrice()).toLocaleString('sr-RS')} RSD
-              </div>
-            )}
+            {/* VAŽNO: Booking sistem već primenjuje popust na cene!
+              service.price je VEĆ SNIŽENA cena.
+              Ne prikazujemo "originalnu" precrtanu cenu jer to bi bilo zbunjujuće.
+              Samo prikazujemo finalnu cenu koja je već sa popustom. */}
             
-            {/* Discounted Price */}
+            {/* Final Price (već sa popustom iz booking sistema) */}
             <div style={{
               color: '#d4af37',
               fontWeight: 'bold',
