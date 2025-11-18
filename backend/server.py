@@ -395,7 +395,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                     "person2_services": booking.person2_services,
                     "start_time": booking.start_time,
                     "status": "scheduled",
-                    "discount_couples_massage": 0.0  # Always 0 - discount already applied in service prices from API
+                    "discount_couples_massage": booking.discount_couples_massage  # Pass discount from frontend
                 }
                 
                 logger.info(f"🔄 Trying {therapist['name']} (ID: {therapist['id']})")
