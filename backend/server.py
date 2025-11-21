@@ -78,6 +78,15 @@ class AppointmentBooking(BaseModel):
     duration_type: Optional[int] = None  # For couples massage total duration
 
 # Couple Booking Model
+# Snapshot model for service pricing
+class ServiceSnapshot(BaseModel):
+    service_id: str
+    service_code: str
+    original_price: float
+    discount_percentage: float
+    final_price: float
+    duration: int
+
 class CoupleBooking(BaseModel):
     client_first_name: str
     client_last_name: str
@@ -85,10 +94,14 @@ class CoupleBooking(BaseModel):
     client_email: Optional[str] = ""
     start_time: str  # ISO datetime format
     duration_type: int  # 60, 90, or 120 minutes per person
-    person1_services: List[str]  # List of service IDs for person 1
-    person2_services: List[str]  # List of service IDs for person 2
+    person1_services: List[str]  # List of service IDs for person 1 (DEPRECATED - use snapshots)
+    person2_services: List[str]  # List of service IDs for person 2 (DEPRECATED - use snapshots)
     discount_couples_massage: float = 0.0  # NO discount - already applied in frontend
     language: Optional[str] = "sr"  # Default to Serbian
+    
+    # NEW: Snapshot system (Variant 1)
+    person1_snapshots: Optional[List[ServiceSnapshot]] = None  # Complete snapshot for person 1
+    person2_snapshots: Optional[List[ServiceSnapshot]] = None  # Complete snapshot for person 2
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
