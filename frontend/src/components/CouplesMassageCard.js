@@ -306,8 +306,8 @@ const CouplesMassageCard = ({
     return total;
   };
 
-  const calculateCouplesPrice = () => {
-    // FINALNA CENA = ZBIR service.price (koje su VEĆ diskontovane u booking sistemu)
+  const calculateOriginalPrice = () => {
+    // ORIGINALNA CENA = ZBIR service.price (koje su originalne cene iz API-ja)
     let total = 0;
     const p1m1 = couplesSelections.person1Massage1;
     const p1m2 = couplesSelections.person1Massage2;
@@ -319,23 +319,24 @@ const CouplesMassageCard = ({
     if (p2m1) total += p2m1.price;
     if (p2m2) total += p2m2.price;
     
-    console.log(`💰 Couples price (finalna sa popustom): ${total} RSD`);
+    console.log(`💰 Original price (pre popusta): ${total} RSD`);
     
     return total;
   };
 
-  // Calculate original price (without discount)
-  const calculateOriginalPrice = () => {
-    // Originalna cena = finalna cena / (1 - discount/100)
-    const finalPrice = calculateCouplesPrice();
+  // Calculate final price (with discount applied)
+  const calculateCouplesPrice = () => {
+    // Finalna cena = originalna cena - popust
+    const originalPrice = calculateOriginalPrice();
     
     if (couplesDiscount > 0) {
-      const originalPrice = finalPrice / (1 - couplesDiscount / 100);
-      console.log(`💰 Original price: ${originalPrice.toFixed(0)} RSD (pre popusta)`);
-      return originalPrice;
+      const finalPrice = originalPrice * (1 - couplesDiscount / 100);
+      console.log(`💰 Couples price (finalna sa ${couplesDiscount}% popustom): ${finalPrice.toFixed(0)} RSD`);
+      return finalPrice;
     }
     
-    return finalPrice;
+    console.log(`💰 Couples price (bez popusta): ${originalPrice} RSD`);
+    return originalPrice;
   };
 
   const isSelectionComplete = () => {
