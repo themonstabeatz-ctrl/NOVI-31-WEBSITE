@@ -461,6 +461,22 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
             
             logger.info(f"Found {len(web_slot_therapists)} web booking therapists")
             
+            # Check if frontend sent snapshots (Variant 1)
+            if booking.person1_snapshots and booking.person2_snapshots:
+                logger.info("📸 Using snapshot from websajt (Variant 1)")
+                
+                # Calculate total from snapshots
+                total_original = sum(s.original_price for s in booking.person1_snapshots) + sum(s.original_price for s in booking.person2_snapshots)
+                total_final = sum(s.final_price for s in booking.person1_snapshots) + sum(s.final_price for s in booking.person2_snapshots)
+                
+                # Get discount from first snapshot (should be same for all)
+                discount_percent = booking.person1_snapshots[0].discount_percentage if booking.person1_snapshots else 0.0
+                
+                logger.info(f"💰 Snapshot prices - Original: {total_original} RSD, Final: {total_final} RSD, Discount: {discount_percent}%")
+            else:
+                logger.warning("⚙️ Websajt didn't send snapshot - using fallback with service IDs")
+                discount_percent = booking.discount_couples_massage
+            
             # Try each Web Slot therapist until one is available
             booking_result = None
             for therapist in web_slot_therapists:
@@ -476,8 +492,13 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                     "person2_services": booking.person2_services,
                     "start_time": booking.start_time,
                     "status": "scheduled",
-                    "discount_couples_massage": booking.discount_couples_massage  # Pass discount from frontend
+                    "discount_couples_massage": discount_percent  # Use discount from snapshot or fallback
                 }
+                
+                # Add snapshots if available (Variant 1)
+                if booking.person1_snapshots and booking.person2_snapshots:
+                    couple_payload["person1_snapshots"] = [s.dict() for s in booking.person1_snapshots]
+                    couple_payload["person2_snapshots"] = [s.dict() for s in booking.person2_snapshots]
                 
                 logger.info(f"🔄 Trying {therapist['name']} (ID: {therapist['id']})")
                 
