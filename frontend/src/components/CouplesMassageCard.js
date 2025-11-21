@@ -156,8 +156,9 @@ const CouplesMassageCard = ({
   const handleMassageClick = (person, massage, dur) => {
     console.log('✅ handleMassageClick CALLED:', { person, massage: massage.name, dur });
     
-    // Get correct price for the specific duration
-    const price = massage.prices[dur] || massage.prices['60'];
+    // Get correct price for the specific duration (backend already applied discount)
+    const price = massage.prices[dur] || massage.prices['60'];  // discounted price from backend
+    const originalPrice = massage.originalPrices?.[dur] || massage.prices[dur];  // original price from backend
     
     // Create full service name for booking system lookup
     const fullServiceName = `${massage.name} - ${dur} min`;
@@ -166,8 +167,10 @@ const CouplesMassageCard = ({
       key: massage.key, 
       name: massage.name, 
       duration: dur, 
-      price: price,
-      fullServiceName: fullServiceName
+      price: price,  // Backend-calculated discounted price
+      originalPrice: originalPrice,  // Backend original price
+      fullServiceName: fullServiceName,
+      serviceCode: massage.serviceCode  // Unique service code
     };
     
     if (person === 1) {
