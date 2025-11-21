@@ -311,36 +311,42 @@ const CouplesMassageCard = ({
   };
 
   const calculateOriginalPrice = () => {
-    // ORIGINALNA CENA = ZBIR service.price (koje su originalne cene iz API-ja)
+    // ORIGINALNA CENA = ZBIR originalPrice iz backenda (backend je izvor istine)
     let total = 0;
     const p1m1 = couplesSelections.person1Massage1;
     const p1m2 = couplesSelections.person1Massage2;
     const p2m1 = couplesSelections.person2Massage1;
     const p2m2 = couplesSelections.person2Massage2;
     
-    if (p1m1) total += p1m1.price;
-    if (p1m2) total += p1m2.price;
-    if (p2m1) total += p2m1.price;
-    if (p2m2) total += p2m2.price;
+    // Backend vraća originalPrice - samo saberi vrednosti
+    if (p1m1) total += p1m1.originalPrice || p1m1.price;
+    if (p1m2) total += p1m2.originalPrice || p1m2.price;
+    if (p2m1) total += p2m1.originalPrice || p2m1.price;
+    if (p2m2) total += p2m2.originalPrice || p2m2.price;
     
-    console.log(`💰 Original price (pre popusta): ${total} RSD`);
+    console.log(`💰 Original price (pre popusta, iz backenda): ${total} RSD`);
     
     return total;
   };
 
-  // Calculate final price (with discount applied)
+  // Calculate final price (backend already calculated discount)
   const calculateCouplesPrice = () => {
-    // Finalna cena = originalna cena - popust
-    const originalPrice = calculateOriginalPrice();
+    // FINALNA CENA = ZBIR discounted_price iz backenda (backend već primenio popust)
+    let total = 0;
+    const p1m1 = couplesSelections.person1Massage1;
+    const p1m2 = couplesSelections.person1Massage2;
+    const p2m1 = couplesSelections.person2Massage1;
+    const p2m2 = couplesSelections.person2Massage2;
     
-    if (couplesDiscount > 0) {
-      const finalPrice = originalPrice * (1 - couplesDiscount / 100);
-      console.log(`💰 Couples price (finalna sa ${couplesDiscount}% popustom): ${finalPrice.toFixed(0)} RSD`);
-      return finalPrice;
-    }
+    // Backend već izračunao cene sa popustom - samo saberi
+    if (p1m1) total += p1m1.price;  // price već sadrži diskontovanu cenu iz backenda
+    if (p1m2) total += p1m2.price;
+    if (p2m1) total += p2m1.price;
+    if (p2m2) total += p2m2.price;
     
-    console.log(`💰 Couples price (bez popusta): ${originalPrice} RSD`);
-    return originalPrice;
+    console.log(`💰 Couples price (finalna sa popustom, iz backenda): ${total.toFixed(0)} RSD`);
+    
+    return total;
   };
 
   const isSelectionComplete = () => {
