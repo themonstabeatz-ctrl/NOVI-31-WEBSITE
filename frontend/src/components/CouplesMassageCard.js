@@ -829,7 +829,8 @@ const CouplesMassageCard = ({
               },
               totalPrice: calculateCouplesPrice(),
               originalPrice: calculateOriginalPrice(),
-              discount: `${couplesDiscount}%`
+              discount: `${couplesDiscount}%`,
+              discountPercent: couplesDiscount  // Raw number for backend
             }))}`}>
               {translate('bookNowBtn')}
             </Link>
