@@ -558,9 +558,67 @@ const Contact = () => {
           }
           
           // Prepare couple booking data
-          // Extract discount percentage from couplesData (e.g., "10%" -> 10.0)
-          const discountStr = couplesData.discount || '0%';
-          const discountPercent = parseFloat(discountStr.replace('%', '')) || 0;
+          // Extract discount percentage from couplesData
+          const discountPercent = couplesData.discountPercent || 0;
+          
+          // Create snapshots for each service (Variant 1 - backend snapshot system)
+          const person1Snapshots = [];
+          const person2Snapshots = [];
+          
+          // Helper function to create snapshot from massage data
+          const createSnapshot = (massageData, serviceId) => {
+            if (!massageData) return null;
+            
+            return {
+              service_id: serviceId,
+              service_code: massageData.serviceCode || massageData.name,
+              original_price: massageData.originalPrice || massageData.price,
+              discount_percentage: discountPercent,
+              final_price: massageData.price,  // Backend already calculated this
+              duration: parseInt(massageData.duration)
+            };
+          };
+          
+          // Create snapshots for Person 1
+          if (couplesData.person1?.massage1) {
+            const massage1Name = `${couplesData.person1.massage1.name} - ${couplesData.person1.massage1.duration} min`;
+            const service1Id = freshMapping[massage1Name];
+            if (service1Id) {
+              const snapshot = createSnapshot(couplesData.person1.massage1, service1Id);
+              if (snapshot) person1Snapshots.push(snapshot);
+            }
+          }
+          if (couplesData.person1?.massage2) {
+            const massage2Name = `${couplesData.person1.massage2.name} - ${couplesData.person1.massage2.duration} min`;
+            const service2Id = freshMapping[massage2Name];
+            if (service2Id) {
+              const snapshot = createSnapshot(couplesData.person1.massage2, service2Id);
+              if (snapshot) person1Snapshots.push(snapshot);
+            }
+          }
+          
+          // Create snapshots for Person 2
+          if (couplesData.person2?.massage1) {
+            const massage1Name = `${couplesData.person2.massage1.name} - ${couplesData.person2.massage1.duration} min`;
+            const service1Id = freshMapping[massage1Name];
+            if (service1Id) {
+              const snapshot = createSnapshot(couplesData.person2.massage1, service1Id);
+              if (snapshot) person2Snapshots.push(snapshot);
+            }
+          }
+          if (couplesData.person2?.massage2) {
+            const massage2Name = `${couplesData.person2.massage2.name} - ${couplesData.person2.massage2.duration} min`;
+            const service2Id = freshMapping[massage2Name];
+            if (service2Id) {
+              const snapshot = createSnapshot(couplesData.person2.massage2, service2Id);
+              if (snapshot) person2Snapshots.push(snapshot);
+            }
+          }
+          
+          console.log('📸 Created snapshots:', {
+            person1: person1Snapshots,
+            person2: person2Snapshots
+          });
           
           appointmentData = {
             client_first_name: formData.firstName,
@@ -569,13 +627,16 @@ const Contact = () => {
             client_email: formData.email,
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             duration_type: parseInt(couplesData.duration), // 60, 90, or 120 per person
-            person1_services: person1Services,
-            person2_services: person2Services,
+            person1_services: person1Services,  // Keep for backward compatibility
+            person2_services: person2Services,  // Keep for backward compatibility
             discount_couples_massage: discountPercent,
-            language: language
+            language: language,
+            // NEW: Snapshot system (Variant 1)
+            person1_snapshots: person1Snapshots,
+            person2_snapshots: person2Snapshots
           };
           
-          console.log(`📊 Using discount: ${discountPercent}% from couplesData`);
+          console.log(`📸 Using snapshot system (Variant 1) with discount: ${discountPercent}%`);
           
           bookingEndpoint = '/api/book-couple-appointment';
           console.log('📌 Couple booking data:', appointmentData);
