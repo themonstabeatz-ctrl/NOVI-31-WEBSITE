@@ -166,20 +166,88 @@ async def health_check():
     """
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
-# Services Proxy Endpoint
+# Helper function to extract service code (base name without prefix and duration)
+def extract_service_code(service_name: str) -> str:
+    """
+    Extract unique service code from service name.
+    Examples:
+    - "[PAROVI] Aroma terapija - 90 min" -> "Aroma terapija"
+    - "Aroma terapija - 90 min" -> "Aroma terapija"
+    - "Masaža stopala - 60 min" -> "Masaža stopala"
+    """
+    # Remove [PAROVI] prefix
+    name = service_name.replace('[PAROVI]', '').strip()
+    
+    # Remove duration suffix (e.g., " - 60 min", " - 90 min")
+    import re
+    name = re.sub(r'\s*-\s*\d+\s*min\s*$', '', name, flags=re.IGNORECASE)
+    
+    return name.strip()
+
+# Services Proxy Endpoint with Single Discount Logic
 @api_router.get("/services")
 async def get_services():
     """
-    Proxy endpoint to fetch services from booking system
+    Proxy endpoint to fetch services from booking system with intelligent discount handling.
+    
+    BUSINESS LOGIC:
+    - Each service gets ONLY ONE discount applied (highest available)
+    - If same massage exists in multiple categories with different discounts, 
+      the highest discount is selected
+    - Backend calculates final price with discount
+    - Frontend displays values from backend (no frontend calculations)
     """
-    # Use configured booking system
     booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-bookfix.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
             response = await client.get(f"{booking_api_url}/api/services")
             response.raise_for_status()
-            return response.json()
+            raw_services = response.json()
+            
+            # Group services by service_code to find highest discount
+            services_by_code = {}
+            for service in raw_services:
+                service_code = extract_service_code(service['name'])
+                
+                if service_code not in services_by_code:
+                    services_by_code[service_code] = []
+                
+                services_by_code[service_code].append(service)
+            
+            # Find highest discount for each service code
+            max_discounts = {}
+            for service_code, services in services_by_code.items():
+                max_discount = max(s.get('discount_percentage', 0) for s in services)
+                max_discounts[service_code] = max_discount
+            
+            # Apply highest discount to each service
+            processed_services = []
+            for service in raw_services:
+                service_code = extract_service_code(service['name'])
+                highest_discount = max_discounts.get(service_code, 0)
+                
+                # Add service_code to service for frontend reference
+                service['service_code'] = service_code
+                
+                # Override discount with highest available
+                service['discount_percentage'] = highest_discount
+                
+                # Calculate price with discount (backend is source of truth)
+                original_price = service['price']
+                if highest_discount > 0:
+                    service['discounted_price'] = original_price * (1 - highest_discount / 100)
+                else:
+                    service['discounted_price'] = original_price
+                
+                # Keep original price for reference
+                service['original_price'] = original_price
+                
+                processed_services.append(service)
+            
+            logger.info(f"✅ Processed {len(processed_services)} services with single discount logic")
+            return processed_services
+            
     except Exception as e:
         logger.error(f"Error fetching services from booking system: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch services: {str(e)}")
