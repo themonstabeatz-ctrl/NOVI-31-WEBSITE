@@ -66,9 +66,9 @@ const Spa = () => {
   useEffect(() => {
     const fetchDiscounts = async () => {
       try {
-        // Fetch services from booking system API via backend proxy
+        // Fetch SPA services - these are typically in separate category, but we'll check both
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-        const response = await fetch(`${backendUrl}/api/services`);
+        const response = await fetch(`${backendUrl}/api/services`);  // SPA services might be in different category
         const services = await response.json();
         
         // Build discount mapping: service name -> discount percentage
