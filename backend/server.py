@@ -578,10 +578,12 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 total_original = sum(s.original_price for s in booking.person1_snapshots) + sum(s.original_price for s in booking.person2_snapshots)
                 total_final = sum(s.final_price for s in booking.person1_snapshots) + sum(s.final_price for s in booking.person2_snapshots)
                 
-                # Get discount from first snapshot (should be same for all)
-                discount_percent = booking.person1_snapshots[0].discount_percentage if booking.person1_snapshots else 0.0
+                # CRITICAL: Discount is ALREADY applied in final_price!
+                # We must send 0% to recepcija so it doesn't apply discount again!
+                discount_percent = 0.0  # ALWAYS 0 when using snapshots - cene su već diskontovane!
                 
-                logger.info(f"💰 Snapshot prices - Original: {total_original} RSD, Final: {total_final} RSD, Discount: {discount_percent}%")
+                logger.info(f"💰 Snapshot prices - Original: {total_original} RSD, Final: {total_final} RSD")
+                logger.info(f"⚠️  Sending discount_couples_massage: 0% (cene već diskontovane u snapshots)")
             else:
                 logger.warning("⚙️ Websajt didn't send snapshot - using fallback with service IDs")
                 discount_percent = booking.discount_couples_massage
