@@ -265,6 +265,128 @@ async def get_services():
         logger.error(f"Error fetching services from booking system: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch services: {str(e)}")
 
+# NEW ENDPOINT: Couples Services Only
+@api_router.get("/services/couples/list")
+async def get_couples_services():
+    """
+    Returns ONLY couple services (services from "Kartica Masaza za parove" category).
+    
+    CRITICAL: This endpoint is used EXCLUSIVELY by "Masaža za parove" card on website.
+    - Filters only services with category = "Kartica Masaza za parove"
+    - Returns services with [PAROVI] prefix
+    - Applies highest discount logic per service_code
+    - NO mixing with single services
+    """
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-bookfix.preview.emergentagent.com')
+    
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(f"{booking_api_url}/api/services")
+            response.raise_for_status()
+            raw_services = response.json()
+            
+            # CRITICAL FILTER: Only "Kartica Masaza za parove" category
+            couples_only = [s for s in raw_services if s.get('category') == 'Kartica Masaza za parove']
+            
+            logger.info(f"🔍 Filtered couples services: {len(couples_only)} out of {len(raw_services)} total services")
+            
+            # Group by service_code to find highest discount (within couples category only)
+            services_by_code = {}
+            for service in couples_only:
+                service_code = extract_service_code(service['name'])
+                
+                if service_code not in services_by_code:
+                    services_by_code[service_code] = []
+                
+                services_by_code[service_code].append(service)
+            
+            # Find highest discount for each service code (within couples only)
+            max_discounts = {}
+            for service_code, services in services_by_code.items():
+                max_discount = max(s.get('discount_percentage', 0) for s in services)
+                max_discounts[service_code] = max_discount
+            
+            # Process couples services
+            processed_services = []
+            for service in couples_only:
+                service_code = extract_service_code(service['name'])
+                highest_discount = max_discounts.get(service_code, 0)
+                
+                # Add metadata
+                service['service_code'] = service_code
+                service['is_couple'] = True  # Mark as couple service
+                service['discount_percentage'] = highest_discount
+                
+                # Calculate prices
+                original_price = service['price']
+                if highest_discount > 0:
+                    service['discounted_price'] = original_price * (1 - highest_discount / 100)
+                else:
+                    service['discounted_price'] = original_price
+                
+                service['original_price'] = original_price
+                
+                processed_services.append(service)
+            
+            logger.info(f"✅ Returning {len(processed_services)} COUPLES services (isolated from single)")
+            return processed_services
+            
+    except Exception as e:
+        logger.error(f"Error fetching couples services: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch couples services: {str(e)}")
+
+# NEW ENDPOINT: Single Services Only
+@api_router.get("/services/single/list")
+async def get_single_services():
+    """
+    Returns ONLY single services (services from "Obicne masaze" category).
+    
+    Used for regular massage bookings.
+    - Filters only services with category = "Obicne masaze"
+    - NO couple services included
+    """
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-bookfix.preview.emergentagent.com')
+    
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(f"{booking_api_url}/api/services")
+            response.raise_for_status()
+            raw_services = response.json()
+            
+            # CRITICAL FILTER: Only "Obicne masaze" category
+            single_only = [s for s in raw_services if s.get('category') == 'Obicne masaze']
+            
+            logger.info(f"🔍 Filtered single services: {len(single_only)} out of {len(raw_services)} total services")
+            
+            # Process single services
+            processed_services = []
+            for service in single_only:
+                service_code = extract_service_code(service['name'])
+                
+                # Add metadata
+                service['service_code'] = service_code
+                service['is_couple'] = False  # Mark as single service
+                
+                # Calculate prices
+                original_price = service['price']
+                discount = service.get('discount_percentage', 0)
+                
+                if discount > 0:
+                    service['discounted_price'] = original_price * (1 - discount / 100)
+                else:
+                    service['discounted_price'] = original_price
+                
+                service['original_price'] = original_price
+                
+                processed_services.append(service)
+            
+            logger.info(f"✅ Returning {len(processed_services)} SINGLE services")
+            return processed_services
+            
+    except Exception as e:
+        logger.error(f"Error fetching single services: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch single services: {str(e)}")
+
 # Booking Proxy Endpoint
 @api_router.post("/book-appointment")
 async def book_appointment(booking: AppointmentBooking, background_tasks: BackgroundTasks):
