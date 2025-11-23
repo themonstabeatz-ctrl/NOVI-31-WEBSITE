@@ -312,12 +312,20 @@ async def get_couples_services():
                 service['is_couple'] = True  # Mark as couple service
                 service['discount_percentage'] = highest_discount
                 
-                # CRITICAL: DO NOT calculate discount - recepcija already handles it!
-                # Just pass through the values from booking system (source of truth)
-                service['discounted_price'] = service['price']  # Recepcija već diskontovala
-                service['original_price'] = service['price']  # Čuva original ili već diskontovanu vrednost
+                # CRITICAL: Recepcija sends ALREADY DISCOUNTED prices!
+                # service['price'] from recepcija = final price AFTER discount
+                # We need to calculate ORIGINAL price back from discounted price
+                final_price = service['price']  # This is AFTER discount from recepcija
                 
-                # Note: discount_percentage is for display only, not for calculation
+                if highest_discount > 0:
+                    # Calculate original price: original = final / (1 - discount/100)
+                    original_price = final_price / (1 - highest_discount / 100)
+                else:
+                    original_price = final_price
+                
+                service['final_price'] = final_price  # Price AFTER discount (from recepcija)
+                service['original_price'] = original_price  # Calculated ORIGINAL price
+                service['discounted_price'] = final_price  # Same as final_price (for backwards compatibility)
                 
                 processed_services.append(service)
             
