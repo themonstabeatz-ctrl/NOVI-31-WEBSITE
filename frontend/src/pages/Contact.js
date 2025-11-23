@@ -975,7 +975,47 @@ const Contact = () => {
                         -- {translate("chooseService") || "Odaberite uslugu"} --
                       </option>
                       
-                      {/* Old services removed - will be populated with current services from cards later */}
+                      {availableServices.single.length > 0 && (
+                        <optgroup label={translate("massages") || "MASAŽE"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
+                          {availableServices.single.map(service => {
+                            const hasDiscount = service.discount_percentage > 0;
+                            const displayPrice = hasDiscount 
+                              ? `${service.original_price?.toLocaleString('sr-RS')} → ${service.final_price?.toLocaleString('sr-RS')} RSD (-${service.discount_percentage}%)`
+                              : `${service.final_price?.toLocaleString('sr-RS')} RSD`;
+                            
+                            return (
+                              <option
+                                key={service.id}
+                                value={service.name}
+                                style={{ background: '#1a1a1a', color: '#d4af37' }}
+                              >
+                                {service.name} - {displayPrice}
+                              </option>
+                            );
+                          })}
+                        </optgroup>
+                      )}
+                      
+                      {availableServices.couples.length > 0 && (
+                        <optgroup label={translate("couplesMassage") || "MASAŽE ZA PAROVE"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
+                          {availableServices.couples.map(service => {
+                            const hasDiscount = service.discount_percentage > 0;
+                            const displayPrice = hasDiscount 
+                              ? `${service.original_price?.toLocaleString('sr-RS')} → ${service.final_price?.toLocaleString('sr-RS')} RSD (-${service.discount_percentage}%)`
+                              : `${service.final_price?.toLocaleString('sr-RS')} RSD`;
+                            
+                            return (
+                              <option
+                                key={service.id}
+                                value={service.name}
+                                style={{ background: '#1a1a1a', color: '#d4af37' }}
+                              >
+                                {service.name} - {displayPrice}
+                              </option>
+                            );
+                          })}
+                        </optgroup>
+                      )}
                     </select>
                   </div>
                 )}
