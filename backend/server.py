@@ -655,12 +655,14 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                 )
             
             # Send confirmation email (construct detailed service name with massage choices)
-            # Get service names from booking system
-            services_response = await client.get(f'{booking_api_url}/api/services')
-            all_services = services_response.json() if services_response.status_code == 200 else []
+            # Get COUPLES service names from our endpoint
+            logger.info("📧 Preparing email - fetching couples services...")
+            couples_services_response = await client.get(f'http://localhost:8001/api/services/couples/list')
+            couples_services = couples_services_response.json() if couples_services_response.status_code == 200 else []
             
-            # Create service name lookup
-            service_names = {s['id']: s['name'] for s in all_services}
+            # Create service name lookup from couples services
+            service_names = {s['id']: s['name'] for s in couples_services}
+            logger.info(f"📧 Loaded {len(service_names)} service names for email")
             
             # Build detailed service description with massage choices
             total_duration = booking.duration_type * 2
