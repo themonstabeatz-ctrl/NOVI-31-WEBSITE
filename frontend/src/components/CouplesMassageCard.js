@@ -50,19 +50,26 @@ const CouplesMassageCard = ({
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
-        console.log('📥 Loading massages from "Kartica Masaza za parove" category...');
+        console.log('📥 Loading COUPLES massages from NEW endpoint /api/services/couples/list...');
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-        const response = await fetch(`${backendUrl}/api/services`);
+        
+        // CRITICAL: Use NEW couples-only endpoint
+        const response = await fetch(`${backendUrl}/api/services/couples/list`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        const services = await response.json();
+        const couplesServices = await response.json();
         
-        // Filter by category "Kartica Masaza za parove" - special couples category with discounts
-        const couplesServices = services.filter(s => s.category === 'Kartica Masaza za parove');
-        console.log(`✅ Loaded ${couplesServices.length} services from "Kartica Masaza za parove" category`);
+        console.log(`✅ Loaded ${couplesServices.length} COUPLES services (isolated from single)`);
+        console.log(`✅ All services have is_couple: ${couplesServices.every(s => s.is_couple)}`);
+        
+        // Verify all services are couples (should have [PAROVI] prefix)
+        const nonCouples = couplesServices.filter(s => !s.name.startsWith('[PAROVI]'));
+        if (nonCouples.length > 0) {
+          console.error('❌ ERROR: Found non-couple services in couples endpoint!', nonCouples);
+        }
         
         // Get discount from booking system and apply it on frontend
         const discount = couplesServices[0] ? (couplesServices[0].discount_percentage || 0) : 0;
