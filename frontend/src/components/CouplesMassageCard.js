@@ -367,10 +367,12 @@ const CouplesMassageCard = ({
     
     console.log('🔍 isSelectionComplete check:', {
       duration: durations.sports,
-      p1m1: p1m1 ? `${p1m1.name} (${p1m1.duration}min)` : 'NULL',
-      p1m2: p1m2 ? `${p1m2.name} (${p1m2.duration}min)` : 'NULL',
-      p2m1: p2m1 ? `${p2m1.name} (${p2m1.duration}min)` : 'NULL',
-      p2m2: p2m2 ? `${p2m2.name} (${p2m2.duration}min)` : 'NULL'
+      p1m1: p1m1 ? `${p1m1.name} (${p1m1.duration}min) - type: ${typeof p1m1.duration}` : 'NULL',
+      p1m2: p1m2 ? `${p1m2.name} (${p1m2.duration}min) - type: ${typeof p1m2.duration}` : 'NULL',
+      p2m1: p2m1 ? `${p2m1.name} (${p2m1.duration}min) - type: ${typeof p2m1.duration}` : 'NULL',
+      p2m2: p2m2 ? `${p2m2.name} (${p2m2.duration}min) - type: ${typeof p2m2.duration}` : 'NULL',
+      'p1m1 exists': !!p1m1,
+      'p2m1 exists': !!p2m1
     });
     
     // For 120 min mode: each person needs 2x60 OR 1x120
