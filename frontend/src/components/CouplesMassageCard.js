@@ -588,14 +588,20 @@ const CouplesMassageCard = ({
                             fontSize: '0.9rem',
                             display: 'flex',
                             alignItems: 'center',
+                            justifyContent: 'space-between',
                             gap: '0.5rem',
                             borderBottom: '1px solid #333'
                           }}
                           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'}
                           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = selected ? 'rgba(212, 175, 55, 0.2)' : 'transparent'}
                         >
-                          {selected && <Check className="w-4 h-4" />}
-                          <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            {selected && <Check className="w-4 h-4" />}
+                            <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
+                          </div>
+                          <span style={{ fontSize: '0.85rem', color: '#999' }}>
+                            {massage.prices[dur].toLocaleString('sr-RS')} RSD
+                          </span>
                         </div>
                       );
                     });
