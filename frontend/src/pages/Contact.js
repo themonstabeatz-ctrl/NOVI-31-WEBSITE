@@ -977,54 +977,7 @@ const Contact = () => {
                         -- {translate("chooseService") || "Odaberite uslugu"} --
                       </option>
                       
-                      <optgroup label={translate("massages") || "MASAŽE"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
-                        {massageServices.map(service => {
-                          // Special handling for Aroma duboko tkivo (couplesMassage) - only 60 and 90 min
-                          let availableDurations = durations;
-                          if (service.key === 'couplesMassage') {
-                            availableDurations = [
-                              { minutes: 60, price: 4900 },
-                              { minutes: 90, price: 6000 }
-                            ];
-                          }
-                          
-                          return availableDurations.map(dur => {
-                            const serviceName = bookingSystemNames[service.key];
-                            const displayValue = `${serviceName} - ${dur.minutes} min - ${dur.price.toLocaleString()} RSD`;
-                            const dataValue = `${service.key}|${dur.minutes}`; // key|duration
-                            return (
-                              <option 
-                                key={`${service.key}-${dur.minutes}`}
-                                value={dataValue}
-                                data-display={displayValue}
-                                style={{ background: '#1a1a1a', color: '#d4af37' }}
-                              >
-                                {displayValue}
-                              </option>
-                            );
-                          });
-                        })}
-                      </optgroup>
-                      
-                      <optgroup label={translate("spaTreatments") || "SPA TRETMANI"} style={{ background: '#1a1a1a', color: '#d4af37', fontWeight: 'bold' }}>
-                        {spaServices.map(service => (
-                          durations.map(dur => {
-                            const serviceName = translate(service.key);
-                            const displayValue = `${serviceName} - ${dur.minutes} min - ${dur.price.toLocaleString()} RSD`;
-                            const dataValue = `${service.key}|${dur.minutes}`; // key|duration
-                            return (
-                              <option 
-                                key={`${service.key}-${dur.minutes}`}
-                                value={dataValue}
-                                data-display={displayValue}
-                                style={{ background: '#1a1a1a', color: '#d4af37' }}
-                              >
-                                {displayValue}
-                              </option>
-                            );
-                          })
-                        ))}
-                      </optgroup>
+                      {/* Old services removed - will be populated with current services from cards later */}
                     </select>
                   </div>
                 )}
