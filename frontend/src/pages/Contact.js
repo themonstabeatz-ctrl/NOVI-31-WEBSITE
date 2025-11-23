@@ -91,16 +91,27 @@ const Contact = () => {
     const loadServices = async () => {
       try {
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-        const response = await fetch(`${backendUrl}/api/services`);
-        const services = await response.json();
+        
+        // Load BOTH single and couples services for complete mapping
+        const [singleResponse, couplesResponse] = await Promise.all([
+          fetch(`${backendUrl}/api/services/single/list`),
+          fetch(`${backendUrl}/api/services/couples/list`)
+        ]);
+        
+        const singleServices = await singleResponse.json();
+        const couplesServices = await couplesResponse.json();
+        
+        // Combine all services
+        const allServices = [...singleServices, ...couplesServices];
         
         // Build service mapping: "Service Name - Duration" -> ID
         const mapping = {};
-        services.forEach(service => {
+        allServices.forEach(service => {
           mapping[service.name] = service.id;
         });
         
         console.log('✅ Loaded service mapping:', Object.keys(mapping).length, 'services');
+        console.log('   Single:', singleServices.length, 'Couples:', couplesServices.length);
         setServiceMapping(mapping);
         setServicesLoaded(true);
       } catch (error) {
