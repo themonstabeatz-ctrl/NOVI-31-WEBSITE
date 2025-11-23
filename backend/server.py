@@ -246,15 +246,10 @@ async def get_services():
                 # Override discount with highest available
                 service['discount_percentage'] = highest_discount
                 
-                # Calculate price with discount (backend is source of truth)
-                original_price = service['price']
-                if highest_discount > 0:
-                    service['discounted_price'] = original_price * (1 - highest_discount / 100)
-                else:
-                    service['discounted_price'] = original_price
-                
-                # Keep original price for reference
-                service['original_price'] = original_price
+                # CRITICAL: DO NOT calculate discount - recepcija is source of truth!
+                # Just pass through the values from booking system
+                service['discounted_price'] = service['price']  # Recepcija već diskontovala
+                service['original_price'] = service['price']  # Čuva vrednost kako je recepcija postavila
                 
                 processed_services.append(service)
             
