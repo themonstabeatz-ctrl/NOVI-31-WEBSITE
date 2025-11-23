@@ -471,14 +471,14 @@ const Contact = () => {
           
           console.log('🔍 Couples Data:', couplesData);
           
-          // Fetch services directly from booking system for couple booking via backend proxy
-          console.log('📥 Fetching current services from booking system via backend proxy...');
+          // Fetch COUPLES services for couple booking
+          console.log('📥 Fetching COUPLES services from booking system...');
           let bookingServices;
           try {
             const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-            const servicesResponse = await fetch(`${backendUrl}/api/services`);
+            const servicesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
             bookingServices = await servicesResponse.json();
-            console.log(`✅ Loaded ${bookingServices.length} services from booking system`);
+            console.log(`✅ Loaded ${bookingServices.length} COUPLES services from booking system`);
           } catch (error) {
             console.error('❌ Failed to load services:', error);
             toast({
