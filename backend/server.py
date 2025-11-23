@@ -360,16 +360,10 @@ async def get_single_services():
                 service['service_code'] = service_code
                 service['is_couple'] = False  # Mark as single service
                 
-                # Calculate prices
-                original_price = service['price']
-                discount = service.get('discount_percentage', 0)
-                
-                if discount > 0:
-                    service['discounted_price'] = original_price * (1 - discount / 100)
-                else:
-                    service['discounted_price'] = original_price
-                
-                service['original_price'] = original_price
+                # CRITICAL: DO NOT calculate discount - recepcija is source of truth!
+                # Just pass through the values from booking system
+                service['discounted_price'] = service['price']  # Recepcija već diskontovala
+                service['original_price'] = service['price']  # Čuva vrednost kako je recepcija postavila
                 
                 processed_services.append(service)
             
