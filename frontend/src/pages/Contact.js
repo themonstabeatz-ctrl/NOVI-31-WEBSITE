@@ -11,7 +11,6 @@ import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide
 import { useLocation } from "react-router-dom";
 import CustomCalendarModal from "../components/CustomCalendarModal";
 import CustomTimePickerModal from "../components/CustomTimePickerModal";
-import { massageServices, spaServices, durations, bookingSystemNames } from "../data/servicesList";
 import { getSEO } from "../utils/seoConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
