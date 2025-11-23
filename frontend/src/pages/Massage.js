@@ -67,32 +67,32 @@ const Massage = () => {
   useEffect(() => {
     const fetchDiscounts = async () => {
       try {
-        // Fetch services from booking system API via backend proxy
+        // Fetch SINGLE services ONLY (obične masaže)
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-        const response = await fetch(`${backendUrl}/api/services`);
-        const services = await response.json();
+        const singleResponse = await fetch(`${backendUrl}/api/services/single/list`);
+        const singleServices = await singleResponse.json();
         
         // Build discount mapping: service name -> discount percentage
-        // IMPORTANT: Only show discounts from "Obicne masaze" category on regular cards
+        // ONLY single services (no couples)
         const discountMap = {};
         
-        services.forEach(service => {
+        singleServices.forEach(service => {
           const discount = service.discount_percentage || 0;
           const serviceName = service.name; // e.g., "Tradicionalna tajlandska masaža - 60 min"
-          const category = service.category || '';
           
           // Extract base service name without duration
           const baseName = serviceName.split(' - ')[0]; // e.g., "Tradicionalna tajlandska masaža"
           
-          // ONLY show discounts from "Obicne masaze" category on regular massage cards
-          // Discounts from "Kartica Masaza za parove" will be shown in couples dropdown
-          if (category === 'Obicne masaze' && !discountMap[baseName] && discount > 0) {
+          // Map discount for single services
+          if (!discountMap[baseName] && discount > 0) {
             discountMap[baseName] = discount;
           }
         });
         
-        // Get couples massage discount from "Kartica Masaza za parove" category
-        const couplesService = services.find(s => s.category === 'Kartica Masaza za parove');
+        // Get couples massage discount from COUPLES endpoint
+        const couplesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
+        const couplesServices = await couplesResponse.json();
+        const couplesService = couplesServices[0]; // Get first couples service for discount
         const couplesDiscount = couplesService ? (couplesService.discount_percentage || 0) : 0;
         setCouplesDiscountPercent(couplesDiscount);
         
