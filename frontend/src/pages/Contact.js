@@ -84,6 +84,7 @@ const Contact = () => {
   // Dynamic service mapping from booking system
   const [serviceMapping, setServiceMapping] = useState({});
   const [servicesLoaded, setServicesLoaded] = useState(false);
+  const [availableServices, setAvailableServices] = useState({ single: [], couples: [] });
 
   // Load services from booking system on mount
   useEffect(() => {
