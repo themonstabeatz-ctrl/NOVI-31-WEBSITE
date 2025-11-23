@@ -491,10 +491,18 @@ const Contact = () => {
           }
           
           // Build fresh service mapping
+          // CRITICAL: Remove [PAROVI] prefix from keys to match how CouplesMassageCard stores names
           const freshMapping = {};
           bookingServices.forEach(service => {
+            // Map with [PAROVI] prefix (original name)
             freshMapping[service.name] = service.id;
+            
+            // ALSO map without [PAROVI] prefix for compatibility
+            const nameWithoutPrefix = service.name.replace(/^\[PAROVI\]\s*/, '');
+            freshMapping[nameWithoutPrefix] = service.id;
           });
+          
+          console.log('🗺️ Service mapping created with', Object.keys(freshMapping).length, 'entries');
           
           // Extract service IDs from massage selections using fresh mapping
           const person1Services = [];
