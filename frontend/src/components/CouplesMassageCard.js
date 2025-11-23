@@ -104,8 +104,8 @@ const CouplesMassageCard = ({
             }
             
             // Use backend-calculated prices (backend is source of truth)
-            servicesByName[baseName].prices[duration] = service.discounted_price || service.price;
-            servicesByName[baseName].originalPrices[duration] = service.original_price || service.price;
+            servicesByName[baseName].prices[duration] = service.final_price || service.price;
+            servicesByName[baseName].originalPrices[duration] = service.price;
             servicesByName[baseName].durations.push(duration);
           }
         });
