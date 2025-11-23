@@ -113,6 +113,7 @@ const Contact = () => {
         console.log('✅ Loaded service mapping:', Object.keys(mapping).length, 'services');
         console.log('   Single:', singleServices.length, 'Couples:', couplesServices.length);
         setServiceMapping(mapping);
+        setAvailableServices({ single: singleServices, couples: couplesServices });
         setServicesLoaded(true);
       } catch (error) {
         console.error('❌ Failed to load services from booking system:', error);
