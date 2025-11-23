@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://massage-bookfix.preview.emergentagent.com/robots.txt
+**Test URL:** https://pricing-source-truth.preview.emergentagent.com/robots.txt
 
 ---
 

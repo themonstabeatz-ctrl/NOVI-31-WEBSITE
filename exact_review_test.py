@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://massage-bookfix.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://pricing-source-truth.preview.emergentagent.com')
 
 class ExactReviewTest:
     def __init__(self):
@@ -48,7 +48,7 @@ class ExactReviewTest:
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
                 response = await client.get(
-                    f"https://massage-bookfix.preview.emergentagent.com/api/appointments/{appointment_id}",
+                    f"https://pricing-source-truth.preview.emergentagent.com/api/appointments/{appointment_id}",
                     headers={'Content-Type': 'application/json'}
                 )
                 
