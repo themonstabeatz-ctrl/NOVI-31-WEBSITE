@@ -940,16 +940,13 @@ const Contact = () => {
                       name="serviceDropdown"
                       value={formData.service || ''}
                       onChange={(e) => {
-                        const selectedValue = e.target.value; // This is "serviceKey|duration"
+                        const selectedValue = e.target.value;
                         if (selectedValue) {
-                          const [serviceKey, duration] = selectedValue.split('|');
-                          const bookingName = bookingSystemNames[serviceKey];
-                          const fullServiceName = `${bookingName} - ${duration} min`;
                           const displayName = e.target.options[e.target.selectedIndex].text;
                           
                           setFormData(prev => ({
                             ...prev,
-                            service: fullServiceName, // Serbian name for booking API
+                            service: displayName,
                             message: `${translate('wantToBook')} ${displayName}`
                           }));
                         } else {
