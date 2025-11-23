@@ -702,8 +702,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
                         args=[
                             booking.client_email or "",
                             f"{booking.client_first_name} {booking.client_last_name}",
-                            booking.client_phone,
-                            service_display_name,
+                            service_display_name,  # Removed client_phone - function doesn't use it
                             booking.start_time,
                             booking.language or 'sr'
                         ],
