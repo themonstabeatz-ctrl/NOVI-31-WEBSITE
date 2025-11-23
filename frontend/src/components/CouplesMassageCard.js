@@ -608,9 +608,32 @@ const CouplesMassageCard = ({
                             {selected && <Check className="w-4 h-4" />}
                             <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
                           </div>
-                          <span style={{ fontSize: '0.85rem', color: '#999' }}>
-                            {massage.prices[dur].toLocaleString('sr-RS')} RSD
-                          </span>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
+                            {couplesDiscount > 0 && massage.originalPrices[dur] && massage.originalPrices[dur] !== massage.prices[dur] ? (
+                              <>
+                                <span style={{ color: '#999', textDecoration: 'line-through' }}>
+                                  {massage.originalPrices[dur].toLocaleString('sr-RS')} RSD
+                                </span>
+                                <span style={{ color: '#4ade80', fontWeight: '600' }}>
+                                  {massage.prices[dur].toLocaleString('sr-RS')} RSD
+                                </span>
+                                <span style={{ 
+                                  backgroundColor: '#dc2626', 
+                                  color: 'white', 
+                                  padding: '0.15rem 0.4rem', 
+                                  borderRadius: '4px', 
+                                  fontSize: '0.75rem',
+                                  fontWeight: '700'
+                                }}>
+                                  -{couplesDiscount}%
+                                </span>
+                              </>
+                            ) : (
+                              <span style={{ color: '#999' }}>
+                                {massage.prices[dur].toLocaleString('sr-RS')} RSD
+                              </span>
+                            )}
+                          </div>
                         </div>
                       );
                     });
@@ -755,9 +778,32 @@ const CouplesMassageCard = ({
                             {selected && <Check className="w-4 h-4" />}
                             <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
                           </div>
-                          <span style={{ fontSize: '0.85rem', color: '#999' }}>
-                            {massage.prices[dur].toLocaleString('sr-RS')} RSD
-                          </span>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
+                            {couplesDiscount > 0 && massage.originalPrices[dur] && massage.originalPrices[dur] !== massage.prices[dur] ? (
+                              <>
+                                <span style={{ color: '#999', textDecoration: 'line-through' }}>
+                                  {massage.originalPrices[dur].toLocaleString('sr-RS')} RSD
+                                </span>
+                                <span style={{ color: '#4ade80', fontWeight: '600' }}>
+                                  {massage.prices[dur].toLocaleString('sr-RS')} RSD
+                                </span>
+                                <span style={{ 
+                                  backgroundColor: '#dc2626', 
+                                  color: 'white', 
+                                  padding: '0.15rem 0.4rem', 
+                                  borderRadius: '4px', 
+                                  fontSize: '0.75rem',
+                                  fontWeight: '700'
+                                }}>
+                                  -{couplesDiscount}%
+                                </span>
+                              </>
+                            ) : (
+                              <span style={{ color: '#999' }}>
+                                {massage.prices[dur].toLocaleString('sr-RS')} RSD
+                              </span>
+                            )}
+                          </div>
                         </div>
                       );
                     });
