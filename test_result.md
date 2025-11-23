@@ -429,10 +429,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "COMPLETED: Comprehensive system comparison between working and my version"
-    - "COMPLETED: Backend API integration testing and root cause analysis"
+    - "COMPLETED: Comprehensive couples massage E2E testing"
+    - "CRITICAL: ZAKAŽITE button enablement logic in CouplesMassageCard.js"
   stuck_tasks:
-    - "External booking system therapist configuration (https://spabooking.emergent.host)"
+    - "Couples massage ZAKAŽITE button disabled despite successful Person 1 & Person 2 selections"
   test_all: false
   test_priority: "high_first"
   completed_tests:
