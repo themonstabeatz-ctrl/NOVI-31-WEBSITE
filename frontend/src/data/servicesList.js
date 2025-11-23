@@ -1,37 +1,8 @@
 // Complete list of all services with translation keys
-export const massageServices = [
-  { key: 'traditionalThaiMassage', basePrice: 4400 },
-  { key: 'aromaTherapyService', basePrice: 4400 },
-  { key: 'hotStoneMassage', basePrice: 3000 },
-  { key: 'royalThaiMassage', basePrice: 3000 },
-  { key: 'footMassageService', basePrice: 3000 },
-  { key: 'couplesMassage', basePrice: 4900 },
-  { key: 'sportsMassageService', basePrice: 3000 },
-  { key: 'shiatsuMassageService', basePrice: 3000 },
-  { key: 'reflexologyService', basePrice: 3000 },
-  { key: 'backNeckMassage', basePrice: 3000 },
-  { key: 'antiStressMassageService', basePrice: 3000 },
-  { key: 'prenatalMassageService', basePrice: 3000 },
-  { key: 'deepTissueMassageService', basePrice: 3000 },
-  { key: 'bambooMassageService', basePrice: 3000 },
-  { key: 'lymphaticDrainage', basePrice: 3000 }
-];
+// CLEARED - old services removed, will be populated with current services from cards
+export const massageServices = [];
 
-export const spaServices = [
-  { key: 'facialTreatmentService', basePrice: 3000 },
-  { key: 'bodyWrapService', basePrice: 3000 },
-  { key: 'goldenFacialService', basePrice: 3000 },
-  { key: 'steamBathService', basePrice: 3000 },
-  { key: 'royalSpaService', basePrice: 3000 },
-  { key: 'hydratingTreatment', basePrice: 3000 },
-  { key: 'detoxTreatment', basePrice: 3000 },
-  { key: 'bodyScrubService', basePrice: 3000 },
-  { key: 'anticelluliteTreatment', basePrice: 3000 },
-  { key: 'collagenFacial', basePrice: 3000 },
-  { key: 'vitaminCFacial', basePrice: 3000 },
-  { key: 'combinedSpaDay', basePrice: 3000 },
-  { key: 'chocolateWrap', basePrice: 3000 }
-];
+export const spaServices = [];
 
 // Serbian service names used by booking system (MUST MATCH serviceMapping keys EXACTLY!)
 export const bookingSystemNames = {
