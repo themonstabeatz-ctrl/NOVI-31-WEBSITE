@@ -427,7 +427,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             
             # Try booking directly without therapist lookup
             booking_result = None
-            web_slot_therapists = [{"id": booking.therapist_id}]  # Use provided or empty therapist_id
+            web_slot_therapists = [{"id": booking.therapist_id, "name": "Manual Assignment"}]  # Use provided or empty therapist_id
             
             for therapist in web_slot_therapists:
                 
@@ -459,7 +459,8 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 
                 # If booking succeeds
                 if response.status_code in [200, 201]:
-                    logger.info(f"✅ Booking successful with {therapist['name']} (ID: {therapist['id']})")
+                    therapist_name = therapist.get('name', 'Manual Assignment')
+                    logger.info(f"✅ Booking successful with {therapist_name} (ID: {therapist['id']})")
                     booking_result = response.json()
                     break
                 
@@ -467,11 +468,13 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 if response.status_code == 400:
                     error_text = response.text.lower()
                     if 'not available' in error_text or 'unavailable' in error_text:
-                        logger.info(f"⚠️ {therapist['name']} not available, trying next...")
+                        therapist_name = therapist.get('name', 'Manual Assignment')
+                        logger.info(f"⚠️ {therapist_name} not available, trying next...")
                         continue
                 
                 # For other errors, log and continue to next therapist
-                logger.warning(f"Error with {therapist['name']}: {response.status_code} - {response.text}")
+                therapist_name = therapist.get('name', 'Manual Assignment')
+                logger.warning(f"Error with {therapist_name}: {response.status_code} - {response.text}")
             
             # If no therapist is available
             if not booking_result:
