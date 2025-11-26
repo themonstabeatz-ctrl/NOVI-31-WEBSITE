@@ -94,8 +94,8 @@ class CoupleBooking(BaseModel):
     client_email: Optional[str] = ""
     start_time: str  # ISO datetime format
     duration_type: int  # 60, 90, or 120 minutes per person
-    person1_services: List[str]  # List of service IDs for person 1 (DEPRECATED - use snapshots)
-    person2_services: List[str]  # List of service IDs for person 2 (DEPRECATED - use snapshots)
+    person1_services: Optional[List[str]] = None  # DEPRECATED - use snapshots instead
+    person2_services: Optional[List[str]] = None  # DEPRECATED - use snapshots instead
     discount_couples_massage: float = 0.0  # NO discount - already applied in frontend
     language: Optional[str] = "sr"  # Default to Serbian
     
