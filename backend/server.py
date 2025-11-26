@@ -416,28 +416,20 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 logger.info(f"⏱️ Couples massage total duration: {couples_total_duration} min")
         
         async with httpx.AsyncClient(timeout=30.0) as client:
-            # Get all therapists and filter for "Web Slot" therapists
+            # KRITIČNO: Terapeut se NE postavlja automatski!
+            # Korisnik manuelno dodeljuje terapeuta u recepciji nakon bookinga
             booking_api_url = os.environ.get('BOOKING_API_URL', 'https://pricing-source-truth.preview.emergentagent.com')
-            therapists_response = await client.get(f'{booking_api_url}/api/therapists')
             
-            if therapists_response.status_code != 200:
-                logger.error(f"Failed to get therapists: {therapists_response.status_code}")
-                raise HTTPException(status_code=503, detail="Cannot access therapist list")
+            # Use empty therapist_id if not provided - user will assign manually in reception
+            if not booking.therapist_id:
+                booking.therapist_id = ""
+                logger.info("📋 Booking without therapist - will be assigned manually in reception")
             
-            therapists = therapists_response.json()
-            # Support both "Web Slot" and "Web Rezervacije" therapist names
-            web_slot_therapists = [t for t in therapists if (t.get('name', '').startswith('Web Slot') or t.get('name', '').startswith('Web Rezervacije')) and t.get('is_active', True)]
-            
-            if not web_slot_therapists:
-                logger.error("No Web Slot or Web Rezervacije therapists found")
-                raise HTTPException(status_code=500, detail="Web booking system not configured")
-            
-            logger.info(f"Found {len(web_slot_therapists)} web booking therapists")
-            
-            # Try each Web Slot therapist until one is available
+            # Try booking directly without therapist lookup
             booking_result = None
+            web_slot_therapists = [{"id": booking.therapist_id}]  # Use provided or empty therapist_id
+            
             for therapist in web_slot_therapists:
-                booking.therapist_id = therapist['id']
                 
                 # Prepare booking payload
                 booking_payload = booking.model_dump()
