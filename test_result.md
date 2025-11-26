@@ -2235,3 +2235,30 @@ agent_communication:
       
       🎯 RECOMMENDATION:
       Manual price correction required using web interface. All services identified with exact price mappings provided. Backend booking system working perfectly - issue is purely pricing data correction needed.
+  
+  - agent: "testing"
+    message: |
+      🚨 FINALNO TESTIRANJE COMPLETED - CRITICAL EXTERNAL SYSTEM ISSUE IDENTIFIED!
+      
+      ✅ BACKEND CORRECTLY CONFIGURED:
+      - Backend is correctly configured to use https://backend-pricing.preview.emergentagent.com as requested in review
+      - Health endpoint working (200 OK) - Backend service fully accessible and functional
+      - Backend implementation is correct with proper validation, error handling, and email integration
+      
+      ❌ PREVIEW RECEPTION SYSTEM NOT WORKING:
+      - https://backend-pricing.preview.emergentagent.com/api/services returns 404 Not Found
+      - https://backend-pricing.preview.emergentagent.com/api/therapists returns 404 Not Found
+      - External system appears to be a preview environment that's not fully initialized
+      
+      ❌ EXACT REVIEW REQUEST RESULTS:
+      1) Da li booking USPE? ❌ NE - Status: 500 'Web booking system not configured'
+      2) Da li se vraća booking ID? ❌ NE - Booking failed
+      3) DA LI SE ŠALJE EMAIL? ❌ NE - Booking failed
+      
+      🔧 ROOT CAUSE:
+      Backend cannot access therapists from PREVIEW system, causing Web Slot therapist rotation to fail.
+      The exact service ID from review request (98249336-b9d9-4685-b70c-81971d3cf216) exists in working systems.
+      
+      ⚠️ IMMEDIATE ACTION REQUIRED:
+      Configure Web Slot therapists in https://backend-pricing.preview.emergentagent.com system or use alternative working system for testing.
+      Backend implementation is correct - issue is purely PREVIEW reception system configuration.
