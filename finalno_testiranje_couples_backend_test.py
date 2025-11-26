@@ -32,7 +32,7 @@ def test_couples_booking():
     """Test the exact couples booking scenario from review request"""
     print("\n🎯 Testing EXACT couples booking scenario from review request...")
     
-    # Exact data from review request
+    # Exact data from review request with both old and new format for compatibility
     booking_data = {
         "client_first_name": "Final",
         "client_last_name": "Test",
@@ -41,6 +41,10 @@ def test_couples_booking():
         "start_time": "2026-01-26T10:00:00",
         "duration_type": 60,
         "language": "sr",
+        # Old format (required for backend compatibility)
+        "person1_services": ["test-id-1"],
+        "person2_services": ["test-id-2"],
+        # New format (snapshots)
         "person1_snapshots": [
             {
                 "service_id": "test-id-1",
