@@ -32,7 +32,10 @@ def test_couples_booking():
     """Test the exact couples booking scenario from review request"""
     print("\n🎯 Testing EXACT couples booking scenario from review request...")
     
-    # Exact data from review request with both old and new format for compatibility
+    # Using REAL service IDs from the couples services endpoint
+    aroma_service_id = "df52cf25-beb8-45e9-9590-6c59b488b8c9"  # [PAROVI] Aroma terapija - 60 min
+    tradicional_service_id = "fa7890e9-fa1d-4cf5-a18a-086eb7d98c55"  # [PAROVI] Tradicionalna tajlandska masaža - 60 min
+    
     booking_data = {
         "client_first_name": "Final",
         "client_last_name": "Test",
@@ -42,26 +45,26 @@ def test_couples_booking():
         "duration_type": 60,
         "language": "sr",
         # Old format (required for backend compatibility)
-        "person1_services": ["test-id-1"],
-        "person2_services": ["test-id-2"],
-        # New format (snapshots)
+        "person1_services": [aroma_service_id],
+        "person2_services": [tradicional_service_id],
+        # New format (snapshots) - using real service data
         "person1_snapshots": [
             {
-                "service_id": "test-id-1",
+                "service_id": aroma_service_id,
                 "service_code": "AROMA_TERAPIJA",
                 "original_price": 4400.0,
-                "discount_percentage": 10.0,
-                "final_price": 3960.0,
+                "discount_percentage": 15.0,  # Real discount from couples services
+                "final_price": 3740.0,  # Real final price from couples services
                 "duration": 60
             }
         ],
         "person2_snapshots": [
             {
-                "service_id": "test-id-2",
+                "service_id": tradicional_service_id,
                 "service_code": "TRADICIONALNA",
                 "original_price": 4400.0,
-                "discount_percentage": 10.0,
-                "final_price": 3960.0,
+                "discount_percentage": 15.0,  # Real discount from couples services
+                "final_price": 3740.0,  # Real final price from couples services
                 "duration": 60
             }
         ]
