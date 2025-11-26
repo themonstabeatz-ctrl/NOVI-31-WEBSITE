@@ -498,6 +498,34 @@ agent_communication:
       ✅ ALL 3 REVIEW QUESTIONS ANSWERED:
       1. Da li booking USPE? ✅ DA - Status: 200 OK
       2. Da li se EMAIL ŠALJE? ✅ DA - Backend logs confirm '✅ Email sent successfully to grujovicsavatije@gmail.com'
+  
+  - agent: "testing"
+    message: |
+      🎉 FINALNO TESTIRANJE COUPLES BOOKING - COMPREHENSIVE SUCCESS!
+      
+      ✅ EXACT REVIEW REQUEST SCENARIO TESTED:
+      POST http://localhost:8001/api/book-couple-appointment with exact data from review request
+      
+      ✅ ALL 3 REVIEW QUESTIONS ANSWERED:
+      1. Da li booking USPE? ✅ DA - Status: 200 OK
+      2. Da li se EMAIL ŠALJE? ✅ DA - Backend logs confirm '✅ Email sent successfully to grujovicsavatije@gmail.com'
+      3. Koji je booking ID? ✅ 413be610-841d-4ee7-a780-6be93a7ebfd7
+      
+      ✅ TECHNICAL DETAILS:
+      - Client: Final Test (grujovicsavatije@gmail.com, 0601234567)
+      - Duration: 60min per person (120min total)
+      - Services: [PAROVI] Aroma terapija + [PAROVI] Tradicionalna tajlandska masaža
+      - Date: 2026-01-26T10:00:00
+      - Therapist: Web Rezervacije (Generic) - Auto-assigned
+      - Total Price: 7480.0 RSD (with 15% couples discount)
+      - Reception System: https://backend-pricing.preview.emergentagent.com ✅ VERIFIED
+      
+      ✅ EMAIL INTEGRATION WORKING:
+      - Confirmation email sent immediately in Serbian language
+      - Reminder email scheduled 2h before appointment (2026-01-26 08:00:00+00:00)
+      
+      🎯 OVERALL RESULT: ✅ SUCCESS - All review request objectives achieved!
+      Backend couples booking endpoint is fully functional with preview reception system integration.
       3. Da li se booking pojavljuje u recepciji? ✅ DA - Booking found in reception system with status 'scheduled'
       
       ✅ AUTO-THERAPIST ASSIGNMENT: Backend automatically assigned 'Terapeut 1' (ID: 555788ff-83a6-4a5d-b4c0-796e2a1dbec6) when therapist_id was empty
