@@ -416,18 +416,39 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 logger.info(f"⏱️ Couples massage total duration: {couples_total_duration} min")
         
         async with httpx.AsyncClient(timeout=30.0) as client:
-            # KRITIČNO: Terapeut se NE postavlja automatski!
-            # Korisnik manuelno dodeljuje terapeuta u recepciji nakon bookinga
             booking_api_url = os.environ.get('BOOKING_API_URL', 'https://pricing-source-truth.preview.emergentagent.com')
             
-            # Use empty therapist_id if not provided - user will assign manually in reception
+            # If no therapist provided, fetch available therapists and use one
             if not booking.therapist_id:
-                booking.therapist_id = ""
-                logger.info("📋 Booking without therapist - will be assigned manually in reception")
+                logger.info("📋 Booking without therapist - fetching available therapists")
+                
+                # Get available therapists
+                try:
+                    therapists_response = await client.get(f'{booking_api_url}/api/therapists')
+                    if therapists_response.status_code == 200:
+                        therapists = therapists_response.json()
+                        # Look for Web Rezervacije or any active therapist
+                        web_therapists = [t for t in therapists if ('Web' in t.get('name', '') or 'Generic' in t.get('name', '')) and t.get('is_active', True)]
+                        if not web_therapists:
+                            # Use any active therapist
+                            web_therapists = [t for t in therapists if t.get('is_active', True)]
+                        
+                        if web_therapists:
+                            booking.therapist_id = web_therapists[0]['id']
+                            logger.info(f"📋 Auto-assigned therapist: {web_therapists[0]['name']} (ID: {booking.therapist_id})")
+                        else:
+                            logger.error("❌ No active therapists found")
+                            raise HTTPException(status_code=503, detail="No therapists available")
+                    else:
+                        logger.error(f"❌ Cannot fetch therapists: {therapists_response.status_code}")
+                        raise HTTPException(status_code=503, detail="Cannot access therapist list")
+                except Exception as e:
+                    logger.error(f"❌ Error fetching therapists: {str(e)}")
+                    raise HTTPException(status_code=503, detail="Booking service unavailable")
             
-            # Try booking directly without therapist lookup
+            # Try booking with assigned therapist
             booking_result = None
-            web_slot_therapists = [{"id": booking.therapist_id, "name": "Manual Assignment"}]  # Use provided or empty therapist_id
+            web_slot_therapists = [{"id": booking.therapist_id, "name": "Auto-assigned"}]
             
             for therapist in web_slot_therapists:
                 
