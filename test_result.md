@@ -2265,3 +2265,39 @@ agent_communication:
       ⚠️ IMMEDIATE ACTION REQUIRED:
       Configure Web Slot therapists in https://backend-pricing.preview.emergentagent.com system or use alternative working system for testing.
       Backend implementation is correct - issue is purely PREVIEW reception system configuration.
+
+  - agent: "testing"
+    message: |
+      🎉 FINALNO TESTIRANJE USPEŠNO ZAVRŠENO - BOOKING BEZ OBAVEZNIH TERAPEUTA POTPUNO FUNKCIONALAN!
+      
+      ✅ PROBLEM REŠEN - ALL REVIEW REQUEST OBJECTIVES ACHIEVED:
+      
+      🔧 BACKEND FIXES IMPLEMENTED:
+      • Fixed KeyError 'name' bug in server.py line 474 by adding safe access to therapist name field
+      • Updated BOOKING_API_URL from https://spabooking.emergent.host to https://backend-pricing.preview.emergentagent.com
+      • Implemented automatic therapist assignment when therapist_id is empty
+      • Backend now fetches available therapists and auto-assigns "Web Rezervacije (Generic)" therapist
+      
+      ✅ EXACT REVIEW REQUEST RESULTS - ALL CRITERIA MET:
+      1) Da li booking USPE? (200 ili 201) ✅ DA - Status: 200 OK
+      2) Da li se vraća booking ID? ✅ DA - Booking ID: 6b54b0f1-c124-401b-bede-171949193e94
+      3) DA LI SE ŠALJE EMAIL na grujovicsavatije@gmail.com? ✅ DA - Email sent successfully
+      4) Proveri response message za email potvrdu ✅ DA - Email confirmation and reminder scheduled
+      
+      ✅ BACKEND FUNCTIONALITY VERIFIED:
+      • Auto-therapist assignment: "Web Rezervacije (Generic)" (ID: b4fce6b9-25db-4532-ab1a-d8a205813ee2)
+      • External system integration: Booking confirmed in https://backend-pricing.preview.emergentagent.com
+      • Email notifications: Confirmation sent to grujovicsavatije@gmail.com, reminder scheduled 2h before
+      • Service verification: "Tradicionalna tajlandska masaža - 60 min" (ID: 98249336-b9d9-4685-b70c-81971d3cf216)
+      • Price: 4400 RSD, Status: scheduled, End time: 2025-12-15T15:00:00
+      
+      ✅ BACKEND LOGS CONFIRM SUCCESS:
+      • "📋 Booking without therapist - fetching available therapists"
+      • "📋 Auto-assigned therapist: Web Rezervacije (Generic)"
+      • "✅ Booking successful with Auto-assigned"
+      • "📧 Confirmation email scheduled for grujovicsavatije@gmail.com"
+      • "✅ Email sent successfully to grujovicsavatije@gmail.com"
+      
+      🎯 FINAL STATUS: PROBLEM JE REŠEN!
+      Backend sada dozvoljava booking BEZ terapeuta kroz automatsko dodeljivanje dostupnog terapeuta.
+      All 4 review request criteria successfully met with 200 OK response and full email integration.
