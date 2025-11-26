@@ -30,7 +30,9 @@ logger = logging.getLogger(__name__)
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# DB_NAME is set by Kubernetes in production, use default for local dev
+db_name = os.environ.get('DB_NAME', 'test_database')
+db = client[db_name]
 
 # Initialize scheduler for reminder emails
 scheduler = BackgroundScheduler()
