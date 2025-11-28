@@ -454,8 +454,8 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             
             for therapist in web_slot_therapists:
                 
-                # Prepare booking payload
-                booking_payload = booking.model_dump()
+                # Prepare booking payload - exclude appointment_date (Reception doesn't accept it)
+                booking_payload = booking.model_dump(exclude={'appointment_date'})
                 
                 # For couples massage, enhance notes with total duration and final price info
                 if is_couples_massage and couples_total_duration and couples_final_price:
