@@ -488,6 +488,27 @@ agent_communication:
       4. Language switcher dropdown works (4 languages)
       5. Gallery page image grid displays correctly
       6. No console errors or warnings
+  - agent: "testing"
+    message: |
+      🚨 CRITICAL LIVE BOOKING ISSUE DISCOVERED ON https://single-booking-fix.emergent.host/booking!
+      
+      BACKEND STATUS: ✅ FULLY FUNCTIONAL
+      - Booking API working correctly (confirmed via backend logs)
+      - Appointments created successfully with IDs
+      - Email confirmations sent successfully
+      - Service selection working ('Tradicionalna tajlandska masaža - 60 min - 4.400 RSD')
+      
+      FRONTEND ISSUES: ❌ CRITICAL UX PROBLEMS
+      - SUCCESS MESSAGES NOT DISPLAYING: Users get no confirmation after successful bookings
+      - DATE/TIME PICKERS NOT INTERACTIVE: Cannot select dates/times via UI
+      - FORM SUBMISSION SILENT: No loading states or feedback during booking process
+      
+      USER IMPACT: Users can make bookings but don't know they succeeded, causing confusion and potential duplicate attempts.
+      
+      URGENT FIXES NEEDED:
+      1. Fix success message display after form submission
+      2. Make date/time pickers properly interactive
+      3. Add proper loading states and user feedback
       7. All links and buttons are functional
       8. Page transitions work smoothly
       
