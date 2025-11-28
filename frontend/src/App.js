@@ -21,9 +21,13 @@ function App() {
               <Route index element={<Home />} />
               <Route path="en" element={<Home lang="en" />} />
               <Route path="massage" element={<Massage />} />
+              <Route path="masaze" element={<Massage />} />
               <Route path="spa" element={<Spa />} />
               <Route path="about" element={<About />} />
+              <Route path="o-nama" element={<About />} />
               <Route path="contact" element={<Contact />} />
+              <Route path="booking" element={<Contact />} />
+              <Route path="galerija" element={<Gallery />} />
               <Route path="gallery" element={<Gallery />} />
               
               {/* Serbian URL Aliases - 301 Redirects */}
