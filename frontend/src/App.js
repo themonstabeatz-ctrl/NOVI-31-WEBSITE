@@ -31,13 +31,11 @@ function App() {
               <Route path="gallery" element={<Gallery />} />
               
               {/* Serbian URL Aliases - 301 Redirects */}
-              <Route path="usluge" element={<Navigate to="/massage" replace />} />
+              <Route path="usluge" element={<Navigate to="/masaze" replace />} />
               <Route path="cenovnik" element={<Navigate to="/spa" replace />} />
-              <Route path="rezervacije" element={<Navigate to="/contact" replace />} />
-              <Route path="vauceri" element={<Navigate to="/contact" replace />} />
-              <Route path="kontakt" element={<Navigate to="/contact" replace />} />
-              <Route path="o-nama" element={<Navigate to="/about" replace />} />
-              <Route path="galerija" element={<Navigate to="/gallery" replace />} />
+              <Route path="rezervacije" element={<Navigate to="/booking" replace />} />
+              <Route path="vauceri" element={<Navigate to="/booking" replace />} />
+              <Route path="kontakt" element={<Navigate to="/booking" replace />} />
               
               {/* English URL Aliases - 301 Redirects */}
               <Route path="en/services" element={<Navigate to="/massage" replace />} />
