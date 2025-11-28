@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://pricing-source-truth.preview.emergentagent.com/robots.txt
+**Test URL:** https://single-booking-fix.preview.emergentagent.com/robots.txt
 
 ---
 

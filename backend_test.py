@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Backend API Testing for Thai Spa Booking System - NEW BOOKING SYSTEM
-Tests the booking API integration with https://pricing-source-truth.preview.emergentagent.com
+Tests the booking API integration with https://single-booking-fix.preview.emergentagent.com
 """
 
 import asyncio
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://pricing-source-truth.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://single-booking-fix.preview.emergentagent.com')
 
 class BookingAPITester:
     def __init__(self):
@@ -45,7 +45,7 @@ class BookingAPITester:
             async with httpx.AsyncClient(timeout=10.0) as client:
                 # Try to get the specific appointment from NEW booking system
                 response = await client.get(
-                    f"https://pricing-source-truth.preview.emergentagent.com/api/appointments/{appointment_id}",
+                    f"https://single-booking-fix.preview.emergentagent.com/api/appointments/{appointment_id}",
                     headers={'Content-Type': 'application/json'}
                 )
                 
@@ -94,7 +94,7 @@ class BookingAPITester:
                             "parovi_services": [s.get('name', 'Unknown') for s in parovi_services[:5]],  # First 5
                             "services_with_discount_field": len(services_with_discount),
                             "sample_service": services[0] if services else None,
-                            "booking_system_url": "https://pricing-source-truth.preview.emergentagent.com"
+                            "booking_system_url": "https://single-booking-fix.preview.emergentagent.com"
                         }
                     )
                     return True
@@ -1020,7 +1020,7 @@ UKUPNA CENA SA POPUSTOM: {couples_data['totalPrice']:,} RSD"""
         print("=" * 80)
         print(f"Backend URL: {self.backend_url}")
         print(f"API Base: {self.api_base}")
-        print(f"New Booking System: https://pricing-source-truth.preview.emergentagent.com")
+        print(f"New Booking System: https://single-booking-fix.preview.emergentagent.com")
         print()
         
         # Test 1: Health Check - GET /api/health

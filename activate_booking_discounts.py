@@ -5,7 +5,7 @@ Activate 10% discount in booking system for all couples massage services
 import requests
 import json
 
-API = "https://pricing-source-truth.preview.emergentagent.com/api"
+API = "https://single-booking-fix.preview.emergentagent.com/api"
 
 def activate_discount(service):
     """Set discount to 10% for a service"""
