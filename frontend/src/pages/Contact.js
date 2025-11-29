@@ -759,7 +759,8 @@ const Contact = () => {
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             service_id: serviceId,
             therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81",
-            duration_type: duration,  // Add duration
+            duration: duration,  // Service duration in minutes
+            duration_type: duration,  // Also send as duration_type for backwards compatibility
             notes: formData.message || "",
             language: language,
             service_name: serviceName
