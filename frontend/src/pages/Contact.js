@@ -807,6 +807,16 @@ const Contact = () => {
         if (!response.ok) {
           const errorText = await response.text();
           console.error('❌ Booking API error:', response.status, errorText);
+          console.error('❌ Full error response:', errorText);
+          
+          // Try to parse as JSON for more details
+          try {
+            const errorJson = JSON.parse(errorText);
+            console.error('❌ Error details:', errorJson);
+          } catch (e) {
+            console.error('❌ Error text (not JSON):', errorText);
+          }
+          
           throw new Error(`Booking failed: ${response.status} - ${errorText}`);
         }
         
