@@ -78,6 +78,7 @@ class AppointmentBooking(BaseModel):
     language: Optional[str] = "sr"  # Default to Serbian
     service_name: Optional[str] = ""  # For email display
     duration_type: Optional[int] = None  # For couples massage total duration
+    duration: Optional[int] = None  # Service duration in minutes
 
 # Couple Booking Model
 # Snapshot model for service pricing
