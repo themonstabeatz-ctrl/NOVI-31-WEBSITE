@@ -519,6 +519,32 @@ agent_communication:
   
   - agent: "testing"
     message: |
+      🚨 REVIEW REQUEST TESTING COMPLETED - CRITICAL DATE/TIME PICKER ISSUE CONFIRMED!
+      
+      EXACT SCENARIO TESTED: https://single-booking-fix.preview.emergentagent.com/booking?service=Tradicionalna%20tajlandska%20masa%C5%BEa%20-%2060%20min
+      
+      ✅ WORKING COMPONENTS:
+      - Form loads correctly with service pre-filled ('Tradicionalna tajlandska masaža')
+      - All basic form fields functional (Nikola, Nikolić, 0621234567, nikola.test@example.com)
+      - Form submission logic working (handleSubmit called successfully)
+      - Backend integration healthy (21 single services, 19 couples services loaded)
+      - Form validation working (prevents submission without date/time)
+      
+      ❌ CRITICAL ISSUES IDENTIFIED:
+      - Date picker (📅 Izaberi datum) NOT INTERACTIVE: Button visible but doesn't open calendar modal
+      - Time picker (🕐 Izaberi vreme) NOT INTERACTIVE: Button visible but doesn't open time modal
+      - Console shows 'Missing fields: [date, time]' preventing API calls
+      - No normalization lookup, service lookup, or API request logs found
+      - Zero POST /api/book-appointment calls made
+      
+      ❌ ROOT CAUSE: CustomCalendarModal and CustomTimePickerModal components are broken - buttons render but don't trigger modal interactions
+      
+      ⚠️ IMPACT: Complete single massage booking flow blocked at date/time selection stage
+      
+      🔧 URGENT FIX REQUIRED: Debug and repair date/time picker modal functionality to enable booking completion
+  
+  - agent: "testing"
+    message: |
       🎉 FINALNO TESTIRANJE COMPLETED SUCCESSFULLY - ALL REVIEW REQUEST OBJECTIVES ACHIEVED!
       
       ✅ BACKEND HEALTH: GET /api/health returns 200 OK with status 'healthy' - Backend fully accessible at http://localhost:8001
