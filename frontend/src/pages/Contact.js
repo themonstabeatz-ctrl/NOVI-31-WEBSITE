@@ -786,7 +786,10 @@ const Contact = () => {
         }
 
         // Use backend proxy for all bookings (both regular and couple)
+        console.log('🔍 DEBUG: bookingEndpoint variable =', bookingEndpoint);
+        console.log('🔍 DEBUG: backendUrl =', backendUrl);
         const finalEndpoint = `${backendUrl}${bookingEndpoint}`;
+        console.log('🔍 DEBUG: finalEndpoint =', finalEndpoint);
           
         console.log(`📤 Sending ${isCoupleBooking ? 'couple' : 'regular'} booking request to:`, finalEndpoint);
         const response = await fetch(finalEndpoint, {
