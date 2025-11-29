@@ -435,6 +435,11 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 # Prepare booking payload
                 booking_payload = booking.model_dump()
                 
+                # Remove therapist_id if empty (reception system doesn't accept empty therapist_id)
+                if not booking_payload.get('therapist_id') or booking_payload['therapist_id'] == "":
+                    logger.info("📋 Removing empty therapist_id from payload")
+                    booking_payload.pop('therapist_id', None)
+                
                 # For couples massage, enhance notes with total duration and final price info
                 if is_couples_massage and couples_total_duration and couples_final_price:
                     original_notes = booking_payload['notes']
