@@ -53,7 +53,12 @@ const Contact = () => {
   const isCouplesMassage = (serviceName) => {
     if (!serviceName) return false;
     
-    // Check against all language variations of "Couples Massage"
+    // Couples massages have [PAROVI] prefix
+    if (serviceName.includes('[PAROVI]')) {
+      return true;
+    }
+    
+    // Also check against language variations for backwards compatibility
     const couplesTranslations = [
       'Masaža za parove',           // Serbian
       'Couples Massage',             // English
