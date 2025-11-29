@@ -757,6 +757,7 @@ const Contact = () => {
           };
           
           bookingEndpoint = '/api/book-appointment';
+          console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
         // Add connectivity health check before booking
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
