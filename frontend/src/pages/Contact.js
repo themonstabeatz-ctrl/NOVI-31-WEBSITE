@@ -380,8 +380,21 @@ const Contact = () => {
       
       // serviceName and queryParams already defined in validation above - no need to redeclare
       
-      // Special handling for couples massage - use original duration for service_id lookup
+      // Normalize service name for lookup
+      // Try exact match first, then try normalized (without duration)
       let serviceLookupName = serviceName;
+      
+      // If exact match not found, try normalized version
+      if (!serviceMapping[serviceLookupName]) {
+        const normalized = serviceName
+          .replace(/\s*[-–—]\s*\d+\s*min\s*$/i, '') // Remove "- 60 min", "– 90 min", etc.
+          .trim();
+        
+        console.log('🔍 Trying normalized lookup:', { original: serviceName, normalized });
+        serviceLookupName = normalized;
+      }
+      
+      // Special handling for couples massage - use original duration for service_id lookup
       let couplesData = null;
       
       // Try to get couples data from localStorage first, then fall back to URL param
