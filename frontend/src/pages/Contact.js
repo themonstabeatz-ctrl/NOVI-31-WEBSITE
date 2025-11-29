@@ -233,6 +233,7 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(`🔄 handleInputChange: ${name} = ${value}`);
     setFormData(prev => ({
       ...prev,
       [name]: value
