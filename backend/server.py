@@ -433,55 +433,43 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 booking_payload.pop('therapist_id', None)
             
             booking_result = None
-                
-                # For couples massage, enhance notes with total duration and final price info
-                if is_couples_massage and couples_total_duration and couples_final_price:
-                    original_notes = booking_payload['notes']
-                    
-                    # OVERRIDE service_name to show actual total duration
-                    booking_payload['service_name'] = f"Masaža za parove - {couples_total_duration} min"
-                    
-                    # Set duration_type to total duration (120, 180, or 240)
-                    booking_payload['duration_type'] = couples_total_duration
-                    
-                    booking_payload['notes'] = (
-                        f"⭐ MASAŽA ZA PAROVE - UKUPNO TRAJANJE: {couples_total_duration} min ⭐\n"
-                        f"💰 FINALNA CENA SA POPUSTOM (-15%): {couples_final_price} RSD 💰\n\n"
-                        f"DETALJI:\n{original_notes}"
-                    )
-                    logger.info(f"📝 Enhanced couples massage: service_name={booking_payload['service_name']}, duration_type={couples_total_duration}, price: {couples_final_price} RSD")
-                
-                response = await client.post(
-                    f'{booking_api_url}/api/appointments',
-                    json=booking_payload,
-                    headers={'Content-Type': 'application/json'}
-                )
-                
-                # If booking succeeds
-                if response.status_code in [200, 201]:
-                    therapist_name = therapist.get('name', 'Manual Assignment')
-                    logger.info(f"✅ Booking successful with {therapist_name} (ID: {therapist['id']})")
-                    booking_result = response.json()
-                    break
-                
-                # If this therapist is not available, try the next one
-                if response.status_code == 400:
-                    error_text = response.text.lower()
-                    if 'not available' in error_text or 'unavailable' in error_text:
-                        therapist_name = therapist.get('name', 'Manual Assignment')
-                        logger.info(f"⚠️ {therapist_name} not available, trying next...")
-                        continue
-                
-                # For other errors, log and continue to next therapist
-                therapist_name = therapist.get('name', 'Manual Assignment')
-                logger.warning(f"Error with {therapist_name}: {response.status_code} - {response.text}")
             
-            # If no therapist is available
-            if not booking_result:
-                logger.error(f"❌ All web booking therapists busy for {booking.start_time}")
+            # For couples massage, enhance notes with total duration and final price info
+            if is_couples_massage and couples_total_duration and couples_final_price:
+                original_notes = booking_payload['notes']
+                
+                # OVERRIDE service_name to show actual total duration
+                booking_payload['service_name'] = f"Masaža za parove - {couples_total_duration} min"
+                
+                # Set duration_type to total duration (120, 180, or 240)
+                booking_payload['duration_type'] = couples_total_duration
+                
+                booking_payload['notes'] = (
+                    f"⭐ MASAŽA ZA PAROVE - UKUPNO TRAJANJE: {couples_total_duration} min ⭐\n"
+                    f"💰 FINALNA CENA SA POPUSTOM (-15%): {couples_final_price} RSD 💰\n\n"
+                    f"DETALJI:\n{original_notes}"
+                )
+                logger.info(f"📝 Enhanced couples massage: service_name={booking_payload['service_name']}, duration_type={couples_total_duration}, price: {couples_final_price} RSD")
+            
+            # Send booking request WITHOUT therapist_id - manual assignment in reception
+            logger.info(f"📤 Sending booking request WITHOUT therapist_id to {booking_api_url}/api/appointments")
+            response = await client.post(
+                f'{booking_api_url}/api/appointments',
+                json=booking_payload,
+                headers={'Content-Type': 'application/json'}
+            )
+            
+            # If booking succeeds
+            if response.status_code in [200, 201]:
+                logger.info(f"✅ Booking successful - therapist will be assigned manually in reception")
+                booking_result = response.json()
+            else:
+                # Booking failed
+                error_text = response.text
+                logger.error(f"❌ Booking failed: {response.status_code} - {error_text}")
                 raise HTTPException(
-                    status_code=400,
-                    detail="Svi termini su zauzeti za izabrano vreme. Molimo izaberite drugo vreme."
+                    status_code=response.status_code,
+                    detail=f"Booking failed: {error_text}"
                 )
             
             # Send confirmation email immediately (in background)
