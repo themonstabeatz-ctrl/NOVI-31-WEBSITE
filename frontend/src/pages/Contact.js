@@ -257,6 +257,11 @@ const Contact = () => {
   // Handle date change from DatePicker
   const handleDateChange = (date) => {
     console.log('📅 handleDateChange called with:', date, 'Type:', typeof date);
+    console.log('📅 Date details:', { 
+      isDate: date instanceof Date, 
+      value: date, 
+      toString: date ? date.toString() : 'null' 
+    });
     
     // Ensure we're getting a valid date or null
     const dateValue = date instanceof Date ? date : null;
@@ -267,8 +272,14 @@ const Contact = () => {
         preferredDate: dateValue
       };
       console.log('📅 Updated formData.preferredDate:', updated.preferredDate);
+      console.log('📅 Full formData after date change:', updated);
       return updated;
     });
+    
+    // Log after state update (with slight delay to see updated state)
+    setTimeout(() => {
+      console.log('📅 formData.preferredDate after setState (check):', formData.preferredDate);
+    }, 100);
   };
 
   const clearDate = () => {
