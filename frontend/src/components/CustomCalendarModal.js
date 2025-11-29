@@ -85,11 +85,15 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
   };
 
   const handlePostavi = () => {
+    console.log('📅 handlePostavi clicked! selectedDate:', selectedDate);
     if (selectedDate) {
-      console.log('📅 Calendar Postavi clicked - closing modal');
+      console.log('📅 Calendar Postavi - calling onChange with:', selectedDate);
       onChange(selectedDate);
+      console.log('📅 Calendar Postavi - calling setIsOpen(false)');
       setIsOpen(false);
       console.log('📅 Calendar modal closed');
+    } else {
+      console.log('📅 handlePostavi: no selectedDate, not closing modal');
     }
   };
 
