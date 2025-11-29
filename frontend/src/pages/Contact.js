@@ -256,11 +256,15 @@ const Contact = () => {
 
   // Handle date change from DatePicker
   const handleDateChange = (date) => {
-    console.log('📅 handleDateChange called with:', date);
+    console.log('📅 handleDateChange called with:', date, 'Type:', typeof date);
+    
+    // Ensure we're getting a valid date or null
+    const dateValue = date instanceof Date ? date : null;
+    
     setFormData(prev => {
       const updated = {
         ...prev,
-        preferredDate: date
+        preferredDate: dateValue
       };
       console.log('📅 Updated formData.preferredDate:', updated.preferredDate);
       return updated;
