@@ -9,6 +9,11 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   
+  // Debug log for isOpen state
+  useEffect(() => {
+    console.log('📅 Calendar modal isOpen:', isOpen);
+  }, [isOpen]);
+  
   // Parse value to Date object
   useEffect(() => {
     if (value && value instanceof Date) {
