@@ -145,7 +145,10 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
     <div className="custom-calendar-wrapper">
       <div 
         className="calendar-input-trigger"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          console.log('📅 Calendar trigger clicked!');
+          setIsOpen(true);
+        }}
       >
         <Calendar className="calendar-icon" size={20} />
         <span className={selectedDate ? 'has-value' : 'placeholder'}>
