@@ -286,6 +286,15 @@ const Contact = () => {
     
     try {
       console.log('✅ Entered try block');
+      console.log('📋 Form data:', { 
+        firstName: formData.firstName, 
+        lastName: formData.lastName,
+        phone: formData.phone,
+        email: formData.email,
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime
+      });
+      
       // Validate required fields with detailed error messages
       const missingFields = [];
       
@@ -299,11 +308,15 @@ const Contact = () => {
       const serviceName = queryParams.get('service') || formData.service || '';
       const isBooking = !!serviceName;
       
+      console.log('🔍 Booking check:', { serviceName, isBooking });
+      
       // For bookings, date and time are required
       if (isBooking) {
         if (!formData.preferredDate) missingFields.push('date');
         if (!formData.preferredTime) missingFields.push('time');
       }
+      
+      console.log('⚠️ Missing fields:', missingFields);
       
       // If there are missing fields, show error and scroll to first missing field
       if (missingFields.length > 0) {
