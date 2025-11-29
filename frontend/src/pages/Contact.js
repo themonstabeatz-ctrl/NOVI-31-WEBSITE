@@ -272,6 +272,9 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('🚀 handleSubmit called!');
+    console.log('📍 Backend URL:', process.env.REACT_APP_BACKEND_URL);
+    
     setIsSubmitting(true);
     setSubmitStatus(null);
     
@@ -282,6 +285,7 @@ const Contact = () => {
     }, 30000);
     
     try {
+      console.log('✅ Entered try block');
       // Validate required fields with detailed error messages
       const missingFields = [];
       
