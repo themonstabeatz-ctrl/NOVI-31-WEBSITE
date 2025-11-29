@@ -1071,8 +1071,7 @@ const Contact = () => {
                 )}
                 
                 <Button 
-                  type="submit" 
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isSubmitting}
                   className="submit-button"
                 >
