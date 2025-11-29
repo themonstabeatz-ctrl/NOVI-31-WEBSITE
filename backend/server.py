@@ -422,23 +422,17 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
             
             # KRITIČNO: Terapeut NIJE OBAVEZAN - recepcionar će ga manuelno dodati u recepciji
             # NE pokušavaj da automatski dodeliš terapeuta!
-            if not booking.therapist_id:
-                logger.info("📋 Booking without therapist - will proceed WITHOUT auto-assignment (manual assignment needed)")
-                booking.therapist_id = ""
+            logger.info("📋 Booking WITHOUT therapist - manual assignment in reception")
             
-            # Try booking with assigned therapist
+            # Prepare booking payload
+            booking_payload = booking.model_dump()
+            
+            # UVEK ukloni therapist_id - recepcionar će ga manuelno dodati
+            if 'therapist_id' in booking_payload:
+                logger.info("📋 Removing therapist_id from payload (manual assignment required)")
+                booking_payload.pop('therapist_id', None)
+            
             booking_result = None
-            web_slot_therapists = [{"id": booking.therapist_id, "name": "Auto-assigned"}]
-            
-            for therapist in web_slot_therapists:
-                
-                # Prepare booking payload
-                booking_payload = booking.model_dump()
-                
-                # Remove therapist_id if empty (reception system doesn't accept empty therapist_id)
-                if not booking_payload.get('therapist_id') or booking_payload['therapist_id'] == "":
-                    logger.info("📋 Removing empty therapist_id from payload")
-                    booking_payload.pop('therapist_id', None)
                 
                 # For couples massage, enhance notes with total duration and final price info
                 if is_couples_massage and couples_total_duration and couples_final_price:
