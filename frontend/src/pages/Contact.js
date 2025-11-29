@@ -742,6 +742,14 @@ const Contact = () => {
           console.log('📤 Calling backend couple booking endpoint:', bookingEndpoint);
         } else {
           // Regular booking data
+          // Extract duration from service name (e.g., "Masaža - 90 min" -> 90)
+          let duration = 60; // default
+          const durationMatch = serviceName.match(/(\d+)\s*min/i);
+          if (durationMatch) {
+            duration = parseInt(durationMatch[1]);
+            console.log(`📏 Extracted duration: ${duration} min from "${serviceName}"`);
+          }
+          
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
@@ -751,6 +759,7 @@ const Contact = () => {
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             service_id: serviceId,
             therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81",
+            duration_type: duration,  // Add duration
             notes: formData.message || "",
             language: language,
             service_name: serviceName
