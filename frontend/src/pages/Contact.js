@@ -241,10 +241,15 @@ const Contact = () => {
 
   // Handle date change from DatePicker
   const handleDateChange = (date) => {
-    setFormData(prev => ({
-      ...prev,
-      preferredDate: date
-    }));
+    console.log('📅 handleDateChange called with:', date);
+    setFormData(prev => {
+      const updated = {
+        ...prev,
+        preferredDate: date
+      };
+      console.log('📅 Updated formData.preferredDate:', updated.preferredDate);
+      return updated;
+    });
   };
 
   const clearDate = () => {
