@@ -120,10 +120,19 @@ const Contact = () => {
           const normalized = service.name
             .replace(/\s*[-–—]\s*\d+\s*min\s*$/i, '') // Remove "- 60 min", "– 90 min", etc.
             .trim();
-          mapping[normalized] = service.id;
+          
+          // Don't overwrite if normalized name already exists (keep first match)
+          if (!mapping[normalized] || mapping[normalized] === service.id) {
+            mapping[normalized] = service.id;
+          }
+          
+          console.log(`   📝 Mapped: "${service.name}" -> ${service.id.substring(0, 8)}...`);
+          if (service.name !== normalized) {
+            console.log(`      Also: "${normalized}" -> ${service.id.substring(0, 8)}...`);
+          }
         });
         
-        console.log('✅ Loaded service mapping:', Object.keys(mapping).length, 'services');
+        console.log('✅ Loaded service mapping:', Object.keys(mapping).length, 'keys for', allServices.length, 'services');
         console.log('   Single:', singleServices.length, 'Couples:', couplesServices.length);
         setServiceMapping(mapping);
         setAvailableServices({ single: singleServices, couples: couplesServices });
