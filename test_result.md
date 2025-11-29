@@ -535,6 +535,34 @@ agent_communication:
       1. Da li booking USPE? ✅ DA - Status: 200 OK
       2. Da li se EMAIL ŠALJE? ✅ DA - Backend logs confirm '✅ Email sent successfully to grujovicsavatije@gmail.com'
   
+  
+  - agent: "testing"
+    message: |
+      🚨 REVIEW REQUEST TESTING COMPLETED - CRITICAL DATE/TIME PICKER ACCESSIBILITY ISSUE!
+      
+      ✅ TESTED EXACT SCENARIO:
+      - URL: https://single-booking-fix.preview.emergentagent.com/booking?service=Tradicionalna%20tajlandska%20masa%C5%BEa%20-%2060%20min
+      - Form data: Stefan, Stefanović, 0611234567, stefan.test@example.com, "Test booking nakon fixa"
+      - Service: Pre-filled from URL (Tradicionalna tajlandska masaža - 60 min)
+      
+      ❌ CRITICAL FINDINGS:
+      1. Da li se pojavljuje SUCCESS poruka? ❌ NE - No success message appears
+      2. Da li postoji greška u console-u? ✅ No console errors found
+      3. Da li je API poziv stigao do backend-a? ❌ NE - Backend logs show NO booking API calls
+      
+      ❌ ROOT CAUSE: Custom date/time picker components (CustomCalendarModal, CustomTimePickerModal) have accessibility issues:
+      - Date picker button ('Izaberite datum') not accessible via DOM selectors
+      - Time picker button ('Izaberite vreme') not accessible via DOM selectors  
+      - Form validation requires date/time but users cannot select them
+      - Without date/time, form submission doesn't trigger /api/book-appointment
+      
+      ⚠️ URGENT ACTION REQUIRED:
+      1. Fix CustomCalendarModal and CustomTimePickerModal accessibility
+      2. Ensure date/time picker buttons are properly accessible
+      3. Test complete booking flow after fixes
+      4. Verify success message display after successful booking
+      
+      BOOKING FLOW IS CURRENTLY BROKEN - Users cannot complete bookings!
   - agent: "testing"
     message: |
       🎉 FINALNO TESTIRANJE COUPLES BOOKING - COMPREHENSIVE SUCCESS!
