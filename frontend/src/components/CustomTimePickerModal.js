@@ -72,7 +72,10 @@ const CustomTimePickerModal = ({ value, onChange, name }) => {
     <div className="custom-time-wrapper">
       <div 
         className="time-input-trigger"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          console.log('🕐 Time picker trigger clicked!');
+          setIsOpen(true);
+        }}
       >
         <Clock className="time-icon" size={20} />
         <span className={value ? 'has-value' : 'placeholder'}>
