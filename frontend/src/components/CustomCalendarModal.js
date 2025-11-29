@@ -104,7 +104,7 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
 
   const handleObrisi = () => {
     setSelectedDate(null);
-    onChange({ target: { name, value: null } });
+    onChange(null);  // Send null directly, not as event
     setIsOpen(false);
   };
 
