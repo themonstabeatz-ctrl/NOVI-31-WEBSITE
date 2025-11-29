@@ -64,14 +64,23 @@ const CustomCalendarModal = ({ value, onChange, name, minDate }) => {
   };
 
   const handleDateClick = (date) => {
-    if (!date) return;
+    console.log('📅 handleDateClick called with:', date);
+    if (!date) {
+      console.log('📅 handleDateClick: date is null, returning');
+      return;
+    }
     
     const dateToCheck = new Date(date);
     dateToCheck.setHours(0, 0, 0, 0);
+    console.log('📅 handleDateClick: checking date:', dateToCheck, 'vs today:', today);
     
     // Check if date is in the past
-    if (dateToCheck < today) return;
+    if (dateToCheck < today) {
+      console.log('📅 handleDateClick: date is in past, returning');
+      return;
+    }
     
+    console.log('📅 handleDateClick: setting selectedDate to:', date);
     setSelectedDate(date);
   };
 
