@@ -518,6 +518,28 @@ agent_communication:
       1. Fix success message display after form submission
       2. Make date/time pickers properly interactive
       3. Add proper loading states and user feedback
+  - agent: "testing"
+    message: |
+      🚨 KRITIČNI PROBLEM IDENTIFIKOVAN - DATE PICKER POTPUNO NEFUNKCIONALAN!
+      
+      Izvršio sam finalni kompletan test date/time picker-a i API poziva prema review zahtevima.
+      
+      REZULTATI:
+      ✅ Time picker radi (14:00 se postavlja)
+      ✅ Form validation radi  
+      ✅ Service mapping radi (40 usluga učitano)
+      ✅ Backend je zdrav i spreman
+      
+      ❌ DATE PICKER JE POTPUNO BROKEN!
+      - Calendar modal se otvara ali datum selekcija ne radi
+      - handleDateChange se NIKAD ne poziva
+      - preferredDate ostaje null
+      - API poziv se blokira sa 'Missing fields: [date]'
+      
+      Ovo je kritična greška koja sprečava sve single massage bookings.
+      
+      HITNO potrebna je popravka date picker komponente u Contact.js ili CustomCalendarModal.js 
+      da se omogući datum selekcija i triggovanje handleDateChange funkcije.
       7. All links and buttons are functional
       8. Page transitions work smoothly
   - agent: "testing"
