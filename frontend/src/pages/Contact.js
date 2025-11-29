@@ -105,9 +105,17 @@ const Contact = () => {
         const allServices = [...singleServices, ...couplesServices];
         
         // Build service mapping: "Service Name - Duration" -> ID
+        // Store both exact name AND normalized name for flexible matching
         const mapping = {};
         allServices.forEach(service => {
+          // Store with exact name
           mapping[service.name] = service.id;
+          
+          // Also store with normalized name (without duration, trimmed)
+          const normalized = service.name
+            .replace(/\s*[-–—]\s*\d+\s*min\s*$/i, '') // Remove "- 60 min", "– 90 min", etc.
+            .trim();
+          mapping[normalized] = service.id;
         });
         
         console.log('✅ Loaded service mapping:', Object.keys(mapping).length, 'services');
