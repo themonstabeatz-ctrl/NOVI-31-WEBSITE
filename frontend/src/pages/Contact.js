@@ -248,10 +248,16 @@ const Contact = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     console.log(`🔄 handleInputChange: ${name} = ${value}`);
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    console.log(`🔄 Event object:`, { name, value, targetType: typeof e.target });
+    
+    setFormData(prev => {
+      const updated = {
+        ...prev,
+        [name]: value
+      };
+      console.log(`🔄 Updated formData after ${name} change:`, updated);
+      return updated;
+    });
   };
 
   // Handle date change from DatePicker
