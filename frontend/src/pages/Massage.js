@@ -62,48 +62,60 @@ const Massage = () => {
 
   const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages for regular cards
   const [couplesDiscountPercent, setCouplesDiscountPercent] = useState(0); // Discount for couples massage
+  const [apiServices, setApiServices] = useState({}); // 100% dynamic data from API - grouped by base name
 
-  // Fetch all service discounts from booking system via backend proxy
+  // Fetch ALL service data dynamically from API - NO HARDCODING
   useEffect(() => {
-    const fetchDiscounts = async () => {
+    const fetchAllServices = async () => {
       try {
-        // Fetch SINGLE services ONLY (obične masaže)
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         const singleResponse = await fetch(`${backendUrl}/api/services/single/list`);
         const singleServices = await singleResponse.json();
         
-        // Build discount mapping: service name -> discount percentage
-        // ONLY single services (no couples)
+        // Group services by base name (remove " - XX min" for grouping DISPLAY only)
+        const grouped = {};
         const discountMap = {};
         
         singleServices.forEach(service => {
-          const discount = service.discount_percentage || 0;
-          const serviceName = service.name; // e.g., "Tradicionalna tajlandska masaža - 60 min"
+          const fullName = service.name; // e.g., "Masaža stopala - 30 min"
+          const baseName = fullName.replace(/\s*[-–]\s*\d+\s*min\s*$/i, '').trim(); // "Masaža stopala"
           
-          // Extract base service name without duration
-          const baseName = serviceName.split(' - ')[0]; // e.g., "Tradicionalna tajlandska masaža"
+          if (!grouped[baseName]) {
+            grouped[baseName] = [];
+          }
           
-          // Map discount for single services
-          if (!discountMap[baseName] && discount > 0) {
-            discountMap[baseName] = discount;
+          // Store COMPLETE service data from API - NO MODIFICATIONS
+          grouped[baseName].push({
+            fullName: fullName,           // Exact name from API
+            serviceId: service.id,        // Exact ID from API
+            duration: service.duration,   // Exact duration from API
+            price: service.price,         // Exact price from API
+            discountedPrice: service.discounted_price,
+            originalPrice: service.original_price,
+            discount: service.discount_percentage || 0
+          });
+          
+          // Map discount for display
+          if (!discountMap[baseName] && service.discount_percentage > 0) {
+            discountMap[baseName] = service.discount_percentage;
           }
         });
         
-        // Get couples massage discount from COUPLES endpoint
+        console.log('✅ 100% DYNAMIC services loaded from API:', grouped);
+        setApiServices(grouped);
+        setServiceDiscounts(discountMap);
+        
+        // Get couples discount
         const couplesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
         const couplesServices = await couplesResponse.json();
-        const couplesService = couplesServices[0]; // Get first couples service for discount
-        const couplesDiscount = couplesService ? (couplesService.discount_percentage || 0) : 0;
+        const couplesDiscount = couplesServices[0]?.discount_percentage || 0;
         setCouplesDiscountPercent(couplesDiscount);
         
-        console.log('📊 Discounts loaded for regular massage cards (Obicne masaze):', discountMap);
-        console.log(`📊 Couples massage discount: ${couplesDiscount}%`);
-        setServiceDiscounts(discountMap);
       } catch (error) {
-        console.error('Error fetching discounts from booking system:', error);
+        console.error('❌ Error fetching services from API:', error);
       }
     };
-    fetchDiscounts();
+    fetchAllServices();
   }, []);
 
   // Generic function to get massage details based on duration
