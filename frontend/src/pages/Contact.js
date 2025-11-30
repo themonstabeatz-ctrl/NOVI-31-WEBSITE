@@ -769,33 +769,13 @@ const Contact = () => {
           bookingEndpoint = '/api/book-appointment';
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
-        // Add connectivity health check before booking
+        // Get backend URL
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         
+        // ❌ HEALTH CHECK REMOVED - was causing 404 and blocking bookings
+        // Backend /api/health endpoint doesn't exist, so we skip it
+        // and proceed directly to booking
         
-        // Health check first
-        try {
-          console.log('🏥 Performing health check...');
-          const healthResponse = await fetch(`${backendUrl}/api/health`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          
-          if (!healthResponse.ok) {
-            console.error('❌ Health check failed:', healthResponse.status, healthResponse.statusText);
-            throw new Error(`Backend not available (${healthResponse.status})`);
-          }
-          
-          console.log('✅ Health check passed');
-        } catch (healthError) {
-          console.error('❌ Health check error:', healthError);
-          setError(`Greška u komunikaciji sa serverom: ${healthError.message}`);
-          setIsSubmitting(false);
-          return;
-        }
-
         // Use backend proxy for all bookings (both regular and couple)
         console.log('🔍 DEBUG: bookingEndpoint variable =', bookingEndpoint);
         console.log('🔍 DEBUG: backendUrl =', backendUrl);
