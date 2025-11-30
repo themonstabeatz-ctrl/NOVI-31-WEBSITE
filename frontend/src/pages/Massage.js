@@ -757,71 +757,34 @@ const Massage = () => {
               <CardHeader>
                 <CardTitle className="massage-name">{service.name}</CardTitle>
                 
-                {/* Duration selection buttons - all services now have duration options */}
-                {service.hasDurationOptions && (
+                {/* DYNAMIC Duration buttons from API data */}
+                {service.hasDurationOptions && apiServices[service.name] && apiServices[service.name].length > 0 && (
                   <div style={{
                     display: 'flex',
                     gap: '0.5rem',
                     marginTop: '0.75rem',
                     marginBottom: '0.75rem'
                   }}>
-                    {(!service.customDurations || service.customDurations.includes('60')) && (
+                    {apiServices[service.name].map((variant) => (
                       <button
-                        onClick={() => updateDuration(service.key, '60')}
+                        key={variant.duration}
+                        onClick={() => updateDuration(service.key, String(variant.duration))}
                         style={{
                           flex: 1,
                           padding: '0.5rem',
-                          border: durations[service.key] === '60' ? '2px solid #d4af37' : '1px solid #444',
-                          backgroundColor: durations[service.key] === '60' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                          border: durations[service.key] === String(variant.duration) ? '2px solid #d4af37' : '1px solid #444',
+                          backgroundColor: durations[service.key] === String(variant.duration) ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                           color: '#d4af37',
                           borderRadius: '8px',
                           cursor: 'pointer',
                           fontSize: '0.875rem',
-                          fontWeight: durations[service.key] === '60' ? 'bold' : 'normal',
+                          fontWeight: durations[service.key] === String(variant.duration) ? 'bold' : 'normal',
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        {service.customDurationLabels ? service.customDurationLabels['60'] : '60 min'}
+                        {variant.duration} min
                       </button>
-                    )}
-                    {(!service.customDurations || service.customDurations.includes('90')) && (
-                      <button
-                        onClick={() => updateDuration(service.key, '90')}
-                        style={{
-                          flex: 1,
-                          padding: '0.5rem',
-                          border: durations[service.key] === '90' ? '2px solid #d4af37' : '1px solid #444',
-                          backgroundColor: durations[service.key] === '90' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-                          color: '#d4af37',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem',
-                          fontWeight: durations[service.key] === '90' ? 'bold' : 'normal',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        {service.customDurationLabels ? service.customDurationLabels['90'] : '90 min'}
-                      </button>
-                    )}
-                    {(!service.customDurations || service.customDurations.includes('120')) && (
-                      <button
-                        onClick={() => updateDuration(service.key, '120')}
-                        style={{
-                          flex: 1,
-                          padding: '0.5rem',
-                          border: durations[service.key] === '120' ? '2px solid #d4af37' : '1px solid #444',
-                          backgroundColor: durations[service.key] === '120' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-                          color: '#d4af37',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem',
-                          fontWeight: durations[service.key] === '120' ? 'bold' : 'normal',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        {service.customDurationLabels ? service.customDurationLabels['120'] : '120 min'}
-                      </button>
-                    )}
+                    ))}
                   </div>
                 )}
                 
