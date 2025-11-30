@@ -50,11 +50,11 @@ const CouplesMassageCard = ({
   React.useEffect(() => {
     const loadMassages = async () => {
       try {
-        console.log('📥 Loading INDIVIDUAL [PAROVI] massages for dropdown from /api/services/couples/individual...');
+        console.log('📥 Loading ALL services and filtering for [PAROVI] massages...');
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
         
-        // CRITICAL: Use /api/services/couples/individual endpoint to get INDIVIDUAL [PAROVI] masaže
-        const response = await fetch(`${backendUrl}/api/services/couples/individual`);
+        // CRITICAL: Load all services and filter by category "Kartica Masaza za parove"
+        const response = await fetch(`${backendUrl}/api/services`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
