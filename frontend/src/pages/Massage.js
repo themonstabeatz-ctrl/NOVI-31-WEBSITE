@@ -879,15 +879,27 @@ const Massage = () => {
                   </ul>
                 </div>
                 
-                <Button 
+                <button 
+                  type="button"
                   className="book-button w-full" 
+                  style={{
+                    backgroundColor: '#d4af37',
+                    color: '#1a1a1a',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    width: '100%'
+                  }}
                   onClick={() => {
                     console.log('🔵 BUTTON CLICKED!', service.name, durations[service.key]);
                     handleBookClick(service.name, durations[service.key]);
                   }}
                 >
                   {translate("bookAppointment")}
-                </Button>
+                </button>
               </CardContent>
             </Card>
             );
