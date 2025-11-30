@@ -87,15 +87,15 @@ const Massage = () => {
             grouped[baseName] = [];
           }
           
-          // Store COMPLETE service data from API - NO MODIFICATIONS
+          // Store COMPLETE service data from API - NO MODIFICATIONS, NO CALCULATIONS
           grouped[baseName].push({
             fullName: fullName,           // Exact name from API
             serviceId: service.id,        // Exact ID from API
             duration: service.duration,   // Exact duration from API
-            price: service.price,         // Exact price from API
-            discountedPrice: service.discounted_price,
-            originalPrice: service.original_price,
-            discount: service.discount_percentage || 0
+            price: service.price,         // Original price (for reference)
+            finalPrice: service.final_price,  // USE final_price - already has discount applied by backend!
+            originalPrice: service.original_price,  // For strikethrough display
+            discount: service.discount_percentage || 0  // Just for badge display
           });
           
           // Map discount for display
