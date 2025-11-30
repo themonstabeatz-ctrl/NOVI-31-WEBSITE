@@ -78,7 +78,10 @@ const Massage = () => {
         
         singleServices.forEach(service => {
           const fullName = service.name; // e.g., "Masaža stopala - 30 min"
-          const baseName = fullName.replace(/\s*[-–]\s*\d+\s*min\s*$/i, '').trim(); // "Masaža stopala"
+          
+          // Normalize different dash types and spacing before extracting baseName
+          const normalized = fullName.replace(/–/g, '-').replace(/\s*-\s*/g, ' - ');
+          const baseName = normalized.replace(/\s*-\s*\d+\s*min\s*$/i, '').trim(); // "Masaža stopala"
           
           if (!grouped[baseName]) {
             grouped[baseName] = [];
