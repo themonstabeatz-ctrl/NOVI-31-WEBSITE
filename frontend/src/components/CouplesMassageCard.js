@@ -411,6 +411,36 @@ const CouplesMassageCard = ({
 
   const is120Mode = durations.sports === '120';
 
+  // Handle booking button click - navigate to Contact form with couples data
+  const handleBookClick = () => {
+    const couplesData = {
+      duration: durations.sports,
+      totalDuration: calculateTotalDuration(),
+      person1: {
+        massage1: couplesSelections.person1Massage1,
+        massage2: couplesSelections.person1Massage2
+      },
+      person2: {
+        massage1: couplesSelections.person2Massage1,
+        massage2: couplesSelections.person2Massage2
+      },
+      totalPrice: calculateCouplesPrice(),
+      originalPrice: calculateOriginalPrice(),
+      discount: `${couplesDiscount}%`,
+      discountPercent: couplesDiscount
+    };
+    
+    const params = new URLSearchParams({
+      service: translate('couplesMassage'),
+      couplesData: JSON.stringify(couplesData)
+    });
+    
+    console.log('📍 Navigating to /contact for COUPLES with params:', params.toString());
+    console.log('📍 Couples data:', couplesData);
+    
+    navigate(`/contact?${params.toString()}`);
+  };
+
   return (
     <Card 
       className="massage-card couples-card-content" 
