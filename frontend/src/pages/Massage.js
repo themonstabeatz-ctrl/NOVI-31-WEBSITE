@@ -881,7 +881,10 @@ const Massage = () => {
                 
                 <Button 
                   className="book-button w-full" 
-                  onClick={() => handleBookClick(service.name, durations[service.key])}
+                  onClick={() => {
+                    console.log('🔵 BUTTON CLICKED!', service.name, durations[service.key]);
+                    handleBookClick(service.name, durations[service.key]);
+                  }}
                 >
                   {translate("bookAppointment")}
                 </Button>
