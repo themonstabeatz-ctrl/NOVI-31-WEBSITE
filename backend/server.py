@@ -379,6 +379,11 @@ async def get_single_services():
                     service['original_price'] = metadata['original_price']
                     service['final_price'] = metadata['final_price']  # OVERWRITE bug from external API!
                     service['discounted_price'] = metadata['final_price']  # Backwards compatibility
+                    
+                    # DODATNO: Log razliku između metadata i root-level final_price (ako postoji bug)
+                    if 'final_price' in service and service['final_price'] != metadata['final_price']:
+                        logger.warning(f"⚠️ FIXING double discount bug: {service['name']} - metadata.final_price={metadata['final_price']}, wrong root final_price was={service['final_price']}")
+                        service['final_price'] = metadata['final_price']  # Force fix
                 else:
                     # Fallback ako metadata ne postoji - koristi price vrednost
                     service['original_price'] = service['price']
