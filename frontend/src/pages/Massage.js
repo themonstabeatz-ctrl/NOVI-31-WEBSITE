@@ -31,8 +31,8 @@ const Massage = () => {
     traditional: '60',
     aroma: '60',
     hotStone: '60',
-    royal: '60',
-    foot: '60',
+    royal: '30',  // Changed to match API (30, 45, 60)
+    foot: '30',   // Changed to match API (30, 45, 60)
     couple: '60',
     sports: '60',
     shiatsu: '60',
@@ -45,7 +45,7 @@ const Massage = () => {
     lymphatic: '60',
     aromaDeepTissue: '60',
     aromaHotStone: '90',
-    aromaThaiHerbal: '90',
+    aromaThaiHerbal: '90',  // API only has 90 min
     thaiHerbal: '90'
   });
 
