@@ -140,10 +140,20 @@ const Massage = () => {
       }
     }
     
-    // Fallback only if API data not yet loaded (should rarely happen)
+    // Fallback only if API data not yet loaded
     console.warn(`⚠️ API data not ready for ${serviceName} - ${selectedDuration} min`);
+    return {
+      duration: `${selectedDuration} min`,
+      price: 'Učitavanje...',
+      serviceId: serviceName
+    };
+  };
+
+  // REMOVE ALL HARDCODED DATA BELOW - keeping only for reference during transition
+  // TODO: Delete this entire block once fully tested
+  const OLD_getMassageDetails_DEPRECATED = (serviceKey, serviceName) => {
+    const duration = durations[serviceKey];
     
-    // Special pricing for Tradicionalna tajlandska masaža and Aroma terapija
     if (serviceKey === 'traditional' || serviceKey === 'aroma') {
       const options = {
         '60': { duration: '60 min', price: '4,400 RSD', serviceId: `${serviceName} - 60 min` },
