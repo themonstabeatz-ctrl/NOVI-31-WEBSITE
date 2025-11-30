@@ -371,10 +371,18 @@ async def get_single_services():
                 service['service_code'] = service_code
                 service['is_couple'] = False  # Mark as single service
                 
-                # CRITICAL: DO NOT calculate discount - recepcija is source of truth!
-                # Just pass through the values from booking system
-                service['discounted_price'] = service['price']  # Recepcija već diskontovala
-                service['original_price'] = service['price']  # Čuva vrednost kako je recepcija postavila
+                # CRITICAL: Use metadata if available (source of truth for prices and discounts)
+                metadata = service.get('metadata', {})
+                if metadata and 'original_price' in metadata and 'final_price' in metadata:
+                    # Eksterni API već ima original_price i final_price u metadata
+                    service['original_price'] = metadata['original_price']
+                    service['final_price'] = metadata['final_price']
+                    service['discounted_price'] = metadata['final_price']  # Backwards compatibility
+                else:
+                    # Fallback ako metadata ne postoji - koristi price vrednost
+                    service['original_price'] = service['price']
+                    service['final_price'] = service['price']
+                    service['discounted_price'] = service['price']
                 
                 processed_services.append(service)
             
