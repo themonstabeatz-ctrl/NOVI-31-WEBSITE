@@ -342,12 +342,13 @@ const Massage = () => {
       totalPrice += couplesSelections.person2Massage2.price || 0;
     }
     
-    // Apply discount from "Kartica Masaza za parove" category
-    const discountedPrice = totalPrice * (1 - couplesDiscountPercent / 100);
+    // ❌ DO NOT APPLY DISCOUNT ON FRONTEND!
+    // Backend already provides prices with discounts applied.
+    // Just return the sum of final prices from API.
     
-    console.log(`💰 Couples price calculation: Original ${totalPrice} RSD - ${couplesDiscountPercent}% = ${discountedPrice} RSD`);
+    console.log(`💰 Couples total price (from API final prices): ${totalPrice} RSD`);
     
-    return discountedPrice;
+    return totalPrice;  // NO DISCOUNT CALCULATION!
   };
 
   // Scroll to top when component mounts
