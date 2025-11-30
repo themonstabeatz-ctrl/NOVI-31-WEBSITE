@@ -307,6 +307,19 @@ const Massage = () => {
     return serviceDiscounts[bookingName] || 0;
   };
 
+  // Handle booking button click - navigate to Contact form
+  const handleBookClick = (serviceName, durationMinutes) => {
+    const serviceWithDuration = `${serviceName} - ${durationMinutes} min`;
+    const params = new URLSearchParams({
+      service: serviceWithDuration,
+    });
+    
+    console.log('📍 Navigating to /contact with params:', params.toString());
+    console.log('📍 Full service name:', serviceWithDuration);
+    
+    navigate(`/contact?${params.toString()}`);
+  };
+
   // ❌ REMOVED - Frontend MUST NOT calculate discounts!
   // Backend already provides final_price with discount applied.
   // This function was causing DOUBLE discount problem.
