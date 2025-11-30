@@ -11,6 +11,7 @@ import CouplesMassageCard from "../components/CouplesMassageCard";
 
 const Massage = () => {
   const { translate } = useLanguage();
+  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
