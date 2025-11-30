@@ -796,24 +796,33 @@ const Contact = () => {
         console.log('📥 Response status:', response.status);
         console.log('📥 Response ok:', response.ok);
 
+        // Read response body ONLY ONCE
+        const responseText = await response.text();
+        console.log('📥 Response body:', responseText);
+
         if (!response.ok) {
-          const errorText = await response.text();
-          console.error('❌ Booking API error:', response.status, errorText);
-          console.error('❌ Full error response:', errorText);
+          console.error('❌ Booking API error:', response.status, responseText);
           
           // Try to parse as JSON for more details
           try {
-            const errorJson = JSON.parse(errorText);
+            const errorJson = JSON.parse(responseText);
             console.error('❌ Error details:', errorJson);
           } catch (e) {
-            console.error('❌ Error text (not JSON):', errorText);
+            console.error('❌ Error text (not JSON):', responseText);
           }
           
-          throw new Error(`Booking failed: ${response.status} - ${errorText}`);
+          throw new Error(`Booking failed: ${response.status} - ${responseText}`);
         }
         
-        const responseData = await response.json();
-        console.log('✅ Booking successful:', responseData);
+        // Parse success response
+        let responseData;
+        try {
+          responseData = JSON.parse(responseText);
+          console.log('✅ Booking successful:', responseData);
+        } catch (e) {
+          console.log('✅ Booking successful (non-JSON response)');
+          responseData = { message: 'Success' };
+        }
       }
 
       // Success - show green checkmark with appropriate message
