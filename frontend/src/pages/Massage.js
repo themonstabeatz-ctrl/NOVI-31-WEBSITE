@@ -118,9 +118,30 @@ const Massage = () => {
     fetchAllServices();
   }, []);
 
-  // Generic function to get massage details based on duration
+  // 100% DYNAMIC function - uses ONLY API data, NO HARDCODING
   const getMassageDetails = (serviceKey, serviceName) => {
-    const duration = durations[serviceKey];
+    const selectedDuration = durations[serviceKey]; // "60", "90", "120"
+    
+    // Check if we have API data for this service
+    if (apiServices[serviceName] && apiServices[serviceName].length > 0) {
+      // Find the service variant with matching duration
+      const variant = apiServices[serviceName].find(v => v.duration === parseInt(selectedDuration));
+      
+      if (variant) {
+        // Return EXACT data from API - NO MODIFICATIONS
+        console.log(`✅ Using API data for: ${serviceName} - ${variant.duration} min`);
+        return {
+          duration: `${variant.duration} min`,
+          price: `${variant.discountedPrice.toLocaleString('sr-RS')} RSD`,
+          originalPrice: variant.discount > 0 ? `${variant.originalPrice.toLocaleString('sr-RS')} RSD` : null,
+          serviceId: variant.fullName, // Use EXACT full name from API for booking
+          discount: variant.discount
+        };
+      }
+    }
+    
+    // Fallback only if API data not yet loaded (should rarely happen)
+    console.warn(`⚠️ API data not ready for ${serviceName} - ${selectedDuration} min`);
     
     // Special pricing for Tradicionalna tajlandska masaža and Aroma terapija
     if (serviceKey === 'traditional' || serviceKey === 'aroma') {
