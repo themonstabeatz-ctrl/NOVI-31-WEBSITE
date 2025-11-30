@@ -24,8 +24,8 @@ def main():
     print(f"Test executed at: {datetime.now().isoformat()}")
     
     # API URLs from review request
-    working_api = "https://single-booking-fix.preview.emergentagent.com/api/services"
-    my_api = "https://single-booking-fix.preview.emergentagent.com/api/services"
+    working_api = "https://fixprice-bug.preview.emergentagent.com/api/services"
+    my_api = "https://fixprice-bug.preview.emergentagent.com/api/services"
     
     print_section("1. API ENDPOINT COMPARISON")
     print(f"WORKING VERSION (PERFECT): {working_api}")
@@ -220,8 +220,8 @@ def main():
     print_section("8. HEALTH ENDPOINT COMPARISON")
     
     endpoints = [
-        ("Working Version", "https://single-booking-fix.preview.emergentagent.com/api/health"),
-        ("My Version", "https://single-booking-fix.preview.emergentagent.com/api/health")
+        ("Working Version", "https://fixprice-bug.preview.emergentagent.com/api/health"),
+        ("My Version", "https://fixprice-bug.preview.emergentagent.com/api/health")
     ]
     
     for name, url in endpoints:

@@ -6,7 +6,7 @@ import requests
 import json
 
 # Use our backend as proxy to booking system
-API = "https://single-booking-fix.preview.emergentagent.com/api"
+API = "https://fixprice-bug.preview.emergentagent.com/api"
 BOOKING_API = "https://spabooking.emergent.host/api"
 
 print("🔧 ACTIVATING 10% DISCOUNT FOR ALL PAROVI SERVICES")

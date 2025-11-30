@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://single-booking-fix.preview.emergentagent.com/robots.txt
+**Test URL:** https://fixprice-bug.preview.emergentagent.com/robots.txt
 
 ---
 
