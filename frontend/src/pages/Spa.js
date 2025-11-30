@@ -700,10 +700,9 @@ const Spa = () => {
                             {service.price}
                           </div>
                           <div className="price" style={{ color: '#e63946', fontWeight: 'bold' }}>
-                            {calculateDiscountedPrice(
-                              parseInt(service.price.replace(/[^\d]/g, '')),
-                              service.key
-                            ).toLocaleString()} RSD
+                            {/* ❌ REMOVED calculateDiscountedPrice - causing double discount! */}
+                            {/* TODO: Load from API like Massage.js - for now show hardcoded price */}
+                            {service.price}
                           </div>
                         </>
                       ) : (
