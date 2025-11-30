@@ -103,9 +103,14 @@ const CouplesMassageCard = ({
               };
             }
             
-            // Use backend-calculated prices (backend is source of truth)
-            servicesByName[baseName].prices[duration] = service.final_price || service.price;
-            servicesByName[baseName].originalPrices[duration] = service.original_price || service.price;
+            // CRITICAL FIX: Use metadata.final_price (source of truth, NOT root-level final_price!)
+            // Same bug as single massages - external API has double discount in root-level final_price
+            const metadata = service.metadata || {};
+            const correctFinalPrice = metadata.final_price || service.price;
+            const correctOriginalPrice = metadata.original_price || service.price;
+            
+            servicesByName[baseName].prices[duration] = correctFinalPrice;
+            servicesByName[baseName].originalPrices[duration] = correctOriginalPrice;
             servicesByName[baseName].durations.push(duration);
           }
         });
