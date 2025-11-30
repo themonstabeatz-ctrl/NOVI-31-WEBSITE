@@ -371,12 +371,13 @@ async def get_single_services():
                 service['service_code'] = service_code
                 service['is_couple'] = False  # Mark as single service
                 
-                # CRITICAL: Use metadata if available (source of truth for prices and discounts)
+                # CRITICAL FIX: Eksterni API ima BUG - dodaje pogrešan final_price sa duplim popustom!
+                # metadata.final_price je PRAVI source of truth!
                 metadata = service.get('metadata', {})
                 if metadata and 'original_price' in metadata and 'final_price' in metadata:
-                    # Eksterni API već ima original_price i final_price u metadata
+                    # PREPISI POGREŠAN final_price sa PRAVIM iz metadata
                     service['original_price'] = metadata['original_price']
-                    service['final_price'] = metadata['final_price']
+                    service['final_price'] = metadata['final_price']  # OVERWRITE bug from external API!
                     service['discounted_price'] = metadata['final_price']  # Backwards compatibility
                 else:
                     # Fallback ako metadata ne postoji - koristi price vrednost
