@@ -820,22 +820,21 @@ const Massage = () => {
                     <span>{service.duration}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {getDiscountBadge(service.key) && (
+                    {service.discount > 0 && getDiscountBadge(service.key) && (
                       <img 
                         src={getDiscountBadge(service.key)} 
-                        alt={`-${getServiceDiscount(service.key)}%`}
+                        alt={`-${service.discount}%`}
                         style={{ width: '38px', height: '38px', objectFit: 'contain' }}
                       />
                     )}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                      {getServiceDiscount(service.key) > 0 ? (
+                      {service.discount > 0 && service.originalPrice ? (
                         <>
-                          {/* Show original price (strikethrough) and final price (from API) */}
-                          {service.originalPrice && (
-                            <div className="price" style={{ textDecoration: 'line-through', color: '#888', fontSize: '0.9em' }}>
-                              {service.originalPrice}
-                            </div>
-                          )}
+                          {/* Original price (strikethrough) - ONLY from API */}
+                          <div className="price" style={{ textDecoration: 'line-through', color: '#888', fontSize: '0.9em' }}>
+                            {service.originalPrice}
+                          </div>
+                          {/* Final price (red, bold) - ONLY from API - NO CALCULATIONS! */}
                           <div className="price" style={{ color: '#e63946', fontWeight: 'bold' }}>
                             {service.price}
                           </div>
