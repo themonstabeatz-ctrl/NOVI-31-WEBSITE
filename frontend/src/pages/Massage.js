@@ -812,18 +812,14 @@ const Massage = () => {
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                       {getServiceDiscount(service.key) > 0 ? (
                         <>
-                          <div style={{ 
-                            textDecoration: 'line-through', 
-                            color: '#999', 
-                            fontSize: '0.85rem' 
-                          }}>
-                            {service.price}
-                          </div>
+                          {/* Show original price (strikethrough) and final price (from API) */}
+                          {service.originalPrice && (
+                            <div className="price" style={{ textDecoration: 'line-through', color: '#888', fontSize: '0.9em' }}>
+                              {service.originalPrice}
+                            </div>
+                          )}
                           <div className="price" style={{ color: '#e63946', fontWeight: 'bold' }}>
-                            {calculateDiscountedPrice(
-                              parseInt(service.price.replace(/[^\d]/g, '')),
-                              service.key
-                            ).toLocaleString()} RSD
+                            {service.price}
                           </div>
                         </>
                       ) : (
