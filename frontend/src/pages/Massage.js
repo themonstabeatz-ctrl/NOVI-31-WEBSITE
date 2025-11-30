@@ -136,13 +136,14 @@ const Massage = () => {
       
       if (variant) {
         // Return EXACT data from API - NO MODIFICATIONS
-        console.log(`✅ MATCHED variant for ${serviceName}:`, { duration: variant.duration, price: variant.discountedPrice, fullName: variant.fullName });
+        console.log(`✅ MATCHED variant for ${serviceName}:`, { duration: variant.duration, price: variant.discountedPrice, serviceId: variant.serviceId });
         return {
           duration: `${variant.duration} min`,
           price: `${variant.discountedPrice.toLocaleString('sr-RS')} RSD`,
           originalPrice: variant.discount > 0 ? `${variant.originalPrice.toLocaleString('sr-RS')} RSD` : null,
-          serviceId: variant.fullName, // Use EXACT full name from API for booking
-          discount: variant.discount
+          serviceId: variant.fullName, // Use EXACT full name from API for booking link
+          discount: variant.discount,
+          apiServiceId: variant.serviceId // Store actual service ID for booking payload
         };
       } else {
         console.error(`❌ NO MATCH for ${serviceName} - duration ${selectedDuration} (parsed: ${parseInt(selectedDuration)})`);
