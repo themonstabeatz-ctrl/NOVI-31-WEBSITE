@@ -88,13 +88,19 @@ const Massage = () => {
           }
           
           // Store COMPLETE service data from API - NO MODIFICATIONS, NO CALCULATIONS
+          // CRITICAL FIX: Root-level final_price has DOUBLE DISCOUNT bug from external API!
+          // Use metadata.final_price as source of truth!
+          const metadata = service.metadata || {};
+          const correctFinalPrice = metadata.final_price || service.price;  // Fallback to price if metadata missing
+          const correctOriginalPrice = metadata.original_price || service.price;
+          
           grouped[baseName].push({
             fullName: fullName,           // Exact name from API
             serviceId: service.id,        // Exact ID from API
             duration: service.duration,   // Exact duration from API
-            price: service.price,         // Original price (for reference)
-            finalPrice: service.final_price,  // USE final_price - already has discount applied by backend!
-            originalPrice: service.original_price,  // For strikethrough display
+            price: service.price,         // For reference
+            finalPrice: correctFinalPrice,  // USE metadata.final_price - source of truth!
+            originalPrice: correctOriginalPrice,  // Use metadata.original_price
             discount: service.discount_percentage || 0  // Just for badge display
           });
           
