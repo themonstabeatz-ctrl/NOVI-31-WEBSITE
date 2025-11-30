@@ -919,25 +919,11 @@ const CouplesMassageCard = ({
         )}
 
         {isSelectionComplete() ? (
-          <Button asChild className="book-button w-full">
-            <Link to={`/contact?service=${encodeURIComponent(translate('couplesMassage'))}&couplesData=${encodeURIComponent(JSON.stringify({
-              duration: durations.sports,
-              totalDuration: calculateTotalDuration(),
-              person1: {
-                massage1: couplesSelections.person1Massage1,
-                massage2: couplesSelections.person1Massage2
-              },
-              person2: {
-                massage1: couplesSelections.person2Massage1,
-                massage2: couplesSelections.person2Massage2
-              },
-              totalPrice: calculateCouplesPrice(),
-              originalPrice: calculateOriginalPrice(),
-              discount: `${couplesDiscount}%`,
-              discountPercent: couplesDiscount  // Raw number for backend
-            }))}`}>
-              {translate('bookNowBtn')}
-            </Link>
+          <Button 
+            className="book-button w-full" 
+            onClick={handleBookClick}
+          >
+            {translate('bookNowBtn')}
           </Button>
         ) : (
           <Button disabled className="book-button w-full" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
