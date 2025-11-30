@@ -283,8 +283,12 @@ async def get_couples_services():
             response.raise_for_status()
             raw_services = response.json()
             
-            # CRITICAL FILTER: Only "Kartica Masaza za parove" category
+            # CRITICAL FILTER: Only "Kartica Masaza za parove" category (INDIVIDUAL [PAROVI] masaže za dropdown)
             couples_only = [s for s in raw_services if s.get('category') == 'Kartica Masaza za parove']
+            
+            logger.info(f"🔍 DEBUG - Total services from external API: {len(raw_services)}")
+            logger.info(f"🔍 DEBUG - Categories in response: {set(s.get('category') for s in raw_services)}")
+            logger.info(f"🔍 DEBUG - Filtered 'Kartica Masaza za parove': {len(couples_only)}")
             
             logger.info(f"🔍 Filtered couples services: {len(couples_only)} out of {len(raw_services)} total services")
             
