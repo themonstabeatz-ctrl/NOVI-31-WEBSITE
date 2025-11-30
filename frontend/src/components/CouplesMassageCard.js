@@ -60,16 +60,16 @@ const CouplesMassageCard = ({
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        const couplesServices = await response.json();
+        const allServices = await response.json();
         
-        console.log(`✅ Loaded ${couplesServices.length} COUPLES services (isolated from single)`);
-        console.log(`✅ All services have is_couple: ${couplesServices.every(s => s.is_couple)}`);
+        // Filter by category "Kartica Masaza za parove" to get INDIVIDUAL [PAROVI] masaže
+        const couplesServices = allServices.filter(s => s.category === 'Kartica Masaza za parove');
         
-        // Verify all services are couples (should have [PAROVI] prefix)
-        const nonCouples = couplesServices.filter(s => !s.name.startsWith('[PAROVI]'));
-        if (nonCouples.length > 0) {
-          console.error('❌ ERROR: Found non-couple services in couples endpoint!', nonCouples);
-        }
+        console.log(`✅ Total services: ${allServices.length}, Filtered [PAROVI] services: ${couplesServices.length}`);
+        
+        // Verify all filtered services have [PAROVI] prefix
+        const withPrefix = couplesServices.filter(s => s.name.startsWith('[PAROVI]'));
+        console.log(`✅ Services with [PAROVI] prefix: ${withPrefix.length}/${couplesServices.length}`);
         
         // Get discount from booking system and apply it on frontend
         const discount = couplesServices[0] ? (couplesServices[0].discount_percentage || 0) : 0;
