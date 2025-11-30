@@ -135,14 +135,20 @@ const Massage = () => {
       const variant = apiServices[serviceName].find(v => v.duration === parseInt(selectedDuration));
       
       if (variant) {
-        // Return EXACT data from API - NO MODIFICATIONS
-        console.log(`✅ MATCHED variant for ${serviceName}:`, { duration: variant.duration, price: variant.discountedPrice, serviceId: variant.serviceId });
+        // Return EXACT data from API - NO CALCULATIONS, NO MODIFICATIONS
+        console.log(`✅ MATCHED variant for ${serviceName}:`, { 
+          duration: variant.duration, 
+          finalPrice: variant.finalPrice, 
+          originalPrice: variant.originalPrice,
+          discount: variant.discount 
+        });
+        
         return {
           duration: `${variant.duration} min`,
-          price: `${variant.discountedPrice.toLocaleString('sr-RS')} RSD`,
-          originalPrice: variant.discount > 0 ? `${variant.originalPrice.toLocaleString('sr-RS')} RSD` : null,
+          price: `${variant.finalPrice.toLocaleString('sr-RS')} RSD`,  // USE FINAL PRICE - backend already applied discount!
+          originalPrice: variant.discount > 0 ? `${variant.originalPrice.toLocaleString('sr-RS')} RSD` : null,  // Show original only if there's discount
           serviceId: variant.fullName, // Use EXACT full name from API for booking link
-          discount: variant.discount,
+          discount: variant.discount,  // Just for badge display
           apiServiceId: variant.serviceId // Store actual service ID for booking payload
         };
       } else {
