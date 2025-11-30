@@ -166,12 +166,9 @@ const Spa = () => {
     return discount || 0;
   };
 
-  // Calculate price with discount
-  const calculateDiscountedPrice = (originalPrice, serviceKey) => {
-    const discount = getServiceDiscount(serviceKey);
-    if (discount === 0) return originalPrice;
-    return Math.round(originalPrice * (1 - discount / 100));
-  };
+  // ❌ REMOVED - Frontend MUST NOT calculate discounts!
+  // Backend already provides final_price with discount applied in API response.
+  // This function was causing DOUBLE discount problem.
 
   // Helper to update duration for a specific service
   const updateDuration = (serviceKey, newDuration) => {
