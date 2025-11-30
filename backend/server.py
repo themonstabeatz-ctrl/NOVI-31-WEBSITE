@@ -343,6 +343,48 @@ async def get_couples_services():
         logger.error(f"Error fetching couples services: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch couples services: {str(e)}")
 
+# NEW ENDPOINT: Couples Individual Services (for dropdown selection)
+@api_router.get("/services/couples/individual")
+async def get_couples_individual_services():
+    """
+    Returns INDIVIDUAL [PAROVI] masaže for dropdown selection.
+    
+    This endpoint provides services from "Kartica Masaza za parove" category
+    which have [PAROVI] prefix and are used for Osoba 1 / Osoba 2 selection.
+    """
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://fixprice-bug.preview.emergentagent.com')
+    
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(f"{booking_api_url}/api/services")
+            response.raise_for_status()
+            raw_services = response.json()
+            
+            # CRITICAL FILTER: Only "Kartica Masaza za parove" category
+            individual_couples = [s for s in raw_services if s.get('category') == 'Kartica Masaza za parove']
+            
+            logger.info(f"✅ Returning {len(individual_couples)} INDIVIDUAL [PAROVI] services for dropdown")
+            
+            # Process and add metadata
+            processed = []
+            for service in individual_couples:
+                # Use metadata if available (source of truth for prices)
+                metadata = service.get('metadata', {})
+                if metadata and 'original_price' in metadata and 'final_price' in metadata:
+                    service['original_price'] = metadata['original_price']
+                    service['final_price'] = metadata['final_price']
+                else:
+                    service['original_price'] = service['price']
+                    service['final_price'] = service['price']
+                
+                processed.append(service)
+            
+            return processed
+            
+    except Exception as e:
+        logger.error(f"Error fetching couples individual services: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch couples individual services: {str(e)}")
+
 # NEW ENDPOINT: Single Services Only
 @api_router.get("/services/single/list")
 async def get_single_services():
