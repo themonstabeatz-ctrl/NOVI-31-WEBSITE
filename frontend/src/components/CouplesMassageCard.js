@@ -14,6 +14,8 @@ const CouplesMassageCard = ({
   setDropdownOpen
 }) => {
   
+  const navigate = useNavigate();
+  
   // Get discount for "Masaža za parove"
   // Load massages dynamically from booking system
   const [availableMassages, setAvailableMassages] = React.useState([]);
