@@ -122,14 +122,18 @@ const Massage = () => {
   const getMassageDetails = (serviceKey, serviceName) => {
     const selectedDuration = durations[serviceKey]; // "60", "90", "120"
     
+    console.log(`🔍 getMassageDetails called:`, { serviceKey, serviceName, selectedDuration });
+    
     // Check if we have API data for this service
     if (apiServices[serviceName] && apiServices[serviceName].length > 0) {
+      console.log(`📦 API variants for ${serviceName}:`, apiServices[serviceName].map(v => `${v.duration}min=${v.price}RSD`));
+      
       // Find the service variant with matching duration
       const variant = apiServices[serviceName].find(v => v.duration === parseInt(selectedDuration));
       
       if (variant) {
         // Return EXACT data from API - NO MODIFICATIONS
-        console.log(`✅ Using API data for: ${serviceName} - ${variant.duration} min`);
+        console.log(`✅ MATCHED variant for ${serviceName}:`, { duration: variant.duration, price: variant.discountedPrice, fullName: variant.fullName });
         return {
           duration: `${variant.duration} min`,
           price: `${variant.discountedPrice.toLocaleString('sr-RS')} RSD`,
@@ -137,11 +141,16 @@ const Massage = () => {
           serviceId: variant.fullName, // Use EXACT full name from API for booking
           discount: variant.discount
         };
+      } else {
+        console.error(`❌ NO MATCH for ${serviceName} - duration ${selectedDuration} (parsed: ${parseInt(selectedDuration)})`);
+        console.error(`   Available durations:`, apiServices[serviceName].map(v => v.duration));
       }
+    } else {
+      console.warn(`⚠️ No API data for ${serviceName} yet`);
     }
     
     // Fallback only if API data not yet loaded
-    console.warn(`⚠️ API data not ready for ${serviceName} - ${selectedDuration} min`);
+    console.warn(`⚠️ Fallback for ${serviceName} - ${selectedDuration} min`);
     return {
       duration: `${selectedDuration} min`,
       price: 'Učitavanje...',
