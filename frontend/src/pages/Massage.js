@@ -879,8 +879,11 @@ const Massage = () => {
                   </ul>
                 </div>
                 
-                <Button asChild className="book-button w-full">
-                  <Link to={`/contact?service=${encodeURIComponent(`${service.name} - ${durations[service.key]} min`)}`}>{translate("bookAppointment")}</Link>
+                <Button 
+                  className="book-button w-full" 
+                  onClick={() => handleBookClick(service.name, durations[service.key])}
+                >
+                  {translate("bookAppointment")}
                 </Button>
               </CardContent>
             </Card>
