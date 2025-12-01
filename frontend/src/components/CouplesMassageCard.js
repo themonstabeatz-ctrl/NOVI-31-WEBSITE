@@ -34,7 +34,8 @@ const CouplesMassageCard = ({
   
   // Map massage names to translation keys
   const getMassageTranslationKey = (massageName) => {
-    // Remove [PAROVI] prefix if present
+    // ✅ CRITICAL: Keep [PAROVI] prefix for backend identification
+    // Only remove prefix for translation lookup
     const cleanName = massageName.replace(/^\[PAROVI\]\s*/, '');
     
     const nameMap = {
