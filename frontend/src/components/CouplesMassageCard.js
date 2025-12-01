@@ -424,10 +424,18 @@ const CouplesMassageCard = ({
   // ✅ UPDATED PER USER REQUEST: Add complete price data for backend (like single massages)
   // Handle booking button click - navigate to Contact form with couples data
   const handleBookClick = () => {
+    console.log('📍 Couples book clicked');
+    console.log('📍 isSelectionComplete =', isSelectionComplete());
+    console.log('📍 couplesSelections =', couplesSelections);
+    
     // Calculate totals
     const totalOriginalPrice = calculateOriginalPrice();
     const totalFinalPrice = calculateCouplesPrice();
     const totalDiscountAmount = totalOriginalPrice - totalFinalPrice;
+    
+    console.log('📍 totalOriginalPrice =', totalOriginalPrice);
+    console.log('📍 totalFinalPrice =', totalFinalPrice);
+    console.log('📍 couplesDiscount =', couplesDiscount);
     
     const couplesData = {
       // Duration info
