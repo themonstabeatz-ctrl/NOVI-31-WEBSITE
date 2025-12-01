@@ -414,6 +414,7 @@ const CouplesMassageCard = ({
 
   const is120Mode = durations.sports === '120';
 
+  // 🔒 DO NOT MODIFY — STABLE VERIFIED BOOKING LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
   // Handle booking button click - navigate to Contact form with couples data
   const handleBookClick = () => {
     const couplesData = {
