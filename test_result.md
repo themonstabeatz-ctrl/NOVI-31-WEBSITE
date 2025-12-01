@@ -508,6 +508,40 @@ agent_communication:
       ✅ CONSOLE CONFIRMATION: Backend URL logging shows '📍 Backend URL: https://fixprice-bug.preview.emergentagent.com' - correct backend is being used.
       
       ✅ BOOKING FLOW TESTED: Successfully navigated /massage → clicked ZAKAŽITE on regular massage → redirected to /contact with service parameter → filled form fields → form submission attempted.
+  - agent: "testing"
+    message: |
+      🚨 COUPLES MASSAGE PRICE VERIFICATION TEST COMPLETED - MIXED RESULTS!
+      
+      ✅ PRICE STYLING OBJECTIVES ACHIEVED:
+      - Original prices: GREY (rgb(136, 136, 136)) + strikethrough ✅ CORRECT
+      - Final prices: RED (rgb(230, 57, 70)) + bold ✅ CORRECT
+      - Successfully verified new price styling implementation as requested
+      
+      ✅ UI FUNCTIONALITY WORKING:
+      - Navigation to /massage page successful
+      - Found 'Masaža za parove' card with -10% discount badge
+      - Duration selection (90 min) working correctly
+      - Person 1 and Person 2 dropdowns opening and selections working
+      - Selected 'Aroma terapija' for both persons successfully
+      
+      ❌ CRITICAL BOOKING FLOW BUG IDENTIFIED:
+      - ZAKAŽITE button redirected to REGULAR massage booking instead of couples booking
+      - URL shows: /contact?service=Tradicionalna+tajlandska+masa%C5%BEa+-+60+min (WRONG)
+      - Should show: /contact?service=...&couplesData=... (CORRECT)
+      - Missing console log: '📍 Couples data (WITH complete price info):'
+      - No couplesData parameter in URL
+      
+      🔍 ROOT CAUSE:
+      Couples massage selection logic is broken. The handleBookClick function for couples massage is not being triggered correctly, or isSelectionComplete() is not detecting valid selections, causing fallback to regular massage booking behavior.
+      
+      📊 REVIEW REQUEST STATUS:
+      - Price styling verification: ✅ COMPLETE
+      - Couples booking functionality: ❌ BROKEN
+      - Console logs with complete price info: ❌ MISSING
+      - Service_id and price data transmission: ❌ NOT WORKING
+      
+      ⚠️ URGENT ACTION REQUIRED:
+      Fix couples massage booking flow in CouplesMassageCard.js - the selection state management and booking button handler are not working correctly despite UI interactions appearing successful.
       
       ✅ FORM VALIDATION WORKING: Console shows proper validation with 'Missing fields: [date, time]' preventing submission without required fields - this is correct behavior.
       
