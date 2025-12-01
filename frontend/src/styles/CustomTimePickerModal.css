@@ -47,7 +47,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 9998;
+  z-index: 10000;
   backdrop-filter: blur(2px);
   animation: fadeIn 0.2s ease;
 }
@@ -62,7 +62,7 @@
   border: 2px solid #d4af37;
   border-radius: 16px;
   padding: 1.25rem;
-  z-index: 9999;
+  z-index: 10001;
   min-width: 420px;
   max-width: 90vw;
   min-height: 420px;
