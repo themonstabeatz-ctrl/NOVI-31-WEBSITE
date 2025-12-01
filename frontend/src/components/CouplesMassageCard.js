@@ -176,6 +176,7 @@ const CouplesMassageCard = ({
     // Get correct price for the specific duration (backend already applied discount)
     const price = massage.prices[dur] || massage.prices['60'];  // discounted price from backend
     const originalPrice = massage.originalPrices?.[dur] || massage.prices[dur];  // original price from backend
+    const serviceId = massage.serviceIds?.[dur] || massage.serviceId;  // Get duration-specific service_id
     
     // Create full service name for booking system lookup
     const fullServiceName = `${massage.name} - ${dur} min`;
@@ -184,8 +185,9 @@ const CouplesMassageCard = ({
       key: massage.key, 
       name: massage.name, 
       duration: dur, 
-      price: price,  // Backend-calculated discounted price
-      originalPrice: originalPrice,  // Backend original price
+      price: price,  // Backend-calculated discounted price (final_price from metadata)
+      originalPrice: originalPrice,  // Backend original price (original_price from metadata)
+      service_id: serviceId,  // ✅ ADDED: Duration-specific service ID for backend
       fullServiceName: fullServiceName,
       serviceCode: massage.serviceCode  // Unique service code
     };
