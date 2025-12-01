@@ -173,7 +173,10 @@ const CouplesMassageCard = ({
   };
 
   const handleMassageClick = (person, massage, dur) => {
-    console.log('✅ handleMassageClick CALLED:', { person, massage: massage.name, dur });
+    console.log('🔵🔵🔵 handleMassageClick CALLED!', { person, massage: massage.name, dur });
+    console.log('📍 MASSAGE DATA:', massage);
+    console.log('📍 PERSON:', person);
+    console.log('📍 DURATION:', dur);
     
     // Get correct price for the specific duration (backend already applied discount)
     const price = massage.prices[dur] || massage.prices['60'];  // discounted price from backend
