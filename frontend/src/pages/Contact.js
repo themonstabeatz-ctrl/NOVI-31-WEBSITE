@@ -788,7 +788,8 @@ const Contact = () => {
             service_name: serviceName
           };
           
-          bookingEndpoint = '/api/book-appointment';
+          // ✅ ISPRAVNO prema backendu recepcije - obične masaže koriste /api/appointments
+          bookingEndpoint = '/api/appointments';
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
         // Get backend URL
