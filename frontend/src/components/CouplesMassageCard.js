@@ -964,7 +964,10 @@ const CouplesMassageCard = ({
         {isSelectionComplete() ? (
           <Button 
             className="book-button w-full" 
-            onClick={handleBookClick}
+            onClick={() => {
+              console.log('🔵🔵🔵 COUPLES BUTTON CLICKED!!!');
+              handleBookClick();
+            }}
           >
             {translate('bookNowBtn')}
           </Button>
