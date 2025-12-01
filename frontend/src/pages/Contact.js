@@ -734,7 +734,15 @@ const Contact = () => {
             language: language,
             // NEW: Snapshot system (Variant 1)
             person1_snapshots: person1Snapshots,
-            person2_snapshots: person2Snapshots
+            person2_snapshots: person2Snapshots,
+            
+            // ✅ ADDED PER USER REQUEST: Complete price data (same as single massages)
+            category: couplesData.pair_category || "Kartica Masaza za parove",
+            original_price: couplesData.pair_original_price,
+            final_price: couplesData.pair_final_price,
+            discount_percentage: couplesData.pair_discount_percentage,
+            discount_amount: couplesData.pair_discount_amount,
+            is_couples_booking: true
           };
           
           console.log(`📸 Using snapshot system (Variant 1) with discount: ${discountPercent}%`);
