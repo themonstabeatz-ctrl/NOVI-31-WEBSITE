@@ -85,25 +85,25 @@ const CouplesMassageCard = ({
         const servicesByName = {};
         couplesServices.forEach(service => {
           // Extract base name and duration from service name
-          // e.g., "[PAROVI] Tradicionalna tajlandska masaža - 60 min" → base: "Tradicionalna tajlandska masaža", duration: "60"
+          // ✅ CRITICAL: Keep [PAROVI] prefix - it's required by backend for identification
+          // e.g., "[PAROVI] Tradicionalna tajlandska masaža - 60 min" → base: "[PAROVI] Tradicionalna tajlandska masaža", duration: "60"
           let serviceName = service.name;
           
-          // Remove [PAROVI] prefix if present
-          serviceName = serviceName.replace(/^\[PAROVI\]\s*/, '');
+          // ✅ DO NOT remove [PAROVI] prefix - backend needs it for categorization
           
           const match = serviceName.match(/^(.+?)\s*-\s*(\d+)\s*min$/);
           if (match) {
-            const baseName = match[1].trim();
+            const baseName = match[1].trim();  // Includes [PAROVI] prefix
             const duration = match[2];
             
             if (!servicesByName[baseName]) {
               servicesByName[baseName] = {
                 key: service.id, // Use service ID as key
-                name: baseName,
+                name: baseName,  // ✅ Keep [PAROVI] prefix in name
                 serviceId: service.id,
                 prices: {},  // Will store discounted prices from backend
                 originalPrices: {},  // Will store original prices
-                serviceIds: {},  // ✅ ADDED: Store duration-specific service IDs
+                serviceIds: {},  // Store duration-specific service IDs
                 durations: [],
                 serviceCode: service.service_code  // Unique code for this massage type
               };
@@ -118,7 +118,7 @@ const CouplesMassageCard = ({
             
             servicesByName[baseName].prices[duration] = correctFinalPrice;
             servicesByName[baseName].originalPrices[duration] = correctOriginalPrice;
-            servicesByName[baseName].serviceIds[duration] = service.id;  // ✅ ADDED: Store service_id per duration
+            servicesByName[baseName].serviceIds[duration] = service.id;  // Store service_id per duration
             servicesByName[baseName].durations.push(duration);
           }
         });
