@@ -220,9 +220,16 @@ const Contact = () => {
             const translatedMassage2 = translateMassageName(data.person2.massage2.name);
             message += `  • ${translatedMassage2} (${data.person2.massage2.duration} min)\n`;
           }
-          message += `\n${translate('discount')}: ${data.discount}\n`;
-          message += `${translate('originalPrice')}: ${data.originalPrice.toLocaleString()} RSD\n`;
-          message += `${translate('priceWithDiscount')}: ${data.totalPrice.toLocaleString()} RSD`;
+          // ✅ FIXED: Use new couplesData structure (pair_discount_percentage, pair_original_price, pair_final_price)
+          const discountText = data.pair_discount_percentage 
+            ? `${data.pair_discount_percentage}%` 
+            : (data.discount || 'N/A');
+          const originalPriceValue = data.pair_original_price || data.originalPrice || 0;
+          const finalPriceValue = data.pair_final_price || data.totalPrice || 0;
+          
+          message += `\n${translate('discount')}: ${discountText}\n`;
+          message += `${translate('originalPrice')}: ${originalPriceValue.toLocaleString()} RSD\n`;
+          message += `${translate('priceWithDiscount')}: ${finalPriceValue.toLocaleString()} RSD`;
           
           console.log('📝 Final message:', message);
         } catch (e) {
