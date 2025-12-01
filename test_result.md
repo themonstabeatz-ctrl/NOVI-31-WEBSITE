@@ -758,6 +758,8 @@ agent_communication:
       
       ✅ COMPREHENSIVE TESTING PERFORMED:
       - Tested both exact review request scenarios on production URL https://thai-spa-booking.emergent.host
+  - agent: "testing"
+    message: "🚨 COMPREHENSIVE COUPLES BOOKING TEST COMPLETED - CRITICAL BUG IDENTIFIED! ✅ POSITIVE: API integration working perfectly (19 couples services, 10% discount), dropdowns populate with correct pricing (Aroma terapija 90min: 5.600→5.040 RSD -10%), duration selection works. ❌ CRITICAL ISSUE: Dropdown click handlers in CouplesMassageCard.js are broken. User can see massage options but clicks don't trigger handleMassageClick function. Console shows repeated 'isSelectionComplete check: {p1m1: NULL, p1m2: NULL, p2m1: NULL, p2m2: NULL}' even after user selections. ZAKAŽITE button stays disabled. ❌ ROOT CAUSE: Event handlers for dropdown options not properly bound or triggered. ❌ IMPACT: Complete couples booking flow non-functional - users cannot proceed past selection stage. 🔧 URGENT: Fix dropdown click event binding in CouplesMassageCard component."
       - Single massage booking: POST /api/book-appointment with exact payload from review request
       - Couples massage booking: GET /api/services/couples/list + POST /api/book-couple-appointment with exact payload
       
