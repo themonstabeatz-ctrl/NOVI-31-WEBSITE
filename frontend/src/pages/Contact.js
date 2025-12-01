@@ -728,6 +728,11 @@ const Contact = () => {
             person2: person2Snapshots
           });
           
+          console.log('🔍🔍🔍 COUPLES DATA RECEIVED:', couplesData);
+          console.log('🔍🔍🔍 PAIR ORIGINAL PRICE:', couplesData.pair_original_price);
+          console.log('🔍🔍🔍 PAIR FINAL PRICE:', couplesData.pair_final_price);
+          console.log('🔍🔍🔍 PAIR DISCOUNT %:', couplesData.pair_discount_percentage);
+          
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
