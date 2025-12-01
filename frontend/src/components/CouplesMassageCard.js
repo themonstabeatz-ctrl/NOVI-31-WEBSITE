@@ -438,48 +438,58 @@ const CouplesMassageCard = ({
     console.log('📍 totalFinalPrice =', totalFinalPrice);
     console.log('📍 couplesDiscount =', couplesDiscount);
     
+    // ✅ CRITICAL: Build service name with [PAROVI] prefix for backend identification
+    const buildServiceName = (massage) => {
+      if (!massage) return null;
+      // Ensure [PAROVI] prefix is present (massage.name should already have it from backend)
+      const nameWithPrefix = massage.name.startsWith('[PAROVI]') 
+        ? massage.name 
+        : `[PAROVI] ${massage.name}`;
+      return nameWithPrefix;
+    };
+    
     const couplesData = {
       // Duration info
       duration: durations.sports,
       totalDuration: calculateTotalDuration(),
       
-      // Person 1 services with COMPLETE data (service_id, prices)
+      // Person 1 services with COMPLETE data (service_id, prices, [PAROVI] prefix)
       person1: {
         massage1: couplesSelections.person1Massage1 ? {
           service_id: couplesSelections.person1Massage1.service_id,
-          name: couplesSelections.person1Massage1.name,
+          name: buildServiceName(couplesSelections.person1Massage1),  // ✅ Keep [PAROVI]
           duration: couplesSelections.person1Massage1.duration,
           original_price: couplesSelections.person1Massage1.originalPrice,
           final_price: couplesSelections.person1Massage1.price
         } : null,
         massage2: couplesSelections.person1Massage2 ? {
           service_id: couplesSelections.person1Massage2.service_id,
-          name: couplesSelections.person1Massage2.name,
+          name: buildServiceName(couplesSelections.person1Massage2),  // ✅ Keep [PAROVI]
           duration: couplesSelections.person1Massage2.duration,
           original_price: couplesSelections.person1Massage2.originalPrice,
           final_price: couplesSelections.person1Massage2.price
         } : null
       },
       
-      // Person 2 services with COMPLETE data
+      // Person 2 services with COMPLETE data ([PAROVI] prefix)
       person2: {
         massage1: couplesSelections.person2Massage1 ? {
           service_id: couplesSelections.person2Massage1.service_id,
-          name: couplesSelections.person2Massage1.name,
+          name: buildServiceName(couplesSelections.person2Massage1),  // ✅ Keep [PAROVI]
           duration: couplesSelections.person2Massage1.duration,
           original_price: couplesSelections.person2Massage1.originalPrice,
           final_price: couplesSelections.person2Massage1.price
         } : null,
         massage2: couplesSelections.person2Massage2 ? {
           service_id: couplesSelections.person2Massage2.service_id,
-          name: couplesSelections.person2Massage2.name,
+          name: buildServiceName(couplesSelections.person2Massage2),  // ✅ Keep [PAROVI]
           duration: couplesSelections.person2Massage2.duration,
           original_price: couplesSelections.person2Massage2.originalPrice,
           final_price: couplesSelections.person2Massage2.price
         } : null
       },
       
-      // ✅ NEW: Total price data for backend (same structure as single massages)
+      // ✅ Total price data for backend (same structure as single massages)
       pair_category: "Kartica Masaza za parove",
       pair_original_price: totalOriginalPrice,
       pair_final_price: totalFinalPrice,
@@ -487,13 +497,18 @@ const CouplesMassageCard = ({
       pair_discount_amount: totalDiscountAmount
     };
     
+    // ✅ CRITICAL: Build URL with [PAROVI] prefix in service parameter
+    const firstMassage = couplesSelections.person1Massage1;
+    const serviceNameForUrl = buildServiceName(firstMassage);
+    
     const params = new URLSearchParams({
-      service: translate('couplesMassage'),
+      service: serviceNameForUrl,  // ✅ Now includes [PAROVI] prefix
       couplesData: JSON.stringify(couplesData)
     });
     
+    console.log('📍 Couples data (WITH full price info):', couplesData);
+    console.log('📍 Service name for URL:', serviceNameForUrl);
     console.log('📍 Navigating to /contact for COUPLES with params:', params.toString());
-    console.log('📍 Couples data (WITH complete price info):', couplesData);
     
     navigate(`/contact?${params.toString()}`);
   };
