@@ -202,7 +202,7 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/pages/Contact.js"
-    stuck_count: 10
+    stuck_count: 11
     priority: "high"
     needs_retesting: false
     status_history:
