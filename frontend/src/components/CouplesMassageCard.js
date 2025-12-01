@@ -891,30 +891,28 @@ const CouplesMassageCard = ({
             marginBottom: '1rem',
             paddingRight: '0.5rem'
           }}>
-            {/* VAŽNO: Backend je IZVOR ISTINE za cene!
-              Backend vraća original_price i final_price (discounted_price).
-              Frontend SAMO PRIKAZUJE ove vrednosti, bez dodatnih izračunavanja. */}
+            {/* ✅ UPDATED: Identičan stil kao kod single masaža (Bua Luang - per user request)
+                Backend je IZVOR ISTINE za cene!
+                Backend vraća original_price i final_price (discounted_price).
+                Frontend SAMO PRIKAZUJE ove vrednosti, bez dodatnih izračunavanja. */}
             
-            {/* Original Price (precrtana) - samo ako ima popust */}
+            {/* Original Price (SIVA + precrtana) - samo ako ima popust */}
             {couplesDiscount > 0 && (
               <div style={{
-                color: '#e63946',
-                fontSize: '1.2rem',
+                color: '#888',              // SIVA (kao kod single)
+                fontSize: '0.9rem',
                 textDecoration: 'line-through',
-                textDecorationColor: 'white',
                 marginBottom: '0.25rem'
               }}>
                 {Math.round(calculateOriginalPrice()).toLocaleString('sr-RS')} RSD
               </div>
             )}
             
-            {/* Final Price (backend već izračunao sa popustom) */}
+            {/* Final Price (CRVENA + BOLD) - identično kao kod single masaža */}
             <div style={{
-              color: '#d4af37',
+              color: couplesDiscount > 0 ? '#e63946' : '#d4af37',  // CRVENA ako ima popust, zlatna inače
               fontWeight: 'bold',
-              fontSize: '2.2rem',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-              letterSpacing: '1px',
+              fontSize: '1.4rem',
               whiteSpace: 'nowrap'
             }}>
               {Math.round(calculateCouplesPrice()).toLocaleString('sr-RS')} RSD
