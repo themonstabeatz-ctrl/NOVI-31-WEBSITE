@@ -63,7 +63,9 @@ const Massage = () => {
 
   const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages for regular cards
   const [couplesDiscountPercent, setCouplesDiscountPercent] = useState(0); // Discount for couples massage
-  const [apiServices, setApiServices] = useState({}); // 100% dynamic data from API - grouped by base name
+  // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
+  // Dynamic data fetching from backend API
+  const [apiServices, setApiServices] = useState({});
 
   // Fetch ALL service data dynamically from API - NO HARDCODING
   useEffect(() => {
