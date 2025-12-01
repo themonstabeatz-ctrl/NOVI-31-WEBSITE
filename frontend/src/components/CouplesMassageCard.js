@@ -107,6 +107,7 @@ const CouplesMassageCard = ({
               };
             }
             
+            // 🔒 DO NOT MODIFY — STABLE VERIFIED PRICE LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
             // CRITICAL FIX: Use metadata.final_price (source of truth, NOT root-level final_price!)
             // Same bug as single massages - external API has double discount in root-level final_price
             const metadata = service.metadata || {};
