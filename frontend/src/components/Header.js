@@ -27,7 +27,7 @@ const Header = () => {
     { path: "/massage", label: translate("massage") },
     { path: "/spa", label: translate("spa") },
     { path: "/gallery", label: translate("gallery") },
-    { path: "/contact", label: "BOOKING" },
+    // REMOVED: { path: "/contact", label: "BOOKING" },
     { path: "/about", label: translate("about") }
   ];
 

@@ -26,16 +26,19 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="o-nama" element={<About />} />
               <Route path="contact" element={<Contact />} />
-              <Route path="booking" element={<Contact />} />
+              {/* REMOVED: <Route path="booking" element={<Contact />} /> */}
               <Route path="galerija" element={<Gallery />} />
               <Route path="gallery" element={<Gallery />} />
               
               {/* Serbian URL Aliases - 301 Redirects */}
               <Route path="usluge" element={<Navigate to="/masaze" replace />} />
               <Route path="cenovnik" element={<Navigate to="/spa" replace />} />
-              <Route path="rezervacije" element={<Navigate to="/booking" replace />} />
-              <Route path="vauceri" element={<Navigate to="/booking" replace />} />
-              <Route path="kontakt" element={<Navigate to="/booking" replace />} />
+              <Route path="rezervacije" element={<Navigate to="/contact" replace />} />
+              <Route path="vauceri" element={<Navigate to="/contact" replace />} />
+              <Route path="kontakt" element={<Navigate to="/contact" replace />} />
+              
+              {/* REMOVED: Old /booking route */}
+              <Route path="booking" element={<Navigate to="/contact" replace />} />
               
               {/* English URL Aliases - 301 Redirects */}
               <Route path="en/services" element={<Navigate to="/massage" replace />} />
