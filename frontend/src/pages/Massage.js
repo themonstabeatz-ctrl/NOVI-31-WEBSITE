@@ -842,6 +842,7 @@ const Massage = () => {
                     <Clock className="w-4 h-4" />
                     <span>{service.duration}</span>
                   </div>
+                  {/* 🔒 DO NOT MODIFY — STABLE VERIFIED PRICE DISPLAY (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01) */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     {service.discount > 0 && getDiscountBadge(service.key) && (
                       <img 
