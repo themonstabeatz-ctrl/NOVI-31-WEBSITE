@@ -102,6 +102,7 @@ const CouplesMassageCard = ({
                 serviceId: service.id,
                 prices: {},  // Will store discounted prices from backend
                 originalPrices: {},  // Will store original prices
+                serviceIds: {},  // ✅ ADDED: Store duration-specific service IDs
                 durations: [],
                 serviceCode: service.service_code  // Unique code for this massage type
               };
@@ -116,6 +117,7 @@ const CouplesMassageCard = ({
             
             servicesByName[baseName].prices[duration] = correctFinalPrice;
             servicesByName[baseName].originalPrices[duration] = correctOriginalPrice;
+            servicesByName[baseName].serviceIds[duration] = service.id;  // ✅ ADDED: Store service_id per duration
             servicesByName[baseName].durations.push(duration);
           }
         });
