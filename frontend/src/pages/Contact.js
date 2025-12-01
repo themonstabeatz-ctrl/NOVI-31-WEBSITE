@@ -319,6 +319,8 @@ const Contact = () => {
     return `${day}/${month}/${year}`;
   };
 
+  // 🔒 DO NOT MODIFY — STABLE VERIFIED BOOKING LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
+  // This handleSubmit function works correctly with backend /api/book-appointment
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('🚀 handleSubmit called!');
