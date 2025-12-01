@@ -816,36 +816,27 @@ const Contact = () => {
           body: JSON.stringify(appointmentData)
         });
 
-        console.log('📥 Response status:', response.status);
-        console.log('📥 Response ok:', response.ok);
-
-        // Read response body ONLY ONCE
-        const responseText = await response.text();
-        console.log('📥 Response body:', responseText);
+        console.log('📥 Booking response status:', response.status);
 
         if (!response.ok) {
-          console.error('❌ Booking API error:', response.status, responseText);
-          
-          // Try to parse as JSON for more details
-          try {
-            const errorJson = JSON.parse(responseText);
-            console.error('❌ Error details:', errorJson);
-          } catch (e) {
-            console.error('❌ Error text (not JSON):', responseText);
-          }
-          
-          throw new Error(`Booking failed: ${response.status} - ${responseText}`);
+          // NEMOJ da koristiš response.clone() ili da čitaš body više puta
+          console.error('❌ Booking failed with status:', response.status);
+          setError(
+            'Došlo je do greške pri zakazivanju termina. Molimo pokušajte ponovo ili nas kontaktirajte telefonom.'
+          );
+          setSubmitStatus('error');
+          return;
         }
-        
-        // Parse success response
-        let responseData;
+
+        // Za uspeh nam je dovoljan JSON samo jednom
+        let data = null;
         try {
-          responseData = JSON.parse(responseText);
-          console.log('✅ Booking successful:', responseData);
+          data = await response.json();
         } catch (e) {
-          console.log('✅ Booking successful (non-JSON response)');
-          responseData = { message: 'Success' };
+          console.warn('⚠️ Could not parse booking response JSON, raw response used.');
         }
+
+        console.log('✅ Booking successful:', data);
       }
 
       // Success - show green checkmark with appropriate message
