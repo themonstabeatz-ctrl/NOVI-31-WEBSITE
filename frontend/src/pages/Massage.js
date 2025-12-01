@@ -309,6 +309,7 @@ const Massage = () => {
     return serviceDiscounts[bookingName] || 0;
   };
 
+  // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
   // Handle booking button click - navigate to Contact form
   const handleBookClick = (serviceName, durationMinutes) => {
     const serviceWithDuration = `${serviceName} - ${durationMinutes} min`;
