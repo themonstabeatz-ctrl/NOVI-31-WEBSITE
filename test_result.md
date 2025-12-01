@@ -557,6 +557,29 @@ agent_communication:
       
       ⚠️ URGENT ACTION REQUIRED:
       Fix couples massage booking flow in CouplesMassageCard.js - the selection state management and booking button handler are not working correctly despite UI interactions appearing successful.
+  - agent: "testing"
+    message: |
+      🎯 SINGLE MASSAGE BOOKING FLOW COMPREHENSIVE TEST COMPLETED - CRITICAL BACKEND ENDPOINT ISSUE IDENTIFIED!
+      
+      ✅ FRONTEND FUNCTIONALITY FULLY WORKING:
+      - Complete E2E flow tested successfully: navigation → massage selection → form filling → date/time picker → service mapping → payload generation
+      - All console log patterns confirmed: '✅ SETTING bookingEndpoint to: /api/appointments', '🔍 DEBUG: finalEndpoint = https://therapist-scheduler.preview.emergentagent.com/api/appointments', '📦 FULL PAYLOAD being sent'
+      - Service mapping working correctly (61 keys for 121 services)
+      - Form validation and submission logic functional
+      - Date/time picker modals working perfectly with proper z-index hierarchy
+      
+      ❌ CRITICAL BACKEND ENDPOINT ISSUE:
+      - POST request to /api/appointments returns 404 Not Found
+      - This endpoint does not exist on therapist-scheduler backend
+      - Console shows 'Response body is already used' error after 404 response
+      - No success/error UI feedback due to backend failure
+      
+      ⚠️ URGENT ACTION REQUIRED:
+      Main agent needs to either:
+      1) Create /api/appointments endpoint on therapist-scheduler backend, OR
+      2) Update frontend Contact.js to use correct existing backend endpoint
+      
+      All frontend components working correctly - issue is purely backend endpoint availability. The new endpoint usage (/api/appointments) is correct according to review request but backend doesn't have this endpoint implemented.
       
       ✅ FORM VALIDATION WORKING: Console shows proper validation with 'Missing fields: [date, time]' preventing submission without required fields - this is correct behavior.
       
