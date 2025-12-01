@@ -4,6 +4,8 @@ import { X, Check, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
+// 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
+// Couples massage card component with dropdown selection and price calculation
 const CouplesMassageCard = ({ 
   translate, 
   durations, 
