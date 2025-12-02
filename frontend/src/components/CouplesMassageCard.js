@@ -448,52 +448,25 @@ const CouplesMassageCard = ({
       return nameWithPrefix;
     };
     
+    // ✅ Build couples data with simplified structure for backend
     const couplesData = {
-      // Duration info
-      duration: durations.sports,
-      totalDuration: calculateTotalDuration(),
-      
-      // Person 1 services with COMPLETE data (service_id, prices, [PAROVI] prefix)
       person1: {
-        massage1: couplesSelections.person1Massage1 ? {
-          service_id: couplesSelections.person1Massage1.service_id,
-          name: buildServiceName(couplesSelections.person1Massage1),  // ✅ Keep [PAROVI]
-          duration: couplesSelections.person1Massage1.duration,
-          original_price: couplesSelections.person1Massage1.originalPrice,
-          final_price: couplesSelections.person1Massage1.price
-        } : null,
-        massage2: couplesSelections.person1Massage2 ? {
-          service_id: couplesSelections.person1Massage2.service_id,
-          name: buildServiceName(couplesSelections.person1Massage2),  // ✅ Keep [PAROVI]
-          duration: couplesSelections.person1Massage2.duration,
-          original_price: couplesSelections.person1Massage2.originalPrice,
-          final_price: couplesSelections.person1Massage2.price
-        } : null
+        service_id: couplesSelections.person1Massage1?.service_id || null,
+        name: buildServiceName(couplesSelections.person1Massage1),
+        duration: couplesSelections.person1Massage1?.duration || 60,
+        original_price: couplesSelections.person1Massage1?.originalPrice || 0,
+        final_price: couplesSelections.person1Massage1?.price || 0
       },
-      
-      // Person 2 services with COMPLETE data ([PAROVI] prefix)
       person2: {
-        massage1: couplesSelections.person2Massage1 ? {
-          service_id: couplesSelections.person2Massage1.service_id,
-          name: buildServiceName(couplesSelections.person2Massage1),  // ✅ Keep [PAROVI]
-          duration: couplesSelections.person2Massage1.duration,
-          original_price: couplesSelections.person2Massage1.originalPrice,
-          final_price: couplesSelections.person2Massage1.price
-        } : null,
-        massage2: couplesSelections.person2Massage2 ? {
-          service_id: couplesSelections.person2Massage2.service_id,
-          name: buildServiceName(couplesSelections.person2Massage2),  // ✅ Keep [PAROVI]
-          duration: couplesSelections.person2Massage2.duration,
-          original_price: couplesSelections.person2Massage2.originalPrice,
-          final_price: couplesSelections.person2Massage2.price
-        } : null
+        service_id: couplesSelections.person2Massage1?.service_id || null,
+        name: buildServiceName(couplesSelections.person2Massage1),
+        duration: couplesSelections.person2Massage1?.duration || 60,
+        original_price: couplesSelections.person2Massage1?.originalPrice || 0,
+        final_price: couplesSelections.person2Massage1?.price || 0
       },
-      
-      // ✅ Total price data for backend (same structure as single massages)
-      pair_category: "Kartica Masaza za parove",
       pair_original_price: totalOriginalPrice,
       pair_final_price: totalFinalPrice,
-      pair_discount_percentage: couplesDiscount,  // 10%
+      pair_discount_percentage: couplesDiscount,  // 10
       pair_discount_amount: totalDiscountAmount
     };
     
