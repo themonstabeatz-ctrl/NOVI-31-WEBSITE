@@ -842,6 +842,7 @@ const Contact = () => {
 
       // Success - show green checkmark with appropriate message
       setSubmitStatus('success');
+      console.log('🎉 SUCCESS STATUS SET - green checkmark should appear now!');
       
       // Clear couples booking data from localStorage after successful booking
       localStorage.removeItem('couplesBookingData');
