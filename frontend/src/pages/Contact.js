@@ -560,207 +560,50 @@ const Contact = () => {
           
           console.log('🔍 Couples Data:', couplesData);
           
-          // Fetch COUPLES services for couple booking
-          console.log('📥 Fetching COUPLES services from booking system...');
-          let bookingServices;
-          try {
-            const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-            const servicesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
-            bookingServices = await servicesResponse.json();
-            console.log(`✅ Loaded ${bookingServices.length} COUPLES services from booking system`);
-          } catch (error) {
-            console.error('❌ Failed to load services:', error);
-            toast({
-              title: translate('error') || 'Greška',
-              description: 'Ne mogu da učitam trenutne usluge. Molimo pokušajte ponovo.',
-              variant: "destructive",
-            });
-            setIsSubmitting(false);
-            return;
-          }
+          // ✅ SIMPLIFIED COUPLES BOOKING per user request
+          console.log('🔍 Couples Data:', couplesData);
+          console.log('🔍 Person1:', couplesData.person1);
+          console.log('🔍 Person2:', couplesData.person2);
           
-          // Build fresh service mapping
-          // CRITICAL: Remove [PAROVI] prefix from keys to match how CouplesMassageCard stores names
-          const freshMapping = {};
-          bookingServices.forEach(service => {
-            // Map with [PAROVI] prefix (original name)
-            freshMapping[service.name] = service.id;
-            
-            // ALSO map without [PAROVI] prefix for compatibility
-            const nameWithoutPrefix = service.name.replace(/^\[PAROVI\]\s*/, '');
-            freshMapping[nameWithoutPrefix] = service.id;
-          });
-          
-          console.log('🗺️ Service mapping created with', Object.keys(freshMapping).length, 'entries');
-          
-          // Extract service IDs from massage selections using fresh mapping
-          const person1Services = [];
-          const person2Services = [];
-          
-          if (couplesData.person1?.massage1) {
-            const massage1Name = `${couplesData.person1.massage1.name} - ${couplesData.person1.massage1.duration} min`;
-            console.log('🔍 Looking for Person 1 Massage 1:', massage1Name);
-            const service1Id = freshMapping[massage1Name];
-            console.log('  → Found ID:', service1Id || 'NOT FOUND');
-            if (service1Id) {
-              person1Services.push(service1Id);
-            } else {
-              console.error(`❌ Service ID not found for: ${massage1Name}`);
-            }
-          }
-          if (couplesData.person1?.massage2) {
-            const massage2Name = `${couplesData.person1.massage2.name} - ${couplesData.person1.massage2.duration} min`;
-            console.log('🔍 Looking for Person 1 Massage 2:', massage2Name);
-            const service2Id = freshMapping[massage2Name];
-            console.log('  → Found ID:', service2Id || 'NOT FOUND');
-            if (service2Id) {
-              person1Services.push(service2Id);
-            } else {
-              console.error(`❌ Service ID not found for: ${massage2Name}`);
-            }
-          }
-          
-          if (couplesData.person2?.massage1) {
-            const massage1Name = `${couplesData.person2.massage1.name} - ${couplesData.person2.massage1.duration} min`;
-            console.log('🔍 Looking for Person 2 Massage 1:', massage1Name);
-            const service1Id = freshMapping[massage1Name];
-            console.log('  → Found ID:', service1Id || 'NOT FOUND');
-            if (service1Id) {
-              person2Services.push(service1Id);
-            } else {
-              console.error(`❌ Service ID not found for: ${massage1Name}`);
-            }
-          }
-          if (couplesData.person2?.massage2) {
-            const massage2Name = `${couplesData.person2.massage2.name} - ${couplesData.person2.massage2.duration} min`;
-            console.log('🔍 Looking for Person 2 Massage 2:', massage2Name);
-            const service2Id = freshMapping[massage2Name];
-            console.log('  → Found ID:', service2Id || 'NOT FOUND');
-            if (service2Id) {
-              person2Services.push(service2Id);
-            } else {
-              console.error(`❌ Service ID not found for: ${massage2Name}`);
-            }
-          }
-          
-          console.log('📋 Final Service Arrays:', {
-            person1Services,
-            person2Services
-          });
-          
-          // Validate that we have service IDs
-          if (person1Services.length === 0 || person2Services.length === 0) {
-            console.error('❌ Missing service IDs for couple booking!');
-            console.error('Person 1 services:', person1Services);
-            console.error('Person 2 services:', person2Services);
-            console.error('Available services:', Object.keys(freshMapping));
-            
-            toast({
-              title: translate('error') || 'Greška',
-              description: 'Ne mogu da pronađem usluge za rezervaciju. Molimo kontaktirajte nas direktno.',
-              variant: "destructive",
-            });
-            
-            setIsSubmitting(false);
-            return;
-          }
-          
-          // Prepare couple booking data
-          // Extract discount percentage from couplesData
-          const discountPercent = couplesData.discountPercent || 0;
-          
-          // Create snapshots for each service (Variant 1 - backend snapshot system)
-          const person1Snapshots = [];
-          const person2Snapshots = [];
-          
-          // Helper function to create snapshot from massage data
-          const createSnapshot = (massageData, serviceId) => {
-            if (!massageData) return null;
-            
-            return {
-              service_id: serviceId,
-              service_code: massageData.serviceCode || massageData.name,
-              original_price: massageData.originalPrice || massageData.price,
-              discount_percentage: discountPercent,
-              final_price: massageData.price,  // Backend already calculated this
-              duration: parseInt(massageData.duration)
-            };
-          };
-          
-          // Create snapshots for Person 1
-          if (couplesData.person1?.massage1) {
-            const massage1Name = `${couplesData.person1.massage1.name} - ${couplesData.person1.massage1.duration} min`;
-            const service1Id = freshMapping[massage1Name];
-            if (service1Id) {
-              const snapshot = createSnapshot(couplesData.person1.massage1, service1Id);
-              if (snapshot) person1Snapshots.push(snapshot);
-            }
-          }
-          if (couplesData.person1?.massage2) {
-            const massage2Name = `${couplesData.person1.massage2.name} - ${couplesData.person1.massage2.duration} min`;
-            const service2Id = freshMapping[massage2Name];
-            if (service2Id) {
-              const snapshot = createSnapshot(couplesData.person1.massage2, service2Id);
-              if (snapshot) person1Snapshots.push(snapshot);
-            }
-          }
-          
-          // Create snapshots for Person 2
-          if (couplesData.person2?.massage1) {
-            const massage1Name = `${couplesData.person2.massage1.name} - ${couplesData.person2.massage1.duration} min`;
-            const service1Id = freshMapping[massage1Name];
-            if (service1Id) {
-              const snapshot = createSnapshot(couplesData.person2.massage1, service1Id);
-              if (snapshot) person2Snapshots.push(snapshot);
-            }
-          }
-          if (couplesData.person2?.massage2) {
-            const massage2Name = `${couplesData.person2.massage2.name} - ${couplesData.person2.massage2.duration} min`;
-            const service2Id = freshMapping[massage2Name];
-            if (service2Id) {
-              const snapshot = createSnapshot(couplesData.person2.massage2, service2Id);
-              if (snapshot) person2Snapshots.push(snapshot);
-            }
-          }
-          
-          console.log('📸 Created snapshots:', {
-            person1: person1Snapshots,
-            person2: person2Snapshots
-          });
-          
-          console.log('🔍🔍🔍 COUPLES DATA RECEIVED:', couplesData);
-          console.log('🔍🔍🔍 PAIR ORIGINAL PRICE:', couplesData.pair_original_price);
-          console.log('🔍🔍🔍 PAIR FINAL PRICE:', couplesData.pair_final_price);
-          console.log('🔍🔍🔍 PAIR DISCOUNT %:', couplesData.pair_discount_percentage);
-          
+          // Build couples payload according to user specification
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
+            appointment_date: dateStr,
             start_time: `${dateStr}T${formData.preferredTime}:00`,
-            duration_type: parseInt(couplesData.duration), // 60, 90, or 120 per person
-            person1_services: person1Services,  // Keep for backward compatibility
-            person2_services: person2Services,  // Keep for backward compatibility
-            discount_couples_massage: discountPercent,
-            language: language,
-            // NEW: Snapshot system (Variant 1)
-            person1_snapshots: person1Snapshots,
-            person2_snapshots: person2Snapshots,
             
-            // ✅ ADDED PER USER REQUEST: Complete price data (same as single massages)
-            category: couplesData.pair_category || "Kartica Masaza za parove",
+            category: "Kartica masaza za parove",
+            
             original_price: couplesData.pair_original_price,
             final_price: couplesData.pair_final_price,
             discount_percentage: couplesData.pair_discount_percentage,
             discount_amount: couplesData.pair_discount_amount,
-            is_couples_booking: true
+            is_couples_booking: true,
+            
+            person1_services: [
+              {
+                service_id: couplesData.person1.service_id,
+                name: couplesData.person1.name,
+                duration: couplesData.person1.duration,
+                original_price: couplesData.person1.original_price,
+                final_price: couplesData.person1.final_price
+              }
+            ],
+            person2_services: [
+              {
+                service_id: couplesData.person2.service_id,
+                name: couplesData.person2.name,
+                duration: couplesData.person2.duration,
+                original_price: couplesData.person2.original_price,
+                final_price: couplesData.person2.final_price
+              }
+            ]
           };
           
-          console.log(`📸 Using snapshot system (Variant 1) with discount: ${discountPercent}%`);
-          
           bookingEndpoint = '/api/book-couple-appointment';
-          console.log('📌 Couple booking data:', appointmentData);
+          console.log('✅ Couples booking payload:', appointmentData);
           console.log('📤 Calling backend couple booking endpoint:', bookingEndpoint);
         } else {
           // Regular booking data
