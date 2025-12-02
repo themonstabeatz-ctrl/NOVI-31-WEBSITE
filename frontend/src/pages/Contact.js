@@ -199,26 +199,17 @@ const Contact = () => {
           const data = JSON.parse(decodedData);
           console.log('✅ Parsed couples data:', data);
           
-          // Use totalDuration (sum of all massages)
-          const displayDuration = data.totalDuration || data.duration;
-          message = `${translate('couplesMassageBooking')}: ${displayDuration} min\n\n`;
+          // ✅ SIMPLIFIED couples message structure
+          message = `${translate('couplesMassageBooking')}\n\n`;
           message += `${translate('person1')}:\n`;
-          if (data.person1.massage1) {
-            const translatedMassage1 = translateMassageName(data.person1.massage1.name);
-            message += `  • ${translatedMassage1} (${data.person1.massage1.duration} min)\n`;
-          }
-          if (data.person1.massage2) {
-            const translatedMassage2 = translateMassageName(data.person1.massage2.name);
-            message += `  • ${translatedMassage2} (${data.person1.massage2.duration} min)\n`;
+          if (data.person1) {
+            const translatedMassage = translateMassageName(data.person1.name);
+            message += `  • ${translatedMassage} (${data.person1.duration} min)\n`;
           }
           message += `\n${translate('person2')}:\n`;
-          if (data.person2.massage1) {
-            const translatedMassage1 = translateMassageName(data.person2.massage1.name);
-            message += `  • ${translatedMassage1} (${data.person2.massage1.duration} min)\n`;
-          }
-          if (data.person2.massage2) {
-            const translatedMassage2 = translateMassageName(data.person2.massage2.name);
-            message += `  • ${translatedMassage2} (${data.person2.massage2.duration} min)\n`;
+          if (data.person2) {
+            const translatedMassage = translateMassageName(data.person2.name);
+            message += `  • ${translatedMassage} (${data.person2.duration} min)\n`;
           }
           // ✅ FIXED: Use new couplesData structure (pair_discount_percentage, pair_original_price, pair_final_price)
           const discountText = data.pair_discount_percentage 
