@@ -780,7 +780,7 @@ const Contact = () => {
             appointment_date: dateStr,
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             service_id: serviceId,
-            therapist_id: "1490364f-31c8-49a6-a370-2e19fed34e81",
+            // therapist_id removed - backend will auto-assign or leave null
             duration: duration,  // Service duration in minutes
             duration_type: duration,  // Also send as duration_type for backwards compatibility
             notes: formData.message || "",
