@@ -513,6 +513,16 @@ const Spa = () => {
           </video>
         </div>
         
+        <div className="spa-hero-overlay" style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '70vh',
+          background: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 0
+        }} />
+        
         <div className="spa-hero-content" style={{
           position: 'relative',
           height: '70vh',
@@ -521,31 +531,8 @@ const Spa = () => {
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          padding: '0 20px'
-        }}>
-        
-        {/* Dark Overlay on hero section only */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0, 0, 0, 0.5)',
+          padding: '0 20px',
           zIndex: 1
-        }} />
-
-        {/* Hero Content */}
-        <div style={{
-          position: 'relative',
-          zIndex: 2,
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          padding: '0 20px'
         }}>
           <h1 style={{
             fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
