@@ -472,6 +472,88 @@ Ukupna cena: ${totalPriceFormatted} RSD
         return;
       }
       
+      // SPA BOOKING GRANA – Handle before single/couples logic
+      if (formData.source === "spa" && spaBookingMeta) {
+        console.log("🚀 SPA handleSubmit called!");
+        console.log("🔍 spaBookingMeta:", spaBookingMeta);
+
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        const bookingEndpoint = `${backendUrl}/api/appointments`; // Same endpoint as single, but category = "SPA"
+
+        // Convert Date object to YYYY-MM-DD format
+        let dateStr;
+        if (formData.preferredDate instanceof Date) {
+          const year = formData.preferredDate.getFullYear();
+          const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
+          const day = String(formData.preferredDate.getDate()).padStart(2, '0');
+          dateStr = `${year}-${month}-${day}`;
+        } else {
+          dateStr = formData.preferredDate;
+        }
+        
+        const startTimeIso = `${dateStr}T${formData.preferredTime}:00`;
+
+        const payload = {
+          client_first_name: formData.firstName,
+          client_last_name: formData.lastName,
+          client_phone: formData.phone,
+          client_email: formData.email,
+          appointment_date: dateStr,
+          start_time: startTimeIso,
+
+          // SPA specific fields
+          category: "SPA",
+          service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId, // Use variant ID (will be assigned by reception later)
+          duration: spaBookingMeta.totalMinutes,
+          duration_type: spaBookingMeta.totalMinutes,
+          notes: formData.message,
+          service_name: `SPA: ${spaBookingMeta.spaPackageName} (${spaBookingMeta.variantLabel})`,
+
+          // Snapshot prices for analytics
+          final_price: spaBookingMeta.totalPrice,
+          original_price: spaBookingMeta.totalPrice,
+          discount_percentage: 0,
+          discount_amount: 0
+        };
+
+        console.log("📦 SPA appointment payload:", payload);
+        console.log("📤 Sending SPA booking request to:", bookingEndpoint);
+
+        const response = await fetch(bookingEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        // Read response body ONCE
+        const responseText = await response.text();
+        
+        console.log("📥 SPA booking response status:", response.status);
+        console.log("📥 Response body:", responseText);
+
+        if (!response.ok) {
+          console.error("❌ SPA booking API error:", response.status, responseText);
+          setError("Došlo je do greške pri zakazivanju SPA tretmana. Molimo pokušajte ponovo.");
+          setSubmitStatus("error");
+          return;
+        }
+
+        // Parse JSON from text
+        let data = {};
+        try {
+          data = responseText ? JSON.parse(responseText) : {};
+        } catch (e) {
+          console.warn("⚠️ Response nije validan JSON, nastavljam bez parsiranja.");
+        }
+
+        console.log("✅ SPA booking successful:", data);
+        setSubmitStatus("success");
+        setIsSubmitting(false);
+        
+        // CRITICAL: Exit early to not fall into single/couples logic
+        return;
+      }
+      
       // serviceName and queryParams already defined in validation above - no need to redeclare
       
       // Normalize service name for lookup
