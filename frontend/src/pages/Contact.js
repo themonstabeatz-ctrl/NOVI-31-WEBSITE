@@ -79,12 +79,15 @@ const Contact = () => {
     message: "",
     preferredDate: null, // Changed to null for DatePicker
     preferredTime: "",
-    source: "message" // 'booking', 'voucher', or 'message'
+    source: "message" // 'booking', 'voucher', 'message', or 'spa'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
   const [error, setError] = useState(null); // Error message state
   const submitTimeoutRef = React.useRef(null);
+  
+  // SPA booking metadata
+  const [spaBookingMeta, setSpaBookingMeta] = useState(null);
   
   // Dynamic service mapping from booking system
   const [serviceMapping, setServiceMapping] = useState({});
