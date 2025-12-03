@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
+import { throttle } from "../utils/debounce";
 
 // SPA ZONES - extraPrice will be updated later
 const SPA_ZONES = [
