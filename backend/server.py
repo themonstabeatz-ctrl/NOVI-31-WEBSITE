@@ -213,7 +213,7 @@ async def get_services():
     - Backend calculates final price with discount
     - Frontend displays values from backend (no frontend calculations)
     """
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -275,7 +275,7 @@ async def get_couples_services():
     - Applies highest discount logic per service_code
     - NO mixing with single services
     """
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -352,7 +352,7 @@ async def get_couples_individual_services():
     This endpoint provides services from "Kartica Masaza za parove" category
     which have [PAROVI] prefix and are used for Osoba 1 / Osoba 2 selection.
     """
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -395,7 +395,7 @@ async def get_single_services():
     - Filters only services with category = "Obicne masaze"
     - NO couple services included
     """
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -479,7 +479,7 @@ async def book_appointment(booking: AppointmentBooking, background_tasks: Backgr
                 logger.info(f"⏱️ Couples massage total duration: {couples_total_duration} min")
         
         async with httpx.AsyncClient(timeout=30.0) as client:
-            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
             
             # KRITIČNO: Terapeut NIJE OBAVEZAN - recepcionar će ga manuelno dodati u recepciji
             # NE pokušavaj da automatski dodeliš terapeuta!
@@ -605,7 +605,7 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
         
         async with httpx.AsyncClient(timeout=30.0) as client:
             # Get available therapists
-            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+            booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
             therapists_response = await client.get(f'{booking_api_url}/api/therapists')
             
             if therapists_response.status_code != 200:

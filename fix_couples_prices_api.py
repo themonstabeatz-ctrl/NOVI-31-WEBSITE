@@ -9,7 +9,7 @@ import json
 from typing import Dict, List
 
 # Booking system API base URL - PRODUCTION
-API_BASE = "https://spa-booking-repair.preview.emergentagent.com/api"
+API_BASE = "https://massage-scheduler-3.preview.emergentagent.com/api"
 
 # Correct price mapping from /app/frontend/src/pages/Massage.js
 # Note: Services have [PAROVI] prefix in the booking system
@@ -180,7 +180,7 @@ def main():
         print("🎉 PRICE CORRECTIONS APPLIED SUCCESSFULLY!")
         print()
         print("Next steps:")
-        print("1. Verify prices in frontend: https://spa-booking-repair.preview.emergentagent.com/massage")
+        print("1. Verify prices in frontend: https://massage-scheduler-3.preview.emergentagent.com/massage")
         print("2. Test booking flow with corrected prices")
         print("3. Check that 10% discount is applied correctly (not double discount)")
         return 0

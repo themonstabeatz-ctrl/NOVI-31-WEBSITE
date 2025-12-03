@@ -21,7 +21,7 @@ async def get_couples_individual_services():
     This endpoint provides services from "Kartica Masaza za parove" category
     which have [PAROVI] prefix and are used for Osoba 1 / Osoba 2 selection.
     """
-    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://spa-booking-repair.preview.emergentagent.com')
+    booking_api_url = os.environ.get('BOOKING_API_URL', 'https://massage-scheduler-3.preview.emergentagent.com')
     
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
@@ -141,7 +141,7 @@ curl -s http://localhost:8001/api/services/couples/individual | python3 -m json.
 ```
 
 ### Test 2: Proveri frontend učitavanje
-1. Otvori: https://spa-booking-repair.preview.emergentagent.com/massage
+1. Otvori: https://massage-scheduler-3.preview.emergentagent.com/massage
 2. Otvori browser console (F12)
 3. Skrolutaj do "Masaža za parove" kartice
 4. Proveri console log poruke:

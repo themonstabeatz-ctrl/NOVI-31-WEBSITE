@@ -23,8 +23,8 @@ def final_summary():
     print("\n📊 KEY FINDINGS SUMMARY:")
     
     print("\nWORKING VERSION (PERFECT):")
-    print("  • URL: https://spa-booking-repair.preview.emergentagent.com/massage")
-    print("  • API: https://spa-booking-repair.preview.emergentagent.com/api/services")
+    print("  • URL: https://massage-scheduler-3.preview.emergentagent.com/massage")
+    print("  • API: https://massage-scheduler-3.preview.emergentagent.com/api/services")
     print("  • Total services: 59")
     print("  • Couples services: 17")
     print("  • Discount percentage: 0.0% (all services)")
@@ -33,8 +33,8 @@ def final_summary():
     print("  • Price range: 3,500 - 7,200 RSD")
     
     print("\nMY VERSION:")
-    print("  • URL: https://spa-booking-repair.preview.emergentagent.com/massage")
-    print("  • API: https://spa-booking-repair.preview.emergentagent.com/api/services")
+    print("  • URL: https://massage-scheduler-3.preview.emergentagent.com/massage")
+    print("  • API: https://massage-scheduler-3.preview.emergentagent.com/api/services")
     print("  • Total services: 66")
     print("  • Couples services: 10")
     print("  • Discount percentage: 10.0% (all services)")
