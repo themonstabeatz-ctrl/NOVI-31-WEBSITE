@@ -594,8 +594,7 @@ const Spa = () => {
               <Card key={pkg.id} 
                 className="spa-ritual-card"
                 style={{
-                  background: 'rgba(26, 26, 26, 0.7)',
-                  backdropFilter: 'blur(10px)',
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
                   border: '1px solid rgba(212, 175, 55, 0.3)',
                   borderRadius: '16px',
                   overflow: 'hidden',
