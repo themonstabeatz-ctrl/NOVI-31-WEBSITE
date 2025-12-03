@@ -467,14 +467,6 @@ const Spa = () => {
           }}>
             SPA Rituali
           </h2>
-          <p style={{
-            color: '#c0baa8',
-            fontSize: '1.1rem',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            Kompletni tretmani sa body scrub, body wrap i aromaterapijom
-          </p>
         </div>
 
         <div style={{
