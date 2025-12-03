@@ -836,7 +836,8 @@ const Spa = () => {
         padding: '80px 20px',
         maxWidth: '1400px',
         margin: '0 auto',
-        borderTop: '1px solid rgba(212, 175, 55, 0.2)'
+        borderTop: '1px solid rgba(212, 175, 55, 0.2)',
+        background: 'transparent'
       }}>
         <div style={{
           textAlign: 'center',
