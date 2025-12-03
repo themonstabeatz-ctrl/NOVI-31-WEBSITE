@@ -955,8 +955,6 @@ const Spa = () => {
               borderRadius: '16px',
               overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              opacity: 0,
-              transform: 'translateX(50px)',
               position: 'relative'
             }}
             onMouseEnter={(e) => {
