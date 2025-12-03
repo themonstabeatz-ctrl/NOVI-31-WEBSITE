@@ -731,7 +731,7 @@ const Spa = () => {
         </div>
       </section>
 
-      {/* OLD "SPA Paketi za posebne prilike" Section */}
+      {/* "SPA Paketi za posebne prilike" Section - SAMO 2 KARTICE */}
       <section style={{
         padding: '80px 20px',
         maxWidth: '1400px',
@@ -762,32 +762,295 @@ const Spa = () => {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-          gap: '2rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gap: '2.5rem',
+          maxWidth: '1000px',
+          margin: '0 auto'
         }}>
-          {spaSpecialPackages.map((service, index) => (
-            <Card key={service.key}
-              className="spa-special-card"
+          {/* Romantic Package */}
+          <Card 
+            className="spa-special-card romantic-card-special"
+            style={{
+              background: 'rgba(26, 26, 26, 0.7)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(212, 175, 55, 0.3)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              opacity: 0,
+              transform: 'translateX(-50px)',
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#d4af37';
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <div 
+              className="romantic-card-background"
               style={{
-                background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                opacity: 0,
-                transform: `translateX(${index % 2 === 0 ? '-50px' : '50px'})`,
-                position: 'relative'
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/xhozz0qf_Romanticni%20paket%20za%20parove.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                opacity: 0.3,
+                zIndex: 0
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#d4af37';
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(212, 175, 55, 0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
+            />
+            <CardHeader style={{ position: 'relative', zIndex: 1, padding: '2rem' }}>
+              <CardTitle style={{
+                fontSize: '1.8rem',
+                color: '#d4af37',
+                fontWeight: 'bold'
               }}>
+                {translate("romanticPackage")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '0 2rem 2rem' }}>
+              <p style={{
+                color: '#f5f2e8',
+                marginBottom: '1rem',
+                fontSize: '1rem',
+                lineHeight: '1.6'
+              }}>
+                {translate("romanticPackageDesc")}
+              </p>
+              <div style={{
+                color: '#d4af37',
+                fontSize: '0.95rem',
+                marginBottom: '1.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                <Clock size={18} />
+                {translate("romanticPackageDuration")}
+              </div>
+              
+              <div className="romantic-price-container" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '0.5rem',
+                marginBottom: '1.5rem'
+              }}>
+                <button className="luxury-price-button" style={{
+                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '1rem 2rem',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: '#1a1a1a',
+                  cursor: 'default',
+                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}>
+                  <span className="price-amount">18.000 RSD</span>
+                </button>
+                <div style={{
+                  color: '#c0baa8',
+                  fontSize: '0.9rem'
+                }}>
+                  Za dve osobe
+                </div>
+              </div>
+
+              <Button asChild style={{
+                width: '100%',
+                background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                color: '#1a1a1a',
+                fontWeight: 'bold',
+                padding: '1.1rem',
+                fontSize: '1rem',
+                borderRadius: '10px',
+                border: 'none'
+              }}>
+                <Link to="/contact?service=Romantic%20Package">
+                  Zakažite
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+          
+          {/* Bridal Package */}
+          <Card 
+            className="spa-special-card bridal-card-special"
+            style={{
+              background: 'rgba(26, 26, 26, 0.7)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(212, 175, 55, 0.3)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              opacity: 0,
+              transform: 'translateX(50px)',
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#d4af37';
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <div 
+              className="bridal-card-background"
+              style={{
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thai-reserve/artifacts/48xkbz3e_Zena%20sa%20casom%20bualuang.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                opacity: 0.3,
+                zIndex: 0
+              }}
+            />
+            <CardHeader style={{ position: 'relative', zIndex: 2, padding: '2rem' }}>
+              <CardTitle style={{
+                fontSize: '1.8rem',
+                color: '#d4af37',
+                fontWeight: 'bold'
+              }}>
+                {translate("bridalPackage")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent style={{ position: 'relative', zIndex: 2, padding: '0 2rem 2rem' }}>
+              <p style={{
+                color: '#f5f2e8',
+                marginBottom: '1rem',
+                fontSize: '1rem',
+                lineHeight: '1.6'
+              }}>
+                {translate("bridalPackageDesc")}
+              </p>
+              <div style={{
+                color: '#d4af37',
+                fontSize: '0.95rem',
+                marginBottom: '1.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                <Clock size={18} />
+                {translate("bridalPackageDuration")}
+              </div>
+              
+              <div className="romantic-price-container" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '0.5rem',
+                marginBottom: '1.5rem'
+              }}>
+                <button className="luxury-price-button" style={{
+                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '1rem 2rem',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: '#1a1a1a',
+                  cursor: 'default',
+                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}>
+                  <span className="price-amount">8.500 RSD</span>
+                </button>
+                <div style={{
+                  color: '#c0baa8',
+                  fontSize: '0.9rem'
+                }}>
+                  Po osobi
+                </div>
+              </div>
+
+              <Button asChild style={{
+                width: '100%',
+                background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                color: '#1a1a1a',
+                fontWeight: 'bold',
+                padding: '1.1rem',
+                fontSize: '1rem',
+                borderRadius: '10px',
+                border: 'none'
+              }}>
+                <Link to="/contact?service=Bridal%20Package">
+                  Zakažite
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* CSS for slide-in animation */}
+      <style>{`
+        .spa-ritual-card, .spa-special-card {
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .spa-ritual-card.slide-in-visible,
+        .spa-special-card.slide-in-visible {
+          opacity: 1 !important;
+          transform: translateX(0) !important;
+        }
+
+        .luxury-price-button {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .luxury-price-button::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(
+            45deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+          );
+          transform: rotate(45deg);
+          animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+          0% {
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+          }
+          100% {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Spa;
               {service.popular && (
                 <Badge style={{
                   position: 'absolute',
