@@ -541,7 +541,7 @@ const Spa = () => {
           </h2>
         </div>
 
-        <div style={{
+        <div className="spa-ritual-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
           gap: '2.5rem'
