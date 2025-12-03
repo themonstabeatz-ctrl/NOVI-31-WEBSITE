@@ -144,23 +144,95 @@ const Spa = () => {
     return initial;
   });
 
-  // Intersection Observer for slide-in animation (same as Massage.js)
+  // Intersection Observer for slide-in animation (IDENTICAL to Massage.js)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('slide-in-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
     const cards = document.querySelectorAll('.spa-ritual-card, .spa-special-card');
-    cards.forEach((card) => observer.observe(card));
+    
+    // Get grid columns for dynamic slide direction
+    const grid = document.querySelector('.spa-ritual-grid');
+    const gridStyle = grid ? window.getComputedStyle(grid) : null;
+    const gridTemplateColumns = gridStyle ? gridStyle.gridTemplateColumns : '';
+    const columns = gridTemplateColumns.split(' ').length;
+    
+    cards.forEach((card, index) => {
+      let slideDirection;
+      let transformStart;
+      
+      if (window.innerWidth <= 768 || columns === 1) {
+        const pattern = index % 3;
+        const slideDistance = 200;
+        const tiltAngle = 25;
+        
+        if (pattern === 0) {
+          slideDirection = 'from-left';
+          transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
+        } else if (pattern === 1) {
+          slideDirection = 'from-bottom';
+          transformStart = 'translateY(150px)';
+        } else {
+          slideDirection = 'from-right';
+          transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
+        }
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      } else {
+        const columnPosition = index % columns;
+        const slideDistance = 300;
+        const tiltAngle = 30;
+        
+        if (columnPosition === 0) {
+          slideDirection = 'from-left';
+          transformStart = `translateX(-${slideDistance}px) rotateY(-${tiltAngle}deg)`;
+        } else if (columnPosition === columns - 1) {
+          slideDirection = 'from-right';
+          transformStart = `translateX(${slideDistance}px) rotateY(${tiltAngle}deg)`;
+        } else {
+          slideDirection = 'from-bottom';
+          transformStart = 'translateY(150px)';
+        }
+        card.style.transition = 'opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      
+      card.setAttribute('data-slide-direction', slideDirection);
+      card.setAttribute('data-transform-start', transformStart);
+      card.style.transformStyle = 'preserve-3d';
+      // Set initial hidden state
+      card.style.opacity = '0';
+      card.style.transform = transformStart;
+    });
 
-    return () => observer.disconnect();
+    const observerOptions = {
+      root: null,
+      rootMargin: '100px',
+      threshold: 0.1
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        const transformStart = entry.target.getAttribute('data-transform-start');
+        const isPortrait = window.innerHeight > window.innerWidth;
+        
+        if (entry.isIntersecting) {
+          // Card entering viewport - show it
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translate(0, 0) rotateY(0deg)';
+        } else if (!isPortrait) {
+          // Card leaving viewport - hide ONLY on desktop/landscape (not portrait)
+          entry.target.style.opacity = '0';
+          entry.target.style.transform = transformStart;
+        }
+        // If portrait mode: do nothing when card leaves viewport (keep it visible)
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+    
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   // Handle variant selection
