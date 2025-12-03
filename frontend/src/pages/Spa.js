@@ -555,13 +555,12 @@ const Spa = () => {
               <Card key={pkg.id} 
                 className="spa-ritual-card"
                 style={{
-                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
+                  background: 'rgba(26, 26, 26, 0.7)',
+                  backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(212, 175, 55, 0.3)',
                   borderRadius: '16px',
                   overflow: 'hidden',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  opacity: 0,
-                  transform: `translateX(${index % 2 === 0 ? '-50px' : '50px'})`,
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
