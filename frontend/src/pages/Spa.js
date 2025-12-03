@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useLanguage } from "../context/LanguageContext";
-import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "../components/ui/card";
+import { useNavigate, Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Clock, Sparkles } from "lucide-react";
+import { Button } from "../components/ui/button";
+import { Clock, Sparkles, Leaf } from "lucide-react";
 
 // SPA ZONES - extraPrice will be updated later
 const SPA_ZONES = [
@@ -13,30 +14,34 @@ const SPA_ZONES = [
   { id: "JACUZZI", label: "Jacuzzi",        extraMinutes: 30, extraPrice: 0 }
 ];
 
-// SPA PACKAGES - Minutes and prices from provided documentation
-// TODO: Update these values with exact numbers from your document/photos
+// SPA PACKAGES - Exact minutes and prices from documentation
 const SPA_PACKAGES = [
   {
     id: "SPA1",
     name: "Silky Body Ritual",
     description: "Kompletna nega tela sa piling-om, zavojem i aromaterapijom",
-    included: [
-      "Body scrub – 30 min",
-      "Body wrap – 30 min",
-      "Aroma masaža – 60 min"
-    ],
     variants: [
       {
         id: "SPA1_BASE",
         label: "Bez masaže lica",
         totalMinutes: 120,
-        basePrice: 7800  // TODO: Update from your document
+        basePrice: 7800,
+        included: [
+          "Body scrub – 30 min",
+          "Body wrap – 30 min",
+          "Aroma masaža – 60 min"
+        ]
       },
       {
         id: "SPA1_WITH_FACE",
         label: "Sa masažom lica",
         totalMinutes: 150,
-        basePrice: 12200  // TODO: Update from your document
+        basePrice: 12200,
+        included: [
+          "Body scrub – 30 min",
+          "Body wrap + masaža lica – 60 min",
+          "Aroma masaža – 60 min"
+        ]
       }
     ]
   },
@@ -44,23 +49,28 @@ const SPA_PACKAGES = [
     id: "SPA2",
     name: "Deep Renewal Ritual",
     description: "Intenzivan tretman za dubinsku regeneraciju kože",
-    included: [
-      "Body scrub – 60 min",
-      "Body wrap – 60 min",
-      "Aroma masaža – 60 min"
-    ],
     variants: [
       {
         id: "SPA2_BASE",
         label: "Bez masaže lica",
         totalMinutes: 180,
-        basePrice: 10400  // TODO: Update from your document
+        basePrice: 10400,
+        included: [
+          "Body scrub – 60 min",
+          "Body wrap – 60 min",
+          "Aroma masaža – 60 min"
+        ]
       },
       {
         id: "SPA2_WITH_FACE",
         label: "Sa masažom lica",
         totalMinutes: 180,
-        basePrice: 13400  // TODO: Update from your document
+        basePrice: 13400,
+        included: [
+          "Body scrub – 60 min",
+          "Body wrap + masaža lica – 60 min",
+          "Aroma masaža – 60 min"
+        ]
       }
     ]
   },
@@ -68,37 +78,59 @@ const SPA_PACKAGES = [
     id: "SPA3",
     name: "Royal Glow Ritual",
     description: "Kraljevski tretman za savršenu kožu i opuštanje",
-    included: [
-      "Body scrub – 60 min",
-      "Body wrap – 60 min",
-      "Aroma masaža – 90 min"
-    ],
     variants: [
       {
         id: "SPA3_BASE",
         label: "Bez masaže lica",
         totalMinutes: 210,
-        basePrice: 11600  // TODO: Update from your document
+        basePrice: 11600,
+        included: [
+          "Body scrub – 60 min",
+          "Body wrap – 60 min",
+          "Aroma masaža – 90 min"
+        ]
       },
       {
         id: "SPA3_WITH_FACE",
         label: "Sa masažom lica",
         totalMinutes: 210,
-        basePrice: 14600  // TODO: Update from your document
+        basePrice: 14600,
+        included: [
+          "Body scrub – 60 min",
+          "Body wrap + masaža lica – 60 min",
+          "Aroma masaža – 90 min"
+        ]
       }
     ]
   }
 ];
 
+// "SPA Paketi za posebne prilike" - Old packages (DO NOT MODIFY)
+const getFixedPackageDetails = (serviceName, duration, price) => {
+  return { duration, price, serviceId: `${serviceName} - ${duration}` };
+};
+
 const Spa = () => {
   const { translate } = useLanguage();
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile for video optimization
+  useEffect(() => {
+    const checkMobile = () => {
+      const width = window.visualViewport ? window.visualViewport.width : window.screen.width;
+      setIsMobile(width < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // State for selected variant per package (default: first variant)
   const [selectedVariantByPackage, setSelectedVariantByPackage] = useState(() => {
     const initial = {};
     SPA_PACKAGES.forEach(pkg => {
-      initial[pkg.id] = pkg.variants[0].id; // Default to first variant
+      initial[pkg.id] = pkg.variants[0].id;
     });
     return initial;
   });
@@ -107,12 +139,31 @@ const Spa = () => {
   const [selectedZoneByPackage, setSelectedZoneByPackage] = useState(() => {
     const initial = {};
     SPA_PACKAGES.forEach(pkg => {
-      initial[pkg.id] = SPA_ZONES[0].id; // Default to first zone
+      initial[pkg.id] = SPA_ZONES[0].id;
     });
     return initial;
   });
 
-  // Handle variant selection (radio button)
+  // Intersection Observer for slide-in animation (same as Massage.js)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('slide-in-visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const cards = document.querySelectorAll('.spa-ritual-card, .spa-special-card');
+    cards.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Handle variant selection
   const handleVariantSelect = (pkgId, variantId) => {
     setSelectedVariantByPackage(prev => ({
       ...prev,
@@ -120,7 +171,7 @@ const Spa = () => {
     }));
   };
 
-  // Handle SPA zone selection (dropdown)
+  // Handle SPA zone selection
   const handleZoneSelect = (pkgId, zoneId) => {
     setSelectedZoneByPackage(prev => ({
       ...prev,
@@ -176,101 +227,307 @@ const Spa = () => {
     return { totalPrice, totalMinutes, selectedVariant, selectedZone };
   };
 
+  // Old SPA packages data
+  const royalThaiRitualDetails = getFixedPackageDetails('Royal Thai Ritual', '180 min', '12,900 RSD');
+  const detoxHarmonyDetails = getFixedPackageDetails('Detox Harmony', '120 min', '9,900 RSD');
+  const aromaEscapeDetails = getFixedPackageDetails('Aroma Escape', '90 min', '7,900 RSD');
+  const thaiBalanceDetails = getFixedPackageDetails('Thai Balance', '60 min', '6,500 RSD');
+  const buaLuangRelaxDetails = getFixedPackageDetails('Bua Luang Relax Ritual', '90 min', '8,500 RSD');
+  const gentleTouchCoupleDetails = getFixedPackageDetails('Gentle Touch Couple Package', '120 min', '11,900 RSD');
+  const goldenReviveDetails = getFixedPackageDetails('Golden Revive', '90 min', '8,900 RSD');
+  const spiritOfSiamDetails = getFixedPackageDetails('Spirit of Siam', '120 min', '10,900 RSD');
+  const serenityBlossomDetails = getFixedPackageDetails('Serenity Blossom Ritual', '120 min', '9,400 RSD');
+  
+  const spaSpecialPackages = [
+    {
+      key: 'royalThaiRitual',
+      name: translate("royalThaiRitual"),
+      duration: royalThaiRitualDetails.duration,
+      price: royalThaiRitualDetails.price,
+      serviceId: royalThaiRitualDetails.serviceId,
+      description: translate("royalThaiRitualDesc"),
+      included: translate("royalThaiRitualIncluded"),
+      note: translate("royalThaiRitualNote"),
+      category: "premium",
+      popular: true
+    },
+    {
+      key: 'detoxHarmony',
+      name: translate("detoxHarmony"),
+      duration: detoxHarmonyDetails.duration,
+      price: detoxHarmonyDetails.price,
+      serviceId: detoxHarmonyDetails.serviceId,
+      description: translate("detoxHarmonyDesc"),
+      included: translate("detoxHarmonyIncluded"),
+      note: translate("detoxHarmonyNote"),
+      category: "body",
+      popular: false
+    },
+    {
+      key: 'aromaEscape',
+      name: translate("aromaEscape"),
+      duration: aromaEscapeDetails.duration,
+      price: aromaEscapeDetails.price,
+      serviceId: aromaEscapeDetails.serviceId,
+      description: translate("aromaEscapeDesc"),
+      included: translate("aromaEscapeIncluded"),
+      note: translate("aromaEscapeNote"),
+      category: "relaxation",
+      popular: true
+    },
+    {
+      key: 'thaiBalance',
+      name: translate("thaiBalance"),
+      duration: thaiBalanceDetails.duration,
+      price: thaiBalanceDetails.price,
+      serviceId: thaiBalanceDetails.serviceId,
+      description: translate("thaiBalanceDesc"),
+      included: translate("thaiBalanceIncluded"),
+      note: translate("thaiBalanceNote"),
+      category: "body",
+      popular: false
+    },
+    {
+      key: 'buaLuangRelax',
+      name: translate("buaLuangRelax"),
+      duration: buaLuangRelaxDetails.duration,
+      price: buaLuangRelaxDetails.price,
+      serviceId: buaLuangRelaxDetails.serviceId,
+      description: translate("buaLuangRelaxDesc"),
+      included: translate("buaLuangRelaxIncluded"),
+      note: translate("buaLuangRelaxNote"),
+      category: "relaxation",
+      popular: true
+    },
+    {
+      key: 'gentleTouchCouple',
+      name: translate("gentleTouchCouple"),
+      duration: gentleTouchCoupleDetails.duration,
+      price: gentleTouchCoupleDetails.price,
+      serviceId: gentleTouchCoupleDetails.serviceId,
+      description: translate("gentleTouchCoupleDesc"),
+      included: translate("gentleTouchCoupleIncluded"),
+      note: translate("gentleTouchCoupleNote"),
+      category: "premium",
+      popular: true
+    },
+    {
+      key: 'goldenRevive',
+      name: translate("goldenRevive"),
+      duration: goldenReviveDetails.duration,
+      price: goldenReviveDetails.price,
+      serviceId: goldenReviveDetails.serviceId,
+      description: translate("goldenReviveDesc"),
+      included: translate("goldenReviveIncluded"),
+      note: translate("goldenReviveNote"),
+      category: "face",
+      popular: false
+    },
+    {
+      key: 'spiritOfSiam',
+      name: translate("spiritOfSiam"),
+      duration: spiritOfSiamDetails.duration,
+      price: spiritOfSiamDetails.price,
+      serviceId: spiritOfSiamDetails.serviceId,
+      description: translate("spiritOfSiamDesc"),
+      included: translate("spiritOfSiamIncluded"),
+      note: translate("spiritOfSiamNote"),
+      category: "premium",
+      popular: true
+    },
+    {
+      key: 'serenityBlossom',
+      name: translate("serenityBlossom"),
+      duration: serenityBlossomDetails.duration,
+      price: serenityBlossomDetails.price,
+      serviceId: serenityBlossomDetails.serviceId,
+      description: translate("serenityBlossomDesc"),
+      included: translate("serenityBlossomIncluded"),
+      note: translate("serenityBlossomNote"),
+      category: "face",
+      popular: true
+    }
+  ];
+
+  const getCategoryIcon = (category) => {
+    switch(category) {
+      case "premium":
+        return <Sparkles className="w-4 h-4 text-amber-400" />;
+      case "relaxation":
+        return <Leaf className="w-4 h-4 text-green-400" />;
+      default:
+        return <Clock className="w-4 h-4 text-blue-400" />;
+    }
+  };
+
+  const getCategoryColor = (category) => {
+    switch(category) {
+      case "premium":
+        return "bg-gradient-to-r from-amber-500 to-yellow-600";
+      case "relaxation":
+        return "bg-gradient-to-r from-green-500 to-teal-600";
+      case "face":
+        return "bg-gradient-to-r from-pink-500 to-rose-600";
+      default:
+        return "bg-gradient-to-r from-blue-500 to-indigo-600";
+    }
+  };
+
   return (
-    <div className="spa-page" style={{ minHeight: '100vh', paddingTop: '80px' }}>
+    <div className="spa-page" style={{ minHeight: '100vh', background: '#0d0d0d' }}>
       <Helmet>
         <title>SPA Paketi - Bua Luang Thai Spa</title>
         <meta name="description" content="Ekskluzivni SPA tretmani sa body scrub, body wrap i aromaterapijom" />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="spa-hero" style={{
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
-        padding: '60px 20px',
-        textAlign: 'center',
-        color: '#f5f2e8'
-      }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      {/* Hero Section with Video Background */}
+      <section style={{ position: 'relative', height: '70vh', overflow: 'hidden' }}>
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0
+          }}
+        >
+          {isMobile ? (
+            <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/a5g7ogwu_SPA.mp4" type="video/mp4" />
+          ) : (
+            <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
+          )}
+        </video>
+        
+        {/* Dark Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 1
+        }} />
+
+        {/* Hero Content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          padding: '0 20px'
+        }}>
           <h1 style={{
-            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            marginBottom: '1rem',
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            marginBottom: '1.5rem',
             color: '#d4af37',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            textShadow: '2px 2px 8px rgba(0,0,0,0.7)'
           }}>
             SPA Paketi
           </h1>
           <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
             color: '#f5f2e8',
-            maxWidth: '600px',
-            margin: '0 auto'
+            maxWidth: '700px',
+            lineHeight: '1.6',
+            textShadow: '1px 1px 4px rgba(0,0,0,0.7)'
           }}>
-            Kompletna nega tela sa piling-om, zavojem i aromaterapijom
+            Kraljevski tretmani za potpunu regeneraciju tela i duha
           </p>
         </div>
       </section>
 
-      {/* SPA Packages Grid */}
+      {/* NEW SPA Ritual Packages Grid */}
       <section style={{
-        padding: '60px 20px',
-        maxWidth: '1200px',
+        padding: '80px 20px',
+        maxWidth: '1400px',
         margin: '0 auto'
       }}>
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '2rem'
+          textAlign: 'center',
+          marginBottom: '60px'
         }}>
-          {SPA_PACKAGES.map((pkg) => {
-            const { totalPrice, totalMinutes, selectedVariant, selectedZone } = calculateTotals(pkg);
+          <h2 style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            color: '#d4af37',
+            marginBottom: '1rem',
+            fontWeight: 'bold'
+          }}>
+            SPA Rituali
+          </h2>
+          <p style={{
+            color: '#c0baa8',
+            fontSize: '1.1rem',
+            maxWidth: '700px',
+            margin: '0 auto'
+          }}>
+            Kompletni tretmani sa body scrub, body wrap i aromaterapijom
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gap: '2.5rem'
+        }}>
+          {SPA_PACKAGES.map((pkg, index) => {
+            const { totalPrice, totalMinutes, selectedVariant } = calculateTotals(pkg);
             const selectedVariantId = selectedVariantByPackage[pkg.id];
             const selectedZoneId = selectedZoneByPackage[pkg.id];
 
             return (
-              <Card key={pkg.id} style={{
-                background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#d4af37';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(212, 175, 55, 0.2)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
+              <Card key={pkg.id} 
+                className="spa-ritual-card"
+                style={{
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  opacity: 0,
+                  transform: `translateX(${index % 2 === 0 ? '-50px' : '50px'})`,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#d4af37';
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}>
                 <CardContent style={{ padding: '2rem' }}>
-                  {/* Package Name */}
-                  <h3 style={{
-                    fontSize: '1.5rem',
-                    color: '#d4af37',
-                    marginBottom: '1rem',
-                    fontWeight: 'bold'
-                  }}>
-                    {pkg.name}
-                  </h3>
-
-                  {/* Duration and Price */}
+                  {/* Header: Duration and Price (DYNAMIC from selected variant) */}
                   <div style={{
                     display: 'flex',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    gap: '1rem',
-                    marginBottom: '1rem'
+                    marginBottom: '1rem',
+                    paddingBottom: '1rem',
+                    borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <Clock size={18} color="#d4af37" />
-                      <span style={{ color: '#f5f2e8', fontSize: '1rem' }}>
+                      <Clock size={20} color="#d4af37" />
+                      <span style={{ color: '#f5f2e8', fontSize: '1.1rem', fontWeight: '600' }}>
                         {totalMinutes} min
                       </span>
                     </div>
                     <div style={{
-                      fontSize: '1.25rem',
+                      fontSize: '1.4rem',
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
@@ -278,22 +535,32 @@ const Spa = () => {
                     </div>
                   </div>
 
+                  {/* Package Name */}
+                  <h3 style={{
+                    fontSize: '1.6rem',
+                    color: '#d4af37',
+                    marginBottom: '0.75rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {pkg.name}
+                  </h3>
+
                   {/* Description */}
                   <p style={{
                     color: '#c0baa8',
-                    marginBottom: '1rem',
-                    fontSize: '0.9rem',
+                    marginBottom: '1.25rem',
+                    fontSize: '0.95rem',
                     lineHeight: '1.6'
                   }}>
                     {pkg.description}
                   </p>
 
-                  {/* Included Services */}
+                  {/* Included Services (from selected variant) */}
                   <div style={{ marginBottom: '1.5rem' }}>
                     <h4 style={{
                       color: '#d4af37',
                       fontSize: '1rem',
-                      marginBottom: '0.5rem',
+                      marginBottom: '0.75rem',
                       fontWeight: '600'
                     }}>
                       Uključeno:
@@ -303,18 +570,18 @@ const Spa = () => {
                       padding: 0,
                       margin: 0
                     }}>
-                      {pkg.included.map((item, idx) => (
+                      {selectedVariant.included.map((item, idx) => (
                         <li key={idx} style={{
                           color: '#f5f2e8',
                           fontSize: '0.9rem',
-                          marginBottom: '0.25rem',
+                          marginBottom: '0.4rem',
                           paddingLeft: '1.5rem',
                           position: 'relative'
                         }}>
                           <Sparkles size={14} color="#d4af37" style={{
                             position: 'absolute',
                             left: 0,
-                            top: '2px'
+                            top: '3px'
                           }} />
                           {item}
                         </li>
@@ -326,7 +593,7 @@ const Spa = () => {
                   <div style={{ marginBottom: '1.5rem' }}>
                     <h4 style={{
                       color: '#d4af37',
-                      fontSize: '0.9rem',
+                      fontSize: '0.95rem',
                       marginBottom: '0.75rem',
                       fontWeight: '600'
                     }}>
@@ -336,11 +603,15 @@ const Spa = () => {
                       <label key={variant.id} style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                        marginBottom: '0.5rem',
+                        gap: '0.6rem',
+                        marginBottom: '0.6rem',
                         cursor: 'pointer',
                         color: '#f5f2e8',
-                        fontSize: '0.9rem'
+                        fontSize: '0.95rem',
+                        padding: '0.5rem',
+                        borderRadius: '6px',
+                        background: selectedVariantId === variant.id ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        transition: 'background 0.3s ease'
                       }}>
                         <input
                           type="radio"
@@ -350,13 +621,15 @@ const Spa = () => {
                           onChange={() => handleVariantSelect(pkg.id, variant.id)}
                           style={{
                             accentColor: '#d4af37',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            width: '18px',
+                            height: '18px'
                           }}
                         />
                         <span>
                           {variant.label}
                           {variant.id.includes('WITH_FACE') && (
-                            <span style={{ color: '#d4af37', fontSize: '0.8rem', marginLeft: '0.5rem' }}>
+                            <span style={{ color: '#d4af37', fontSize: '0.85rem', marginLeft: '0.5rem' }}>
                               (+30 min / +{(variant.basePrice - pkg.variants[0].basePrice).toLocaleString('sr-RS')} RSD)
                             </span>
                           )}
@@ -370,8 +643,8 @@ const Spa = () => {
                     <label htmlFor={`zone-${pkg.id}`} style={{
                       display: 'block',
                       color: '#d4af37',
-                      fontSize: '0.9rem',
-                      marginBottom: '0.5rem',
+                      fontSize: '0.95rem',
+                      marginBottom: '0.6rem',
                       fontWeight: '600'
                     }}>
                       Izaberite SPA zonu:
@@ -382,12 +655,12 @@ const Spa = () => {
                       onChange={(e) => handleZoneSelect(pkg.id, e.target.value)}
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
+                        padding: '0.85rem',
                         background: 'rgba(212, 175, 55, 0.1)',
                         border: '1px solid rgba(212, 175, 55, 0.3)',
                         borderRadius: '8px',
                         color: '#f5f2e8',
-                        fontSize: '0.9rem',
+                        fontSize: '0.95rem',
                         cursor: 'pointer',
                         outline: 'none'
                       }}
@@ -411,11 +684,12 @@ const Spa = () => {
                     background: 'rgba(212, 175, 55, 0.1)',
                     padding: '1rem',
                     borderRadius: '8px',
-                    marginBottom: '1.5rem'
+                    marginBottom: '1.5rem',
+                    border: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <p style={{
                       color: '#f5f2e8',
-                      fontSize: '0.9rem',
+                      fontSize: '0.95rem',
                       margin: 0,
                       lineHeight: '1.6'
                     }}>
@@ -427,25 +701,21 @@ const Spa = () => {
                   {/* Book Button */}
                   <button
                     onClick={() => handleSpaBookClick(pkg)}
-                    disabled={!selectedZoneId}
                     style={{
                       width: '100%',
-                      padding: '1rem',
-                      background: selectedZoneId ? 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)' : '#666',
+                      padding: '1.1rem',
+                      background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
                       border: 'none',
-                      borderRadius: '8px',
+                      borderRadius: '10px',
                       color: '#1a1a1a',
-                      fontSize: '1rem',
+                      fontSize: '1.05rem',
                       fontWeight: 'bold',
-                      cursor: selectedZoneId ? 'pointer' : 'not-allowed',
-                      transition: 'all 0.3s ease',
-                      opacity: selectedZoneId ? 1 : 0.5
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
                     }}
                     onMouseEnter={(e) => {
-                      if (selectedZoneId) {
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 4px 12px rgba(212, 175, 55, 0.4)';
-                      }
+                      e.target.style.transform = 'translateY(-3px)';
+                      e.target.style.boxShadow = '0 6px 16px rgba(212, 175, 55, 0.5)';
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = 'translateY(0)';
@@ -460,6 +730,201 @@ const Spa = () => {
           })}
         </div>
       </section>
+
+      {/* OLD "SPA Paketi za posebne prilike" Section */}
+      <section style={{
+        padding: '80px 20px',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        borderTop: '1px solid rgba(212, 175, 55, 0.2)'
+      }}>
+        <div style={{
+          textAlign: 'center',
+          marginBottom: '60px'
+        }}>
+          <h2 style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            color: '#d4af37',
+            marginBottom: '1rem',
+            fontWeight: 'bold'
+          }}>
+            {translate("spaPackagesTitle")}
+          </h2>
+          <p style={{
+            color: '#c0baa8',
+            fontSize: '1.1rem',
+            maxWidth: '700px',
+            margin: '0 auto'
+          }}>
+            {translate("spaPackagesSubtitle")}
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gap: '2rem'
+        }}>
+          {spaSpecialPackages.map((service, index) => (
+            <Card key={service.key}
+              className="spa-special-card"
+              style={{
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                opacity: 0,
+                transform: `translateX(${index % 2 === 0 ? '-50px' : '50px'})`,
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#d4af37';
+                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(212, 175, 55, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}>
+              {service.popular && (
+                <Badge style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  zIndex: 10,
+                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  color: '#1a1a1a',
+                  padding: '0.5rem 1rem',
+                  fontSize: '0.8rem',
+                  fontWeight: 'bold'
+                }}>
+                  <Sparkles className="w-3 h-3 mr-1" style={{ display: 'inline' }} />
+                  {translate("mostPopular")}
+                </Badge>
+              )}
+              
+              <CardHeader>
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <Badge className={`${getCategoryColor(service.category)}`} style={{
+                    padding: '0.4rem 0.8rem',
+                    fontSize: '0.75rem',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.3rem'
+                  }}>
+                    {getCategoryIcon(service.category)}
+                    {service.category === "premium" && "Premium"}
+                    {service.category === "relaxation" && "Relaksacija"}
+                    {service.category === "face" && "Lice"}
+                    {service.category === "body" && "Telo"}
+                  </Badge>
+                </div>
+                
+                <CardTitle style={{
+                  fontSize: '1.5rem',
+                  color: '#d4af37',
+                  marginBottom: '1rem'
+                }}>
+                  {service.name}
+                </CardTitle>
+                
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Clock className="w-4 h-4" color="#d4af37" />
+                    <span style={{ color: '#f5f2e8' }}>{service.duration}</span>
+                  </div>
+                  <div style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#d4af37' }}>
+                    {service.price}
+                  </div>
+                </div>
+              </CardHeader>
+              
+              <CardContent>
+                <p style={{
+                  color: '#c0baa8',
+                  marginBottom: '1rem',
+                  fontSize: '0.95rem',
+                  lineHeight: '1.6'
+                }}>
+                  {service.description}
+                </p>
+                
+                {service.included && (
+                  <div style={{ marginBottom: '1rem' }}>
+                    <h4 style={{
+                      color: '#d4af37',
+                      fontSize: '0.95rem',
+                      marginBottom: '0.5rem',
+                      fontWeight: '600'
+                    }}>
+                      Uključeno:
+                    </h4>
+                    <p style={{
+                      fontSize: '0.9rem',
+                      color: '#f5f2e8',
+                      lineHeight: '1.6'
+                    }}>
+                      {service.included}
+                    </p>
+                  </div>
+                )}
+                
+                {service.note && (
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#aaa',
+                    fontStyle: 'italic',
+                    marginTop: '0.75rem',
+                    marginBottom: '1rem',
+                    padding: '0.75rem',
+                    borderLeft: '3px solid #d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.05)',
+                    borderRadius: '4px'
+                  }}>
+                    {service.note}
+                  </p>
+                )}
+                
+                <Button asChild style={{
+                  width: '100%',
+                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  color: '#1a1a1a',
+                  fontWeight: 'bold',
+                  padding: '1.1rem',
+                  fontSize: '1rem',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}>
+                  <Link to={`/contact?service=${encodeURIComponent(service.serviceId || service.name)}`}>
+                    {translate("bookAppointment")}
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* CSS for slide-in animation */}
+      <style>{`
+        .spa-ritual-card, .spa-special-card {
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .spa-ritual-card.slide-in-visible,
+        .spa-special-card.slide-in-visible {
+          opacity: 1 !important;
+          transform: translateX(0) !important;
+        }
+      `}</style>
     </div>
   );
 };
