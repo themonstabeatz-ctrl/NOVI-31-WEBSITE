@@ -1066,18 +1066,8 @@ const Spa = () => {
         </div>
       </section>
 
-      {/* CSS for slide-in animation */}
+      {/* CSS for luxury price button shine effect */}
       <style>{`
-        .spa-ritual-card, .spa-special-card {
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .spa-ritual-card.slide-in-visible,
-        .spa-special-card.slide-in-visible {
-          opacity: 1 !important;
-          transform: translateX(0) !important;
-        }
-
         .luxury-price-button {
           position: relative;
           overflow: hidden;
