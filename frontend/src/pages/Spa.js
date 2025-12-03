@@ -562,7 +562,8 @@ const Spa = () => {
       <section style={{
         padding: '80px 20px',
         maxWidth: '1400px',
-        margin: '0 auto'
+        margin: '0 auto',
+        background: 'transparent'
       }}>
         <div style={{
           textAlign: 'center',
