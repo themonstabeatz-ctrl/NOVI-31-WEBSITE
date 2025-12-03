@@ -1100,8 +1100,20 @@ const Spa = () => {
 
       </div> {/* End spa-parallax-content */}
 
-      {/* CSS for luxury price button shine effect */}
+      {/* CSS for luxury price button shine effect and page background */}
       <style>{`
+        body {
+          background: transparent !important;
+        }
+        
+        .spa-page {
+          background: transparent !important;
+        }
+        
+        .spa-parallax-content {
+          background: transparent !important;
+        }
+        
         .luxury-price-button {
           position: relative;
           overflow: hidden;
