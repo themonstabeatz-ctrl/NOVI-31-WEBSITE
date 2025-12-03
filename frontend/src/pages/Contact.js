@@ -180,6 +180,56 @@ const Contact = () => {
     const source = searchParams.get('source'); // 'voucher', 'massage', 'spa', or null
     const couplesData = searchParams.get('couplesData');
     
+    // SPA BOOKING – URL format:
+    // /contact?source=spa&spaPackageId=...&spaPackageName=...&variantId=...&variantLabel=...&spaZoneId=...&spaZoneLabel=...&totalMinutes=...&totalPrice=...
+    if (source === "spa") {
+      const spaPackageId   = searchParams.get("spaPackageId");
+      const spaPackageName = searchParams.get("spaPackageName");
+      const variantId      = searchParams.get("variantId");
+      const variantLabel   = searchParams.get("variantLabel");
+      const spaZoneId      = searchParams.get("spaZoneId");
+      const spaZoneLabel   = searchParams.get("spaZoneLabel");
+      const totalMinutes   = searchParams.get("totalMinutes");
+      const totalPriceRaw  = searchParams.get("totalPrice");
+
+      // Format price for sr-RS
+      const totalPriceNumber = Number(totalPriceRaw ?? 0);
+      const totalPriceFormatted = totalPriceNumber.toLocaleString("sr-RS");
+
+      console.log('🔍 SPA booking detected:', { spaPackageId, spaPackageName, variantId, variantLabel, spaZoneId, spaZoneLabel, totalMinutes, totalPriceNumber });
+
+      // 1) Save all SPA metadata (for handleSubmit)
+      setSpaBookingMeta({
+        spaPackageId,
+        spaPackageName,
+        variantId,
+        variantLabel,
+        spaZoneId,
+        spaZoneLabel,
+        totalMinutes: Number(totalMinutes),
+        totalPrice: totalPriceNumber
+      });
+
+      // 2) Pre-populate form message and serviceName
+      const message = `
+SPA paket: ${spaPackageName}
+Varijanta: ${variantLabel}
+SPA zona: ${spaZoneLabel}
+Ukupno trajanje: ${totalMinutes} min
+Ukupna cena: ${totalPriceFormatted} RSD
+      `.trim();
+
+      setFormData(prev => ({
+        ...prev,
+        serviceName: `SPA: ${spaPackageName} (${variantLabel})`,
+        message: message,
+        source: "spa"
+      }));
+
+      console.log('✅ SPA form pre-populated');
+      return; // Exit early, don't process regular service logic
+    }
+    
     if (service) {
       // Translate the service name
       const translatedService = translateMassageName(service);
