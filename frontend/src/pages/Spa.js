@@ -557,6 +557,9 @@ const Spa = () => {
         </div>
       </section>
 
+      {/* Parallax Content Section */}
+      <div className="spa-parallax-content">
+
       {/* NEW SPA Ritual Packages Grid */}
       <section style={{
         padding: '80px 20px',
