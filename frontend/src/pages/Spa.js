@@ -144,6 +144,32 @@ const Spa = () => {
     return initial;
   });
 
+  // Parallax effect for content sections (IDENTICAL to Massage.js)
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.scrollY;
+      const spaHeroSection = document.querySelector('.spa-hero-fixed');
+      
+      if (!spaHeroSection) return;
+      
+      const heroHeight = spaHeroSection.offsetHeight;
+      
+      // Apply parallax to sections after hero
+      if (scrolled > heroHeight * 0.3) {
+        const parallaxContent = document.querySelector('.spa-parallax-content');
+        if (parallaxContent) {
+          const speed = 0.5;
+          const yPos = -(scrolled - heroHeight * 0.3) * speed;
+          parallaxContent.style.transform = `translateY(${yPos}px)`;
+        }
+      }
+    };
+
+    const throttledHandleParallaxScroll = throttle(handleParallaxScroll, 16);
+    window.addEventListener('scroll', throttledHandleParallaxScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleParallaxScroll);
+  }, []);
+
   // Intersection Observer for slide-in animation (IDENTICAL to Massage.js)
   useEffect(() => {
     const cards = document.querySelectorAll('.spa-ritual-card, .spa-special-card');
