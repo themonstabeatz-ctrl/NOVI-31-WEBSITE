@@ -473,45 +473,46 @@ const Spa = () => {
   };
 
   return (
-    <div className="spa-page" style={{ minHeight: '100vh', background: '#0d0d0d' }}>
+    <div className="spa-page" style={{ minHeight: '100vh', background: 'transparent' }}>
       <Helmet>
         <title>SPA Paketi - Bua Luang Thai Spa</title>
         <meta name="description" content="Ekskluzivni SPA tretmani sa body scrub, body wrap i aromaterapijom" />
       </Helmet>
 
-      {/* Hero Section with FIXED Video Background */}
+      {/* FIXED Video Background - Full Screen from Top */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1,
+        overflow: 'hidden'
+      }}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        >
+          {isMobile ? (
+            <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/a5g7ogwu_SPA.mp4" type="video/mp4" />
+          ) : (
+            <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
+          )}
+        </video>
+      </div>
+
+      {/* Hero Section */}
       <section className="spa-hero-fixed" style={{ position: 'relative', height: '70vh', overflow: 'hidden' }}>
-        {/* FIXED Video Background - covers entire screen */}
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: -1,
-          overflow: 'hidden'
-        }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover'
-            }}
-          >
-            {isMobile ? (
-              <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/a5g7ogwu_SPA.mp4" type="video/mp4" />
-            ) : (
-              <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
-            )}
-          </video>
-        </div>
         
         {/* Dark Overlay on hero section only */}
         <div style={{
