@@ -1101,6 +1101,8 @@ const Spa = () => {
         </div>
       </section>
 
+      </div> {/* End spa-parallax-content */}
+
       {/* CSS for luxury price button shine effect */}
       <style>{`
         .luxury-price-button {
