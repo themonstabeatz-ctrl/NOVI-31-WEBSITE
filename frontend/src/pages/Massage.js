@@ -72,8 +72,13 @@ const Massage = () => {
     const fetchAllServices = async () => {
       try {
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        console.log('🔍 Loading services from:', `${backendUrl}/api/services/single/list`);
+        
         const singleResponse = await fetch(`${backendUrl}/api/services/single/list`);
+        console.log('🔍 /api/services/single/list status:', singleResponse.status);
+        
         const singleServices = await singleResponse.json();
+        console.log('✅ Services loaded:', singleServices.length, 'services');
         
         // Group services by base name (remove " - XX min" for grouping DISPLAY only)
         const grouped = {};
@@ -113,7 +118,8 @@ const Massage = () => {
           }
         });
         
-        console.log('✅ 100% DYNAMIC services loaded from API:', grouped);
+        console.log('✅ 100% DYNAMIC services grouped:', Object.keys(grouped).length, 'unique services');
+        console.log('📋 Service keys:', Object.keys(grouped));
         setApiServices(grouped);
         setServiceDiscounts(discountMap);
         
@@ -122,6 +128,7 @@ const Massage = () => {
         const couplesServices = await couplesResponse.json();
         const couplesDiscount = couplesServices[0]?.discount_percentage || 0;
         setCouplesDiscountPercent(couplesDiscount);
+        console.log('✅ Couples discount:', couplesDiscount, '%');
         
       } catch (error) {
         console.error('❌ Error fetching services from API:', error);
