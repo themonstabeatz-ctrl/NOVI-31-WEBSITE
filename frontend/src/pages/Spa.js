@@ -410,10 +410,10 @@ const Spa = () => {
     const selectedVariantId = selectedVariantByPackage[pkg.id] || pkg.variants[0].id;
     const selectedVariant = pkg.variants.find(v => v.id === selectedVariantId);
 
-    const selectedZoneId = selectedZoneByPackage[pkg.id] || SPA_ZONES[0].id;
-    const selectedZone = SPA_ZONES.find(z => z.id === selectedZoneId);
+    const selectedZoneId = selectedZoneByPackage[pkg.id] || pkg.spaZones[0].id;
+    const selectedZone = pkg.spaZones.find(z => z.id === selectedZoneId);
 
-    const basePrice = selectedVariant.basePrice;
+    const basePrice = selectedVariant.totalPrice;
     const zoneExtra = selectedZone.extraPrice;
     const totalPrice = basePrice + zoneExtra;
 
