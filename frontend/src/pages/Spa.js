@@ -470,40 +470,58 @@ const Spa = () => {
 
   // Calculate totals for display
   const calculateTotals = (pkg) => {
+    const selectedZones = selectedZonesByPackage[pkg.id];
+    
     if (pkg.isZoneOnly) {
-      // Zone-only package (no ritual/variant)
-      const selectedZoneData = selectedZoneByPackage[pkg.id];
-      const zone = pkg.zones.find(z => z.id === selectedZoneData.zoneId);
-      const option = zone.options.find(o => o.id === selectedZoneData.optionId);
+      // Zone-only package - sum ALL selected zones
+      let totalMinutes = 0;
+      let totalPrice = 0;
+      
+      pkg.zones.forEach(zone => {
+        const selectedOptionId = selectedZones[zone.id];
+        if (selectedOptionId) {  // If not null (not "Bez")
+          const option = zone.options.find(o => o.id === selectedOptionId);
+          if (option) {
+            totalMinutes += option.totalMinutes;
+            totalPrice += option.totalPrice;
+          }
+        }
+      });
       
       return {
-        totalPrice: option.totalPrice,
-        totalMinutes: option.totalMinutes,
-        selectedZone: zone,
-        selectedOption: option,
-        selectedVariant: null
+        totalPrice,
+        totalMinutes,
+        selectedVariant: null,
+        selectedZones
       };
     } else {
       // Regular ritual package
       const selectedVariantId = selectedVariantByPackage[pkg.id] || pkg.variants[0].id;
       const selectedVariant = pkg.variants.find(v => v.id === selectedVariantId);
-
-      const selectedZoneData = selectedZoneByPackage[pkg.id];
-      const zone = pkg.spaZones.find(z => z.id === selectedZoneData.zoneId);
-      const option = zone.options.find(o => o.id === selectedZoneData.optionId);
-
-      const basePrice = selectedVariant.totalPrice;
-      const zoneExtra = option.extraPrice;
-      const totalPrice = basePrice + zoneExtra;
-
-      const totalMinutes = selectedVariant.totalMinutes + option.extraMinutes;
-
-      return { 
-        totalPrice, 
-        totalMinutes, 
-        selectedVariant, 
-        selectedZone: zone,
-        selectedOption: option
+      
+      let baseMinutes = selectedVariant.totalMinutes;
+      let basePrice = selectedVariant.totalPrice;
+      
+      // Add ALL selected zones
+      let zoneMinutes = 0;
+      let zonePrice = 0;
+      
+      pkg.spaZones.forEach(zone => {
+        const selectedOptionId = selectedZones[zone.id];
+        if (selectedOptionId) {  // If not null (not "Bez")
+          const option = zone.options.find(o => o.id === selectedOptionId);
+          if (option) {
+            zoneMinutes += option.extraMinutes;
+            zonePrice += option.extraPrice;
+          }
+        }
+      });
+      
+      return {
+        totalPrice: basePrice + zonePrice,
+        totalMinutes: baseMinutes + zoneMinutes,
+        selectedVariant,
+        selectedZones
       };
     }
   };
