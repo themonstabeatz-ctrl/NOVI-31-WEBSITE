@@ -15,93 +15,189 @@ const SPA_ZONES = [
   { id: "JACUZZI", label: "Jacuzzi",        extraMinutes: 30, extraPrice: 0 }
 ];
 
-// SPA PACKAGES - Exact minutes and prices from documentation
+// SPA PACKAGES - Complete 6 packages (3 existing + 3 new)
 const SPA_PACKAGES = [
+  // --- EXISTING 3 PACKAGES ---
   {
     id: "SPA1",
     name: "Silky Body Ritual",
-    description: "Kompletna nega tela sa piling-om, zavojem i aromaterapijom",
+    durationLabel: "120 min",
+    baseDuration: 120,
+    basePrice: 7800,
+    description: "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.",
+    included: [
+      "Body scrub – 30 min",
+      "Body wrap – 30 min",
+      "Aroma masaža celog tela – 60 min"
+    ],
     variants: [
       {
         id: "SPA1_BASE",
         label: "Bez masaže lica",
         totalMinutes: 120,
-        basePrice: 7800,
-        included: [
-          "Body scrub – 30 min",
-          "Body wrap – 30 min",
-          "Aroma masaža – 60 min"
-        ]
+        totalPrice: 7800
       },
       {
         id: "SPA1_WITH_FACE",
-        label: "Sa masažom lica",
+        label: "Sa masažom lica (tokom body wrap-a)",
         totalMinutes: 150,
-        basePrice: 12200,
-        included: [
-          "Body scrub – 30 min",
-          "Body wrap + masaža lica – 60 min",
-          "Aroma masaža – 60 min"
-        ]
+        totalPrice: 12200
       }
+    ],
+    showVariantSelector: true,
+    spaZones: [
+      { id: "SAUNA", label: "Sauna (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "STEAM", label: "Parno kupatilo (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "JACUZZI", label: "Jacuzzi (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 }
     ]
   },
   {
     id: "SPA2",
     name: "Deep Renewal Ritual",
-    description: "Intenzivan tretman za dubinsku regeneraciju kože",
+    durationLabel: "180 min",
+    baseDuration: 180,
+    basePrice: 10400,
+    description: "Intenzivan tretman za dubinsku regeneraciju kože i opuštanje.",
+    included: [
+      "Body scrub – 60 min",
+      "Body wrap – 60 min",
+      "Aroma masaža celog tela – 60 min"
+    ],
     variants: [
       {
         id: "SPA2_BASE",
         label: "Bez masaže lica",
         totalMinutes: 180,
-        basePrice: 10400,
-        included: [
-          "Body scrub – 60 min",
-          "Body wrap – 60 min",
-          "Aroma masaža – 60 min"
-        ]
+        totalPrice: 10400
       },
       {
         id: "SPA2_WITH_FACE",
-        label: "Sa masažom lica",
+        label: "Sa masažom lica (tokom body wrap-a)",
         totalMinutes: 180,
-        basePrice: 13400,
-        included: [
-          "Body scrub – 60 min",
-          "Body wrap + masaža lica – 60 min",
-          "Aroma masaža – 60 min"
-        ]
+        totalPrice: 13400
       }
+    ],
+    showVariantSelector: true,
+    spaZones: [
+      { id: "SAUNA", label: "Sauna (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "STEAM", label: "Parno kupatilo (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "JACUZZI", label: "Jacuzzi (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 }
     ]
   },
   {
     id: "SPA3",
     name: "Royal Glow Ritual",
-    description: "Kraljevski tretman za savršenu kožu i opuštanje",
+    durationLabel: "210 min",
+    baseDuration: 210,
+    basePrice: 11600,
+    description: "Kraljevski tretman za savršenu kožu i potpuno opuštanje.",
+    included: [
+      "Body scrub – 60 min",
+      "Body wrap – 60 min",
+      "Aroma masaža celog tela – 90 min"
+    ],
     variants: [
       {
         id: "SPA3_BASE",
         label: "Bez masaže lica",
         totalMinutes: 210,
-        basePrice: 11600,
-        included: [
-          "Body scrub – 60 min",
-          "Body wrap – 60 min",
-          "Aroma masaža – 90 min"
-        ]
+        totalPrice: 11600
       },
       {
         id: "SPA3_WITH_FACE",
-        label: "Sa masažom lica",
+        label: "Sa masažom lica (tokom body wrap-a)",
         totalMinutes: 210,
-        basePrice: 14600,
-        included: [
-          "Body scrub – 60 min",
-          "Body wrap + masaža lica – 60 min",
-          "Aroma masaža – 90 min"
-        ]
+        totalPrice: 14600
       }
+    ],
+    showVariantSelector: true,
+    spaZones: [
+      { id: "SAUNA", label: "Sauna (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "STEAM", label: "Parno kupatilo (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "JACUZZI", label: "Jacuzzi (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 }
+    ]
+  },
+  
+  // --- NEW 3 PACKAGES ---
+  {
+    id: "SPA4",
+    name: "Silky Face Ritual",
+    durationLabel: "150 min",
+    baseDuration: 150,
+    basePrice: 12200,
+    description: "Ritual za svilenkastu kožu i blistavo lice – piling, obloga, lice i aroma masaža.",
+    included: [
+      "Body scrub – 30 min",
+      "Body wrap + masaža lica – 60 min",
+      "Aroma masaža celog tela – 60 min"
+    ],
+    variants: [
+      {
+        id: "SPA4_MAIN",
+        label: "Kompletan ritual (telo + lice)",
+        totalMinutes: 150,
+        totalPrice: 12200
+      }
+    ],
+    showVariantSelector: false,
+    spaZones: [
+      { id: "SAUNA", label: "Sauna (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "STEAM", label: "Parno kupatilo (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "JACUZZI", label: "Jacuzzi (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 }
+    ]
+  },
+  {
+    id: "SPA5",
+    name: "Deep Renewal Face Ritual",
+    durationLabel: "180 min",
+    baseDuration: 180,
+    basePrice: 13400,
+    description: "Dubinska regeneracija tela i lica – intenzivna nega za potpuni reset.",
+    included: [
+      "Body scrub – 60 min",
+      "Body wrap + masaža lica – 60 min",
+      "Aroma masaža celog tela – 60 min"
+    ],
+    variants: [
+      {
+        id: "SPA5_MAIN",
+        label: "Kompletan ritual (telo + lice)",
+        totalMinutes: 180,
+        totalPrice: 13400
+      }
+    ],
+    showVariantSelector: false,
+    spaZones: [
+      { id: "SAUNA", label: "Sauna (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "STEAM", label: "Parno kupatilo (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "JACUZZI", label: "Jacuzzi (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 }
+    ]
+  },
+  {
+    id: "SPA6",
+    name: "Royal Glow Face Ritual",
+    durationLabel: "210 min",
+    baseDuration: 210,
+    basePrice: 14600,
+    description: "Najluksuzniji tretman – kraljevska nega tela i lica za poseban sjaj.",
+    included: [
+      "Body scrub – 60 min",
+      "Body wrap + masaža lica – 60 min",
+      "Aroma masaža celog tela – 90 min"
+    ],
+    variants: [
+      {
+        id: "SPA6_MAIN",
+        label: "Kompletan ritual (telo + lice)",
+        totalMinutes: 210,
+        totalPrice: 14600
+      }
+    ],
+    showVariantSelector: false,
+    spaZones: [
+      { id: "SAUNA", label: "Sauna (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "STEAM", label: "Parno kupatilo (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 },
+      { id: "JACUZZI", label: "Jacuzzi (+30 min, +0 RSD)", extraMinutes: 30, extraPrice: 0 }
     ]
   }
 ];
