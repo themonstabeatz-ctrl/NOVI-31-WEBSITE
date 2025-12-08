@@ -231,6 +231,61 @@ const Spa = () => {
     return initial;
   });
 
+  // Scroll fade-out effect for hero (IDENTICAL to Massage.js)
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const spaHeroSection = document.querySelector('.spa-hero-fixed');
+      const spaHeroLogo = document.querySelector('.spa-hero-logo');
+      const spaHeroTitle = document.querySelector('.spa-hero-title');
+      const spaHeroSubtitle = document.querySelector('.spa-hero-subtitle');
+      
+      if (!spaHeroSection || !spaHeroLogo) return;
+      
+      const heroHeight = spaHeroSection.offsetHeight;
+      const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
+      
+      if (scrollPercent > 0.05) {
+        // Scroll down - transform logo with fade and blur
+        const opacity = Math.max(1 - (scrollPercent - 0.05) * 3, 0);
+        const scale = Math.max(1 - (scrollPercent - 0.05) * 1.5, 0.2);
+        
+        spaHeroLogo.style.opacity = opacity;
+        spaHeroLogo.style.transform = `scale(${scale})`;
+        spaHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+        
+        if (spaHeroTitle) {
+          spaHeroTitle.style.opacity = opacity;
+          spaHeroTitle.style.transform = `translateY(-${(scrollPercent - 0.05) * 80}px)`;
+        }
+        
+        if (spaHeroSubtitle) {
+          spaHeroSubtitle.style.opacity = opacity;
+          spaHeroSubtitle.style.transform = `translateY(-${(scrollPercent - 0.05) * 60}px)`;
+        }
+      } else {
+        // Reset to default when at top
+        spaHeroLogo.style.opacity = '1';
+        spaHeroLogo.style.transform = 'scale(1)';
+        spaHeroLogo.style.filter = 'none';
+        
+        if (spaHeroTitle) {
+          spaHeroTitle.style.opacity = '1';
+          spaHeroTitle.style.transform = 'translateY(0)';
+        }
+        
+        if (spaHeroSubtitle) {
+          spaHeroSubtitle.style.opacity = '1';
+          spaHeroSubtitle.style.transform = 'translateY(0)';
+        }
+      }
+    };
+
+    const throttledHandleScroll = throttle(handleScroll, 16);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, []);
+
   // Parallax effect for content sections (IDENTICAL to Massage.js)
   useEffect(() => {
     const handleParallaxScroll = () => {
