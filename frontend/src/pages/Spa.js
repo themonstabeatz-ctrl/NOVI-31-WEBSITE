@@ -897,9 +897,9 @@ const Spa = () => {
                         e.target.style.borderColor = 'rgba(212, 175, 55, 0.3)';
                       }}
                     >
-                      {SPA_ZONES.map((zone) => (
+                      {pkg.spaZones.map((zone) => (
                         <option key={zone.id} value={zone.id} style={{ background: '#1a1a1a' }}>
-                          {zone.label} (+{zone.extraMinutes} min, +{zone.extraPrice} RSD)
+                          {zone.label}
                         </option>
                       ))}
                     </select>
