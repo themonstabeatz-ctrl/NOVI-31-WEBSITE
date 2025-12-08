@@ -635,18 +635,26 @@ const Spa = () => {
             marginBottom: '1.5rem',
             color: '#d4af37',
             fontWeight: 'bold',
-            textShadow: '2px 2px 8px rgba(0,0,0,0.7)'
+            textShadow: '2px 2px 8px rgba(0,0,0,0.7)',
+            letterSpacing: '0.02em'
           }}>
-            SPA Paketi
+            Luksuzni SPA Rituali
           </h1>
+          <div style={{
+            width: '80px',
+            height: '2px',
+            background: 'linear-gradient(90deg, transparent, #d4af37, transparent)',
+            margin: '1rem auto 1.5rem'
+          }} />
           <p style={{
-            fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
-            color: '#f5f2e8',
-            maxWidth: '700px',
-            lineHeight: '1.6',
-            textShadow: '1px 1px 4px rgba(0,0,0,0.7)'
+            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+            maxWidth: '800px',
+            color: '#e8e6df',
+            lineHeight: '1.7',
+            textShadow: '1px 1px 4px rgba(0,0,0,0.7)',
+            fontWeight: '300'
           }}>
-            Kraljevski tretmani za potpunu regeneraciju tela i duha
+            Kombinacija pilinga, obloga, masaža i SPA zone za potpuno opuštanje tela i uma
           </p>
         </div>
       </section>
