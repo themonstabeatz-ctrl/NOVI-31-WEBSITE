@@ -777,14 +777,14 @@ const Spa = () => {
                     paddingBottom: '0.5rem',
                     borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Clock size={18} color="#d4af37" />
-                      <span style={{ color: '#f5f2e8', fontSize: '1rem', fontWeight: '600' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                      <Clock size={16} color="#d4af37" />
+                      <span style={{ color: '#f5f2e8', fontSize: '0.9rem', fontWeight: '600' }}>
                         {totalMinutes} min
                       </span>
                     </div>
                     <div style={{
-                      fontSize: '1.3rem',
+                      fontSize: '1.1rem',
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
@@ -794,9 +794,9 @@ const Spa = () => {
 
                   {/* Package Name */}
                   <h3 style={{
-                    fontSize: '1.4rem',
+                    fontSize: '1.2rem',
                     color: '#d4af37',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.3rem',
                     fontWeight: 'bold'
                   }}>
                     {pkg.name}
@@ -805,19 +805,19 @@ const Spa = () => {
                   {/* Description */}
                   <p style={{
                     color: '#c0baa8',
-                    marginBottom: '0.9rem',
-                    fontSize: '0.9rem',
-                    lineHeight: '1.5'
+                    marginBottom: '0.6rem',
+                    fontSize: '0.8rem',
+                    lineHeight: '1.4'
                   }}>
                     {pkg.description}
                   </p>
 
                   {/* Included Services */}
-                  <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ marginBottom: '0.6rem' }}>
                     <h4 style={{
                       color: '#d4af37',
-                      fontSize: '0.9rem',
-                      marginBottom: '0.5rem',
+                      fontSize: '0.8rem',
+                      marginBottom: '0.3rem',
                       fontWeight: '600'
                     }}>
                       Uključeno:
@@ -830,12 +830,12 @@ const Spa = () => {
                       {pkg.included.map((item, idx) => (
                         <li key={idx} style={{
                           color: '#f5f2e8',
-                          fontSize: '0.85rem',
-                          marginBottom: '0.3rem',
-                          paddingLeft: '1.3rem',
+                          fontSize: '0.75rem',
+                          marginBottom: '0.2rem',
+                          paddingLeft: '1.1rem',
                           position: 'relative'
                         }}>
-                          <Sparkles size={12} color="#d4af37" style={{
+                          <Sparkles size={10} color="#d4af37" style={{
                             position: 'absolute',
                             left: 0,
                             top: '2px'
@@ -847,11 +847,11 @@ const Spa = () => {
                   </div>
 
                   {/* Variant Selection (Radio Buttons) */}
-                  <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ marginBottom: '0.6rem' }}>
                     <h4 style={{
                       color: '#d4af37',
-                      fontSize: '0.9rem',
-                      marginBottom: '0.5rem',
+                      fontSize: '0.8rem',
+                      marginBottom: '0.3rem',
                       fontWeight: '600'
                     }}>
                       Izaberite varijantu:
