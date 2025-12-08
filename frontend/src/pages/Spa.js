@@ -860,12 +860,12 @@ const Spa = () => {
                       <label key={variant.id} style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                        marginBottom: '0.4rem',
+                        gap: '0.4rem',
+                        marginBottom: '0.3rem',
                         cursor: 'pointer',
                         color: '#f5f2e8',
-                        fontSize: '0.9rem',
-                        padding: '0.4rem',
+                        fontSize: '0.8rem',
+                        padding: '0.3rem',
                         borderRadius: '4px',
                         background: selectedVariantId === variant.id ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                         transition: 'background 0.3s ease'
@@ -879,14 +879,14 @@ const Spa = () => {
                           style={{
                             accentColor: '#d4af37',
                             cursor: 'pointer',
-                            width: '16px',
-                            height: '16px'
+                            width: '14px',
+                            height: '14px'
                           }}
                         />
                         <span>
                           {variant.label}
                           {variant.totalPrice > pkg.variants[0].totalPrice && (
-                            <span style={{ color: '#d4af37', fontSize: '0.8rem', marginLeft: '0.4rem' }}>
+                            <span style={{ color: '#d4af37', fontSize: '0.75rem', marginLeft: '0.3rem' }}>
                               (+{(variant.totalPrice - pkg.variants[0].totalPrice).toLocaleString('sr-RS')} RSD)
                             </span>
                           )}
@@ -895,49 +895,97 @@ const Spa = () => {
                     ))}
                   </div>
 
-                  {/* SPA Zone Radio Buttons */}
-                  <div style={{ marginBottom: '1rem' }}>
+                  {/* SPA ZONA - Premium Boxed Section */}
+                  <div style={{
+                    marginBottom: '0.6rem',
+                    padding: '0.7rem',
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    border: '1px solid rgba(212, 175, 55, 0.4)',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 8px rgba(212, 175, 55, 0.1)'
+                  }}>
+                    <h4 style={{
+                      color: '#d4af37',
+                      fontSize: '0.85rem',
+                      marginBottom: '0.5rem',
+                      fontWeight: 'bold',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      SPA ZONA
+                    </h4>
+                    
                     {pkg.spaZones.map((zone) => (
-                      <div key={zone.id} style={{ marginBottom: '0.9rem' }}>
-                        <h4 style={{
+                      <div key={zone.id} style={{ marginBottom: '0.5rem' }}>
+                        <p style={{
                           color: '#d4af37',
-                          fontSize: '0.9rem',
-                          marginBottom: '0.4rem',
+                          fontSize: '0.75rem',
+                          marginBottom: '0.3rem',
                           fontWeight: '600'
                         }}>
                           {zone.label}:
-                        </h4>
+                        </p>
+                        {/* "Bez" option */}
+                        <label style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.3rem',
+                          marginBottom: '0.2rem',
+                          cursor: 'pointer',
+                          color: '#f5f2e8',
+                          fontSize: '0.75rem',
+                          padding: '0.2rem',
+                          borderRadius: '3px',
+                          background: selectedZones[zone.id] === null ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                          transition: 'background 0.3s ease'
+                        }}>
+                          <input
+                            type="radio"
+                            name={`zone-${pkg.id}-${zone.id}`}
+                            value="bez"
+                            checked={selectedZones[zone.id] === null}
+                            onChange={() => handleZoneOptionSelect(pkg.id, zone.id, null)}
+                            style={{
+                              accentColor: '#d4af37',
+                              cursor: 'pointer',
+                              width: '12px',
+                              height: '12px'
+                            }}
+                          />
+                          <span>Bez</span>
+                        </label>
+                        {/* Zone options */}
                         {zone.options.map((option) => {
-                          const isSelected = selectedZoneId.zoneId === zone.id && selectedZoneId.optionId === option.id;
+                          const isSelected = selectedZones[zone.id] === option.id;
                           return (
                             <label key={option.id} style={{
                               display: 'flex',
                               alignItems: 'center',
-                              gap: '0.5rem',
-                              marginBottom: '0.3rem',
+                              gap: '0.3rem',
+                              marginBottom: '0.2rem',
                               cursor: 'pointer',
                               color: '#f5f2e8',
-                              fontSize: '0.85rem',
-                              padding: '0.3rem',
-                              borderRadius: '4px',
-                              background: isSelected ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                              fontSize: '0.75rem',
+                              padding: '0.2rem',
+                              borderRadius: '3px',
+                              background: isSelected ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
                               transition: 'background 0.3s ease'
                             }}>
                               <input
                                 type="radio"
-                                name={`zone-${pkg.id}`}
+                                name={`zone-${pkg.id}-${zone.id}`}
                                 value={option.id}
                                 checked={isSelected}
                                 onChange={() => handleZoneOptionSelect(pkg.id, zone.id, option.id)}
                                 style={{
                                   accentColor: '#d4af37',
                                   cursor: 'pointer',
-                                  width: '14px',
-                                  height: '14px'
+                                  width: '12px',
+                                  height: '12px'
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37' }}>+{option.extraPrice.toLocaleString('sr-RS')} RSD</span>
+                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>+{option.extraPrice.toLocaleString('sr-RS')} RSD</span>
                               </span>
                             </label>
                           );
