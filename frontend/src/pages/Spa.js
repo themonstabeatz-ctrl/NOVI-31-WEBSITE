@@ -813,11 +813,11 @@ const Spa = () => {
                   </p>
 
                   {/* Included Services */}
-                  <div style={{ marginBottom: '0.5rem' }}>
+                  <div style={{ marginBottom: '0.4rem' }}>
                     <h4 style={{
                       color: '#d4af37',
-                      fontSize: '0.8rem',
-                      marginBottom: '0.25rem',
+                      fontSize: '0.72rem',
+                      marginBottom: '0.2rem',
                       fontWeight: '600'
                     }}>
                       Uključeno:
@@ -830,12 +830,13 @@ const Spa = () => {
                       {pkg.included.map((item, idx) => (
                         <li key={idx} style={{
                           color: '#f5f2e8',
-                          fontSize: '0.75rem',
-                          marginBottom: '0.15rem',
-                          paddingLeft: '1.1rem',
-                          position: 'relative'
+                          fontSize: '0.68rem',
+                          marginBottom: '0.1rem',
+                          paddingLeft: '1rem',
+                          position: 'relative',
+                          lineHeight: '1.3'
                         }}>
-                          <Sparkles size={10} color="#d4af37" style={{
+                          <Sparkles size={9} color="#d4af37" style={{
                             position: 'absolute',
                             left: 0,
                             top: '2px'
