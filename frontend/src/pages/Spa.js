@@ -767,14 +767,14 @@ const Spa = () => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}>
-                <CardContent style={{ padding: '1rem' }}>
+                <CardContent style={{ padding: '0.85rem' }}>
                   {/* Header: Duration and Price */}
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    marginBottom: '0.5rem',
-                    paddingBottom: '0.5rem',
+                    marginBottom: '0.4rem',
+                    paddingBottom: '0.4rem',
                     borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -796,7 +796,7 @@ const Spa = () => {
                   <h3 style={{
                     fontSize: '1.2rem',
                     color: '#d4af37',
-                    marginBottom: '0.3rem',
+                    marginBottom: '0.25rem',
                     fontWeight: 'bold'
                   }}>
                     {pkg.name}
@@ -805,7 +805,7 @@ const Spa = () => {
                   {/* Description */}
                   <p style={{
                     color: '#c0baa8',
-                    marginBottom: '0.6rem',
+                    marginBottom: '0.5rem',
                     fontSize: '0.8rem',
                     lineHeight: '1.4'
                   }}>
@@ -813,11 +813,11 @@ const Spa = () => {
                   </p>
 
                   {/* Included Services */}
-                  <div style={{ marginBottom: '0.6rem' }}>
+                  <div style={{ marginBottom: '0.5rem' }}>
                     <h4 style={{
                       color: '#d4af37',
                       fontSize: '0.8rem',
-                      marginBottom: '0.3rem',
+                      marginBottom: '0.25rem',
                       fontWeight: '600'
                     }}>
                       Uključeno:
@@ -831,7 +831,7 @@ const Spa = () => {
                         <li key={idx} style={{
                           color: '#f5f2e8',
                           fontSize: '0.75rem',
-                          marginBottom: '0.2rem',
+                          marginBottom: '0.15rem',
                           paddingLeft: '1.1rem',
                           position: 'relative'
                         }}>
@@ -847,7 +847,7 @@ const Spa = () => {
                   </div>
 
                   {/* Variant Selection (Radio Buttons) */}
-                  <div style={{ marginBottom: '0.6rem' }}>
+                  <div style={{ marginBottom: '0.5rem' }}>
                     <h4 style={{
                       color: '#d4af37',
                       fontSize: '0.8rem',
