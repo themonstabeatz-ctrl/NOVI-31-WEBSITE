@@ -8,25 +8,23 @@ import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
 
-// SPA PACKAGES - ALL 6 packages with SAME structure (variants + zones)
-// Each package MUST have 2 variants: "Bez masaže lica" and "Sa masažom lica"
+// SPA PACKAGES - ONLY 3 packages with correct data
 const SPA_PACKAGES = [
-  // VARIJANTA 1: Body scrub 30min + Body wrap 30min + Aroma 60min
   {
     id: "SPA1",
     name: "Silky Body Ritual",
     description: "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.",
     included: [
       "Body scrub – 30 min",
-      "Body wrap – 30 min",
+      "Body wrap – 60 min",
       "Aroma masaža celog tela – 60 min"
     ],
     variants: [
       {
         id: "SPA1_BASE",
         label: "Bez masaže lica",
-        totalMinutes: 120,
-        totalPrice: 7800
+        totalMinutes: 150,
+        totalPrice: 9200
       },
       {
         id: "SPA1_WITH_FACE",
@@ -46,22 +44,22 @@ const SPA_PACKAGES = [
     name: "Gentle Touch Ritual",
     description: "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.",
     included: [
-      "Body scrub – 30 min",
-      "Body wrap – 30 min",
+      "Body scrub – 60 min",
+      "Body wrap – 60 min",
       "Aroma masaža celog tela – 60 min"
     ],
     variants: [
       {
         id: "SPA2_BASE",
         label: "Bez masaže lica",
-        totalMinutes: 120,
-        totalPrice: 7800
+        totalMinutes: 180,
+        totalPrice: 10400
       },
       {
         id: "SPA2_WITH_FACE",
         label: "Sa masažom lica (tokom body wrap-a)",
-        totalMinutes: 150,
-        totalPrice: 12200
+        totalMinutes: 180,
+        totalPrice: 13400
       }
     ],
     spaZones: [
@@ -70,8 +68,6 @@ const SPA_PACKAGES = [
       { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
     ]
   },
-  
-  // VARIJANTA 2: Body scrub 60min + Body wrap 60min + Aroma 60min
   {
     id: "SPA3",
     name: "Deep Renewal Ritual",
@@ -79,106 +75,17 @@ const SPA_PACKAGES = [
     included: [
       "Body scrub – 60 min",
       "Body wrap – 60 min",
-      "Aroma masaža celog tela – 60 min"
+      "Aroma masaža celog tela – 90 min"
     ],
     variants: [
       {
         id: "SPA3_BASE",
         label: "Bez masaže lica",
-        totalMinutes: 180,
-        totalPrice: 10400
+        totalMinutes: 210,
+        totalPrice: 11600
       },
       {
         id: "SPA3_WITH_FACE",
-        label: "Sa masažom lica (tokom body wrap-a)",
-        totalMinutes: 180,
-        totalPrice: 13400
-      }
-    ],
-    spaZones: [
-      { id: "SAUNA", label: "Sauna", extraMinutes: 30, extraPrice: 0 },
-      { id: "STEAM", label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-      { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
-    ]
-  },
-  {
-    id: "SPA4",
-    name: "Golden Revive Ritual",
-    description: "Intenzivan tretman za dubinsku regeneraciju kože i opuštanje.",
-    included: [
-      "Body scrub – 60 min",
-      "Body wrap – 60 min",
-      "Aroma masaža celog tela – 60 min"
-    ],
-    variants: [
-      {
-        id: "SPA4_BASE",
-        label: "Bez masaže lica",
-        totalMinutes: 180,
-        totalPrice: 10400
-      },
-      {
-        id: "SPA4_WITH_FACE",
-        label: "Sa masažom lica (tokom body wrap-a)",
-        totalMinutes: 180,
-        totalPrice: 13400
-      }
-    ],
-    spaZones: [
-      { id: "SAUNA", label: "Sauna", extraMinutes: 30, extraPrice: 0 },
-      { id: "STEAM", label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-      { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
-    ]
-  },
-  
-  // VARIJANTA 3: Body scrub 60min + Body wrap 60min + Aroma 90min
-  {
-    id: "SPA5",
-    name: "Royal Glow Ritual",
-    description: "Kraljevski tretman za savršenu kožu i potpuno opuštanje.",
-    included: [
-      "Body scrub – 60 min",
-      "Body wrap – 60 min",
-      "Aroma masaža celog tela – 90 min"
-    ],
-    variants: [
-      {
-        id: "SPA5_BASE",
-        label: "Bez masaže lica",
-        totalMinutes: 210,
-        totalPrice: 11600
-      },
-      {
-        id: "SPA5_WITH_FACE",
-        label: "Sa masažom lica (tokom body wrap-a)",
-        totalMinutes: 210,
-        totalPrice: 14600
-      }
-    ],
-    spaZones: [
-      { id: "SAUNA", label: "Sauna", extraMinutes: 30, extraPrice: 0 },
-      { id: "STEAM", label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-      { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
-    ]
-  },
-  {
-    id: "SPA6",
-    name: "Serenity Blossom Ritual",
-    description: "Kraljevski tretman za savršenu kožu i potpuno opuštanje.",
-    included: [
-      "Body scrub – 60 min",
-      "Body wrap – 60 min",
-      "Aroma masaža celog tela – 90 min"
-    ],
-    variants: [
-      {
-        id: "SPA6_BASE",
-        label: "Bez masaže lica",
-        totalMinutes: 210,
-        totalPrice: 11600
-      },
-      {
-        id: "SPA6_WITH_FACE",
         label: "Sa masažom lica (tokom body wrap-a)",
         totalMinutes: 210,
         totalPrice: 14600
