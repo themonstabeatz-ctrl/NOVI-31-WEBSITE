@@ -742,9 +742,8 @@ const Spa = () => {
           gap: '2.5rem'
         }}>
           {SPA_PACKAGES.map((pkg, index) => {
-            const { totalPrice, totalMinutes, selectedVariant } = calculateTotals(pkg);
+            const { totalPrice, totalMinutes, selectedVariant, selectedZones } = calculateTotals(pkg);
             const selectedVariantId = selectedVariantByPackage[pkg.id];
-            const selectedZoneId = selectedZoneByPackage[pkg.id];
 
             return (
               <Card key={pkg.id} 
@@ -768,14 +767,14 @@ const Spa = () => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}>
-                <CardContent style={{ padding: '1.5rem' }}>
+                <CardContent style={{ padding: '1rem' }}>
                   {/* Header: Duration and Price */}
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    marginBottom: '0.75rem',
-                    paddingBottom: '0.75rem',
+                    marginBottom: '0.5rem',
+                    paddingBottom: '0.5rem',
                     borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
