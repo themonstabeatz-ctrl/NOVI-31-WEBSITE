@@ -848,11 +848,11 @@ const Spa = () => {
                   </div>
 
                   {/* Variant Selection (Radio Buttons) */}
-                  <div style={{ marginBottom: '0.5rem' }}>
+                  <div style={{ marginBottom: '0.4rem' }}>
                     <h4 style={{
                       color: '#d4af37',
-                      fontSize: '0.8rem',
-                      marginBottom: '0.3rem',
+                      fontSize: '0.72rem',
+                      marginBottom: '0.25rem',
                       fontWeight: '600'
                     }}>
                       Izaberite varijantu:
@@ -861,12 +861,12 @@ const Spa = () => {
                       <label key={variant.id} style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.4rem',
-                        marginBottom: '0.3rem',
+                        gap: '0.35rem',
+                        marginBottom: '0.25rem',
                         cursor: 'pointer',
                         color: '#f5f2e8',
-                        fontSize: '0.8rem',
-                        padding: '0.3rem',
+                        fontSize: '0.72rem',
+                        padding: '0.25rem',
                         borderRadius: '4px',
                         background: selectedVariantId === variant.id ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                         transition: 'background 0.3s ease'
@@ -880,14 +880,14 @@ const Spa = () => {
                           style={{
                             accentColor: '#d4af37',
                             cursor: 'pointer',
-                            width: '14px',
-                            height: '14px'
+                            width: '12px',
+                            height: '12px'
                           }}
                         />
                         <span>
                           {variant.label}
                           {variant.totalPrice > pkg.variants[0].totalPrice && (
-                            <span style={{ color: '#d4af37', fontSize: '0.75rem', marginLeft: '0.3rem' }}>
+                            <span style={{ color: '#d4af37', fontSize: '0.68rem', marginLeft: '0.25rem' }}>
                               (+{(variant.totalPrice - pkg.variants[0].totalPrice).toLocaleString('sr-RS')} RSD)
                             </span>
                           )}
