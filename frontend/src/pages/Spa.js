@@ -1047,8 +1047,7 @@ const Spa = () => {
 
           {/* SPA ZONE ONLY Card - Horizontal Layout */}
           {(() => {
-            const { totalPrice, totalMinutes, selectedZone, selectedOption } = calculateTotals(SPA_ZONE_ONLY);
-            const selectedZoneData = selectedZoneByPackage[SPA_ZONE_ONLY.id];
+            const { totalPrice, totalMinutes, selectedZones } = calculateTotals(SPA_ZONE_ONLY);
 
             return (
               <Card 
