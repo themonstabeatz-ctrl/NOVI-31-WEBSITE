@@ -225,11 +225,11 @@ const Spa = () => {
     return initial;
   });
 
-  // State for selected SPA zone per package (default: first zone)
+  // State for selected SPA zone per package (default: first zone from each package)
   const [selectedZoneByPackage, setSelectedZoneByPackage] = useState(() => {
     const initial = {};
     SPA_PACKAGES.forEach(pkg => {
-      initial[pkg.id] = SPA_ZONES[0].id;
+      initial[pkg.id] = pkg.spaZones[0].id;
     });
     return initial;
   });
