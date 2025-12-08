@@ -9353,3 +9353,101 @@ html {
   min-width: 1200px !important;
 }
 
+
+/* SPA Hero Section - IDENTICAL to Massage Hero */
+.spa-hero-fixed {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px);
+  z-index: 0;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.spa-hero-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.spa-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spa-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.spa-hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 0;
+}
+
+.spa-hero-logo {
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  animation: gentle-sway 6s ease-in-out infinite;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, filter 0.3s ease-out;
+}
+
+.spa-hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 1rem;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.02em;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.spa-hero-divider {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 1.5rem auto;
+  transition: opacity 0.3s ease-out;
+}
+
+.spa-hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: #f5f2e8;
+  max-width: 800px;
+  line-height: 1.6;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.7);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Scroll fade-out effect for SPA hero */
+.spa-hero-content.fade-out .spa-hero-logo,
+.spa-hero-content.fade-out .spa-hero-title,
+.spa-hero-content.fade-out .spa-hero-divider,
+.spa-hero-content.fade-out .spa-hero-subtitle {
+  opacity: 0;
+  transform: translateY(-20px);
+}
