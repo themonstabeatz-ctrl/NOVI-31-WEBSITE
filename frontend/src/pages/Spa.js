@@ -565,31 +565,16 @@ const Spa = () => {
         <meta name="description" content="Ekskluzivni SPA tretmani sa body scrub, body wrap i aromaterapijom" />
       </Helmet>
 
-      {/* Fixed Video Hero Section (same structure as Massage.js) */}
+      {/* Hero Section - IDENTICAL to Massage.js */}
       <section className="spa-hero-fixed">
-        <div className="spa-hero-video-container" style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100vh',
-          zIndex: -1,
-          overflow: 'hidden'
-        }}>
-          <video
-            autoPlay
-            loop
-            muted
+        <div className="spa-hero-video-container">
+          <video 
+            autoPlay 
+            muted 
+            loop 
             playsInline
             preload="auto"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover'
-            }}
+            className="spa-hero-video"
           >
             {isMobile ? (
               <source src="https://customer-assets.emergentagent.com/job_thaispa-mobile/artifacts/a5g7ogwu_SPA.mp4" type="video/mp4" />
@@ -597,53 +582,20 @@ const Spa = () => {
               <source src="https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/4z9ic4bo_SPA.mp4" type="video/mp4" />
             )}
           </video>
+          <div className="spa-hero-overlay"></div>
         </div>
         
-        <div className="spa-hero-overlay" style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '70vh',
-          background: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 0
-        }} />
-        
-        <div className="spa-hero-content" style={{
-          position: 'relative',
-          height: '70vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          padding: '0 20px',
-          zIndex: 1
-        }}>
-          <h1 style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            marginBottom: '1.5rem',
-            color: '#d4af37',
-            fontWeight: 'bold',
-            textShadow: '2px 2px 8px rgba(0,0,0,0.7)',
-            letterSpacing: '0.02em'
-          }}>
-            Luksuzni SPA Rituali
-          </h1>
-          <div style={{
-            width: '80px',
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, #d4af37, transparent)',
-            margin: '1rem auto 1.5rem'
-          }} />
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-            maxWidth: '800px',
-            color: '#e8e6df',
-            lineHeight: '1.7',
-            textShadow: '1px 1px 4px rgba(0,0,0,0.7)',
-            fontWeight: '300'
-          }}>
+        <div className="spa-hero-content">
+          <div className="spa-hero-logo">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_83ed575e-3634-46be-8586-79a3348def97/artifacts/7sfhgz1m_Bua%20luang%20logo.png"
+              alt="Bua Luang Logo"
+              className="hero-logo-image"
+            />
+          </div>
+          <h1 className="spa-hero-title">Luksuzni SPA Rituali</h1>
+          <div className="spa-hero-divider"></div>
+          <p className="spa-hero-subtitle">
             Kombinacija pilinga, obloga, masaža i SPA zone za potpuno opuštanje tela i uma
           </p>
         </div>
