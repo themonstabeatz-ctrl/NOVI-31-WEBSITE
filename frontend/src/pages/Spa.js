@@ -226,20 +226,22 @@ const Spa = () => {
     return initial;
   });
 
-  // State for selected SPA zone OPTIONS per package (zone + option)
-  const [selectedZoneByPackage, setSelectedZoneByPackage] = useState(() => {
+  // State for selected SPA zones - each zone tracked independently
+  const [selectedZonesByPackage, setSelectedZonesByPackage] = useState(() => {
     const initial = {};
     SPA_PACKAGES.forEach(pkg => {
-      // Default: first zone, first option
+      // Default: all zones set to "Bez" (null)
       initial[pkg.id] = {
-        zoneId: pkg.spaZones[0].id,
-        optionId: pkg.spaZones[0].options[0].id
+        SAUNA: null,    // null means "Bez"
+        STEAM: null,    // null means "Bez"
+        JACUZZI: null   // null means "Bez"
       };
     });
     // For zone-only package
     initial[SPA_ZONE_ONLY.id] = {
-      zoneId: SPA_ZONE_ONLY.zones[0].id,
-      optionId: SPA_ZONE_ONLY.zones[0].options[0].id
+      SAUNA: null,
+      STEAM: null,
+      JACUZZI: null
     };
     return initial;
   });
