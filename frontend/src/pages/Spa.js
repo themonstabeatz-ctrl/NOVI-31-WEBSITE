@@ -226,12 +226,21 @@ const Spa = () => {
     return initial;
   });
 
-  // State for selected SPA zone per package (default: first zone from each package)
+  // State for selected SPA zone OPTIONS per package (zone + option)
   const [selectedZoneByPackage, setSelectedZoneByPackage] = useState(() => {
     const initial = {};
     SPA_PACKAGES.forEach(pkg => {
-      initial[pkg.id] = pkg.spaZones[0].id;
+      // Default: first zone, first option
+      initial[pkg.id] = {
+        zoneId: pkg.spaZones[0].id,
+        optionId: pkg.spaZones[0].options[0].id
+      };
     });
+    // For zone-only package
+    initial[SPA_ZONE_ONLY.id] = {
+      zoneId: SPA_ZONE_ONLY.zones[0].id,
+      optionId: SPA_ZONE_ONLY.zones[0].options[0].id
+    };
     return initial;
   });
 
