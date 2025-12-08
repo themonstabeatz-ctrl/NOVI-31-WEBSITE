@@ -1139,25 +1139,55 @@ const Spa = () => {
                         }}>
                           {zone.label}:
                         </h4>
+                        {/* "Bez" option */}
+                        <label style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.4rem',
+                          marginBottom: '0.3rem',
+                          cursor: 'pointer',
+                          color: '#f5f2e8',
+                          fontSize: '0.8rem',
+                          padding: '0.3rem',
+                          borderRadius: '4px',
+                          background: selectedZones[zone.id] === null ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                          transition: 'background 0.3s ease'
+                        }}>
+                          <input
+                            type="radio"
+                            name={`zone-${SPA_ZONE_ONLY.id}-${zone.id}`}
+                            value="bez"
+                            checked={selectedZones[zone.id] === null}
+                            onChange={() => handleZoneOptionSelect(SPA_ZONE_ONLY.id, zone.id, null)}
+                            style={{
+                              accentColor: '#d4af37',
+                              cursor: 'pointer',
+                              width: '14px',
+                              height: '14px'
+                            }}
+                          />
+                          <span>Bez</span>
+                        </label>
+                        {/* Zone options */}
                         {zone.options.map((option) => {
-                          const isSelected = selectedZoneData.zoneId === zone.id && selectedZoneData.optionId === option.id;
+                          const isSelected = selectedZones[zone.id] === option.id;
                           return (
                             <label key={option.id} style={{
                               display: 'flex',
                               alignItems: 'center',
-                              gap: '0.5rem',
-                              marginBottom: '0.4rem',
+                              gap: '0.4rem',
+                              marginBottom: '0.3rem',
                               cursor: 'pointer',
                               color: '#f5f2e8',
-                              fontSize: '0.85rem',
-                              padding: '0.4rem',
+                              fontSize: '0.8rem',
+                              padding: '0.3rem',
                               borderRadius: '4px',
-                              background: isSelected ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                              background: isSelected ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
                               transition: 'background 0.3s ease'
                             }}>
                               <input
                                 type="radio"
-                                name={`zone-${SPA_ZONE_ONLY.id}`}
+                                name={`zone-${SPA_ZONE_ONLY.id}-${zone.id}`}
                                 value={option.id}
                                 checked={isSelected}
                                 onChange={() => handleZoneOptionSelect(SPA_ZONE_ONLY.id, zone.id, option.id)}
