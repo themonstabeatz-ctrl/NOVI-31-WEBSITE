@@ -566,27 +566,13 @@ const Spa = () => {
       {/* Parallax Content Section */}
       <div className="spa-parallax-content">
 
-      {/* NEW SPA Ritual Packages Grid */}
+      {/* SPA Ritual Packages Grid */}
       <section style={{
         padding: '80px 20px',
         maxWidth: '1400px',
         margin: '0 auto',
         background: 'transparent'
       }}>
-        <div style={{
-          textAlign: 'center',
-          marginBottom: '60px'
-        }}>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            color: '#d4af37',
-            marginBottom: '1rem',
-            fontWeight: 'bold'
-          }}>
-            SPA Rituali
-          </h2>
-        </div>
-
         <div className="spa-ritual-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
