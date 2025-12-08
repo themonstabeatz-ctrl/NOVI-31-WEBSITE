@@ -998,14 +998,14 @@ const Spa = () => {
                   {/* Total Summary */}
                   <div style={{
                     background: 'rgba(212, 175, 55, 0.1)',
-                    padding: '0.45rem',
+                    padding: '0.35rem',
                     borderRadius: '5px',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.4rem',
                     border: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <p style={{
                       color: '#f5f2e8',
-                      fontSize: '0.72rem',
+                      fontSize: '0.68rem',
                       margin: 0,
                       lineHeight: '1.3'
                     }}>
@@ -1019,12 +1019,12 @@ const Spa = () => {
                     onClick={() => handleSpaBookClick(pkg)}
                     style={{
                       width: '100%',
-                      padding: '0.65rem',
+                      padding: '0.55rem',
                       background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
                       border: 'none',
                       borderRadius: '6px',
                       color: '#1a1a1a',
-                      fontSize: '0.88rem',
+                      fontSize: '0.8rem',
                       fontWeight: 'bold',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
