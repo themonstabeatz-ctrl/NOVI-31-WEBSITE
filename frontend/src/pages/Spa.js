@@ -465,19 +465,42 @@ const Spa = () => {
 
   // Calculate totals for display
   const calculateTotals = (pkg) => {
-    const selectedVariantId = selectedVariantByPackage[pkg.id] || pkg.variants[0].id;
-    const selectedVariant = pkg.variants.find(v => v.id === selectedVariantId);
+    if (pkg.isZoneOnly) {
+      // Zone-only package (no ritual/variant)
+      const selectedZoneData = selectedZoneByPackage[pkg.id];
+      const zone = pkg.zones.find(z => z.id === selectedZoneData.zoneId);
+      const option = zone.options.find(o => o.id === selectedZoneData.optionId);
+      
+      return {
+        totalPrice: option.totalPrice,
+        totalMinutes: option.totalMinutes,
+        selectedZone: zone,
+        selectedOption: option,
+        selectedVariant: null
+      };
+    } else {
+      // Regular ritual package
+      const selectedVariantId = selectedVariantByPackage[pkg.id] || pkg.variants[0].id;
+      const selectedVariant = pkg.variants.find(v => v.id === selectedVariantId);
 
-    const selectedZoneId = selectedZoneByPackage[pkg.id] || pkg.spaZones[0].id;
-    const selectedZone = pkg.spaZones.find(z => z.id === selectedZoneId);
+      const selectedZoneData = selectedZoneByPackage[pkg.id];
+      const zone = pkg.spaZones.find(z => z.id === selectedZoneData.zoneId);
+      const option = zone.options.find(o => o.id === selectedZoneData.optionId);
 
-    const basePrice = selectedVariant.totalPrice;
-    const zoneExtra = selectedZone.extraPrice;
-    const totalPrice = basePrice + zoneExtra;
+      const basePrice = selectedVariant.totalPrice;
+      const zoneExtra = option.extraPrice;
+      const totalPrice = basePrice + zoneExtra;
 
-    const totalMinutes = selectedVariant.totalMinutes + (selectedZone.extraMinutes || 0);
+      const totalMinutes = selectedVariant.totalMinutes + option.extraMinutes;
 
-    return { totalPrice, totalMinutes, selectedVariant, selectedZone };
+      return { 
+        totalPrice, 
+        totalMinutes, 
+        selectedVariant, 
+        selectedZone: zone,
+        selectedOption: option
+      };
+    }
   };
 
   // Old SPA packages data
