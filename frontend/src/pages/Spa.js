@@ -734,12 +734,12 @@ const Spa = () => {
                   </div>
 
                   {/* SPA Zone Dropdown */}
-                  <div style={{ marginBottom: '1.5rem' }}>
+                  <div style={{ marginBottom: '1rem' }}>
                     <label htmlFor={`zone-${pkg.id}`} style={{
                       display: 'block',
                       color: '#d4af37',
-                      fontSize: '0.95rem',
-                      marginBottom: '0.6rem',
+                      fontSize: '0.9rem',
+                      marginBottom: '0.4rem',
                       fontWeight: '600'
                     }}>
                       Izaberite SPA zonu:
@@ -750,12 +750,12 @@ const Spa = () => {
                       onChange={(e) => handleZoneSelect(pkg.id, e.target.value)}
                       style={{
                         width: '100%',
-                        padding: '0.85rem',
+                        padding: '0.7rem',
                         background: 'rgba(212, 175, 55, 0.1)',
                         border: '1px solid rgba(212, 175, 55, 0.3)',
-                        borderRadius: '8px',
+                        borderRadius: '6px',
                         color: '#f5f2e8',
-                        fontSize: '0.95rem',
+                        fontSize: '0.9rem',
                         cursor: 'pointer',
                         outline: 'none'
                       }}
@@ -777,16 +777,16 @@ const Spa = () => {
                   {/* Total Summary */}
                   <div style={{
                     background: 'rgba(212, 175, 55, 0.1)',
-                    padding: '1rem',
-                    borderRadius: '8px',
-                    marginBottom: '1.5rem',
+                    padding: '0.8rem',
+                    borderRadius: '6px',
+                    marginBottom: '1rem',
                     border: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <p style={{
                       color: '#f5f2e8',
-                      fontSize: '0.95rem',
+                      fontSize: '0.9rem',
                       margin: 0,
-                      lineHeight: '1.6'
+                      lineHeight: '1.5'
                     }}>
                       <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
                       <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
@@ -798,12 +798,12 @@ const Spa = () => {
                     onClick={() => handleSpaBookClick(pkg)}
                     style={{
                       width: '100%',
-                      padding: '1.1rem',
+                      padding: '1rem',
                       background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
                       border: 'none',
-                      borderRadius: '10px',
+                      borderRadius: '8px',
                       color: '#1a1a1a',
-                      fontSize: '1.05rem',
+                      fontSize: '1rem',
                       fontWeight: 'bold',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease'
