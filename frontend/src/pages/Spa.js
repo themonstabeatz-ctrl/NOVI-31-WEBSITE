@@ -1182,16 +1182,16 @@ const Spa = () => {
                   {/* Total Summary */}
                   <div style={{
                     background: 'rgba(212, 175, 55, 0.1)',
-                    padding: '0.7rem',
-                    borderRadius: '6px',
-                    marginBottom: '0.9rem',
+                    padding: '0.5rem',
+                    borderRadius: '5px',
+                    marginBottom: '0.6rem',
                     border: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
                     <p style={{
                       color: '#f5f2e8',
-                      fontSize: '0.85rem',
+                      fontSize: '0.75rem',
                       margin: 0,
-                      lineHeight: '1.4'
+                      lineHeight: '1.3'
                     }}>
                       <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
                       <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
@@ -1203,12 +1203,12 @@ const Spa = () => {
                     onClick={() => handleSpaBookClick(SPA_ZONE_ONLY)}
                     style={{
                       width: '100%',
-                      padding: '0.9rem',
+                      padding: '0.7rem',
                       background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
                       border: 'none',
-                      borderRadius: '8px',
+                      borderRadius: '6px',
                       color: '#1a1a1a',
-                      fontSize: '1rem',
+                      fontSize: '0.9rem',
                       fontWeight: 'bold',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
