@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://massage-scheduler-3.preview.emergentagent.com/robots.txt
+**Test URL:** https://luxury-spa.preview.emergentagent.com/robots.txt
 
 ---
 

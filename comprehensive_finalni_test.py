@@ -13,8 +13,8 @@ OČEKIVANE CENE:
 - Finalna cena: 7,920 RSD
 
 ENDPOINTS:
-- GET https://massage-scheduler-3.preview.emergentagent.com/api/services
-- POST https://massage-scheduler-3.preview.emergentagent.com/api/book-appointment
+- GET https://luxury-spa.preview.emergentagent.com/api/services
+- POST https://luxury-spa.preview.emergentagent.com/api/book-appointment
 
 Testiranje podaci:
 - Ime: Finalni Test
@@ -29,7 +29,7 @@ import json
 from datetime import datetime, timedelta
 
 # Test configuration
-BASE_URL = "https://massage-scheduler-3.preview.emergentagent.com"
+BASE_URL = "https://luxury-spa.preview.emergentagent.com"
 API_BASE = f"{BASE_URL}/api"
 
 class ComprehensiveFinalniTest:
