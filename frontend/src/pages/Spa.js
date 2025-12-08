@@ -862,45 +862,55 @@ const Spa = () => {
                     ))}
                   </div>
 
-                  {/* SPA Zone Dropdown */}
+                  {/* SPA Zone Radio Buttons */}
                   <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor={`zone-${pkg.id}`} style={{
-                      display: 'block',
-                      color: '#d4af37',
-                      fontSize: '0.9rem',
-                      marginBottom: '0.4rem',
-                      fontWeight: '600'
-                    }}>
-                      Izaberite SPA zonu:
-                    </label>
-                    <select
-                      id={`zone-${pkg.id}`}
-                      value={selectedZoneId}
-                      onChange={(e) => handleZoneSelect(pkg.id, e.target.value)}
-                      style={{
-                        width: '100%',
-                        padding: '0.7rem',
-                        background: 'rgba(212, 175, 55, 0.1)',
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                        borderRadius: '6px',
-                        color: '#f5f2e8',
-                        fontSize: '0.9rem',
-                        cursor: 'pointer',
-                        outline: 'none'
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = '#d4af37';
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                      }}
-                    >
-                      {pkg.spaZones.map((zone) => (
-                        <option key={zone.id} value={zone.id} style={{ background: '#1a1a1a' }}>
-                          {zone.label}
-                        </option>
-                      ))}
-                    </select>
+                    {pkg.spaZones.map((zone) => (
+                      <div key={zone.id} style={{ marginBottom: '0.9rem' }}>
+                        <h4 style={{
+                          color: '#d4af37',
+                          fontSize: '0.9rem',
+                          marginBottom: '0.4rem',
+                          fontWeight: '600'
+                        }}>
+                          {zone.label}:
+                        </h4>
+                        {zone.options.map((option) => {
+                          const isSelected = selectedZoneId.zoneId === zone.id && selectedZoneId.optionId === option.id;
+                          return (
+                            <label key={option.id} style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.5rem',
+                              marginBottom: '0.3rem',
+                              cursor: 'pointer',
+                              color: '#f5f2e8',
+                              fontSize: '0.85rem',
+                              padding: '0.3rem',
+                              borderRadius: '4px',
+                              background: isSelected ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                              transition: 'background 0.3s ease'
+                            }}>
+                              <input
+                                type="radio"
+                                name={`zone-${pkg.id}`}
+                                value={option.id}
+                                checked={isSelected}
+                                onChange={() => handleZoneOptionSelect(pkg.id, zone.id, option.id)}
+                                style={{
+                                  accentColor: '#d4af37',
+                                  cursor: 'pointer',
+                                  width: '14px',
+                                  height: '14px'
+                                }}
+                              />
+                              <span>
+                                {option.label} <span style={{ color: '#d4af37' }}>+{option.extraPrice.toLocaleString('sr-RS')} RSD</span>
+                              </span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    ))}
                   </div>
 
                   {/* Total Summary */}
