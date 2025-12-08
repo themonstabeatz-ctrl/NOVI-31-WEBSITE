@@ -434,29 +434,29 @@ const Spa = () => {
 
   // Handle booking button click
   const handleSpaBookClick = (pkg) => {
-    const selectedVariantId = selectedVariantByPackage[pkg.id] || pkg.variants[0].id;
-    const selectedVariant = pkg.variants.find(v => v.id === selectedVariantId);
-
-    const selectedZoneId = selectedZoneByPackage[pkg.id] || pkg.spaZones[0].id;
-    const selectedZone = pkg.spaZones.find(z => z.id === selectedZoneId);
-
-    const basePrice = selectedVariant.totalPrice;
-    const zoneExtra = selectedZone.extraPrice;
-    const totalPrice = basePrice + zoneExtra;
-
-    const totalMinutes = selectedVariant.totalMinutes + (selectedZone.extraMinutes || 0);
+    const { totalPrice, totalMinutes, selectedVariant, selectedZone, selectedOption } = calculateTotals(pkg);
 
     const params = new URLSearchParams({
       source: "spa",
       spaPackageId: pkg.id,
       spaPackageName: pkg.name,
-      variantId: selectedVariant.id,
-      variantLabel: selectedVariant.label,
-      spaZoneId: selectedZone.id,
-      spaZoneLabel: selectedZone.label,
       totalMinutes: String(totalMinutes),
       totalPrice: String(totalPrice)
     });
+
+    if (pkg.isZoneOnly) {
+      // Zone-only booking
+      params.append("variantId", "ZONE_ONLY");
+      params.append("variantLabel", "Samo SPA zona");
+      params.append("spaZoneId", selectedZone.id);
+      params.append("spaZoneLabel", `${selectedZone.label} - ${selectedOption.label}`);
+    } else {
+      // Regular ritual booking
+      params.append("variantId", selectedVariant.id);
+      params.append("variantLabel", selectedVariant.label);
+      params.append("spaZoneId", selectedZone.id);
+      params.append("spaZoneLabel", `${selectedZone.label} - ${selectedOption.label}`);
+    }
 
     console.log("📍 SPA booking redirect params:", Object.fromEntries(params));
 
