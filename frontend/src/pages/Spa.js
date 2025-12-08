@@ -698,13 +698,13 @@ const Spa = () => {
                       <label key={variant.id} style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.6rem',
-                        marginBottom: '0.6rem',
+                        gap: '0.5rem',
+                        marginBottom: '0.4rem',
                         cursor: 'pointer',
                         color: '#f5f2e8',
-                        fontSize: '0.95rem',
-                        padding: '0.5rem',
-                        borderRadius: '6px',
+                        fontSize: '0.9rem',
+                        padding: '0.4rem',
+                        borderRadius: '4px',
                         background: selectedVariantId === variant.id ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
                         transition: 'background 0.3s ease'
                       }}>
@@ -717,14 +717,14 @@ const Spa = () => {
                           style={{
                             accentColor: '#d4af37',
                             cursor: 'pointer',
-                            width: '18px',
-                            height: '18px'
+                            width: '16px',
+                            height: '16px'
                           }}
                         />
                         <span>
                           {variant.label}
                           {variant.totalPrice > pkg.variants[0].totalPrice && (
-                            <span style={{ color: '#d4af37', fontSize: '0.85rem', marginLeft: '0.5rem' }}>
+                            <span style={{ color: '#d4af37', fontSize: '0.8rem', marginLeft: '0.4rem' }}>
                               (+{(variant.totalPrice - pkg.variants[0].totalPrice).toLocaleString('sr-RS')} RSD)
                             </span>
                           )}
