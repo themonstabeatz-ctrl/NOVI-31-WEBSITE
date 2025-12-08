@@ -767,24 +767,24 @@ const Spa = () => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}>
-                <CardContent style={{ padding: '0.85rem' }}>
+                <CardContent style={{ padding: '0.6rem' }}>
                   {/* Header: Duration and Price */}
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    marginBottom: '0.4rem',
-                    paddingBottom: '0.4rem',
+                    marginBottom: '0.3rem',
+                    paddingBottom: '0.3rem',
                     borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
                   }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <Clock size={16} color="#d4af37" />
-                      <span style={{ color: '#f5f2e8', fontSize: '0.9rem', fontWeight: '600' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <Clock size={14} color="#d4af37" />
+                      <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
                         {totalMinutes} min
                       </span>
                     </div>
                     <div style={{
-                      fontSize: '1.1rem',
+                      fontSize: '1rem',
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
@@ -794,9 +794,9 @@ const Spa = () => {
 
                   {/* Package Name */}
                   <h3 style={{
-                    fontSize: '1.2rem',
+                    fontSize: '1rem',
                     color: '#d4af37',
-                    marginBottom: '0.25rem',
+                    marginBottom: '0.2rem',
                     fontWeight: 'bold'
                   }}>
                     {pkg.name}
@@ -805,9 +805,9 @@ const Spa = () => {
                   {/* Description */}
                   <p style={{
                     color: '#c0baa8',
-                    marginBottom: '0.5rem',
-                    fontSize: '0.8rem',
-                    lineHeight: '1.4'
+                    marginBottom: '0.4rem',
+                    fontSize: '0.72rem',
+                    lineHeight: '1.3'
                   }}>
                     {pkg.description}
                   </p>
