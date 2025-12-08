@@ -783,76 +783,54 @@ const Spa = () => {
                     </ul>
                   </div>
 
-                  {/* Variant Selection (Radio Buttons) - ONLY if showVariantSelector is true */}
-                  {pkg.showVariantSelector && (
-                    <div style={{ marginBottom: '1.5rem' }}>
-                      <h4 style={{
-                        color: '#d4af37',
-                        fontSize: '0.95rem',
-                        marginBottom: '0.75rem',
-                        fontWeight: '600'
-                      }}>
-                        Izaberite varijantu:
-                      </h4>
-                      {pkg.variants.map((variant) => (
-                        <label key={variant.id} style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.6rem',
-                          marginBottom: '0.6rem',
-                          cursor: 'pointer',
-                          color: '#f5f2e8',
-                          fontSize: '0.95rem',
-                          padding: '0.5rem',
-                          borderRadius: '6px',
-                          background: selectedVariantId === variant.id ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-                          transition: 'background 0.3s ease'
-                        }}>
-                          <input
-                            type="radio"
-                            name={`variant-${pkg.id}`}
-                            value={variant.id}
-                            checked={selectedVariantId === variant.id}
-                            onChange={() => handleVariantSelect(pkg.id, variant.id)}
-                            style={{
-                              accentColor: '#d4af37',
-                              cursor: 'pointer',
-                              width: '18px',
-                              height: '18px'
-                            }}
-                          />
-                          <span>
-                            {variant.label}
-                            {variant.totalPrice > pkg.variants[0].totalPrice && (
-                              <span style={{ color: '#d4af37', fontSize: '0.85rem', marginLeft: '0.5rem' }}>
-                                (+{variant.totalMinutes - pkg.variants[0].totalMinutes} min / +{(variant.totalPrice - pkg.variants[0].totalPrice).toLocaleString('sr-RS')} RSD)
-                              </span>
-                            )}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  )}
-                  
-                  {/* For packages WITHOUT variant selector, show fixed text */}
-                  {!pkg.showVariantSelector && (
-                    <div style={{ 
-                      marginBottom: '1.5rem',
-                      padding: '0.75rem',
-                      background: 'rgba(212, 175, 55, 0.1)',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(212, 175, 55, 0.3)'
+                  {/* Variant Selection (Radio Buttons) - ALL CARDS MUST HAVE THIS */}
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <h4 style={{
+                      color: '#d4af37',
+                      fontSize: '0.95rem',
+                      marginBottom: '0.75rem',
+                      fontWeight: '600'
                     }}>
-                      <p style={{
+                      Izaberite varijantu:
+                    </h4>
+                    {pkg.variants.map((variant) => (
+                      <label key={variant.id} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.6rem',
+                        marginBottom: '0.6rem',
+                        cursor: 'pointer',
                         color: '#f5f2e8',
                         fontSize: '0.95rem',
-                        margin: 0,
-                        fontStyle: 'italic'
+                        padding: '0.5rem',
+                        borderRadius: '6px',
+                        background: selectedVariantId === variant.id ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                        transition: 'background 0.3s ease'
                       }}>
-                        ✨ {pkg.variants[0].label}
-                      </p>
-                    </div>
-                  )}
+                        <input
+                          type="radio"
+                          name={`variant-${pkg.id}`}
+                          value={variant.id}
+                          checked={selectedVariantId === variant.id}
+                          onChange={() => handleVariantSelect(pkg.id, variant.id)}
+                          style={{
+                            accentColor: '#d4af37',
+                            cursor: 'pointer',
+                            width: '18px',
+                            height: '18px'
+                          }}
+                        />
+                        <span>
+                          {variant.label}
+                          {variant.totalPrice > pkg.variants[0].totalPrice && (
+                            <span style={{ color: '#d4af37', fontSize: '0.85rem', marginLeft: '0.5rem' }}>
+                              (+{(variant.totalPrice - pkg.variants[0].totalPrice).toLocaleString('sr-RS')} RSD)
+                            </span>
+                          )}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
 
                   {/* SPA Zone Dropdown */}
                   <div style={{ marginBottom: '1.5rem' }}>
