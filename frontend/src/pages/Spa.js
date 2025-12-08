@@ -897,8 +897,8 @@ const Spa = () => {
 
                   {/* SPA ZONA - Premium Boxed Section */}
                   <div style={{
-                    marginBottom: '0.6rem',
-                    padding: '0.7rem',
+                    marginBottom: '0.5rem',
+                    padding: '0.55rem 0.6rem',
                     background: 'rgba(0, 0, 0, 0.3)',
                     border: '1px solid rgba(212, 175, 55, 0.4)',
                     borderRadius: '8px',
@@ -906,8 +906,8 @@ const Spa = () => {
                   }}>
                     <h4 style={{
                       color: '#d4af37',
-                      fontSize: '0.85rem',
-                      marginBottom: '0.5rem',
+                      fontSize: '0.8rem',
+                      marginBottom: '0.4rem',
                       fontWeight: 'bold',
                       textTransform: 'uppercase',
                       letterSpacing: '0.5px'
@@ -916,11 +916,11 @@ const Spa = () => {
                     </h4>
                     
                     {pkg.spaZones.map((zone) => (
-                      <div key={zone.id} style={{ marginBottom: '0.5rem' }}>
+                      <div key={zone.id} style={{ marginBottom: '0.4rem' }}>
                         <p style={{
                           color: '#d4af37',
-                          fontSize: '0.75rem',
-                          marginBottom: '0.3rem',
+                          fontSize: '0.72rem',
+                          marginBottom: '0.2rem',
                           fontWeight: '600'
                         }}>
                           {zone.label}:
@@ -929,12 +929,12 @@ const Spa = () => {
                         <label style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '0.3rem',
-                          marginBottom: '0.2rem',
+                          gap: '0.25rem',
+                          marginBottom: '0.15rem',
                           cursor: 'pointer',
                           color: '#f5f2e8',
-                          fontSize: '0.75rem',
-                          padding: '0.2rem',
+                          fontSize: '0.72rem',
+                          padding: '0.15rem',
                           borderRadius: '3px',
                           background: selectedZones[zone.id] === null ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
                           transition: 'background 0.3s ease'
@@ -948,8 +948,8 @@ const Spa = () => {
                             style={{
                               accentColor: '#d4af37',
                               cursor: 'pointer',
-                              width: '12px',
-                              height: '12px'
+                              width: '11px',
+                              height: '11px'
                             }}
                           />
                           <span>Bez</span>
@@ -961,12 +961,12 @@ const Spa = () => {
                             <label key={option.id} style={{
                               display: 'flex',
                               alignItems: 'center',
-                              gap: '0.3rem',
-                              marginBottom: '0.2rem',
+                              gap: '0.25rem',
+                              marginBottom: '0.15rem',
                               cursor: 'pointer',
                               color: '#f5f2e8',
-                              fontSize: '0.75rem',
-                              padding: '0.2rem',
+                              fontSize: '0.72rem',
+                              padding: '0.15rem',
                               borderRadius: '3px',
                               background: isSelected ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
                               transition: 'background 0.3s ease'
@@ -980,8 +980,8 @@ const Spa = () => {
                                 style={{
                                   accentColor: '#d4af37',
                                   cursor: 'pointer',
-                                  width: '12px',
-                                  height: '12px'
+                                  width: '11px',
+                                  height: '11px'
                                 }}
                               />
                               <span>
