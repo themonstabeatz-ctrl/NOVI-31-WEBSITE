@@ -8,13 +8,6 @@ import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
 
-// SPA ZONES - extraPrice will be updated later
-const SPA_ZONES = [
-  { id: "SAUNA",   label: "Sauna",          extraMinutes: 30, extraPrice: 0 },
-  { id: "STEAM",   label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-  { id: "JACUZZI", label: "Jacuzzi",        extraMinutes: 30, extraPrice: 0 }
-];
-
 // SPA PACKAGES - Complete 6 packages (3 existing + 3 new)
 const SPA_PACKAGES = [
   // --- EXISTING 3 PACKAGES ---
