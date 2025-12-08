@@ -8,7 +8,7 @@ import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
 
-// SPA PACKAGES - ONLY 3 packages with correct data
+// SPA PACKAGES - 3 ritual packages + 1 zone-only package
 const SPA_PACKAGES = [
   {
     id: "SPA1",
@@ -34,9 +34,30 @@ const SPA_PACKAGES = [
       }
     ],
     spaZones: [
-      { id: "SAUNA", label: "Sauna", extraMinutes: 30, extraPrice: 0 },
-      { id: "STEAM", label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-      { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
+      {
+        id: "SAUNA",
+        label: "Sauna",
+        options: [
+          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
+          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+        ]
+      },
+      {
+        id: "STEAM",
+        label: "Parno kupatilo",
+        options: [
+          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
+          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+        ]
+      },
+      {
+        id: "JACUZZI",
+        label: "Jacuzzi",
+        options: [
+          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 },
+          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 2800 }
+        ]
+      }
     ]
   },
   {
@@ -63,9 +84,30 @@ const SPA_PACKAGES = [
       }
     ],
     spaZones: [
-      { id: "SAUNA", label: "Sauna", extraMinutes: 30, extraPrice: 0 },
-      { id: "STEAM", label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-      { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
+      {
+        id: "SAUNA",
+        label: "Sauna",
+        options: [
+          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
+          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+        ]
+      },
+      {
+        id: "STEAM",
+        label: "Parno kupatilo",
+        options: [
+          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
+          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+        ]
+      },
+      {
+        id: "JACUZZI",
+        label: "Jacuzzi",
+        options: [
+          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 },
+          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 2800 }
+        ]
+      }
     ]
   },
   {
@@ -92,12 +134,67 @@ const SPA_PACKAGES = [
       }
     ],
     spaZones: [
-      { id: "SAUNA", label: "Sauna", extraMinutes: 30, extraPrice: 0 },
-      { id: "STEAM", label: "Parno kupatilo", extraMinutes: 30, extraPrice: 0 },
-      { id: "JACUZZI", label: "Jacuzzi", extraMinutes: 30, extraPrice: 0 }
+      {
+        id: "SAUNA",
+        label: "Sauna",
+        options: [
+          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
+          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+        ]
+      },
+      {
+        id: "STEAM",
+        label: "Parno kupatilo",
+        options: [
+          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
+          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+        ]
+      },
+      {
+        id: "JACUZZI",
+        label: "Jacuzzi",
+        options: [
+          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 },
+          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 2800 }
+        ]
+      }
     ]
   }
 ];
+
+// SPA ZONE-ONLY package (no ritual, just zones)
+const SPA_ZONE_ONLY = {
+  id: "SPAZONE",
+  name: "SPA Zone",
+  description: "Isključivo korišćenje SPA zona bez rituala.",
+  isZoneOnly: true,
+  zones: [
+    {
+      id: "SAUNA",
+      label: "Sauna",
+      options: [
+        { id: "SAUNA_15", label: "15 min", totalMinutes: 15, totalPrice: 1400 },
+        { id: "SAUNA_30", label: "30 min", totalMinutes: 30, totalPrice: 2400 }
+      ]
+    },
+    {
+      id: "STEAM",
+      label: "Parno kupatilo",
+      options: [
+        { id: "STEAM_15", label: "15 min", totalMinutes: 15, totalPrice: 1400 },
+        { id: "STEAM_30", label: "30 min", totalMinutes: 30, totalPrice: 2400 }
+      ]
+    },
+    {
+      id: "JACUZZI",
+      label: "Jacuzzi",
+      options: [
+        { id: "JACUZZI_30", label: "30 min", totalMinutes: 30, totalPrice: 2200 },
+        { id: "JACUZZI_60", label: "60 min", totalMinutes: 60, totalPrice: 3400 }
+      ]
+    }
+  ]
+};
 
 // "SPA Paketi za posebne prilike" - Old packages (DO NOT MODIFY)
 const getFixedPackageDetails = (serviceName, duration, price) => {
