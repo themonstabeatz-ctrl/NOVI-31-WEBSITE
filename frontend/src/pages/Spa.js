@@ -425,10 +425,10 @@ const Spa = () => {
   };
 
   // Handle SPA zone selection
-  const handleZoneSelect = (pkgId, zoneId) => {
+  const handleZoneOptionSelect = (pkgId, zoneId, optionId) => {
     setSelectedZoneByPackage(prev => ({
       ...prev,
-      [pkgId]: zoneId
+      [pkgId]: { zoneId, optionId }
     }));
   };
 
