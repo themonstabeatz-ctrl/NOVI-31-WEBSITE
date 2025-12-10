@@ -1865,20 +1865,32 @@ const Spa = () => {
               </div>
 
               {/* Dugme "Zakažite" */}
-              <Button asChild style={{
-                width: '100%',
-                background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
-                color: '#1a1a1a',
-                fontWeight: 'bold',
-                padding: '1.1rem',
-                fontSize: '1rem',
-                borderRadius: '10px',
-                border: 'none'
-              }}>
-                <Link to="/contact?service=Romantični paket za parove&duration=210&price=25000">
-                  Zakažite
-                </Link>
-              </Button>
+              <button
+                onClick={() => navigate('/contact?service=Romantični paket za parove&duration=210&price=25000')}
+                style={{
+                  width: '100%',
+                  padding: '0.7rem',
+                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#1a1a1a',
+                  fontSize: '0.9rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
+                }}
+              >
+                Zakažite
+              </button>
             </CardContent>
           </Card>
           
