@@ -1930,39 +1930,52 @@ const Spa = () => {
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               cursor: 'pointer',
-              minHeight: '750px',
+              minHeight: '430px',
               maxWidth: '620px',
-              width: '100%'
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#d4af37';
               e.currentTarget.style.transform = 'translateY(-8px)';
               e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
+              const bg = e.currentTarget.querySelector('.romantic-piling-background');
+              if (bg) {
+                bg.style.opacity = '0.4';
+                bg.style.transform = 'scale(1.05)';
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = 'none';
+              const bg = e.currentTarget.querySelector('.romantic-piling-background');
+              if (bg) {
+                bg.style.opacity = '0.25';
+                bg.style.transform = 'scale(1)';
+              }
             }}
           >
-            {/* Background image - ista kao prva kartica */}
+            {/* Background image - DESNA POLOVINA */}
             <div 
               className="romantic-piling-background"
               style={{
                 backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/xhozz0qf_Romanticni%20paket%20za%20parove.jpg)',
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'right center',
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
                 opacity: 0.25,
-                zIndex: 0
+                zIndex: 0,
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             />
             
-            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 1.5rem' }}>
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               {/* Header: Duration and Price */}
               <div style={{
                 display: 'flex',
