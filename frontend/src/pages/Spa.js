@@ -1706,12 +1706,13 @@ const Spa = () => {
           </p>
         </div>
 
+        {/* DVE VERTIKALNE KARTICE ZA PAROVE */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
           gap: '2.5rem',
           maxWidth: '1000px',
-          margin: '0 auto'
+          margin: '0 auto 3rem'
         }}>
           {/* Kartica 1: Romantični paket za parove */}
           <Card 
