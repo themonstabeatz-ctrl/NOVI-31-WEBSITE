@@ -142,6 +142,7 @@ const Massage = () => {
         console.log('✅ Couples discount:', couplesDiscount, '%');
         
       } catch (error) {
+        console.error("❌ Massage fetch error:", error);
         console.error('❌ Error fetching services from API:', error);
         console.error('❌ Backend URL was:', process.env.REACT_APP_BACKEND_URL);
         // Set empty object to prevent infinite "Učitavanje..." state
