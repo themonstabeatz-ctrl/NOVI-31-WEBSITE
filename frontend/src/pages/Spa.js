@@ -1159,15 +1159,12 @@ const Spa = () => {
           gap: '2.5rem'
         }}>
           {NEW_SPA_PACKAGES.map((pkg) => {
-            const BASE_DURATION_MINUTES = 120;  // 30 min scrub + 90 min tretman
-            const SPA_BONUS_MINUTES = 15;       // gratis SPA zona
+            const selectedZone = herbalZones[pkg.id] || "NONE";
+            const hasSpa = selectedZone !== "NONE";
             
-            const selectedZoneId = selectedNewPackageZone[pkg.id];
-            const hasSpa = selectedZoneId !== "NONE";
-            
-            // Calculate dynamic duration based on SPA selection
-            const totalMinutes = BASE_DURATION_MINUTES + (hasSpa ? SPA_BONUS_MINUTES : 0);
-            const totalPrice = 7600;  // Fixed price
+            // Dynamic duration: 120 min base, +15 min if SPA selected
+            const totalMinutes = HERBAL_BASE_MINUTES + (hasSpa ? HERBAL_SPA_BONUS : 0);
+            const totalPrice = HERBAL_PRICE;
 
             return (
               <Card key={pkg.id} 
