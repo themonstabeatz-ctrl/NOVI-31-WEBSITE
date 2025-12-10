@@ -2121,13 +2121,14 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - centrirana ispod romantičnih kartica */}
+        {/* Kartica "Devojačko veče & Lady Party" - HORIZONTALNA 2000px */}
         <div style={{
-          maxWidth: '750px',
+          maxWidth: '2000px',
+          width: '100%',
           margin: '0 auto',
           marginTop: '100px'
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - FINALNI DIZAJN */}
+          {/* Kartica 3: Devojačko veče & Lady Party - HORIZONTALNI LUKSUZNI FORMAT */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2164,13 +2165,14 @@ const Spa = () => {
               }
             }}
           >
-            {/* Background image - cela fotografija bez rastezanja */}
+            {/* Background image - NOVA FOTOGRAFIJA - prirodni prikaz */}
             <div 
               className="bridal-card-background"
               style={{
-                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thai-reserve/artifacts/48xkbz3e_Zena%20sa%20casom%20bualuang.jpg)',
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/v95jimc7_Sira%20fotka.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
                 position: 'absolute',
                 top: 0,
                 left: 0,
