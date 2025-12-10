@@ -2186,31 +2186,31 @@ const Spa = () => {
             <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               {/* Content wrapper */}
               <div style={{ flexGrow: 1 }}>
-                {/* Naslov - sa crnom senkom za čitljivost */}
+                {/* Naslov - sa ojačanom crnom senkom za čitljivost */}
                 <h3 style={{
                   fontSize: '2rem',
                   color: '#d4af37',
                   marginBottom: '1rem',
                   fontWeight: 'bold',
                   textAlign: 'center',
-                  textShadow: '0 0 20px rgba(212, 175, 55, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.8)'
+                  textShadow: '0 0 20px rgba(212, 175, 55, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
                   Devojačko veče & Lady Party
                 </h3>
                 
-                {/* Opis - sa crnom senkom za čitljivost */}
+                {/* Opis - sa ojačanom crnom senkom za čitljivost */}
                 <p style={{
                   color: '#f5f2e8',
                   marginBottom: '1.5rem',
                   fontSize: '0.95rem',
                   lineHeight: '1.7',
                   textAlign: 'center',
-                  textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)'
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
                   Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.
                 </p>
                 
-                {/* Uključeno - lista sa crnom senkom */}
+                {/* Uključeno - lista sa ojačanom crnom senkom */}
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h4 style={{
                     color: '#d4af37',
@@ -2218,7 +2218,7 @@ const Spa = () => {
                     marginBottom: '0.8rem',
                     fontWeight: '600',
                     textAlign: 'center',
-                    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)'
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                   }}>
                     Uključeno:
                   </h4>
@@ -2233,31 +2233,31 @@ const Spa = () => {
                     marginLeft: 'auto',
                     marginRight: 'auto'
                   }}>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Masaža po izboru za svaku gošću – 60 min
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Potpuna SPA zona (sauna, parno kupatilo i jacuzzi) – privatna upotreba
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Koktel majstor (live cocktail show & signature pića)
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Klasični ketering
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Svečana torta
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       DJ Monsta Beatz – ekskluzivni party program
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Dekoracija prostora i intiman Bua Luang ambijent
                     </li>
