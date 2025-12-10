@@ -2080,7 +2080,7 @@ const Spa = () => {
           maxWidth: '500px',
           margin: '0 auto'
         }}>
-          {/* Kartica 3: Devojačko veče */}
+          {/* Kartica 3: Devojačko veče - STARI SADRŽAJ */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2130,75 +2130,30 @@ const Spa = () => {
                 Devojačko veče
               </h3>
               
-              {/* Kratak opis */}
+              {/* Opis */}
               <p style={{
-                color: '#c0baa8',
+                color: '#f5f2e8',
                 marginBottom: '1rem',
-                fontSize: '0.95rem',
-                lineHeight: '1.5'
+                fontSize: '1rem',
+                lineHeight: '1.6'
               }}>
-                Ekskluzivan SPA ritual sa pilingom, aromaterapijom, saunom, parnim kupatilom i jacuzzijem.
+                Ekskluzivan tretman za posebne prilike (detalji uskoro).
               </p>
               
               {/* Trajanje */}
               <div style={{
                 color: '#d4af37',
                 fontSize: '0.95rem',
-                marginBottom: '1rem',
+                marginBottom: '1.5rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem'
               }}>
                 <Clock size={18} />
-                <span style={{ fontWeight: '600' }}>210 min</span>
+                <span style={{ fontWeight: '600' }}>3 sata</span>
               </div>
               
-              {/* Uključeno - lista */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h4 style={{
-                  color: '#d4af37',
-                  fontSize: '0.9rem',
-                  marginBottom: '0.75rem',
-                  fontWeight: '600'
-                }}>
-                  Uključeno:
-                </h4>
-                <ul style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                  color: '#f5f2e8',
-                  fontSize: '0.85rem',
-                  lineHeight: '1.8'
-                }}>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                    Body scrub – 60 min
-                  </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                    Aroma masaža celog tela – 60 min
-                  </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                    Sauna – 30 min
-                  </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                    Parno kupatilo – 30 min
-                  </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                    Jacuzzi – 30 min
-                  </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                    Šampanjac i sveže voće
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Cena + "Za dve osobe" */}
+              {/* Cena */}
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -2206,25 +2161,26 @@ const Spa = () => {
                 gap: '0.5rem',
                 marginBottom: '1.5rem'
               }}>
-                <div style={{
+                <button style={{
                   background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  border: 'none',
                   borderRadius: '12px',
                   padding: '1rem 2rem',
                   fontSize: '1.5rem',
                   fontWeight: 'bold',
                   color: '#1a1a1a',
-                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.3)',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                  cursor: 'default',
+                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                  position: 'relative',
+                  overflow: 'hidden'
                 }}>
-                  {formatNumber(25000)} RSD
-                </div>
+                  <span className="price-amount">{formatNumber(8500)} RSD</span>
+                </button>
                 <div style={{
-                  color: '#d4af37',
-                  fontSize: '0.95rem',
-                  fontWeight: '600',
-                  textShadow: '0 0 10px rgba(212, 175, 55, 0.5)'
+                  color: '#c0baa8',
+                  fontSize: '0.9rem'
                 }}>
-                  Za dve osobe
+                  Po osobi
                 </div>
               </div>
 
@@ -2239,12 +2195,13 @@ const Spa = () => {
                 borderRadius: '10px',
                 border: 'none'
               }}>
-                <Link to="/contact?service=Devojačko veče&duration=210&price=25000">
+                <Link to="/contact?service=Bridal%20Package">
                   Zakažite
                 </Link>
               </Button>
             </CardContent>
           </Card>
+        </div>
         </div>
       </section>
 
