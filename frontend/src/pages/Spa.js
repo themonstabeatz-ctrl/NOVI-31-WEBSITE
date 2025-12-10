@@ -1425,6 +1425,236 @@ const Spa = () => {
         </div>
       </section>
 
+      {/* SPA ZONE ONLY Card - Horizontal Layout */}
+      <section style={{
+        padding: '80px 20px',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        background: 'transparent'
+      }}>
+        <div className="spa-ritual-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: '2.5rem'
+        }}>
+          {(() => {
+            const { totalPrice, totalMinutes, selectedZones } = calculateTotals(SPA_ZONE_ONLY);
+
+            return (
+              <Card 
+                key={SPA_ZONE_ONLY.id}
+                className="spa-ritual-card"
+                style={{
+                  background: 'rgba(10, 10, 10, 0.65)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#d4af37';
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}>
+                <CardContent style={{ padding: '1.5rem' }}>
+                  {/* Header */}
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '1rem',
+                    flexWrap: 'wrap',
+                    gap: '1rem'
+                  }}>
+                    <div>
+                      <h3 style={{
+                        fontSize: '1.4rem',
+                        color: '#d4af37',
+                        marginBottom: '0.5rem',
+                        fontWeight: 'bold'
+                      }}>
+                        {SPA_ZONE_ONLY.name}
+                      </h3>
+                    </div>
+
+                    {/* Duration and Price */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <Clock size={18} color="#d4af37" />
+                        <span style={{ color: '#f5f2e8', fontSize: '1rem', fontWeight: '600' }}>
+                          {totalMinutes} min
+                        </span>
+                      </div>
+                      <div style={{
+                        fontSize: '1.3rem',
+                        fontWeight: 'bold',
+                        color: '#d4af37'
+                      }}>
+                        {totalPrice.toLocaleString('sr-RS')} RSD
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p style={{
+                    color: '#c0baa8',
+                    marginBottom: '0.9rem',
+                    fontSize: '0.9rem',
+                    lineHeight: '1.5'
+                  }}>
+                    {SPA_ZONE_ONLY.description}
+                  </p>
+
+                  {/* Zone Options in Horizontal Layout */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                    gap: '1.5rem',
+                    marginBottom: '1rem'
+                  }}>
+                    {SPA_ZONE_ONLY.zones.map((zone) => (
+                      <div key={zone.id}>
+                        <h4 style={{
+                          color: '#d4af37',
+                          fontSize: '0.9rem',
+                          marginBottom: '0.5rem',
+                          fontWeight: '600'
+                        }}>
+                          {zone.label}:
+                        </h4>
+                        {/* "Bez" option */}
+                        <label style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.4rem',
+                          marginBottom: '0.3rem',
+                          cursor: 'pointer',
+                          color: '#f5f2e8',
+                          fontSize: '0.85rem',
+                          padding: '0.3rem',
+                          borderRadius: '4px',
+                          background: selectedZones[zone.id] === null ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                          transition: 'background 0.3s ease'
+                        }}>
+                          <input
+                            type="radio"
+                            name={`zone-only-${zone.id}`}
+                            value="bez"
+                            checked={selectedZones[zone.id] === null}
+                            onChange={() => handleZoneOptionSelect(SPA_ZONE_ONLY.id, zone.id, null)}
+                            style={{
+                              accentColor: '#d4af37',
+                              cursor: 'pointer',
+                              width: '14px',
+                              height: '14px'
+                            }}
+                          />
+                          <span>Bez</span>
+                        </label>
+                        {/* Zone options */}
+                        {zone.options.map((option) => {
+                          const isSelected = selectedZones[zone.id] === option.id;
+                          return (
+                            <label key={option.id} style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.4rem',
+                              marginBottom: '0.3rem',
+                              cursor: 'pointer',
+                              color: '#f5f2e8',
+                              fontSize: '0.85rem',
+                              padding: '0.3rem',
+                              borderRadius: '4px',
+                              background: isSelected ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                              transition: 'background 0.3s ease'
+                            }}>
+                              <input
+                                type="radio"
+                                name={`zone-only-${zone.id}`}
+                                value={option.id}
+                                checked={isSelected}
+                                onChange={() => handleZoneOptionSelect(SPA_ZONE_ONLY.id, zone.id, option.id)}
+                                style={{
+                                  accentColor: '#d4af37',
+                                  cursor: 'pointer',
+                                  width: '14px',
+                                  height: '14px'
+                                }}
+                              />
+                              <span>
+                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>+{option.extraPrice.toLocaleString('sr-RS')} RSD</span>
+                              </span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Total Summary */}
+                  <div style={{
+                    background: 'rgba(212, 175, 55, 0.1)',
+                    padding: '0.7rem',
+                    borderRadius: '8px',
+                    marginBottom: '1rem',
+                    border: '1px solid rgba(212, 175, 55, 0.2)'
+                  }}>
+                    <p style={{
+                      color: '#f5f2e8',
+                      fontSize: '0.9rem',
+                      margin: 0,
+                      lineHeight: '1.5'
+                    }}>
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
+                    </p>
+                  </div>
+
+                  {/* Book Button */}
+                  <button
+                    onClick={() => handleSpaBookClick(SPA_ZONE_ONLY)}
+                    style={{
+                      width: '100%',
+                      padding: '0.7rem',
+                      background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      color: '#1a1a1a',
+                      fontSize: '0.95rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
+                    }}
+                  >
+                    Zakažite
+                  </button>
+                </CardContent>
+              </Card>
+            );
+          })()}
+        </div>
+      </section>
+
       {/* "SPA Paketi za posebne prilike" Section - SAMO 2 KARTICE */}
       <section style={{
         padding: '80px 20px',
