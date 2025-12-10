@@ -162,6 +162,58 @@ const SPA_PACKAGES = [
   }
 ];
 
+// NEW SPA PACKAGES - Fixed price packages with included SPA zone
+const NEW_SPA_PACKAGES = [
+  {
+    id: "SPA_HC_1",
+    name: "Silky Herbal Compress Ritual",
+    description: "Nega tela sa pilingom i dubokim opuštanjem uz aromu i tople biljne komprese.",
+    included: [
+      "Body scrub – 30 min",
+      "Aroma masaža sa toplim biljnim kompresama – 90 min"
+    ],
+    fixedPrice: 7600,
+    fixedMinutes: 135,
+    isFixedPackage: true,
+    spaZoneOptions: [
+      { id: "SAUNA_15", label: "Sauna – 15 min" },
+      { id: "STEAM_15", label: "Parno kupatilo – 15 min" }
+    ]
+  },
+  {
+    id: "SPA_HC_2",
+    name: "Thai Herbal Compress Ritual",
+    description: "Tradicionalni tajlandski tretman sa toplim biljnim kompresama za rasterećenje mišića i uma.",
+    included: [
+      "Body scrub – 30 min",
+      "Thai masaža sa toplim biljnim kompresama – 90 min"
+    ],
+    fixedPrice: 7600,
+    fixedMinutes: 135,
+    isFixedPackage: true,
+    spaZoneOptions: [
+      { id: "SAUNA_15", label: "Sauna – 15 min" },
+      { id: "STEAM_15", label: "Parno kupatilo – 15 min" }
+    ]
+  },
+  {
+    id: "SPA_HC_3",
+    name: "Aroma Stone Harmony Ritual",
+    description: "Spoj aromaterapije i toplog kamena za dubinsko opuštanje tela i otklanjanje napetosti.",
+    included: [
+      "Body scrub – 30 min",
+      "Aromaterapija & topli kamen – 90 min"
+    ],
+    fixedPrice: 7600,
+    fixedMinutes: 135,
+    isFixedPackage: true,
+    spaZoneOptions: [
+      { id: "SAUNA_15", label: "Sauna – 15 min" },
+      { id: "STEAM_15", label: "Parno kupatilo – 15 min" }
+    ]
+  }
+];
+
 // SPA ZONE-ONLY package (no ritual, just zones)
 const SPA_ZONE_ONLY = {
   id: "SPAZONE",
