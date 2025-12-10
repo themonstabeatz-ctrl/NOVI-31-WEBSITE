@@ -583,7 +583,7 @@ const Spa = () => {
 
   // Calculate totals for display
   const calculateTotals = (pkg) => {
-    const selectedZones = selectedZonesByPackage[pkg.id];
+    const selectedZones = selectedZonesByPackage[pkg.id] || {};
     
     if (pkg.isZoneOnly) {
       // Zone-only package - sum ALL selected zones
@@ -602,15 +602,24 @@ const Spa = () => {
       });
       
       return {
-        totalPrice,
-        totalMinutes,
+        totalPrice: totalPrice || 0,
+        totalMinutes: totalMinutes || 0,
         selectedVariant: null,
         selectedZones
       };
     } else {
       // Regular ritual package
-      const selectedVariantId = selectedVariantByPackage[pkg.id] || pkg.variants[0].id;
-      const selectedVariant = pkg.variants.find(v => v.id === selectedVariantId);
+      const selectedVariantId = selectedVariantByPackage[pkg.id] || (pkg.variants && pkg.variants[0] && pkg.variants[0].id);
+      const selectedVariant = pkg.variants && pkg.variants.find(v => v.id === selectedVariantId);
+      
+      if (!selectedVariant) {
+        return {
+          totalPrice: 0,
+          totalMinutes: 0,
+          selectedVariant: null,
+          selectedZones
+        };
+      }
       
       let baseMinutes = selectedVariant.totalMinutes;
       let basePrice = selectedVariant.totalPrice;
@@ -619,16 +628,18 @@ const Spa = () => {
       let zoneMinutes = 0;
       let zonePrice = 0;
       
-      pkg.spaZones.forEach(zone => {
-        const selectedOptionId = selectedZones[zone.id];
-        if (selectedOptionId) {  // If not null (not "Bez")
-          const option = zone.options.find(o => o.id === selectedOptionId);
-          if (option) {
-            zoneMinutes += option.extraMinutes;
-            zonePrice += option.extraPrice;
+      if (pkg.spaZones) {
+        pkg.spaZones.forEach(zone => {
+          const selectedOptionId = selectedZones[zone.id];
+          if (selectedOptionId) {  // If not null (not "Bez")
+            const option = zone.options.find(o => o.id === selectedOptionId);
+            if (option) {
+              zoneMinutes += option.extraMinutes;
+              zonePrice += option.extraPrice;
+            }
           }
-        }
-      });
+        });
+      }
       
       return {
         totalPrice: basePrice + zonePrice,
