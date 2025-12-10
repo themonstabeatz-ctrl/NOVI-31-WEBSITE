@@ -2098,7 +2098,6 @@ const Spa = () => {
               >
                 Zakažite
               </button>
-              </div>
             </CardContent>
           </Card>
         </div>
