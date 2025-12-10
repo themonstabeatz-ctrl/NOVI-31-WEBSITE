@@ -2084,7 +2084,8 @@ const Spa = () => {
         {/* Kartica "Devojačko veče" - centrirana ispod - STARI SADRŽAJ */}
         <div style={{
           maxWidth: '500px',
-          margin: '0 auto'
+          margin: '0 auto',
+          marginTop: '4rem'
         }}>
           {/* Kartica 3: Devojačko veče - STARI SADRŽAJ */}
           <Card 
