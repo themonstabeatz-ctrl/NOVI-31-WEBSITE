@@ -1756,7 +1756,7 @@ const Spa = () => {
               }}
             />
             
-            <CardContent style={{ position: 'relative', zIndex: 1, padding: '1.5rem' }}>
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 1.5rem' }}>
               {/* Header: Duration and Price */}
               <div style={{
                 display: 'flex',
@@ -1936,7 +1936,7 @@ const Spa = () => {
               }}
             />
             
-            <CardContent style={{ position: 'relative', zIndex: 1, padding: '1.5rem' }}>
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 1.5rem' }}>
               {/* Header: Duration and Price */}
               <div style={{
                 display: 'flex',
