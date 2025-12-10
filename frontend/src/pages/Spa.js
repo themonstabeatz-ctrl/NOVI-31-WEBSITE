@@ -298,6 +298,15 @@ const Spa = () => {
     return initial;
   });
 
+  // State for NEW fixed-price packages - tracks selected SPA zone
+  const [selectedNewPackageZone, setSelectedNewPackageZone] = useState(() => {
+    const initial = {};
+    NEW_SPA_PACKAGES.forEach(pkg => {
+      initial[pkg.id] = "SAUNA_15";  // Default: Sauna - 15 min
+    });
+    return initial;
+  });
+
   // Scroll fade-out effect for hero (IDENTICAL to Massage.js)
   useEffect(() => {
     const handleScroll = () => {
