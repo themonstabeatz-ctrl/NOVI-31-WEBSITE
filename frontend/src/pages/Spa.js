@@ -528,35 +528,32 @@ const Spa = () => {
     navigate(`/contact?${params.toString()}`);
   };
 
-  // Handle booking for NEW fixed-price packages
-  const handleNewPackageBookClick = (pkg) => {
-    const BASE_DURATION_MINUTES = 120;  // 30 min scrub + 90 min tretman
-    const SPA_BONUS_MINUTES = 15;       // gratis SPA zona
+  // Handle booking for HERBAL packages
+  const handleNewPackageBookClick = (card) => {
+    const selectedZone = herbalZones[card.id] || "NONE";
+    const hasSpa = selectedZone !== "NONE";
     
-    const selectedZoneId = selectedNewPackageZone[pkg.id];
-    const hasSpa = selectedZoneId !== "NONE";
-    
-    // Calculate dynamic duration
-    const totalMinutes = BASE_DURATION_MINUTES + (hasSpa ? SPA_BONUS_MINUTES : 0);
-    const totalPrice = 7600;  // Fixed price
+    // Dynamic duration: 120 min base, +15 min if SPA selected
+    const totalMinutes = HERBAL_BASE_MINUTES + (hasSpa ? HERBAL_SPA_BONUS : 0);
+    const totalPrice = HERBAL_PRICE;
     
     // Determine SPA zone label
     let spaZoneLabel = "Bez SPA zone";
-    if (selectedZoneId === "SAUNA_15") spaZoneLabel = "Sauna – 15 min";
-    if (selectedZoneId === "STEAM_15") spaZoneLabel = "Parno kupatilo – 15 min";
+    if (selectedZone === "SAUNA_15") spaZoneLabel = "Sauna – 15 min";
+    if (selectedZone === "STEAM_15") spaZoneLabel = "Parno kupatilo – 15 min";
 
     const params = new URLSearchParams({
       source: "spa",
-      spaPackageId: pkg.id,
-      spaPackageName: pkg.name,
-      variantId: `${pkg.id}_BASE`,
+      spaPackageId: card.id,
+      spaPackageName: card.name,
+      variantId: `${card.id}_BASE`,
       variantLabel: "Osnovni paket (telo + SPA zona)",
       spaZoneLabel: spaZoneLabel,
       totalMinutes: String(totalMinutes),
       totalPrice: String(totalPrice)
     });
 
-    console.log("📍 NEW SPA package booking params:", Object.fromEntries(params));
+    console.log("📍 HERBAL package booking params:", Object.fromEntries(params));
 
     navigate(`/contact?${params.toString()}`);
   };
