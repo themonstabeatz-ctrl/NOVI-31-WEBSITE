@@ -2202,7 +2202,6 @@ const Spa = () => {
             </CardContent>
           </Card>
         </div>
-        </div>
       </section>
 
       </div> {/* End spa-parallax-content */}
