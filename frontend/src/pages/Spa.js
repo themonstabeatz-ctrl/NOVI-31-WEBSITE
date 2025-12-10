@@ -1352,6 +1352,243 @@ const Spa = () => {
         </div>
       </section>
 
+      {/* NEW FIXED-PRICE SPA PACKAGES - 3 Herbal & Stone Rituals */}
+      <section style={{
+        padding: '80px 20px',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        background: 'transparent'
+      }}>
+        <div className="spa-ritual-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gap: '2.5rem'
+        }}>
+          {NEW_SPA_PACKAGES.map((pkg) => {
+            const selectedZoneId = selectedNewPackageZone[pkg.id];
+            const selectedZone = pkg.spaZoneOptions.find(z => z.id === selectedZoneId);
+
+            return (
+              <Card key={pkg.id} 
+                className="spa-ritual-card"
+                style={{
+                  background: 'rgba(10, 10, 10, 0.65)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#d4af37';
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}>
+                <CardContent style={{ padding: '0.6rem' }}>
+                  {/* Header: Duration and Price */}
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '0.3rem',
+                    paddingBottom: '0.3rem',
+                    borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <Clock size={14} color="#d4af37" />
+                      <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
+                        {pkg.fixedMinutes} min
+                      </span>
+                    </div>
+                    <div style={{
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      color: '#d4af37'
+                    }}>
+                      {pkg.fixedPrice.toLocaleString('sr-RS')} RSD
+                    </div>
+                  </div>
+
+                  {/* Package Name */}
+                  <h3 style={{
+                    fontSize: '1rem',
+                    color: '#d4af37',
+                    marginBottom: '0.2rem',
+                    fontWeight: 'bold'
+                  }}>
+                    {pkg.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p style={{
+                    color: '#c0baa8',
+                    marginBottom: '0.4rem',
+                    fontSize: '0.72rem',
+                    lineHeight: '1.3'
+                  }}>
+                    {pkg.description}
+                  </p>
+
+                  {/* Included Services */}
+                  <div style={{ marginBottom: '0.4rem' }}>
+                    <h4 style={{
+                      color: '#d4af37',
+                      fontSize: '0.72rem',
+                      marginBottom: '0.2rem',
+                      fontWeight: '600'
+                    }}>
+                      Uključeno:
+                    </h4>
+                    <ul style={{
+                      listStyle: 'none',
+                      padding: 0,
+                      margin: 0
+                    }}>
+                      {pkg.included.map((item, idx) => (
+                        <li key={idx} style={{
+                          color: '#f5f2e8',
+                          fontSize: '0.68rem',
+                          marginBottom: '0.1rem',
+                          paddingLeft: '1rem',
+                          position: 'relative',
+                          lineHeight: '1.3'
+                        }}>
+                          <Sparkles size={9} color="#d4af37" style={{
+                            position: 'absolute',
+                            left: 0,
+                            top: '2px'
+                          }} />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* MINI SPA ZONA Section */}
+                  <div style={{
+                    marginBottom: '0.4rem',
+                    padding: '0.4rem 0.5rem',
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    border: '1px solid rgba(212, 175, 55, 0.4)',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 8px rgba(212, 175, 55, 0.1)'
+                  }}>
+                    <h4 style={{
+                      color: '#d4af37',
+                      fontSize: '0.72rem',
+                      marginBottom: '0.3rem',
+                      fontWeight: 'bold',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      SPA ZONA (15 min uključeno u cenu)
+                    </h4>
+                    
+                    <div style={{ marginBottom: '0.2rem' }}>
+                      <p style={{
+                        color: '#d4af37',
+                        fontSize: '0.68rem',
+                        marginBottom: '0.15rem',
+                        fontWeight: '600'
+                      }}>
+                        Izaberite SPA opciju:
+                      </p>
+                      {/* SPA Zone Options */}
+                      {pkg.spaZoneOptions.map((zoneOption) => {
+                        const isSelected = selectedZoneId === zoneOption.id;
+                        return (
+                          <label key={zoneOption.id} style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.2rem',
+                            marginBottom: '0.1rem',
+                            cursor: 'pointer',
+                            color: '#f5f2e8',
+                            fontSize: '0.68rem',
+                            padding: '0.12rem',
+                            borderRadius: '3px',
+                            background: isSelected ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                            transition: 'background 0.3s ease'
+                          }}>
+                            <input
+                              type="radio"
+                              name={`new-zone-${pkg.id}`}
+                              value={zoneOption.id}
+                              checked={isSelected}
+                              onChange={() => handleNewPackageZoneSelect(pkg.id, zoneOption.id)}
+                              style={{
+                                accentColor: '#d4af37',
+                                cursor: 'pointer',
+                                width: '10px',
+                                height: '10px'
+                              }}
+                            />
+                            <span>{zoneOption.label}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Total Summary */}
+                  <div style={{
+                    background: 'rgba(212, 175, 55, 0.1)',
+                    padding: '0.35rem',
+                    borderRadius: '5px',
+                    marginBottom: '0.4rem',
+                    border: '1px solid rgba(212, 175, 55, 0.2)'
+                  }}>
+                    <p style={{
+                      color: '#f5f2e8',
+                      fontSize: '0.68rem',
+                      margin: 0,
+                      lineHeight: '1.3'
+                    }}>
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {pkg.fixedMinutes} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {pkg.fixedPrice.toLocaleString('sr-RS')} RSD
+                    </p>
+                  </div>
+
+                  {/* Book Button */}
+                  <button
+                    onClick={() => handleNewPackageBookClick(pkg)}
+                    style={{
+                      width: '100%',
+                      padding: '0.55rem',
+                      background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                      border: 'none',
+                      borderRadius: '6px',
+                      color: '#1a1a1a',
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
+                    }}
+                  >
+                    Zakažite
+                  </button>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
       {/* "SPA Paketi za posebne prilike" Section - SAMO 2 KARTICE */}
       <section style={{
         padding: '80px 20px',
