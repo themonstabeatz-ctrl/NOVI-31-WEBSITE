@@ -2127,11 +2127,11 @@ const Spa = () => {
           margin: '0 auto',
           marginTop: '100px'
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - KOMPLETNO NOVI DIZAJN */}
+          {/* Kartica 3: Devojačko veče & Lady Party - FINALNI DIZAJN */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
-              background: 'rgba(10, 10, 10, 0.65)',
+              background: 'rgba(10, 10, 10, 0.75)',
               backdropFilter: 'blur(8px)',
               border: '1px solid rgba(212, 175, 55, 0.3)',
               borderRadius: '16px',
@@ -2164,7 +2164,7 @@ const Spa = () => {
               }
             }}
           >
-            {/* Background image - cela fotografija */}
+            {/* Background image - cela fotografija bez rastezanja */}
             <div 
               className="bridal-card-background"
               style={{
@@ -2185,37 +2185,39 @@ const Spa = () => {
             <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               {/* Content wrapper */}
               <div style={{ flexGrow: 1 }}>
-                {/* Naslov */}
+                {/* Naslov - sa crnom senkom za čitljivost */}
                 <h3 style={{
                   fontSize: '2rem',
                   color: '#d4af37',
                   marginBottom: '1rem',
                   fontWeight: 'bold',
                   textAlign: 'center',
-                  textShadow: '0 0 20px rgba(212, 175, 55, 0.5)'
+                  textShadow: '0 0 20px rgba(212, 175, 55, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.8)'
                 }}>
                   Devojačko veče & Lady Party
                 </h3>
                 
-                {/* Opis */}
+                {/* Opis - sa crnom senkom za čitljivost */}
                 <p style={{
                   color: '#f5f2e8',
                   marginBottom: '1.5rem',
                   fontSize: '0.95rem',
                   lineHeight: '1.7',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)'
                 }}>
-                  Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu za mladu i DJ MONSTA BEATZ koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.
+                  Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.
                 </p>
                 
-                {/* Uključeno - lista */}
+                {/* Uključeno - lista sa crnom senkom */}
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h4 style={{
                     color: '#d4af37',
                     fontSize: '1rem',
                     marginBottom: '0.8rem',
                     fontWeight: '600',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)'
                   }}>
                     Uključeno:
                   </h4>
@@ -2230,31 +2232,31 @@ const Spa = () => {
                     marginLeft: 'auto',
                     marginRight: 'auto'
                   }}>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Masaža po izboru za svaku gošću – 60 min
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Potpuna SPA zona (sauna, parno kupatilo i jacuzzi) – privatna upotreba
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Koktel majstor (live cocktail show & signature pića)
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Klasični ketering
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Svečana torta za mladu
+                      Svečana torta
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      DJ MONSTA BEATZ – ekskluzivni party program
+                      DJ Monsta Beatz – ekskluzivni party program
                     </li>
-                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
                       Dekoracija prostora i intiman Bua Luang ambijent
                     </li>
