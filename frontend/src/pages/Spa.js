@@ -540,6 +540,35 @@ const Spa = () => {
     navigate(`/contact?${params.toString()}`);
   };
 
+  // Handle booking for NEW fixed-price packages
+  const handleNewPackageBookClick = (pkg) => {
+    const selectedZoneId = selectedNewPackageZone[pkg.id];
+    const selectedZone = pkg.spaZoneOptions.find(z => z.id === selectedZoneId);
+
+    const params = new URLSearchParams({
+      source: "spa",
+      spaPackageId: pkg.id,
+      spaPackageName: pkg.name,
+      variantId: `${pkg.id}_BASE`,
+      variantLabel: "Osnovni paket (telo + SPA zona)",
+      spaZoneLabel: selectedZone.label,
+      totalMinutes: String(pkg.fixedMinutes),
+      totalPrice: String(pkg.fixedPrice)
+    });
+
+    console.log("📍 NEW SPA package booking params:", Object.fromEntries(params));
+
+    navigate(`/contact?${params.toString()}`);
+  };
+
+  // Handle zone selection for NEW packages
+  const handleNewPackageZoneSelect = (pkgId, zoneId) => {
+    setSelectedNewPackageZone(prev => ({
+      ...prev,
+      [pkgId]: zoneId
+    }));
+  };
+
   // Calculate totals for display
   const calculateTotals = (pkg) => {
     const selectedZones = selectedZonesByPackage[pkg.id];
