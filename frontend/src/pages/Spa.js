@@ -1139,6 +1139,7 @@ const Spa = () => {
                   >
                     Zakažite
                   </button>
+                  </div>
                 </CardContent>
               </Card>
             );
@@ -1436,6 +1437,7 @@ const Spa = () => {
                   >
                     Zakažite
                   </button>
+                  </div>
                 </CardContent>
               </Card>
             );
@@ -1669,6 +1671,7 @@ const Spa = () => {
                   >
                     Zakažite
                   </button>
+                  </div>
                 </CardContent>
               </Card>
             );
