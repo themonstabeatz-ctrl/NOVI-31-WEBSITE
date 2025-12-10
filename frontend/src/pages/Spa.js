@@ -1600,8 +1600,8 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.3'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {pkg.fixedMinutes} min<br />
-                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {pkg.fixedPrice.toLocaleString('sr-RS')} RSD
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
                     </p>
                   </div>
 
