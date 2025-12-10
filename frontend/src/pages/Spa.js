@@ -302,7 +302,7 @@ const Spa = () => {
   const [selectedNewPackageZone, setSelectedNewPackageZone] = useState(() => {
     const initial = {};
     NEW_SPA_PACKAGES.forEach(pkg => {
-      initial[pkg.id] = "SAUNA_15";  // Default: Sauna - 15 min
+      initial[pkg.id] = "NONE";  // Default: Bez SPA zone
     });
     return initial;
   });
