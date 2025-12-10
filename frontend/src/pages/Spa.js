@@ -878,7 +878,7 @@ const Spa = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Clock size={14} color="#d4af37" />
                       <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
-                        {totalMinutes} min
+                        {formatNumber(totalMinutes)} min
                       </span>
                     </div>
                     <div style={{
@@ -886,7 +886,7 @@ const Spa = () => {
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
-                      {totalPrice.toLocaleString('sr-RS')} RSD
+                      {formatNumber(totalPrice)} RSD
                     </div>
                   </div>
 
@@ -1201,7 +1201,7 @@ const Spa = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Clock size={14} color="#d4af37" />
                       <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
-                        {totalMinutes} min
+                        {formatNumber(totalMinutes)} min
                       </span>
                     </div>
                     <div style={{
@@ -1209,7 +1209,7 @@ const Spa = () => {
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
-                      {totalPrice.toLocaleString('sr-RS')} RSD
+                      {formatNumber(totalPrice)} RSD
                     </div>
                   </div>
 
