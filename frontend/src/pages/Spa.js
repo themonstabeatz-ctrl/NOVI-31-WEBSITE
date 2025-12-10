@@ -288,13 +288,11 @@ const Spa = () => {
     return initial;
   });
 
-  // State for NEW fixed-price packages - tracks selected SPA zone
-  const [selectedNewPackageZone, setSelectedNewPackageZone] = useState(() => {
-    const initial = {};
-    NEW_SPA_PACKAGES.forEach(pkg => {
-      initial[pkg.id] = "NONE";  // Default: Bez SPA zone
-    });
-    return initial;
+  // State for NEW herbal packages - tracks selected SPA zone
+  const [herbalZones, setHerbalZones] = useState({
+    SPA_HC_1: "NONE",   // Silky Herbal - Default: Bez SPA zone
+    SPA_HC_2: "NONE",   // Thai Herbal
+    SPA_HC_3: "NONE"    // Aroma Stone
   });
 
   // Scroll fade-out effect for hero (IDENTICAL to Massage.js)
