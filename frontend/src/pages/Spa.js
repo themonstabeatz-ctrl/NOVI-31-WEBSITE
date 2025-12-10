@@ -1309,15 +1309,15 @@ const Spa = () => {
                         fontSize: '0.68rem',
                         padding: '0.12rem',
                         borderRadius: '3px',
-                        background: selectedZoneId === "NONE" ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                        background: selectedZone === "NONE" ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
                         transition: 'background 0.3s ease'
                       }}>
                         <input
                           type="radio"
-                          name={`new-zone-${pkg.id}`}
+                          name={`herbal-spa-${pkg.id}`}
                           value="NONE"
-                          checked={selectedZoneId === "NONE"}
-                          onChange={() => handleNewPackageZoneSelect(pkg.id, "NONE")}
+                          checked={selectedZone === "NONE"}
+                          onChange={() => handleHerbalZoneChange(pkg.id, "NONE")}
                           style={{
                             accentColor: '#d4af37',
                             cursor: 'pointer',
@@ -1328,40 +1328,65 @@ const Spa = () => {
                         <span>Bez SPA zone</span>
                       </label>
                       
-                      {/* SPA Zone Options */}
-                      {pkg.spaZoneOptions.map((zoneOption) => {
-                        const isSelected = selectedZoneId === zoneOption.id;
-                        return (
-                          <label key={zoneOption.id} style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.2rem',
-                            marginBottom: '0.1rem',
+                      {/* Sauna option */}
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.2rem',
+                        marginBottom: '0.1rem',
+                        cursor: 'pointer',
+                        color: '#f5f2e8',
+                        fontSize: '0.68rem',
+                        padding: '0.12rem',
+                        borderRadius: '3px',
+                        background: selectedZone === "SAUNA_15" ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                        transition: 'background 0.3s ease'
+                      }}>
+                        <input
+                          type="radio"
+                          name={`herbal-spa-${pkg.id}`}
+                          value="SAUNA_15"
+                          checked={selectedZone === "SAUNA_15"}
+                          onChange={() => handleHerbalZoneChange(pkg.id, "SAUNA_15")}
+                          style={{
+                            accentColor: '#d4af37',
                             cursor: 'pointer',
-                            color: '#f5f2e8',
-                            fontSize: '0.68rem',
-                            padding: '0.12rem',
-                            borderRadius: '3px',
-                            background: isSelected ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
-                            transition: 'background 0.3s ease'
-                          }}>
-                            <input
-                              type="radio"
-                              name={`new-zone-${pkg.id}`}
-                              value={zoneOption.id}
-                              checked={isSelected}
-                              onChange={() => handleNewPackageZoneSelect(pkg.id, zoneOption.id)}
-                              style={{
-                                accentColor: '#d4af37',
-                                cursor: 'pointer',
-                                width: '10px',
-                                height: '10px'
-                              }}
-                            />
-                            <span>{zoneOption.label}</span>
-                          </label>
-                        );
-                      })}
+                            width: '10px',
+                            height: '10px'
+                          }}
+                        />
+                        <span>Sauna – 15 min</span>
+                      </label>
+                      
+                      {/* Parno kupatilo option */}
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.2rem',
+                        marginBottom: '0.1rem',
+                        cursor: 'pointer',
+                        color: '#f5f2e8',
+                        fontSize: '0.68rem',
+                        padding: '0.12rem',
+                        borderRadius: '3px',
+                        background: selectedZone === "STEAM_15" ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                        transition: 'background 0.3s ease'
+                      }}>
+                        <input
+                          type="radio"
+                          name={`herbal-spa-${pkg.id}`}
+                          value="STEAM_15"
+                          checked={selectedZone === "STEAM_15"}
+                          onChange={() => handleHerbalZoneChange(pkg.id, "STEAM_15")}
+                          style={{
+                            accentColor: '#d4af37',
+                            cursor: 'pointer',
+                            width: '10px',
+                            height: '10px'
+                          }}
+                        />
+                        <span>Parno kupatilo – 15 min</span>
+                      </label>
                     </div>
                   </div>
 
