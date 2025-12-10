@@ -561,11 +561,11 @@ const Spa = () => {
     navigate(`/contact?${params.toString()}`);
   };
 
-  // Handle zone selection for NEW packages
-  const handleNewPackageZoneSelect = (pkgId, zoneId) => {
-    setSelectedNewPackageZone(prev => ({
+  // Handle zone selection for HERBAL packages
+  const handleHerbalZoneChange = (cardId, value) => {
+    setHerbalZones(prev => ({
       ...prev,
-      [pkgId]: zoneId
+      [cardId]: value  // "NONE" | "SAUNA_15" | "STEAM_15"
     }));
   };
 
