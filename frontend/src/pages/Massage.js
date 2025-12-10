@@ -134,6 +134,8 @@ const Massage = () => {
         
         // Get couples discount
         const couplesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
+        console.log("✅ COUPLES status:", couplesResponse.status);
+        
         const couplesServices = await couplesResponse.json();
         const couplesDiscount = couplesServices[0]?.discount_percentage || 0;
         setCouplesDiscountPercent(couplesDiscount);
