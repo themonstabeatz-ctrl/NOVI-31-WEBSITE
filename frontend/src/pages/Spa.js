@@ -1377,8 +1377,15 @@ const Spa = () => {
           gap: '2.5rem'
         }}>
           {NEW_SPA_PACKAGES.map((pkg) => {
+            const BASE_DURATION_MINUTES = 120;  // 30 min scrub + 90 min tretman
+            const SPA_BONUS_MINUTES = 15;       // gratis SPA zona
+            
             const selectedZoneId = selectedNewPackageZone[pkg.id];
-            const selectedZone = pkg.spaZoneOptions.find(z => z.id === selectedZoneId);
+            const hasSpa = selectedZoneId !== "NONE";
+            
+            // Calculate dynamic duration based on SPA selection
+            const totalMinutes = BASE_DURATION_MINUTES + (hasSpa ? SPA_BONUS_MINUTES : 0);
+            const totalPrice = 7600;  // Fixed price
 
             return (
               <Card key={pkg.id} 
@@ -1415,7 +1422,7 @@ const Spa = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Clock size={14} color="#d4af37" />
                       <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
-                        {pkg.fixedMinutes} min
+                        {totalMinutes} min
                       </span>
                     </div>
                     <div style={{
@@ -1423,7 +1430,7 @@ const Spa = () => {
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
-                      {pkg.fixedPrice.toLocaleString('sr-RS')} RSD
+                      {totalPrice.toLocaleString('sr-RS')} RSD
                     </div>
                   </div>
 
