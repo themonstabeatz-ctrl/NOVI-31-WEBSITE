@@ -169,6 +169,11 @@ const SPA_PACKAGES = [
 ];
 
 // NEW SPA PACKAGES - Fixed price packages with included SPA zone
+// Constants for herbal packages
+const HERBAL_BASE_MINUTES = 120;   // 30 min scrub + 90 min tretman
+const HERBAL_SPA_BONUS = 15;       // +15 min gratis ako je SPA uključen
+const HERBAL_PRICE = 7600;
+
 const NEW_SPA_PACKAGES = [
   {
     id: "SPA_HC_1",
@@ -177,13 +182,6 @@ const NEW_SPA_PACKAGES = [
     included: [
       "Body scrub – 30 min",
       "Aroma masaža sa toplim biljnim kompresama – 90 min"
-    ],
-    fixedPrice: 7600,
-    fixedMinutes: 135,
-    isFixedPackage: true,
-    spaZoneOptions: [
-      { id: "SAUNA_15", label: "Sauna – 15 min" },
-      { id: "STEAM_15", label: "Parno kupatilo – 15 min" }
     ]
   },
   {
@@ -193,13 +191,6 @@ const NEW_SPA_PACKAGES = [
     included: [
       "Body scrub – 30 min",
       "Thai masaža sa toplim biljnim kompresama – 90 min"
-    ],
-    fixedPrice: 7600,
-    fixedMinutes: 135,
-    isFixedPackage: true,
-    spaZoneOptions: [
-      { id: "SAUNA_15", label: "Sauna – 15 min" },
-      { id: "STEAM_15", label: "Parno kupatilo – 15 min" }
     ]
   },
   {
@@ -209,13 +200,6 @@ const NEW_SPA_PACKAGES = [
     included: [
       "Body scrub – 30 min",
       "Aromaterapija & topli kamen – 90 min"
-    ],
-    fixedPrice: 7600,
-    fixedMinutes: 135,
-    isFixedPackage: true,
-    spaZoneOptions: [
-      { id: "SAUNA_15", label: "Sauna – 15 min" },
-      { id: "STEAM_15", label: "Parno kupatilo – 15 min" }
     ]
   }
 ];
