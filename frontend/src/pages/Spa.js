@@ -1906,7 +1906,8 @@ const Spa = () => {
               overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              minHeight: '540px'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#d4af37';
