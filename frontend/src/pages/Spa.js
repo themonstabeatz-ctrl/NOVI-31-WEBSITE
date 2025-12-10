@@ -2304,7 +2304,8 @@ const Spa = () => {
                   fontSize: '0.8rem',
                   textAlign: 'center',
                   fontStyle: 'italic',
-                  lineHeight: '1.4'
+                  lineHeight: '1.4',
+                  textShadow: '1px 1px 3px rgba(0, 0, 0, 0.9)'
                 }}>
                   Paket se organizuje isključivo po dogovoru i broju gošći.
                 </p>
