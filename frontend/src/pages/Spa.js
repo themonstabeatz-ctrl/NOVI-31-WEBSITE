@@ -1522,7 +1522,7 @@ const Spa = () => {
                         fontWeight: 'bold',
                         color: '#d4af37'
                       }}>
-                        {totalPrice.toLocaleString('sr-RS')} RSD
+                        {formatNumber(totalPrice)} RSD
                       </div>
                     </div>
                   </div>
