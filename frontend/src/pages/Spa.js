@@ -542,8 +542,20 @@ const Spa = () => {
 
   // Handle booking for NEW fixed-price packages
   const handleNewPackageBookClick = (pkg) => {
+    const BASE_DURATION_MINUTES = 120;  // 30 min scrub + 90 min tretman
+    const SPA_BONUS_MINUTES = 15;       // gratis SPA zona
+    
     const selectedZoneId = selectedNewPackageZone[pkg.id];
-    const selectedZone = pkg.spaZoneOptions.find(z => z.id === selectedZoneId);
+    const hasSpa = selectedZoneId !== "NONE";
+    
+    // Calculate dynamic duration
+    const totalMinutes = BASE_DURATION_MINUTES + (hasSpa ? SPA_BONUS_MINUTES : 0);
+    const totalPrice = 7600;  // Fixed price
+    
+    // Determine SPA zone label
+    let spaZoneLabel = "Bez SPA zone";
+    if (selectedZoneId === "SAUNA_15") spaZoneLabel = "Sauna – 15 min";
+    if (selectedZoneId === "STEAM_15") spaZoneLabel = "Parno kupatilo – 15 min";
 
     const params = new URLSearchParams({
       source: "spa",
@@ -551,9 +563,9 @@ const Spa = () => {
       spaPackageName: pkg.name,
       variantId: `${pkg.id}_BASE`,
       variantLabel: "Osnovni paket (telo + SPA zona)",
-      spaZoneLabel: selectedZone.label,
-      totalMinutes: String(pkg.fixedMinutes),
-      totalPrice: String(pkg.fixedPrice)
+      spaZoneLabel: spaZoneLabel,
+      totalMinutes: String(totalMinutes),
+      totalPrice: String(totalPrice)
     });
 
     console.log("📍 NEW SPA package booking params:", Object.fromEntries(params));
