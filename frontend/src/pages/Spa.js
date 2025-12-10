@@ -2121,35 +2121,50 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče" - centrirana ispod - STARI SADRŽAJ */}
+        {/* Kartica "Devojačko veče & Lady Party" - centrirana ispod romantičnih kartica */}
         <div style={{
-          maxWidth: '500px',
+          maxWidth: '750px',
           margin: '0 auto',
-          marginTop: '4rem'
+          marginTop: '100px'
         }}>
-          {/* Kartica 3: Devojačko veče - STARI SADRŽAJ */}
+          {/* Kartica 3: Devojačko veče & Lady Party - KOMPLETNO NOVI DIZAJN */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
-              background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
+              background: 'rgba(10, 10, 10, 0.65)',
+              backdropFilter: 'blur(8px)',
               border: '1px solid rgba(212, 175, 55, 0.3)',
               borderRadius: '16px',
               overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              position: 'relative'
+              position: 'relative',
+              cursor: 'pointer',
+              minHeight: '700px',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#d4af37';
               e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
+              const bg = e.currentTarget.querySelector('.bridal-card-background');
+              if (bg) {
+                bg.style.opacity = '0.5';
+                bg.style.transform = 'scale(1.05)';
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = 'none';
+              const bg = e.currentTarget.querySelector('.bridal-card-background');
+              if (bg) {
+                bg.style.opacity = '0.3';
+                bg.style.transform = 'scale(1)';
+              }
             }}
           >
-            {/* Background image */}
+            {/* Background image - cela fotografija */}
             <div 
               className="bridal-card-background"
               style={{
@@ -2162,90 +2177,136 @@ const Spa = () => {
                 right: 0,
                 bottom: 0,
                 opacity: 0.3,
-                zIndex: 0
+                zIndex: 0,
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             />
             
-            <CardContent style={{ position: 'relative', zIndex: 2, padding: '2rem' }}>
-              {/* Naslov */}
-              <h3 style={{
-                fontSize: '1.8rem',
-                color: '#d4af37',
-                marginBottom: '0.5rem',
-                fontWeight: 'bold'
-              }}>
-                Devojačko veče
-              </h3>
-              
-              {/* Opis */}
-              <p style={{
-                color: '#f5f2e8',
-                marginBottom: '1rem',
-                fontSize: '1rem',
-                lineHeight: '1.6'
-              }}>
-                Ekskluzivan tretman za posebne prilike (detalji uskoro).
-              </p>
-              
-              {/* Trajanje */}
-              <div style={{
-                color: '#d4af37',
-                fontSize: '0.95rem',
-                marginBottom: '1.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}>
-                <Clock size={18} />
-                <span style={{ fontWeight: '600' }}>3 sata</span>
-              </div>
-              
-              {/* Cena */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.5rem',
-                marginBottom: '1.5rem'
-              }}>
-                <button style={{
-                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
-                  border: 'none',
-                  borderRadius: '12px',
-                  padding: '1rem 2rem',
-                  fontSize: '1.5rem',
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+              {/* Content wrapper */}
+              <div style={{ flexGrow: 1 }}>
+                {/* Naslov */}
+                <h3 style={{
+                  fontSize: '2rem',
+                  color: '#d4af37',
+                  marginBottom: '1rem',
                   fontWeight: 'bold',
-                  color: '#1a1a1a',
-                  cursor: 'default',
-                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
-                  position: 'relative',
-                  overflow: 'hidden'
+                  textAlign: 'center',
+                  textShadow: '0 0 20px rgba(212, 175, 55, 0.5)'
                 }}>
-                  <span className="price-amount">{formatNumber(8500)} RSD</span>
-                </button>
-                <div style={{
-                  color: '#c0baa8',
-                  fontSize: '0.9rem'
+                  Devojačko veče & Lady Party
+                </h3>
+                
+                {/* Opis */}
+                <p style={{
+                  color: '#f5f2e8',
+                  marginBottom: '1.5rem',
+                  fontSize: '0.95rem',
+                  lineHeight: '1.7',
+                  textAlign: 'center'
                 }}>
-                  Po osobi
+                  Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu za mladu i DJ MONSTA BEATZ koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.
+                </p>
+                
+                {/* Uključeno - lista */}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <h4 style={{
+                    color: '#d4af37',
+                    fontSize: '1rem',
+                    marginBottom: '0.8rem',
+                    fontWeight: '600',
+                    textAlign: 'center'
+                  }}>
+                    Uključeno:
+                  </h4>
+                  <ul style={{
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: 0,
+                    color: '#f5f2e8',
+                    fontSize: '0.85rem',
+                    lineHeight: '1.8',
+                    maxWidth: '600px',
+                    marginLeft: 'auto',
+                    marginRight: 'auto'
+                  }}>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      Masaža po izboru za svaku gošću – 60 min
+                    </li>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      Potpuna SPA zona (sauna, parno kupatilo i jacuzzi) – privatna upotreba
+                    </li>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      Koktel majstor (live cocktail show & signature pića)
+                    </li>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      Klasični ketering
+                    </li>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      Svečana torta za mladu
+                    </li>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      DJ MONSTA BEATZ – ekskluzivni party program
+                    </li>
+                    <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                      <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                      Dekoracija prostora i intiman Bua Luang ambijent
+                    </li>
+                  </ul>
                 </div>
               </div>
-
-              {/* Dugme "Zakažite" */}
-              <Button asChild style={{
-                width: '100%',
-                background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
-                color: '#1a1a1a',
-                fontWeight: 'bold',
-                padding: '1.1rem',
-                fontSize: '1rem',
-                borderRadius: '10px',
-                border: 'none'
-              }}>
-                <Link to="/contact?service=Bridal%20Package">
-                  Zakažite
-                </Link>
-              </Button>
+              
+              {/* Actions section - pri dnu */}
+              <div>
+                {/* Dugme "POZOVITE" */}
+                <a 
+                  href="tel:062625500"
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    padding: '1rem',
+                    background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                    border: 'none',
+                    borderRadius: '10px',
+                    color: '#1a1a1a',
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
+                    marginBottom: '0.8rem'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
+                  }}
+                >
+                  POZOVITE
+                </a>
+                
+                {/* Tekst ispod dugmeta */}
+                <p style={{
+                  color: '#c0baa8',
+                  fontSize: '0.8rem',
+                  textAlign: 'center',
+                  fontStyle: 'italic',
+                  lineHeight: '1.4'
+                }}>
+                  Paket se organizuje isključivo po dogovoru i broju gošći.
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>
