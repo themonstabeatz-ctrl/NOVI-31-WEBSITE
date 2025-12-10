@@ -2121,28 +2121,27 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - SKALIRANA 1400×550px */}
+        {/* Kartica "Devojačko veče & Lady Party" - NOVA SLIKA 1022×750px */}
         <div style={{
-          maxWidth: '1400px',
-          width: '1400px',
+          maxWidth: '1022px',
+          width: '100%',
           margin: '0 auto',
-          marginTop: '120px'
+          marginTop: '80px'
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - SKALIRANA 1400×550px */}
+          {/* Kartica 3: Devojačko veče & Lady Party - CELA SLIKA 1022×750px */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
               background: 'rgba(10, 10, 10, 0.75)',
               backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              borderRadius: '16px',
+              border: '1px solid rgba(212, 175, 55, 0.8)',
+              borderRadius: '24px',
               overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               cursor: 'pointer',
-              width: '1400px',
-              height: '550px',
-              minHeight: '550px',
+              width: '100%',
+              minHeight: '750px',
               display: 'flex',
               flexDirection: 'column'
             }}
@@ -2153,27 +2152,25 @@ const Spa = () => {
               const bg = e.currentTarget.querySelector('.bridal-card-background');
               if (bg) {
                 bg.style.opacity = '0.5';
-                bg.style.transform = 'scale(1.05)';
               }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.8)';
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = 'none';
               const bg = e.currentTarget.querySelector('.bridal-card-background');
               if (bg) {
                 bg.style.opacity = '0.3';
-                bg.style.transform = 'scale(1)';
               }
             }}
           >
-            {/* Background image - NOVA FOTOGRAFIJA skalirana sa karticom */}
+            {/* Background image - NOVA SLIKA 1022×750px - CELA SLIKA BEZ CROPOVANJA */}
             <div 
               className="bridal-card-background"
               style={{
-                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/x2ad7ngl_2000x750.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'top center',
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/03lls8bz_1022%20750.jpg)',
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 position: 'absolute',
                 top: 0,
