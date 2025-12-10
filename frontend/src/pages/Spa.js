@@ -2121,14 +2121,14 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - FIKSNA 2000×750px */}
+        {/* Kartica "Devojačko veče & Lady Party" - SUŽENA 1000×750px */}
         <div style={{
-          maxWidth: '2000px',
-          width: '2000px',
+          maxWidth: '1000px',
+          width: '1000px',
           margin: '0 auto',
           marginTop: '100px'
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - FIKSNE DIMENZIJE 2000×750px */}
+          {/* Kartica 3: Devojačko veče & Lady Party - FIKSNE DIMENZIJE 1000×750px */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2140,7 +2140,7 @@ const Spa = () => {
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               cursor: 'pointer',
-              width: '2000px',
+              width: '1000px',
               height: '750px',
               minHeight: '750px',
               display: 'flex',
@@ -2171,7 +2171,7 @@ const Spa = () => {
             <div 
               className="bridal-card-background"
               style={{
-                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/hm8jbeaf_2000x750.jpg)',
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/x2ad7ngl_2000x750.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
