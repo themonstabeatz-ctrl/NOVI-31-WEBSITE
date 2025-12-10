@@ -72,6 +72,15 @@ const Massage = () => {
     const fetchAllServices = async () => {
       try {
         const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        
+        console.log("🧠 Massage page – backendUrl:", backendUrl);
+
+        const singleListUrl = `${backendUrl}/api/services/single/list`;
+        const couplesListUrl = `${backendUrl}/api/services/couples/list`;
+
+        console.log("🔗 Will fetch SINGLE from:", singleListUrl);
+        console.log("🔗 Will fetch COUPLES from:", couplesListUrl);
+        
         console.log('🔍 Loading services from:', `${backendUrl}/api/services/single/list`);
         
         const singleResponse = await fetch(`${backendUrl}/api/services/single/list`);
