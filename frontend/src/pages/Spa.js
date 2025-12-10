@@ -1801,11 +1801,11 @@ const Spa = () => {
               </p>
               
               {/* Uključeno - lista */}
-              <div style={{ marginBottom: '1.5rem' }}>
+              <div style={{ marginBottom: '0.8rem' }}>
                 <h4 style={{
                   color: '#d4af37',
-                  fontSize: '0.9rem',
-                  marginBottom: '0.75rem',
+                  fontSize: '0.8rem',
+                  marginBottom: '0.5rem',
                   fontWeight: '600'
                 }}>
                   Uključeno:
@@ -1815,64 +1815,53 @@ const Spa = () => {
                   padding: 0,
                   margin: 0,
                   color: '#f5f2e8',
-                  fontSize: '0.85rem',
-                  lineHeight: '1.8'
+                  fontSize: '0.75rem',
+                  lineHeight: '1.6'
                 }}>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
                     Aroma masaža celog tela – 60 min
                   </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
                     Masaža lica – 60 min
                   </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
                     Sauna – 30 min
                   </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
                     Parno kupatilo – 30 min
                   </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
                     Jacuzzi – 30 min
                   </li>
-                  <li style={{ marginBottom: '0.3rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                    <Sparkles size={10} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
                     Šampanjac i sveže voće
                   </li>
                 </ul>
               </div>
               
-              {/* Cena + "Za dve osobe" */}
+              {/* "Za dve osobe" box */}
               <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.5rem',
-                marginBottom: '1.5rem'
+                background: 'rgba(212, 175, 55, 0.1)',
+                padding: '0.5rem',
+                borderRadius: '6px',
+                marginBottom: '0.8rem',
+                border: '1px solid rgba(212, 175, 55, 0.2)',
+                textAlign: 'center'
               }}>
-                <div style={{
-                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
-                  borderRadius: '12px',
-                  padding: '1rem 2rem',
-                  fontSize: '1.5rem',
-                  fontWeight: 'bold',
-                  color: '#1a1a1a',
-                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.3)',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.2)'
-                }}>
-                  {formatNumber(25000)} RSD
-                </div>
-                <div style={{
+                <span style={{
                   color: '#d4af37',
-                  fontSize: '0.95rem',
+                  fontSize: '0.85rem',
                   fontWeight: '600',
-                  textShadow: '0 0 10px rgba(212, 175, 55, 0.5)'
+                  textShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
                 }}>
                   Za dve osobe
-                </div>
+                </span>
               </div>
 
               {/* Dugme "Zakažite" */}
