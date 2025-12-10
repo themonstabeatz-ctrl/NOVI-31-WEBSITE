@@ -1709,10 +1709,12 @@ const Spa = () => {
         {/* DVE VERTIKALNE KARTICE ZA PAROVE */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
           gap: '2.5rem',
-          maxWidth: '1000px',
-          margin: '0 auto 3rem'
+          maxWidth: '1300px',
+          margin: '0 auto 3rem',
+          alignItems: 'stretch',
+          justifyContent: 'center'
         }}>
           {/* Kartica 1: Romantični paket za parove */}
           <Card 
