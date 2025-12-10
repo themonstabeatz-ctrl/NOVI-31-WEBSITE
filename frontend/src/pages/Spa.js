@@ -1894,7 +1894,193 @@ const Spa = () => {
             </CardContent>
           </Card>
           
-          {/* Kartica 2: Devojačko veče */}
+          {/* Kartica 2: Romantični piling paket za parove - NOVA */}
+          <Card 
+            className="spa-special-card romantic-piling-card"
+            style={{
+              background: 'rgba(10, 10, 10, 0.65)',
+              backdropFilter: 'blur(8px)',
+              border: '1px solid rgba(212, 175, 55, 0.3)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              position: 'relative',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#d4af37';
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            {/* Background image - ista kao prva kartica */}
+            <div 
+              className="romantic-piling-background"
+              style={{
+                backgroundImage: 'url(https://customer-assets.emergentagent.com/job_thaibookingspa/artifacts/xhozz0qf_Romanticni%20paket%20za%20parove.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                opacity: 0.25,
+                zIndex: 0
+              }}
+            />
+            
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '1.5rem' }}>
+              {/* Header: Duration and Price */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '0.5rem',
+                paddingBottom: '0.5rem',
+                borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Clock size={16} color="#d4af37" />
+                  <span style={{ color: '#f5f2e8', fontSize: '0.9rem', fontWeight: '600' }}>
+                    210 min
+                  </span>
+                </div>
+                <div style={{
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#d4af37'
+                }}>
+                  {formatNumber(25000)} RSD
+                </div>
+              </div>
+
+              {/* Naslov */}
+              <h3 style={{
+                fontSize: '1.2rem',
+                color: '#d4af37',
+                marginBottom: '0.4rem',
+                fontWeight: 'bold'
+              }}>
+                Romantični piling paket za parove
+              </h3>
+              
+              {/* Kratak opis */}
+              <p style={{
+                color: '#c0baa8',
+                marginBottom: '0.8rem',
+                fontSize: '0.85rem',
+                lineHeight: '1.4'
+              }}>
+                Ekskluzivan SPA paket sa pilingom tela, aromaterapijom i SPA zonom za dvoje.
+              </p>
+              
+              {/* Uključeno - lista */}
+              <div style={{ marginBottom: '0.8rem' }}>
+                <h4 style={{
+                  color: '#d4af37',
+                  fontSize: '0.8rem',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600'
+                }}>
+                  Uključeno:
+                </h4>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                  color: '#f5f2e8',
+                  fontSize: '0.75rem',
+                  lineHeight: '1.6'
+                }}>
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                    Body scrub – 60 min
+                  </li>
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                    Aroma masaža celog tela – 60 min
+                  </li>
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                    Sauna – 30 min
+                  </li>
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                    Parno kupatilo – 30 min
+                  </li>
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                    Jacuzzi – 30 min
+                  </li>
+                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                    Šampanjac i sveže voće
+                  </li>
+                </ul>
+              </div>
+              
+              {/* "Za dve osobe" box */}
+              <div style={{
+                background: 'rgba(212, 175, 55, 0.1)',
+                padding: '0.5rem',
+                borderRadius: '6px',
+                marginBottom: '0.8rem',
+                border: '1px solid rgba(212, 175, 55, 0.2)',
+                textAlign: 'center'
+              }}>
+                <span style={{
+                  color: '#d4af37',
+                  fontSize: '0.85rem',
+                  fontWeight: '600',
+                  textShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
+                }}>
+                  Za dve osobe
+                </span>
+              </div>
+
+              {/* Dugme "Zakažite" */}
+              <button
+                onClick={() => navigate('/contact?service=Romantični piling paket za parove&duration=210&price=25000')}
+                style={{
+                  width: '100%',
+                  padding: '0.7rem',
+                  background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#1a1a1a',
+                  fontSize: '0.9rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
+                }}
+              >
+                Zakažite
+              </button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Kartica "Devojačko veče" - centrirana ispod - STARI SADRŽAJ */}
+        <div style={{
+          maxWidth: '500px',
+          margin: '0 auto'
+        }}>
+          {/* Kartica 3: Devojačko veče */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
