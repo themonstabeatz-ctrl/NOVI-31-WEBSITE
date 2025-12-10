@@ -2121,14 +2121,14 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - SUŽENA 1000×750px */}
+        {/* Kartica "Devojačko veče & Lady Party" - SKALIRANA 1400×550px */}
         <div style={{
-          maxWidth: '1000px',
-          width: '1000px',
+          maxWidth: '1400px',
+          width: '1400px',
           margin: '0 auto',
-          marginTop: '100px'
+          marginTop: '120px'
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - FIKSNE DIMENZIJE 1000×750px */}
+          {/* Kartica 3: Devojačko veče & Lady Party - SKALIRANA 1400×550px */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2140,9 +2140,9 @@ const Spa = () => {
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               cursor: 'pointer',
-              width: '1000px',
-              height: '750px',
-              minHeight: '750px',
+              width: '1400px',
+              height: '550px',
+              minHeight: '550px',
               display: 'flex',
               flexDirection: 'column'
             }}
@@ -2167,13 +2167,13 @@ const Spa = () => {
               }
             }}
           >
-            {/* Background image - NOVA FOTOGRAFIJA 2000×750px */}
+            {/* Background image - NOVA FOTOGRAFIJA skalirana sa karticom */}
             <div 
               className="bridal-card-background"
               style={{
                 backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/x2ad7ngl_2000x750.jpg)',
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'top center',
                 backgroundRepeat: 'no-repeat',
                 position: 'absolute',
                 top: 0,
