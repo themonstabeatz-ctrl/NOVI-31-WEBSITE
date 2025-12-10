@@ -1107,8 +1107,8 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.3'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
-                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {formatNumber(totalMinutes)} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {formatNumber(totalPrice)} RSD
                     </p>
                   </div>
 
@@ -1379,8 +1379,8 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.3'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
-                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {formatNumber(totalMinutes)} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {formatNumber(totalPrice)} RSD
                     </p>
                   </div>
 
@@ -1612,8 +1612,8 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.5'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {totalMinutes} min<br />
-                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {totalPrice.toLocaleString('sr-RS')} RSD
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {formatNumber(totalMinutes)} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong> {formatNumber(totalPrice)} RSD
                     </p>
                   </div>
 
