@@ -8,6 +8,12 @@ import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
 
+// HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
+const formatNumber = (value) => {
+  const n = typeof value === 'number' && !Number.isNaN(value) ? value : 0;
+  return n.toLocaleString('sr-RS');
+};
+
 // SPA PACKAGES - 3 ritual packages + 1 zone-only package
 const SPA_PACKAGES = [
   {
