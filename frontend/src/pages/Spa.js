@@ -1718,17 +1718,19 @@ const Spa = () => {
           <Card 
             className="spa-special-card romantic-card-special"
             style={{
-              background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%)',
+              background: 'rgba(10, 10, 10, 0.65)',
+              backdropFilter: 'blur(8px)',
               border: '1px solid rgba(212, 175, 55, 0.3)',
               borderRadius: '16px',
               overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              position: 'relative'
+              position: 'relative',
+              cursor: 'pointer'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#d4af37';
               e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.3)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
@@ -1748,12 +1750,12 @@ const Spa = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                opacity: 0.3,
+                opacity: 0.25,
                 zIndex: 0
               }}
             />
             
-            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2rem' }}>
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: '1.5rem' }}>
               {/* Naslov */}
               <h3 style={{
                 fontSize: '1.8rem',
