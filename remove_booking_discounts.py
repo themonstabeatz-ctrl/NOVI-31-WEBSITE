@@ -8,7 +8,7 @@ import requests
 import json
 
 # Booking system API
-API_BASE = "https://luxury-spa.preview.emergentagent.com/api"
+API_BASE = "https://spa-cards-revamp.preview.emergentagent.com/api"
 
 def fetch_couples_services():
     """Fetch all couples massage services"""

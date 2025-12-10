@@ -1,50 +1,50 @@
 <analysis>**original_problem_statement:**
-The user's initial request was to connect a new frontend preview URL to the stable backend, resolving a persistent configuration issue. This involved setting the  in  and ensuring backend CORS was correctly configured.
+The user's initial core task was to resolve persistent backend connection issues by correctly setting the  and backend  origins. This was a recurring problem throughout the session.
 
-After resolving the connection, the user initiated a series of extensive, iterative feature requests and visual refinements exclusively for the  page. The core goals were:
-1.  To replicate the luxury look and feel of the  page's hero section, including a full-screen fixed video background with parallax scrolling content.
-2.  To define and display a specific set of SPA ritual packages. This underwent multiple major revisions, starting with 6 packages, then reducing to 3, and significantly altering their data and pricing.
-3.  To completely overhaul the SPA package booking options. This evolved from a simple variant selector to a complex system where each of the 3 ritual cards contains independent radio-button groups for selecting a ,  (Steam Room), and , each with multiple duration/price options and a Without default.
-4.  To implement a new, separate SPA ZONES card for booking only the spa facilities without a massage ritual.
-5.  To ensure all selections (face massage variant + multiple spa zones) correctly calculate and display the total price and duration in real-time.
-6.  To perform multiple rounds of final tuning to make the SPA cards more compact, elegant, and visually zbijen (dense), achieving a boutique hotel aesthetic.
-
-The user has explicitly forbidden any modifications to the working booking logic for single and couples' massages (, , ).
+Following the connection stabilization, the user made a series of feature requests and visual refinements exclusively for the  page ():
+1.  **Compact SPA Cards**: Requested multiple rounds of visual tuning to make the main SPA ritual cards more compact and luxurious.
+2.  **Add New Herbal Cards**: Add three new SPA ritual cards with fixed prices.
+3.  **Refine Herbal Cards Logic**: Modify the three new herbal cards to include a Bez SPA zone (Without SPA zone) option and implement dynamic duration logic: 120 minutes without the SPA zone, and 135 minutes with the free SPA zone selected.
+4.  **Reorder Page Layout**: Move the main horizontal SPA ZONE card to the bottom of the page, below all other ritual cards.
+5.  **Fix Critical JS Crash**: The application was crashing with a  error. The user provided a detailed plan to fix this by creating a safe  helper function and refactoring the calculation logic to prevent  values.
+6.  **Refactor Special Occasions Section (Iterative)**:
+    *   **First Pass**: Update the content of two existing horizontal cards in the SPA PAKETI ZA POSEBNE PRILIKE section.
+    *   **Second Pass**: Completely change the layout to two new *vertical* cards for couples, and move the Devojačko veče card below them, reverting its content to a placeholder state.
+    *   **Final Tuning**: Perform final visual adjustments on this section by increasing the size of the two vertical couples' cards, adding vertical space to the Devojačko veče card, and fixing a missing hover effect.
 
 **User's preferred language**: Serbian
 
 **what currently exists?**
-The application's core booking functionality for single and couples' massages is stable and the relevant files are considered locked by the user. The backend connection to  is functional, but has been a recurring issue, prompting the user to establish strict PERMANENT RULES for the agent to follow.
+The application's frontend () is connected to the correct backend (). This connection has been a recurring point of failure and was repeatedly fixed during the session. The  and booking pages are stable and locked from editing.
 
-The  page is now feature-complete and has undergone intensive, iterative visual and logical refinement. It features:
-- A hero section that perfectly mimics the  page's design, with a fixed video background and parallax scroll effects.
-- Three main SPA ritual cards with updated data.
-- A complex, stateful booking options system on each card: a variant selector for face massage, plus three independent radio groups for Sauna, Steam Room, and Jacuzzi. The system allows for multi-zone selection and calculates totals in real-time.
-- A separate horizontal card for booking only the SPA zones.
-- A highly compact, luxury visual design achieved through multiple rounds of fine-tuning paddings and margins.
+The  page is now highly complex and feature-rich, but all the code resides in a single monolithic file,  (>2200 lines). The page contains:
+- 3 original SPA ritual cards with complex stateful booking options.
+- 3 herbal SPA ritual cards with dynamic duration based on a free SPA add-on.
+- 2 large, vertical Special Occasion cards for couples.
+- 1 placeholder Devojačko veče card.
+- 1 horizontal SPA ZONE card at the very bottom.
+- A JavaScript crash ( on undefined) has been resolved with a helper function.
 
 **Last working item**:
-- Last item agent was working: Performing the final visual compact tuning on . This involved reducing the padding and margins within the SPA ritual cards and the SPA ZONA boxed section inside them to achieve a more dense, luxurious, and elegant boutique hotel look, as per the user's final request.
+- Last item agent was working: Performing the final visual fine-tuning on the SPA PAKETI ZA POSEBNE PRILIKE section in . This involved increasing the height and width of the two vertical couples' cards, adding margin above the Devojačko veče card, and fixing a hover effect.
 - Status: IN PROGRESS
-- Agent Testing Done: Y
+- Agent Testing Done: N
 - Which testing method agent to use? screenshot tool
 - User Testing Done: N
 
 **All Pending/In progress Issue list**:
 
-  Issue 1:  Final user verification of the Boutique Luxury Aesthetic on the /spa page (P0)
+  Issue 1:  Visual verification and completion of Special Occasions section tuning (P0)
   
   Issues Detail:
   - Issue 1: 
-     - **Description**: The agent has just applied the last set of visual tweaks to  to make the cards and their internal sections more compact. This is the culmination of a long series of iterative design changes. The result needs to be presented to the user for final approval.
-     - **Attempted fixes**: The agent made several  edits to inline styles in  to reduce , , and  values.
+     - **Description**: The agent applied code changes to increase the size of the two vertical couples' cards and add margin to the card below them. However, the final visual verification with the  tool failed (produced black images), likely because the page is too long and the content is off-screen. Additionally, the user requested to fix a missing hover effect on the second card, which the agent did not explicitly address.
+     - **Attempted fixes**: The agent edited inline styles in  to change , , , and .
      - **Next debug checklist**:
-       1.  Use the  tool to capture the final appearance of the  page.
-       2.  Verify that the cards appear visually dense and compact, without excessive whitespace, as requested.
-       3.  Confirm the SPA ZONA section within each card is also compact but remains visually distinct with its gold border.
-       4.  Ensure all functionality (radio button selection, real-time price/duration updates) remains intact after the style changes.
-       5.  Present the final screenshot to the user and ask for confirmation that the final compact tuning is successful.
-     - **Why fix this issue and what will be achieved with the fix?**: This is the final step in a long series of user-directed UI refinements. Approval from the user will mark the completion of all requested work on the  page.
+       1.  **Visually verify the layout changes**: Use the  tool with a high  value (e.g.,  or ) to capture the bottom of the  page. Confirm that the two couples' cards are larger and that there is more space above the Devojačko veče card.
+       2.  **Fix the hover effect**: Compare the JSX (/ handlers) and styles/classes for the two vertical couples cards. Ensure the second card (Romantični piling paket za parove) has the identical hover effect as the first (Romantični paket za parove).
+       3.  Present a final, successful screenshot to the user for approval.
+     - **Why fix this issue and what will be achieved with the fix?**: This is the final step of the user's latest request. Completing it will finalize the visual appearance of the  page.
      - **Status**:  IN PROGRESS
      - **Is recurring issue?** N
      - **Should Test frontend/backend/both after fix?** Frontend
@@ -57,93 +57,92 @@ The  page is now feature-complete and has undergone intensive, iterative visual 
 - **Upcoming Tasks**:
     - **Task 1 (P2)**: Implement lazy loading for images in , , and  using the  attribute to improve performance.
 - **Future Tasks**:
-    - **Task 1**: The SPA paketi za posebne prilike section on the  page currently has no booking logic. The user has indicated this will be a future task.
-    - **Task 2**: The user may request to update the prices for SPA zones.
-    - **Task 3**: Consider the development of a mobile application.
+    - **Task 1**: Implement full functionality for the Devojačko veče card, which is currently a placeholder.
+    - **Task 2**: The SPA paketi za posebne prilike section on the  page may require booking logic implementation in the future.
+    - **Task 3**: The user may request to update the prices for SPA zones.
+    - **Task 4**: Consider the development of a mobile application.
 
 **Completed work in this session**
-- **Recurring Backend Connection Issue**: Repeatedly diagnosed and fixed the  in , which kept reverting to an incorrect value. Documented and acknowledged the user's PERMANENT RULES to prevent this critical error.
-- ** Syntax Error Fix**: Repaired a critical  (duplicate code and export) left by a previous agent, which was causing a white screen.
-- **Full SPA Page Re-architecture (Multiple Iterations)**:
-  - Rebuilt the  hero section to be identical to , implementing a fixed video background and parallax/fade scroll effects.
-  - Performed multiple major refactors of the SPA package data ( array), eventually settling on 3 ritual packages and 1 standalone zone package.
-  - **Major Logic Overhaul for SPA Zones**: Replaced a simple dropdown with a complex system of three independent radio-button groups (for Sauna, Steam, Jacuzzi) inside each card. This included adding a Bez (Without) option to each and enabling multi-zone selection.
-  - **Implemented Complex Real-Time Calculations**: Refactored state management and calculation functions () to correctly sum the price and duration from the base ritual, the face massage variant, and all simultaneously selected SPA zones.
-  - **Created Standalone SPA ZONES Card**: Added a new horizontal card for booking only SPA facilities, with its own independent state and calculation logic.
-  - **Iterative UI/UX Tuning**: Executed numerous, highly-detailed visual refinement requests to progressively reduce card height and internal spacing, achieving a final compact and luxurious boutique hotel aesthetic.
+- **Recurring Backend Connection Issue**: Repeatedly fixed the  in  to point to the correct backend ().
+- **Backend CORS Fix**: Corrected the  in  to allow requests from the frontend, resolving the Učitavanje... (Loading...) issue.
+- ** Critical Crash Fix**: Repaired a fatal JavaScript error () by implementing a safe  helper function and refactoring calculation logic to always return valid numbers, as instructed by the user.
+- **Added 3 New Herbal SPA Cards**: Implemented three new cards with dynamic duration logic (120 min base, 135 min with free SPA) and a Bez SPA zone (Without SPA zone) option.
+- **Reordered  Page Layout**: Moved the horizontal SPA ZONE card to the bottom of the page.
+- **Complete Refactor of Special Occasions Section**: Iteratively redesigned this section, ultimately creating two large, vertical cards for couples and moving the Devojačko veče card below them as a placeholder.
+- **Added Fallback for Loading State**: Added logic to the  block in  to handle fetch errors and prevent the UI from getting stuck on Učitavanje....
 
 **Earlier issues found/mentioned but not fixed**
-- N/A
+   - **Issue 1**: The user explicitly requested to fix a missing hover effect on the second couples card in the Special Occasions section. The agent's last set of edits focused on size and spacing and did not address this directly. This is now part of the pending Last working item.
 
 **Known issue recurrence from previous fork**
-  - **Issue recurrence in previous fork**: The primary recurring issue in *this* session was the ** in  being incorrect**. It occurred at least three times, causing significant user frustration.
-  - **Recurrence count**: High
-  - **Status**: RESOLVED (but requires constant vigilance). The user has established PERMANENT RULES that the next agent must follow to prevent this.
+  - **Issue recurrence in previous fork**: The  in  being incorrect or reverting to a wrong value.
+  - **Recurrence count**: Very High (occurred multiple times in this session alone).
+  - **Status**: RESOLVED (for now). The agent must always verify this file before starting any work.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Complex React State Management**: Using  to manage a complex state object that tracks selections for multiple packages, each with a face-massage variant and three independent SPA zone choices.
-- **Real-Time Calculation Logic**:  hooks and handler functions that recalculate total price and duration on every user selection change.
-- **Advanced CSS-in-JS Styling**: Extensive use of inline styles in JSX to implement highly specific and iterative visual changes requested by the user.
-- **Scroll-based Animations**: Implementation of parallax and fade-out effects using a throttled  event listener in a  hook.
+- **Monolithic React Component**: The  file has become a god component, managing all data, state, calculations, and rendering for the entire page, making it difficult to maintain.
+- **Defensive Programming**: A  helper was introduced to prevent crashes from  values, making the UI more robust.
+- **Complex State Management**: Heavy use of  and  to manage numerous independent and interdependent state variables for different card types on a single page.
+- **CSS-in-JS**: Extensive use of inline styles for highly specific and iterative visual changes.
 
 **key DB schema**
-  - N/A. The application is stateless and relies on the external  API.
+  - N/A. The application is stateless and relies on an external API.
 
 **changes in tech stack**
   - N/A
 
 **All files of reference**
-- : **Massively refactored and modified**. This file is the centerpiece of the entire session's work. It contains all the data, state logic, calculation functions, and rendering for the entire SPA page, including the ritual cards, the premium zone selection boxes, and the standalone zone card.
-- : **Repeatedly fixed**. This file is critical and has been the source of a recurring major bug. Its state is now correct, but it must be checked at the start of any new work.
-- : Modified to add CSS classes for the  hero section to ensure it is identical to the  hero section.
-- : **Referenced heavily** for styles and animation logic, but was **NOT modified**, per user instructions.
+- : **The primary file worked on**. It was heavily modified to add new features, fix bugs, and perform multiple layout refactors. It is now extremely large and complex.
+- : **The most critical and fragile file**. It was modified multiple times to correct the .
+- : Modified once to update  and fix the connection issue.
+- : A small but important modification was made to add a  block to handle API fetch errors gracefully.
 
 **Areas that need refactoring**:
--  is now a monolithic component exceeding 1200 lines. It handles data, complex state, multiple calculation functions, and all JSX rendering. It should be broken down into smaller, more manageable components (e.g., , , ). The hardcoded  data could also be moved to a separate file.
+-  is now over 2200 lines and is a major liability. It urgently needs to be broken down into smaller, reusable components (e.g., , , ). Hardcoded data arrays should also be extracted into a separate constants file.
 
 **key api endpoints**
 - **Host**: 
-- : Used for booking SPA packages. The logic in  that handles this is stable and must not be changed.
+- 
+- 
+- 
+- 
 
 **Critical Info for New Agent**
-**You MUST read and permanently adhere to the user's PERMANENT RULES. Failure to do so has caused critical errors and user frustration.**
-
-1.  **DO NOT CHANGE THE BACKEND URL**: Before starting ANY work, verify that  contains . If it is incorrect, fix it and restart the frontend service immediately. This has been the most frequent and critical bug in the session.
-2.  **LOCKED FILES**: The following files are **STRICTLY OFF-LIMITS** and must not be modified without explicit user permission:
-    - 
-    - 
-    - 
-    -  (except to enforce Rule #1)
-3.  **YOUR FOCUS IS ONLY ON **: All current and future work is exclusively on the  page and its components. The rest of the application's booking logic is considered finished and perfect.
+1.  **CRITICAL RECURRING BUG**: The  in  has been repeatedly set to an incorrect value. **You MUST verify it is set to  before starting any work.** Failure to do so will break the application.
+2.  **FAILED VISUAL VERIFICATION**: The last agent's attempt to verify their changes with the  tool resulted in black images. This is likely because the  page is now very long. To see the changes at the bottom, you **MUST use the  argument** with a high value (e.g., ).
+3.  **UNFINISHED WORK**: The last user request included fixing a missing hover effect on the second couples card. This was not explicitly completed by the previous agent. You must investigate and fix this.
+4.  **LOCKED FILES**: Do not modify , , or  without explicit user permission. All work is focused on .
 
 **documents created in this job**
 - N/A
 
 **Last 10 User Messages and any pending user messages**
-1.  **User**: Requested to change SPA zone selection from a dropdown to three independent radio groups with Without options, add a new standalone SPA ZONES card, and fix base durations. (Status: COMPLETED)
-2.  **Agent**: Implemented the complex logic for independent, multi-selectable SPA zones and the new card. (Status: COMPLETED)
-3.  **User**: Confirmed the new logic is working and requested a final, major visual overhaul of the  page. (Status: COMPLETED)
-4.  **Agent**: Implemented the major visual overhaul, including the premium boxed SPA ZONA section. (Status: COMPLETED)
-5.  **User**: Requested one last final compact tuning to make the cards and SPA zone section even more visually dense and luxurious. (Status: PENDING - This is the last working item).
+- **User (Msg 244)**: Reported a critical JS crash () and provided a detailed fix. (Status: COMPLETED)
+- **User (Msg 281)**: Reported the backend URL was incorrect again. (Status: COMPLETED)
+- **User (Msg 292)**: Requested an update to the Special Occasions section with new static content. (Status: COMPLETED)
+- **User (Msg 325)**: Requested a major refactor of the Special Occasions section to use two vertical cards and move the Devojačko veče card. (Status: COMPLETED)
+- **User (Msg 376 & 407)**: Reported the Učitavanje... issue again and requested visual enlargements for the two new couples' cards. (Status: COMPLETED)
+- **User (Msg 422)**: Requested the final visual fine-tuning: increase card sizes further, add margin, and fix a missing hover effect. (Status: IN PROGRESS - this is the current pending issue).
 
 **Project Health Check:**
-- **Functional**: Core features are working.
-- **Fragile**: The project has a recurring critical issue where the  file's backend URL is reset, breaking the application. This requires constant vigilance.
+- **Broken**: The frontend is currently in a state where visual verification is failing, and a requested hover effect fix is likely missing. It requires immediate attention.
+- **Mocked**: N/A
 
 **3rd Party Integrations**
-- **therapist-scheduler API**: The application is tightly coupled with this external FastAPI backend for all service data and booking operations.
+- **therapy-booking-21 API**: The sole backend API used for all service data and booking operations.
 
 **Testing status**
-  - Testing agent used after significant changes: NO (Agent used  tool extensively for iterative UI verification).
+  - Testing agent used after significant changes: NO
   - Troubleshoot agent used after agent stuck in loop: NO
   - Test files created: []
-  - Known regressions: The  in  has repeatedly reverted to an incorrect value between agent actions, which is a form of regression.
+  - Known regressions: The  value is a severe and frequent regression.
 
 **Credentials to test flow:**
-- **Booking System Admin Panel:** The user mentioned the admin panel for the  backend is accessible at its preview URL with the password  to verify that bookings are created successfully.
+- N/A
 
 **What agent forgot to execute**
-- The agent has repeatedly forgotten to verify the  file before starting new tasks, leading to rework and user frustration. The next agent must make this the first step of any plan.</analysis>
+- The agent did not explicitly fix the missing hover effect on the second couples card as requested by the user in the last message.
+- The agent failed to successfully use the  tool to visually verify its final changes, declaring the task complete without confirmation.</analysis>
