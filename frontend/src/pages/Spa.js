@@ -1518,6 +1518,37 @@ const Spa = () => {
                       }}>
                         Izaberite SPA opciju:
                       </p>
+                      
+                      {/* "Bez SPA zone" option - DEFAULT */}
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.2rem',
+                        marginBottom: '0.1rem',
+                        cursor: 'pointer',
+                        color: '#f5f2e8',
+                        fontSize: '0.68rem',
+                        padding: '0.12rem',
+                        borderRadius: '3px',
+                        background: selectedZoneId === "NONE" ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
+                        transition: 'background 0.3s ease'
+                      }}>
+                        <input
+                          type="radio"
+                          name={`new-zone-${pkg.id}`}
+                          value="NONE"
+                          checked={selectedZoneId === "NONE"}
+                          onChange={() => handleNewPackageZoneSelect(pkg.id, "NONE")}
+                          style={{
+                            accentColor: '#d4af37',
+                            cursor: 'pointer',
+                            width: '10px',
+                            height: '10px'
+                          }}
+                        />
+                        <span>Bez SPA zone</span>
+                      </label>
+                      
                       {/* SPA Zone Options */}
                       {pkg.spaZoneOptions.map((zoneOption) => {
                         const isSelected = selectedZoneId === zoneOption.id;
