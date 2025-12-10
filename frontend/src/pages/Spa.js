@@ -1976,116 +1976,121 @@ const Spa = () => {
             />
             
             <CardContent style={{ position: 'relative', zIndex: 1, padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-              {/* Header: Duration and Price */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '0.5rem',
-                paddingBottom: '0.5rem',
-                borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <Clock size={16} color="#d4af37" />
-                  <span style={{ color: '#f5f2e8', fontSize: '0.9rem', fontWeight: '600' }}>
-                    210 min
+              {/* Content wrapper - uzima prostor */}
+              <div style={{ flexGrow: 1 }}>
+                {/* Header: Duration and Price */}
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '0.5rem',
+                  paddingBottom: '0.5rem',
+                  borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <Clock size={16} color="#d4af37" />
+                    <span style={{ color: '#f5f2e8', fontSize: '0.9rem', fontWeight: '600' }}>
+                      210 min
+                    </span>
+                  </div>
+                  <div style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 'bold',
+                    color: '#d4af37'
+                  }}>
+                    {formatNumber(25000)} RSD
+                  </div>
+                </div>
+
+                {/* Naslov */}
+                <h3 style={{
+                  fontSize: '1.2rem',
+                  color: '#d4af37',
+                  marginBottom: '0.4rem',
+                  fontWeight: 'bold'
+                }}>
+                  Romantični piling paket za parove
+                </h3>
+                
+                {/* Kratak opis */}
+                <p style={{
+                  color: '#c0baa8',
+                  marginBottom: '0.8rem',
+                  fontSize: '0.85rem',
+                  lineHeight: '1.4'
+                }}>
+                  Ekskluzivan SPA paket sa pilingom tela, aromaterapijom i SPA zonom za dvoje.
+                </p>
+                
+                {/* Uključeno - lista */}
+                <div style={{ marginBottom: '0.8rem' }}>
+                  <h4 style={{
+                    color: '#d4af37',
+                    fontSize: '0.8rem',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Uključeno:
+                  </h4>
+                  <ul style={{
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: 0,
+                    color: '#f5f2e8',
+                    fontSize: '0.75rem',
+                    lineHeight: '1.6'
+                  }}>
+                    <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                      <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                      Body scrub – 60 min
+                    </li>
+                    <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                      <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                      Aroma masaža celog tela – 60 min
+                    </li>
+                    <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                      <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                      Sauna – 30 min
+                    </li>
+                    <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                      <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                      Parno kupatilo – 30 min
+                    </li>
+                    <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                      <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                      Jacuzzi – 30 min
+                    </li>
+                    <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
+                      <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
+                      Šampanjac i sveže voće
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              {/* Actions section - pri dnu */}
+              <div>
+                {/* "Za dve osobe" box */}
+                <div style={{
+                  background: 'rgba(212, 175, 55, 0.1)',
+                  padding: '0.5rem',
+                  borderRadius: '6px',
+                  marginBottom: '0.8rem',
+                  border: '1px solid rgba(212, 175, 55, 0.2)',
+                  textAlign: 'center'
+                }}>
+                  <span style={{
+                    color: '#d4af37',
+                    fontSize: '0.85rem',
+                    fontWeight: '600',
+                    textShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
+                  }}>
+                    Za dve osobe
                   </span>
                 </div>
-                <div style={{
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  color: '#d4af37'
-                }}>
-                  {formatNumber(25000)} RSD
-                </div>
-              </div>
 
-              {/* Naslov */}
-              <h3 style={{
-                fontSize: '1.2rem',
-                color: '#d4af37',
-                marginBottom: '0.4rem',
-                fontWeight: 'bold'
-              }}>
-                Romantični piling paket za parove
-              </h3>
-              
-              {/* Kratak opis */}
-              <p style={{
-                color: '#c0baa8',
-                marginBottom: '0.8rem',
-                fontSize: '0.85rem',
-                lineHeight: '1.4'
-              }}>
-                Ekskluzivan SPA paket sa pilingom tela, aromaterapijom i SPA zonom za dvoje.
-              </p>
-              
-              {/* Uključeno - lista */}
-              <div style={{ marginBottom: '0.8rem' }}>
-                <h4 style={{
-                  color: '#d4af37',
-                  fontSize: '0.8rem',
-                  marginBottom: '0.5rem',
-                  fontWeight: '600'
-                }}>
-                  Uključeno:
-                </h4>
-                <ul style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                  color: '#f5f2e8',
-                  fontSize: '0.75rem',
-                  lineHeight: '1.6'
-                }}>
-                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
-                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                    Body scrub – 60 min
-                  </li>
-                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
-                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                    Aroma masaža celog tela – 60 min
-                  </li>
-                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
-                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                    Sauna – 30 min
-                  </li>
-                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
-                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                    Parno kupatilo – 30 min
-                  </li>
-                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
-                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                    Jacuzzi – 30 min
-                  </li>
-                  <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
-                    <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                    Šampanjac i sveže voće
-                  </li>
-                </ul>
-              </div>
-              
-              {/* "Za dve osobe" box */}
-              <div style={{
-                background: 'rgba(212, 175, 55, 0.1)',
-                padding: '0.5rem',
-                borderRadius: '6px',
-                marginBottom: '0.8rem',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
-                textAlign: 'center'
-              }}>
-                <span style={{
-                  color: '#d4af37',
-                  fontSize: '0.85rem',
-                  fontWeight: '600',
-                  textShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
-                }}>
-                  Za dve osobe
-                </span>
-              </div>
-
-              {/* Dugme "Zakažite" */}
-              <button
+                {/* Dugme "Zakažite" */}
+                <button
                 onClick={() => navigate('/contact?service=Romantični piling paket za parove&duration=210&price=25000')}
                 style={{
                   width: '100%',
