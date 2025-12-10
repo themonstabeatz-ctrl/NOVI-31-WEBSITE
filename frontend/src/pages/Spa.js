@@ -1756,11 +1756,35 @@ const Spa = () => {
             />
             
             <CardContent style={{ position: 'relative', zIndex: 1, padding: '1.5rem' }}>
+              {/* Header: Duration and Price */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '0.5rem',
+                paddingBottom: '0.5rem',
+                borderBottom: '1px solid rgba(212, 175, 55, 0.2)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Clock size={16} color="#d4af37" />
+                  <span style={{ color: '#f5f2e8', fontSize: '0.9rem', fontWeight: '600' }}>
+                    210 min
+                  </span>
+                </div>
+                <div style={{
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#d4af37'
+                }}>
+                  {formatNumber(25000)} RSD
+                </div>
+              </div>
+
               {/* Naslov */}
               <h3 style={{
-                fontSize: '1.8rem',
+                fontSize: '1.2rem',
                 color: '#d4af37',
-                marginBottom: '0.5rem',
+                marginBottom: '0.4rem',
                 fontWeight: 'bold'
               }}>
                 Romantični paket za parove
@@ -1769,25 +1793,12 @@ const Spa = () => {
               {/* Kratak opis */}
               <p style={{
                 color: '#c0baa8',
-                marginBottom: '1rem',
-                fontSize: '0.95rem',
-                lineHeight: '1.5'
+                marginBottom: '0.8rem',
+                fontSize: '0.85rem',
+                lineHeight: '1.4'
               }}>
                 Partnerska aroma masaža sa SPA zonom, šampanjcem i voćem za dvoje.
               </p>
-              
-              {/* Trajanje */}
-              <div style={{
-                color: '#d4af37',
-                fontSize: '0.95rem',
-                marginBottom: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}>
-                <Clock size={18} />
-                <span style={{ fontWeight: '600' }}>210 min</span>
-              </div>
               
               {/* Uključeno - lista */}
               <div style={{ marginBottom: '1.5rem' }}>
