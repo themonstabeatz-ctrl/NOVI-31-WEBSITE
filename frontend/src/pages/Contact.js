@@ -772,7 +772,16 @@ Ukupna cena: ${totalPriceFormatted} RSD
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
         // Get backend URL
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        const backendUrl = process.env.REACT_APP_BACKEND_URL;
+        console.log('Contact page – backendUrl:', backendUrl);
+        
+        if (!backendUrl) {
+          console.error('REACT_APP_BACKEND_URL is missing for Contact.js!');
+          setError('Greška konfiguracije. Molimo kontaktirajte podršku.');
+          setSubmitStatus('error');
+          setIsSubmitting(false);
+          return;
+        }
         
         // ❌ HEALTH CHECK REMOVED - was causing 404 and blocking bookings
         // Backend /api/health endpoint doesn't exist, so we skip it
@@ -781,7 +790,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
         // Use backend proxy for all bookings (both regular and couple)
         console.log('🔍 DEBUG: bookingEndpoint variable =', bookingEndpoint);
         console.log('🔍 DEBUG: backendUrl =', backendUrl);
-        const finalEndpoint = `${backendUrl}${bookingEndpoint}`;
+        const finalEndpoint = `${backendUrl.replace(/\/$/, '')}${bookingEndpoint}`;
         console.log('🔍 DEBUG: finalEndpoint =', finalEndpoint);
         
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
