@@ -375,7 +375,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('🚀 handleSubmit called!');
-    console.log('📍 Backend URL:', process.env.REACT_APP_BACKEND_URL);
+    console.log('📍 Backend URL is:', process.env.REACT_APP_BACKEND_URL);
     
     setIsSubmitting(true);
     setSubmitStatus(null);
