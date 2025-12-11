@@ -2163,7 +2163,7 @@ body {
 .footer-container {
   background: #2a2a2a; /* Siva pozadina */
   color: var(--spa-cream);
-  margin-top: 11rem;
+  margin-top: 0;
   position: relative;
   overflow: hidden;
   border-top: 2px solid var(--spa-gold);
