@@ -1867,7 +1867,7 @@ const Spa = () => {
               </div>
               
               {/* Actions section - pri dnu */}
-              <div>
+              <div style={{ marginTop: '1.5rem' }}>
                 {/* "Za dve osobe" box */}
                 <div style={{
                   background: 'rgba(212, 175, 55, 0.1)',
@@ -2069,7 +2069,7 @@ const Spa = () => {
               </div>
               
               {/* Actions section - pri dnu */}
-              <div>
+              <div style={{ marginTop: '1.5rem' }}>
                 {/* "Za dve osobe" box */}
                 <div style={{
                   background: 'rgba(212, 175, 55, 0.1)',
@@ -2271,7 +2271,7 @@ const Spa = () => {
               </div>
               
               {/* Actions section - pri dnu */}
-              <div>
+              <div style={{ marginTop: '1.5rem' }}>
                 {/* Dugme "POZOVITE" */}
                 <a 
                   href="tel:062625500"
