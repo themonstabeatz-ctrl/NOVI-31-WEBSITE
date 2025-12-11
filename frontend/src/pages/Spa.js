@@ -2127,7 +2127,7 @@ const Spa = () => {
           width: '100%',
           margin: '100px auto 40px auto',
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - NIŽA SA DUGMETOM VIDLJIVIM */}
+          {/* Kartica 3: Devojačko veče & Lady Party - IDEALNA VISINA 390px */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2139,10 +2139,10 @@ const Spa = () => {
               position: 'relative',
               cursor: 'pointer',
               width: '100%',
-              minHeight: '430px',
+              minHeight: '390px',
               display: 'flex',
               flexDirection: 'column',
-              padding: '1.8rem 2.2rem 1.9rem 2.2rem',
+              padding: '1.6rem 2.2rem 1.5rem 2.2rem',
               boxShadow: '0 18px 40px rgba(0,0,0,0.65)',
               boxSizing: 'border-box'
             }}
