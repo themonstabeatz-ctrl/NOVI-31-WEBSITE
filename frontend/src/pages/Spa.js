@@ -2207,11 +2207,11 @@ const Spa = () => {
                 <p style={{
                   maxWidth: '46%',
                   textAlign: 'left',
-                  marginTop: '1.2rem',
-                  marginBottom: '1.8rem',
+                  marginTop: '0.8rem',
+                  marginBottom: '1.4rem',
                   marginLeft: '6%',
-                  lineHeight: 1.5,
-                  fontSize: '0.95rem',
+                  lineHeight: 1.45,
+                  fontSize: '0.93rem',
                   color: '#f5f1e8',
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)'
                 }}>
