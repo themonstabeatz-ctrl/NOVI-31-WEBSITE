@@ -2187,15 +2187,16 @@ const Spa = () => {
             <CardContent style={{ position: 'relative', zIndex: 1, padding: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', flexGrow: 1 }}>
               {/* Content wrapper */}
               <div style={{ flexGrow: 1 }}>
-                {/* Naslov - levo poravnat */}
+                {/* Naslov - CENTRIRAN na vrhu kartice */}
                 <h3 style={{
-                  fontSize: '1.8rem',
-                  color: '#d4af37',
-                  marginBottom: '1.2rem',
-                  marginLeft: '6%',
-                  fontWeight: 'bold',
-                  textAlign: 'left',
-                  textShadow: '0 0 20px rgba(212, 175, 55, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.85)'
+                  fontSize: '1.6rem',
+                  fontWeight: 700,
+                  color: '#ffd976',
+                  textAlign: 'center',
+                  width: '100%',
+                  margin: '0 auto 0.9rem auto',
+                  letterSpacing: '0.03em',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
                   Devojačko veče & Lady Party
                 </h3>
