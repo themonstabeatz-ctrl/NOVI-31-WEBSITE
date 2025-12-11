@@ -2196,7 +2196,7 @@ const Spa = () => {
                   color: '#ffd976',
                   textAlign: 'center',
                   width: '100%',
-                  margin: '0 auto 0.9rem auto',
+                  margin: '0 auto 0.7rem auto',
                   letterSpacing: '0.03em',
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
