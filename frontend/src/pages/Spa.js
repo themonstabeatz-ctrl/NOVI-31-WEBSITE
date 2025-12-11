@@ -1678,7 +1678,7 @@ const Spa = () => {
 
       {/* "SPA Paketi za posebne prilike" Section - SAMO 2 KARTICE */}
       <section style={{
-        padding: '80px 20px',
+        padding: '80px 20px 0 20px',
         maxWidth: '1400px',
         margin: '0 auto',
         borderTop: '1px solid rgba(212, 175, 55, 0.2)',
