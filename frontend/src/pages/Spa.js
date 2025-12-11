@@ -2121,13 +2121,13 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - FINO PODEŠENA 660×480px */}
+        {/* Kartica "Devojačko veče & Lady Party" - FINALNA 660×410px */}
         <div style={{
           maxWidth: '660px',
           width: '100%',
           margin: '100px auto 40px auto',
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - FINALNA VERZIJA */}
+          {/* Kartica 3: Devojačko veče & Lady Party - FINALNA NIŽA VERZIJA */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2140,10 +2140,10 @@ const Spa = () => {
               position: 'relative',
               cursor: 'pointer',
               width: '100%',
-              minHeight: '480px',
+              minHeight: '410px',
               display: 'flex',
               flexDirection: 'column',
-              padding: '2.2rem 2.4rem 2.6rem 2.4rem',
+              padding: '2rem 2.3rem 2.3rem 2.3rem',
               boxShadow: '0 18px 40px rgba(0,0,0,0.65)'
             }}
             onMouseEnter={(e) => {
