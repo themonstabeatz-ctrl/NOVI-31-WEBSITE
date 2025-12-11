@@ -2125,7 +2125,7 @@ const Spa = () => {
         <div style={{
           maxWidth: '660px',
           width: '100%',
-          margin: '100px auto 40px auto',
+          margin: '100px auto 0 auto',
         }}>
           {/* Kartica 3: Devojačko veče & Lady Party - KOMPAKTNA 370px */}
           <Card 
