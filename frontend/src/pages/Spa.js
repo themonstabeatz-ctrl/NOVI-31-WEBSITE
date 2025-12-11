@@ -2184,41 +2184,51 @@ const Spa = () => {
               }}
             />
             
-            <CardContent style={{ position: 'relative', zIndex: 1, padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <CardContent style={{ position: 'relative', zIndex: 1, padding: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', flexGrow: 1 }}>
               {/* Content wrapper */}
               <div style={{ flexGrow: 1 }}>
-                {/* Naslov - sa ojačanom crnom senkom za čitljivost */}
+                {/* Naslov - levo poravnat */}
                 <h3 style={{
-                  fontSize: '2rem',
+                  fontSize: '1.8rem',
                   color: '#d4af37',
-                  marginBottom: '1rem',
+                  marginBottom: '1.2rem',
+                  marginLeft: '6%',
                   fontWeight: 'bold',
-                  textAlign: 'center',
+                  textAlign: 'left',
                   textShadow: '0 0 20px rgba(212, 175, 55, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
                   Devojačko veče & Lady Party
                 </h3>
                 
-                {/* Opis - sa ojačanom crnom senkom za čitljivost */}
+                {/* Opis - samo leva polovina kartice */}
                 <p style={{
-                  color: '#f5f2e8',
-                  marginBottom: '1.5rem',
+                  maxWidth: '46%',
+                  textAlign: 'left',
+                  marginTop: '1.2rem',
+                  marginBottom: '2rem',
+                  marginLeft: '6%',
+                  lineHeight: 1.5,
                   fontSize: '0.95rem',
-                  lineHeight: '1.7',
-                  textAlign: 'center',
-                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
+                  color: '#f5f1e8',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)'
                 }}>
                   Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.
                 </p>
                 
-                {/* Uključeno - lista sa ojačanom crnom senkom */}
-                <div style={{ marginBottom: '1.5rem' }}>
+                {/* Uključeno - lista ispod opisa, takođe levo */}
+                <div style={{
+                  maxWidth: '50%',
+                  marginLeft: '6%',
+                  marginBottom: '2.2rem',
+                  color: '#f5f1e8',
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)',
+                  fontSize: '0.9rem',
+                  lineHeight: 1.55
+                }}>
                   <h4 style={{
-                    color: '#d4af37',
-                    fontSize: '1rem',
                     marginBottom: '0.8rem',
+                    color: '#ffdf7a',
                     fontWeight: '600',
-                    textAlign: 'center',
                     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                   }}>
                     Uključeno:
@@ -2226,13 +2236,7 @@ const Spa = () => {
                   <ul style={{
                     listStyle: 'none',
                     padding: 0,
-                    margin: 0,
-                    color: '#f5f2e8',
-                    fontSize: '0.85rem',
-                    lineHeight: '1.8',
-                    maxWidth: '600px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
+                    margin: 0
                   }}>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
