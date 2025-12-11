@@ -477,8 +477,18 @@ Ukupna cena: ${totalPriceFormatted} RSD
         console.log("🚀 SPA handleSubmit called!");
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
 
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
-        const bookingEndpoint = `${backendUrl}/api/appointments`; // Same endpoint as single, but category = "SPA"
+        const backendUrl = process.env.REACT_APP_BACKEND_URL;
+        console.log('Contact page – backendUrl:', backendUrl);
+        
+        if (!backendUrl) {
+          console.error('REACT_APP_BACKEND_URL is missing for Contact.js!');
+          setError('Greška konfiguracije. Molimo kontaktirajte podršku.');
+          setSubmitStatus('error');
+          setIsSubmitting(false);
+          return;
+        }
+        
+        const bookingEndpoint = `${backendUrl.replace(/\/$/, '')}/api/appointments`; // Same endpoint as single, but category = "SPA"
 
         // Convert Date object to YYYY-MM-DD format
         let dateStr;
