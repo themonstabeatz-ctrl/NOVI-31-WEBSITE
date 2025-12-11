@@ -2165,13 +2165,13 @@ const Spa = () => {
               }
             }}
           >
-            {/* Background image - NOVA SLIKA 1022×750px - CELA SLIKA BEZ CROPOVANJA */}
+            {/* Background image - NOVA SLIKA - cover za bolji prikaz */}
             <div 
               className="bridal-card-background"
               style={{
                 backgroundImage: 'url(https://customer-assets.emergentagent.com/job_spa-cards-revamp/artifacts/03lls8bz_1022%20750.jpg)',
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
                 position: 'absolute',
                 top: 0,
