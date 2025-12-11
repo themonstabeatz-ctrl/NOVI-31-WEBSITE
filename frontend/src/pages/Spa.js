@@ -2222,11 +2222,11 @@ const Spa = () => {
                 <div style={{
                   maxWidth: '50%',
                   marginLeft: '6%',
-                  marginBottom: '2.2rem',
+                  marginBottom: '1.6rem',
                   color: '#f5f1e8',
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)',
-                  fontSize: '0.9rem',
-                  lineHeight: 1.55
+                  fontSize: '0.88rem',
+                  lineHeight: 1.5
                 }}>
                   <h4 style={{
                     marginBottom: '0.8rem',
