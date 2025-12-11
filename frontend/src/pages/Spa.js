@@ -2205,7 +2205,7 @@ const Spa = () => {
                   maxWidth: '46%',
                   textAlign: 'left',
                   marginTop: '1.2rem',
-                  marginBottom: '2rem',
+                  marginBottom: '1.8rem',
                   marginLeft: '6%',
                   lineHeight: 1.5,
                   fontSize: '0.95rem',
