@@ -2121,13 +2121,13 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - SMANJENA 660×360px */}
+        {/* Kartica "Devojačko veče & Lady Party" - NIŽA ALI SA CELIM SADRŽAJEM */}
         <div style={{
           maxWidth: '660px',
           width: '100%',
           margin: '100px auto 40px auto',
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - SMANJENA ~20% PO VISINI */}
+          {/* Kartica 3: Devojačko veče & Lady Party - NIŽA SA DUGMETOM VIDLJIVIM */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
@@ -2135,16 +2135,14 @@ const Spa = () => {
               backdropFilter: 'blur(8px)',
               border: '1px solid rgba(212, 175, 55, 0.85)',
               borderRadius: '24px',
-              overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               cursor: 'pointer',
               width: '100%',
-              minHeight: '360px',
-              height: '360px',
+              minHeight: '430px',
               display: 'flex',
               flexDirection: 'column',
-              padding: '1.5rem 2.2rem 1.7rem 2.2rem',
+              padding: '1.8rem 2.2rem 1.9rem 2.2rem',
               boxShadow: '0 18px 40px rgba(0,0,0,0.65)',
               boxSizing: 'border-box'
             }}
