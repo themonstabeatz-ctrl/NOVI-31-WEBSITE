@@ -2121,29 +2121,30 @@ const Spa = () => {
           </Card>
         </div>
 
-        {/* Kartica "Devojačko veče & Lady Party" - NOVA SLIKA 1022×750px */}
+        {/* Kartica "Devojačko veče & Lady Party" - SMANJENA 600×560px */}
         <div style={{
-          maxWidth: '1022px',
+          maxWidth: '600px',
           width: '100%',
-          margin: '0 auto',
-          marginTop: '80px'
+          margin: '100px auto 40px auto',
         }}>
-          {/* Kartica 3: Devojačko veče & Lady Party - CELA SLIKA 1022×750px */}
+          {/* Kartica 3: Devojačko veče & Lady Party - SMANJENA sa tekstom levo */}
           <Card 
             className="spa-special-card bridal-card-special"
             style={{
               background: 'rgba(10, 10, 10, 0.75)',
               backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(212, 175, 55, 0.8)',
+              border: '1px solid rgba(212, 175, 55, 0.85)',
               borderRadius: '24px',
               overflow: 'hidden',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               cursor: 'pointer',
               width: '100%',
-              minHeight: '750px',
+              minHeight: '560px',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
+              padding: '2.5rem 2.5rem 2.8rem 2.5rem',
+              boxShadow: '0 18px 40px rgba(0,0,0,0.65)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#d4af37';
