@@ -2271,7 +2271,7 @@ const Spa = () => {
               </div>
               
               {/* Actions section - pri dnu */}
-              <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ marginTop: '1.2rem' }}>
                 {/* Dugme "POZOVITE" */}
                 <a 
                   href="tel:062625500"
