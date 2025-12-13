@@ -784,7 +784,6 @@ Ukupna cena: ${totalPriceFormatted} RSD
         
         const backendUrl = backendUrlRaw.replace(/\/$/, '');
         
-        const bookingEndpoint = '/api/appointments';
         const finalEndpoint = `${backendUrl}${bookingEndpoint}`;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
