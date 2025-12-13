@@ -202,7 +202,7 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/pages/Contact.js"
-    stuck_count: 12
+    stuck_count: 13
     priority: "high"
     needs_retesting: false
     status_history:
@@ -296,6 +296,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "🎯 COMPREHENSIVE SINGLE MASSAGE BOOKING FLOW TEST COMPLETED - SUCCESS WITH CRITICAL UI ISSUE! ✅ COMPLETE E2E FLOW SUCCESSFUL: 1) Navigation to massage page: WORKING (10 massage cards loaded). 2) Regular massage selection: WORKING ('Tradicionalna tajlandska masaža' found and selected). 3) ZAKAŽITE button redirect: WORKING (successfully navigated to /contact with service parameter). 4) Form field population: WORKING (all fields filled - Petar, Petrović, +381601234567, petar.test@spa.com, December 15 2025, 14:00, Test rezervacija). 5) Form submission: WORKING (handleSubmit called with complete payload). ✅ BACKEND INTEGRATION FULLY FUNCTIONAL: POST request to https://therapy-backend.preview.emergentagent.com/api/appointments successful with 200 OK response. Service mapping working correctly (service_id: 98249336-b9d9-4685-b70c-81971d3cf216). Booking created successfully with appointment ID: 3b0926a2-dfd6-491d-8c31-0c752e5ca6ae. ✅ CONSOLE LOG PATTERNS CONFIRMED: All requested patterns found - '📦 FULL PAYLOAD being sent:', '📥 Response status: 200', '✅ Booking successful:', 'therapist-scheduler.preview.emergentagent.com'. Payload correctly shows therapist_id: null as expected. ✅ NETWORK ANALYSIS SUCCESSFUL: POST request to correct endpoint, 200 OK response received, booking data properly structured and sent. ❌ CRITICAL UI ISSUE: Success message NOT displayed to user despite successful backend booking. Form submission works and booking is created, but user receives no visual confirmation of success. This creates poor user experience as users don't know if their booking was successful. ⚠️ ROOT CAUSE: Success message display logic in Contact.js not triggering properly after successful form submission. Backend integration is perfect, but frontend success feedback is broken. ⚠️ IMPACT: Booking functionality works perfectly but users don't receive confirmation, leading to potential confusion and duplicate booking attempts."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL COUPLES MASSAGE DROPDOWN INTERACTION FAILURE CONFIRMED! EXACT REVIEW REQUEST TESTING COMPLETED: Successfully navigated to https://therapy-backend.preview.emergentagent.com/massage and found couples massage card with discount badge. Duration selection (60 min) works with golden styling. Backend integration working (services loaded correctly). CRITICAL ISSUE IDENTIFIED: Dropdown interaction completely broken - Person 1 dropdown opens but no massage options found, Person 2 dropdown click times out with element instability and pointer event interception. ROOT CAUSE: Frontend dropdown rendering/interaction issue in CouplesMassageCard.js - dropdowns are visually present but not functionally accessible. IMPACT: Complete couples massage booking flow is non-functional. Users can select duration but cannot select massages for either person, preventing ZAKAZITE button enablement and booking completion. URGENT ACTION REQUIRED: Fix dropdown interactivity and DOM accessibility in CouplesMassageCard component. All review request objectives failed due to this critical frontend dropdown interaction bug preventing massage selection for both Person 1 and Person 2."
 
   - task: "Header with navigation and language switcher"
     implemented: true
