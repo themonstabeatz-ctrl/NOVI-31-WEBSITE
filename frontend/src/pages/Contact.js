@@ -738,7 +738,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
             ]
           };
           
-          bookingEndpoint = '/api/book-couple-appointment';
+          bookingEndpoint = '/api/appointments';
           console.log('✅ Couples booking payload:', appointmentData);
           console.log('📤 Calling backend couple booking endpoint:', bookingEndpoint);
         } else {
