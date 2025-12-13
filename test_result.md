@@ -1119,6 +1119,9 @@ agent_communication:
       The discount functionality is IDENTICAL between versions. The only issue is that my version's external booking system (https://spabooking.emergent.host) has no therapists configured, causing all bookings to fail with "Web booking system not configured" error.
       
       All review request objectives achieved - root cause identified as booking system configuration issue, not discount functionality differences.
+  - agent: "testing"
+    message: |
+      🎯 NEW LOGIC TESTING COMPLETED - CRITICAL FRONTEND ISSUE BLOCKING VERIFICATION! ✅ BACKEND NEW LOGIC IMPLEMENTED: Successfully added /api/appointments endpoint with NEW LOGIC (totalMinutes calculation, couples package matching, service_id Tip B, notes with UI selection). ❌ FRONTEND DROPDOWN BROKEN: Couples massage dropdown selections for Person 1 and Person 2 are completely non-functional. Console shows 'p1m1: NULL, p1m2: NULL, p2m1: NULL, p2m2: NULL' despite user clicks. The handleMassageClick function is not being triggered. ❌ CANNOT TEST NEW LOGIC: Unable to verify NEW LOGIC implementation because booking flow is blocked at dropdown selection stage. ZAKAŽITE button remains disabled (opacity: 0.5) preventing form submission. 🔧 URGENT ACTION REQUIRED: Fix dropdown click handlers in CouplesMassageCard.js to enable massage selection, then retest NEW LOGIC. The backend implementation is ready but frontend prevents testing.
       • This represents significant revenue loss for the business
       
       📋 COMPLETE PRICE CORRECTION MAPPING IDENTIFIED:
