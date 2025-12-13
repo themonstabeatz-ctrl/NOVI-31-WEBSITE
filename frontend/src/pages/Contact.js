@@ -698,120 +698,87 @@ Ukupna cena: ${totalPriceFormatted} RSD
         if (isCoupleBooking) {
           const couplesData = couplesBookingData;
           
-          // ✅ COUPLES BOOKING - FINALNA LOGIKA
-          // 1) Izračunaj ukupno trajanje iz UI izbora
+          // ✅ COUPLES BOOKING - NOVA LOGIKA (bez "find package by duration")
+          // Pravilo: UI cena = zbir cena izabranih [PAROVI] servisa (Person1 + Person2)
+          // Slati person1_service_id i person2_service_id, NE "package by duration"
+          
           const person1Duration = parseInt(couplesData.person1?.duration) || 60;
           const person2Duration = parseInt(couplesData.person2?.duration) || 60;
           const totalMinutes = person1Duration + person2Duration;
           
-          console.log('🔍 Couples booking - calculating total duration:', {
-            person1Duration,
-            person2Duration,
-            totalMinutes
-          });
+          // Izvuci [PAROVI] service IDs i cene
+          const p1Id = couplesData.person1?.service_id;
+          const p2Id = couplesData.person2?.service_id;
+          const p1Name = couplesData.person1?.name || 'N/A';
+          const p2Name = couplesData.person2?.name || 'N/A';
+          const p1Price = couplesData.person1?.final_price || couplesData.person1?.price || 0;
+          const p2Price = couplesData.person2?.final_price || couplesData.person2?.price || 0;
           
-          // 2) Učitaj couples pakete i nađi odgovarajući
-          const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
-          if (!backendUrlRaw) {
-            throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
-          }
-          const backendUrl = backendUrlRaw.replace(/\/$/, '');
+          // UI cena = zbir [PAROVI] servisa
+          const uiTotalPrice = p1Price + p2Price;
           
-          let couplesPackageId = null;
-          try {
-            const packagesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
-            const packages = await packagesResponse.json();
-            
-            console.log('📦 Loaded couples packages:', packages.length);
-            
-            // Nađi paket koji odgovara totalMinutes
-            // Paketi imaju nazive tipa "Masaža za parove - 120 min (2x60 min)"
-            const matchingPackage = packages.find(pkg => {
-              // Izvuci trajanje iz naziva paketa
-              const durationMatch = pkg.name.match(/(\d+)\s*min/);
-              if (durationMatch) {
-                const pkgDuration = parseInt(durationMatch[1]);
-                return pkgDuration === totalMinutes;
-              }
-              return false;
-            });
-            
-            if (matchingPackage) {
-              couplesPackageId = matchingPackage.id;
-              console.log('✅ Found matching couples package:', {
-                name: matchingPackage.name,
-                id: couplesPackageId,
-                totalMinutes
-              });
-            } else {
-              console.error('❌ No couples package found for totalMinutes:', totalMinutes);
-              setError(`Trenutno nemamo couples paket za izabranu kombinaciju trajanja (${totalMinutes} min). Molimo izaberite dostupnu kombinaciju.`);
-              setIsSubmitting(false);
-              return;
-            }
-          } catch (err) {
-            console.error('❌ Failed to load couples packages:', err);
-            setError('Greška pri učitavanju couples paketa. Molimo pokušajte ponovo.');
+          // Validacija: oba servisa moraju biti [PAROVI]
+          if (!p1Name.includes('[PAROVI]') || !p2Name.includes('[PAROVI]')) {
+            console.error('❌ COUPLES STRICT: oba servisa moraju biti [PAROVI]');
+            setError('Greška: Izaberite [PAROVI] masaže za obe osobe.');
             setIsSubmitting(false);
             return;
           }
           
-          // 3) Pripremi notes sa UI izborom (za recepciju)
-          const person1Info = couplesData.person1 
-            ? `${couplesData.person1.name} (${couplesData.person1.duration}min)` 
-            : 'Nije izabrano';
-          const person2Info = couplesData.person2 
-            ? `${couplesData.person2.name} (${couplesData.person2.duration}min)` 
-            : 'Nije izabrano';
+          if (!p1Id || !p2Id) {
+            console.error('❌ Missing service IDs for couples booking');
+            setError('Molimo izaberite masažu za obe osobe.');
+            setIsSubmitting(false);
+            return;
+          }
           
-          // ✅ PRICING DEBUG - za identifikaciju +2000 razlike
-          const uiTotalPrice = couplesData.pair_final_price || couplesData.pair_original_price || 0;
-          const p1Price = couplesData.person1?.final_price || couplesData.person1?.price || 0;
-          const p2Price = couplesData.person2?.final_price || couplesData.person2?.price || 0;
-          const p1Id = couplesData.person1?.service_id || 'N/A';
-          const p2Id = couplesData.person2?.service_id || 'N/A';
-          
-          const pricingDebug = `PRICING_DEBUG: ui_total=${uiTotalPrice}; duration=${totalMinutes}; p1={id:${p1Id}, name:${couplesData.person1?.name || 'N/A'}, price:${p1Price}}; p2={id:${p2Id}, name:${couplesData.person2?.name || 'N/A'}, price:${p2Price}}; package_id=${couplesPackageId}`;
-          
-          const notesText = `COUPLES UI izbor: Osoba1=${person1Info}; Osoba2=${person2Info}\n${pricingDebug}`;
-          
-          // 🔍 DEBUG CONSOLE LOG - pre POST-a
-          console.log('🔍 PRICING DEBUG INFO:', {
-            service_id: couplesPackageId,
-            ui_total_price: uiTotalPrice,
-            duration: totalMinutes,
-            person1: {
-              id: p1Id,
-              name: couplesData.person1?.name,
-              duration: person1Duration,
-              price: p1Price
-            },
-            person2: {
-              id: p2Id,
-              name: couplesData.person2?.name,
-              duration: person2Duration,
-              price: p2Price
-            },
-            pair_original_price: couplesData.pair_original_price,
-            pair_final_price: couplesData.pair_final_price
+          console.log('🔍 COUPLES STRICT MODE - Using [PAROVI] service IDs:', {
+            person1_service_id: p1Id,
+            person2_service_id: p2Id,
+            p1_price: p1Price,
+            p2_price: p2Price,
+            ui_total: uiTotalPrice,
+            duration: totalMinutes
           });
           
-          // 4) Kreiraj payload sa Tip B service_id
+          // PRICING_DEBUG u notes (za backend dev)
+          const pricingDebug = `PRICING_DEBUG: ui_total=${uiTotalPrice}; p1={id:${p1Id}, name:${p1Name}, price:${p1Price}}; p2={id:${p2Id}, name:${p2Name}, price:${p2Price}}`;
+          
+          const notesText = `COUPLES [PAROVI]: Osoba1=${p1Name} (${person1Duration}min, ${p1Price} RSD); Osoba2=${p2Name} (${person2Duration}min, ${p2Price} RSD); UKUPNO=${uiTotalPrice} RSD\n${pricingDebug}`;
+          
+          // 🔍 DEBUG CONSOLE LOG pre POST-a
+          console.log('🔍 PRICING DEBUG INFO:', {
+            person1_service_id: p1Id,
+            person2_service_id: p2Id,
+            ui_total_price: uiTotalPrice,
+            duration: totalMinutes,
+            person1: { id: p1Id, name: p1Name, price: p1Price },
+            person2: { id: p2Id, name: p2Name, price: p2Price }
+          });
+          
+          // ✅ NOVI PAYLOAD - šalje [PAROVI] service IDs, NE package_id
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
-            service_id: couplesPackageId,  // ✅ ID couples paketa (Tip B)
+            // ✅ Šaljemo oba [PAROVI] service ID-a
+            person1_service_id: p1Id,
+            person2_service_id: p2Id,
+            // ✅ UI cena kao referenca (backend treba da izračuna isto)
+            original_price: uiTotalPrice,
+            final_price: uiTotalPrice,
+            discount_percentage: 0,
             start_time: `${dateStr}T${formData.preferredTime}:00`,
-            notes: notesText  // ✅ UI izbor za recepciju
+            notes: notesText,
+            booking_type: 'COUPLES'  // Signal za backend da koristi STRICT mode
           };
           
-          // ❌ ZABRANJENO: person1_services, person2_services, is_couples_booking, category
+          // ❌ ZABRANJENO: "package by duration" lookup
+          // ✅ Komponente ([PAROVI] servisi) su jedini izvor istine
           
           bookingEndpoint = '/api/appointments';
-          console.log('✅ Couples booking payload (FINAL):', appointmentData);
-          console.log('📤 service_id (Tip B package):', couplesPackageId);
+          console.log('✅ Couples booking payload (STRICT MODE):', appointmentData);
         } else {
           // Regular booking data
           // Extract duration from service name (e.g., "Masaža - 90 min" -> 90)
