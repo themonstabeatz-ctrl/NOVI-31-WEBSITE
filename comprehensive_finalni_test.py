@@ -13,8 +13,8 @@ OČEKIVANE CENE:
 - Finalna cena: 7,920 RSD
 
 ENDPOINTS:
-- GET https://spa-cards-revamp.preview.emergentagent.com/api/services
-- POST https://spa-cards-revamp.preview.emergentagent.com/api/book-appointment
+- GET https://therapy-backend.preview.emergentagent.com/api/services
+- POST https://therapy-backend.preview.emergentagent.com/api/book-appointment
 
 Testiranje podaci:
 - Ime: Finalni Test
@@ -29,7 +29,7 @@ import json
 from datetime import datetime, timedelta
 
 # Test configuration
-BASE_URL = "https://spa-cards-revamp.preview.emergentagent.com"
+BASE_URL = "https://therapy-backend.preview.emergentagent.com"
 API_BASE = f"{BASE_URL}/api"
 
 class ComprehensiveFinalniTest:
