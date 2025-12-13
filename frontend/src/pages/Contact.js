@@ -98,9 +98,15 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || '';
+        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
         
-        // Load BOTH single and couples services for complete mapping
+        if (!backendUrlRaw) {
+          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
+        }
+        
+        const backendUrl = backendUrlRaw.replace(/\/$/, '');
+        console.log('📍 Loading services from Contact page:', backendUrl);
+
         const [singleResponse, couplesResponse] = await Promise.all([
           fetch(`${backendUrl}/api/services/single/list`),
           fetch(`${backendUrl}/api/services/couples/list`)
