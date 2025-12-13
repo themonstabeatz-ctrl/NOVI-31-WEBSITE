@@ -698,53 +698,37 @@ Ukupna cena: ${totalPriceFormatted} RSD
         if (isCoupleBooking) {
           const couplesData = couplesBookingData;
           
-          console.log('🔍 Couples Data:', couplesData);
+          // ✅ COUPLES BOOKING = JEDNA [PAROVI] USLUGA SA JEDNIM service_id
+          // Person1/Person2 su SAMO UI - NE ŠALJU SE BACKENDU
+          console.log('🔍 Couples booking - using person1 service_id as THE service_id');
           
-          // ✅ SIMPLIFIED COUPLES BOOKING per user request
-          console.log('🔍 Couples Data:', couplesData);
-          console.log('🔍 Person1:', couplesData.person1);
-          console.log('🔍 Person2:', couplesData.person2);
+          // Uzimamo service_id od person1 (to je [PAROVI] usluga)
+          const couplesServiceId = couplesData.person1?.service_id;
           
-          // Build couples payload according to user specification
+          if (!couplesServiceId) {
+            console.error('❌ Missing couples service_id!');
+            setError('Molimo izaberite masažu za parove.');
+            setIsSubmitting(false);
+            return;
+          }
+          
+          // ✅ IDENTIČAN PAYLOAD KAO SINGLE BOOKING - samo sa [PAROVI] service_id
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
-            appointment_date: dateStr,
+            service_id: couplesServiceId,  // ✅ JEDAN service_id od [PAROVI] usluge
             start_time: `${dateStr}T${formData.preferredTime}:00`,
-            
-            category: "Kartica masaza za parove",
-            
-            original_price: couplesData.pair_original_price,
-            final_price: couplesData.pair_final_price,
-            discount_percentage: couplesData.pair_discount_percentage,
-            discount_amount: couplesData.pair_discount_amount,
-            is_couples_booking: true,
-            
-            person1_services: [
-              {
-                service_id: couplesData.person1.service_id,
-                name: couplesData.person1.name,
-                duration: couplesData.person1.duration,
-                original_price: couplesData.person1.original_price,
-                final_price: couplesData.person1.final_price
-              }
-            ],
-            person2_services: [
-              {
-                service_id: couplesData.person2.service_id,
-                name: couplesData.person2.name,
-                duration: couplesData.person2.duration,
-                original_price: couplesData.person2.original_price,
-                final_price: couplesData.person2.final_price
-              }
-            ]
+            original_price: couplesData.pair_original_price || 0,
+            final_price: couplesData.pair_final_price || 0
           };
           
+          // ❌ ZABRANJENO: person1_services, person2_services, is_couples_booking, category
+          
           bookingEndpoint = '/api/appointments';
-          console.log('✅ Couples booking payload:', appointmentData);
-          console.log('📤 Calling backend couple booking endpoint:', bookingEndpoint);
+          console.log('✅ Couples booking payload (SIMPLIFIED):', appointmentData);
+          console.log('📤 service_id:', couplesServiceId);
         } else {
           // Regular booking data
           // Extract duration from service name (e.g., "Masaža - 90 min" -> 90)
