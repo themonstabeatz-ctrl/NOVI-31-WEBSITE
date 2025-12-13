@@ -258,19 +258,26 @@ Ukupna cena: ${totalPriceFormatted} RSD
           const data = JSON.parse(decodedData);
           console.log('✅ Parsed couples data:', data);
           
-          // ✅ SIMPLIFIED couples message structure
+          // ✅ Build message using ARRAYS (person1_services, person2_services)
           message = `${translate('couplesMassageBooking')}\n\n`;
+          
+          // Person 1 - show ALL services
+          const p1Services = data.person1_services || (data.person1 ? [data.person1] : []);
           message += `${translate('person1')}:\n`;
-          if (data.person1) {
-            const translatedMassage = translateMassageName(data.person1.name);
-            message += `  • ${translatedMassage} (${data.person1.duration} min)\n`;
-          }
+          p1Services.forEach(s => {
+            const translatedMassage = translateMassageName(s.name);
+            message += `  • ${translatedMassage} (${s.duration} min)\n`;
+          });
+          
+          // Person 2 - show ALL services
+          const p2Services = data.person2_services || (data.person2 ? [data.person2] : []);
           message += `\n${translate('person2')}:\n`;
-          if (data.person2) {
-            const translatedMassage = translateMassageName(data.person2.name);
-            message += `  • ${translatedMassage} (${data.person2.duration} min)\n`;
-          }
-          // ✅ FIXED: Use new couplesData structure (pair_discount_percentage, pair_original_price, pair_final_price)
+          p2Services.forEach(s => {
+            const translatedMassage = translateMassageName(s.name);
+            message += `  • ${translatedMassage} (${s.duration} min)\n`;
+          });
+          
+          // ✅ Use new couplesData structure (pair_discount_percentage, pair_original_price, pair_final_price)
           const discountText = data.pair_discount_percentage 
             ? `${data.pair_discount_percentage}%` 
             : (data.discount || 'N/A');
