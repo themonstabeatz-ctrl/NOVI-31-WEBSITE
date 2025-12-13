@@ -579,6 +579,39 @@ agent_communication:
       
       ❌ CRITICAL BACKEND ENDPOINT ISSUE:
       - POST request to /api/appointments returns 404 Not Found
+      - Backend endpoint does not exist on therapist-scheduler backend
+      - Console shows 'Response body is already used' error after 404 response
+      - No success/error UI feedback due to backend failure
+      
+      🔍 ROOT CAUSE:
+      Backend API endpoint mismatch - frontend correctly sends to /api/appointments but this endpoint doesn't exist on therapist-scheduler backend.
+      
+      ⚠️ IMPACT:
+      Complete single massage booking flow functional on frontend but fails at final backend integration step due to incorrect endpoint URL.
+  - agent: "testing"
+    message: |
+      🎉 REVIEW REQUEST TESTING COMPLETED - ALL BOOKING ENDPOINTS WORKING PERFECTLY!
+      
+      ✅ COMPREHENSIVE BACKEND TESTING RESULTS:
+      - TEST 1 (Services Loading): GET /api/services/single/list returns 200 OK with 41 services ✅
+      - TEST 2 (Booking Submission): POST /api/appointments returns 200 OK with booking confirmation ✅  
+      - TEST 3 (CORS & Connectivity): Backend reachable and responding properly ✅
+      
+      ✅ EXACT REVIEW REQUEST VERIFICATION:
+      - Services endpoint returns proper JSON list with target service ID 98249336-b9d9-4685-b70c-81971d3cf216 ✅
+      - Appointment POST endpoint accepts booking and returns success (appointment ID: 9dbb227e-6f57-4f3b-a9ac-3337786ad38d) ✅
+      - No CORS issues detected during API calls ✅
+      - Backend is reachable and responding properly at https://therapy-booking-21.preview.emergentagent.com ✅
+      
+      ✅ CURL COMMAND VERIFICATION:
+      Both exact curl commands from review request executed successfully:
+      1. `curl -s "https://therapy-booking-21.preview.emergentagent.com/api/services/single/list"` - Returns proper JSON with services and prices
+      2. Booking POST with exact payload - Returns 200 with booking confirmation including proper pricing snapshot (original: 4400.0, final: 3740.0, 15% discount)
+      
+      📊 SUCCESS RATE: 3/3 tests passed (100%)
+      
+      🎯 CONCLUSION: All review request objectives achieved - booking appointment endpoint is fully operational and ready for production use. Backend integration working perfectly with external booking system.
+      - POST request to /api/appointments returns 404 Not Found
       - This endpoint does not exist on therapist-scheduler backend
       - Console shows 'Response body is already used' error after 404 response
       - No success/error UI feedback due to backend failure
