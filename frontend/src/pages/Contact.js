@@ -826,6 +826,13 @@ Ukupna cena: ${totalPriceFormatted} RSD
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
         
+        // ✅ DOKAZ: Eksplicitni log za discount/price polja
+        console.log('💰 PRICE PROOF:', {
+          discount_percentage: appointmentData.discount_percentage ?? 'NOT_SET',
+          original_price: appointmentData.original_price ?? 'NOT_SET',
+          final_price: appointmentData.final_price ?? 'NOT_SET'
+        });
+        
         const res = await fetch(finalEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
