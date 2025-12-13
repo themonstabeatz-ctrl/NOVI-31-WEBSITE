@@ -62,7 +62,7 @@ const Massage = () => {
   const [dropdownOpen, setDropdownOpen] = useState({ person1: false, person2: false });
 
   const [serviceDiscounts, setServiceDiscounts] = useState({}); // Per-service discount percentages for regular cards
-  const [couplesDiscountPercent, setCouplesDiscountPercent] = useState(0); // Discount for couples massage
+  // ✅ REMOVED: couplesDiscountPercent - couples kartice na /massage ne prikazuju badge
   // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
   // Dynamic data fetching from backend API
   const [apiServices, setApiServices] = useState({});
