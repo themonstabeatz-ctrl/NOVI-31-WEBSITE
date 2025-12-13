@@ -794,8 +794,9 @@ Ukupna cena: ${totalPriceFormatted} RSD
         console.log('🔍 DEBUG: finalEndpoint =', finalEndpoint);
         
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
-          
+        console.log('✅ Contact booking backendUrl:', backendUrl);
         console.log(`📤 Sending ${isCoupleBooking ? 'couple' : 'regular'} booking request to:`, finalEndpoint);
+        
         const response = await fetch(finalEndpoint, {
           method: 'POST',
           headers: {
