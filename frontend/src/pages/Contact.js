@@ -698,76 +698,85 @@ Ukupna cena: ${totalPriceFormatted} RSD
         if (isCoupleBooking) {
           const couplesData = couplesBookingData;
           
-          // ✅ COUPLES BOOKING - NOVA LOGIKA (bez "find package by duration")
-          // Pravilo: UI cena = zbir cena izabranih [PAROVI] servisa (Person1 + Person2)
-          // Slati person1_service_id i person2_service_id, NE "package by duration"
+          // ✅ COUPLES BOOKING - ARRAY SUPPORT
+          // Pravilo: UI cena = zbir SVIH izabranih [PAROVI] servisa (Person1 + Person2)
+          // Slati person1_services i person2_services kao ARRAY-e
           
-          const person1Duration = parseInt(couplesData.person1?.duration) || 60;
-          const person2Duration = parseInt(couplesData.person2?.duration) || 60;
-          const totalMinutes = person1Duration + person2Duration;
+          // ✅ FIX: Koristi ARRAY-e umesto single values
+          const person1Services = couplesData.person1_services || 
+            (couplesData.person1 ? [couplesData.person1] : []);
+          const person2Services = couplesData.person2_services || 
+            (couplesData.person2 ? [couplesData.person2] : []);
           
-          // Izvuci [PAROVI] service IDs i cene
-          const p1Id = couplesData.person1?.service_id;
-          const p2Id = couplesData.person2?.service_id;
-          const p1Name = couplesData.person1?.name || 'N/A';
-          const p2Name = couplesData.person2?.name || 'N/A';
-          const p1Price = couplesData.person1?.final_price || couplesData.person1?.price || 0;
-          const p2Price = couplesData.person2?.final_price || couplesData.person2?.price || 0;
+          // Calculate totals from ALL services in arrays
+          const p1Total = person1Services.reduce((sum, s) => sum + (s.final_price || s.price || 0), 0);
+          const p2Total = person2Services.reduce((sum, s) => sum + (s.final_price || s.price || 0), 0);
+          const uiTotalPrice = p1Total + p2Total;
           
-          // UI cena = zbir [PAROVI] servisa
-          const uiTotalPrice = p1Price + p2Price;
+          // Calculate total duration
+          const p1Duration = person1Services.reduce((sum, s) => sum + parseInt(s.duration || 60), 0);
+          const p2Duration = person2Services.reduce((sum, s) => sum + parseInt(s.duration || 60), 0);
+          const totalMinutes = p1Duration + p2Duration;
           
-          // Validacija: oba servisa moraju biti [PAROVI]
-          if (!p1Name.includes('[PAROVI]') || !p2Name.includes('[PAROVI]')) {
-            console.error('❌ COUPLES STRICT: oba servisa moraju biti [PAROVI]');
-            setError('Greška: Izaberite [PAROVI] masaže za obe osobe.');
+          console.log('🔍 COUPLES ARRAY MODE:', {
+            person1_services: person1Services,
+            person2_services: person2Services,
+            p1_count: person1Services.length,
+            p2_count: person2Services.length,
+            p1_total: p1Total,
+            p2_total: p2Total,
+            ui_total: uiTotalPrice,
+            duration: totalMinutes
+          });
+          
+          // Validacija: sve masaže moraju biti [PAROVI]
+          const allServices = [...person1Services, ...person2Services];
+          const invalidService = allServices.find(s => s.name && !s.name.includes('[PAROVI]'));
+          if (invalidService) {
+            console.error('❌ COUPLES STRICT: svi servisi moraju biti [PAROVI]', invalidService);
+            setError('Greška: Izaberite samo [PAROVI] masaže.');
             setIsSubmitting(false);
             return;
           }
           
-          if (!p1Id || !p2Id) {
-            console.error('❌ Missing service IDs for couples booking');
+          if (person1Services.length === 0 || person2Services.length === 0) {
+            console.error('❌ Missing services for couples booking');
             setError('Molimo izaberite masažu za obe osobe.');
             setIsSubmitting(false);
             return;
           }
           
-          console.log('🔍 COUPLES STRICT MODE - Using [PAROVI] service IDs:', {
-            person1_service_id: p1Id,
-            person2_service_id: p2Id,
-            p1_price: p1Price,
-            p2_price: p2Price,
-            ui_total: uiTotalPrice,
+          // Build display strings with all services joined by " + "
+          const p1Display = person1Services.map(s => `${s.name} (${s.duration}min, ${s.final_price || s.price} RSD)`).join(' + ');
+          const p2Display = person2Services.map(s => `${s.name} (${s.duration}min, ${s.final_price || s.price} RSD)`).join(' + ');
+          
+          // PRICING_DEBUG u notes (za backend dev) - with all services
+          const p1Debug = person1Services.map(s => `{id:${s.service_id}, name:${s.name}, price:${s.final_price || s.price}}`).join(', ');
+          const p2Debug = person2Services.map(s => `{id:${s.service_id}, name:${s.name}, price:${s.final_price || s.price}}`).join(', ');
+          const pricingDebug = `PRICING_DEBUG: ui_total=${uiTotalPrice}; p1_count=${person1Services.length}; p2_count=${person2Services.length}; p1=[${p1Debug}]; p2=[${p2Debug}]`;
+          
+          const notesText = `COUPLES [PAROVI]: Osoba1=${p1Display}; Osoba2=${p2Display}; UKUPNO=${uiTotalPrice} RSD\n${pricingDebug}`;
+          
+          // 🔍 DEBUG CONSOLE LOG pre POST-a
+          console.log('🔍 PRICING DEBUG INFO (ARRAYS):', {
+            person1_services: person1Services,
+            person2_services: person2Services,
+            ui_total_price: uiTotalPrice,
             duration: totalMinutes
           });
           
-          // PRICING_DEBUG u notes (za backend dev)
-          const pricingDebug = `PRICING_DEBUG: ui_total=${uiTotalPrice}; p1={id:${p1Id}, name:${p1Name}, price:${p1Price}}; p2={id:${p2Id}, name:${p2Name}, price:${p2Price}}`;
-          
-          const notesText = `COUPLES [PAROVI]: Osoba1=${p1Name} (${person1Duration}min, ${p1Price} RSD); Osoba2=${p2Name} (${person2Duration}min, ${p2Price} RSD); UKUPNO=${uiTotalPrice} RSD\n${pricingDebug}`;
-          
-          // 🔍 DEBUG CONSOLE LOG pre POST-a
-          console.log('🔍 PRICING DEBUG INFO:', {
-            person1_service_id: p1Id,
-            person2_service_id: p2Id,
-            ui_total_price: uiTotalPrice,
-            duration: totalMinutes,
-            person1: { id: p1Id, name: p1Name, price: p1Price },
-            person2: { id: p2Id, name: p2Name, price: p2Price }
-          });
-          
-          // ✅ NOVI PAYLOAD - šalje [PAROVI] service IDs, NE package_id
+          // ✅ NOVI PAYLOAD - šalje ARRAY-e servisa
           // NAPOMENA: Dok backend ne implementira STRICT mode, šaljemo i service_id placeholder
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
-            // ✅ Šaljemo oba [PAROVI] service ID-a
-            person1_service_id: p1Id,
-            person2_service_id: p2Id,
-            // ⚠️ TEMPORARY: service_id kao placeholder (person1) dok backend ne podrži STRICT mode
-            service_id: p1Id,
+            // ✅ Šaljemo ARRAY-e svih servisa
+            person1_services: person1Services,
+            person2_services: person2Services,
+            // ⚠️ TEMPORARY: service_id kao placeholder dok backend ne podrži ARRAY mode
+            service_id: person1Services[0]?.service_id,
             // ✅ UI cena kao referenca (backend treba da izračuna isto)
             original_price: uiTotalPrice,
             final_price: uiTotalPrice,
