@@ -670,7 +670,10 @@ const CouplesMassageCard = ({
                       options.push(
                         <div
                           key={`${massage.key}-${dur}`}
-                          onClick={() => handleMassageClick(1, massage, dur)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleMassageClick(1, massage, dur);
+                          }}
                           style={{
                             padding: '0.75rem',
                             cursor: 'pointer',
