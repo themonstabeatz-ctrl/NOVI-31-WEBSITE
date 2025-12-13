@@ -772,16 +772,13 @@ Ukupna cena: ${totalPriceFormatted} RSD
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
         // Get backend URL
-        const backendUrl = process.env.REACT_APP_BACKEND_URL;
-        console.log('Contact page – backendUrl:', backendUrl);
+        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
         
-        if (!backendUrl) {
-          console.error('REACT_APP_BACKEND_URL is missing for Contact.js!');
-          setError('Greška konfiguracije. Molimo kontaktirajte podršku.');
-          setSubmitStatus('error');
-          setIsSubmitting(false);
-          return;
+        if (!backendUrlRaw) {
+          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
         }
+        
+        const backendUrl = backendUrlRaw.replace(/\/$/, '');
         
         // ❌ HEALTH CHECK REMOVED - was causing 404 and blocking bookings
         // Backend /api/health endpoint doesn't exist, so we skip it
