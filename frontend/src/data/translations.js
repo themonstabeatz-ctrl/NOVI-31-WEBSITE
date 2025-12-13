@@ -861,7 +861,7 @@ export const translations = {
     monthDec: "December",
     
     // Success messages
-    successBooking: "Your treatment has been successfully booked",
+    successBooking: "Your reservation has been successfully submitted. Reception will contact you shortly.",
     successVoucher: "You have successfully purchased your voucher",
     successMessage: "Your message has been successfully sent",
     address: "Address",
