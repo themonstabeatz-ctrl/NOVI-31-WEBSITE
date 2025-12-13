@@ -757,6 +757,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
           });
           
           // ✅ NOVI PAYLOAD - šalje [PAROVI] service IDs, NE package_id
+          // NAPOMENA: Dok backend ne implementira STRICT mode, šaljemo i service_id placeholder
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
@@ -765,6 +766,8 @@ Ukupna cena: ${totalPriceFormatted} RSD
             // ✅ Šaljemo oba [PAROVI] service ID-a
             person1_service_id: p1Id,
             person2_service_id: p2Id,
+            // ⚠️ TEMPORARY: service_id kao placeholder (person1) dok backend ne podrži STRICT mode
+            service_id: p1Id,
             // ✅ UI cena kao referenca (backend treba da izračuna isto)
             original_price: uiTotalPrice,
             final_price: uiTotalPrice,
