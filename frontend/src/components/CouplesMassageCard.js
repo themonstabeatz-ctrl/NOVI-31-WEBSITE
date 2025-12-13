@@ -27,9 +27,9 @@ const CouplesMassageCard = ({
   // Helper function to get discount badge for the price display
   // ✅ PRAVILO: Popust se prikazuje SAMO ako su SVA 3 USLOVA TAČNA
   const shouldShowDiscount = () => {
-    // Uzmi ukupne cene
-    const originalPrice = calculatePairTotal().original;
-    const finalPrice = calculatePairTotal().final;
+    // Uzmi ukupne cene (koristi postojeće funkcije)
+    const originalPrice = calculateOriginalPrice();
+    const finalPrice = calculateCouplesPrice();
     
     // Sva 3 uslova moraju biti ispunjena
     return (
