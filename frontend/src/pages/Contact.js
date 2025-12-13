@@ -764,7 +764,37 @@ Ukupna cena: ${totalPriceFormatted} RSD
             ? `${couplesData.person2.name} (${couplesData.person2.duration}min)` 
             : 'Nije izabrano';
           
-          const notesText = `COUPLES UI izbor: Osoba1=${person1Info}; Osoba2=${person2Info}`;
+          // ✅ PRICING DEBUG - za identifikaciju +2000 razlike
+          const uiTotalPrice = couplesData.pair_final_price || couplesData.pair_original_price || 0;
+          const p1Price = couplesData.person1?.final_price || couplesData.person1?.price || 0;
+          const p2Price = couplesData.person2?.final_price || couplesData.person2?.price || 0;
+          const p1Id = couplesData.person1?.service_id || 'N/A';
+          const p2Id = couplesData.person2?.service_id || 'N/A';
+          
+          const pricingDebug = `PRICING_DEBUG: ui_total=${uiTotalPrice}; duration=${totalMinutes}; p1={id:${p1Id}, name:${couplesData.person1?.name || 'N/A'}, price:${p1Price}}; p2={id:${p2Id}, name:${couplesData.person2?.name || 'N/A'}, price:${p2Price}}; package_id=${couplesPackageId}`;
+          
+          const notesText = `COUPLES UI izbor: Osoba1=${person1Info}; Osoba2=${person2Info}\n${pricingDebug}`;
+          
+          // 🔍 DEBUG CONSOLE LOG - pre POST-a
+          console.log('🔍 PRICING DEBUG INFO:', {
+            service_id: couplesPackageId,
+            ui_total_price: uiTotalPrice,
+            duration: totalMinutes,
+            person1: {
+              id: p1Id,
+              name: couplesData.person1?.name,
+              duration: person1Duration,
+              price: p1Price
+            },
+            person2: {
+              id: p2Id,
+              name: couplesData.person2?.name,
+              duration: person2Duration,
+              price: p2Price
+            },
+            pair_original_price: couplesData.pair_original_price,
+            pair_final_price: couplesData.pair_final_price
+          });
           
           // 4) Kreiraj payload sa Tip B service_id
           appointmentData = {
