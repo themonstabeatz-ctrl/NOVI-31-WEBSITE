@@ -132,14 +132,11 @@ const Massage = () => {
         setApiServices(grouped);
         setServiceDiscounts(discountMap);
         
-        // Get couples discount
-        const couplesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
-        console.log("✅ COUPLES status:", couplesResponse.status);
-        
-        const couplesServices = await couplesResponse.json();
-        const couplesDiscount = couplesServices[0]?.discount_percentage || 0;
-        setCouplesDiscountPercent(couplesDiscount);
-        console.log('✅ Couples discount:', couplesDiscount, '%');
+        // ✅ Couples discount - REMOVED from UI display
+        // Couples kartice na /massage NE SMEJU prikazivati badge iz paketa
+        // Popust se prikazuje samo u booking odgovoru/snapshot-u
+        // setCouplesDiscountPercent(0);  // Badge uvek OFF
+        console.log('✅ Couples packages loaded (badge disabled on listing page)');
         
       } catch (error) {
         console.error("❌ Massage fetch error:", error);
