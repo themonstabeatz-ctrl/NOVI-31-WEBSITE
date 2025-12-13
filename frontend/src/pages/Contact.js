@@ -786,36 +786,30 @@ Ukupna cena: ${totalPriceFormatted} RSD
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
         
-        const response = await fetch(finalEndpoint, {
+        const res = await fetch(finalEndpoint, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(appointmentData)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appointmentData),
         });
 
-        // PROČITATI BODY SAMO JEDNOM - pre bilo kakvih if provera
-        const responseText = await response.text();
-        
-        console.log('📥 Response status:', response.status);
-        console.log('📥 Response body:', responseText);
+        const text = await res.text(); // SAMO JEDNOM
 
-        if (!response.ok) {
-          console.error('❌ Booking API error:', response.status, responseText);
-          setError('Greška! Molimo pokušajte ponovo.');
+        let data = {};
+        try {
+          data = text ? JSON.parse(text) : {};
+        } catch (e) {
+          console.error('JSON parse error:', e, text);
+        }
+
+        if (!res.ok) {
+          console.error('❌ BOOKING FAILED', res.status, data);
+          setError(data?.message || `Booking failed: ${res.status}`);
           setSubmitStatus('error');
+          setIsSubmitting(false);
           return;
         }
 
-        // Parsirati JSON iz text-a
-        let data = {};
-        try {
-          data = responseText ? JSON.parse(responseText) : {};
-        } catch (e) {
-          console.warn('⚠️ Response nije validan JSON, nastavljam bez parsiranja.');
-        }
-
-        console.log('✅ Booking successful:', data);
+        console.log('✅ BOOKING SUCCESS', data);
       }
 
       // Success - show green checkmark with appropriate message
