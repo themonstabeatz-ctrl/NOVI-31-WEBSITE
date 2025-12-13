@@ -1649,7 +1649,7 @@ export const translations = {
     monthDec: "ธันวาคม",
     
     // Success messages
-    successBooking: "การจองทรีตเมนต์ของคุณสำเร็จแล้ว",
+    successBooking: "การจองของคุณส่งเรียบร้อยแล้ว พนักงานต้อนรับจะติดต่อคุณในเร็วๆ นี้",
     successVoucher: "คุณซื้อบัตรกำนัลของคุณสำเร็จแล้ว",
     successMessage: "ข้อความของคุณถูกส่งสำเร็จแล้ว",
     address: "ที่อยู่",
