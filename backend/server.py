@@ -766,6 +766,137 @@ async def book_couple_appointment(booking: CoupleBooking, background_tasks: Back
             detail="Booking service unavailable"
         )
 
+# NEW LOGIC: /api/appointments endpoint for couples massage booking
+@api_router.post("/appointments")
+async def create_appointment(booking: AppointmentBooking, background_tasks: BackgroundTasks):
+    """
+    NEW LOGIC for couples massage booking:
+    1. User selects Person 1 massage from dropdown (Tip A - individual [PAROVI] service)
+    2. User selects Person 2 massage from dropdown (Tip A - individual [PAROVI] service)
+    3. For booking, frontend should:
+       - Calculate totalMinutes = person1.duration + person2.duration (e.g., 60+60=120)
+       - Fetch couples packages from /api/services/couples/list
+       - Find package matching that duration (e.g., "Masaža za parove - 120 min")
+       - Send booking with THAT package's service_id (Tip B)
+       - Include dropdown selections in notes field
+    """
+    try:
+        logger.info(f"📌 NEW LOGIC APPOINTMENT REQUEST - Service ID: {booking.service_id}, Client: {booking.client_first_name} {booking.client_last_name}")
+        
+        # Check if this is a couples booking by looking at the notes field
+        is_couples_booking = booking.notes and "COUPLES UI izbor:" in booking.notes
+        
+        if is_couples_booking:
+            logger.info("🎯 COUPLES BOOKING DETECTED - Implementing NEW LOGIC")
+            
+            # Parse couples data from notes
+            # Expected format: "COUPLES UI izbor: Osoba1=[PAROVI] Tradicionalna tajlandska masaža (60min); Osoba2=[PAROVI] Aroma terapija (60min)"
+            import re
+            
+            # Extract person 1 and person 2 selections
+            person1_match = re.search(r'Osoba1=(.+?)\s*\((\d+)min\)', booking.notes)
+            person2_match = re.search(r'Osoba2=(.+?)\s*\((\d+)min\)', booking.notes)
+            
+            if person1_match and person2_match:
+                person1_duration = int(person1_match.group(2))
+                person2_duration = int(person2_match.group(2))
+                totalMinutes = person1_duration + person2_duration
+                
+                logger.info(f"🔍 Parsed couples selection: Person1={person1_duration}min, Person2={person2_duration}min, totalMinutes={totalMinutes}")
+                console_log = f"Found matching couples package with totalMinutes: {totalMinutes}"
+                logger.info(console_log)
+                
+                # Fetch couples packages from /api/services/couples/list
+                booking_api_url = os.environ.get('BOOKING_API_URL', 'https://therapy-backend.preview.emergentagent.com')
+                
+                async with httpx.AsyncClient(timeout=10.0) as client:
+                    # Get couples packages
+                    couples_response = await client.get(f"{booking_api_url}/api/services")
+                    couples_response.raise_for_status()
+                    all_services = couples_response.json()
+                    
+                    # Filter for couples packages (Tip B) - these are the packages, not individual services
+                    couples_packages = [s for s in all_services if 
+                                      s.get('category') == 'Masaza za parove' and 
+                                      not s.get('name', '').startswith('[PAROVI]')]
+                    
+                    logger.info(f"📦 Found {len(couples_packages)} couples packages")
+                    
+                    # Find package matching totalMinutes
+                    matching_package = None
+                    for package in couples_packages:
+                        # Extract duration from package name (e.g., "Masaža za parove - 120 min")
+                        duration_match = re.search(r'(\d+)\s*min', package['name'])
+                        if duration_match:
+                            package_duration = int(duration_match.group(1))
+                            if package_duration == totalMinutes:
+                                matching_package = package
+                                break
+                    
+                    if matching_package:
+                        logger.info(f"✅ Found matching couples package: {matching_package['name']} (ID: {matching_package['id']})")
+                        
+                        # Update booking to use the couples package service_id (Tip B)
+                        booking.service_id = matching_package['id']
+                        booking.service_name = matching_package['name']
+                        
+                        console_log_final = f"Couples booking payload (FINAL): service_id={matching_package['id']}, notes={booking.notes}"
+                        logger.info(console_log_final)
+                    else:
+                        logger.error(f"❌ No couples package found for totalMinutes: {totalMinutes}")
+                        raise HTTPException(
+                            status_code=400,
+                            detail=f"No couples package available for {totalMinutes} minutes duration"
+                        )
+        
+        # Forward to external booking system
+        booking_api_url = os.environ.get('BOOKING_API_URL', 'https://therapy-backend.preview.emergentagent.com')
+        
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            # Prepare booking payload
+            booking_payload = booking.model_dump()
+            
+            # Remove therapist_id - manual assignment in reception
+            booking_payload.pop('therapist_id', None)
+            
+            logger.info(f"📤 Sending booking request to {booking_api_url}/api/appointments")
+            response = await client.post(
+                f'{booking_api_url}/api/appointments',
+                json=booking_payload,
+                headers={'Content-Type': 'application/json'}
+            )
+            
+            if response.status_code in [200, 201]:
+                logger.info(f"✅ Booking successful")
+                booking_result = response.json()
+                
+                # Send confirmation email
+                background_tasks.add_task(
+                    send_confirmation_email,
+                    client_email=booking.client_email,
+                    client_name=f"{booking.client_first_name} {booking.client_last_name}",
+                    client_phone=booking.client_phone,
+                    service_name=booking.service_name or "Tretman",
+                    appointment_datetime=booking.start_time,
+                    language=booking.language or 'sr'
+                )
+                
+                return booking_result
+            else:
+                error_text = response.text
+                logger.error(f"❌ Booking failed: {response.status_code} - {error_text}")
+                raise HTTPException(
+                    status_code=response.status_code,
+                    detail=f"Booking failed: {error_text}"
+                )
+                
+    except httpx.RequestError as e:
+        logger.error(f"Booking API request error: {str(e)}")
+        raise HTTPException(
+            status_code=503,
+            detail="Booking service unavailable"
+        )
+
 # Include the router in the main app
 app.include_router(api_router)
 
