@@ -466,7 +466,7 @@ export const translations = {
     monthDec: "Decembar",
     
     // Success messages
-    successBooking: "Uspešno ste zakazali vaš tretman",
+    successBooking: "Rezervacija je uspešno poslata. Recepcija će vas uskoro kontaktirati.",
     successVoucher: "Uspešno ste kupili vaš vaučer",
     successMessage: "Uspešno ste poslali poruku",
     address: "Adresa",
