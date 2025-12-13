@@ -453,26 +453,62 @@ const CouplesMassageCard = ({
       return nameWithPrefix;
     };
     
-    // ✅ Build couples data with simplified structure for backend
+    // ✅ FIX: Build arrays of ALL selected services (Massage1 + Massage2)
+    const buildServicesArray = (massage1, massage2) => {
+      const services = [];
+      if (massage1) {
+        services.push({
+          service_id: massage1.service_id,
+          name: buildServiceName(massage1),
+          duration: massage1.duration || 60,
+          original_price: massage1.originalPrice || massage1.price || 0,
+          final_price: massage1.price || 0
+        });
+      }
+      if (massage2) {
+        services.push({
+          service_id: massage2.service_id,
+          name: buildServiceName(massage2),
+          duration: massage2.duration || 60,
+          original_price: massage2.originalPrice || massage2.price || 0,
+          final_price: massage2.price || 0
+        });
+      }
+      return services;
+    };
+    
+    const person1Services = buildServicesArray(
+      couplesSelections.person1Massage1, 
+      couplesSelections.person1Massage2
+    );
+    const person2Services = buildServicesArray(
+      couplesSelections.person2Massage1, 
+      couplesSelections.person2Massage2
+    );
+    
+    // Calculate sums from arrays
+    const p1Total = person1Services.reduce((sum, s) => sum + (s.final_price || 0), 0);
+    const p2Total = person2Services.reduce((sum, s) => sum + (s.final_price || 0), 0);
+    const p1OrigTotal = person1Services.reduce((sum, s) => sum + (s.original_price || 0), 0);
+    const p2OrigTotal = person2Services.reduce((sum, s) => sum + (s.original_price || 0), 0);
+    
+    console.log('📍 Person1 services:', person1Services);
+    console.log('📍 Person2 services:', person2Services);
+    console.log('📍 P1 total:', p1Total, 'P2 total:', p2Total);
+    
+    // ✅ Build couples data with ARRAY structure for multiple services
     const couplesData = {
-      person1: {
-        service_id: couplesSelections.person1Massage1?.service_id || null,
-        name: buildServiceName(couplesSelections.person1Massage1),
-        duration: couplesSelections.person1Massage1?.duration || 60,
-        original_price: couplesSelections.person1Massage1?.originalPrice || 0,
-        final_price: couplesSelections.person1Massage1?.price || 0
-      },
-      person2: {
-        service_id: couplesSelections.person2Massage1?.service_id || null,
-        name: buildServiceName(couplesSelections.person2Massage1),
-        duration: couplesSelections.person2Massage1?.duration || 60,
-        original_price: couplesSelections.person2Massage1?.originalPrice || 0,
-        final_price: couplesSelections.person2Massage1?.price || 0
-      },
-      pair_original_price: totalOriginalPrice,
-      pair_final_price: totalFinalPrice,
-      pair_discount_percentage: couplesDiscount,  // 10
-      pair_discount_amount: totalDiscountAmount
+      // ✅ NEW: Arrays of all services per person
+      person1_services: person1Services,
+      person2_services: person2Services,
+      // ✅ LEGACY: Keep single person1/person2 for backward compatibility (first massage only)
+      person1: person1Services[0] || null,
+      person2: person2Services[0] || null,
+      // ✅ Totals calculated from ALL services
+      pair_original_price: p1OrigTotal + p2OrigTotal,
+      pair_final_price: p1Total + p2Total,
+      pair_discount_percentage: couplesDiscount,
+      pair_discount_amount: (p1OrigTotal + p2OrigTotal) - (p1Total + p2Total)
     };
     
     // ✅ CRITICAL: Build URL with [PAROVI] prefix in service parameter
@@ -484,7 +520,7 @@ const CouplesMassageCard = ({
       couplesData: JSON.stringify(couplesData)
     });
     
-    console.log('📍 Couples data (WITH full price info):', couplesData);
+    console.log('📍 Couples data (WITH ARRAYS):', couplesData);
     console.log('📍 Service name for URL:', serviceNameForUrl);
     console.log('📍 Navigating to /contact for COUPLES with params:', params.toString());
     
