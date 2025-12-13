@@ -698,37 +698,90 @@ Ukupna cena: ${totalPriceFormatted} RSD
         if (isCoupleBooking) {
           const couplesData = couplesBookingData;
           
-          // ✅ COUPLES BOOKING = JEDNA [PAROVI] USLUGA SA JEDNIM service_id
-          // Person1/Person2 su SAMO UI - NE ŠALJU SE BACKENDU
-          console.log('🔍 Couples booking - using person1 service_id as THE service_id');
+          // ✅ COUPLES BOOKING - FINALNA LOGIKA
+          // 1) Izračunaj ukupno trajanje iz UI izbora
+          const person1Duration = parseInt(couplesData.person1?.duration) || 60;
+          const person2Duration = parseInt(couplesData.person2?.duration) || 60;
+          const totalMinutes = person1Duration + person2Duration;
           
-          // Uzimamo service_id od person1 (to je [PAROVI] usluga)
-          const couplesServiceId = couplesData.person1?.service_id;
+          console.log('🔍 Couples booking - calculating total duration:', {
+            person1Duration,
+            person2Duration,
+            totalMinutes
+          });
           
-          if (!couplesServiceId) {
-            console.error('❌ Missing couples service_id!');
-            setError('Molimo izaberite masažu za parove.');
+          // 2) Učitaj couples pakete i nađi odgovarajući
+          const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
+          if (!backendUrlRaw) {
+            throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
+          }
+          const backendUrl = backendUrlRaw.replace(/\/$/, '');
+          
+          let couplesPackageId = null;
+          try {
+            const packagesResponse = await fetch(`${backendUrl}/api/services/couples/list`);
+            const packages = await packagesResponse.json();
+            
+            console.log('📦 Loaded couples packages:', packages.length);
+            
+            // Nađi paket koji odgovara totalMinutes
+            // Paketi imaju nazive tipa "Masaža za parove - 120 min (2x60 min)"
+            const matchingPackage = packages.find(pkg => {
+              // Izvuci trajanje iz naziva paketa
+              const durationMatch = pkg.name.match(/(\d+)\s*min/);
+              if (durationMatch) {
+                const pkgDuration = parseInt(durationMatch[1]);
+                return pkgDuration === totalMinutes;
+              }
+              return false;
+            });
+            
+            if (matchingPackage) {
+              couplesPackageId = matchingPackage.id;
+              console.log('✅ Found matching couples package:', {
+                name: matchingPackage.name,
+                id: couplesPackageId,
+                totalMinutes
+              });
+            } else {
+              console.error('❌ No couples package found for totalMinutes:', totalMinutes);
+              setError(`Trenutno nemamo couples paket za izabranu kombinaciju trajanja (${totalMinutes} min). Molimo izaberite dostupnu kombinaciju.`);
+              setIsSubmitting(false);
+              return;
+            }
+          } catch (err) {
+            console.error('❌ Failed to load couples packages:', err);
+            setError('Greška pri učitavanju couples paketa. Molimo pokušajte ponovo.');
             setIsSubmitting(false);
             return;
           }
           
-          // ✅ IDENTIČAN PAYLOAD KAO SINGLE BOOKING - samo sa [PAROVI] service_id
+          // 3) Pripremi notes sa UI izborom (za recepciju)
+          const person1Info = couplesData.person1 
+            ? `${couplesData.person1.name} (${couplesData.person1.duration}min)` 
+            : 'Nije izabrano';
+          const person2Info = couplesData.person2 
+            ? `${couplesData.person2.name} (${couplesData.person2.duration}min)` 
+            : 'Nije izabrano';
+          
+          const notesText = `COUPLES UI izbor: Osoba1=${person1Info}; Osoba2=${person2Info}`;
+          
+          // 4) Kreiraj payload sa Tip B service_id
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
-            service_id: couplesServiceId,  // ✅ JEDAN service_id od [PAROVI] usluge
+            service_id: couplesPackageId,  // ✅ ID couples paketa (Tip B)
             start_time: `${dateStr}T${formData.preferredTime}:00`,
-            original_price: couplesData.pair_original_price || 0,
-            final_price: couplesData.pair_final_price || 0
+            notes: notesText  // ✅ UI izbor za recepciju
           };
           
           // ❌ ZABRANJENO: person1_services, person2_services, is_couples_booking, category
           
           bookingEndpoint = '/api/appointments';
-          console.log('✅ Couples booking payload (SIMPLIFIED):', appointmentData);
-          console.log('📤 service_id:', couplesServiceId);
+          console.log('✅ Couples booking payload (FINAL):', appointmentData);
+          console.log('📤 service_id (Tip B package):', couplesPackageId);
         } else {
           // Regular booking data
           // Extract duration from service name (e.g., "Masaža - 90 min" -> 90)
