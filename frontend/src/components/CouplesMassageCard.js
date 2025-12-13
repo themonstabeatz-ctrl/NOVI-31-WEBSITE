@@ -25,7 +25,24 @@ const CouplesMassageCard = ({
   const [couplesDiscount, setCouplesDiscount] = React.useState(0);
   
   // Helper function to get discount badge for the price display
+  // ✅ PRAVILO: Popust se prikazuje SAMO ako su SVA 3 USLOVA TAČNA
+  const shouldShowDiscount = () => {
+    // Uzmi ukupne cene
+    const originalPrice = calculatePairTotal().original;
+    const finalPrice = calculatePairTotal().final;
+    
+    // Sva 3 uslova moraju biti ispunjena
+    return (
+      couplesDiscount > 0 &&
+      finalPrice < originalPrice &&
+      originalPrice > 0
+    );
+  };
+  
   const getCouplesDiscountBadge = () => {
+    // ❌ Ne prikazuj badge ako uslovi nisu ispunjeni
+    if (!shouldShowDiscount()) return null;
+    
     if (couplesDiscount === 5) return '/discount-5.png';
     if (couplesDiscount === 10) return '/discount-10.png';
     if (couplesDiscount === 15) return '/discount-15.png';
