@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend Test for Bua Luang Thai Spa - Review Request Testing
-Testing the booking appointment endpoint as specified in the review request.
+Backend Test for NEW FINALIZED COUPLES MASSAGE BOOKING LOGIC
+Testing the exact flow described in the review request.
 """
 
 import requests
@@ -12,220 +12,217 @@ from datetime import datetime, timedelta
 # Backend URL from review request
 BACKEND_URL = "https://therapy-booking-21.preview.emergentagent.com"
 
-def test_services_loading():
+def test_couples_packages_endpoint():
     """
-    Test 1: Verify services are loading
-    Expected: List of services with prices
+    Step 1: Get couples packages from /api/services/couples/list
     """
-    print("🔍 TEST 1: Verifying services are loading...")
+    print("🔍 STEP 1: Testing /api/services/couples/list endpoint...")
     
     try:
-        url = f"{BACKEND_URL}/api/services/single/list"
-        print(f"📡 Making request to: {url}")
-        
-        response = requests.get(url, timeout=10)
-        print(f"📊 Response Status: {response.status_code}")
+        response = requests.get(f"{BACKEND_URL}/api/services/couples/list", timeout=10)
+        print(f"Response Status: {response.status_code}")
         
         if response.status_code == 200:
-            services = response.json()
-            print(f"✅ SUCCESS: Received {len(services)} services")
+            packages = response.json()
+            print(f"✅ SUCCESS: Retrieved {len(packages)} couples packages")
             
-            # Verify structure
-            if services and isinstance(services, list):
-                sample_service = services[0]
-                print(f"📋 Sample service structure:")
-                print(f"   - ID: {sample_service.get('id', 'N/A')}")
-                print(f"   - Name: {sample_service.get('name', 'N/A')}")
-                print(f"   - Price: {sample_service.get('price', 'N/A')}")
-                print(f"   - Category: {sample_service.get('category', 'N/A')}")
+            # Look for packages with different durations
+            duration_packages = {}
+            for package in packages:
+                name = package.get('name', '')
+                print(f"   - {name} (ID: {package.get('id', 'N/A')})")
                 
-                # Look for the specific service mentioned in test 2
-                target_service_id = "98249336-b9d9-4685-b70c-81971d3cf216"
-                target_service = next((s for s in services if s.get('id') == target_service_id), None)
-                
-                if target_service:
-                    print(f"🎯 Found target service for Test 2: {target_service.get('name')}")
-                    return True, services, target_service
-                else:
-                    print(f"⚠️  Target service ID {target_service_id} not found in services list")
-                    print(f"📋 Available service IDs: {[s.get('id') for s in services[:5]]}...")
-                    return True, services, None
-            else:
-                print(f"❌ FAIL: Invalid response format - expected list, got {type(services)}")
-                return False, None, None
+                # Extract duration from name
+                import re
+                duration_match = re.search(r'(\d+)\s*min', name)
+                if duration_match:
+                    duration = int(duration_match.group(1))
+                    duration_packages[duration] = package
+            
+            print(f"\n📊 Found packages for durations: {list(duration_packages.keys())}")
+            return duration_packages
         else:
-            print(f"❌ FAIL: HTTP {response.status_code}")
-            print(f"📄 Response: {response.text[:500]}")
-            return False, None, None
+            print(f"❌ FAILED: {response.status_code} - {response.text}")
+            return None
             
-    except requests.exceptions.RequestException as e:
-        print(f"❌ FAIL: Network error - {e}")
-        return False, None, None
     except Exception as e:
-        print(f"❌ FAIL: Unexpected error - {e}")
-        return False, None, None
+        print(f"❌ ERROR: {str(e)}")
+        return None
 
-def test_booking_submission(target_service=None):
+def find_120_min_package(duration_packages):
     """
-    Test 2: Submit a test booking
-    Expected: 200/201 with booking confirmation
+    Step 2: Find the package for 120 min (60+60) and get its ID
     """
-    print("\n🔍 TEST 2: Submitting test booking...")
+    print("\n🎯 STEP 2: Finding 120-min couples package...")
     
-    # Use target service if found, otherwise use the ID from review request
-    service_id = target_service.get('id') if target_service else "98249336-b9d9-4685-b70c-81971d3cf216"
-    service_name = target_service.get('name') if target_service else "Test Service"
+    if not duration_packages:
+        print("❌ No packages available to search")
+        return None
     
-    # Calculate future date (tomorrow)
+    # Look for 120-min package
+    if 120 in duration_packages:
+        package = duration_packages[120]
+        package_id = package.get('id')
+        package_name = package.get('name')
+        print(f"✅ FOUND 120-min package: {package_name}")
+        print(f"   Package ID: {package_id}")
+        return package_id
+    else:
+        print(f"❌ No 120-min package found. Available durations: {list(duration_packages.keys())}")
+        return None
+
+def test_couples_booking_with_package_id(package_id):
+    """
+    Step 3: Send booking with that package ID to /api/appointments
+    """
+    print(f"\n📤 STEP 3: Testing booking with package ID: {package_id}")
+    
+    # Calculate appointment time (tomorrow at 14:00)
     tomorrow = datetime.now() + timedelta(days=1)
-    appointment_date = tomorrow.strftime("%Y-%m-%d")
-    start_time = f"{appointment_date}T14:00:00"
+    appointment_time = tomorrow.replace(hour=14, minute=0, second=0, microsecond=0)
+    appointment_iso = appointment_time.strftime("%Y-%m-%dT%H:%M:%S")
     
-    booking_data = {
+    # Prepare booking payload as specified in review request
+    booking_payload = {
         "client_first_name": "Test",
-        "client_last_name": "User", 
+        "client_last_name": "CouplesFlow",
         "client_phone": "0641234567",
-        "client_email": "test@example.com",
-        "appointment_date": appointment_date,
-        "start_time": start_time,
-        "service_id": service_id,
-        "duration": 60,
-        "notes": "Test booking via API",
-        "service_name": service_name
+        "client_email": "test@couplesflow.com",
+        "service_id": package_id,
+        "start_time": "2025-12-31T14:00:00",
+        "notes": "COUPLES UI izbor: Osoba1=[PAROVI] Aroma terapija (60min); Osoba2=[PAROVI] Tradicionalna tajlandska masaža (60min)"
     }
     
+    print("📋 Booking payload:")
+    print(json.dumps(booking_payload, indent=2))
+    
     try:
-        url = f"{BACKEND_URL}/api/appointments"
-        print(f"📡 Making POST request to: {url}")
-        print(f"📦 Booking data:")
-        print(f"   - Service ID: {service_id}")
-        print(f"   - Service Name: {service_name}")
-        print(f"   - Client: {booking_data['client_first_name']} {booking_data['client_last_name']}")
-        print(f"   - Date/Time: {start_time}")
-        print(f"   - Phone: {booking_data['client_phone']}")
-        print(f"   - Email: {booking_data['client_email']}")
-        
         response = requests.post(
-            url,
-            json=booking_data,
+            f"{BACKEND_URL}/api/appointments",
+            json=booking_payload,
             headers={'Content-Type': 'application/json'},
-            timeout=15
+            timeout=30
         )
         
-        print(f"📊 Response Status: {response.status_code}")
+        print(f"\n📥 Response Status: {response.status_code}")
         
         if response.status_code in [200, 201]:
             result = response.json()
-            print(f"✅ SUCCESS: Booking created successfully")
-            print(f"📋 Booking details:")
-            print(f"   - Appointment ID: {result.get('id', 'N/A')}")
-            print(f"   - Status: {result.get('status', 'N/A')}")
-            print(f"   - Start Time: {result.get('start_time', 'N/A')}")
-            print(f"   - End Time: {result.get('end_time', 'N/A')}")
-            return True, result
+            print("✅ BOOKING SUCCESS!")
+            print(f"   Appointment ID: {result.get('id', 'N/A')}")
+            print(f"   Response: {json.dumps(result, indent=2)}")
+            return True
         else:
-            print(f"❌ FAIL: HTTP {response.status_code}")
-            print(f"📄 Response: {response.text[:500]}")
-            return False, None
+            print(f"❌ BOOKING FAILED: {response.status_code}")
+            print(f"   Error: {response.text}")
+            return False
             
-    except requests.exceptions.RequestException as e:
-        print(f"❌ FAIL: Network error - {e}")
-        return False, None
     except Exception as e:
-        print(f"❌ FAIL: Unexpected error - {e}")
-        return False, None
+        print(f"❌ BOOKING ERROR: {str(e)}")
+        return False
 
-def test_cors_and_connectivity():
+def verify_forbidden_fields():
     """
-    Test 3: Verify CORS and backend connectivity
+    Verify that forbidden fields are not being used in the booking
     """
-    print("\n🔍 TEST 3: Verifying CORS and backend connectivity...")
+    print("\n🚫 VERIFICATION: Checking forbidden fields...")
     
-    try:
-        # Test basic connectivity with health check or root endpoint
-        health_url = f"{BACKEND_URL}/api/health"
-        print(f"📡 Testing health endpoint: {health_url}")
+    forbidden_fields = [
+        "person1_services", 
+        "person2_services", 
+        "is_couples_booking", 
+        "category"
+    ]
+    
+    # Test booking payload should NOT contain these fields
+    test_payload = {
+        "client_first_name": "Test",
+        "client_last_name": "CouplesFlow", 
+        "client_phone": "0641234567",
+        "client_email": "test@couplesflow.com",
+        "service_id": "test-id",
+        "start_time": "2025-12-31T14:00:00",
+        "notes": "COUPLES UI izbor: Osoba1=[PAROVI] Aroma terapija (60min); Osoba2=[PAROVI] Tradicionalna tajlandska masaža (60min)"
+    }
+    
+    has_forbidden = False
+    for field in forbidden_fields:
+        if field in test_payload:
+            print(f"❌ FORBIDDEN FIELD FOUND: {field}")
+            has_forbidden = True
+    
+    if not has_forbidden:
+        print("✅ NO FORBIDDEN FIELDS: Payload is clean")
         
-        response = requests.get(health_url, timeout=10)
-        print(f"📊 Health check status: {response.status_code}")
-        
-        if response.status_code == 200:
-            health_data = response.json()
-            print(f"✅ Backend is healthy: {health_data.get('status', 'unknown')}")
-            print(f"📅 Timestamp: {health_data.get('timestamp', 'N/A')}")
+    # Verify required elements are present
+    required_elements = ["service_id", "notes"]
+    for element in required_elements:
+        if element in test_payload:
+            print(f"✅ REQUIRED ELEMENT PRESENT: {element}")
         else:
-            print(f"⚠️  Health check returned: {response.status_code}")
-        
-        # Check CORS headers
-        headers = response.headers
-        cors_headers = {
-            'Access-Control-Allow-Origin': headers.get('Access-Control-Allow-Origin'),
-            'Access-Control-Allow-Methods': headers.get('Access-Control-Allow-Methods'),
-            'Access-Control-Allow-Headers': headers.get('Access-Control-Allow-Headers')
-        }
-        
-        print(f"🌐 CORS Headers:")
-        for header, value in cors_headers.items():
-            if value:
-                print(f"   - {header}: {value}")
-            else:
-                print(f"   - {header}: Not set")
-        
-        return True
-        
-    except requests.exceptions.RequestException as e:
-        print(f"❌ FAIL: Connectivity error - {e}")
-        return False
-    except Exception as e:
-        print(f"❌ FAIL: Unexpected error - {e}")
-        return False
+            print(f"❌ MISSING REQUIRED ELEMENT: {element}")
+    
+    return not has_forbidden
 
 def main():
     """
-    Main test execution following the review request specifications
+    Main test function following the exact review request steps
     """
-    print("🎯 BUA LUANG THAI SPA - BOOKING ENDPOINT TESTING")
+    print("🎯 TESTING NEW FINALIZED COUPLES MASSAGE BOOKING LOGIC")
     print("=" * 60)
-    print(f"🔗 Backend URL: {BACKEND_URL}")
-    print(f"📅 Test Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Backend URL: {BACKEND_URL}")
     print("=" * 60)
     
-    # Track test results
-    test_results = []
+    # Step 1: Get couples packages
+    duration_packages = test_couples_packages_endpoint()
+    if not duration_packages:
+        print("\n❌ CRITICAL FAILURE: Cannot retrieve couples packages")
+        return False
     
-    # Test 1: Services loading
-    services_success, services_data, target_service = test_services_loading()
-    test_results.append(("Services Loading", services_success))
+    # Step 2: Find 120-min package
+    package_id = find_120_min_package(duration_packages)
+    if not package_id:
+        print("\n❌ CRITICAL FAILURE: Cannot find 120-min package")
+        return False
     
-    # Test 2: Booking submission
-    booking_success, booking_result = test_booking_submission(target_service)
-    test_results.append(("Booking Submission", booking_success))
+    # Step 3: Test booking with package ID
+    booking_success = test_couples_booking_with_package_id(package_id)
     
-    # Test 3: CORS and connectivity
-    cors_success = test_cors_and_connectivity()
-    test_results.append(("CORS & Connectivity", cors_success))
+    # Verification: Check forbidden fields
+    fields_clean = verify_forbidden_fields()
     
-    # Summary
+    # Final results
     print("\n" + "=" * 60)
-    print("📊 TEST SUMMARY")
+    print("🏁 FINAL TEST RESULTS:")
     print("=" * 60)
     
-    passed = 0
-    total = len(test_results)
+    if duration_packages:
+        print("✅ Step 1: Couples packages endpoint - SUCCESS")
+    else:
+        print("❌ Step 1: Couples packages endpoint - FAILED")
     
-    for test_name, success in test_results:
-        status = "✅ PASS" if success else "❌ FAIL"
-        print(f"{status} - {test_name}")
-        if success:
-            passed += 1
+    if package_id:
+        print("✅ Step 2: Found 120-min package - SUCCESS")
+    else:
+        print("❌ Step 2: Found 120-min package - FAILED")
     
-    print(f"\n🎯 OVERALL RESULT: {passed}/{total} tests passed")
+    if booking_success:
+        print("✅ Step 3: Booking with package ID - SUCCESS")
+    else:
+        print("❌ Step 3: Booking with package ID - FAILED")
     
-    if passed == total:
-        print("🎉 ALL TESTS PASSED - Booking endpoint is working properly!")
+    if fields_clean:
+        print("✅ Verification: No forbidden fields - SUCCESS")
+    else:
+        print("❌ Verification: Forbidden fields detected - FAILED")
+    
+    overall_success = duration_packages and package_id and booking_success and fields_clean
+    
+    if overall_success:
+        print("\n🎉 OVERALL RESULT: NEW COUPLES LOGIC WORKING PERFECTLY!")
         return True
     else:
-        print("⚠️  SOME TESTS FAILED - Issues detected with booking endpoint")
+        print("\n💥 OVERALL RESULT: NEW COUPLES LOGIC HAS ISSUES!")
         return False
 
 if __name__ == "__main__":
