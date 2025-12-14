@@ -772,26 +772,39 @@ Ukupna cena: ${totalPriceFormatted} RSD
             duration: totalMinutes
           });
           
-          // ✅ NOVI PAYLOAD - šalje ARRAY-e servisa
-          // NAPOMENA: Dok backend ne implementira STRICT mode, šaljemo i service_id placeholder
+          // ✅ PAYLOAD ZA /api/appointments/couple
+          // Backend očekuje: person1_services i person2_services kao liste ID-eva
+          const p1ServiceIds = person1Services.map(s => s.service_id);
+          const p2ServiceIds = person2Services.map(s => s.service_id);
+          
+          // Odredi duration_type na osnovu ukupnog trajanja
+          let durationTypeValue = '60';
+          if (totalMinutes >= 240) durationTypeValue = '120';
+          else if (totalMinutes >= 180) durationTypeValue = '90';
+          else if (totalMinutes >= 120) durationTypeValue = '60';
+          
           appointmentData = {
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
-            // ✅ Šaljemo ARRAY-e svih servisa
-            person1_services: person1Services,
-            person2_services: person2Services,
-            // ⚠️ TEMPORARY: service_id kao placeholder dok backend ne podrži ARRAY mode
-            service_id: person1Services[0]?.service_id,
-            // ✅ UI cena kao referenca (backend treba da izračuna isto)
-            original_price: uiTotalPrice,
-            final_price: uiTotalPrice,
-            discount_percentage: 0,
+            // ✅ Šaljemo liste ID-eva (ne objekte)
+            person1_services: p1ServiceIds,
+            person2_services: p2ServiceIds,
+            // ✅ duration_type
+            duration_type: durationTypeValue,
+            // ✅ start_time
             start_time: `${dateStr}T${formData.preferredTime}:00`,
-            notes: notesText,
-            booking_type: 'COUPLES'  // Signal za backend da koristi STRICT mode
+            // ✅ discount ako je aktivan
+            discount_couples_massage: couplesBookingData.pair_discount_percentage || 0,
+            // ✅ notes za debug
+            notes: notesText
+            // ❌ NE šaljemo therapist_id
           };
+          
+          console.log('✅ COUPLES PAYLOAD for /api/appointments/couple:', appointmentData);
+          console.log('📤 person1_services IDs:', p1ServiceIds);
+          console.log('📤 person2_services IDs:', p2ServiceIds);
           
           // ❌ ZABRANJENO: "package by duration" lookup
           // ✅ Komponente ([PAROVI] servisi) su jedini izvor istine
