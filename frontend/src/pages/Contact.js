@@ -796,8 +796,10 @@ Ukupna cena: ${totalPriceFormatted} RSD
           // ❌ ZABRANJENO: "package by duration" lookup
           // ✅ Komponente ([PAROVI] servisi) su jedini izvor istine
           
-          bookingEndpoint = '/api/appointments';
+          // ✅ COUPLES MORA IĆI NA /api/appointments/couple
+          bookingEndpoint = '/api/appointments/couple';
           console.log('✅ Couples booking payload (STRICT MODE):', appointmentData);
+          console.log('📤 Couples endpoint:', bookingEndpoint);
         } else {
           // Regular booking data
           // Extract duration from service name (e.g., "Masaža - 90 min" -> 90)
