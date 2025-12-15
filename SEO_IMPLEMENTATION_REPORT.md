@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://therapy-backend.preview.emergentagent.com/robots.txt
+**Test URL:** https://massage-booking-hub-1.preview.emergentagent.com/robots.txt
 
 ---
 

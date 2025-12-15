@@ -77,10 +77,10 @@ Ovo su **ispravni servisi** koji treba da ostanu:
 ### Način 2: Preko API-ja (Za Agenta)
 ```bash
 # Brisanje preko API-ja
-curl -X DELETE https://therapy-backend.preview.emergentagent.com/api/services/{SERVICE_ID}
+curl -X DELETE https://massage-booking-hub-1.preview.emergentagent.com/api/services/{SERVICE_ID}
 
 # Primer za prvi duplikat:
-curl -X DELETE https://therapy-backend.preview.emergentagent.com/api/services/431be4cd-ca33-4a38-a72c-65c42eefe99d
+curl -X DELETE https://massage-booking-hub-1.preview.emergentagent.com/api/services/431be4cd-ca33-4a38-a72c-65c42eefe99d
 ```
 
 ---

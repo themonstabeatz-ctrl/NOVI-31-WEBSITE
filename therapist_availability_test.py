@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://therapy-backend.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://massage-booking-hub-1.preview.emergentagent.com')
 
 async def test_therapist_availability():
     api_base = f"{BACKEND_URL}/api"
