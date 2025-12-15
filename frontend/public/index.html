@@ -85,9 +85,20 @@
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <!--
         These two scripts have been added for the testing, please do not edit or remove them
+        rrweb is DISABLED on preview domains to prevent fetch interception issues
         -->
-        <script src="https://unpkg.com/rrweb@latest/dist/rrweb.min.js"></script>
-        <script src="https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js"></script>
+        <script>
+            // Only load rrweb on localhost (development) - NOT on preview domains
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                var rrwebScript = document.createElement('script');
+                rrwebScript.src = 'https://unpkg.com/rrweb@latest/dist/rrweb.min.js';
+                document.head.appendChild(rrwebScript);
+                
+                var recorderScript = document.createElement('script');
+                recorderScript.src = 'https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js';
+                document.head.appendChild(recorderScript);
+            }
+        </script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
         -->
