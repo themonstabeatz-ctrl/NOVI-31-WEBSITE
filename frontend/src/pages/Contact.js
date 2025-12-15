@@ -496,16 +496,11 @@ Ukupna cena: ${totalPriceFormatted} RSD
         console.log("🚀 SPA handleSubmit called!");
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
 
-        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
-        
-        if (!backendUrlRaw) {
-          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
-        }
-        
-        const backendUrl = backendUrlRaw.replace(/\/$/, '');
-        const bookingEndpoint = `${backendUrl}/api/appointments`; // Same endpoint as single, but category = "SPA"
+        // 🔒 LOCKDOWN: Use BACKEND variable (already validated at top of handleSubmit)
+        const bookingEndpoint = `${BACKEND}/api/appointments`; // SPA uses same endpoint as single
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', bookingEndpoint);
+        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-booking-fix:', bookingEndpoint.includes('massage-booking-fix'));
 
         // Convert Date object to YYYY-MM-DD format
         let dateStr;
