@@ -490,8 +490,12 @@ Ukupna cena: ${totalPriceFormatted} RSD
         console.log("🚀 SPA handleSubmit called!");
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
 
-        // Use empty string for relative URLs (proxy will handle it)
-        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL || '';
+        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
+        
+        if (!backendUrlRaw) {
+          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
+        }
+        
         const backendUrl = backendUrlRaw.replace(/\/$/, '');
         const bookingEndpoint = `${backendUrl}/api/appointments`; // Same endpoint as single, but category = "SPA"
         
