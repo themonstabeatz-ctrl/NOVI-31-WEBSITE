@@ -843,8 +843,13 @@ Ukupna cena: ${totalPriceFormatted} RSD
           bookingEndpoint = '/api/appointments';
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
-        // Get backend URL - use empty string for relative URLs (proxy will handle it)
-        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL || '';
+        // Get backend URL
+        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
+        
+        if (!backendUrlRaw) {
+          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
+        }
+        
         const backendUrl = backendUrlRaw.replace(/\/$/, '');
         
         const finalEndpoint = `${backendUrl}${bookingEndpoint}`;
