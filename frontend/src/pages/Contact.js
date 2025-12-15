@@ -98,14 +98,10 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
-        
-        if (!backendUrlRaw) {
-          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
-        }
-        
+        // Use empty string for relative URLs (proxy will handle it)
+        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL || '';
         const backendUrl = backendUrlRaw.replace(/\/$/, '');
-        console.log('📍 Loading services from Contact page:', backendUrl);
+        console.log('📍 Loading services from Contact page:', backendUrl || '(relative path via proxy)');
 
         const [singleResponse, couplesResponse] = await Promise.all([
           fetch(`${backendUrl}/api/services/single/list`),
