@@ -849,18 +849,12 @@ Ukupna cena: ${totalPriceFormatted} RSD
           bookingEndpoint = '/api/appointments';
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
-        // Get backend URL
-        const backendUrlRaw = process.env.REACT_APP_BACKEND_URL;
-        
-        if (!backendUrlRaw) {
-          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
-        }
-        
-        const backendUrl = backendUrlRaw.replace(/\/$/, '');
-        
-        const finalEndpoint = `${backendUrl}${bookingEndpoint}`;
+        // 🔒 LOCKDOWN: Use BACKEND variable from top of handleSubmit (already validated)
+        const url = `${BACKEND}${bookingEndpoint}`;
+        const finalEndpoint = url;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
+        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-booking-fix:', url.includes('massage-booking-fix'));
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
         
         // ✅ DOKAZ: Eksplicitni log za discount/price polja
