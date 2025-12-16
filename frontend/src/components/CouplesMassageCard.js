@@ -386,40 +386,30 @@ const CouplesMassageCard = ({
     const p2m1 = couplesSelections.person2Massage1;
     const p2m2 = couplesSelections.person2Massage2;
     
+    // ✅ FIX B: Validate by TOTAL MINUTES per person, not by number of items
+    // Calculate total minutes for each person
+    const p1Minutes = (parseInt(p1m1?.duration) || 0) + (parseInt(p1m2?.duration) || 0);
+    const p2Minutes = (parseInt(p2m1?.duration) || 0) + (parseInt(p2m2?.duration) || 0);
+    const requiredMinutes = parseInt(durations.sports) || 60;
+    
     console.log('🔍 isSelectionComplete check:', {
       duration: durations.sports,
-      p1m1: p1m1 ? `${p1m1.name} (${p1m1.duration}min) - type: ${typeof p1m1.duration}` : 'NULL',
-      p1m2: p1m2 ? `${p1m2.name} (${p1m2.duration}min) - type: ${typeof p1m2.duration}` : 'NULL',
-      p2m1: p2m1 ? `${p2m1.name} (${p2m1.duration}min) - type: ${typeof p2m1.duration}` : 'NULL',
-      p2m2: p2m2 ? `${p2m2.name} (${p2m2.duration}min) - type: ${typeof p2m2.duration}` : 'NULL',
-      'p1m1 exists': !!p1m1,
-      'p2m1 exists': !!p2m1
+      requiredMinutes: requiredMinutes,
+      p1Minutes: p1Minutes,
+      p2Minutes: p2Minutes,
+      p1m1: p1m1 ? `${p1m1.name} (${p1m1.duration}min)` : 'NULL',
+      p1m2: p1m2 ? `${p1m2.name} (${p1m2.duration}min)` : 'NULL',
+      p2m1: p2m1 ? `${p2m1.name} (${p2m1.duration}min)` : 'NULL',
+      p2m2: p2m2 ? `${p2m2.name} (${p2m2.duration}min)` : 'NULL'
     });
     
-    // For 120 min mode: each person needs 2x60 OR 1x120
-    if (durations.sports === '120') {
-      let person1Complete = false;
-      if (p1m1?.duration === '60') {
-        person1Complete = !!(p1m1 && p1m2); // Need 2x60
-      } else if (p1m1?.duration === '120') {
-        person1Complete = !!p1m1; // Need 1x120
-      }
-      
-      let person2Complete = false;
-      if (p2m1?.duration === '60') {
-        person2Complete = !!(p2m1 && p2m2); // Need 2x60
-      } else if (p2m1?.duration === '120') {
-        person2Complete = !!p2m1; // Need 1x120
-      }
-      
-      const result = !!(person1Complete && person2Complete);
-      console.log(`✅ isSelectionComplete (120 mode): ${result}`);
-      return result;
-    }
+    // ✅ NEW LOGIC: Each person must have EXACTLY the required total minutes
+    // Person can have 1x120, 2x60, 1x90, 1x60, etc. - as long as total matches
+    const person1Complete = p1Minutes === requiredMinutes;
+    const person2Complete = p2Minutes === requiredMinutes;
     
-    // For 60 or 90 min modes: just need 1 massage per person
-    const result = !!(p1m1 && p2m1);
-    console.log(`✅ isSelectionComplete (60/90 mode): ${result}`);
+    const result = person1Complete && person2Complete;
+    console.log(`✅ isSelectionComplete: P1=${p1Minutes}min (need ${requiredMinutes}), P2=${p2Minutes}min (need ${requiredMinutes}) → ${result}`);
     return result;
   };
 
