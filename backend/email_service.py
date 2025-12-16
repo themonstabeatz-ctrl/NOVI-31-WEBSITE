@@ -367,7 +367,7 @@ def create_html_email_template(
                 overflow: hidden;
             }}
             .header {{
-                background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/mklzfkxq_podloga.jpg');
+                background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/u7h8apz4_podloga.jpg');
                 background-size: cover;
                 background-position: center;
                 padding: 15px;
@@ -405,7 +405,7 @@ def create_html_email_template(
                 color: #333333;
                 line-height: 1.3;
                 font-size: 9px;
-                background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/mklzfkxq_podloga.jpg');
+                background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/u7h8apz4_podloga.jpg');
                 background-size: cover;
                 background-position: center;
                 position: relative;
@@ -736,7 +736,7 @@ def send_reminder_email(
                     box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
                 }}
                 .header {{
-                    background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/mklzfkxq_podloga.jpg');
+                    background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/u7h8apz4_podloga.jpg');
                     background-size: cover;
                     background-position: center;
                     padding: 15px 10px;
