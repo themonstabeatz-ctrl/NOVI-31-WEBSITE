@@ -72,14 +72,12 @@ const CouplesMassageCard = ({
         
         const allServices = await response.json();
         
-        // Filter by category "Kartica Masaza za parove" to get INDIVIDUAL [PAROVI] masaže
-        const couplesServices = allServices.filter(s => s.category === 'Kartica Masaza za parove');
+        // ✅ FIX A: Filter ONLY by [PAROVI] prefix in name (not by category)
+        // This ensures we NEVER mix regular and couples services
+        const couplesServices = allServices.filter(s => (s.name || '').startsWith('[PAROVI]'));
         
         console.log(`✅ Total services: ${allServices.length}, Filtered [PAROVI] services: ${couplesServices.length}`);
-        
-        // Verify all filtered services have [PAROVI] prefix
-        const withPrefix = couplesServices.filter(s => s.name.startsWith('[PAROVI]'));
-        console.log(`✅ Services with [PAROVI] prefix: ${withPrefix.length}/${couplesServices.length}`);
+        console.log(`✅ All ${couplesServices.length} services have [PAROVI] prefix (strict filter)`);
         
         // Get discount from booking system and apply it on frontend
         const discount = couplesServices[0] ? (couplesServices[0].discount_percentage || 0) : 0;
