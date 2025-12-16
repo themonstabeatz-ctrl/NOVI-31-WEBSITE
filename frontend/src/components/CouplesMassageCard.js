@@ -409,30 +409,42 @@ const CouplesMassageCard = ({
     const p2m1 = couplesSelections.person2Massage1;
     const p2m2 = couplesSelections.person2Massage2;
     
-    // ✅ FIX B: Validate by TOTAL MINUTES per person, not by number of items
-    // Calculate total minutes for each person
-    const p1Minutes = (parseInt(p1m1?.duration) || 0) + (parseInt(p1m2?.duration) || 0);
-    const p2Minutes = (parseInt(p2m1?.duration) || 0) + (parseInt(p2m2?.duration) || 0);
-    const requiredMinutes = parseInt(durations.sports) || 60;
+    // ✅ Build arrays of selected services per person
+    const person1_services = [p1m1, p1m2].filter(Boolean);
+    const person2_services = [p2m1, p2m2].filter(Boolean);
     
-    console.log('🔍 isSelectionComplete check:', {
-      duration: durations.sports,
-      requiredMinutes: requiredMinutes,
-      p1Minutes: p1Minutes,
-      p2Minutes: p2Minutes,
-      p1m1: p1m1 ? `${p1m1.name} (${p1m1.duration}min)` : 'NULL',
-      p1m2: p1m2 ? `${p1m2.name} (${p1m2.duration}min)` : 'NULL',
-      p2m1: p2m1 ? `${p2m1.name} (${p2m1.duration}min)` : 'NULL',
-      p2m2: p2m2 ? `${p2m2.name} (${p2m2.duration}min)` : 'NULL'
+    // ✅ Use getMinutes utility for reliable minute extraction
+    const p1Minutes = person1_services.reduce((sum, s) => sum + getMinutes(s), 0);
+    const p2Minutes = person2_services.reduce((sum, s) => sum + getMinutes(s), 0);
+    const requiredMinutes = Number(durations.sports) || 60;
+    
+    // ✅ DEBUG LOG
+    console.log("COUPLES DEBUG", {
+      duration_type: durations.sports,
+      requiredMinutes,
+      p1_count: person1_services.length,
+      p2_count: person2_services.length,
+      p1Minutes,
+      p2Minutes,
+      p1_services: person1_services.map(s => ({ name: s?.name, minutes: getMinutes(s) })),
+      p2_services: person2_services.map(s => ({ name: s?.name, minutes: getMinutes(s) })),
     });
     
-    // ✅ NEW LOGIC: Each person must have EXACTLY the required total minutes
-    // Person can have 1x120, 2x60, 1x90, 1x60, etc. - as long as total matches
-    const person1Complete = p1Minutes === requiredMinutes;
-    const person2Complete = p2Minutes === requiredMinutes;
+    const minutesOk = (p1Minutes === requiredMinutes) && (p2Minutes === requiredMinutes);
     
-    const result = person1Complete && person2Complete;
-    console.log(`✅ isSelectionComplete: P1=${p1Minutes}min (need ${requiredMinutes}), P2=${p2Minutes}min (need ${requiredMinutes}) → ${result}`);
+    // ✅ 60/90 mode: each person needs exactly 1 service with matching minutes
+    if (requiredMinutes === 60 || requiredMinutes === 90) {
+      const result = (person1_services.length === 1) && 
+                     (person2_services.length === 1) && 
+                     minutesOk;
+      console.log(`✅ isSelectionComplete (${requiredMinutes}min mode): P1=${p1Minutes}min (${person1_services.length} svc), P2=${p2Minutes}min (${person2_services.length} svc) → ${result}`);
+      return result;
+    }
+    
+    // ✅ 120 mode: each person needs 1x120 OR 2x60 (total 120 minutes)
+    // Just check minutes match - count doesn't matter
+    const result = minutesOk;
+    console.log(`✅ isSelectionComplete (120min mode): P1=${p1Minutes}min, P2=${p2Minutes}min → ${result}`);
     return result;
   };
 
