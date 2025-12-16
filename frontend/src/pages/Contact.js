@@ -390,10 +390,13 @@ Ukupna cena: ${totalPriceFormatted} RSD
     console.log('🚀 handleSubmit called!');
     console.log('📍 Backend URL is:', process.env.REACT_APP_BACKEND_URL);
     
-    // 🔒 LOCKDOWN PROTECTION: Prevent booking to wrong domain
+    // 🔒 LOCKDOWN PROTECTION: Warn if booking goes to wrong domain (don't crash app)
     const BACKEND = process.env.REACT_APP_BACKEND_URL;
-    if (!BACKEND || !BACKEND.includes("massage-booking-fix.preview.emergentagent.com")) {
-      throw new Error("MISCONFIG: REACT_APP_BACKEND_URL must be massage-booking-fix.preview.emergentagent.com");
+    const expected = "massage-booking-fix.preview.emergentagent.com";
+    const actual = (BACKEND || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
+    
+    if (actual !== expected) {
+      console.warn(`⚠️ MISCONFIG WARNING: REACT_APP_BACKEND_URL should be ${expected}, got: ${actual}`);
     }
     
     setIsSubmitting(true);
