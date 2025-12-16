@@ -736,7 +736,7 @@ def send_reminder_email(
                     box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
                 }}
                 .header {{
-                    background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/lve6klzv_podloga.jpg');
+                    background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/mklzfkxq_podloga.jpg');
                     background-size: cover;
                     background-position: center;
                     padding: 15px 10px;
