@@ -405,7 +405,7 @@ def create_html_email_template(
                 color: #333333;
                 line-height: 1.3;
                 font-size: 9px;
-                background-image: url('https://customer-assets.emergentagent.com/job_spa-booking-pro-1/artifacts/6qmohhxk_gridijent%20background.jpg');
+                background-image: url('https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/mklzfkxq_podloga.jpg');
                 background-size: cover;
                 background-position: center;
                 position: relative;
