@@ -6,6 +6,29 @@ import { useNavigate } from "react-router-dom";
 
 // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
 // Couples massage card component with dropdown selection and price calculation
+
+// ✅ UTILITY: Pouzdano vraća minute iz service objekta
+function getMinutes(service) {
+  if (!service) return 0;
+
+  // 1) najčešći slučajevi (backend polja)
+  const direct =
+    service.duration_minutes ??
+    service.durationMinutes ??
+    service.duration ??
+    service.minutes;
+
+  if (typeof direct === "number") return direct;
+  if (typeof direct === "string" && /^\d+$/.test(direct)) return Number(direct);
+
+  // 2) fallback: parsiraj iz naziva "(60min)" ili "60 min"
+  const name = String(service.name || "");
+  const m = name.match(/(\d+)\s*(min|m)\b/i);
+  if (m) return Number(m[1]);
+
+  return 0;
+}
+
 const CouplesMassageCard = ({ 
   translate, 
   durations, 
