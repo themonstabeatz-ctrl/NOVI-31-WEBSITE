@@ -3,6 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { X, Check, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
+import { LOCKDOWN } from "../lockdown";
+
+const EXPECTED = "BL_LOCK_2025_12_16";
+if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
+  throw new Error("LOCKDOWN VIOLATION: MASAŽE su zaključane.");
+}
 
 // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
 // Couples massage card component with dropdown selection and price calculation
