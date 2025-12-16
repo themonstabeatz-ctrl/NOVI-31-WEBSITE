@@ -63,6 +63,7 @@ function App() {
           />
         </BrowserRouter>
       </LanguageProvider>
+      </BackendHealthCheck>
     </div>
   );
 }
