@@ -10,10 +10,12 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import { Toaster } from "./components/ui/sonner";
+import BackendHealthCheck from "./components/BackendHealthCheck";
 
 function App() {
   return (
     <div className="App">
+      <BackendHealthCheck>
       <LanguageProvider>
         <BrowserRouter>
           <Routes>
