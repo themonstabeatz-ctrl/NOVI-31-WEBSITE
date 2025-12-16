@@ -531,7 +531,9 @@ const CouplesMassageCard = ({
       pair_original_price: p1OrigTotal + p2OrigTotal,
       pair_final_price: p1Total + p2Total,
       pair_discount_percentage: couplesDiscount,
-      pair_discount_amount: (p1OrigTotal + p2OrigTotal) - (p1Total + p2Total)
+      pair_discount_amount: (p1OrigTotal + p2OrigTotal) - (p1Total + p2Total),
+      // ✅ FIX: Dodaj duration_type - paralelno trajanje (ne sabiraj!)
+      duration_type: durations.sports
     };
     
     // ✅ CRITICAL: Build URL with [PAROVI] prefix in service parameter
