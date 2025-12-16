@@ -29,7 +29,8 @@ const BackendHealthCheck = ({ children }) => {
 
       try {
         console.log('🔍 Checking backend health:', BACKEND_URL);
-        const response = await fetch(`${BACKEND_URL}/api/health`, {
+        // Koristi /api/services umesto /api/health jer eksterni backend nema health endpoint
+        const response = await fetch(`${BACKEND_URL}/api/services`, {
           method: 'GET',
           headers: { 'Accept': 'application/json' },
         });
