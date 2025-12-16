@@ -8,6 +8,12 @@ import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
+import { LOCKDOWN } from "../lockdown";
+
+const EXPECTED = "BL_LOCK_2025_12_16";
+if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
+  throw new Error("LOCKDOWN VIOLATION: MASAŽE su zaključane.");
+}
 import { useLocation } from "react-router-dom";
 import CustomCalendarModal from "../components/CustomCalendarModal";
 import CustomTimePickerModal from "../components/CustomTimePickerModal";
