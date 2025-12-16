@@ -121,7 +121,7 @@ const BackendHealthCheck = ({ children }) => {
             Greška: {errorMessage}
           </p>
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => setRetryCount(prev => prev + 1)}
             style={{
               backgroundColor: '#d4af37',
               color: '#1a1a1a',
