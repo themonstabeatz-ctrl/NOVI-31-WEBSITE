@@ -26,8 +26,8 @@ def compare_apis():
     print(f"Test started at: {datetime.now().isoformat()}")
     
     # API URLs
-    working_api = "https://massage-booking-hub-1.preview.emergentagent.com/api/services"
-    my_api = "https://massage-booking-hub-1.preview.emergentagent.com/api/services"
+    working_api = "https://massage-hub-10.preview.emergentagent.com/api/services"
+    my_api = "https://massage-hub-10.preview.emergentagent.com/api/services"
     
     print_section("1. API ENDPOINTS COMPARISON")
     print(f"Working version API: {working_api}")

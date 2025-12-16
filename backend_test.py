@@ -10,7 +10,7 @@ import sys
 from datetime import datetime, timedelta
 
 # Backend URL from review request
-BACKEND_URL = "https://massage-booking-hub-1.preview.emergentagent.com"
+BACKEND_URL = "https://massage-hub-10.preview.emergentagent.com"
 
 def test_couples_packages_endpoint():
     """
