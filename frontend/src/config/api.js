@@ -4,14 +4,14 @@
  * Svi API pozivi MORAJU koristiti ovaj config.
  * ZABRANJENO je hardkodiranje URL-ova bilo gde u kodu.
  * 
- * LOCKED TO: https://massage-booking-fix.preview.emergentagent.com
+ * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
  */
 
 // Jedini izvor istine za backend URL
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 // Očekivani backend domen
-const EXPECTED_BACKEND = 'massage-booking-fix.preview.emergentagent.com';
+const EXPECTED_BACKEND = 'massage-scheduler-4.preview.emergentagent.com';
 
 // Validacija na load
 if (!BACKEND_URL) {

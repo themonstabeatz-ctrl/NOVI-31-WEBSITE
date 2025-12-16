@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
  * Na load proverava /api/health endpoint.
  * Ako backend nije dostupan, prikazuje jasnu poruku umesto da se app raspadne.
  * 
- * LOCKED TO: https://massage-booking-fix.preview.emergentagent.com
+ * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
  */
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
@@ -23,8 +23,8 @@ const BackendHealthCheck = ({ children }) => {
         return;
       }
 
-      if (!BACKEND_URL.includes('massage-booking-fix.preview.emergentagent.com')) {
-        console.warn('⚠️ Backend URL nije massage-booking-fix:', BACKEND_URL);
+      if (!BACKEND_URL.includes('massage-scheduler-4.preview.emergentagent.com')) {
+        console.warn('⚠️ Backend URL nije massage-scheduler-4:', BACKEND_URL);
       }
 
       try {

@@ -392,7 +392,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
     
     // 🔒 LOCKDOWN PROTECTION: Warn if booking goes to wrong domain (don't crash app)
     const BACKEND = process.env.REACT_APP_BACKEND_URL;
-    const expected = "massage-booking-fix.preview.emergentagent.com";
+    const expected = "massage-scheduler-4.preview.emergentagent.com";
     const actual = (BACKEND || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
     
     if (actual !== expected) {
@@ -503,7 +503,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
         const bookingEndpoint = `${BACKEND}/api/appointments`; // SPA uses same endpoint as single
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', bookingEndpoint);
-        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-booking-fix:', bookingEndpoint.includes('massage-booking-fix'));
+        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-scheduler-4:', bookingEndpoint.includes('massage-scheduler-4'));
 
         // Convert Date object to YYYY-MM-DD format
         let dateStr;
@@ -852,7 +852,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
         const finalEndpoint = url;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
-        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-booking-fix:', url.includes('massage-booking-fix'));
+        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-scheduler-4:', url.includes('massage-scheduler-4'));
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
         
         // ✅ DOKAZ: Eksplicitni log za discount/price polja
