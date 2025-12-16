@@ -879,7 +879,9 @@ Ukupna cena: ${totalPriceFormatted} RSD
 
         if (!res.ok) {
           console.error('❌ BOOKING FAILED', res.status, data);
-          setError(data?.message || `Booking failed: ${res.status}`);
+          // ✅ FIX C: Better error message extraction
+          const errorMsg = data?.error || data?.message || data?.detail || 'Rezervacija nije uspela.';
+          setError(errorMsg);
           setSubmitStatus('error');
           setIsSubmitting(false);
           return;
