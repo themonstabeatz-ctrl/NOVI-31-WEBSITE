@@ -11,10 +11,16 @@ import React, { useState, useEffect } from 'react';
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
   const [errorMessage, setErrorMessage] = useState('');
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 3;
 
   useEffect(() => {
-    const checkBackendHealth = async () => {
+    const checkBackendHealth = async (attempt = 1) => {
       const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const ORIGIN = window.location.origin;
+      
+      // 🔍 DEBUG LOG: origin + backend url
+      console.log('🔍 CORS DEBUG:', { origin: ORIGIN, backendUrl: BACKEND_URL, attempt });
       
       // 🔒 OSIGURAČ: Provera da je URL ispravan
       if (!BACKEND_URL) {
@@ -28,7 +34,7 @@ const BackendHealthCheck = ({ children }) => {
       }
 
       try {
-        console.log('🔍 Checking backend health:', BACKEND_URL);
+        console.log(`🔍 Checking backend health (attempt ${attempt}/${MAX_RETRIES}):`, BACKEND_URL);
         // Koristi /api/services umesto /api/health jer eksterni backend nema health endpoint
         const response = await fetch(`${BACKEND_URL}/api/services`, {
           method: 'GET',
@@ -43,14 +49,28 @@ const BackendHealthCheck = ({ children }) => {
           throw new Error(`Backend returned ${response.status}`);
         }
       } catch (error) {
-        console.error('❌ Backend health check failed:', error);
+        console.error(`❌ Backend health check failed (attempt ${attempt}):`, error);
+        
+        // Retry logic
+        if (attempt < MAX_RETRIES) {
+          console.log(`🔄 Retry in 2 seconds... (${attempt}/${MAX_RETRIES})`);
+          setTimeout(() => checkBackendHealth(attempt + 1), 2000);
+          return;
+        }
+        
+        // All retries failed
         setStatus('error');
-        setErrorMessage(error.message || 'Nije moguće povezati se sa serverom');
+        // Friendlier error message for CORS
+        if (error.message === 'Failed to fetch') {
+          setErrorMessage('CORS: Server ne dozvoljava pristup sa ovog domena. Kontaktirajte podršku.');
+        } else {
+          setErrorMessage(error.message || 'Nije moguće povezati se sa serverom');
+        }
       }
     };
 
     checkBackendHealth();
-  }, []);
+  }, [retryCount]);
 
   // Dok se proverava
   if (status === 'checking') {
