@@ -8,6 +8,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Clock, Star } from "lucide-react";
 import { throttle } from "../utils/debounce";
 import CouplesMassageCard from "../components/CouplesMassageCard";
+import { LOCKDOWN } from "../lockdown";
+
+const EXPECTED = "BL_LOCK_2025_12_16";
+if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
+  throw new Error("LOCKDOWN VIOLATION: MASAŽE su zaključane.");
+}
 
 const Massage = () => {
   const { translate } = useLanguage();
