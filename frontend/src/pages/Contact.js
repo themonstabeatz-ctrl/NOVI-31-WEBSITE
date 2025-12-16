@@ -781,11 +781,9 @@ Ukupna cena: ${totalPriceFormatted} RSD
           const p1ServiceIds = person1Services.map(s => s.service_id);
           const p2ServiceIds = person2Services.map(s => s.service_id);
           
-          // Odredi duration_type na osnovu ukupnog trajanja
-          let durationTypeValue = '60';
-          if (totalMinutes >= 240) durationTypeValue = '120';
-          else if (totalMinutes >= 180) durationTypeValue = '90';
-          else if (totalMinutes >= 120) durationTypeValue = '60';
+          // ✅ FIX: Koristi duration_type iz couplesData (paralelno trajanje, ne sabiraj!)
+          // Za [PAROVI] tretmane, obe osobe se tretiraju paralelno
+          const durationTypeValue = couplesBookingData.duration_type || '60';
           
           appointmentData = {
             client_first_name: formData.firstName,
