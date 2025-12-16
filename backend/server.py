@@ -178,9 +178,24 @@ async def get_status_checks():
 @api_router.get("/health")
 async def health_check():
     """
-    Simple health check endpoint to verify backend connectivity
+    Health check endpoint - verifies local backend AND external booking API connectivity
     """
-    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+    booking_api_url = os.environ.get('BOOKING_API_URL', '')
+    external_status = "unknown"
+    
+    try:
+        async with httpx.AsyncClient(timeout=5.0) as client:
+            response = await client.get(f"{booking_api_url}/api/services")
+            external_status = "connected" if response.status_code == 200 else f"error:{response.status_code}"
+    except Exception as e:
+        external_status = f"error:{str(e)[:50]}"
+    
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "booking_api": booking_api_url,
+        "booking_api_status": external_status
+    }
 
 # Helper function to extract service code (base name without prefix and duration)
 def extract_service_code(service_name: str) -> str:
