@@ -494,7 +494,7 @@ def create_html_email_template(
         <div class="email-container">
             <div class="header">
                 <div class="header-content">
-                    <img src="https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/z3b5me0f_Bua%20luang%20logo%20crna%20senka.png" alt="Logo" class="logo">
+                    <img src="https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/55jx0bj4_Bua%20luang%20logo%20crna%20senka.png" alt="Logo" class="logo">
                     <div class="header-title">Bua Luang Thai Spa</div>
                 </div>
             </div>
@@ -892,7 +892,7 @@ def send_reminder_email(
             <div class="email-container">
                 <div class="header">
                     <div class="header-content">
-                        <img src="https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/z3b5me0f_Bua%20luang%20logo%20crna%20senka.png" alt="Logo" class="logo">
+                        <img src="https://customer-assets.emergentagent.com/job_massage-hub-10/artifacts/55jx0bj4_Bua%20luang%20logo%20crna%20senka.png" alt="Logo" class="logo">
                         <div class="header-title">{content['title']}</div>
                         <div class="header-subtitle">Bua Luang Thai Spa</div>
                     </div>
