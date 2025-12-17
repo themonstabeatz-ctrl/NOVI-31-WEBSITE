@@ -60,6 +60,18 @@ backend:
         comment: "✅ TESTED: Direct connection to reception backend https://relaxhub-1.preview.emergentagent.com working. Returns 247 total services, confirming external API is accessible."
 
 frontend:
+  - task: "UX Success Message + Redirect Flow"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/pages/Contact.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "testing"
+        comment: "❌ CANNOT TEST: Backend API errors (500) for /api/services endpoints prevent proper testing of success message and redirect functionality. Need to fix backend issues first before testing booking completion flow."
+
   - task: "SPA Ritual → Contact Flow"
     implemented: true
     working: true
