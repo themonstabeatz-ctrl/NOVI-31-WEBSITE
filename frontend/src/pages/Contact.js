@@ -1094,8 +1094,9 @@ Ukupna cena: ${totalPriceFormatted} RSD
                   </div>
                 </div>
                 
-                {/* Service Dropdown - if no service selected from card */}
-                {!new URLSearchParams(location.search).get('service') && (
+                {/* Service Dropdown - if no service selected from card AND not SPA booking */}
+                {!new URLSearchParams(location.search).get('service') && 
+                 !['spa', 'spaZone'].includes(new URLSearchParams(location.search).get('source')) && (
                   <div className="form-group">
                     <Label htmlFor="serviceDropdown">
                       <span style={{ fontSize: '1rem', fontWeight: '600' }}>
