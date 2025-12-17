@@ -249,49 +249,58 @@ const Contact = () => {
     const couplesData = searchParams.get('couplesData');
     
     // SPA BOOKING – URL format:
-    // /contact?source=spa&spaPackageId=...&spaPackageName=...&variantId=...&variantLabel=...&spaZoneId=...&spaZoneLabel=...&totalMinutes=...&totalPrice=...
-    if (source === "spa") {
+    // /contact?source=spa&spaCategory=...&spaPackageId=...&spaName=...&duration=...&price=...
+    if (source === "spa" || source === "spaSpecial" || source === "spaZone") {
+      const spaCategory    = searchParams.get("spaCategory") || "SPA";
       const spaPackageId   = searchParams.get("spaPackageId");
-      const spaPackageName = searchParams.get("spaPackageName");
+      const spaName        = searchParams.get("spaName") || searchParams.get("spaPackageName") || "SPA";
       const variantId      = searchParams.get("variantId");
       const variantLabel   = searchParams.get("variantLabel");
-      const spaZoneId      = searchParams.get("spaZoneId");
       const spaZoneLabel   = searchParams.get("spaZoneLabel");
-      const totalMinutes   = searchParams.get("totalMinutes");
-      const totalPriceRaw  = searchParams.get("totalPrice");
+      const duration       = searchParams.get("duration") || searchParams.get("totalMinutes");
+      const priceRaw       = searchParams.get("price") || searchParams.get("totalPrice");
 
       // Format price for sr-RS
-      const totalPriceNumber = Number(totalPriceRaw ?? 0);
-      const totalPriceFormatted = totalPriceNumber.toLocaleString("sr-RS");
+      const priceNumber = Number(priceRaw ?? 0);
+      const priceFormatted = priceNumber.toLocaleString("sr-RS");
 
-      console.log('🔍 SPA booking detected:', { spaPackageId, spaPackageName, variantId, variantLabel, spaZoneId, spaZoneLabel, totalMinutes, totalPriceNumber });
+      console.log('🔍 SPA booking detected:', { source, spaCategory, spaPackageId, spaName, variantLabel, spaZoneLabel, duration, priceNumber });
 
       // 1) Save all SPA metadata (for handleSubmit)
       setSpaBookingMeta({
+        source,
+        spaCategory,
         spaPackageId,
-        spaPackageName,
+        spaName,
         variantId,
         variantLabel,
-        spaZoneId,
         spaZoneLabel,
-        totalMinutes: Number(totalMinutes),
-        totalPrice: totalPriceNumber
+        duration: Number(duration),
+        price: priceNumber
       });
 
       // 2) Pre-populate form message and serviceName
-      const message = `
-SPA paket: ${spaPackageName}
-Varijanta: ${variantLabel}
-SPA zona: ${spaZoneLabel}
-Ukupno trajanje: ${totalMinutes} min
-Ukupna cena: ${totalPriceFormatted} RSD
-      `.trim();
+      let messageLines = [];
+      if (source === "spaSpecial") {
+        messageLines.push(`Poseban SPA paket: ${decodeURIComponent(spaName)}`);
+      } else if (source === "spaZone") {
+        messageLines.push(`SPA Zona rezervacija`);
+        if (spaZoneLabel) messageLines.push(`Zone: ${decodeURIComponent(spaZoneLabel)}`);
+      } else {
+        messageLines.push(`SPA paket: ${decodeURIComponent(spaName)}`);
+        if (variantLabel) messageLines.push(`Varijanta: ${decodeURIComponent(variantLabel)}`);
+        if (spaZoneLabel) messageLines.push(`SPA zona: ${decodeURIComponent(spaZoneLabel)}`);
+      }
+      if (duration) messageLines.push(`Ukupno trajanje: ${duration} min`);
+      if (priceNumber) messageLines.push(`Ukupna cena: ${priceFormatted} RSD`);
+
+      const message = messageLines.join('\n');
 
       setFormData(prev => ({
         ...prev,
-        serviceName: `SPA: ${spaPackageName} (${variantLabel})`,
+        serviceName: `SPA: ${decodeURIComponent(spaName)}${variantLabel ? ` (${decodeURIComponent(variantLabel)})` : ''}`,
         message: message,
-        source: "spa"
+        source: source
       }));
 
       console.log('✅ SPA form pre-populated');
