@@ -730,7 +730,7 @@ const Contact = () => {
         console.log("🚀 SPA SPECIAL COUPLE handleSubmit called!");
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
         
-        const bookingEndpoint = `${BACKEND}/api/spa/appointments`;
+        const bookingEndpoint = `${API_BASE}/api/spa/appointments`;
         
         // Convert Date object to YYYY-MM-DD format
         let dateStr;
@@ -821,7 +821,7 @@ const Contact = () => {
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
 
         // ✅ FIX D: SPA booking -> POST /api/spa/appointments
-        const bookingEndpoint = `${BACKEND}/api/spa/appointments`;
+        const bookingEndpoint = `${API_BASE}/api/spa/appointments`;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', bookingEndpoint);
         console.log('🔒 LOCKDOWN CHECK: Booking endpoint:', bookingEndpoint);
