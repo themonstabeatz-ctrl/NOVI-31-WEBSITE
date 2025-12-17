@@ -114,7 +114,41 @@ const Contact = () => {
   const [servicesLoaded, setServicesLoaded] = useState(false);
   const [availableServices, setAvailableServices] = useState({ single: [], couples: [] });
 
-  // Load services from booking system on mount
+  // ✅ SPA FLOW: Auto-populate message for SPA bookings
+  useEffect(() => {
+    const spaFlow = getSpaFlowType();
+    if (!spaFlow) return;
+
+    const p = new URLSearchParams(location.search);
+    const name = p.get('spaName') || p.get('spaPackageName') || 'SPA';
+    const duration = p.get('duration') || p.get('totalMinutes') || '';
+    const price = p.get('price') || p.get('totalPrice') || '';
+    const spaZoneItems = p.get('spaZoneItems') || p.get('spaZoneLabel') || '';
+
+    let lines = [];
+    
+    if (spaFlow === 'spaZone') {
+      lines.push('SPA Zona rezervacija');
+      if (spaZoneItems) lines.push(`Zone: ${decodeURIComponent(spaZoneItems)}`);
+    } else if (spaFlow === 'spaSpecial') {
+      lines.push(`Poseban SPA paket: ${decodeURIComponent(name)}`);
+    } else {
+      lines.push(`SPA paket: ${decodeURIComponent(name)}`);
+    }
+    
+    if (duration) lines.push(`Ukupno trajanje: ${duration} min`);
+    if (price) lines.push(`Ukupna cena: ${formatRsd(price)}`);
+
+    setFormData(prev => ({
+      ...prev,
+      message: lines.join('\n'),
+      source: spaFlow
+    }));
+
+    console.log('✅ SPA FLOW detected:', spaFlow, { name, duration, price });
+  }, [location.search]);
+
+  // Load services from booking system on mount (ONLY for non-SPA flow)
   useEffect(() => {
     const loadServices = async () => {
       try {
