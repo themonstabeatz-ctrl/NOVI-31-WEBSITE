@@ -9,13 +9,13 @@
 
 import { getBackendUrl } from './backendUrl';
 
-// Jedini izvor istine za backend URL - GUARDED
-const BACKEND_URL = getBackendUrl();
+// ✅ JEDINI SOURCE-OF-TRUTH za backend URL
+export const API_BASE = getBackendUrl();
 
 // Export config
 export const API_CONFIG = {
   // Base URL - koristi SAMO ovo
-  BASE_URL: BACKEND_URL,
+  BASE_URL: API_BASE,
   
   // Endpoint-i
   ENDPOINTS: {
@@ -28,20 +28,7 @@ export const API_CONFIG = {
   },
   
   // Helper funkcije
-  getUrl: (endpoint) => `${BACKEND_URL}${endpoint}`,
-  
-  // Provera validnosti
-  isValid: () => BACKEND_URL && BACKEND_URL.includes(EXPECTED_BACKEND),
-  
-  // Debug info
-  debug: () => ({
-    backendUrl: BACKEND_URL,
-    expected: EXPECTED_BACKEND,
-    isValid: BACKEND_URL && BACKEND_URL.includes(EXPECTED_BACKEND),
-  }),
+  getUrl: (endpoint) => `${API_BASE}${endpoint}`,
 };
-
-// Log na load za debugging
-console.log('🔒 API Config loaded:', API_CONFIG.debug());
 
 export default API_CONFIG;
