@@ -2091,7 +2091,7 @@ const Spa = () => {
 
                 {/* Dugme "Zakažite" */}
                 <button
-                onClick={() => navigate('/contact?service=Romantični piling paket za parove&duration=210&price=25000')}
+                onClick={() => navigate('/contact?source=spa&spaPackageId=ROMANTIC_PILING&spaPackageName=Romantični%20piling%20paket%20za%20parove&totalMinutes=210&totalPrice=25000&variantId=PILING_BASE&variantLabel=Kompletan%20paket&spaZoneLabel=Uključena%20SPA%20zona')}
                 style={{
                   width: '100%',
                   padding: '0.7rem',
