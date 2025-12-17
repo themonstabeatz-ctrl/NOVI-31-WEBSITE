@@ -4,6 +4,7 @@ import { X, Check, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { LOCKDOWN } from "../lockdown";
+import { getBackendUrl } from "../config/backendUrl";
 
 const EXPECTED = "BL_LOCK_2025_12_16";
 if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
