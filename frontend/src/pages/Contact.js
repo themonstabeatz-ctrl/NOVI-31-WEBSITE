@@ -1591,10 +1591,12 @@ const Contact = () => {
                             translate("successMessage")
                           )}
                         </div>
-                        {/* ✅ UX FIX: Redirect notice */}
-                        <div style={{ color: '#888', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                          Preusmeravanje na početnu za 3 sekunde...
-                        </div>
+                        {/* ✅ UX FIX: Redirect countdown */}
+                        {redirectCountdown > 0 && (
+                          <div style={{ color: '#888', fontSize: '0.85rem', marginTop: '0.5rem' }}>
+                            Preusmeravanje na početnu za {redirectCountdown} sekund{redirectCountdown === 1 ? 'u' : 'e'}...
+                          </div>
+                        )}
                       </>
                     ) : (
                       <>
