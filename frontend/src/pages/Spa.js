@@ -490,19 +490,44 @@ const Spa = () => {
   const handleSpaBookClick = (pkg) => {
     const { totalPrice, totalMinutes, selectedVariant, selectedZones } = calculateTotals(pkg);
 
-    // Build zone labels string
-    const zoneLabels = [];
-    const zones = pkg.isZoneOnly ? pkg.zones : pkg.spaZones;
+    // Get base values from variant
+    const basePrice = selectedVariant?.totalPrice || 0;
+    const baseDuration = selectedVariant?.totalMinutes || 0;
+
+    // Calculate addon totals
+    let addonPrice = 0;
+    let addonDuration = 0;
     
-    zones.forEach(zone => {
-      const selectedOptionId = selectedZones[zone.id];
-      if (selectedOptionId) {  // If not "Bez"
-        const option = zone.options.find(o => o.id === selectedOptionId);
-        if (option) {
-          zoneLabels.push(`${zone.label} ${option.label}`);
+    // Check if face massage is selected (variant with face)
+    const hasFace = selectedVariant?.label?.includes("lica") && !selectedVariant?.label?.includes("Bez");
+
+    // Build zone details
+    const zones = pkg.isZoneOnly ? pkg.zones : pkg.spaZones;
+    let saunaMin = 0, steamMin = 0, jacuzziMin = 0;
+    const zoneLabels = [];
+    
+    if (zones) {
+      zones.forEach(zone => {
+        const selectedOptionId = selectedZones[zone.id];
+        if (selectedOptionId) {
+          const option = zone.options.find(o => o.id === selectedOptionId);
+          if (option) {
+            zoneLabels.push(`${zone.label} ${option.label}`);
+            addonPrice += option.extraPrice || option.totalPrice || 0;
+            addonDuration += option.extraMinutes || option.totalMinutes || 0;
+            
+            // Track individual zone selections
+            if (zone.id === 'sauna' || zone.label?.toLowerCase().includes('sauna')) {
+              saunaMin = option.extraMinutes || option.totalMinutes || 0;
+            } else if (zone.id === 'steam' || zone.label?.toLowerCase().includes('parno')) {
+              steamMin = option.extraMinutes || option.totalMinutes || 0;
+            } else if (zone.id === 'jacuzzi' || zone.label?.toLowerCase().includes('jacuzzi')) {
+              jacuzziMin = option.extraMinutes || option.totalMinutes || 0;
+            }
+          }
         }
-      }
-    });
+      });
+    }
     
     const spaZoneLabel = zoneLabels.length > 0 ? zoneLabels.join(", ") : "Bez SPA zona";
 
@@ -511,8 +536,22 @@ const Spa = () => {
       spaCategory: "SPA_RITUAL",
       spaPackageId: pkg.id,
       spaName: pkg.name,
-      duration: String(totalMinutes),
-      price: String(totalPrice),
+      // Base values
+      basePrice: String(basePrice),
+      baseDuration: String(baseDuration),
+      // Face addon
+      face: hasFace ? "1" : "0",
+      // Zone addons
+      sauna: String(saunaMin),
+      steam: String(steamMin),
+      jacuzzi: String(jacuzziMin),
+      // Addon totals
+      addonPrice: String(addonPrice),
+      addonDuration: String(addonDuration),
+      // Final totals
+      totalPrice: String(totalPrice),
+      totalDuration: String(totalMinutes),
+      // Labels
       spaZoneLabel: spaZoneLabel
     });
 
