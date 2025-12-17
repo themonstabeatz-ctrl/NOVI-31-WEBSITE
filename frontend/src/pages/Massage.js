@@ -148,7 +148,7 @@ const Massage = () => {
       } catch (error) {
         console.error("❌ Massage fetch error:", error);
         console.error('❌ Error fetching services from API:', error);
-        console.error('❌ Backend URL was:', getBackendUrl());
+        console.error('❌ Backend URL was:', API_BASE);
         // Set empty object to prevent infinite "Učitavanje..." state
         setApiServices({});
       }
