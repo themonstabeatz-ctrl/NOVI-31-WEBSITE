@@ -1374,7 +1374,8 @@ const Contact = () => {
                 {/* Service Dropdown - if no service selected from card AND not SPA booking */}
                 {(() => {
                   const source = new URLSearchParams(location.search).get('source');
-                  const isSpaFlow = ['spa', 'spaZone', 'spaSpecial'].includes(source);
+                  // ✅ FIX B: Added 'coupleSpecial' to hide dropdown for Romantični paketi
+                  const isSpaFlow = ['spa', 'spaZone', 'spaSpecial', 'coupleSpecial'].includes(source);
                   const hasService = new URLSearchParams(location.search).get('service');
                   return !hasService && !isSpaFlow;
                 })() && (
