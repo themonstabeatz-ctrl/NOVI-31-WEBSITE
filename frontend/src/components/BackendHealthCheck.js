@@ -12,12 +12,17 @@ import { API_BASE } from '../config/api';
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
   const [errorMessage, setErrorMessage] = useState('');
+  const [errorDetails, setErrorDetails] = useState({ statusCode: null, responseText: null });
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 3;
 
   useEffect(() => {
     const checkBackendHealth = async (attempt = 1) => {
       const BACKEND_URL = API_BASE;
+      
+      // 🔍 DIJAGNOSTIKA: Log ORIGIN i API_BASE
+      console.log("🔍 [BackendHealthCheck] ORIGIN:", window.location.origin);
+      console.log("🔍 [BackendHealthCheck] API_BASE:", BACKEND_URL);
       
       // 🔒 OSIGURAČ: Provera da je URL ispravan
       if (!BACKEND_URL) {
@@ -39,6 +44,10 @@ const BackendHealthCheck = ({ children }) => {
           console.log('✅ Backend healthy:', data);
           setStatus('healthy');
         } else {
+          // Čitaj response text za dijagnostiku
+          const responseText = await response.text();
+          console.error(`❌ Backend returned ${response.status}:`, responseText);
+          setErrorDetails({ statusCode: response.status, responseText });
           throw new Error(`Backend returned ${response.status}`);
         }
       } catch (error) {
@@ -53,9 +62,10 @@ const BackendHealthCheck = ({ children }) => {
         
         // All retries failed
         setStatus('error');
-        // Friendlier error message for CORS
+        // Detaljnija poruka greške
         if (error.message === 'Failed to fetch') {
-          setErrorMessage('CORS: Server ne dozvoljava pristup sa ovog domena. Kontaktirajte podršku.');
+          setErrorMessage('Backend unreachable or CORS blocked');
+          setErrorDetails(prev => ({ ...prev, statusCode: 'CORS/Network', responseText: 'Failed to fetch - possible CORS or network issue' }));
         } else {
           setErrorMessage(error.message || 'Nije moguće povezati se sa serverom');
         }
