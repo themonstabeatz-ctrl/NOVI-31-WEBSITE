@@ -122,10 +122,8 @@ const Contact = () => {
       message: "",
     }));
     
-    // ✅ UX FIX C: Redirect after 3 seconds
-    setTimeout(() => {
-      navigate("/");
-    }, 3000);
+    // ✅ UX FIX C: Start countdown for redirect (3 seconds)
+    setRedirectCountdown(3);
   };
   
   const [formData, setFormData] = useState({
