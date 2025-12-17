@@ -556,6 +556,9 @@ const Spa = () => {
     });
 
     if (pkg.isZoneOnly) {
+      // Override source and category for SPA_ZONE
+      params.set("source", "spaZone");
+      params.set("spaCategory", "SPA_ZONE");
       params.append("variantId", "ZONE_ONLY");
       params.append("variantLabel", "Samo SPA zona");
     } else {
