@@ -1259,31 +1259,36 @@ const Contact = () => {
         }
 
         console.log('✅ BOOKING SUCCESS', data);
+        
+        // ✅ FIX A: Handle success INSIDE the if block where `data` is defined
+        console.log('🎉 BOOKING SUCCESS - showing success message');
+        
+        // Clear couples booking data from localStorage after successful booking
+        localStorage.removeItem('couplesBookingData');
+        console.log('✅ Cleared couples booking data from localStorage');
+        
+        // Get date/time for success message
+        let successDateStr = "";
+        if (formData.preferredDate instanceof Date) {
+          const day = String(formData.preferredDate.getDate()).padStart(2, '0');
+          const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
+          const year = formData.preferredDate.getFullYear();
+          successDateStr = `${day}.${month}.${year}`;
+        }
+        
+        // ✅ FIX A: Check for booking ID before showing success
+        if (!data?.id) {
+          console.warn('⚠️ Booking response has no ID, but was 2xx - treating as success');
+        }
+        
+        // Use new success handler with booking details
+        handleBookingSuccess({
+          date: successDateStr,
+          time: formData.preferredTime,
+          serviceName: formData.message?.split('\n')[0] || serviceName || "Masaža",
+          bookingId: data?.id || "massage-success"
+        });
       }
-
-      // ✅ UX FIX: Success with details, reset, and redirect
-      console.log('🎉 BOOKING SUCCESS - showing success message');
-      
-      // Clear couples booking data from localStorage after successful booking
-      localStorage.removeItem('couplesBookingData');
-      console.log('✅ Cleared couples booking data from localStorage');
-      
-      // Get date/time for success message
-      let dateStr = "";
-      if (formData.preferredDate instanceof Date) {
-        const day = String(formData.preferredDate.getDate()).padStart(2, '0');
-        const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
-        const year = formData.preferredDate.getFullYear();
-        dateStr = `${day}.${month}.${year}`;
-      }
-      
-      // Use new success handler with booking details
-      handleBookingSuccess({
-        date: dateStr,
-        time: formData.preferredTime,
-        serviceName: formData.message?.split('\n')[0] || serviceName || "Masaža",
-        bookingId: data?.id || "massage-success"
-      });
       
     } catch (error) {
       console.error('🚨 DETAILED BOOKING ERROR:', {
