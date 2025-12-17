@@ -60,17 +60,65 @@ backend:
         comment: "✅ TESTED: Direct connection to reception backend https://relaxhub-1.preview.emergentagent.com working. Returns 247 total services, confirming external API is accessible."
 
 frontend:
-  - task: "Frontend Integration Testing"
+  - task: "SPA Ritual → Contact Flow"
     implemented: true
-    working: "NA"
-    file: "frontend/src/App.js"
+    working: true
+    file: "frontend/src/pages/Spa.js"
     stuck_count: 0
-    priority: "low"
+    priority: "high"
     needs_retesting: false
     status_history:
-      - working: "NA"
+      - working: true
         agent: "testing"
-        comment: "Frontend testing not performed as per system limitations. Only backend API connectivity tested."
+        comment: "✅ TESTED: SPA Ritual booking flow works perfectly. Clicking 'Zakažite' on SPA ritual cards redirects to /contact with correct parameters (source=spa, spaCategory=SPA_RITUAL). Message field auto-populated with SPA details. Service dropdown correctly hidden for SPA flow."
+
+  - task: "SPA Zone → Contact Flow"
+    implemented: true
+    working: true
+    file: "frontend/src/pages/Spa.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: SPA Zone booking flow works correctly. Can select zone options (Sauna 15 min) and clicking 'Zakažite' redirects to /contact with source=spaZone parameters. Service dropdown correctly hidden."
+
+  - task: "Regular Massage → Contact Flow"
+    implemented: true
+    working: false
+    file: "frontend/src/pages/Massage.js"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL ISSUE: Massage booking buttons ('ZAKAŽITE') are not functioning. Clicking buttons does not redirect to contact page with service parameters. Services load correctly (prices visible), but booking functionality is broken. This blocks the core massage booking flow."
+
+  - task: "Contact Page Direct Access"
+    implemented: true
+    working: true
+    file: "frontend/src/pages/Contact.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Direct contact page access works perfectly. Service dropdown IS visible and loads 121 services from API. Dropdown properly populated with massage services including prices and discounts."
+
+  - task: "API Connection Test"
+    implemented: true
+    working: true
+    file: "frontend/src/config/api.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: API connectivity working perfectly. Console shows 'API_BASE (source of truth): https://massage-scheduler-4.preview.emergentagent.com'. Multiple successful API requests detected to /api/services endpoints. No CORS errors. Backend health checks passing."
 
 metadata:
   created_by: "testing_agent"
