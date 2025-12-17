@@ -91,7 +91,7 @@ const CouplesMassageCard = ({
     const loadMassages = async () => {
       try {
         console.log('📥 Loading ALL services and filtering for [PAROVI] massages...');
-        const backendUrl = getBackendUrl();
+        const backendUrl = API_BASE;
         
         // CRITICAL: Load all services and filter by category "Kartica Masaza za parove"
         const response = await fetch(`${backendUrl}/api/services`);
