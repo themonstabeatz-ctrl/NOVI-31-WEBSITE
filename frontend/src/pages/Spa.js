@@ -536,6 +536,12 @@ const Spa = () => {
   const handleSpaBookClick = (pkg) => {
     const { totalPrice, totalMinutes, selectedVariant, selectedZones } = calculateTotals(pkg);
 
+    // ✅ VALIDATION for SPA Zone Only - at least one zone must be selected
+    if (pkg.isZoneOnly && totalPrice === 0) {
+      alert("Izaberite bar jednu SPA zonu (Sauna, Parno kupatilo ili Jacuzzi).");
+      return;
+    }
+
     // Get base values from variant
     const basePrice = selectedVariant?.totalPrice || 0;
     const baseDuration = selectedVariant?.totalMinutes || 0;
@@ -552,23 +558,44 @@ const Spa = () => {
     let saunaMin = 0, steamMin = 0, jacuzziMin = 0;
     const zoneLabels = [];
     
+    // Map selection IDs to API service names for price lookup
+    const selectionToApiName = {
+      'SAUNA_15': 'Sauna 15 min',
+      'SAUNA_30': 'Sauna 30 min',
+      'STEAM_15': 'Parno kupatilo 15 min',
+      'STEAM_30': 'Parno kupatilo 30 min',
+      'JACUZZI_30': 'Jacuzzi 30 min',
+      'JACUZZI_60': 'Jacuzzi 60 min'
+    };
+    
     if (zones) {
       zones.forEach(zone => {
         const selectedOptionId = selectedZones[zone.id];
         if (selectedOptionId) {
-          const option = zone.options.find(o => o.id === selectedOptionId);
-          if (option) {
-            zoneLabels.push(`${zone.label} ${option.label}`);
-            addonPrice += option.extraPrice || option.totalPrice || 0;
-            addonDuration += option.extraMinutes || option.totalMinutes || 0;
-            
-            // Track individual zone selections
-            if (zone.id === 'sauna' || zone.label?.toLowerCase().includes('sauna')) {
-              saunaMin = option.extraMinutes || option.totalMinutes || 0;
-            } else if (zone.id === 'steam' || zone.label?.toLowerCase().includes('parno')) {
-              steamMin = option.extraMinutes || option.totalMinutes || 0;
-            } else if (zone.id === 'jacuzzi' || zone.label?.toLowerCase().includes('jacuzzi')) {
-              jacuzziMin = option.extraMinutes || option.totalMinutes || 0;
+          // ✅ Use API prices for SPA Zone Only
+          if (pkg.isZoneOnly) {
+            const apiName = selectionToApiName[selectedOptionId];
+            if (apiName && spaZonePrices[apiName]) {
+              const apiData = spaZonePrices[apiName];
+              zoneLabels.push(`${zone.label} ${apiData.duration} min`);
+              addonPrice += apiData.price;
+              addonDuration += apiData.duration;
+              
+              if (zone.id === 'SAUNA') saunaMin = apiData.duration;
+              else if (zone.id === 'STEAM') steamMin = apiData.duration;
+              else if (zone.id === 'JACUZZI') jacuzziMin = apiData.duration;
+            }
+          } else {
+            // Regular ritual packages use hardcoded addon prices
+            const option = zone.options.find(o => o.id === selectedOptionId);
+            if (option) {
+              zoneLabels.push(`${zone.label} ${option.label}`);
+              addonPrice += option.extraPrice || option.totalPrice || 0;
+              addonDuration += option.extraMinutes || option.totalMinutes || 0;
+              
+              if (zone.id === 'SAUNA') saunaMin = option.extraMinutes || option.totalMinutes || 0;
+              else if (zone.id === 'STEAM') steamMin = option.extraMinutes || option.totalMinutes || 0;
+              else if (zone.id === 'JACUZZI') jacuzziMin = option.extraMinutes || option.totalMinutes || 0;
             }
           }
         }
@@ -605,8 +632,10 @@ const Spa = () => {
       // Override source and category for SPA_ZONE
       params.set("source", "spaZone");
       params.set("spaCategory", "SPA_ZONE");
-      params.append("variantId", "ZONE_ONLY");
-      params.append("variantLabel", "Samo SPA zona");
+      params.set("variantId", "ZONE_ONLY");
+      params.set("variantLabel", "Samo SPA zona");
+      // ✅ Add selected zones list
+      params.set("selectedSpaZones", zoneLabels.join("|"));
     } else {
       params.append("variantId", selectedVariant.id);
       params.append("variantLabel", selectedVariant.label);
