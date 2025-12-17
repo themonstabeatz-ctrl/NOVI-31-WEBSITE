@@ -545,13 +545,14 @@ const Spa = () => {
 
     const params = new URLSearchParams({
       source: "spa",
+      spaCategory: "SPA_HERBAL",
       spaPackageId: card.id,
-      spaPackageName: card.name,
+      spaName: card.name,
       variantId: `${card.id}_BASE`,
       variantLabel: "Osnovni paket (telo + SPA zona)",
       spaZoneLabel: spaZoneLabel,
-      totalMinutes: String(totalMinutes),
-      totalPrice: String(totalPrice)
+      duration: String(totalMinutes),
+      price: String(totalPrice)
     });
 
     console.log("📍 HERBAL package booking params:", Object.fromEntries(params));
