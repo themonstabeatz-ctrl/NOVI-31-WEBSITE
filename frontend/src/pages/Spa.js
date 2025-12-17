@@ -1719,9 +1719,21 @@ const Spa = () => {
                           />
                           <span>Bez</span>
                         </label>
-                        {/* Zone options */}
+                        {/* Zone options - ✅ Using API prices */}
                         {zone.options.map((option) => {
                           const isSelected = selectedZones[zone.id] === option.id;
+                          // ✅ Map option ID to API service name
+                          const apiNameMap = {
+                            'SAUNA_15': 'Sauna 15 min',
+                            'SAUNA_30': 'Sauna 30 min',
+                            'STEAM_15': 'Parno kupatilo 15 min',
+                            'STEAM_30': 'Parno kupatilo 30 min',
+                            'JACUZZI_30': 'Jacuzzi 30 min',
+                            'JACUZZI_60': 'Jacuzzi 60 min'
+                          };
+                          const apiName = apiNameMap[option.id];
+                          const apiPrice = spaZonePrices[apiName]?.price || option.totalPrice;
+                          
                           return (
                             <label key={option.id} style={{
                               display: 'flex',
@@ -1750,7 +1762,7 @@ const Spa = () => {
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>{formatNumber(option.totalPrice)} RSD</span>
+                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>+{formatNumber(apiPrice)} RSD</span>
                               </span>
                             </label>
                           );
