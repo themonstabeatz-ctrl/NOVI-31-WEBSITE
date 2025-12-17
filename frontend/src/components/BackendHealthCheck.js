@@ -7,7 +7,7 @@ import { API_BASE } from '../config/api';
  * Na load proverava /api/health endpoint.
  * Ako backend nije dostupan, prikazuje jasnu poruku umesto da se app raspadne.
  * 
- * LOCKED TO: https://relaxhub-1.preview.emergentagent.com
+ * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
  */
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
