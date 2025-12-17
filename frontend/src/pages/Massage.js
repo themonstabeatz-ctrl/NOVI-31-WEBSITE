@@ -22,6 +22,12 @@ const Massage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  // 🔍 DIJAGNOSTIKA: Log ORIGIN i API_BASE jednom na load
+  useEffect(() => {
+    console.log("🔍 [Massage.js] ORIGIN:", window.location.origin);
+    console.log("🔍 [Massage.js] API_BASE:", API_BASE);
+  }, []);
+
   // Detect mobile device for video optimization
   useEffect(() => {
     const checkMobile = () => {
