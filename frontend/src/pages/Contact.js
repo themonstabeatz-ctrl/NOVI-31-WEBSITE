@@ -1244,31 +1244,29 @@ const Contact = () => {
         console.log('✅ BOOKING SUCCESS', data);
       }
 
-      // Success - show green checkmark with appropriate message
-      setSubmitStatus('success');
-      console.log('🎉 SUCCESS STATUS SET - green checkmark should appear now!');
+      // ✅ UX FIX: Success with details, reset, and redirect
+      console.log('🎉 BOOKING SUCCESS - showing success message');
       
       // Clear couples booking data from localStorage after successful booking
       localStorage.removeItem('couplesBookingData');
       console.log('✅ Cleared couples booking data from localStorage');
       
-      // Backend already sends confirmation email via SMTP
-      // No need for mailto: link
+      // Get date/time for success message
+      let dateStr = "";
+      if (formData.preferredDate instanceof Date) {
+        const day = String(formData.preferredDate.getDate()).padStart(2, '0');
+        const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
+        const year = formData.preferredDate.getFullYear();
+        dateStr = `${day}.${month}.${year}`;
+      }
       
-      // Reset form after 3 seconds to allow user to see success message
-      setTimeout(() => {
-        setFormData({
-          firstName: "",
-          lastName: "",
-          phone: "",
-          email: "",
-          message: "",
-          preferredDate: null,
-          preferredTime: "",
-          source: "message"
-        });
-        setSubmitStatus(null);
-      }, 3000);
+      // Use new success handler with booking details
+      handleBookingSuccess({
+        date: dateStr,
+        time: formData.preferredTime,
+        serviceName: formData.message?.split('\n')[0] || serviceName || "Masaža",
+        bookingId: data?.id || "massage-success"
+      });
       
     } catch (error) {
       console.error('🚨 DETAILED BOOKING ERROR:', {
