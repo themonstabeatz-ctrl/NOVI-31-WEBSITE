@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getBackendUrl } from '../config/backendUrl';
+import { API_BASE } from '../config/api';
 
 /**
  * 🔒 OSIGURAČ: Backend Health Check Component
