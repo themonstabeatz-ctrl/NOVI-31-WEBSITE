@@ -15,7 +15,7 @@ const EXPECTED = "BL_LOCK_2025_12_16";
 if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
   throw new Error("LOCKDOWN VIOLATION: MASAŽE su zaključane.");
 }
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomCalendarModal from "../components/CustomCalendarModal";
 import CustomTimePickerModal from "../components/CustomTimePickerModal";
 import { getSEO } from "../utils/seoConfig";
