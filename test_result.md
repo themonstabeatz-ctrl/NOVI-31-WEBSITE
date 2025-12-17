@@ -88,13 +88,16 @@ frontend:
     implemented: true
     working: false
     file: "frontend/src/pages/Massage.js"
-    stuck_count: 1
+    stuck_count: 2
     priority: "high"
     needs_retesting: true
     status_history:
       - working: false
         agent: "testing"
         comment: "❌ CRITICAL ISSUE: Massage booking buttons ('ZAKAŽITE') are not functioning. Clicking buttons does not redirect to contact page with service parameters. Services load correctly (prices visible), but booking functionality is broken. This blocks the core massage booking flow."
+      - working: false
+        agent: "testing"
+        comment: "❌ STILL BROKEN: Massage booking buttons remain non-functional. Found 10 booking buttons on page but they don't redirect to contact page when clicked. Backend API errors (500) for /api/services endpoints are causing service loading failures. This is a critical blocker for massage booking functionality."
 
   - task: "Contact Page Direct Access"
     implemented: true
