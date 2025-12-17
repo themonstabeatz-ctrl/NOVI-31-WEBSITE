@@ -143,9 +143,12 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Backend API Service Endpoints"
     - "Regular Massage → Contact Flow"
+    - "UX Success Message + Redirect Flow"
   stuck_tasks:
     - "Regular Massage → Contact Flow"
+    - "Backend API Service Endpoints"
   test_all: false
   test_priority: "high_first"
 
