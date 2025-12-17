@@ -78,7 +78,7 @@ const Massage = () => {
   useEffect(() => {
     const fetchAllServices = async () => {
       try {
-        const backendUrl = getBackendUrl();
+        const backendUrl = API_BASE;
         
         console.log("🧠 Massage page – backendUrl:", backendUrl);
 
