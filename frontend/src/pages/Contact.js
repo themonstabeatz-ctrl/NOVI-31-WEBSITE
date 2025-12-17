@@ -763,15 +763,8 @@ const Contact = () => {
           return;
         }
 
-        // Parse JSON from text
-        let data = {};
-        try {
-          data = responseText ? JSON.parse(responseText) : {};
-        } catch (e) {
-          console.warn("⚠️ Response nije validan JSON, nastavljam bez parsiranja.");
-        }
-
-        console.log("✅ SPA booking successful:", data);
+        // ✅ SUCCESS: SPA booking završen uspešno
+        console.log("✅ SPA booking successful!");
         setSubmitStatus("success");
         setIsSubmitting(false);
         
