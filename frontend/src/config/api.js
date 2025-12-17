@@ -19,8 +19,9 @@ if (API_BASE.includes("massage-hub-") || API_BASE.includes("relaxhub-")) {
   throw new Error("FATAL API CONFIG: API_BASE points to frontend domain, not backend!");
 }
 
-// ✅ DIJAGNOSTIKA: Log na load
-console.log("✅ API_BASE (source of truth):", API_BASE);
+// ✅ DIJAGNOSTIKA: Uvek log API_BASE na load (za debug)
+console.log("🔐 API_BASE =", API_BASE);
+console.log("🔐 ORIGIN =", typeof window !== 'undefined' ? window.location.origin : 'SSR');
 
 /**
  * ✅ FIX: "body stream already read" error
