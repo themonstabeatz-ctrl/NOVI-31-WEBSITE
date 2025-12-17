@@ -1891,7 +1891,7 @@ const Spa = () => {
 
                 {/* Dugme "Zakažite" */}
                 <button
-                onClick={() => navigate('/contact?source=spa&spaPackageId=ROMANTIC_COUPLES&spaPackageName=Romantični%20paket%20za%20parove&totalMinutes=210&totalPrice=25000&variantId=ROMANTIC_BASE&variantLabel=Kompletan%20paket&spaZoneLabel=Uključena%20SPA%20zona')}
+                onClick={() => navigate('/contact?source=spaSpecial&spaCategory=SPA_SPECIAL&spaPackageId=ROMANTIC_COUPLES&spaName=Romantični%20paket%20za%20parove&duration=210&price=25000')}
                 style={{
                   width: '100%',
                   padding: '0.7rem',
