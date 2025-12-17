@@ -257,14 +257,27 @@ const Contact = () => {
       const variantId      = searchParams.get("variantId");
       const variantLabel   = searchParams.get("variantLabel");
       const spaZoneLabel   = searchParams.get("spaZoneLabel");
-      const duration       = searchParams.get("duration") || searchParams.get("totalMinutes");
-      const priceRaw       = searchParams.get("price") || searchParams.get("totalPrice");
+      
+      // New detailed params
+      const basePrice      = Number(searchParams.get("basePrice") || 0);
+      const baseDuration   = Number(searchParams.get("baseDuration") || 0);
+      const face           = searchParams.get("face") === "1";
+      const saunaMin       = Number(searchParams.get("sauna") || 0);
+      const steamMin       = Number(searchParams.get("steam") || 0);
+      const jacuzziMin     = Number(searchParams.get("jacuzzi") || 0);
+      const addonPrice     = Number(searchParams.get("addonPrice") || 0);
+      const addonDuration  = Number(searchParams.get("addonDuration") || 0);
+      const totalPrice     = Number(searchParams.get("totalPrice") || searchParams.get("price") || 0);
+      const totalDuration  = Number(searchParams.get("totalDuration") || searchParams.get("duration") || 0);
 
-      // Format price for sr-RS
-      const priceNumber = Number(priceRaw ?? 0);
-      const priceFormatted = priceNumber.toLocaleString("sr-RS");
+      // Format prices for sr-RS
+      const formatRsdLocal = (n) => Number(n || 0).toLocaleString("sr-RS");
 
-      console.log('🔍 SPA booking detected:', { source, spaCategory, spaPackageId, spaName, variantLabel, spaZoneLabel, duration, priceNumber });
+      console.log('🔍 SPA booking detected:', { 
+        source, spaCategory, spaPackageId, spaName, variantLabel, 
+        face, saunaMin, steamMin, jacuzziMin,
+        basePrice, addonPrice, totalPrice, totalDuration 
+      });
 
       // 1) Save all SPA metadata (for handleSubmit)
       setSpaBookingMeta({
@@ -275,24 +288,47 @@ const Contact = () => {
         variantId,
         variantLabel,
         spaZoneLabel,
-        duration: Number(duration),
-        price: priceNumber
+        face,
+        saunaMin,
+        steamMin,
+        jacuzziMin,
+        basePrice,
+        baseDuration,
+        addonPrice,
+        addonDuration,
+        totalPrice,
+        totalDuration
       });
 
-      // 2) Pre-populate form message and serviceName
+      // 2) Pre-populate form message with detailed breakdown
       let messageLines = [];
+      
       if (source === "spaSpecial") {
         messageLines.push(`Poseban SPA paket: ${decodeURIComponent(spaName)}`);
       } else if (source === "spaZone") {
         messageLines.push(`SPA Zona rezervacija`);
-        if (spaZoneLabel) messageLines.push(`Zone: ${decodeURIComponent(spaZoneLabel)}`);
       } else {
         messageLines.push(`SPA paket: ${decodeURIComponent(spaName)}`);
-        if (variantLabel) messageLines.push(`Varijanta: ${decodeURIComponent(variantLabel)}`);
-        if (spaZoneLabel) messageLines.push(`SPA zona: ${decodeURIComponent(spaZoneLabel)}`);
       }
-      if (duration) messageLines.push(`Ukupno trajanje: ${duration} min`);
-      if (priceNumber) messageLines.push(`Ukupna cena: ${priceFormatted} RSD`);
+
+      // Variant (face massage)
+      if (variantLabel) {
+        const variantText = face 
+          ? `Sa masažom lica (+3.000 RSD)` 
+          : `Bez masaže lica`;
+        messageLines.push(`Varijanta: ${variantText}`);
+      }
+
+      // SPA Zone breakdown
+      messageLines.push(`SPA zona:`);
+      messageLines.push(`  • Sauna: ${saunaMin > 0 ? `${saunaMin} min` : 'Bez'}`);
+      messageLines.push(`  • Parno kupatilo: ${steamMin > 0 ? `${steamMin} min` : 'Bez'}`);
+      messageLines.push(`  • Jacuzzi: ${jacuzziMin > 0 ? `${jacuzziMin} min` : 'Bez'}`);
+
+      // Totals
+      messageLines.push('');
+      messageLines.push(`Ukupno trajanje: ${totalDuration} min`);
+      messageLines.push(`Ukupna cena: ${formatRsdLocal(totalPrice)} RSD`);
 
       const message = messageLines.join('\n');
 
@@ -303,7 +339,7 @@ const Contact = () => {
         source: source
       }));
 
-      console.log('✅ SPA form pre-populated');
+      console.log('✅ SPA form pre-populated with detailed breakdown');
       return; // Exit early, don't process regular service logic
     }
     
