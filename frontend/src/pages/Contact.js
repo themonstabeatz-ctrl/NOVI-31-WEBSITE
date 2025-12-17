@@ -699,22 +699,67 @@ const Contact = () => {
         console.log("📦 SPA appointment payload:", payload);
         console.log("📤 Sending SPA booking request to:", bookingEndpoint);
 
-        const response = await fetch(bookingEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+        try {
+          const response = await fetch(bookingEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
 
-        // Read response body ONCE
-        const responseText = await response.text();
-        
-        console.log("📥 SPA booking response status:", response.status);
-        console.log("📥 Response body:", responseText);
+          // Read response body ONCE
+          const responseText = await response.text();
+          
+          console.log("📥 SPA booking response status:", response.status);
+          console.log("📥 Response body:", responseText);
 
-        if (!response.ok) {
-          console.error("❌ SPA booking API error:", response.status, responseText);
-          setError("Došlo je do greške pri zakazivanju SPA tretmana. Molimo pokušajte ponovo.");
+          if (!response.ok) {
+            console.error("❌ SPA booking API error:", response.status, responseText);
+            
+            // ✅ FIX C: Specifična poruka za 404 - backend nema SPA endpoint
+            if (response.status === 404) {
+              setError("⚠️ Greška: Backend nema SPA booking endpoint (/api/spa/appointments). Kontaktirajte recepciju da doda rutu. (404)");
+              alert("Greška: Backend nema SPA booking endpoint (/api/spa/appointments).\n\nKontaktirajte recepciju da doda rutu.\n\n(HTTP 404)");
+              setSubmitStatus("error");
+              setIsSubmitting(false);
+              return;
+            }
+            
+            // Ostale greške
+            let errorMsg = "Došlo je do greške pri zakazivanju SPA tretmana.";
+            try {
+              const errorData = responseText ? JSON.parse(responseText) : {};
+              errorMsg = errorData?.error || errorData?.message || errorData?.detail || errorMsg;
+            } catch {}
+            
+            setError(errorMsg);
+            setSubmitStatus("error");
+            setIsSubmitting(false);
+            return;
+          }
+        } catch (fetchError) {
+          console.error("❌ SPA booking fetch error:", fetchError);
+          const msg = String(fetchError?.message || fetchError);
+          
+          // ✅ Specifična poruka za 404 iz exception
+          if (msg.includes("HTTP_404") || msg.includes("404")) {
+            setError("⚠️ Greška: Backend nema SPA booking endpoint (/api/spa/appointments). Kontaktirajte recepciju da doda rutu. (404)");
+            alert("Greška: Backend nema SPA booking endpoint.\n\nKontaktirajte recepciju da doda rutu.");
+            setSubmitStatus("error");
+            setIsSubmitting(false);
+            return;
+          }
+          
+          // CORS ili network greška
+          if (msg.includes("Failed to fetch") || msg.includes("CORS")) {
+            setError("⚠️ Backend nije dostupan ili CORS blokira zahtev. Pokušajte ponovo kasnije.");
+            setSubmitStatus("error");
+            setIsSubmitting(false);
+            return;
+          }
+          
+          setError("Greška pri zakazivanju: " + msg);
           setSubmitStatus("error");
+          setIsSubmitting(false);
           return;
         }
 
