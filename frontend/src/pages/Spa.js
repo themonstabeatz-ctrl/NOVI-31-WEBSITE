@@ -7,6 +7,7 @@ import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
+import { API_BASE } from "../config/api";
 
 // HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
 const formatNumber = (value) => {
