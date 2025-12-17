@@ -102,11 +102,19 @@ const CouplesMassageCard = ({
         // CRITICAL: Load all services and filter by category "Kartica Masaza za parove"
         const response = await fetch(`${backendUrl}/api/services`);
         
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        // ✅ FIX: Read body only once to avoid "body stream already read"
+        const raw = await response.text();
+        let allServices = [];
+        try {
+          allServices = raw ? JSON.parse(raw) : [];
+        } catch {
+          console.error('❌ Failed to parse services JSON:', raw);
+          throw new Error('Invalid JSON response');
         }
         
-        const allServices = await response.json();
+        if (!response.ok) {
+          throw new Error(allServices?.error || allServices?.message || `HTTP ${response.status}`);
+        }
         
         // ✅ FIX A: Filter ONLY by [PAROVI] prefix in name (not by category)
         // This ensures we NEVER mix regular and couples services
