@@ -116,12 +116,25 @@ const BackendHealthCheck = ({ children }) => {
           border: '2px solid #dc2626'
         }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚠️</div>
-          <h1 style={{ color: '#dc2626', marginBottom: '1rem' }}>Backend nije dostupan</h1>
+          <h1 style={{ color: '#dc2626', marginBottom: '1rem' }}>Backend unreachable or CORS blocked</h1>
           <p style={{ color: '#999', marginBottom: '1rem' }}>
             Nije moguće povezati se sa serverom za rezervacije.
           </p>
-          <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+          <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
             Greška: {errorMessage}
+          </p>
+          {errorDetails.statusCode && (
+            <p style={{ color: '#888', fontSize: '0.8rem', marginBottom: '0.5rem' }}>
+              Status: {errorDetails.statusCode}
+            </p>
+          )}
+          {errorDetails.responseText && (
+            <p style={{ color: '#666', fontSize: '0.75rem', marginBottom: '1rem', wordBreak: 'break-word' }}>
+              Response: {errorDetails.responseText.substring(0, 200)}
+            </p>
+          )}
+          <p style={{ color: '#888', fontSize: '0.8rem', marginBottom: '1rem' }}>
+            API_BASE: {API_BASE}
           </p>
           <button
             onClick={() => setRetryCount(prev => prev + 1)}
