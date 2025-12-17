@@ -2079,9 +2079,13 @@ const Spa = () => {
                   </span>
                 </div>
 
-                {/* Dugme "Zakažite" */}
+                {/* Dugme "Zakažite" - FIX B: type="button" + spa_package_id */}
                 <button
-                onClick={() => navigate('/contact?source=spaSpecial&spaCategory=SPA_SPECIAL&spaPackageId=ROMANTIC_COUPLES&spaName=Romantični%20paket%20za%20parove&duration=210&price=25000')}
+                type="button"
+                onClick={() => {
+                  console.log("[ROMANTIC_COUPLE_1] Book click");
+                  navigate('/contact?source=coupleSpecial&spaCategory=SPA_SPECIAL_COUPLE&spa_package_id=ROMANTIC_COUPLE_1&spaName=Romantični%20paket%20za%20parove&duration=210&price=25000&guests=2');
+                }}
                 style={{
                   width: '100%',
                   padding: '0.7rem',
