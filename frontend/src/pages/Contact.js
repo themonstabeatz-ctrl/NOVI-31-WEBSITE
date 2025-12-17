@@ -85,10 +85,11 @@ const Contact = () => {
   };
 
   // ✅ SPA FLOW: Check if this is SPA booking
+  // ✅ FIX B: Added 'coupleSpecial' for Romantični paketi
   const getSpaFlowType = () => {
     const params = new URLSearchParams(location.search);
     const source = params.get('source');
-    return ['spa', 'spaZone', 'spaSpecial'].includes(source) ? source : null;
+    return ['spa', 'spaZone', 'spaSpecial', 'coupleSpecial'].includes(source) ? source : null;
   };
   
   const [formData, setFormData] = useState({
