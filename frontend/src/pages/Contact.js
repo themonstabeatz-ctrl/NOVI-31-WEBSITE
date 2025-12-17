@@ -638,8 +638,8 @@ const Contact = () => {
         console.log("🚀 SPA handleSubmit called!");
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
 
-        // 🔒 LOCKDOWN: Use BACKEND variable (already validated at top of handleSubmit)
-        const bookingEndpoint = `${BACKEND}/api/appointments`; // SPA uses same endpoint as single
+        // ✅ FIX D: SPA booking -> POST /api/spa/appointments
+        const bookingEndpoint = `${BACKEND}/api/spa/appointments`;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', bookingEndpoint);
         console.log('🔒 LOCKDOWN CHECK: URL must contain massage-scheduler-4:', bookingEndpoint.includes('massage-scheduler-4'));
