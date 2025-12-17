@@ -9,6 +9,7 @@ import { Clock, Star } from "lucide-react";
 import { throttle } from "../utils/debounce";
 import CouplesMassageCard from "../components/CouplesMassageCard";
 import { LOCKDOWN } from "../lockdown";
+import { getBackendUrl } from "../config/backendUrl";
 
 const EXPECTED = "BL_LOCK_2025_12_16";
 if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
