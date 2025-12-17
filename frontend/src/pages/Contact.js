@@ -107,6 +107,19 @@ const Contact = () => {
   const [error, setError] = useState(null); // Error message state
   const submitTimeoutRef = React.useRef(null);
   
+  // ✅ UX FIX: Success message with auto-hide and booking details
+  const [successMsg, setSuccessMsg] = useState("");
+  
+  // ✅ UX FIX A: Auto-hide success message after 6 seconds
+  useEffect(() => {
+    if (!successMsg) return;
+    const t = setTimeout(() => {
+      setSuccessMsg("");
+      setSubmitStatus(null);
+    }, 6000);
+    return () => clearTimeout(t);
+  }, [successMsg]);
+  
   // SPA booking metadata
   const [spaBookingMeta, setSpaBookingMeta] = useState(null);
   
