@@ -17,7 +17,7 @@ const BackendHealthCheck = ({ children }) => {
 
   useEffect(() => {
     const checkBackendHealth = async (attempt = 1) => {
-      const BACKEND_URL = getBackendUrl();
+      const BACKEND_URL = API_BASE;
       
       // 🔒 OSIGURAČ: Provera da je URL ispravan
       if (!BACKEND_URL) {
