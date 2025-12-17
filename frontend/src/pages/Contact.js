@@ -174,8 +174,24 @@ const Contact = () => {
           fetch(`${backendUrl}/api/services/couples/list`)
         ]);
         
-        const singleServices = await singleResponse.json();
-        const couplesServices = await couplesResponse.json();
+        // ✅ FIX: Read body only once to avoid "body stream already read"
+        const singleRaw = await singleResponse.text();
+        const couplesRaw = await couplesResponse.text();
+        
+        let singleServices = [];
+        let couplesServices = [];
+        
+        try {
+          singleServices = singleRaw ? JSON.parse(singleRaw) : [];
+        } catch {
+          console.error('❌ Failed to parse single services JSON:', singleRaw);
+        }
+        
+        try {
+          couplesServices = couplesRaw ? JSON.parse(couplesRaw) : [];
+        } catch {
+          console.error('❌ Failed to parse couples services JSON:', couplesRaw);
+        }
         
         // Combine all services
         const allServices = [...singleServices, ...couplesServices];
