@@ -328,7 +328,12 @@ const Contact = () => {
       const includedSpaZone = searchParams.get("includedSpaZone");
       const selectedSpaZones = searchParams.get("selectedSpaZones");
       
-      if (source === "spaSpecial") {
+      // ✅ FIX B: Handle coupleSpecial (Romantični paketi za parove)
+      if (source === "coupleSpecial" || spaCategory === "SPA_SPECIAL_COUPLE") {
+        messageLines.push(`🌹 Romantični SPA paket za parove`);
+        messageLines.push(`Paket: ${decodeURIComponent(spaName)}`);
+        messageLines.push(`Za: 2 osobe`);
+      } else if (source === "spaSpecial") {
         messageLines.push(`Poseban SPA paket: ${decodeURIComponent(spaName)}`);
       } else if (source === "spaZone") {
         // ✅ SPA ZONE ONLY - show selected zones
