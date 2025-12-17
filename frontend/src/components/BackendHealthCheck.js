@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { API_BASE } from '../config/api';
+import { API_BASE, safeJson } from '../config/api';
 
 /**
  * 🔒 OSIGURAČ: Backend Health Check Component
@@ -39,17 +39,10 @@ const BackendHealthCheck = ({ children }) => {
           headers: { 'Accept': 'application/json' },
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          console.log('✅ Backend healthy:', data);
-          setStatus('healthy');
-        } else {
-          // Čitaj response text za dijagnostiku
-          const responseText = await response.text();
-          console.error(`❌ Backend returned ${response.status}:`, responseText);
-          setErrorDetails({ statusCode: response.status, responseText });
-          throw new Error(`Backend returned ${response.status}`);
-        }
+        // ✅ FIX: Use safeJson to avoid "body stream already read"
+        const data = await safeJson(response);
+        console.log('✅ Backend healthy:', data);
+        setStatus('healthy');
       } catch (error) {
         console.error(`❌ Backend health check failed (attempt ${attempt}):`, error);
         
@@ -68,6 +61,7 @@ const BackendHealthCheck = ({ children }) => {
           setErrorDetails(prev => ({ ...prev, statusCode: 'CORS/Network', responseText: 'Failed to fetch - possible CORS or network issue' }));
         } else {
           setErrorMessage(error.message || 'Nije moguće povezati se sa serverom');
+          setErrorDetails(prev => ({ ...prev, responseText: error.message }));
         }
       }
     };
