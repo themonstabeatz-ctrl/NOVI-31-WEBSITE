@@ -151,6 +151,14 @@ const Contact = () => {
   // Load services from booking system on mount (ONLY for non-SPA flow)
   useEffect(() => {
     const loadServices = async () => {
+      // ✅ SPA GUARD: Don't load massage services for SPA flow
+      const spaFlow = getSpaFlowType();
+      if (spaFlow) {
+        console.log('🛡️ SPA FLOW - skipping massage API calls');
+        setServicesLoaded(true);
+        return;
+      }
+
       try {
         const backendUrlRaw = API_BASE;
         
