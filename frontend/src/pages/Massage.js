@@ -99,7 +99,20 @@ const Massage = () => {
         const singleResponse = await fetch(`${backendUrl}/api/services/single/list`);
         console.log('🔍 /api/services/single/list status:', singleResponse.status);
         
-        const singleServices = await singleResponse.json();
+        // ✅ FIX: Read body only once to avoid "body stream already read"
+        const raw = await singleResponse.text();
+        let singleServices = [];
+        try {
+          singleServices = raw ? JSON.parse(raw) : [];
+        } catch {
+          console.error('❌ Failed to parse services JSON:', raw);
+          throw new Error('Invalid JSON response');
+        }
+        
+        if (!singleResponse.ok) {
+          throw new Error(singleServices?.error || singleServices?.message || `HTTP ${singleResponse.status}`);
+        }
+        
         console.log('✅ Services loaded:', singleServices.length, 'services');
         
         // Group services by base name (remove " - XX min" for grouping DISPLAY only)
