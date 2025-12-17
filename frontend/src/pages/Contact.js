@@ -618,13 +618,16 @@ const Contact = () => {
     console.log('🚀 handleSubmit called!');
     console.log('📍 Backend URL is:', API_BASE);
     
-    // 🔒 LOCKDOWN PROTECTION: Warn if booking goes to wrong domain (don't crash app)
-    const BACKEND = API_BASE;
-    const expected = "massage-scheduler-4.preview.emergentagent.com";
-    const actual = (BACKEND || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
-    
-    if (actual !== expected) {
-      console.warn(`⚠️ MISCONFIG WARNING: REACT_APP_BACKEND_URL should be ${expected}, got: ${actual}`);
+    // 🔒 LOCKDOWN PROTECTION: Validate API_BASE is a known backend
+    const ALLOWED_BACKENDS = [
+      "spa-dashboard-2.preview.emergentagent.com",
+      "massage-scheduler-4.preview.emergentagent.com",
+    ];
+    const isAllowed = ALLOWED_BACKENDS.some(h => API_BASE.includes(h));
+    if (!isAllowed) {
+      console.warn(`⚠️ LOCKDOWN WARNING: API_BASE not in allowed list:`, API_BASE);
+    } else {
+      console.log(`✅ API_BASE validated:`, API_BASE);
     }
     
     setIsSubmitting(true);
