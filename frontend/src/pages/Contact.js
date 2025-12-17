@@ -912,10 +912,24 @@ const Contact = () => {
           return;
         }
 
-        // ✅ SUCCESS: SPA booking završen uspešno
+        // ✅ UX FIX: SPA booking success with new handler
         console.log("✅ SPA booking successful!");
-        setSubmitStatus("success");
-        setIsSubmitting(false);
+        
+        // Get date/time from formData for success message
+        let dateStr = "";
+        if (formData.preferredDate instanceof Date) {
+          const day = String(formData.preferredDate.getDate()).padStart(2, '0');
+          const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
+          const year = formData.preferredDate.getFullYear();
+          dateStr = `${day}.${month}.${year}`;
+        }
+        
+        handleBookingSuccess({
+          date: dateStr,
+          time: formData.preferredTime,
+          serviceName: spaBookingMeta?.spaName || "SPA tretman",
+          bookingId: "spa-success"
+        });
         
         // CRITICAL: Exit early to not fall into single/couples logic
         return;
