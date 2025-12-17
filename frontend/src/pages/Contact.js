@@ -91,6 +91,41 @@ const Contact = () => {
     const source = params.get('source');
     return ['spa', 'spaZone', 'spaSpecial', 'coupleSpecial'].includes(source) ? source : null;
   };
+
+  // ✅ UX FIX: Handle booking success - show message, reset form, redirect
+  const handleBookingSuccess = (bookingDetails = {}) => {
+    const { date, time, serviceName, bookingId } = bookingDetails;
+    
+    // Format success message with booking details
+    let msg = "✅ Uspešno ste zakazali termin!";
+    if (date && time) {
+      msg = `✅ Uspešno zakazano za ${date} u ${time}`;
+    }
+    if (serviceName) {
+      msg += `\n${serviceName}`;
+    }
+    
+    console.log("✅ Booking success:", { bookingId, date, time, serviceName });
+    
+    setSuccessMsg(msg);
+    setSubmitStatus("success");
+    setIsSubmitting(false);
+    
+    // ✅ UX FIX B: Reset form (keep phone/email for convenience)
+    setFormData(prev => ({
+      ...prev,
+      firstName: "",
+      lastName: "",
+      preferredDate: null,
+      preferredTime: "",
+      message: "",
+    }));
+    
+    // ✅ UX FIX C: Redirect after 3 seconds
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
   
   const [formData, setFormData] = useState({
     firstName: "",
