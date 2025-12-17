@@ -395,7 +395,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('🚀 handleSubmit called!');
-    console.log('📍 Backend URL is:', process.env.REACT_APP_BACKEND_URL);
+    console.log('📍 Backend URL is:', getBackendUrl());
     
     // 🔒 LOCKDOWN PROTECTION: Warn if booking goes to wrong domain (don't crash app)
     const BACKEND = process.env.REACT_APP_BACKEND_URL;
