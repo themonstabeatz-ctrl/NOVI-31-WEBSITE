@@ -296,6 +296,51 @@ const Spa = () => {
     SPA_HC_3: "NONE"    // Aroma Stone
   });
 
+  // ✅ NEW: State for dynamically loaded SPA Zone prices from API
+  const [spaZonePrices, setSpaZonePrices] = useState({});
+  const [spaZoneError, setSpaZoneError] = useState(null);
+
+  // ✅ Fetch SPA Zone prices from API
+  useEffect(() => {
+    const fetchSpaZonePrices = async () => {
+      try {
+        console.log('📥 Loading SPA Zone prices from API...');
+        const res = await fetch(`${API_BASE}/api/spa/services`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const services = await res.json();
+        
+        // Build price map from spa_zone category services
+        const zoneMap = {};
+        services.forEach(s => {
+          if (s.category === 'spa_zone') {
+            zoneMap[s.name] = {
+              price: s.price,
+              duration: s.duration,
+              id: s.id
+            };
+          }
+        });
+        
+        console.log('✅ SPA Zone prices loaded:', zoneMap);
+        setSpaZonePrices(zoneMap);
+      } catch (err) {
+        console.error('❌ Failed to load SPA Zone prices:', err);
+        setSpaZoneError('Greška pri učitavanju cena');
+      }
+    };
+    
+    fetchSpaZonePrices();
+  }, []);
+
+  // ✅ Helper to get zone price from API data
+  const getZonePrice = (zoneName) => {
+    return spaZonePrices[zoneName]?.price || 0;
+  };
+  
+  const getZoneDuration = (zoneName) => {
+    return spaZonePrices[zoneName]?.duration || 0;
+  };
+
   // Scroll fade-out effect for hero (IDENTICAL to Massage.js)
   useEffect(() => {
     const handleScroll = () => {
