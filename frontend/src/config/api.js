@@ -9,19 +9,26 @@
 
 // ✅ JEDINI SOURCE-OF-TRUTH za backend URL
 // Prioritet: .env varijabla -> hardcoded fallback
-export const API_BASE = 
-  process.env.REACT_APP_BACKEND_URL ||
-  "https://spa-dashboard-2.preview.emergentagent.com";
+const envUrl = process.env.REACT_APP_BACKEND_URL || "";
 
-// 🔴 HARD FAIL: Provera da URL pokazuje na pravi backend
-if (API_BASE.includes("massage-hub-") || API_BASE.includes("relaxhub-")) {
-  console.error("🔴 FATAL: API_BASE points to FRONTEND domain:", API_BASE);
-  throw new Error("FATAL API CONFIG: API_BASE points to frontend domain, not backend!");
-}
+// ✅ FIX: If .env points to frontend domain, use hardcoded backend
+const ALLOWED_BACKENDS = [
+  "spa-dashboard-2.preview.emergentagent.com",
+  "massage-scheduler-4.preview.emergentagent.com",
+];
+
+const isEnvValid = ALLOWED_BACKENDS.some(h => envUrl.includes(h));
+
+export const API_BASE = isEnvValid 
+  ? envUrl 
+  : "https://spa-dashboard-2.preview.emergentagent.com";
 
 // ✅ DIJAGNOSTIKA: Uvek log API_BASE na load (za debug)
 console.log("🔐 API_BASE =", API_BASE);
 console.log("🔐 ORIGIN =", typeof window !== 'undefined' ? window.location.origin : 'SSR');
+if (!isEnvValid && envUrl) {
+  console.warn("⚠️ .env had invalid URL, using fallback:", envUrl, "->", API_BASE);
+}
 
 /**
  * ✅ FIX: "body stream already read" error
