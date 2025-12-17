@@ -1218,8 +1218,8 @@ const Contact = () => {
           bookingEndpoint = '/api/appointments';
           console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
         }
-        // 🔒 LOCKDOWN: Use BACKEND variable from top of handleSubmit (already validated)
-        const url = `${BACKEND}${bookingEndpoint}`;
+        // 🔒 Use API_BASE for all booking requests
+        const url = `${API_BASE}${bookingEndpoint}`;
         const finalEndpoint = url;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
