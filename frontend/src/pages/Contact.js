@@ -649,8 +649,88 @@ const Contact = () => {
         return;
       }
       
+      // ✅ FIX B: SPA SPECIAL COUPLE (Romantični paketi za parove) - direktan POST bez service mapping
+      if (formData.source === "coupleSpecial" && spaBookingMeta?.spaCategory === "SPA_SPECIAL_COUPLE") {
+        console.log("🚀 SPA SPECIAL COUPLE handleSubmit called!");
+        console.log("🔍 spaBookingMeta:", spaBookingMeta);
+        
+        const bookingEndpoint = `${BACKEND}/api/spa/appointments`;
+        
+        // Convert Date object to YYYY-MM-DD format
+        let dateStr;
+        if (formData.preferredDate instanceof Date) {
+          const year = formData.preferredDate.getFullYear();
+          const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
+          const day = String(formData.preferredDate.getDate()).padStart(2, '0');
+          dateStr = `${year}-${month}-${day}`;
+        } else {
+          dateStr = formData.preferredDate;
+        }
+        
+        const payload = {
+          client_first_name: formData.firstName,
+          client_last_name: formData.lastName,
+          client_phone: formData.phone,
+          client_email: formData.email,
+          appointment_date: dateStr,
+          start_time: `${dateStr}T${formData.preferredTime}:00`,
+          spa_category: "spa_special_couple",
+          spa_package_id: spaBookingMeta.spa_package_id || spaBookingMeta.spaPackageId,
+          service_name: `SPA Special: ${spaBookingMeta.spaName}`,
+          guests: 2,
+          duration: spaBookingMeta.totalDuration || spaBookingMeta.duration || 210,
+          notes: formData.message,
+          final_price: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
+          original_price: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
+        };
+        
+        console.log("📦 SPA SPECIAL COUPLE payload:", payload);
+        
+        try {
+          const response = await fetch(bookingEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          
+          const responseText = await response.text();
+          console.log("📥 Response:", response.status, responseText);
+          
+          if (!response.ok) {
+            if (response.status === 404) {
+              setError("⚠️ Backend nema SPA booking endpoint. Kontaktirajte recepciju.");
+              alert("Backend nema SPA booking endpoint (/api/spa/appointments).\nKontaktirajte recepciju. (404)");
+            } else {
+              setError("Greška pri zakazivanju: " + responseText);
+            }
+            setSubmitStatus("error");
+            setIsSubmitting(false);
+            return;
+          }
+          
+          // Check if response has ID
+          let data = {};
+          try { data = responseText ? JSON.parse(responseText) : {}; } catch {}
+          
+          if (!data?.id) {
+            console.warn("⚠️ Booking response has no ID");
+          }
+          
+          console.log("✅ SPA SPECIAL COUPLE booked:", data);
+          setSubmitStatus("success");
+          setIsSubmitting(false);
+          return;
+        } catch (err) {
+          console.error("❌ SPA SPECIAL COUPLE error:", err);
+          setError("Greška: " + (err.message || "Network error"));
+          setSubmitStatus("error");
+          setIsSubmitting(false);
+          return;
+        }
+      }
+      
       // SPA BOOKING GRANA – Handle before single/couples logic
-      if (formData.source === "spa" && spaBookingMeta) {
+      if ((formData.source === "spa" || formData.source === "spaZone" || formData.source === "spaSpecial") && spaBookingMeta) {
         console.log("🚀 SPA handleSubmit called!");
         console.log("🔍 spaBookingMeta:", spaBookingMeta);
 
