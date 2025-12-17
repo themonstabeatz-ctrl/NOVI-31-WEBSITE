@@ -508,10 +508,11 @@ const Spa = () => {
 
     const params = new URLSearchParams({
       source: "spa",
+      spaCategory: "SPA_RITUAL",
       spaPackageId: pkg.id,
-      spaPackageName: pkg.name,
-      totalMinutes: String(totalMinutes),
-      totalPrice: String(totalPrice),
+      spaName: pkg.name,
+      duration: String(totalMinutes),
+      price: String(totalPrice),
       spaZoneLabel: spaZoneLabel
     });
 
