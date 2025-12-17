@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getBackendUrl } from '../config/backendUrl';
 
 /**
  * 🔒 OSIGURAČ: Backend Health Check Component
@@ -6,7 +7,7 @@ import React, { useState, useEffect } from 'react';
  * Na load proverava /api/health endpoint.
  * Ako backend nije dostupan, prikazuje jasnu poruku umesto da se app raspadne.
  * 
- * LOCKED TO: https://massage-hub-10.preview.emergentagent.com
+ * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
  */
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
@@ -16,21 +17,13 @@ const BackendHealthCheck = ({ children }) => {
 
   useEffect(() => {
     const checkBackendHealth = async (attempt = 1) => {
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-      const ORIGIN = window.location.origin;
-      
-      // 🔍 DEBUG LOG: origin + backend url
-      console.log('🔍 CORS DEBUG:', { origin: ORIGIN, backendUrl: BACKEND_URL, attempt });
+      const BACKEND_URL = getBackendUrl();
       
       // 🔒 OSIGURAČ: Provera da je URL ispravan
       if (!BACKEND_URL) {
         setStatus('error');
-        setErrorMessage('REACT_APP_BACKEND_URL nije definisan u .env fajlu');
+        setErrorMessage('Backend URL nije dostupan');
         return;
-      }
-
-      if (!BACKEND_URL.includes('massage-scheduler-4.preview.emergentagent.com')) {
-        console.warn('⚠️ Backend URL nije massage-scheduler-4:', BACKEND_URL);
       }
 
       try {
