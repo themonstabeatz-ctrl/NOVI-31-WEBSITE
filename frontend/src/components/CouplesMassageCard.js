@@ -47,6 +47,12 @@ const CouplesMassageCard = ({
 }) => {
   
   const navigate = useNavigate();
+
+  // 🔍 DIJAGNOSTIKA: Log ORIGIN i API_BASE jednom na load
+  React.useEffect(() => {
+    console.log("🔍 [CouplesMassageCard.js] ORIGIN:", window.location.origin);
+    console.log("🔍 [CouplesMassageCard.js] API_BASE:", API_BASE);
+  }, []);
   
   // Get discount for "Masaža za parove"
   // Load massages dynamically from booking system
