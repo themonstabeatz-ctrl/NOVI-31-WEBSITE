@@ -1819,32 +1819,47 @@ const Spa = () => {
                     </p>
                   </div>
 
-                  {/* Book Button */}
+                  {/* Book Button - FIX A: type="button" + logging */}
                   <button
-                    onClick={() => handleSpaBookClick(SPA_ZONE_ONLY)}
+                    type="button"
+                    onClick={() => {
+                      console.log("[SPA_ZONE] Book click", { selectedZones, totalPrice, totalMinutes });
+                      if (totalPrice === 0) {
+                        alert("Izaberite bar jednu SPA zonu (Sauna, Parno kupatilo ili Jacuzzi).");
+                        return;
+                      }
+                      handleSpaBookClick(SPA_ZONE_ONLY);
+                    }}
+                    disabled={totalPrice === 0}
                     style={{
                       width: '100%',
                       padding: '0.7rem',
-                      background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                      background: totalPrice === 0 
+                        ? 'linear-gradient(135deg, #666 0%, #888 100%)' 
+                        : 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
                       border: 'none',
                       borderRadius: '8px',
-                      color: '#1a1a1a',
+                      color: totalPrice === 0 ? '#aaa' : '#1a1a1a',
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
-                      cursor: 'pointer',
+                      cursor: totalPrice === 0 ? 'not-allowed' : 'pointer',
                       transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                      boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
+                      position: 'relative',
+                      zIndex: 10
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                      if (totalPrice > 0) {
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
+                      }
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = 'translateY(0)';
                       e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
                     }}
                   >
-                    Zakažite
+                    {totalPrice === 0 ? 'Izaberite zonu' : 'Zakažite'}
                   </button>
                 </CardContent>
               </Card>
