@@ -603,7 +603,7 @@ const Contact = () => {
           duration: spaBookingMeta.totalMinutes,
           duration_type: spaBookingMeta.totalMinutes,
           notes: formData.message,
-          service_name: `SPA: ${spaBookingMeta.spaPackageName} (${spaBookingMeta.variantLabel})`,
+          service_name: `SPA: ${spaBookingMeta.spaName}${spaBookingMeta.variantLabel ? ` (${spaBookingMeta.variantLabel})` : ''}`,
 
           // Snapshot prices for analytics
           final_price: spaBookingMeta.totalPrice,
