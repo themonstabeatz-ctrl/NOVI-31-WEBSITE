@@ -9,6 +9,7 @@ import { Textarea } from "../components/ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Instagram, Send, X, Calendar } from "lucide-react";
 import { LOCKDOWN } from "../lockdown";
+import { getBackendUrl } from "../config/backendUrl";
 
 const EXPECTED = "BL_LOCK_2025_12_16";
 if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
