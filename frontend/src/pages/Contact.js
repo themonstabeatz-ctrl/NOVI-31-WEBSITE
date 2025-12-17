@@ -1569,11 +1569,18 @@ const Contact = () => {
                         <svg style={{ width: '32px', height: '32px', color: '#22c55e', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span style={{ color: '#22c55e', fontWeight: 'bold', fontSize: '1.1rem' }}>
-                          {formData.source === 'voucher' ? translate("successVoucher") : 
-                           formData.source === 'booking' ? translate("successBooking") : 
-                           translate("successMessage")}
-                        </span>
+                        <div style={{ color: '#22c55e', fontWeight: 'bold', fontSize: '1.1rem', whiteSpace: 'pre-line' }}>
+                          {/* ✅ UX FIX E: Show booking details in success message */}
+                          {successMsg || (
+                            formData.source === 'voucher' ? translate("successVoucher") : 
+                            formData.source === 'booking' ? translate("successBooking") : 
+                            translate("successMessage")
+                          )}
+                        </div>
+                        {/* ✅ UX FIX: Redirect notice */}
+                        <div style={{ color: '#888', fontSize: '0.85rem', marginTop: '0.5rem' }}>
+                          Preusmeravanje na početnu za 3 sekunde...
+                        </div>
                       </>
                     ) : (
                       <>
