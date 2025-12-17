@@ -1464,7 +1464,7 @@ const Spa = () => {
                         <span>Bez SPA zone</span>
                       </label>
                       
-                      {/* Sauna option */}
+                      {/* Sauna option - ✅ Shows "(uključeno)" not "+0 RSD" */}
                       <label style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -1491,10 +1491,10 @@ const Spa = () => {
                             height: '10px'
                           }}
                         />
-                        <span>Sauna – 15 min</span>
+                        <span>Sauna – 15 min <span style={{ color: '#4ade80', fontWeight: '600' }}>(uključeno)</span></span>
                       </label>
                       
-                      {/* Parno kupatilo option */}
+                      {/* Parno kupatilo option - ✅ Shows "(uključeno)" not "+0 RSD" */}
                       <label style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -1521,7 +1521,7 @@ const Spa = () => {
                             height: '10px'
                           }}
                         />
-                        <span>Parno kupatilo – 15 min</span>
+                        <span>Parno kupatilo – 15 min <span style={{ color: '#4ade80', fontWeight: '600' }}>(uključeno)</span></span>
                       </label>
                     </div>
                   </div>
