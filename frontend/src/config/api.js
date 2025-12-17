@@ -4,14 +4,14 @@
  * Svi API pozivi MORAJU koristiti API_BASE iz ovog fajla.
  * ZABRANJENO je hardkodiranje URL-ova bilo gde u kodu.
  * 
- * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
+ * LOCKED TO: https://spa-dashboard-2.preview.emergentagent.com
  */
 
 // ✅ JEDINI SOURCE-OF-TRUTH za backend URL
 // Prioritet: .env varijabla -> hardcoded fallback
 export const API_BASE = 
   process.env.REACT_APP_BACKEND_URL ||
-  "https://massage-scheduler-4.preview.emergentagent.com";
+  "https://spa-dashboard-2.preview.emergentagent.com";
 
 // 🔴 HARD FAIL: Provera da URL pokazuje na pravi backend
 if (API_BASE.includes("massage-hub-") || API_BASE.includes("relaxhub-")) {
@@ -83,6 +83,7 @@ export const API_CONFIG = {
     APPOINTMENTS_COUPLE: '/api/appointments/couple',
     SPA_APPOINTMENTS: '/api/spa/appointments',
     SPA_SERVICES: '/api/spa/services',
+    SPA_QUOTE: '/api/spa/quote',
   },
   
   // Helper funkcije
