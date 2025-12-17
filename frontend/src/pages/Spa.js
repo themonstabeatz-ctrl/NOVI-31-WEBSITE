@@ -580,21 +580,29 @@ const Spa = () => {
     const totalMinutes = HERBAL_BASE_MINUTES + (hasSpa ? HERBAL_SPA_BONUS : 0);
     const totalPrice = HERBAL_PRICE;
     
-    // Determine SPA zone label
+    // Determine SPA zone label and included zone
     let spaZoneLabel = "Bez SPA zone";
-    if (selectedZone === "SAUNA_15") spaZoneLabel = "Sauna – 15 min";
-    if (selectedZone === "STEAM_15") spaZoneLabel = "Parno kupatilo – 15 min";
+    let includedSpaZone = "none";
+    if (selectedZone === "SAUNA_15") {
+      spaZoneLabel = "Sauna – 15 min (uključeno)";
+      includedSpaZone = "sauna15";
+    }
+    if (selectedZone === "STEAM_15") {
+      spaZoneLabel = "Parno kupatilo – 15 min (uključeno)";
+      includedSpaZone = "steam15";
+    }
 
     const params = new URLSearchParams({
       source: "spa",
       spaCategory: "SPA_HERBAL",
       spaPackageId: card.id,
       spaName: card.name,
-      variantId: `${card.id}_BASE`,
-      variantLabel: "Osnovni paket (telo + SPA zona)",
+      basePrice: String(HERBAL_PRICE),
+      baseDuration: String(HERBAL_BASE_MINUTES),
+      includedSpaZone: includedSpaZone,
       spaZoneLabel: spaZoneLabel,
-      duration: String(totalMinutes),
-      price: String(totalPrice)
+      totalPrice: String(totalPrice),
+      totalDuration: String(totalMinutes)
     });
 
     console.log("📍 HERBAL package booking params:", Object.fromEntries(params));
