@@ -59,6 +59,18 @@ backend:
         agent: "testing"
         comment: "✅ TESTED: Direct connection to reception backend https://relaxhub-1.preview.emergentagent.com working. Returns 247 total services, confirming external API is accessible."
 
+  - task: "Backend API Service Endpoints"
+    implemented: true
+    working: false
+    file: "backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL ISSUE: Backend /api/services endpoints returning 500 Internal Server Error. Logs show 'Error fetching services from booking system' repeatedly. This breaks service loading on frontend pages and prevents proper booking functionality. All API calls to /api/services/single/list and /api/services/couples/list are failing."
+
 frontend:
   - task: "UX Success Message + Redirect Flow"
     implemented: true
