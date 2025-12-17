@@ -824,7 +824,7 @@ const Contact = () => {
         const bookingEndpoint = `${BACKEND}/api/spa/appointments`;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', bookingEndpoint);
-        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-scheduler-4:', bookingEndpoint.includes('massage-scheduler-4'));
+        console.log('🔒 LOCKDOWN CHECK: Booking endpoint:', bookingEndpoint);
 
         // Convert Date object to YYYY-MM-DD format
         let dateStr;
