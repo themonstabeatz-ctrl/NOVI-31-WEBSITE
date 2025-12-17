@@ -105,7 +105,7 @@ const Contact = () => {
   useEffect(() => {
     const loadServices = async () => {
       try {
-        const backendUrlRaw = getBackendUrl();
+        const backendUrlRaw = API_BASE;
         
         if (!backendUrlRaw) {
           throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
