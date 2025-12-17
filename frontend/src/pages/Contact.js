@@ -398,7 +398,7 @@ Ukupna cena: ${totalPriceFormatted} RSD
     console.log('📍 Backend URL is:', getBackendUrl());
     
     // 🔒 LOCKDOWN PROTECTION: Warn if booking goes to wrong domain (don't crash app)
-    const BACKEND = process.env.REACT_APP_BACKEND_URL;
+    const BACKEND = getBackendUrl();
     const expected = "massage-scheduler-4.preview.emergentagent.com";
     const actual = (BACKEND || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
     
