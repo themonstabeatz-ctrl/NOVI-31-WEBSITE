@@ -1289,6 +1289,23 @@ const Spa = () => {
         margin: '0 auto',
         background: 'transparent'
       }}>
+        <h2 style={{
+          textAlign: 'center',
+          fontSize: '2.5rem',
+          color: '#d4af37',
+          marginBottom: '1rem'
+        }}>
+          Herbal Rituals
+        </h2>
+        <p style={{
+          textAlign: 'center',
+          color: '#c0baa8',
+          maxWidth: '700px',
+          margin: '0 auto 3rem',
+          fontSize: '1.1rem'
+        }}>
+          Tradicionalni tajlandski Herbal Compress tretmani sa uključenom SPA zonom
+        </p>
         <div className="spa-ritual-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
