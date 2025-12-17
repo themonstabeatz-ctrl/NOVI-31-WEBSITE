@@ -25,6 +25,7 @@ const Contact = () => {
   const { translate, language } = useLanguage();
   const { toast } = useToast();
   const location = useLocation();
+  const navigate = useNavigate(); // ✅ FIX: Added for redirect after booking success
   
   // Helper function to translate massage names
   const translateMassageName = (massageName) => {
