@@ -300,14 +300,26 @@ const Spa = () => {
   const [spaZonePrices, setSpaZonePrices] = useState({});
   const [spaZoneError, setSpaZoneError] = useState(null);
 
-  // ✅ Fetch SPA Zone prices from API
+  // ✅ Fetch SPA Zone prices from API with safeJson
   useEffect(() => {
     const fetchSpaZonePrices = async () => {
       try {
         console.log('📥 Loading SPA Zone prices from API...');
         const res = await fetch(`${API_BASE}/api/spa/services`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const services = await res.json();
+        
+        // ✅ FIX: Read body only once to avoid "body stream already read"
+        const raw = await res.text();
+        let services = [];
+        try {
+          services = raw ? JSON.parse(raw) : [];
+        } catch {
+          console.error('❌ Failed to parse SPA services JSON:', raw);
+          throw new Error('Invalid JSON response');
+        }
+        
+        if (!res.ok) {
+          throw new Error(services?.error || services?.message || `HTTP ${res.status}`);
+        }
         
         // Build price map from spa_zone category services
         const zoneMap = {};
