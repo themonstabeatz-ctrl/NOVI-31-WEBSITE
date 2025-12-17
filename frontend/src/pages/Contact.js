@@ -1223,7 +1223,7 @@ const Contact = () => {
         const finalEndpoint = url;
         
         console.log('🔥 FINAL BOOKING ENDPOINT:', finalEndpoint);
-        console.log('🔒 LOCKDOWN CHECK: URL must contain massage-scheduler-4:', url.includes('massage-scheduler-4'));
+        console.log('🔒 LOCKDOWN CHECK: Booking URL:', url);
         console.log('📦 FULL PAYLOAD being sent:', JSON.stringify(appointmentData, null, 2));
         
         // ✅ DOKAZ: Eksplicitni log za discount/price polja
