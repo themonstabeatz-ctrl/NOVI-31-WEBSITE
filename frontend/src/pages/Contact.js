@@ -145,6 +145,7 @@ const Contact = () => {
   
   // ✅ UX FIX: Success message with auto-hide and booking details
   const [successMsg, setSuccessMsg] = useState("");
+  const [redirectCountdown, setRedirectCountdown] = useState(0);
   
   // ✅ UX FIX A: Auto-hide success message after 6 seconds
   useEffect(() => {
@@ -155,6 +156,20 @@ const Contact = () => {
     }, 6000);
     return () => clearTimeout(t);
   }, [successMsg]);
+  
+  // ✅ UX FIX: Countdown timer for redirect
+  useEffect(() => {
+    if (redirectCountdown <= 0) return;
+    const t = setTimeout(() => setRedirectCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [redirectCountdown]);
+  
+  // ✅ UX FIX: Redirect when countdown reaches 0
+  useEffect(() => {
+    if (redirectCountdown === 1) {
+      navigate("/");
+    }
+  }, [redirectCountdown, navigate]);
   
   // SPA booking metadata
   const [spaBookingMeta, setSpaBookingMeta] = useState(null);
