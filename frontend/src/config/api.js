@@ -1,16 +1,26 @@
 /**
- * 🔒 CENTRALNI API CONFIG - OSIGURAČ
+ * 🔒 CENTRALNI API CONFIG - JEDINI IZVOR ISTINE
  * 
- * Svi API pozivi MORAJU koristiti ovaj config.
+ * Svi API pozivi MORAJU koristiti API_BASE iz ovog fajla.
  * ZABRANJENO je hardkodiranje URL-ova bilo gde u kodu.
  * 
- * LOCKED TO: https://relaxhub-1.preview.emergentagent.com
+ * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
  */
 
-import { getBackendUrl } from './backendUrl';
-
 // ✅ JEDINI SOURCE-OF-TRUTH za backend URL
-export const API_BASE = getBackendUrl();
+// Prioritet: .env varijabla -> hardcoded fallback
+export const API_BASE = 
+  process.env.REACT_APP_BACKEND_URL ||
+  "https://massage-scheduler-4.preview.emergentagent.com";
+
+// 🔴 HARD FAIL: Provera da URL pokazuje na pravi backend
+if (API_BASE.includes("massage-hub-") || API_BASE.includes("relaxhub-")) {
+  console.error("🔴 FATAL: API_BASE points to FRONTEND domain:", API_BASE);
+  throw new Error("FATAL API CONFIG: API_BASE points to frontend domain, not backend!");
+}
+
+// ✅ DIJAGNOSTIKA: Log na load
+console.log("✅ API_BASE (source of truth):", API_BASE);
 
 // Export config
 export const API_CONFIG = {

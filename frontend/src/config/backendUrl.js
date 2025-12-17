@@ -1,23 +1,17 @@
-// /app/frontend/src/config/backendUrl.js
+/**
+ * 🔒 DEPRECATED - Koristi API_BASE iz api.js umesto ovoga!
+ * 
+ * Ovaj fajl postoji samo za backward compatibility.
+ * Svi novi pozivi treba da koriste:
+ *   import { API_BASE } from '../config/api';
+ */
 
-const DEFAULT_BACKEND =
-  "https://relaxhub-1.preview.emergentagent.com";
+import { API_BASE } from './api';
 
+// ✅ DEPRECATED: Koristi API_BASE direktno
 export function getBackendUrl() {
-  const env = (process.env.REACT_APP_BACKEND_URL || "").trim();
-
-  // 🔴 HARD FAIL: Ako .env pokušava da postavi pogrešan backend
-  if (env.includes("massage-hub-")) {
-    console.error("🔴 FATAL: REACT_APP_BACKEND_URL points to frontend domain:", env);
-    throw new Error("FATAL BACKEND URL MISCONFIG (frontend domain)");
-  }
-
-  const isScheduler =
-    env.startsWith("https://massage-scheduler-") ||
-    env === DEFAULT_BACKEND;
-
-  const backend = isScheduler ? env : DEFAULT_BACKEND;
-
-  console.log("✅ BACKEND_URL (guarded):", backend);
-  return backend;
+  console.warn("⚠️ DEPRECATED: getBackendUrl() - koristi API_BASE iz api.js");
+  return API_BASE;
 }
+
+export default getBackendUrl;
