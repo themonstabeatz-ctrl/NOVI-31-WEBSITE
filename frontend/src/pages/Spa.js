@@ -1125,7 +1125,7 @@ const Spa = () => {
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>+{formatNumber(option.extraPrice)} RSD</span>
+                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>{formatNumber(option.totalPrice)} RSD</span>
                               </span>
                             </label>
                           );
@@ -1655,7 +1655,7 @@ const Spa = () => {
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>+{formatNumber(option.extraPrice)} RSD</span>
+                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>{formatNumber(option.totalPrice)} RSD</span>
                               </span>
                             </label>
                           );
