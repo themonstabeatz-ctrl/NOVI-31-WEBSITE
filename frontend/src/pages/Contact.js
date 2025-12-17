@@ -916,16 +916,16 @@ const Contact = () => {
         console.log("✅ SPA booking successful!");
         
         // Get date/time from formData for success message
-        let dateStr = "";
+        let spaDateStr = "";
         if (formData.preferredDate instanceof Date) {
           const day = String(formData.preferredDate.getDate()).padStart(2, '0');
           const month = String(formData.preferredDate.getMonth() + 1).padStart(2, '0');
           const year = formData.preferredDate.getFullYear();
-          dateStr = `${day}.${month}.${year}`;
+          spaDateStr = `${day}.${month}.${year}`;
         }
         
         handleBookingSuccess({
-          date: dateStr,
+          date: spaDateStr,
           time: formData.preferredTime,
           serviceName: spaBookingMeta?.spaName || "SPA tretman",
           bookingId: "spa-success"
