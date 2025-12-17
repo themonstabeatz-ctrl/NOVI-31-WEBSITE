@@ -77,6 +77,19 @@ const Contact = () => {
       serviceName.includes(translation)
     );
   };
+
+  // ✅ SPA HELPER: Format RSD price
+  const formatRsd = (n) => {
+    const x = Number(n || 0);
+    return x.toLocaleString('sr-RS') + ' RSD';
+  };
+
+  // ✅ SPA FLOW: Check if this is SPA booking
+  const getSpaFlowType = () => {
+    const params = new URLSearchParams(location.search);
+    const source = params.get('source');
+    return ['spa', 'spaZone', 'spaSpecial'].includes(source) ? source : null;
+  };
   
   const [formData, setFormData] = useState({
     firstName: "",
