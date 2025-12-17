@@ -1,7 +1,7 @@
 // /app/frontend/src/config/backendUrl.js
 
 const DEFAULT_BACKEND =
-  "https://massage-scheduler-4.preview.emergentagent.com";
+  "https://relaxhub-1.preview.emergentagent.com";
 
 export function getBackendUrl() {
   const env = (process.env.REACT_APP_BACKEND_URL || "").trim();

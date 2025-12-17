@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://massage-hub-10.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://relaxhub-1.preview.emergentagent.com')
 
 class CouplesMassageReviewTester:
     def __init__(self):
@@ -252,7 +252,7 @@ class CouplesMassageReviewTester:
             external_urls = [
                 "https://spabooking.emergent.host",
                 "https://pozdrav-kako-si.emergent.host",
-                "https://massage-hub-10.preview.emergentagent.com"
+                "https://relaxhub-1.preview.emergentagent.com"
             ]
             
             async with httpx.AsyncClient(timeout=10.0) as client:

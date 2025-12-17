@@ -1,47 +1,62 @@
 <analysis>**original_problem_statement:**
-The user's primary goal is to ensure the frontend application is reliably connected to the correct external backend API. This has involved a series of urgent, iterative fixes.
-
-The core tasks have been:
-1.  **Backend Re-platforming**: The user has repeatedly changed the backend API URL. The agent's main task is to update the frontend's environment variables () and configuration to point to the correct, most recent backend URL. The latest instruction is to point to .
-2.  **Fixing Runtime Errors**: The agent was tasked with fixing several critical runtime errors, including:
-    *   : Resolved by setting  for the preview environment.
-    *   CORS errors: Caused by requests from the wrong origin or misconfiguration on the external backend.
-    *   : Caused by an  recording script interfering with . Resolved by conditionally loading the script only on localhost.
-    *    errors: Caused by a custom safeguard that would crash the app if the backend URL was incorrect. This was changed to a non-blocking .
-3.  **Implementing Safeguards**: At the user's request, the agent implemented three safeguards to make the application more resilient to backend failures and misconfigurations:
-    *   A backend  endpoint that also checks the status of the external API.
-    *   A frontend  component that shows a user-friendly message if the backend is unreachable, preventing the app from crashing.
-    *   A central frontend config file () to manage API URLs and endpoints.
-4.  **Enforcing Lockdown Rules**: The user established strict rules forbidding hardcoded URLs, logic changes, and local-only hacks, mandating that all API calls must use the  environment variable.
+The user's primary goal is to build a full-featured booking website for a massage and spa business. The development has been highly iterative, focusing on several key areas:
+1.  **Backend Connectivity**: A major recurring issue has been ensuring the frontend () reliably connects to the correct backend API (). This led to the implementation of a robust, permanent URL guard to prevent the environment from overriding the correct backend URL.
+2.  **Couples Massage Booking Logic**: The user reported numerous bugs related to booking massages for couples, especially with different duration combinations (e.g., one person booking a 120-min massage vs. another booking two 60-min massages). This required significant debugging and refinement of the validation logic in .
+3.  **Booking Submission Failures**: A bug was discovered where the backend was rejecting valid bookings due to a PRICE LOCK error. The agent diagnosed this as a backend issue where the discounted price was being checked instead of the original price and reported it to the user.
+4.  **UI & Logic Lockdown**: To prevent regressions on the now-stable massage booking features, the user mandated a lockdown mechanism, adding code guards to critical files (, , ) to prevent unauthorized changes.
+5.  **SPA Booking Flow Separation**: The user requested that the booking flow for SPA packages be completely separate from the regular massage booking flow. This involved hiding the massage selection dropdown on the contact page for SPA bookings and passing all necessary information via URL parameters.
+6.  **SPA Add-on Calculation**: The user required the implementation of complex UI and calculation logic for SPA ritual add-ons (face massage, sauna, steam, jacuzzi), including dynamic calculation of total price and duration.
 
 **User's preferred language**: Serbian
 
 **what currently exists?**
-The application is a React frontend and a FastAPI backend that primarily acts as a proxy. The agent has just updated the configuration to point to a new external backend.
-
-Key components and safeguards are in place:
--   A  component in the frontend checks for backend availability on application load.
--   A  in  triggers if the backend URL is misconfigured, preventing the app from crashing.
--   A central  config file helps manage endpoints.
--   The  script, which previously caused issues, is now disabled in the preview environment.
+The application is a React frontend and a FastAPI backend.
+- **URL Guard**: A robust, permanent guard is implemented in  and centralized via . All API calls now use the exported  constant, which guarantees the frontend connects to . A hard fail mechanism () is in place to immediately stop the app if the  variable points to the wrong domain.
+- **Lockdown Mechanism**: Critical files related to massage and couples booking are protected by a code guard in , preventing modification without an explicit token change.
+- **Separated SPA Flow**: The booking flow for SPA packages is now separate. When a user navigates from the  page, the  page hides the massage selection dropdown and automatically populates a message with the SPA package details passed through URL parameters.
+- **SPA Add-on UI**: The UI for selecting add-ons (face massage, spa zones) for SPA Rituals is implemented, with dynamic calculation of the total price and duration displayed on the card.
 
 **Last working item**:
-- Last item agent was working: The user issued an urgent request to switch the frontend's connection to a new backend URL: . The agent updated the  file, updated hardcoded string checks in the safeguard components to reference the new URL, cleared the application cache (), and restarted the services.
+- Last item agent was working: Implementing UI and calculation fixes for the **SPA Zone** and **Herbal Ritual** cards on the  page, as per the user's detailed instructions.
+    - **SPA Zone Card**: The task was to ensure this card (for booking zones without a ritual) calculates the total price and duration based on user selections and sends the correct parameters () to the contact page.
+    - **Herbal Ritual Cards**: The task was to fix the UI to display uključeno (included) for the complimentary 15-minute spa session, instead of the incorrect +0 RSD, and ensure the total price and duration remain constant.
 - Status: IN PROGRESS
 - Agent Testing Done: N
-- Which testing method agent to use? Manual testing using the screenshot tool. The user requires visual proof from the browser's Network tab showing successful  requests to  with a  status code.
+- Which testing method agent to use? Manual testing using the screenshot tool to verify the UI changes on the  page, specifically checking the SPA Zone card and the three Herbal Ritual cards. The test involves selecting options and clicking Zakažite to verify the correct parameters are passed to the  page URL and the message is displayed correctly.
 - User Testing Done: N
 
 **All Pending/In progress Issue list**:
-  - **Issue 1 (P0)**: An unstable  file. The  file spontaneously reverts to old values, causing connection failures, CORS errors, and incorrect endpoint routing. This is a high-frequency, recurring environmental issue and the root cause of most problems in this job.
+- **Issue 1 (P0)**: An unstable  file. The  file spontaneously reverts to an incorrect value ( instead of ). While the URL Guard now causes a hard fail and prevents the app from running with the wrong backend, the underlying environmental issue persists, forcing the agent to repeatedly fix the file and restart the service. **This is the root cause of most session interruptions.**
+- **Issue 2 (P1)**: The backend  bug. The external backend () incorrectly validates the *final discounted price* instead of the *original price* for couples massages. This blocks any discounted couples booking from succeeding. The agent has proven this with  and reported it.
+
+  **Issues Detail:**
+  - **Issue 1: Unstable .env file**
+     - Attempted fixes: A permanent URL guard () was implemented to throw a fatal error if the  file contains the wrong URL. This prevents silent failure but does not fix the root environmental problem.
+     - Next debug checklist: Before starting any work, check the console log of the preview URL. If a blank white screen and a FATAL BACKEND URL MISCONFIG error appear, the  file has reverted. The fix is to overwrite  with the correct  and restart the frontend service.
+     - Why fix this issue and what will be achieved with this fix?: Fixing the root cause would eliminate the need for constant manual intervention, significantly speeding up development and increasing stability.
+     - Status: BLOCKED (Environmental issue)
+     - Is recurring issue?: Y
+     - Should Test frontend/backend/both after fix?: N/A
+     - Blocked on other issue: No.
+  - **Issue 2: Backend  Bug**
+     - Attempted fixes: The agent diagnosed the issue and provided a  proof to the user, confirming it's a backend problem. No frontend fix is possible or allowed.
+     - Next debug checklist: This issue is on hold. Wait for user confirmation that the backend () has been fixed.
+     - Why fix this issue and what will be achieved with this fix?: This will unblock the entire booking flow for discounted couples massages.
+     - Status: BLOCKED (Waiting for external backend fix)
+     - Is recurring issue?: Y
+     - Should Test frontend/backend/both after fix?: Backend (once fixed), then Frontend e2e booking test.
+     - Blocked on other issue: No.
 
 **In progress Task List**:
-  - **Task 1 (P0)**: Verify connection to the new backend.
-     - **Where to resume**: The agent has updated the URL, cleared the cache, and restarted services. The immediate next step is to open the preview URL (), open browser DevTools, and take a screenshot of the Network tab to verify that API calls are being made to  and are returning a  status.
-     - **What will be achieved with this?**: The application will be successfully connected to the latest backend as per the user's request.
-     - **Status**: IN PROGRESS
-     - **Should Test frontend/backend/both after fix?**: Frontend
-     - **Blocked on something**: Potentially blocked by the recurring  file issue (Issue 1). Before testing, the agent must first verify the contents of .
+- **Task 1 (P0)**: Complete UI/calculation fixes for SPA Zone & Herbal cards.
+  - **Where to resume**: The agent was working in . It needs to:
+      1.  Finalize the implementation for the SPA ZONE card to correctly calculate  and  from selected zones, show a validation error if no zone is selected, and navigate to  with  and all calculated totals.
+      2.  Finalize the implementation for the three HERBAL cards to ensure the UI displays uključeno for the included 15-min spa zone, removes any +0 RSD text, and correctly sends  (or ) as a parameter.
+      3.  Update  to correctly parse and display the detailed breakdown for bookings coming from  and .
+  - **What will be achieved with this?**: The SPA booking functionality will be complete and correct as per the user's latest requirements, making the  page fully functional.
+  - **Status**: IN PROGRESS
+  - **Should Test frontend/backend/both after fix?**: Frontend
+  - **Blocked on something**: Potentially the recurring  issue.
 
 **Upcoming and Future Tasks**
 - **Upcoming Tasks**:
@@ -49,81 +64,89 @@ Key components and safeguards are in place:
 - **Future Tasks**:
     - **Task 1**: The user may request to update the prices for SPA zones.
     - **Task 2**: Consider the development of a mobile application.
+    - **Task 3**: Connect the SPA services/prices to a backend API endpoint () once the admin panel is ready, removing the hardcoded values from the frontend.
 
 **Completed work in this session**
-- **Backend Re-platforming**: Successfully updated the frontend multiple times to connect to different backend URLs provided by the user, culminating in the current effort to switch to .
-- **Invalid Host header Fix**: Resolved the preview environment error by adding  to .
-- **rrweb Interference Fix**: Modified  to prevent the  script from loading in the preview environment, which fixed a Response body is already used error.
-- **Safeguard 1 (Backend Health)**: Implemented a  endpoint in  that checks the status of both the local service and the external booking API.
-- **Safeguard 2 (Frontend Health Check)**: Created and integrated the  component, which gracefully handles backend connection failures by displaying a message instead of crashing the app.
-- **Safeguard 3 (Configuration Check)**: Modified  to replace a crash-inducing  with a non-blocking  if the backend URL is misconfigured.
+- **Permanent Backend Connection Guard**: Implemented a hard fail guard in  and centralized its use via  in  to ensure the app always connects to the correct backend URL, solving a major recurring problem.
+- **Code Lockdown**: Created  and added guards to , , and  to prevent unauthorized changes to stable features.
+- **Couples Massage Logic Fix**: Corrected the validation logic in  to properly handle various duration combinations (e.g., 1x120min vs 2x60min) by calculating total minutes.
+- **SPA Booking Flow Separation**: Modified  to hide the massage selection dropdown for all SPA-related bookings (, , ), creating a distinct booking path.
+- **SPA Ritual Add-on Calculation**: Implemented state and calculation logic in  for SPA Ritual add-ons (face massage, sauna, etc.), allowing users to select options and see dynamically updated totals.
+- **Email Template Updates**: Updated the logo and background images in the backend email templates ().
+- **Email Duration Fix**: Corrected the logic in  to ensure the correct duration ( instead of ) is sent for couples massages, fixing the text in the confirmation email.
 
 **Earlier issues found/mentioned but not fixed**
-   - **Issue 1: Unstable Environment Variables**: The  file spontaneously reverts to old values, requiring the agent to manually verify and correct it before almost every major step. This is a persistent, high-priority environmental issue.
-     - **Debug checklist**: Before any task involving API calls, run  on  to confirm  is correct.
-     - **Why to solve this issue and what will be achieved with this?**: This is the root cause of nearly all connection and booking failures. Fixing it would dramatically increase application stability.
-     - **Should Test frontend/backend/both after fix**: N/A (Environmental)
-     - **Is recurring issue?**: Y
+- See **All Pending/In progress Issue list**. The two main unfixed issues are the environmental  file instability and the backend  bug.
 
 **Known issue recurrence from previous fork**
-  - **Issue recurrence in previous fork**: The  in  constantly and spontaneously reverts to an incorrect value.
-  - **Recurrence count**: Very High (occurred numerous times in this session).
-  - **Status**: BLOCKED (Environmental issue). The only workaround is manual verification before each step.
+- **Issue recurrence in previous fork**: The  file spontaneously reverts to an incorrect value.
+- **Recurrence count**: Extremely High. This has happened dozens of times.
+- **Status**: BLOCKED (Environmental). The workaround (URL Guard) is in place, but the root cause remains.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Environment-Driven Configuration**: The application's backend connection is strictly controlled by the  variable in . No hardcoded URLs are permitted.
-- **Defensive Programming (Safeguards)**: The user mandated adding checks (,  in ) to prevent the app from crashing due to backend unavailability or misconfiguration.
-- **Local vs. Preview Environments**: The user has strictly forbidden local-only development hacks (like  proxy), enforcing a preview-first approach where all testing must be valid on the live preview URL.
+- **Environment-Driven Configuration**: The app's backend URL is strictly controlled by a central guard function (), which is the single source of truth.
+- **Defensive Programming**: The codebase uses guards and lockdowns to prevent regressions and handle environmental instability gracefully (e.g., throwing a fatal error on misconfiguration).
+- **Conditional UI Rendering**: The frontend extensively uses URL query parameters (, etc.) to conditionally render different UI components and logic paths within the same page (e.g., ).
+- **Component State Management**: Complex state is managed within React components (, ) using  to handle user selections and dynamically calculate totals.
 
 **key DB schema**
-  - N/A
+  - N/A (Interacts with a backend API, no direct DB access)
 
 **changes in tech stack**
   - N/A
 
 **All files of reference**
--   **/app/frontend/.env**: **CRITICAL**. The source of most issues. Must be verified before every API-related action. The target value for  is .
--   **/app/frontend/src/pages/Contact.js**: Contains the booking logic and a key safeguard () for the backend URL.
--   **/app/frontend/src/components/BackendHealthCheck.js**: New component that checks backend health on load.
--   **/app/frontend/src/config/api.js**: New file intended to centralize API configuration.
--   **/app/frontend/public/index.html**: Modified to prevent  from loading in preview.
--   **/app/backend/server.py**: Contains the backend health check logic.
+-   **/app/frontend/src/config/backendUrl.js**: **CRITICAL**. Contains the permanent URL guard.
+-   **/app/frontend/src/config/api.js**: **CRITICAL**. Exports the  constant used for all API calls.
+-   **/app/frontend/src/pages/Spa.js**: **CRITICAL**. Contains all logic for SPA package selection, add-on calculation, and navigation to the contact page. This is the main file for the current task.
+-   **/app/frontend/src/pages/Contact.js**: **CRITICAL**. Contains the split logic for handling regular massage bookings vs. SPA bookings.
+-   **/app/frontend/src/lockdown.js**: Contains the lockdown tokens preventing changes to massage/couples logic.
+-   **/app/frontend/src/components/CouplesMassageCard.js**: Contains the complex logic for booking couples massages. Currently in lockdown.
+-   **/app/frontend/.env**: **CRITICAL & UNSTABLE**. Must be checked frequently. A wrong value will cause the app to crash intentionally. Correct value: .
 
 **key api endpoints**
--   **Host**: 
--    (or , )
--    (and )
+- **Host**:  (via )
+- 
+- 
+-  (Currently blocked by PRICE LOCK bug)
 
 **Critical Info for New Agent**
-1.  **LOCKDOWN RULES ARE IN EFFECT**: The user has specified strict rules: do not change any application logic, do not use local-only hacks, and use  for all API calls. The canonical frontend is  and the backend is .
-2.  **THE  FILE IS EXTREMELY UNSTABLE**: It frequently and spontaneously reverts to incorrect values. You **MUST** verify the contents of  before every single task involving API calls. Failure to do so will result in errors.
-3.  **TEST ON PREVIEW, NOT LOCALHOST**: All verification must be performed on the live preview URL (), not , as CORS policies and other environment factors are different.
-4.  **FOLLOW USER INSTRUCTIONS EXACTLY**: The user is very technical and provides precise, step-by-step instructions. Do not deviate.
+1.  **THE  FILE IS UNSTABLE**: The app will show a blank white page if the  file reverts to the wrong value. The first debugging step is ALWAYS to check the browser console for the FATAL BACKEND URL MISCONFIG error. If you see it, you must fix  and run frontend: stopped
+frontend: started.
+2.  **LOCKDOWN RULES ARE IN EFFECT**: You are forbidden from modifying , , and the booking logic in  unless explicitly approved by the user. These files are protected by a code guard. Your current work is confined to  and the SPA-related logic in .
+3.  **USE  FOR ALL API CALLS**: Do not use  or  directly. Import  from .
+4.  **BACKEND  BUG**: Be aware that booking discounted couples massages will fail due to a known backend bug. Do not attempt to fix this on the frontend. The issue is on hold.
 
 **documents created in this job**
   - 
   - 
+  - 
 
 **Last 10 User Messages and any pending user messages**
--   A series of urgent, iterative requests to diagnose and fix runtime errors ( crash, , incorrect booking endpoints) caused primarily by the unstable  file and  script interference. The user provided explicit instructions for each fix, which the agent implemented. The user then requested the implementation of three safeguards to make the app more robust. The final message is an urgent directive to switch the connection to a brand new backend URL (), which the agent began executing. This task is currently in progress.
+The user's last several messages focus on refining the SPA booking flow. They requested:
+1.  **Separating SPA booking**: Hiding the massage dropdown on the contact page if the user comes from the  page. (Completed)
+2.  **Standardizing URL parameters**: Ensuring all SPA cards send consistent parameters like , , , etc. (Completed)
+3.  **Implementing Add-on Calculation**: Adding state and calculation logic to the main SPA Ritual cards to handle optional add-ons like face massage and spa zones, dynamically updating the total price and duration. (Completed)
+4.  **Fixing SPA Zone & Herbal Cards**: The user's most recent request, which is **in progress**, is to fix the UI and calculation for the standalone SPA Zone card and the Herbal Ritual cards, which have slightly different logic from the main ritual cards.
 
 **Project Health Check:**
--   **Broken**: The application's connection to its backend is in a transitional state and is not functional until the switch to the new backend URL () is verified. The environment itself is unstable due to the  file issue.
+- **Broken**: The couples massage booking flow is blocked by a backend bug ( error). The UI and calculation logic for the SPA Zone and Herbal Rituals on the  page are incomplete and not functioning as per the user's latest request.
+- **Mocked**: N/A
 
 **3rd Party Integrations**
--   **Custom Backend API**: Connects to an external booking and services API, which is currently expected to be at .
+-   **Custom Backend API**: Connects to an external booking and services API at .
 
 **Testing status**
   - Testing agent used after significant changes: NO
-  - Troubleshoot agent used after agent stuck in loop: NO
+  - Troubleshoot agent used after agent stuck in loop: YES (once, but did not provide a complete analysis)
   - Test files created: []
-  - Known regressions: The  file value reverting is a severe and frequent environmental regression. The external backend has also shown instability in the past (returning 404s).
+  - Known regressions: The  file reverting is a severe and frequent environmental regression.
 
 **Credentials to test flow:**
 - N/A
 
 **What agent forgot to execute**
-- The agent was in the middle of executing the user's latest request to switch backend URLs. The final verification step for this task is pending.</analysis>
+- The agent was in the middle of implementing the user's last request to fix the SPA Zone and Herbal cards. It started the work but did not fully complete the logic for price calculation, UI text display (uključeno), and parameter passing as detailed in the user's instructions. The testing for this specific feature is also pending.</analysis>

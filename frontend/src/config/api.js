@@ -4,7 +4,7 @@
  * Svi API pozivi MORAJU koristiti ovaj config.
  * ZABRANJENO je hardkodiranje URL-ova bilo gde u kodu.
  * 
- * LOCKED TO: https://massage-scheduler-4.preview.emergentagent.com
+ * LOCKED TO: https://relaxhub-1.preview.emergentagent.com
  */
 
 import { getBackendUrl } from './backendUrl';
