@@ -266,13 +266,16 @@ const Contact = () => {
     
     // SPA BOOKING – URL format:
     // /contact?source=spa&spaCategory=...&spaPackageId=...&spaName=...&duration=...&price=...
-    if (source === "spa" || source === "spaSpecial" || source === "spaZone") {
+    // ✅ FIX B: Added "coupleSpecial" for Romantični paketi
+    if (source === "spa" || source === "spaSpecial" || source === "spaZone" || source === "coupleSpecial") {
       const spaCategory    = searchParams.get("spaCategory") || "SPA";
       const spaPackageId   = searchParams.get("spaPackageId");
+      const spa_package_id = searchParams.get("spa_package_id"); // For coupleSpecial
       const spaName        = searchParams.get("spaName") || searchParams.get("spaPackageName") || "SPA";
       const variantId      = searchParams.get("variantId");
       const variantLabel   = searchParams.get("variantLabel");
       const spaZoneLabel   = searchParams.get("spaZoneLabel");
+      const guests         = Number(searchParams.get("guests") || 1);
       
       // New detailed params
       const basePrice      = Number(searchParams.get("basePrice") || 0);
@@ -290,8 +293,8 @@ const Contact = () => {
       const formatRsdLocal = (n) => Number(n || 0).toLocaleString("sr-RS");
 
       console.log('🔍 SPA booking detected:', { 
-        source, spaCategory, spaPackageId, spaName, variantLabel, 
-        face, saunaMin, steamMin, jacuzziMin,
+        source, spaCategory, spaPackageId, spa_package_id, spaName, variantLabel, 
+        face, saunaMin, steamMin, jacuzziMin, guests,
         basePrice, addonPrice, totalPrice, totalDuration 
       });
 
@@ -300,6 +303,7 @@ const Contact = () => {
         source,
         spaCategory,
         spaPackageId,
+        spa_package_id, // For coupleSpecial
         spaName,
         variantId,
         variantLabel,
@@ -308,6 +312,7 @@ const Contact = () => {
         saunaMin,
         steamMin,
         jacuzziMin,
+        guests,
         basePrice,
         baseDuration,
         addonPrice,
