@@ -767,17 +767,27 @@ const Contact = () => {
             return;
           }
           
-          // Check if response has ID
+          // ✅ UX FIX D: Check if response has ID - no fake success
           let data = {};
           try { data = responseText ? JSON.parse(responseText) : {}; } catch {}
           
           if (!data?.id) {
-            console.warn("⚠️ Booking response has no ID");
+            console.error("❌ Booking response has no ID - rejecting");
+            setError("Greška: Rezervacija nije kreirana (BOOKING_NO_ID)");
+            setSubmitStatus("error");
+            setIsSubmitting(false);
+            return;
           }
           
           console.log("✅ SPA SPECIAL COUPLE booked:", data);
-          setSubmitStatus("success");
-          setIsSubmitting(false);
+          
+          // ✅ UX FIX: Use new success handler
+          handleBookingSuccess({
+            date: payload.appointment_date,
+            time: payload.start_time?.split('T')[1]?.substring(0, 5),
+            serviceName: spaBookingMeta.spaName,
+            bookingId: data.id
+          });
           return;
         } catch (err) {
           console.error("❌ SPA SPECIAL COUPLE error:", err);
