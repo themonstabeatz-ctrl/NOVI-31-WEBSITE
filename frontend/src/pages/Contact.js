@@ -303,27 +303,59 @@ const Contact = () => {
       // 2) Pre-populate form message with detailed breakdown
       let messageLines = [];
       
+      // ✅ Get additional params for different SPA categories
+      const includedSpaZone = searchParams.get("includedSpaZone");
+      const selectedSpaZones = searchParams.get("selectedSpaZones");
+      
       if (source === "spaSpecial") {
         messageLines.push(`Poseban SPA paket: ${decodeURIComponent(spaName)}`);
       } else if (source === "spaZone") {
-        messageLines.push(`SPA Zona rezervacija`);
-      } else {
+        // ✅ SPA ZONE ONLY - show selected zones
+        messageLines.push(`SPA Zona (samo zone, bez rituala)`);
+        if (selectedSpaZones) {
+          const zones = selectedSpaZones.split("|");
+          messageLines.push(`Izabrane zone:`);
+          zones.forEach(zone => {
+            messageLines.push(`  • ${zone}`);
+          });
+        } else if (spaZoneLabel && spaZoneLabel !== "Bez SPA zona") {
+          messageLines.push(`Izabrane zone: ${spaZoneLabel}`);
+        }
+      } else if (spaCategory === "SPA_HERBAL") {
+        // ✅ HERBAL packages - show included SPA zone
         messageLines.push(`SPA paket: ${decodeURIComponent(spaName)}`);
-      }
+        
+        // Show included SPA zone (doesn't affect price)
+        if (includedSpaZone && includedSpaZone !== "none") {
+          let zoneName = "Bez";
+          if (includedSpaZone === "sauna15") zoneName = "Sauna 15 min";
+          if (includedSpaZone === "steam15") zoneName = "Parno kupatilo 15 min";
+          messageLines.push(`SPA zona (uključeno): ${zoneName}`);
+        } else {
+          messageLines.push(`SPA zona: Bez`);
+        }
+      } else {
+        // Regular SPA Ritual
+        messageLines.push(`SPA paket: ${decodeURIComponent(spaName)}`);
+        
+        // Variant (face massage)
+        if (variantLabel) {
+          const variantText = face 
+            ? `Sa masažom lica (+3.000 RSD)` 
+            : `Bez masaže lica`;
+          messageLines.push(`Varijanta: ${variantText}`);
+        }
 
-      // Variant (face massage)
-      if (variantLabel) {
-        const variantText = face 
-          ? `Sa masažom lica (+3.000 RSD)` 
-          : `Bez masaže lica`;
-        messageLines.push(`Varijanta: ${variantText}`);
+        // SPA Zone breakdown (only for regular rituals, not HERBAL)
+        if (saunaMin > 0 || steamMin > 0 || jacuzziMin > 0) {
+          messageLines.push(`SPA zona:`);
+          if (saunaMin > 0) messageLines.push(`  • Sauna: ${saunaMin} min`);
+          if (steamMin > 0) messageLines.push(`  • Parno kupatilo: ${steamMin} min`);
+          if (jacuzziMin > 0) messageLines.push(`  • Jacuzzi: ${jacuzziMin} min`);
+        } else if (spaZoneLabel && spaZoneLabel !== "Bez SPA zona") {
+          messageLines.push(`SPA zona: ${spaZoneLabel}`);
+        }
       }
-
-      // SPA Zone breakdown
-      messageLines.push(`SPA zona:`);
-      messageLines.push(`  • Sauna: ${saunaMin > 0 ? `${saunaMin} min` : 'Bez'}`);
-      messageLines.push(`  • Parno kupatilo: ${steamMin > 0 ? `${steamMin} min` : 'Bez'}`);
-      messageLines.push(`  • Jacuzzi: ${jacuzziMin > 0 ? `${jacuzziMin} min` : 'Bez'}`);
 
       // Totals
       messageLines.push('');
