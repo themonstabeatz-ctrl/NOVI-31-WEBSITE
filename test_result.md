@@ -128,15 +128,14 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Services API Sync - Single Services"
-    - "Services API Sync - Couples Services"
-    - "Frontend Proxy Connection"
-    - "Health Check Endpoint"
-    - "Reception Backend Direct Connection"
-  stuck_tasks: []
+    - "Regular Massage → Contact Flow"
+  stuck_tasks:
+    - "Regular Massage → Contact Flow"
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "testing"
     message: "✅ ALL BACKEND TESTS PASSED! Frontend-reception backend connection is working perfectly. All API endpoints return correct data with proper structure. Service counts: 22 single services, 19 couples services. Direct reception backend accessible with 247 total services. Ready for production use."
+  - agent: "testing"
+    message: "🧪 FRONTEND TESTING COMPLETED: 4/5 flows PASS, 1 CRITICAL ISSUE found. SPA booking flows work perfectly (both ritual and zone). Contact page and API connectivity excellent. CRITICAL: Massage booking buttons not functioning - clicking 'ZAKAŽITE' on massage cards does not redirect to contact page. This blocks core massage booking functionality and needs immediate fix."
