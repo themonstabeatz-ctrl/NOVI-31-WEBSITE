@@ -4,7 +4,7 @@
  * Svi API pozivi MORAJU koristiti API_BASE iz ovog fajla.
  * ZABRANJENO je hardkodiranje URL-ova bilo gde u kodu.
  * 
- * LOCKED TO: https://spa-dashboard-2.preview.emergentagent.com
+ * LOCKED TO: https://massage-app-4.preview.emergentagent.com
  */
 
 // ✅ JEDINI SOURCE-OF-TRUTH za backend URL
@@ -21,7 +21,7 @@ const isEnvValid = ALLOWED_BACKENDS.some(h => envUrl.includes(h));
 
 export const API_BASE = isEnvValid 
   ? envUrl 
-  : "https://spa-dashboard-2.preview.emergentagent.com";
+  : "https://massage-app-4.preview.emergentagent.com";
 
 // ✅ DIJAGNOSTIKA: Uvek log API_BASE na load (za debug)
 console.log("🔐 API_BASE =", API_BASE);

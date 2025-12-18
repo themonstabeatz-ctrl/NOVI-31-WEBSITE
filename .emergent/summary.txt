@@ -1,152 +1,166 @@
 <analysis>**original_problem_statement:**
-The user's primary goal is to build a full-featured booking website for a massage and spa business. The development has been highly iterative, focusing on several key areas:
-1.  **Backend Connectivity**: A major recurring issue has been ensuring the frontend () reliably connects to the correct backend API (). This led to the implementation of a robust, permanent URL guard to prevent the environment from overriding the correct backend URL.
-2.  **Couples Massage Booking Logic**: The user reported numerous bugs related to booking massages for couples, especially with different duration combinations (e.g., one person booking a 120-min massage vs. another booking two 60-min massages). This required significant debugging and refinement of the validation logic in .
-3.  **Booking Submission Failures**: A bug was discovered where the backend was rejecting valid bookings due to a PRICE LOCK error. The agent diagnosed this as a backend issue where the discounted price was being checked instead of the original price and reported it to the user.
-4.  **UI & Logic Lockdown**: To prevent regressions on the now-stable massage booking features, the user mandated a lockdown mechanism, adding code guards to critical files (, , ) to prevent unauthorized changes.
-5.  **SPA Booking Flow Separation**: The user requested that the booking flow for SPA packages be completely separate from the regular massage booking flow. This involved hiding the massage selection dropdown on the contact page for SPA bookings and passing all necessary information via URL parameters.
-6.  **SPA Add-on Calculation**: The user required the implementation of complex UI and calculation logic for SPA ritual add-ons (face massage, sauna, steam, jacuzzi), including dynamic calculation of total price and duration.
+The user's primary goal is to build and refine a full-featured booking website for a massage and spa business called Bua Luang. The project has evolved through several key phases and user requests during this session:
+
+1.  **API Configuration Cleanup**: The user mandated a complete overhaul of the frontend's API communication. The goal was to establish a single, reliable source of truth for the backend URL, eliminating hardcoded strings and inconsistent environment variables. This involved switching the backend target from  to a new  service.
+2.  **Major Bug Squashing**: The user reported and the agent fixed several critical bugs:
+    *   A  runtime error that broke all booking submissions.
+    *   A  runtime error after a successful booking.
+    *   Body stream already read errors by implementing a  helper for all fetch calls.
+    *   Unresponsive Zakažite buttons on the SPA Zone card.
+    *   A failed booking flow for Romantični paketi za parove due to missing identifiers.
+3.  **SPA Functionality Completion**: The agent completed the user's pending request from the previous session to fix the UI and calculation logic for the SPA Zone and Herbal Ritual cards on the  page, making them fully interactive and bookable.
+4.  **UX Enhancements**: The user requested a polish of the post-booking user experience, which involved removing automatic redirects and replacing them with clear, concise success messages that disappear after a set time.
+5.  **New Feature: Termini (Appointments) Page**: The user requested a brand-new page at  to act as a calendar/dashboard view, pulling all appointment types (massage and SPA) from a unified backend endpoint and displaying them in a list.
 
 **User's preferred language**: Serbian
 
 **what currently exists?**
-The application is a React frontend and a FastAPI backend.
-- **URL Guard**: A robust, permanent guard is implemented in  and centralized via . All API calls now use the exported  constant, which guarantees the frontend connects to . A hard fail mechanism () is in place to immediately stop the app if the  variable points to the wrong domain.
-- **Lockdown Mechanism**: Critical files related to massage and couples booking are protected by a code guard in , preventing modification without an explicit token change.
-- **Separated SPA Flow**: The booking flow for SPA packages is now separate. When a user navigates from the  page, the  page hides the massage selection dropdown and automatically populates a message with the SPA package details passed through URL parameters.
-- **SPA Add-on UI**: The UI for selecting add-ons (face massage, spa zones) for SPA Rituals is implemented, with dynamic calculation of the total price and duration displayed on the card.
+The application is a React frontend () connected to a new, stable FastAPI backend ().
+- **Centralized API Config**: All API calls are routed through a single  constant defined in , which points to . A  helper function is used for all fetch requests to prevent parsing errors.
+- **Complete SPA Booking Flows**: The  page is fully functional. Users can book standard SPA Rituals with add-ons, book SPA Zones (sauna, steam, jacuzzi) independently with correct price/duration calculation, and book Herbal Rituals with included SPA zones.
+- **Special Couples Package Flow**: The Romantični paketi za parove have a dedicated booking flow that correctly sends a unique package ID to the  endpoint.
+- **Polished UX**: After a successful booking, the app displays a simple, clear success message and resets the form fields without automatically redirecting the user.
+- **New Termini Page**: A new page exists at  that successfully fetches and displays a list of both massage and SPA appointments from the backend.
 
 **Last working item**:
-- Last item agent was working: Implementing UI and calculation fixes for the **SPA Zone** and **Herbal Ritual** cards on the  page, as per the user's detailed instructions.
-    - **SPA Zone Card**: The task was to ensure this card (for booking zones without a ritual) calculates the total price and duration based on user selections and sends the correct parameters () to the contact page.
-    - **Herbal Ritual Cards**: The task was to fix the UI to display uključeno (included) for the complimentary 15-minute spa session, instead of the incorrect +0 RSD, and ensure the total price and duration remain constant.
+- Last item agent was working: The agent was polishing the new  page. The goal was to map the detailed data for SPA appointments (like specific service name and duration) to the UI, so they display with the same level of detail as regular massage appointments, instead of showing a generic SPA label and N/A min duration.
 - Status: IN PROGRESS
 - Agent Testing Done: N
-- Which testing method agent to use? Manual testing using the screenshot tool to verify the UI changes on the  page, specifically checking the SPA Zone card and the three Herbal Ritual cards. The test involves selecting options and clicking Zakažite to verify the correct parameters are passed to the  page URL and the message is displayed correctly.
+- Which testing method agent to use? Manual testing using the screenshot tool on the  page. The test should verify that after the fix, events of type spa show their specific name (e.g., Silky Body Ritual) and calculated duration (e.g., 120 min) instead of generic placeholders.
 - User Testing Done: N
 
 **All Pending/In progress Issue list**:
-- **Issue 1 (P0)**: An unstable  file. The  file spontaneously reverts to an incorrect value ( instead of ). While the URL Guard now causes a hard fail and prevents the app from running with the wrong backend, the underlying environmental issue persists, forcing the agent to repeatedly fix the file and restart the service. **This is the root cause of most session interruptions.**
-- **Issue 2 (P1)**: The backend  bug. The external backend () incorrectly validates the *final discounted price* instead of the *original price* for couples massages. This blocks any discounted couples booking from succeeding. The agent has proven this with  and reported it.
+- **Issue 1 (P0)**: The UI for SPA events on the  page is incomplete. It shows generic labels instead of specific service details.
+- **Issue 2 (P1 - Environmental)**: The  file remains unstable and can spontaneously revert to an incorrect value, as seen in message #441. While the code now has a robust fallback, this environmental issue can cause confusion and requires manual checks.
+- **Issue 3 (P2 - Blocked)**: The backend  bug for *discounted* couples massages, mentioned in the initial handoff, has not been addressed as it's an external backend issue. This blocks a specific sub-flow of couples booking.
 
   **Issues Detail:**
-  - **Issue 1: Unstable .env file**
-     - Attempted fixes: A permanent URL guard () was implemented to throw a fatal error if the  file contains the wrong URL. This prevents silent failure but does not fix the root environmental problem.
-     - Next debug checklist: Before starting any work, check the console log of the preview URL. If a blank white screen and a FATAL BACKEND URL MISCONFIG error appear, the  file has reverted. The fix is to overwrite  with the correct  and restart the frontend service.
-     - Why fix this issue and what will be achieved with this fix?: Fixing the root cause would eliminate the need for constant manual intervention, significantly speeding up development and increasing stability.
-     - Status: BLOCKED (Environmental issue)
+  - **Issue 1: Incomplete SPA event UI on Termini page**
+     - Attempted fixes: The agent created unified helper functions (, , ) to parse data from both massage and SPA event objects.
+     - Next debug checklist: The agent needs to complete the implementation in . Specifically, the JSX inside the  function must be updated to use the new helper functions to display the title, description, and duration.
+     - Why fix this issue and what will be achieved with the fix?: This will complete the  page feature, providing a consistent and detailed view for all appointment types, as requested by the user.
+     - Status: IN PROGRESS
+     - Is recurring issue?: N
+     - Should Test frontend/backend/both after fix?: Frontend
+     - Blocked on other issue: None.
+  - **Issue 2: Unstable .env file**
+     - Attempted fixes: A strong fallback URL is now defined in , which prevents the app from crashing but doesn't fix the root cause.
+     - Next debug checklist: If the app fails to load data, check the browser console for any API errors and verify the  log. If the  has reverted, it must be manually overwritten and the frontend service restarted.
+     - Why fix this issue and what will be achieved with this fix?: Fixing the root environmental issue would improve stability and reduce development friction.
+     - Status: BLOCKED (Environmental)
      - Is recurring issue?: Y
      - Should Test frontend/backend/both after fix?: N/A
-     - Blocked on other issue: No.
-  - **Issue 2: Backend  Bug**
-     - Attempted fixes: The agent diagnosed the issue and provided a  proof to the user, confirming it's a backend problem. No frontend fix is possible or allowed.
-     - Next debug checklist: This issue is on hold. Wait for user confirmation that the backend () has been fixed.
-     - Why fix this issue and what will be achieved with this fix?: This will unblock the entire booking flow for discounted couples massages.
+     - Blocked on other issue: None.
+  - **Issue 3: Backend  Bug**
+     - Attempted fixes: None in this session. The issue was diagnosed in a previous session.
+     - Next debug checklist: Wait for user confirmation that the backend () has been fixed.
+     - Why fix this issue and what will be achieved with this fix?: This will unblock the booking flow for discounted couples massages.
      - Status: BLOCKED (Waiting for external backend fix)
      - Is recurring issue?: Y
      - Should Test frontend/backend/both after fix?: Backend (once fixed), then Frontend e2e booking test.
      - Blocked on other issue: No.
 
 **In progress Task List**:
-- **Task 1 (P0)**: Complete UI/calculation fixes for SPA Zone & Herbal cards.
-  - **Where to resume**: The agent was working in . It needs to:
-      1.  Finalize the implementation for the SPA ZONE card to correctly calculate  and  from selected zones, show a validation error if no zone is selected, and navigate to  with  and all calculated totals.
-      2.  Finalize the implementation for the three HERBAL cards to ensure the UI displays uključeno for the included 15-min spa zone, removes any +0 RSD text, and correctly sends  (or ) as a parameter.
-      3.  Update  to correctly parse and display the detailed breakdown for bookings coming from  and .
-  - **What will be achieved with this?**: The SPA booking functionality will be complete and correct as per the user's latest requirements, making the  page fully functional.
-  - **Status**: IN PROGRESS
-  - **Should Test frontend/backend/both after fix?**: Frontend
-  - **Blocked on something**: Potentially the recurring  issue.
+  - **Task 1 (P0): Complete UI implementation for Termini page**
+     - Where to resume: In , modify the JSX inside the  function to use the newly created helper functions: , , and . Replace static labels and N/A placeholders with the dynamic data returned by these functions.
+     - What will be achieved with this?: The  page will be fully functional and display detailed, consistent information for all appointment types.
+     - Status: IN PROGRESS
+     - Should Test frontend/backend/both after fix?: Frontend
+     - Blocked on something: No.
 
 **Upcoming and Future Tasks**
 - **Upcoming Tasks**:
-    - **Task 1 (P2)**: Implement lazy loading for images in , , and  using the  attribute.
+    - **(P2)** Implement lazy loading for images in , , and  using the  attribute.
 - **Future Tasks**:
-    - **Task 1**: The user may request to update the prices for SPA zones.
-    - **Task 2**: Consider the development of a mobile application.
-    - **Task 3**: Connect the SPA services/prices to a backend API endpoint () once the admin panel is ready, removing the hardcoded values from the frontend.
+    - Develop a CEO Dashboard with analytics for different SPA booking types.
+    - Connect SPA service prices to a backend endpoint instead of being hardcoded.
+    - Consider the development of a mobile application.
 
 **Completed work in this session**
-- **Permanent Backend Connection Guard**: Implemented a hard fail guard in  and centralized its use via  in  to ensure the app always connects to the correct backend URL, solving a major recurring problem.
-- **Code Lockdown**: Created  and added guards to , , and  to prevent unauthorized changes to stable features.
-- **Couples Massage Logic Fix**: Corrected the validation logic in  to properly handle various duration combinations (e.g., 1x120min vs 2x60min) by calculating total minutes.
-- **SPA Booking Flow Separation**: Modified  to hide the massage selection dropdown for all SPA-related bookings (, , ), creating a distinct booking path.
-- **SPA Ritual Add-on Calculation**: Implemented state and calculation logic in  for SPA Ritual add-ons (face massage, sauna, etc.), allowing users to select options and see dynamically updated totals.
-- **Email Template Updates**: Updated the logo and background images in the backend email templates ().
-- **Email Duration Fix**: Corrected the logic in  to ensure the correct duration ( instead of ) is sent for couples massages, fixing the text in the confirmation email.
+- **Backend Migration**: Switched the entire frontend application from the old  backend to the new  backend.
+- **API Refactoring**: Centralized all backend calls to use a single  constant and implemented a  helper to prevent body stream already read errors.
+- **Critical Bug Fixes**:
+    - Eliminated  and  runtime errors.
+    - Fixed unresponsive buttons for the SPA Zone card.
+    - Repaired the booking flow for Romantični paketi za parove by adding correct identifiers.
+- **SPA Functionality**: Completed the UI/calculation logic for the SPA Zone and Herbal Ritual cards on the  page.
+- **UX Polish**: Improved the post-booking experience by replacing automatic redirects with a clear, auto-hiding success message and resetting the form.
+- **Feature Implementation**: Created the  page from scratch, including routing, fetching calendar data, and rendering a list of appointments.
 
 **Earlier issues found/mentioned but not fixed**
-- See **All Pending/In progress Issue list**. The two main unfixed issues are the environmental  file instability and the backend  bug.
+   - The two issues listed in **All Pending/In progress Issue list**: the environmental  file instability and the backend  bug for discounted couples massages.
 
 **Known issue recurrence from previous fork**
-- **Issue recurrence in previous fork**: The  file spontaneously reverts to an incorrect value.
-- **Recurrence count**: Extremely High. This has happened dozens of times.
-- **Status**: BLOCKED (Environmental). The workaround (URL Guard) is in place, but the root cause remains.
+  - **Issue recurrence in previous fork**: The  file spontaneously reverts to an incorrect value.
+  - **Recurrence count**: High (occurred once during this session, message #441).
+  - **Status**: BLOCKED (Environmental). The code workaround (strong fallback in ) is effective.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Environment-Driven Configuration**: The app's backend URL is strictly controlled by a central guard function (), which is the single source of truth.
-- **Defensive Programming**: The codebase uses guards and lockdowns to prevent regressions and handle environmental instability gracefully (e.g., throwing a fatal error on misconfiguration).
-- **Conditional UI Rendering**: The frontend extensively uses URL query parameters (, etc.) to conditionally render different UI components and logic paths within the same page (e.g., ).
-- **Component State Management**: Complex state is managed within React components (, ) using  to handle user selections and dynamically calculate totals.
+- **Centralized API Configuration**: Using a single exported constant () as the source of truth for the backend URL.
+- **Conditional API Routing**: Using different API endpoints ( vs. ) within the same form component () based on URL parameters.
+- **Robust Fetch Handling**: Using a  helper to prevent response body parsing errors.
+- **Dynamic UI from URL Params**: Extensively using  to control component rendering and logic in  and .
+- **React Hooks**: Heavy use of , , and  for state management, side effects, and client-side routing.
+- **Feature Creation**: Building a new React component page () from scratch and integrating it into the application's routing.
 
 **key DB schema**
-  - N/A (Interacts with a backend API, no direct DB access)
+  - N/A (The agent interacts with a backend API and does not have direct access to the database schema.)
 
 **changes in tech stack**
-  - N/A
+  - None.
 
 **All files of reference**
--   **/app/frontend/src/config/backendUrl.js**: **CRITICAL**. Contains the permanent URL guard.
--   **/app/frontend/src/config/api.js**: **CRITICAL**. Exports the  constant used for all API calls.
--   **/app/frontend/src/pages/Spa.js**: **CRITICAL**. Contains all logic for SPA package selection, add-on calculation, and navigation to the contact page. This is the main file for the current task.
--   **/app/frontend/src/pages/Contact.js**: **CRITICAL**. Contains the split logic for handling regular massage bookings vs. SPA bookings.
--   **/app/frontend/src/lockdown.js**: Contains the lockdown tokens preventing changes to massage/couples logic.
--   **/app/frontend/src/components/CouplesMassageCard.js**: Contains the complex logic for booking couples massages. Currently in lockdown.
--   **/app/frontend/.env**: **CRITICAL & UNSTABLE**. Must be checked frequently. A wrong value will cause the app to crash intentionally. Correct value: .
+-   **/app/frontend/src/pages/Termini.js**: **CRITICAL**. The file for the last working item. Contains the logic for the new appointments view.
+-   **/app/frontend/src/pages/Contact.js**: **CRITICAL**. Heavily modified throughout the session. Contains all booking submission logic for every booking type.
+-   **/app/frontend/src/pages/Spa.js**: **CRITICAL**. Contains the UI and interaction logic for all SPA packages, zones, and rituals.
+-   **/app/frontend/src/config/api.js**: **CRITICAL**. The single source of truth for the backend URL () and the  helper.
+-   **/app/frontend/src/App.js**: Modified to add the route for the new  page.
+-   **/app/frontend/.env**: **CRITICAL & UNSTABLE**. Must be checked if API calls fail unexpectedly. Correct value: .
 
 **key api endpoints**
-- **Host**:  (via )
-- 
-- 
--  (Currently blocked by PRICE LOCK bug)
+- **Host**: 
+- : Fetches all events for the new Termini page.
+- : Used for all SPA-related bookings (rituals, zones, special couples packages).
+- : Used for standard single-person massage bookings.
+- : Used for standard couples massage bookings.
+- : Fetches details and prices for SPA services.
+-  & : Fetch massage service lists.
 
 **Critical Info for New Agent**
-1.  **THE  FILE IS UNSTABLE**: The app will show a blank white page if the  file reverts to the wrong value. The first debugging step is ALWAYS to check the browser console for the FATAL BACKEND URL MISCONFIG error. If you see it, you must fix  and run frontend: stopped
-frontend: started.
-2.  **LOCKDOWN RULES ARE IN EFFECT**: You are forbidden from modifying , , and the booking logic in  unless explicitly approved by the user. These files are protected by a code guard. Your current work is confined to  and the SPA-related logic in .
-3.  **USE  FOR ALL API CALLS**: Do not use  or  directly. Import  from .
-4.  **BACKEND  BUG**: Be aware that booking discounted couples massages will fail due to a known backend bug. Do not attempt to fix this on the frontend. The issue is on hold.
+1.  **Current Task is in **: Your immediate job is to finish the UI update in  to correctly display details for SPA appointments. The helper functions are already in place; you just need to apply them in the JSX.
+2.  ** Instability**: Be aware that the  file might revert to a wrong value. The application is designed to work using the fallback in , but if you see strange API errors, check the  file first.
+3.  **Booking Logic is in **: All booking submissions, regardless of origin, are handled in . The logic is highly conditional based on URL parameters like  and .
+4.  **Backend is External**: The application connects to . All necessary endpoints on this backend were verified to be working during this session. Do not assume backend errors without first verifying with .
 
 **documents created in this job**
-  - 
-  - 
-  - 
+- /app/frontend/src/pages/Termini.js
 
 **Last 10 User Messages and any pending user messages**
-The user's last several messages focus on refining the SPA booking flow. They requested:
-1.  **Separating SPA booking**: Hiding the massage dropdown on the contact page if the user comes from the  page. (Completed)
-2.  **Standardizing URL parameters**: Ensuring all SPA cards send consistent parameters like , , , etc. (Completed)
-3.  **Implementing Add-on Calculation**: Adding state and calculation logic to the main SPA Ritual cards to handle optional add-ons like face massage and spa zones, dynamically updating the total price and duration. (Completed)
-4.  **Fixing SPA Zone & Herbal Cards**: The user's most recent request, which is **in progress**, is to fix the UI and calculation for the standalone SPA Zone card and the Herbal Ritual cards, which have slightly different logic from the main ritual cards.
+The user's last several messages have been focused on creating and refining the new  page.
+- **Request to create  page:** User asked to build a new calendar view that fetches both massage and SPA events. (Completed)
+- **Request to fix SPA data mapping:** User pointed out that on the new  page, SPA events showed generic labels (SPA, N/A min). They requested to map the specific service name, description, and duration from the event data to the UI. (In Progress)
 
 **Project Health Check:**
-- **Broken**: The couples massage booking flow is blocked by a backend bug ( error). The UI and calculation logic for the SPA Zone and Herbal Rituals on the  page are incomplete and not functioning as per the user's latest request.
+- **Broken**:
+    - The UI for SPA appointments on the  page is not fully implemented and shows generic data.
+    - The booking flow for *discounted* couples massages is blocked by an external backend  bug.
 - **Mocked**: N/A
 
 **3rd Party Integrations**
 -   **Custom Backend API**: Connects to an external booking and services API at .
 
 **Testing status**
-  - Testing agent used after significant changes: NO
-  - Troubleshoot agent used after agent stuck in loop: YES (once, but did not provide a complete analysis)
+  - Testing agent used after significant changes: YES, but it produced some false negatives due to brittle selectors. The main agent correctly performed manual verification to confirm functionality.
+  - Troubleshoot agent used after agent stuck in loop: NO
   - Test files created: []
-  - Known regressions: The  file reverting is a severe and frequent environmental regression.
+  - Known regressions: The recurring  file instability.
 
 **Credentials to test flow:**
 - N/A
 
 **What agent forgot to execute**
-- The agent was in the middle of implementing the user's last request to fix the SPA Zone and Herbal cards. It started the work but did not fully complete the logic for price calculation, UI text display (uključeno), and parameter passing as detailed in the user's instructions. The testing for this specific feature is also pending.</analysis>
+- The agent was in the middle of implementing the user's request to fix the UI on the  page. It has not yet updated the JSX portion of the  function.
+- The request to change the SPA Special kartica label to SPA paketi za posebne prilike on a CEO Dashboard was mentioned but not implemented, as the dashboard itself does not exist in the frontend codebase yet.</analysis>

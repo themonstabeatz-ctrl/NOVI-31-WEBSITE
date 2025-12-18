@@ -9,7 +9,7 @@ backend:
     status_history:
       - working: true
         agent: "testing"
-        comment: "✅ TESTED: Single services endpoint working perfectly. Returns 22 services with all required fields (name, duration, price, final_price, discount_percentage). Data successfully fetched from reception backend https://relaxhub-1.preview.emergentagent.com"
+        comment: "✅ TESTED: Single services endpoint working perfectly. Returns 22 services with all required fields (name, duration, price, final_price, discount_percentage). Data successfully fetched from reception backend https://massage-app-4.preview.emergentagent.com"
 
   - task: "Services API Sync - Couples Services"
     implemented: true
@@ -57,7 +57,7 @@ backend:
     status_history:
       - working: true
         agent: "testing"
-        comment: "✅ TESTED: Direct connection to reception backend https://relaxhub-1.preview.emergentagent.com working. Returns 247 total services, confirming external API is accessible."
+        comment: "✅ TESTED: Direct connection to reception backend https://massage-app-4.preview.emergentagent.com working. Returns 247 total services, confirming external API is accessible."
 
   - task: "Backend API Service Endpoints"
     implemented: true
@@ -145,7 +145,7 @@ frontend:
     status_history:
       - working: true
         agent: "testing"
-        comment: "✅ TESTED: API connectivity working perfectly. Console shows 'API_BASE (source of truth): https://massage-scheduler-4.preview.emergentagent.com'. Multiple successful API requests detected to /api/services endpoints. No CORS errors. Backend health checks passing."
+        comment: "✅ TESTED: API connectivity working perfectly. Console shows 'API_BASE (source of truth): https://massage-app-4.preview.emergentagent.com'. Multiple successful API requests detected to /api/services endpoints. No CORS errors. Backend health checks passing."
 
 metadata:
   created_by: "testing_agent"

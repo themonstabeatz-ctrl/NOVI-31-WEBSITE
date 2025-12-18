@@ -64,8 +64,8 @@ async def update_couples_prices():
         
         try:
             # Step 1: Navigate to admin panel
-            print("📍 Navigating to https://relaxhub-1.preview.emergentagent.com/")
-            await page.goto("https://relaxhub-1.preview.emergentagent.com/", wait_until="networkidle")
+            print("📍 Navigating to https://massage-app-4.preview.emergentagent.com/")
+            await page.goto("https://massage-app-4.preview.emergentagent.com/", wait_until="networkidle")
             await asyncio.sleep(2)
             
             # Step 2: Login with password
@@ -194,7 +194,7 @@ if __name__ == "__main__":
     print("="*60)
     print("🏥 COUPLES MASSAGE PRICE CORRECTION SCRIPT")
     print("="*60)
-    print(f"Target: https://relaxhub-1.preview.emergentagent.com/")
+    print(f"Target: https://massage-app-4.preview.emergentagent.com/")
     print(f"Services to update: {len(CORRECT_PRICES)}")
     print("="*60)
     print()
