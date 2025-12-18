@@ -351,12 +351,12 @@ const Termini = () => {
   // Render event card
   const renderEventCard = (event) => {
     const badge = getBadge(event);
-    // ✅ B) Koristi BACKEND FIRST helper funkcije
+    // ✅ B) UI prikaz - BACKEND FIRST helper funkcije
     const type = getType(event);
     const title = getTitle(event);
     const desc = getDesc(event);
-    const duration = getDurationMin(event);
-    const spaZone = getSpaZone(event);
+    const dur = getDurationMin(event);
+    const zone = type === "spa" ? getSpaZone(event) : "";
     const addonsText = getAddonsText(event);
     
     const startTime = formatTime(event.start_time);
