@@ -773,6 +773,8 @@ const Contact = () => {
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
         
+        // ✅ A) FIX: Ne čitati response dva puta + pravi error handling
+        let coupleSpecialResult = null;
         try {
           const response = await fetch(bookingEndpoint, {
             method: "POST",
@@ -780,15 +782,24 @@ const Contact = () => {
             body: JSON.stringify(payload)
           });
           
-          const responseText = await response.text();
-          console.log("📥 Response:", response.status, responseText);
+          // Read response body ONCE as text
+          const text = await response.text();
+          
+          // Parse JSON safely
+          try { 
+            coupleSpecialResult = text ? JSON.parse(text) : null; 
+          } catch { 
+            coupleSpecialResult = { raw: text }; 
+          }
+          
+          console.log("📥 SPA SPECIAL COUPLE response:", response.status, coupleSpecialResult);
           
           if (!response.ok) {
             if (response.status === 404) {
               setError("⚠️ Backend nema SPA booking endpoint. Kontaktirajte recepciju.");
               alert("Backend nema SPA booking endpoint (/api/spa/appointments).\nKontaktirajte recepciju. (404)");
             } else {
-              setError("Greška pri zakazivanju: " + responseText);
+              throw new Error(coupleSpecialResult?.error || coupleSpecialResult?.detail || `HTTP ${response.status}`);
             }
             setSubmitStatus("error");
             setIsSubmitting(false);
@@ -796,10 +807,7 @@ const Contact = () => {
           }
           
           // ✅ UX FIX D: Check if response has ID - no fake success
-          let data = {};
-          try { data = responseText ? JSON.parse(responseText) : {}; } catch {}
-          
-          if (!data?.id) {
+          if (!coupleSpecialResult?.id) {
             console.error("❌ Booking response has no ID - rejecting");
             setError("Greška: Rezervacija nije kreirana (BOOKING_NO_ID)");
             setSubmitStatus("error");
@@ -807,18 +815,22 @@ const Contact = () => {
             return;
           }
           
-          console.log("✅ SPA SPECIAL COUPLE booked:", data);
+          console.log("✅ SPA SPECIAL COUPLE booked:", coupleSpecialResult);
+          
+          // ✅ B) Check for notify_status: failed
+          const notifyFailed = coupleSpecialResult?.notify_status === "failed";
           
           // ✅ UX POLISH: Use new success handler with bookingType
           handleBookingSuccess({
             bookingType: "coupleSpecial",
-            bookingId: data.id,
-            responseData: data
+            bookingId: coupleSpecialResult.id,
+            responseData: coupleSpecialResult,
+            notifyFailed: notifyFailed
           });
           return;
         } catch (err) {
           console.error("❌ SPA SPECIAL COUPLE error:", err);
-          setError("Greška: " + (err.message || "Network error"));
+          setError(`Zakazivanje nije uspelo: ${err.message || "Network error"}`);
           setSubmitStatus("error");
           setIsSubmitting(false);
           return;
