@@ -815,12 +815,11 @@ const Contact = () => {
           
           console.log("✅ SPA SPECIAL COUPLE booked:", data);
           
-          // ✅ UX FIX: Use new success handler
+          // ✅ UX POLISH: Use new success handler with bookingType
           handleBookingSuccess({
-            date: payload.appointment_date,
-            time: payload.start_time?.split('T')[1]?.substring(0, 5),
-            serviceName: spaBookingMeta.spaName,
-            bookingId: data.id
+            bookingType: "coupleSpecial",
+            bookingId: data.id,
+            responseData: data
           });
           return;
         } catch (err) {
