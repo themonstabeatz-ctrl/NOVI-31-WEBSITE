@@ -98,7 +98,7 @@ const Contact = () => {
   const [secondaryMessage, setSecondaryMessage] = useState("");
   
   const handleBookingSuccess = (bookingDetails = {}) => {
-    const { bookingType, bookingId, responseData } = bookingDetails;
+    const { bookingType, bookingId, responseData, notifyFailed } = bookingDetails;
     
     // ✅ UX B: Success text - samo 1 rečenica, bez datuma
     const successTextByType = {
@@ -111,17 +111,20 @@ const Contact = () => {
     
     const msg = successTextByType[bookingType] || "Uspešno ste zakazali termin.";
     
-    console.log("✅ Booking success:", { bookingType, bookingId });
+    console.log("✅ Booking success:", { bookingType, bookingId, notifyFailed });
     
     setSuccessMsg(msg);
     setSubmitStatus("success");
     setIsSubmitting(false);
     
-    // ✅ UX C: Check if backend confirmed email was sent
+    // ✅ UX C: Check if backend confirmed email was sent OR notify_status failed
     const emailSent = Boolean(responseData?.email_sent || responseData?.notification_sent);
     const emailFailed = responseData?.warnings?.includes("EMAIL_FAILED") || responseData?.email_error;
     
-    if (emailSent) {
+    // ✅ B) Handle notify_status: failed from backend
+    if (notifyFailed || responseData?.notify_status === "failed") {
+      setSecondaryMessage("Termin je zakazan, ali email potvrda trenutno kasni. Recepcija će vas kontaktirati po potrebi.");
+    } else if (emailSent) {
       setSecondaryMessage("Email potvrda je poslata.");
     } else if (emailFailed) {
       setSecondaryMessage("Termin je sačuvan, ali email trenutno nije poslat.");
