@@ -9,6 +9,7 @@ import Spa from "./pages/Spa";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
+import Termini from "./pages/Termini";
 import { Toaster } from "./components/ui/sonner";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 
