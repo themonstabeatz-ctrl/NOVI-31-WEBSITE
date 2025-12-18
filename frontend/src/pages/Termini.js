@@ -105,20 +105,21 @@ const fetchCalendarEvents = async ({ startISO, endISO }) => {
   
   const res = await fetch(url, { credentials: "include" });
   
+  // ✅ FIX: Use safeJson to avoid "body stream already used"
   if (!res.ok) {
     // Try alternative endpoint
     console.log("⚠️ Calendar endpoint not found, trying /api/spa/appointments");
     const altUrl = `${API_BASE}/api/spa/appointments?start=${encodeURIComponent(startISO)}&end=${encodeURIComponent(endISO)}`;
     const altRes = await fetch(altUrl);
     if (altRes.ok) {
-      const altData = await altRes.json();
-      return Array.isArray(altData) ? altData : altData.events || [];
+      const altData = await safeJson(altRes);
+      return Array.isArray(altData) ? altData : altData?.events || [];
     }
     throw new Error(`Calendar fetch failed: ${res.status}`);
   }
   
-  const data = await res.json();
-  return data.events || data || [];
+  const data = await safeJson(res);
+  return data?.events || data || [];
 };
 
 const Termini = () => {
