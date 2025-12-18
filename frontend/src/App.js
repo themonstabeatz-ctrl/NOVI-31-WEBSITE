@@ -45,22 +45,22 @@ function App() {
               <Route path="termini" element={<Termini />} />
               <Route path="appointments" element={<Termini />} />
               
-              {/* Serbian URL Aliases - 301 Redirects */}
+              {/* Serbian URL Aliases - 301 Redirects with query params preserved */}
               <Route path="usluge" element={<Navigate to="/masaze" replace />} />
               <Route path="cenovnik" element={<Navigate to="/spa" replace />} />
-              <Route path="rezervacije" element={<Navigate to="/contact" replace />} />
-              <Route path="vauceri" element={<Navigate to="/contact" replace />} />
-              <Route path="kontakt" element={<Navigate to="/contact" replace />} />
+              <Route path="rezervacije" element={<NavigateWithParams to="/contact" />} />
+              <Route path="vauceri" element={<NavigateWithParams to="/contact" />} />
+              <Route path="kontakt" element={<NavigateWithParams to="/contact" />} />
               
               {/* REMOVED: Old /booking route */}
-              <Route path="booking" element={<Navigate to="/contact" replace />} />
+              <Route path="booking" element={<NavigateWithParams to="/contact" />} />
               
-              {/* English URL Aliases - 301 Redirects */}
+              {/* English URL Aliases - 301 Redirects with query params preserved */}
               <Route path="en/services" element={<Navigate to="/massage" replace />} />
               <Route path="en/pricing" element={<Navigate to="/spa" replace />} />
-              <Route path="en/booking" element={<Navigate to="/contact" replace />} />
-              <Route path="en/vouchers" element={<Navigate to="/contact" replace />} />
-              <Route path="en/contact" element={<Navigate to="/contact" replace />} />
+              <Route path="en/booking" element={<NavigateWithParams to="/contact" />} />
+              <Route path="en/vouchers" element={<NavigateWithParams to="/contact" />} />
+              <Route path="en/contact" element={<NavigateWithParams to="/contact" />} />
             </Route>
           </Routes>
           <Toaster 
