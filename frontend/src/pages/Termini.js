@@ -51,7 +51,8 @@ const getBadge = (event) => {
   return { label: "MASAŽA", color: "#4ade80", bg: "rgba(74, 222, 128, 0.2)" };
 };
 
-// ✅ A) JEDINSTVENE HELPER FUNKCIJE - direktno iz backend polja
+// ✅ A) JEDINSTVENE HELPER FUNKCIJE
+// Prioritet: backend polja > services_snapshot > parsing iz notes > fallback
 const safe = (v) => (typeof v === "string" && v.trim() ? v.trim() : null);
 
 // Get event type
@@ -59,7 +60,47 @@ const getType = (row) => {
   return row.type || row.appointment_type || row.source || "massage";
 };
 
-// ✅ Get title - BACKEND FIRST, bez fallback na "SPA Tretman" osim u krajnjoj nuždi
+// ✅ Parse SPA paket name from notes (backend currently stores data in notes)
+const parseSpaNameFromNotes = (notes) => {
+  if (!notes) return null;
+  // Match: "SPA paket: Silky Body Ritual"
+  const match = notes.match(/SPA paket:\s*([^\n]+)/);
+  return match ? match[1].trim() : null;
+};
+
+// ✅ Parse variant/description from notes
+const parseVariantFromNotes = (notes) => {
+  if (!notes) return null;
+  // Match: "Varijanta: Sa masažom lica (+3.000 RSD)"
+  const match = notes.match(/Varijanta:\s*([^\n]+)/);
+  return match ? match[1].trim() : null;
+};
+
+// ✅ Parse duration from notes
+const parseDurationFromNotes = (notes) => {
+  if (!notes) return null;
+  // Match: "Ukupno trajanje: 270 min"
+  const match = notes.match(/Ukupno trajanje:\s*(\d+)\s*min/);
+  return match ? parseInt(match[1], 10) : null;
+};
+
+// ✅ Parse SPA zones from notes
+const parseSpaZonesFromNotes = (notes) => {
+  if (!notes) return null;
+  // Match SPA zona section
+  const zonaMatch = notes.match(/SPA zona:\s*\n((?:\s+[•\-]\s*[^\n]+\n?)+)/);
+  if (!zonaMatch) return null;
+  
+  const zones = zonaMatch[1]
+    .split('\n')
+    .map(line => line.replace(/^\s+[•\-]\s*/, '').trim())
+    .filter(Boolean)
+    .join(', ');
+  
+  return zones || null;
+};
+
+// ✅ Get title - BACKEND FIRST, then notes parsing, then fallback
 const getTitle = (row) => {
   // 1. Direktno iz backend polja (prioritet)
   const directTitle = safe(row.service_name) 
@@ -80,12 +121,18 @@ const getTitle = (row) => {
     if (p1) return `Masaža za parove: ${p1}`;
   }
   
-  // 4. POSLEDNJI fallback - samo ako ništa nije našao
+  // 4. SPA: Parse iz notes (backend šalje u notes polju)
   const type = getType(row);
+  if (type === "spa") {
+    const fromNotes = parseSpaNameFromNotes(row.notes);
+    if (fromNotes) return fromNotes;
+  }
+  
+  // 5. POSLEDNJI fallback - samo ako ništa nije našao
   return type === "spa" ? "SPA Tretman" : "Usluga";
 };
 
-// ✅ Get description - direktno iz backend polja
+// ✅ Get description - direktno iz backend polja, then notes
 const getDesc = (row) => {
   // 1. Direktno iz backend
   const directDesc = safe(row.service_description) 
@@ -105,7 +152,14 @@ const getDesc = (row) => {
     if (p2) return `Osoba 2: ${p2}`;
   }
   
-  // 4. Generic description
+  // 4. SPA: Parse variant iz notes
+  const type = getType(row);
+  if (type === "spa") {
+    const variant = parseVariantFromNotes(row.notes);
+    if (variant) return variant;
+  }
+  
+  // 5. Generic description
   return safe(row.description) || "";
 };
 
@@ -121,7 +175,14 @@ const getDurationMin = (row) => {
     if (Number.isFinite(dur) && dur > 0) return dur;
   }
   
-  // 3. Compute iz start/end
+  // 3. SPA: Parse iz notes
+  const type = getType(row);
+  if (type === "spa") {
+    const fromNotes = parseDurationFromNotes(row.notes);
+    if (fromNotes) return fromNotes;
+  }
+  
+  // 4. Compute iz start/end
   if (row.start_time && row.end_time) {
     const s = new Date(row.start_time);
     const e = new Date(row.end_time);
@@ -129,13 +190,23 @@ const getDurationMin = (row) => {
     if (Number.isFinite(diff) && diff > 0) return diff;
   }
   
-  // 4. Default fallback - nikad N/A
+  // 5. Default fallback - nikad N/A
   return 60;
 };
 
-// ✅ Get SPA zone - direktno iz backend polja
+// ✅ Get SPA zone - direktno iz backend ili notes
 const getSpaZone = (row) => {
-  return safe(row.spa_zone) || safe(row.spa_zone_label) || "";
+  // 1. Direktno iz backend
+  const direct = safe(row.spa_zone) || safe(row.spa_zone_label);
+  if (direct) return direct;
+  
+  // 2. Parse iz notes
+  const type = getType(row);
+  if (type === "spa") {
+    return parseSpaZonesFromNotes(row.notes) || "";
+  }
+  
+  return "";
 };
 
 // ✅ Get add-ons
@@ -145,10 +216,13 @@ const getAddonsText = (row) => {
   return "Doplate: " + addons.map(a => a.name || a).join(", ");
 };
 
-// Legacy aliases (if needed elsewhere in the file)
+// Legacy aliases
 const getServiceTitle = getTitle;
 const getServiceDescription = getDesc;
-const getSpaZoneText = (row) => getSpaZone(row) ? `🧖 ${getSpaZone(row)}` : "";
+const getSpaZoneText = (row) => {
+  const zone = getSpaZone(row);
+  return zone ? `🧖 ${zone}` : "";
+};
 
 /**
  * ✅ Fetch calendar events from backend
