@@ -391,48 +391,60 @@ const Termini = () => {
         <CardContent style={{ padding: "1rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
             <div style={{ flex: 1 }}>
-              {/* Badge + Duration inline */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
-                <span style={{
-                  display: "inline-block",
-                  padding: "0.2rem 0.5rem",
-                  borderRadius: "4px",
-                  fontSize: "0.7rem",
-                  fontWeight: "bold",
-                  background: badge.bg,
-                  color: badge.color
-                }}>
-                  {badge.label}
-                </span>
+              {/* Badges: type + duration */}
+              <div className="badges" style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+                {type === "spa" && (
+                  <span className="badge-spa" style={{
+                    display: "inline-block",
+                    padding: "0.2rem 0.5rem",
+                    borderRadius: "4px",
+                    fontSize: "0.7rem",
+                    fontWeight: "bold",
+                    background: badge.bg,
+                    color: badge.color
+                  }}>
+                    {badge.label}
+                  </span>
+                )}
+                {type !== "spa" && (
+                  <span style={{
+                    display: "inline-block",
+                    padding: "0.2rem 0.5rem",
+                    borderRadius: "4px",
+                    fontSize: "0.7rem",
+                    fontWeight: "bold",
+                    background: badge.bg,
+                    color: badge.color
+                  }}>
+                    {badge.label}
+                  </span>
+                )}
                 
-                {/* Duration - uvek prikaži broj, nikad N/A */}
-                <span style={{ 
-                  display: "flex", 
-                  alignItems: "center", 
-                  gap: "0.25rem",
+                {/* Duration - uvek broj, nikad N/A */}
+                <span className="badge-dur" style={{ 
                   color: "#888", 
                   fontSize: "0.75rem"
                 }}>
-                  ⏱ {duration} min
+                  ⏱ {dur} min
                 </span>
               </div>
               
-              {/* Title (bold) - iz service_name/service_title/snapshot */}
-              <h4 className="service-title" style={{ color: "#f5f2e8", fontSize: "1rem", margin: "0.25rem 0", fontWeight: "600" }}>
+              {/* Title */}
+              <div className="service-title" style={{ color: "#f5f2e8", fontSize: "1rem", margin: "0.25rem 0", fontWeight: "600" }}>
                 {title}
-              </h4>
+              </div>
               
-              {/* Description (italic, if exists) */}
+              {/* Description (italic) */}
               {desc && (
                 <div className="service-desc" style={{ color: "#a0a0a0", fontSize: "0.8rem", marginBottom: "0.25rem" }}>
                   <em>{desc}</em>
                 </div>
               )}
               
-              {/* SPA Zone (if exists and type is spa) */}
-              {type === "spa" && spaZone && (
+              {/* SPA Zone */}
+              {zone && (
                 <div className="spa-zone" style={{ color: "#d4af37", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
-                  🧖 {spaZone}
+                  🧖 {zone}
                 </div>
               )}
               
