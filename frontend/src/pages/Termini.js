@@ -8,7 +8,7 @@ import { Calendar, Clock, User, Phone, Sparkles, Leaf } from "lucide-react";
 /**
  * ✅ Termini (Appointments) Screen
  * Displays calendar events including SPA bookings from backend
- * LOCKED TO: spa-dashboard-2.preview.emergentagent.com
+ * LOCKED TO: spa-booking-api.preview.emergentagent.com
  */
 
 // Format date helper
@@ -201,7 +201,7 @@ function getAddonsText(row) {
  * Uses direct XMLHttpRequest to avoid rrweb-recorder clone() issue
  */
 const fetchCalendarEvents = async () => {
-  console.log("📅 Fetching all events from spa-dashboard-2...");
+  console.log("📅 Fetching all events from spa-booking-api...");
   
   // ✅ FIX: Use XMLHttpRequest to bypass rrweb-recorder interceptor
   const fetchWithXHR = (url) => new Promise((resolve, reject) => {
