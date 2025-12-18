@@ -957,11 +957,13 @@ const Contact = () => {
           spaDateStr = `${day}.${month}.${year}`;
         }
         
+        // ✅ UX POLISH: Determine bookingType based on source
+        const spaBookingType = formData.source === "spaZone" ? "spaZone" : "spa";
+        
         handleBookingSuccess({
-          date: spaDateStr,
-          time: formData.preferredTime,
-          serviceName: spaBookingMeta?.spaName || "SPA tretman",
-          bookingId: "spa-success"
+          bookingType: spaBookingType,
+          bookingId: "spa-success",
+          responseData: {} // SPA response doesn't have email_sent yet
         });
         
         // CRITICAL: Exit early to not fall into single/couples logic
