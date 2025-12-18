@@ -1,10 +1,16 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { API_BASE } from "./config/api";
 
 // 🔐 LOG HARD LOCKED BACKEND ON APP START
 console.log("🔐 LOCKED API_BASE =", API_BASE);
+
+// ✅ FIX: Navigate with query params preserved
+const NavigateWithParams = ({ to }) => {
+  const location = useLocation();
+  return <Navigate to={`${to}${location.search}`} replace />;
+};
 import { LanguageProvider } from "./context/LanguageContext";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
