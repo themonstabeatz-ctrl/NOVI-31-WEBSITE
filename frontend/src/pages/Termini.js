@@ -239,18 +239,15 @@ const fetchCalendarEvents = async () => {
     
     console.log(`📅 Loaded ${combined.length} events (${massageData?.length || 0} massage + ${spaData?.length || 0} SPA)`);
     
-    // 🔍 DEBUG: Log sample SPA row to verify backend fields
-    const sampleSpa = combined.find(r => r.type === "spa");
+    // 🔍 DEBUG: Log sample SPA row (privremeno, brišemo posle)
+    const sampleSpa = combined.find(r => getType(r) === "spa");
     if (sampleSpa) {
-      console.log("🔍 TERMINI SAMPLE SPA ROW:", {
-        id: sampleSpa.id,
-        service_name: sampleSpa.service_name,
-        service_description: sampleSpa.service_description,
-        duration_min: sampleSpa.duration_min,
-        duration: sampleSpa.duration,
-        spa_zone: sampleSpa.spa_zone,
-        services_snapshot: sampleSpa.services_snapshot,
-        final_total: sampleSpa.final_total
+      console.log("🔍 TERMINI SPA ROW SAMPLE:", sampleSpa);
+      console.log("🔍 PARSED:", {
+        title: getTitle(sampleSpa),
+        desc: getDesc(sampleSpa),
+        duration: getDurationMin(sampleSpa),
+        spaZone: getSpaZone(sampleSpa)
       });
     }
     
