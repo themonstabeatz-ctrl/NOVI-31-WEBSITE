@@ -1604,25 +1604,39 @@ const Contact = () => {
                     marginBottom: '1rem'
                   }}>
                     {submitStatus === 'success' ? (
-                      <>
-                        <svg style={{ width: '32px', height: '32px', color: '#22c55e', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <div style={{ color: '#22c55e', fontWeight: 'bold', fontSize: '1.1rem', whiteSpace: 'pre-line' }}>
-                          {/* ✅ UX FIX E: Show booking details in success message */}
-                          {successMsg || (
-                            formData.source === 'voucher' ? translate("successVoucher") : 
-                            formData.source === 'booking' ? translate("successBooking") : 
-                            translate("successMessage")
-                          )}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <svg style={{ width: '32px', height: '32px', color: '#22c55e', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {/* ✅ UX B: Simple 1-sentence success message */}
+                          <div style={{ color: '#22c55e', fontWeight: 'bold', fontSize: '1.1rem' }}>
+                            {successMsg || "Uspešno ste zakazali termin."}
+                          </div>
                         </div>
-                        {/* ✅ UX FIX: Redirect countdown */}
-                        {redirectCountdown > 0 && (
-                          <div style={{ color: '#888', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                            Preusmeravanje na početnu za {redirectCountdown} sekund{redirectCountdown === 1 ? 'u' : 'e'}...
+                        {/* ✅ UX C: Secondary message (email confirmation) */}
+                        {secondaryMessage && (
+                          <div style={{ color: '#888', fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                            {secondaryMessage}
                           </div>
                         )}
-                      </>
+                        {/* ✅ UX A: Button to go back (no auto redirect) */}
+                        <button 
+                          onClick={() => navigate("/")}
+                          style={{
+                            marginTop: '1rem',
+                            padding: '0.5rem 1.5rem',
+                            background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 100%)',
+                            border: 'none',
+                            borderRadius: '6px',
+                            color: '#1a1a1a',
+                            fontWeight: 'bold',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          Nazad na početnu
+                        </button>
+                      </div>
                     ) : (
                       <>
                         <svg style={{ width: '32px', height: '32px', color: '#ef4444', marginRight: '0.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
