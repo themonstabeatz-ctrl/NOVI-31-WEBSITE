@@ -281,7 +281,14 @@ const Termini = () => {
       : event.client_first_name 
         ? `${event.client_first_name} ${event.client_last_name || ""}`.trim()
         : "Nepoznat klijent";
-    const price = event.pricing?.final_total || event.final_price || event.price || 0;
+    // ✅ FIX: Get price from multiple possible fields
+    const price = event.final_total 
+      || event.snapshot_price 
+      || event.pricing?.final_total 
+      || event.final_price 
+      || event.services_snapshot?.[0]?.price
+      || event.price 
+      || 0;
 
     return (
       <Card 
