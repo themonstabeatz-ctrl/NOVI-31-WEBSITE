@@ -204,7 +204,13 @@ const Termini = () => {
   // Render event card
   const renderEventCard = (event) => {
     const badge = getBadge(event);
-    const title = getTitle(event);
+    // ✅ Use unified helper functions
+    const title = getServiceTitle(event);
+    const description = getServiceDescription(event);
+    const duration = getDurationMin(event);
+    const addonsText = getAddonsText(event);
+    const durText = duration ? `${duration} min` : "—";
+    
     const startTime = formatTime(event.start_time);
     const endTime = formatTime(event.end_time);
     const clientName = event.client 
