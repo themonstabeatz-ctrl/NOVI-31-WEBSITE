@@ -1,230 +1,298 @@
 #!/usr/bin/env python3
 """
-Backend Test for NEW FINALIZED COUPLES MASSAGE BOOKING LOGIC
-Testing the exact flow described in the review request.
+Backend Test Suite for Hard Lock API Configuration
+Testing the Bua Luang Thai Spa booking website backend integration
+
+Test Cases:
+1. Backend Health Check
+2. SPA Services Endpoint  
+3. Massage Appointments List
+4. SPA Appointments List
+5. Verify Hard Lock in Frontend Code
+6. Verify .env Configuration
 """
 
 import requests
 import json
+import subprocess
+import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 
-# Backend URL from review request
-BACKEND_URL = "https://massage-app-4.preview.emergentagent.com"
+# Test Configuration
+BACKEND_URL = "https://spa-dashboard-2.preview.emergentagent.com"
+TIMEOUT = 30
 
-def test_couples_packages_endpoint():
-    """
-    Step 1: Get couples packages from /api/services/couples/list
-    """
-    print("🔍 STEP 1: Testing /api/services/couples/list endpoint...")
-    
+class Colors:
+    GREEN = '\033[92m'
+    RED = '\033[91m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+
+def log_test(test_name, status, details=""):
+    """Log test results with colors"""
+    color = Colors.GREEN if status == "PASS" else Colors.RED if status == "FAIL" else Colors.YELLOW
+    print(f"{color}[{status}]{Colors.ENDC} {test_name}")
+    if details:
+        print(f"    {details}")
+
+def test_backend_health_check():
+    """Test Case 1: Backend Health Check - /api/services"""
     try:
-        response = requests.get(f"{BACKEND_URL}/api/services/couples/list", timeout=10)
-        print(f"Response Status: {response.status_code}")
+        print(f"\n{Colors.BLUE}=== Test 1: Backend Health Check ==={Colors.ENDC}")
+        
+        url = f"{BACKEND_URL}/api/services"
+        print(f"Testing: {url}")
+        
+        response = requests.get(url, timeout=TIMEOUT)
         
         if response.status_code == 200:
-            packages = response.json()
-            print(f"✅ SUCCESS: Retrieved {len(packages)} couples packages")
-            
-            # Look for packages with different durations
-            duration_packages = {}
-            for package in packages:
-                name = package.get('name', '')
-                print(f"   - {name} (ID: {package.get('id', 'N/A')})")
-                
-                # Extract duration from name
-                import re
-                duration_match = re.search(r'(\d+)\s*min', name)
-                if duration_match:
-                    duration = int(duration_match.group(1))
-                    duration_packages[duration] = package
-            
-            print(f"\n📊 Found packages for durations: {list(duration_packages.keys())}")
-            return duration_packages
+            data = response.json()
+            if isinstance(data, list) and len(data) > 0:
+                log_test("Backend Health Check", "PASS", f"Returned {len(data)} services")
+                return True
+            else:
+                log_test("Backend Health Check", "FAIL", "Empty or invalid response format")
+                return False
         else:
-            print(f"❌ FAILED: {response.status_code} - {response.text}")
-            return None
-            
-    except Exception as e:
-        print(f"❌ ERROR: {str(e)}")
-        return None
-
-def find_120_min_package(duration_packages):
-    """
-    Step 2: Find the package for 120 min (60+60) and get its ID
-    """
-    print("\n🎯 STEP 2: Finding 120-min couples package...")
-    
-    if not duration_packages:
-        print("❌ No packages available to search")
-        return None
-    
-    # Look for 120-min package
-    if 120 in duration_packages:
-        package = duration_packages[120]
-        package_id = package.get('id')
-        package_name = package.get('name')
-        print(f"✅ FOUND 120-min package: {package_name}")
-        print(f"   Package ID: {package_id}")
-        return package_id
-    else:
-        print(f"❌ No 120-min package found. Available durations: {list(duration_packages.keys())}")
-        return None
-
-def test_couples_booking_with_package_id(package_id):
-    """
-    Step 3: Send booking with that package ID to /api/appointments
-    """
-    print(f"\n📤 STEP 3: Testing booking with package ID: {package_id}")
-    
-    # Calculate appointment time (tomorrow at 14:00)
-    tomorrow = datetime.now() + timedelta(days=1)
-    appointment_time = tomorrow.replace(hour=14, minute=0, second=0, microsecond=0)
-    appointment_iso = appointment_time.strftime("%Y-%m-%dT%H:%M:%S")
-    
-    # Prepare booking payload as specified in review request
-    booking_payload = {
-        "client_first_name": "Test",
-        "client_last_name": "CouplesFlow",
-        "client_phone": "0641234567",
-        "client_email": "test@couplesflow.com",
-        "service_id": package_id,
-        "start_time": "2025-12-31T14:00:00",
-        "notes": "COUPLES UI izbor: Osoba1=[PAROVI] Aroma terapija (60min); Osoba2=[PAROVI] Tradicionalna tajlandska masaža (60min)"
-    }
-    
-    print("📋 Booking payload:")
-    print(json.dumps(booking_payload, indent=2))
-    
-    try:
-        response = requests.post(
-            f"{BACKEND_URL}/api/appointments",
-            json=booking_payload,
-            headers={'Content-Type': 'application/json'},
-            timeout=30
-        )
-        
-        print(f"\n📥 Response Status: {response.status_code}")
-        
-        if response.status_code in [200, 201]:
-            result = response.json()
-            print("✅ BOOKING SUCCESS!")
-            print(f"   Appointment ID: {result.get('id', 'N/A')}")
-            print(f"   Response: {json.dumps(result, indent=2)}")
-            return True
-        else:
-            print(f"❌ BOOKING FAILED: {response.status_code}")
-            print(f"   Error: {response.text}")
+            log_test("Backend Health Check", "FAIL", f"HTTP {response.status_code}: {response.text[:200]}")
             return False
             
     except Exception as e:
-        print(f"❌ BOOKING ERROR: {str(e)}")
+        log_test("Backend Health Check", "FAIL", f"Exception: {str(e)}")
         return False
 
-def verify_forbidden_fields():
-    """
-    Verify that forbidden fields are not being used in the booking
-    """
-    print("\n🚫 VERIFICATION: Checking forbidden fields...")
-    
-    forbidden_fields = [
-        "person1_services", 
-        "person2_services", 
-        "is_couples_booking", 
-        "category"
-    ]
-    
-    # Test booking payload should NOT contain these fields
-    test_payload = {
-        "client_first_name": "Test",
-        "client_last_name": "CouplesFlow", 
-        "client_phone": "0641234567",
-        "client_email": "test@couplesflow.com",
-        "service_id": "test-id",
-        "start_time": "2025-12-31T14:00:00",
-        "notes": "COUPLES UI izbor: Osoba1=[PAROVI] Aroma terapija (60min); Osoba2=[PAROVI] Tradicionalna tajlandska masaža (60min)"
-    }
-    
-    has_forbidden = False
-    for field in forbidden_fields:
-        if field in test_payload:
-            print(f"❌ FORBIDDEN FIELD FOUND: {field}")
-            has_forbidden = True
-    
-    if not has_forbidden:
-        print("✅ NO FORBIDDEN FIELDS: Payload is clean")
+def test_spa_services_endpoint():
+    """Test Case 2: SPA Services Endpoint - /api/spa/services"""
+    try:
+        print(f"\n{Colors.BLUE}=== Test 2: SPA Services Endpoint ==={Colors.ENDC}")
         
-    # Verify required elements are present
-    required_elements = ["service_id", "notes"]
-    for element in required_elements:
-        if element in test_payload:
-            print(f"✅ REQUIRED ELEMENT PRESENT: {element}")
+        url = f"{BACKEND_URL}/api/spa/services"
+        print(f"Testing: {url}")
+        
+        response = requests.get(url, timeout=TIMEOUT)
+        
+        if response.status_code == 200:
+            data = response.json()
+            # Check for SPA zone prices (Sauna, Jacuzzi, Parno kupatilo)
+            spa_services = ["Sauna", "Jacuzzi", "Parno kupatilo"]
+            found_services = []
+            
+            if isinstance(data, list):
+                for item in data:
+                    if isinstance(item, dict) and 'name' in item:
+                        for spa_service in spa_services:
+                            if spa_service.lower() in item['name'].lower():
+                                found_services.append(spa_service)
+            
+            if found_services:
+                log_test("SPA Services Endpoint", "PASS", f"Found SPA services: {', '.join(found_services)}")
+                return True
+            else:
+                log_test("SPA Services Endpoint", "FAIL", "No SPA zone services found (Sauna, Jacuzzi, Parno kupatilo)")
+                return False
         else:
-            print(f"❌ MISSING REQUIRED ELEMENT: {element}")
-    
-    return not has_forbidden
+            log_test("SPA Services Endpoint", "FAIL", f"HTTP {response.status_code}: {response.text[:200]}")
+            return False
+            
+    except Exception as e:
+        log_test("SPA Services Endpoint", "FAIL", f"Exception: {str(e)}")
+        return False
 
-def main():
-    """
-    Main test function following the exact review request steps
-    """
-    print("🎯 TESTING NEW FINALIZED COUPLES MASSAGE BOOKING LOGIC")
-    print("=" * 60)
+def test_massage_appointments():
+    """Test Case 3: Massage Appointments List - /api/appointments?limit=5"""
+    try:
+        print(f"\n{Colors.BLUE}=== Test 3: Massage Appointments List ==={Colors.ENDC}")
+        
+        url = f"{BACKEND_URL}/api/appointments?limit=5"
+        print(f"Testing: {url}")
+        
+        response = requests.get(url, timeout=TIMEOUT)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if isinstance(data, list):
+                log_test("Massage Appointments List", "PASS", f"Returned {len(data)} appointments")
+                
+                # Check for client info and pricing in first appointment if available
+                if len(data) > 0 and isinstance(data[0], dict):
+                    first_appointment = data[0]
+                    has_client_info = any(key in first_appointment for key in ['client_name', 'client_first_name', 'client_last_name'])
+                    has_pricing = any(key in first_appointment for key in ['price', 'total_price', 'final_price'])
+                    
+                    if has_client_info:
+                        print(f"    ✓ Client info found in appointments")
+                    if has_pricing:
+                        print(f"    ✓ Pricing info found in appointments")
+                
+                return True
+            else:
+                log_test("Massage Appointments List", "FAIL", "Invalid response format - expected list")
+                return False
+        else:
+            log_test("Massage Appointments List", "FAIL", f"HTTP {response.status_code}: {response.text[:200]}")
+            return False
+            
+    except Exception as e:
+        log_test("Massage Appointments List", "FAIL", f"Exception: {str(e)}")
+        return False
+
+def test_spa_appointments():
+    """Test Case 4: SPA Appointments List - /api/spa/appointments"""
+    try:
+        print(f"\n{Colors.BLUE}=== Test 4: SPA Appointments List ==={Colors.ENDC}")
+        
+        url = f"{BACKEND_URL}/api/spa/appointments"
+        print(f"Testing: {url}")
+        
+        response = requests.get(url, timeout=TIMEOUT)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if isinstance(data, list):
+                log_test("SPA Appointments List", "PASS", f"Returned {len(data)} SPA appointments")
+                
+                # Check for services_snapshot with ritual names
+                ritual_names = ["Silky Body Ritual", "Deep Renewal Ritual"]
+                found_rituals = []
+                
+                for appointment in data:
+                    if isinstance(appointment, dict) and 'services_snapshot' in appointment:
+                        services_snapshot = appointment['services_snapshot']
+                        if isinstance(services_snapshot, (list, dict)):
+                            snapshot_str = str(services_snapshot).lower()
+                            for ritual in ritual_names:
+                                if ritual.lower() in snapshot_str:
+                                    found_rituals.append(ritual)
+                
+                if found_rituals:
+                    print(f"    ✓ Found ritual names: {', '.join(set(found_rituals))}")
+                
+                return True
+            else:
+                log_test("SPA Appointments List", "FAIL", "Invalid response format - expected list")
+                return False
+        else:
+            log_test("SPA Appointments List", "FAIL", f"HTTP {response.status_code}: {response.text[:200]}")
+            return False
+            
+    except Exception as e:
+        log_test("SPA Appointments List", "FAIL", f"Exception: {str(e)}")
+        return False
+
+def test_hard_lock_frontend():
+    """Test Case 5: Verify Hard Lock in Frontend Code"""
+    try:
+        print(f"\n{Colors.BLUE}=== Test 5: Verify Hard Lock in Frontend Code ==={Colors.ENDC}")
+        
+        # Check for spa-dashboard-2 in api.js
+        try:
+            result = subprocess.run(
+                ["grep", "-RIn", "spa-dashboard-2", "/app/frontend/src/config/api.js"],
+                capture_output=True, text=True, timeout=10
+            )
+            
+            if result.returncode == 0 and "spa-dashboard-2" in result.stdout:
+                log_test("Hard Lock Configuration", "PASS", "spa-dashboard-2 found in api.js")
+                spa_dashboard_found = True
+            else:
+                log_test("Hard Lock Configuration", "FAIL", "spa-dashboard-2 NOT found in api.js")
+                spa_dashboard_found = False
+        except Exception as e:
+            log_test("Hard Lock Configuration", "FAIL", f"Error checking api.js: {str(e)}")
+            spa_dashboard_found = False
+        
+        # Check for forbidden backends
+        try:
+            result = subprocess.run(
+                ["grep", "-RIn", "massage-scheduler\\|massage-app-4", "/app/frontend/src", "--include=*.js"],
+                capture_output=True, text=True, timeout=10
+            )
+            
+            if result.returncode != 0:  # No matches found (good)
+                log_test("Forbidden Backend Check", "PASS", "No forbidden backends found")
+                no_forbidden_backends = True
+            else:
+                log_test("Forbidden Backend Check", "FAIL", f"Forbidden backends found: {result.stdout[:200]}")
+                no_forbidden_backends = False
+        except Exception as e:
+            log_test("Forbidden Backend Check", "FAIL", f"Error checking forbidden backends: {str(e)}")
+            no_forbidden_backends = False
+        
+        return spa_dashboard_found and no_forbidden_backends
+        
+    except Exception as e:
+        log_test("Hard Lock Frontend Check", "FAIL", f"Exception: {str(e)}")
+        return False
+
+def test_env_configuration():
+    """Test Case 6: Verify .env Configuration"""
+    try:
+        print(f"\n{Colors.BLUE}=== Test 6: Verify .env Configuration ==={Colors.ENDC}")
+        
+        env_file = "/app/frontend/.env"
+        
+        if not os.path.exists(env_file):
+            log_test("Environment Configuration", "FAIL", f".env file not found at {env_file}")
+            return False
+        
+        with open(env_file, 'r') as f:
+            env_content = f.read()
+        
+        expected_url = "https://spa-dashboard-2.preview.emergentagent.com"
+        
+        if f"REACT_APP_BACKEND_URL={expected_url}" in env_content:
+            log_test("Environment Configuration", "PASS", f"Correct REACT_APP_BACKEND_URL found")
+            return True
+        else:
+            log_test("Environment Configuration", "FAIL", f"Expected REACT_APP_BACKEND_URL={expected_url} not found")
+            print(f"    Current .env content:")
+            for line in env_content.split('\n'):
+                if 'BACKEND_URL' in line:
+                    print(f"    {line}")
+            return False
+            
+    except Exception as e:
+        log_test("Environment Configuration", "FAIL", f"Exception: {str(e)}")
+        return False
+
+def run_all_tests():
+    """Run all test cases and provide summary"""
+    print(f"{Colors.BOLD}🔒 Hard Lock API Configuration Test Suite{Colors.ENDC}")
     print(f"Backend URL: {BACKEND_URL}")
-    print("=" * 60)
+    print(f"Test Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    # Step 1: Get couples packages
-    duration_packages = test_couples_packages_endpoint()
-    if not duration_packages:
-        print("\n❌ CRITICAL FAILURE: Cannot retrieve couples packages")
-        return False
+    test_results = []
     
-    # Step 2: Find 120-min package
-    package_id = find_120_min_package(duration_packages)
-    if not package_id:
-        print("\n❌ CRITICAL FAILURE: Cannot find 120-min package")
-        return False
+    # Run all tests
+    test_results.append(("Backend Health Check", test_backend_health_check()))
+    test_results.append(("SPA Services Endpoint", test_spa_services_endpoint()))
+    test_results.append(("Massage Appointments List", test_massage_appointments()))
+    test_results.append(("SPA Appointments List", test_spa_appointments()))
+    test_results.append(("Hard Lock Frontend", test_hard_lock_frontend()))
+    test_results.append(("Environment Configuration", test_env_configuration()))
     
-    # Step 3: Test booking with package ID
-    booking_success = test_couples_booking_with_package_id(package_id)
+    # Summary
+    print(f"\n{Colors.BOLD}=== TEST SUMMARY ==={Colors.ENDC}")
+    passed = sum(1 for _, result in test_results if result)
+    total = len(test_results)
     
-    # Verification: Check forbidden fields
-    fields_clean = verify_forbidden_fields()
+    for test_name, result in test_results:
+        status = "PASS" if result else "FAIL"
+        color = Colors.GREEN if result else Colors.RED
+        print(f"{color}[{status}]{Colors.ENDC} {test_name}")
     
-    # Final results
-    print("\n" + "=" * 60)
-    print("🏁 FINAL TEST RESULTS:")
-    print("=" * 60)
+    print(f"\n{Colors.BOLD}Results: {passed}/{total} tests passed{Colors.ENDC}")
     
-    if duration_packages:
-        print("✅ Step 1: Couples packages endpoint - SUCCESS")
-    else:
-        print("❌ Step 1: Couples packages endpoint - FAILED")
-    
-    if package_id:
-        print("✅ Step 2: Found 120-min package - SUCCESS")
-    else:
-        print("❌ Step 2: Found 120-min package - FAILED")
-    
-    if booking_success:
-        print("✅ Step 3: Booking with package ID - SUCCESS")
-    else:
-        print("❌ Step 3: Booking with package ID - FAILED")
-    
-    if fields_clean:
-        print("✅ Verification: No forbidden fields - SUCCESS")
-    else:
-        print("❌ Verification: Forbidden fields detected - FAILED")
-    
-    overall_success = duration_packages and package_id and booking_success and fields_clean
-    
-    if overall_success:
-        print("\n🎉 OVERALL RESULT: NEW COUPLES LOGIC WORKING PERFECTLY!")
+    if passed == total:
+        print(f"{Colors.GREEN}✅ All tests passed! Hard Lock implementation is working correctly.{Colors.ENDC}")
         return True
     else:
-        print("\n💥 OVERALL RESULT: NEW COUPLES LOGIC HAS ISSUES!")
+        print(f"{Colors.RED}❌ {total - passed} test(s) failed. Hard Lock implementation needs attention.{Colors.ENDC}")
         return False
 
 if __name__ == "__main__":
-    success = main()
+    success = run_all_tests()
     sys.exit(0 if success else 1)
