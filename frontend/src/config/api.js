@@ -2,29 +2,38 @@
  * 🔒 HARD LOCK - DO NOT CHANGE
  * Backend URL: spa-booking-api.preview.emergentagent.com
  * 
- * ❌ NEMA spa-dashboard-2
- * ❌ NEMA env koji može da promeni agent
- * ❌ NEMA fallback-a
+ * PRAVILO: API_BASE koristiš ISKLJUČIVO za API pozive: API_BASE + "/api/..."
+ * ZABRANJENO: ${API_BASE}/static/... ili ${API_BASE}/bundle.js
  */
 
 // HARD LOCK - JEDINI BACKEND
 export const API_BASE = "https://spa-booking-api.preview.emergentagent.com";
 
-// ✅ Endpoint helpers
-export const SPA_APPOINTMENTS_ENDPOINT = `${API_BASE}/api/spa/appointments`;
-export const APPOINTMENTS_ENDPOINT = `${API_BASE}/api/appointments`;
-export const APPOINTMENTS_LIST_ENDPOINT = `${API_BASE}/api/appointments/list`;
-export const APPOINTMENTS_COUPLE_ENDPOINT = `${API_BASE}/api/appointments/couple`;
-export const NOTIFICATIONS_ENDPOINT = `${API_BASE}/api/notifications`;
-export const SERVICES_ENDPOINT = `${API_BASE}/api/services`;
-export const SERVICES_SINGLE_ENDPOINT = `${API_BASE}/api/services/single/list`;
-export const SERVICES_COUPLES_ENDPOINT = `${API_BASE}/api/services/couples/list`;
-export const SPA_SERVICES_ENDPOINT = `${API_BASE}/api/spa/services`;
-export const HEALTH_ENDPOINT = `${API_BASE}/api/health`;
-
-// ✅ Admin dashboard endpoints
-export const UNVIEWED_COUNT_ENDPOINT = `${API_BASE}/api/appointments/unviewed/count`;
-export const CALENDAR_ENDPOINT = `${API_BASE}/api/appointments/calendar`;
+// ✅ CENTRALIZOVANE API RUTE - SVE MORA IMATI /api/
+export const API = {
+  // Health & Status
+  health: `${API_BASE}/api/health`,
+  
+  // Appointments
+  appointments: `${API_BASE}/api/appointments`,
+  appointmentsList: `${API_BASE}/api/appointments/list`,
+  appointmentsCouple: `${API_BASE}/api/appointments/couple`,
+  appointmentsCalendar: `${API_BASE}/api/appointments/calendar`,
+  unviewedCount: `${API_BASE}/api/appointments/unviewed/count`,
+  
+  // SPA
+  spaAppointments: `${API_BASE}/api/spa/appointments`,
+  spaServices: `${API_BASE}/api/spa/services`,
+  spaQuote: `${API_BASE}/api/spa/quote`,
+  
+  // Services
+  services: `${API_BASE}/api/services`,
+  servicesSingle: `${API_BASE}/api/services/single/list`,
+  servicesCouples: `${API_BASE}/api/services/couples/list`,
+  
+  // Notifications
+  notifications: `${API_BASE}/api/notifications`,
+};
 
 // 🔐 LOG na startu
 console.log("🔐 LOCKED API_BASE =", API_BASE);
@@ -51,9 +60,12 @@ export async function safeJson(res) {
 }
 
 /**
- * ✅ Fetch wrapper
+ * ✅ Fetch wrapper za API pozive
  */
-export async function apiFetch(url, options = {}) {
+export async function apiFetch(endpoint, options = {}) {
+  // Endpoint mora početi sa /api/
+  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
+  
   const res = await fetch(url, {
     ...options,
     headers: {
@@ -64,5 +76,19 @@ export async function apiFetch(url, options = {}) {
   return res;
 }
 
+// Legacy exports (za backward compatibility)
+export const SPA_APPOINTMENTS_ENDPOINT = API.spaAppointments;
+export const APPOINTMENTS_ENDPOINT = API.appointments;
+export const APPOINTMENTS_LIST_ENDPOINT = API.appointmentsList;
+export const APPOINTMENTS_COUPLE_ENDPOINT = API.appointmentsCouple;
+export const SERVICES_ENDPOINT = API.services;
+export const SERVICES_SINGLE_ENDPOINT = API.servicesSingle;
+export const SERVICES_COUPLES_ENDPOINT = API.servicesCouples;
+export const SPA_SERVICES_ENDPOINT = API.spaServices;
+export const HEALTH_ENDPOINT = API.health;
+export const UNVIEWED_COUNT_ENDPOINT = API.unviewedCount;
+export const CALENDAR_ENDPOINT = API.appointmentsCalendar;
+export const NOTIFICATIONS_ENDPOINT = API.notifications;
+
 // Default export
-export default { API_BASE };
+export default { API_BASE, API };
