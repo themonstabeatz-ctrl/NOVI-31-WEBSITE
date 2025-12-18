@@ -93,24 +93,41 @@ const Contact = () => {
     return ['spa', 'spaZone', 'spaSpecial', 'coupleSpecial'].includes(source) ? source : null;
   };
 
-  // ✅ UX FIX: Handle booking success - show message, reset form, redirect
+  // ✅ UX POLISH: Handle booking success - simple message, no redirect
+  // State for secondary message (email confirmation)
+  const [secondaryMessage, setSecondaryMessage] = useState("");
+  
   const handleBookingSuccess = (bookingDetails = {}) => {
-    const { date, time, serviceName, bookingId } = bookingDetails;
+    const { bookingType, bookingId, responseData } = bookingDetails;
     
-    // Format success message with booking details
-    let msg = "✅ Uspešno ste zakazali termin!";
-    if (date && time) {
-      msg = `✅ Uspešno zakazano za ${date} u ${time}`;
-    }
-    if (serviceName) {
-      msg += `\n${serviceName}`;
-    }
+    // ✅ UX B: Success text - samo 1 rečenica, bez datuma
+    const successTextByType = {
+      massage: "Uspešno ste zakazali vašu masažu.",
+      spa: "Uspešno ste zakazali vaš SPA tretman.",
+      couple: "Uspešno ste zakazali vašu masažu za parove.",
+      spaZone: "Uspešno ste zakazali vaš SPA tretman.",
+      coupleSpecial: "Uspešno ste zakazali vaš SPA tretman za parove.",
+    };
     
-    console.log("✅ Booking success:", { bookingId, date, time, serviceName });
+    const msg = successTextByType[bookingType] || "Uspešno ste zakazali termin.";
+    
+    console.log("✅ Booking success:", { bookingType, bookingId });
     
     setSuccessMsg(msg);
     setSubmitStatus("success");
     setIsSubmitting(false);
+    
+    // ✅ UX C: Check if backend confirmed email was sent
+    const emailSent = Boolean(responseData?.email_sent || responseData?.notification_sent);
+    const emailFailed = responseData?.warnings?.includes("EMAIL_FAILED") || responseData?.email_error;
+    
+    if (emailSent) {
+      setSecondaryMessage("Email potvrda je poslata.");
+    } else if (emailFailed) {
+      setSecondaryMessage("Termin je sačuvan, ali email trenutno nije poslat.");
+    } else {
+      setSecondaryMessage("");
+    }
     
     // ✅ UX FIX B: Reset form (keep phone/email for convenience)
     setFormData(prev => ({
@@ -122,8 +139,8 @@ const Contact = () => {
       message: "",
     }));
     
-    // ✅ UX FIX C: Start countdown for redirect (3 seconds)
-    setRedirectCountdown(3);
+    // ✅ UX A: NO AUTO REDIRECT - korisnik ostaje na strani
+    // setRedirectCountdown(3); // REMOVED
   };
   
   const [formData, setFormData] = useState({
