@@ -32,6 +32,8 @@ function App() {
               {/* REMOVED: <Route path="booking" element={<Contact />} /> */}
               <Route path="galerija" element={<Gallery />} />
               <Route path="gallery" element={<Gallery />} />
+              <Route path="termini" element={<Termini />} />
+              <Route path="appointments" element={<Termini />} />
               
               {/* Serbian URL Aliases - 301 Redirects */}
               <Route path="usluge" element={<Navigate to="/masaze" replace />} />
