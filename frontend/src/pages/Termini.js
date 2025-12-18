@@ -211,10 +211,20 @@ const Termini = () => {
     setError(null);
     
     try {
+      // ✅ FIX: Fetch all events, then filter client-side by date range
+      const allEvents = await fetchCalendarEvents();
       const { startISO, endISO } = getDateRange();
-      const fetchedEvents = await fetchCalendarEvents({ startISO, endISO });
-      console.log("📅 Fetched events:", fetchedEvents.length);
-      setEvents(fetchedEvents);
+      const startDate = new Date(startISO);
+      const endDate = new Date(endISO);
+      
+      // Filter events within the selected date range
+      const filteredEvents = allEvents.filter(event => {
+        const eventDate = new Date(event.start_time);
+        return eventDate >= startDate && eventDate <= endDate;
+      });
+      
+      console.log(`📅 Filtered ${filteredEvents.length}/${allEvents.length} events for date range`);
+      setEvents(filteredEvents);
     } catch (err) {
       console.error("❌ Failed to load events:", err);
       setError(err.message);
