@@ -51,178 +51,150 @@ const getBadge = (event) => {
   return { label: "MASAŽA", color: "#4ade80", bg: "rgba(74, 222, 128, 0.2)" };
 };
 
-// ✅ A) JEDINSTVENE HELPER FUNKCIJE
-// Prioritet: backend polja > services_snapshot > parsing iz notes > fallback
-const safe = (v) => (typeof v === "string" && v.trim() ? v.trim() : null);
+// ✅ A) FINAL HELPER FUNKCIJE
+// Backend polja su izvor istine; notes parsing je samo fallback
+const s = (v) => (typeof v === "string" ? v.trim() : v);
 
 // Get event type
-const getType = (row) => {
+function getType(row) {
   return row.type || row.appointment_type || row.source || "massage";
-};
+}
 
-// ✅ Parse SPA paket name from notes (backend currently stores data in notes)
-const parseSpaNameFromNotes = (notes) => {
-  if (!notes) return null;
-  // Match: "SPA paket: Silky Body Ritual"
-  const match = notes.match(/SPA paket:\s*([^\n]+)/);
-  return match ? match[1].trim() : null;
-};
+// ✅ Parse notes - SAMO kao fallback dok backend ne isporuči polja
+function parseNotesSpa(notes = "") {
+  const out = { title: "", variant: "", totalMin: null, spaZone: "" };
+  if (!notes) return out;
 
-// ✅ Parse variant/description from notes
-const parseVariantFromNotes = (notes) => {
-  if (!notes) return null;
-  // Match: "Varijanta: Sa masažom lica (+3.000 RSD)"
-  const match = notes.match(/Varijanta:\s*([^\n]+)/);
-  return match ? match[1].trim() : null;
-};
+  // Parse title: "SPA paket: Silky Body Ritual"
+  const mTitle = notes.match(/SPA paket:\s*([^\n]+?)(?:\s+Varijanta:|\s+SPA zona:|\s+Ukupno trajanje:|\s+Ukupna cena:|$)/);
+  if (mTitle) out.title = mTitle[1].trim();
 
-// ✅ Parse duration from notes
-const parseDurationFromNotes = (notes) => {
-  if (!notes) return null;
-  // Match: "Ukupno trajanje: 270 min"
-  const match = notes.match(/Ukupno trajanje:\s*(\d+)\s*min/);
-  return match ? parseInt(match[1], 10) : null;
-};
+  // Parse variant: "Varijanta: Sa masažom lica (+3.000 RSD)"
+  const mVar = notes.match(/Varijanta:\s*([^\n]+?)(?:\s+SPA zona:|\s+Ukupno trajanje:|\s+Ukupna cena:|$)/);
+  if (mVar) out.variant = mVar[1].trim();
 
-// ✅ Parse SPA zones from notes
-const parseSpaZonesFromNotes = (notes) => {
-  if (!notes) return null;
-  // Match SPA zona section
-  const zonaMatch = notes.match(/SPA zona:\s*\n((?:\s+[•\-]\s*[^\n]+\n?)+)/);
-  if (!zonaMatch) return null;
-  
-  const zones = zonaMatch[1]
-    .split('\n')
-    .map(line => line.replace(/^\s+[•\-]\s*/, '').trim())
-    .filter(Boolean)
-    .join(', ');
-  
-  return zones || null;
-};
+  // Parse duration: "Ukupno trajanje: 270 min"
+  const mDur = notes.match(/Ukupno trajanje:\s*(\d+)\s*min/);
+  if (mDur) out.totalMin = Number(mDur[1]);
 
-// ✅ Get title - BACKEND FIRST, then notes parsing, then fallback
-const getTitle = (row) => {
-  // 1. Direktno iz backend polja (prioritet)
-  const directTitle = safe(row.service_name) 
-    || safe(row.service_title) 
-    || safe(row.title);
-  if (directTitle) return directTitle;
-  
-  // 2. Iz services_snapshot
-  const snapshotName = safe(row.services_snapshot?.[0]?.name);
-  if (snapshotName) return snapshotName;
-  
-  // 3. Couples massage - iz person1 snapshot
-  if (row.is_couples_booking && row.person1_services_snapshot?.length) {
-    const p1 = row.person1_services_snapshot
-      .map(s => safe(s.name)?.replace('[PAROVI] ', '').replace(/ - \d+ min$/, ''))
-      .filter(Boolean)
-      .join(' + ');
-    if (p1) return `Masaža za parove: ${p1}`;
+  // Parse SPA zone (inline or multiline)
+  const mZoneInline = notes.match(/SPA zona:\s*([^\n]+)/);
+  if (mZoneInline) {
+    out.spaZone = mZoneInline[1].trim();
+  } else {
+    // Try multiline format
+    const mZoneMulti = notes.match(/SPA zona:\s*\n((?:\s+[•\-]\s*[^\n]+\n?)+)/);
+    if (mZoneMulti) {
+      out.spaZone = mZoneMulti[1]
+        .split('\n')
+        .map(line => line.replace(/^\s+[•\-]\s*/, '').trim())
+        .filter(Boolean)
+        .join(', ');
+    }
   }
-  
-  // 4. SPA: Parse iz notes (backend šalje u notes polju)
+
+  return out;
+}
+
+// ✅ Get title - BACKEND FIRST, notes kao fallback
+function getTitle(row) {
   const type = getType(row);
-  if (type === "spa") {
-    const fromNotes = parseSpaNameFromNotes(row.notes);
-    if (fromNotes) return fromNotes;
-  }
   
-  // 5. POSLEDNJI fallback - samo ako ništa nije našao
-  return type === "spa" ? "SPA Tretman" : "Usluga";
-};
+  // Non-SPA: backend fields only
+  if (type !== "spa") {
+    // Couples massage
+    if (row.is_couples_booking && row.person1_services_snapshot?.length) {
+      const p1 = row.person1_services_snapshot
+        .map(svc => s(svc.name)?.replace('[PAROVI] ', '').replace(/ - \d+ min$/, ''))
+        .filter(Boolean)
+        .join(' + ');
+      if (p1) return `Masaža za parove: ${p1}`;
+    }
+    return s(row.service_name) || s(row.service_title) || s(row.title) || "Usluga";
+  }
 
-// ✅ Get description - direktno iz backend polja, then notes
-const getDesc = (row) => {
-  // 1. Direktno iz backend
-  const directDesc = safe(row.service_description) 
-    || safe(row.service_desc);
-  if (directDesc) return directDesc;
-  
-  // 2. Iz snapshot
-  const snapshotDesc = safe(row.services_snapshot?.[0]?.description);
-  if (snapshotDesc) return snapshotDesc;
-  
-  // 3. Couples - person2 services
-  if (row.is_couples_booking && row.person2_services_snapshot?.length) {
-    const p2 = row.person2_services_snapshot
-      .map(s => safe(s.name)?.replace('[PAROVI] ', '').replace(/ - \d+ min$/, ''))
-      .filter(Boolean)
-      .join(' + ');
-    if (p2) return `Osoba 2: ${p2}`;
-  }
-  
-  // 4. SPA: Parse variant iz notes
+  // SPA: backend first, then notes fallback
+  const notesParsed = parseNotesSpa(row.notes || "");
+  return (
+    s(row.service_name) ||
+    s(row.service_title) ||
+    s(row?.services_snapshot?.[0]?.name) ||
+    s(notesParsed.title) ||
+    "SPA Tretman"  // POSLEDNJI fallback
+  );
+}
+
+// ✅ Get description - BACKEND FIRST
+function getDesc(row) {
   const type = getType(row);
-  if (type === "spa") {
-    const variant = parseVariantFromNotes(row.notes);
-    if (variant) return variant;
+  
+  // Non-SPA
+  if (type !== "spa") {
+    // Couples - show person2 services
+    if (row.is_couples_booking && row.person2_services_snapshot?.length) {
+      const p2 = row.person2_services_snapshot
+        .map(svc => s(svc.name)?.replace('[PAROVI] ', '').replace(/ - \d+ min$/, ''))
+        .filter(Boolean)
+        .join(' + ');
+      if (p2) return `Osoba 2: ${p2}`;
+    }
+    return s(row.service_description) || s(row.service_desc) || "";
   }
-  
-  // 5. Generic description
-  return safe(row.description) || "";
-};
 
-// ✅ Get duration - NIKAD "N/A", uvek broj
-const getDurationMin = (row) => {
-  // 1. Direktno iz backend polja
-  const n = row.duration_min ?? row.duration ?? row.services_snapshot?.[0]?.duration ?? null;
-  if (Number.isFinite(Number(n)) && Number(n) > 0) return Number(n);
-  
-  // 2. Couples - iz person1 snapshot
+  // SPA: backend first, then notes fallback
+  const notesParsed = parseNotesSpa(row.notes || "");
+  return (
+    s(row.service_description) ||
+    s(row.service_desc) ||
+    s(row?.services_snapshot?.[0]?.description) ||
+    s(notesParsed.variant) ||
+    ""
+  );
+}
+
+// ✅ Get duration - BACKEND FIRST, nikad N/A
+function getDurationMin(row) {
+  const type = getType(row);
+
+  // Backend first
+  const raw = row.duration_min ?? row.duration ?? row?.services_snapshot?.[0]?.duration;
+  if (Number.isFinite(Number(raw)) && Number(raw) > 0) return Number(raw);
+
+  // Couples - person1 snapshot
   if (row.is_couples_booking && row.person1_services_snapshot?.[0]?.duration) {
     const dur = Number(row.person1_services_snapshot[0].duration);
     if (Number.isFinite(dur) && dur > 0) return dur;
   }
-  
-  // 3. SPA: Parse iz notes
-  const type = getType(row);
+
+  // SPA: notes fallback
   if (type === "spa") {
-    const fromNotes = parseDurationFromNotes(row.notes);
-    if (fromNotes) return fromNotes;
+    const notesParsed = parseNotesSpa(row.notes || "");
+    if (Number.isFinite(Number(notesParsed.totalMin)) && notesParsed.totalMin > 0) {
+      return Number(notesParsed.totalMin);
+    }
   }
-  
-  // 4. Compute iz start/end
+
+  // Compute from start/end
   if (row.start_time && row.end_time) {
-    const s = new Date(row.start_time);
-    const e = new Date(row.end_time);
-    const diff = Math.round((e - s) / 60000);
+    const diff = Math.round((new Date(row.end_time) - new Date(row.start_time)) / 60000);
     if (Number.isFinite(diff) && diff > 0) return diff;
   }
-  
-  // 5. Default fallback - nikad N/A
-  return 60;
-};
 
-// ✅ Get SPA zone - direktno iz backend ili notes
-const getSpaZone = (row) => {
-  // 1. Direktno iz backend
-  const direct = safe(row.spa_zone) || safe(row.spa_zone_label);
-  if (direct) return direct;
-  
-  // 2. Parse iz notes
-  const type = getType(row);
-  if (type === "spa") {
-    return parseSpaZonesFromNotes(row.notes) || "";
-  }
-  
-  return "";
-};
+  return 120; // never N/A
+}
+
+// ✅ Get SPA zone - BACKEND FIRST
+function getSpaZone(row) {
+  const notesParsed = parseNotesSpa(row.notes || "");
+  return s(row.spa_zone) || s(notesParsed.spaZone) || "";
+}
 
 // ✅ Get add-ons
-const getAddonsText = (row) => {
+function getAddonsText(row) {
   const addons = row.addons || row.spa_addons || [];
   if (!addons.length) return "";
   return "Doplate: " + addons.map(a => a.name || a).join(", ");
-};
-
-// Legacy aliases
-const getServiceTitle = getTitle;
-const getServiceDescription = getDesc;
-const getSpaZoneText = (row) => {
-  const zone = getSpaZone(row);
-  return zone ? `🧖 ${zone}` : "";
-};
+}
 
 /**
  * ✅ Fetch calendar events from backend
