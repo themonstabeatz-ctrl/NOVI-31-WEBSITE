@@ -246,7 +246,7 @@ const Contact = () => {
         const backendUrlRaw = API_BASE;
         
         if (!backendUrlRaw) {
-          throw new Error('❌ REACT_APP_BACKEND_URL IS NOT DEFINED');
+          throw new Error('❌ API_BASE IS NOT DEFINED (check config/api.js)');
         }
         
         const backendUrl = backendUrlRaw.replace(/\/$/, '');
