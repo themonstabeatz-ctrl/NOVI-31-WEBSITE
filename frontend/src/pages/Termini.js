@@ -194,6 +194,22 @@ const fetchCalendarEvents = async () => {
     combined.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
     
     console.log(`📅 Loaded ${combined.length} events (${massageData?.length || 0} massage + ${spaData?.length || 0} SPA)`);
+    
+    // 🔍 DEBUG: Log sample SPA row to verify backend fields
+    const sampleSpa = combined.find(r => r.type === "spa");
+    if (sampleSpa) {
+      console.log("🔍 TERMINI SAMPLE SPA ROW:", {
+        id: sampleSpa.id,
+        service_name: sampleSpa.service_name,
+        service_description: sampleSpa.service_description,
+        duration_min: sampleSpa.duration_min,
+        duration: sampleSpa.duration,
+        spa_zone: sampleSpa.spa_zone,
+        services_snapshot: sampleSpa.services_snapshot,
+        final_total: sampleSpa.final_total
+      });
+    }
+    
     return combined;
   } catch (err) {
     console.error("❌ Failed to fetch events:", err);
