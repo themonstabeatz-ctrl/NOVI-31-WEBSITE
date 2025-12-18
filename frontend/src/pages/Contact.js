@@ -635,17 +635,8 @@ const Contact = () => {
     console.log('🚀 handleSubmit called!');
     console.log('📍 Backend URL is:', API_BASE);
     
-    // 🔒 LOCKDOWN PROTECTION: Validate API_BASE is a known backend
-    const ALLOWED_BACKENDS = [
-      "spa-dashboard-2.preview.emergentagent.com",
-      "massage-scheduler-4.preview.emergentagent.com",
-    ];
-    const isAllowed = ALLOWED_BACKENDS.some(h => API_BASE.includes(h));
-    if (!isAllowed) {
-      console.warn(`⚠️ LOCKDOWN WARNING: API_BASE not in allowed list:`, API_BASE);
-    } else {
-      console.log(`✅ API_BASE validated:`, API_BASE);
-    }
+    // 🔒 HARD LOCK: API_BASE validated in config/api.js (throws if invalid)
+    console.log(`✅ API_BASE (hard locked):`, API_BASE);
     
     setIsSubmitting(true);
     setSubmitStatus(null);

@@ -1,6 +1,10 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { API_BASE } from "./config/api";
+
+// 🔐 LOG HARD LOCKED BACKEND ON APP START
+console.log("🔐 LOCKED API_BASE =", API_BASE);
 import { LanguageProvider } from "./context/LanguageContext";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
