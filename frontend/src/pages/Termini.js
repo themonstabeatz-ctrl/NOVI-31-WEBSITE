@@ -48,13 +48,55 @@ const getBadge = (event) => {
   return { label: "MASAŽA", color: "#4ade80", bg: "rgba(74, 222, 128, 0.2)" };
 };
 
-// Get title based on event type
-const getTitle = (event) => {
-  if (event.service?.name) return event.service.name;
-  if (event.service_name) return event.service_name;
-  if (event.type === "spa") return "SPA paket";
-  return "Masaža";
+// ✅ UNIFIED: Get service title (works for both massage + spa)
+const getServiceTitle = (row) => {
+  // Try all possible fields in order of preference
+  return row.service_name
+    ?? row.service?.name
+    ?? row.spa_package_name
+    ?? row.package_name
+    ?? row.title
+    ?? (row.type === "spa" ? "SPA tretman" : "Masaža");
 };
+
+// ✅ UNIFIED: Get service description
+const getServiceDescription = (row) => {
+  return row.service_description
+    ?? row.service?.description
+    ?? row.description
+    ?? row.notes
+    ?? "";
+};
+
+// ✅ UNIFIED: Get duration in minutes (no "N/A")
+const getDurationMin = (row) => {
+  // Prefer explicit duration fields
+  if (Number.isFinite(row.duration_min)) return row.duration_min;
+  if (Number.isFinite(row.duration)) return row.duration;
+  if (Number.isFinite(row.service?.duration)) return row.service.duration;
+  if (Number.isFinite(row.service?.duration_min)) return row.service.duration_min;
+
+  // Fallback: derive from start/end times
+  if (row.start_time && row.end_time) {
+    const s = new Date(row.start_time).getTime();
+    const e = new Date(row.end_time).getTime();
+    const diff = Math.round((e - s) / 60000);
+    if (Number.isFinite(diff) && diff > 0) return diff;
+  }
+
+  // Last fallback - return null (UI will show "—" not "N/A")
+  return null;
+};
+
+// ✅ Get add-ons text if present
+const getAddonsText = (row) => {
+  const addons = row.addons || row.spa_addons || [];
+  if (!addons.length) return "";
+  return "Doplate: " + addons.map(a => a.name || a).join(", ");
+};
+
+// Legacy alias for backward compatibility
+const getTitle = getServiceTitle;
 
 // Fetch calendar events from backend
 const fetchCalendarEvents = async ({ startISO, endISO }) => {
