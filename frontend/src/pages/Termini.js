@@ -336,6 +336,7 @@ const Termini = () => {
     const description = getServiceDescription(event);
     const duration = getDurationMin(event);
     const addonsText = getAddonsText(event);
+    const spaZoneText = getSpaZoneText(event);
     const durText = duration ? `${duration} min` : "—";
     
     const startTime = formatTime(event.start_time);
@@ -370,27 +371,64 @@ const Termini = () => {
         <CardContent style={{ padding: "1rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
             <div style={{ flex: 1 }}>
-              {/* Badge */}
-              <span style={{
-                display: "inline-block",
-                padding: "0.2rem 0.5rem",
-                borderRadius: "4px",
-                fontSize: "0.7rem",
-                fontWeight: "bold",
-                background: badge.bg,
-                color: badge.color,
-                marginBottom: "0.5rem"
-              }}>
-                {badge.label}
-              </span>
+              {/* Badge + Duration inline */}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+                <span style={{
+                  display: "inline-block",
+                  padding: "0.2rem 0.5rem",
+                  borderRadius: "4px",
+                  fontSize: "0.7rem",
+                  fontWeight: "bold",
+                  background: badge.bg,
+                  color: badge.color
+                }}>
+                  {badge.label}
+                </span>
+                
+                {/* Duration */}
+                {duration && (
+                  <span style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    gap: "0.25rem",
+                    color: "#d4af37", 
+                    fontSize: "0.75rem",
+                    fontWeight: "600"
+                  }}>
+                    <Clock size={12} />
+                    {durText}
+                  </span>
+                )}
+              </div>
               
-              {/* Title */}
-              <h4 style={{ color: "#f5f2e8", fontSize: "1rem", margin: "0.25rem 0" }}>
+              {/* Title (bold) */}
+              <h4 style={{ color: "#f5f2e8", fontSize: "1rem", margin: "0.25rem 0", fontWeight: "600" }}>
                 {title}
               </h4>
               
+              {/* Description (if exists) */}
+              {description && (
+                <div style={{ color: "#a0a0a0", fontSize: "0.8rem", marginBottom: "0.25rem", fontStyle: "italic" }}>
+                  {description}
+                </div>
+              )}
+              
+              {/* SPA Zone breakdown (if exists) */}
+              {spaZoneText && (
+                <div style={{ color: "#d4af37", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
+                  {spaZoneText}
+                </div>
+              )}
+              
+              {/* Add-ons (if exists) */}
+              {addonsText && (
+                <div style={{ color: "#4ade80", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
+                  {addonsText}
+                </div>
+              )}
+              
               {/* Client */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c0baa8", fontSize: "0.85rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#c0baa8", fontSize: "0.85rem", marginTop: "0.5rem" }}>
                 <User size={14} />
                 <span>{clientName}</span>
               </div>
