@@ -150,9 +150,6 @@ const getServiceTitle = getTitle;
 const getServiceDescription = getDesc;
 const getSpaZoneText = (row) => getSpaZone(row) ? `🧖 ${getSpaZone(row)}` : "";
 
-// Legacy alias for backward compatibility
-const getTitle = getServiceTitle;
-
 /**
  * ✅ Fetch calendar events from backend
  * Uses direct XMLHttpRequest to avoid rrweb-recorder clone() issue
