@@ -53,26 +53,40 @@ const getBadge = (event) => {
 
 // ✅ UNIFIED: Get service title (works for both massage + spa)
 const getServiceTitle = (row) => {
-  // SPA appointments - check type and services_snapshot
+  // 1. SPA appointments - check type and services_snapshot
   if (row.type === "spa" || row.spa_category) {
+    // First try services_snapshot
     if (row.services_snapshot?.[0]?.name) {
       return row.services_snapshot[0].name;
     }
-    // Parse from notes if service_name is missing
-    if (row.notes?.includes("SPA paket:")) {
-      const match = row.notes.match(/SPA paket:\s*([^\n]+)/);
-      if (match) return match[1].trim();
+    // Then try service_name field
+    if (row.service_name) {
+      return row.service_name;
     }
-    return row.service_name || "SPA tretman";
+    // Parse from notes: "SPA paket: Deep Renewal Ritual"
+    if (row.notes) {
+      const paketMatch = row.notes.match(/SPA paket:\s*([^\n]+)/);
+      if (paketMatch) return paketMatch[1].trim();
+      
+      // Also try "Poseban SPA paket:" or "🌹 Romantični SPA paket"
+      const posebanMatch = row.notes.match(/(?:Poseban |Romantični )?SPA paket[^:]*:\s*([^\n]+)/i);
+      if (posebanMatch) return posebanMatch[1].trim();
+      
+      // Try "SPA Zona" format
+      if (row.notes.includes("SPA Zona")) return "SPA Zona";
+    }
+    return "SPA tretman";
   }
   
-  // Couples massage - show both services
+  // 2. Couples massage - show services from person1
   if (row.is_couples_booking && row.person1_services_snapshot?.length) {
-    const p1 = row.person1_services_snapshot.map(s => s.name?.replace('[PAROVI] ', '')).join(', ');
+    const p1 = row.person1_services_snapshot.map(s => 
+      s.name?.replace('[PAROVI] ', '').replace(/ - \d+ min$/, '')
+    ).join(' + ');
     return `Masaža za parove: ${p1}`;
   }
   
-  // Single massage
+  // 3. Single massage
   return row.service_name
     || row.service?.name
     || row.title
@@ -81,18 +95,40 @@ const getServiceTitle = (row) => {
 
 // ✅ UNIFIED: Get service description
 const getServiceDescription = (row) => {
-  // SPA - return service description
+  // SPA - check snapshot first
   if (row.services_snapshot?.[0]?.description) {
     return row.services_snapshot[0].description;
   }
+  
+  // SPA - parse variant from notes: "Varijanta: Sa masažom lica"
+  if (row.type === "spa" && row.notes) {
+    const variantMatch = row.notes.match(/Varijanta:\s*([^\n]+)/);
+    if (variantMatch) return variantMatch[1].trim();
+    
+    // SPA Zone breakdown
+    const zonaMatch = row.notes.match(/SPA zona:\s*\n((?:\s+•[^\n]+\n?)+)/);
+    if (zonaMatch) {
+      const zones = zonaMatch[1].trim().replace(/\s+•\s*/g, ', ').trim();
+      return `Zone: ${zones}`;
+    }
+  }
+  
+  // Couples - show person2 services
+  if (row.is_couples_booking && row.person2_services_snapshot?.length) {
+    const p2 = row.person2_services_snapshot.map(s => 
+      s.name?.replace('[PAROVI] ', '').replace(/ - \d+ min$/, '')
+    ).join(' + ');
+    return `Osoba 2: ${p2}`;
+  }
+  
   return row.service_description
     || row.description
     || "";
 };
 
-// ✅ UNIFIED: Get duration in minutes
+// ✅ UNIFIED: Get duration in minutes (NEVER returns "N/A")
 const getDurationMin = (row) => {
-  // SPA appointments - from snapshot
+  // 1. SPA - from snapshot
   if (row.services_snapshot?.[0]?.duration_min) {
     return row.services_snapshot[0].duration_min;
   }
@@ -100,11 +136,22 @@ const getDurationMin = (row) => {
     return row.services_snapshot[0].duration;
   }
   
-  // Explicit fields
+  // 2. SPA - parse from notes: "Ukupno trajanje: 330 min"
+  if (row.type === "spa" && row.notes) {
+    const durationMatch = row.notes.match(/Ukupno trajanje:\s*(\d+)\s*min/);
+    if (durationMatch) return parseInt(durationMatch[1], 10);
+  }
+  
+  // 3. Explicit fields
   if (Number.isFinite(row.duration_min)) return row.duration_min;
   if (Number.isFinite(row.duration)) return row.duration;
   
-  // Derive from start/end times
+  // 4. Couples - use person1 duration
+  if (row.is_couples_booking && row.person1_services_snapshot?.[0]?.duration) {
+    return row.person1_services_snapshot[0].duration;
+  }
+  
+  // 5. Derive from start/end times
   if (row.start_time && row.end_time) {
     const s = new Date(row.start_time).getTime();
     const e = new Date(row.end_time).getTime();
@@ -112,7 +159,7 @@ const getDurationMin = (row) => {
     if (Number.isFinite(diff) && diff > 0) return diff;
   }
 
-  return null;
+  return null; // UI will show "—" not "N/A"
 };
 
 // ✅ Get add-ons text if present
@@ -120,6 +167,23 @@ const getAddonsText = (row) => {
   const addons = row.addons || row.spa_addons || [];
   if (!addons.length) return "";
   return "Doplate: " + addons.map(a => a.name || a).join(", ");
+};
+
+// ✅ Get SPA Zone breakdown if present
+const getSpaZoneText = (row) => {
+  if (row.type !== "spa" || !row.notes) return "";
+  
+  // Parse: "SPA zona:\n  • Sauna: 30 min\n  • Parno kupatilo: 30 min"
+  const zonaMatch = row.notes.match(/SPA zona:\s*\n((?:\s+•[^\n]+\n?)+)/);
+  if (!zonaMatch) return "";
+  
+  const zones = zonaMatch[1]
+    .split('\n')
+    .map(line => line.replace(/^\s+•\s*/, '').trim())
+    .filter(Boolean)
+    .join(', ');
+  
+  return zones ? `🧖 ${zones}` : "";
 };
 
 // Legacy alias for backward compatibility
