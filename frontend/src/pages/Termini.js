@@ -145,9 +145,10 @@ const getAddonsText = (row) => {
   return "Doplate: " + addons.map(a => a.name || a).join(", ");
 };
 
-// Legacy aliases
+// Legacy aliases (if needed elsewhere in the file)
 const getServiceTitle = getTitle;
 const getServiceDescription = getDesc;
+const getSpaZoneText = (row) => getSpaZone(row) ? `🧖 ${getSpaZone(row)}` : "";
 
 // Legacy alias for backward compatibility
 const getTitle = getServiceTitle;
