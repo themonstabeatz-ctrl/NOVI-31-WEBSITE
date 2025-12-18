@@ -872,6 +872,8 @@ const Contact = () => {
         console.log("📦 SPA appointment payload:", payload);
         console.log("📤 Sending SPA booking request to:", bookingEndpoint);
 
+        // ✅ A) FIX: Ne čitati response dva puta + pravi error handling
+        let spaResult = null;
         try {
           const response = await fetch(bookingEndpoint, {
             method: "POST",
@@ -879,16 +881,23 @@ const Contact = () => {
             body: JSON.stringify(payload)
           });
 
-          // Read response body ONCE
-          const responseText = await response.text();
+          // Read response body ONCE as text
+          const text = await response.text();
+          
+          // Parse JSON safely
+          try { 
+            spaResult = text ? JSON.parse(text) : null; 
+          } catch { 
+            spaResult = { raw: text }; 
+          }
           
           console.log("📥 SPA booking response status:", response.status);
-          console.log("📥 Response body:", responseText);
+          console.log("📥 SPA booking result:", spaResult); // ✅ C) Debug log
 
           if (!response.ok) {
-            console.error("❌ SPA booking API error:", response.status, responseText);
+            console.error("❌ SPA booking API error:", response.status, spaResult);
             
-            // ✅ FIX C: Specifična poruka za 404 - backend nema SPA endpoint
+            // ✅ Specifična poruka za 404 - backend nema SPA endpoint
             if (response.status === 404) {
               setError("⚠️ Greška: Backend nema SPA booking endpoint (/api/spa/appointments). Kontaktirajte recepciju da doda rutu. (404)");
               alert("Greška: Backend nema SPA booking endpoint (/api/spa/appointments).\n\nKontaktirajte recepciju da doda rutu.\n\n(HTTP 404)");
@@ -897,20 +906,11 @@ const Contact = () => {
               return;
             }
             
-            // Ostale greške
-            let errorMsg = "Došlo je do greške pri zakazivanju SPA tretmana.";
-            try {
-              const errorData = responseText ? JSON.parse(responseText) : {};
-              errorMsg = errorData?.error || errorData?.message || errorData?.detail || errorMsg;
-            } catch {}
-            
-            setError(errorMsg);
-            setSubmitStatus("error");
-            setIsSubmitting(false);
-            return;
+            // Throw error for catch block to handle
+            throw new Error(spaResult?.error || spaResult?.detail || spaResult?.message || `HTTP ${response.status}`);
           }
         } catch (fetchError) {
-          console.error("❌ SPA booking fetch error:", fetchError);
+          console.error("❌ SPA booking error:", fetchError);
           const msg = String(fetchError?.message || fetchError);
           
           // ✅ Specifična poruka za 404 iz exception
@@ -930,14 +930,15 @@ const Contact = () => {
             return;
           }
           
-          setError("Greška pri zakazivanju: " + msg);
+          // ✅ B) UI poruka za greške
+          setError(`Zakazivanje nije uspelo: ${msg}`);
           setSubmitStatus("error");
           setIsSubmitting(false);
           return;
         }
 
-        // ✅ UX FIX: SPA booking success with new handler
-        console.log("✅ SPA booking successful!");
+        // ✅ UX FIX: SPA booking success (200 OK)
+        console.log("✅ SPA booking successful!", spaResult);
         
         // Get date/time from formData for success message
         let spaDateStr = "";
@@ -951,10 +952,14 @@ const Contact = () => {
         // ✅ UX POLISH: Determine bookingType based on source
         const spaBookingType = formData.source === "spaZone" ? "spaZone" : "spa";
         
+        // ✅ B) Check for notify_status: failed and show info message
+        const notifyFailed = spaResult?.notify_status === "failed";
+        
         handleBookingSuccess({
           bookingType: spaBookingType,
-          bookingId: "spa-success",
-          responseData: {} // SPA response doesn't have email_sent yet
+          bookingId: spaResult?.id || "spa-success",
+          responseData: spaResult || {},
+          notifyFailed: notifyFailed // Pass to handler for info message
         });
         
         // CRITICAL: Exit early to not fall into single/couples logic
