@@ -22,6 +22,10 @@ export const SERVICES_COUPLES_ENDPOINT = `${API_BASE}/api/services/couples/list`
 export const SPA_SERVICES_ENDPOINT = `${API_BASE}/api/spa/services`;
 export const HEALTH_ENDPOINT = `${API_BASE}/api/health`;
 
+// ✅ Admin dashboard endpoints
+export const UNVIEWED_COUNT_ENDPOINT = `${API_BASE}/api/appointments/unviewed/count`;
+export const CALENDAR_ENDPOINT = `${API_BASE}/api/appointments/calendar`;
+
 // 🔐 LOG na startu
 console.log("🔐 LOCKED API_BASE =", API_BASE);
 
