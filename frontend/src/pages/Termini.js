@@ -53,11 +53,17 @@ const getBadge = (event) => {
 
 // ✅ UNIFIED: Get service title (works for both massage + spa)
 const getServiceTitle = (row) => {
-  // SPA appointments
-  if (row.spa_category || row.services_snapshot?.[0]) {
-    return row.services_snapshot?.[0]?.name 
-      || row.service_name 
-      || "SPA tretman";
+  // SPA appointments - check type and services_snapshot
+  if (row.type === "spa" || row.spa_category) {
+    if (row.services_snapshot?.[0]?.name) {
+      return row.services_snapshot[0].name;
+    }
+    // Parse from notes if service_name is missing
+    if (row.notes?.includes("SPA paket:")) {
+      const match = row.notes.match(/SPA paket:\s*([^\n]+)/);
+      if (match) return match[1].trim();
+    }
+    return row.service_name || "SPA tretman";
   }
   
   // Couples massage - show both services
