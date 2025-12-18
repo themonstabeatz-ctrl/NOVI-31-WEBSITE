@@ -953,7 +953,9 @@ const Contact = () => {
         }
 
         // ✅ UX FIX: SPA booking success (200 OK)
-        console.log("✅ SPA booking successful!", spaResult);
+        // ✅ C) DEBUG log (privremeno)
+        console.log("📥 FINAL SPA RESULT:", spaResult);
+        console.log("✅ SPA booking successful! ID:", spaResult?.id, "notify_status:", spaResult?.notify_status);
         
         // Get date/time from formData for success message
         let spaDateStr = "";
