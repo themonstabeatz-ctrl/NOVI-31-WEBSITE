@@ -310,13 +310,13 @@ const Termini = () => {
   // Render event card
   const renderEventCard = (event) => {
     const badge = getBadge(event);
-    // ✅ Use unified helper functions
-    const title = getServiceTitle(event);
-    const description = getServiceDescription(event);
+    // ✅ B) Koristi BACKEND FIRST helper funkcije
+    const type = getType(event);
+    const title = getTitle(event);
+    const desc = getDesc(event);
     const duration = getDurationMin(event);
+    const spaZone = getSpaZone(event);
     const addonsText = getAddonsText(event);
-    const spaZoneText = getSpaZoneText(event);
-    const durText = duration ? `${duration} min` : "—";
     
     const startTime = formatTime(event.start_time);
     const endTime = formatTime(event.end_time);
@@ -325,7 +325,7 @@ const Termini = () => {
       : event.client_first_name 
         ? `${event.client_first_name} ${event.client_last_name || ""}`.trim()
         : "Nepoznat klijent";
-    // ✅ FIX: Get price from multiple possible fields
+    // ✅ Get price from backend fields
     const price = event.final_total 
       || event.snapshot_price 
       || event.pricing?.final_total 
@@ -364,38 +364,34 @@ const Termini = () => {
                   {badge.label}
                 </span>
                 
-                {/* Duration */}
-                {duration && (
-                  <span style={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    gap: "0.25rem",
-                    color: "#d4af37", 
-                    fontSize: "0.75rem",
-                    fontWeight: "600"
-                  }}>
-                    <Clock size={12} />
-                    {durText}
-                  </span>
-                )}
+                {/* Duration - uvek prikaži broj, nikad N/A */}
+                <span style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: "0.25rem",
+                  color: "#888", 
+                  fontSize: "0.75rem"
+                }}>
+                  ⏱ {duration} min
+                </span>
               </div>
               
-              {/* Title (bold) */}
-              <h4 style={{ color: "#f5f2e8", fontSize: "1rem", margin: "0.25rem 0", fontWeight: "600" }}>
+              {/* Title (bold) - iz service_name/service_title/snapshot */}
+              <h4 className="service-title" style={{ color: "#f5f2e8", fontSize: "1rem", margin: "0.25rem 0", fontWeight: "600" }}>
                 {title}
               </h4>
               
-              {/* Description (if exists) */}
-              {description && (
-                <div style={{ color: "#a0a0a0", fontSize: "0.8rem", marginBottom: "0.25rem", fontStyle: "italic" }}>
-                  {description}
+              {/* Description (italic, if exists) */}
+              {desc && (
+                <div className="service-desc" style={{ color: "#a0a0a0", fontSize: "0.8rem", marginBottom: "0.25rem" }}>
+                  <em>{desc}</em>
                 </div>
               )}
               
-              {/* SPA Zone breakdown (if exists) */}
-              {spaZoneText && (
-                <div style={{ color: "#d4af37", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
-                  {spaZoneText}
+              {/* SPA Zone (if exists and type is spa) */}
+              {type === "spa" && spaZone && (
+                <div className="spa-zone" style={{ color: "#d4af37", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
+                  🧖 {spaZone}
                 </div>
               )}
               
