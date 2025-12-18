@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { API_BASE, safeJson } from "../config/api";
+import { API_BASE } from "../config/api";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
@@ -7,7 +7,8 @@ import { Calendar, Clock, User, Phone, Sparkles, Leaf } from "lucide-react";
 
 /**
  * ✅ Termini (Appointments) Screen
- * Displays calendar events including SPA bookings from backend calendar feed
+ * Displays calendar events including SPA bookings from backend
+ * LOCKED TO: spa-dashboard-2.preview.emergentagent.com
  */
 
 // Format date helper
@@ -39,10 +40,12 @@ const formatPrice = (price) => {
 
 // Get badge based on event type
 const getBadge = (event) => {
-  if (event.type === "spa" || event.category?.toLowerCase().includes("spa")) {
+  // Check for SPA
+  if (event.type === "spa" || event.spa_category || event.category?.toLowerCase().includes("spa")) {
     return { label: "SPA", color: "#d4af37", bg: "rgba(212, 175, 55, 0.2)" };
   }
-  if (event.type === "couple" || event.category?.toLowerCase().includes("couple")) {
+  // Check for couples massage
+  if (event.is_couples_booking || event.type === "couple" || event.category?.toLowerCase().includes("couple")) {
     return { label: "PAROVI", color: "#e91e63", bg: "rgba(233, 30, 99, 0.2)" };
   }
   return { label: "MASAŽA", color: "#4ade80", bg: "rgba(74, 222, 128, 0.2)" };
@@ -50,33 +53,52 @@ const getBadge = (event) => {
 
 // ✅ UNIFIED: Get service title (works for both massage + spa)
 const getServiceTitle = (row) => {
-  // Try all possible fields in order of preference
+  // SPA appointments
+  if (row.spa_category || row.services_snapshot?.[0]) {
+    return row.services_snapshot?.[0]?.name 
+      || row.service_name 
+      || "SPA tretman";
+  }
+  
+  // Couples massage - show both services
+  if (row.is_couples_booking && row.person1_services_snapshot?.length) {
+    const p1 = row.person1_services_snapshot.map(s => s.name?.replace('[PAROVI] ', '')).join(', ');
+    return `Masaža za parove: ${p1}`;
+  }
+  
+  // Single massage
   return row.service_name
-    ?? row.service?.name
-    ?? row.spa_package_name
-    ?? row.package_name
-    ?? row.title
-    ?? (row.type === "spa" ? "SPA tretman" : "Masaža");
+    || row.service?.name
+    || row.title
+    || "Masaža";
 };
 
 // ✅ UNIFIED: Get service description
 const getServiceDescription = (row) => {
+  // SPA - return service description
+  if (row.services_snapshot?.[0]?.description) {
+    return row.services_snapshot[0].description;
+  }
   return row.service_description
-    ?? row.service?.description
-    ?? row.description
-    ?? row.notes
-    ?? "";
+    || row.description
+    || "";
 };
 
-// ✅ UNIFIED: Get duration in minutes (no "N/A")
+// ✅ UNIFIED: Get duration in minutes
 const getDurationMin = (row) => {
-  // Prefer explicit duration fields
+  // SPA appointments - from snapshot
+  if (row.services_snapshot?.[0]?.duration_min) {
+    return row.services_snapshot[0].duration_min;
+  }
+  if (row.services_snapshot?.[0]?.duration) {
+    return row.services_snapshot[0].duration;
+  }
+  
+  // Explicit fields
   if (Number.isFinite(row.duration_min)) return row.duration_min;
   if (Number.isFinite(row.duration)) return row.duration;
-  if (Number.isFinite(row.service?.duration)) return row.service.duration;
-  if (Number.isFinite(row.service?.duration_min)) return row.service.duration_min;
-
-  // Fallback: derive from start/end times
+  
+  // Derive from start/end times
   if (row.start_time && row.end_time) {
     const s = new Date(row.start_time).getTime();
     const e = new Date(row.end_time).getTime();
@@ -84,7 +106,6 @@ const getDurationMin = (row) => {
     if (Number.isFinite(diff) && diff > 0) return diff;
   }
 
-  // Last fallback - return null (UI will show "—" not "N/A")
   return null;
 };
 
@@ -98,28 +119,53 @@ const getAddonsText = (row) => {
 // Legacy alias for backward compatibility
 const getTitle = getServiceTitle;
 
-// Fetch calendar events from backend
-const fetchCalendarEvents = async ({ startISO, endISO }) => {
-  const url = `${API_BASE}/api/appointments/calendar?start=${encodeURIComponent(startISO)}&end=${encodeURIComponent(endISO)}&include_spa=true`;
-  console.log("📅 Fetching calendar events:", url);
+/**
+ * ✅ Fetch calendar events from backend
+ * Uses direct XMLHttpRequest to avoid rrweb-recorder clone() issue
+ */
+const fetchCalendarEvents = async () => {
+  console.log("📅 Fetching all events from spa-dashboard-2...");
   
-  const res = await fetch(url, { credentials: "include" });
+  // ✅ FIX: Use XMLHttpRequest to bypass rrweb-recorder interceptor
+  const fetchWithXHR = (url) => new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          resolve(JSON.parse(xhr.responseText));
+        } catch (e) {
+          resolve([]);
+        }
+      } else {
+        reject(new Error(`HTTP ${xhr.status}`));
+      }
+    };
+    xhr.onerror = () => reject(new Error("Network error"));
+    xhr.send();
+  });
   
-  // ✅ FIX: Use safeJson to avoid "body stream already used"
-  if (!res.ok) {
-    // Try alternative endpoint
-    console.log("⚠️ Calendar endpoint not found, trying /api/spa/appointments");
-    const altUrl = `${API_BASE}/api/spa/appointments?start=${encodeURIComponent(startISO)}&end=${encodeURIComponent(endISO)}`;
-    const altRes = await fetch(altUrl);
-    if (altRes.ok) {
-      const altData = await safeJson(altRes);
-      return Array.isArray(altData) ? altData : altData?.events || [];
-    }
-    throw new Error(`Calendar fetch failed: ${res.status}`);
+  try {
+    // Fetch both massage and SPA appointments in parallel
+    const [massageData, spaData] = await Promise.all([
+      fetchWithXHR(`${API_BASE}/api/appointments?limit=100`).catch(() => []),
+      fetchWithXHR(`${API_BASE}/api/spa/appointments`).catch(() => [])
+    ]);
+    
+    // Mark SPA appointments with type
+    const spaWithType = (Array.isArray(spaData) ? spaData : []).map(e => ({ ...e, type: "spa" }));
+    
+    // Combine and sort by start_time
+    const combined = [...(Array.isArray(massageData) ? massageData : []), ...spaWithType];
+    combined.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+    
+    console.log(`📅 Loaded ${combined.length} events (${massageData?.length || 0} massage + ${spaData?.length || 0} SPA)`);
+    return combined;
+  } catch (err) {
+    console.error("❌ Failed to fetch events:", err);
+    throw err;
   }
-  
-  const data = await safeJson(res);
-  return data?.events || data || [];
 };
 
 const Termini = () => {
