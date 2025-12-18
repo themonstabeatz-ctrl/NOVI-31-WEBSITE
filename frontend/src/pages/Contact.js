@@ -370,7 +370,7 @@ const Contact = () => {
       const addonPrice     = Number(searchParams.get("addonPrice") || 0);
       const addonDuration  = Number(searchParams.get("addonDuration") || 0);
       const totalPrice     = Number(searchParams.get("totalPrice") || searchParams.get("price") || 0);
-      const totalDuration  = Number(searchParams.get("totalDuration") || searchParams.get("duration") || 0);
+      const totalDuration  = Number(searchParams.get("totalDuration") || searchParams.get("totalMinutes") || searchParams.get("duration") || 0);
 
       // Format prices for sr-RS
       const formatRsdLocal = (n) => Number(n || 0).toLocaleString("sr-RS");
