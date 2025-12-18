@@ -1,41 +1,74 @@
 /**
- * 🔒 CENTRALNI API CONFIG - JEDINI IZVOR ISTINE
+ * 🔒 HARD LOCK: JEDINI IZVOR ISTINE ZA BACKEND URL
  * 
- * Svi API pozivi MORAJU koristiti API_BASE iz ovog fajla.
- * ZABRANJENO je hardkodiranje URL-ova bilo gde u kodu.
+ * ZABRANJENO: čitanje iz .env ako je pogrešno ili prazno
+ * ZABRANJENO: formiranje backend URL-a sa window.location, relative path ili fallback na frontend domen
  * 
- * LOCKED TO: https://massage-app-4.preview.emergentagent.com
+ * LOCKED TO: https://spa-dashboard-2.preview.emergentagent.com
  */
 
-// ✅ JEDINI SOURCE-OF-TRUTH za backend URL
-// Prioritet: .env varijabla -> hardcoded fallback
-const envUrl = process.env.REACT_APP_BACKEND_URL || "";
+// ✅ 1) JEDINI DOZVOLJENI BACKEND
+export const BACKEND_URL = "https://spa-dashboard-2.preview.emergentagent.com";
 
-// ✅ FIX: If .env points to frontend domain, use hardcoded backend
-const ALLOWED_BACKENDS = [
+// ✅ 2) WHITELIST dozvoljenih backend domena
+export const ALLOWED_BACKENDS = new Set([
   "spa-dashboard-2.preview.emergentagent.com",
-  "massage-scheduler-4.preview.emergentagent.com",
-];
+]);
 
-const isEnvValid = ALLOWED_BACKENDS.some(h => envUrl.includes(h));
+// Helper: extract hostname from URL
+function normalize(url) {
+  try { return new URL(url).hostname; } catch { return ""; }
+}
 
-export const API_BASE = isEnvValid 
-  ? envUrl 
-  : "https://massage-app-4.preview.emergentagent.com";
+// ✅ 3) Opciona .env podrška - ALI SAMO ako je u ALLOWED_BACKENDS
+const envUrl = (typeof import.meta !== 'undefined' && import.meta?.env?.VITE_API_BASE) 
+  || process.env.REACT_APP_BACKEND_URL 
+  || process.env.REACT_APP_API_BASE 
+  || "";
+const envHost = normalize(envUrl.trim());
 
-// ✅ DIJAGNOSTIKA: Uvek log API_BASE na load (za debug)
-console.log("🔐 API_BASE =", API_BASE);
-console.log("🔐 ORIGIN =", typeof window !== 'undefined' ? window.location.origin : 'SSR');
-if (!isEnvValid && envUrl) {
-  console.warn("⚠️ .env had invalid URL, using fallback:", envUrl, "->", API_BASE);
+// API_BASE = .env vrednost samo ako je host dozvoljen, inače BACKEND_URL
+export const API_BASE = (envHost && ALLOWED_BACKENDS.has(envHost))
+  ? envUrl.trim().replace(/\/$/, "")
+  : BACKEND_URL;
+
+// ✅ 4) HARD GUARD: fail fast ako neko pokuša da koristi nedozvoljen backend
+(function guard() {
+  const host = (() => { try { return new URL(API_BASE).hostname; } catch { return ""; } })();
+  if (!ALLOWED_BACKENDS.has(host)) {
+    console.error("🚨 FATAL: Invalid API_BASE:", API_BASE);
+    console.error("🚨 ALLOWED_BACKENDS:", [...ALLOWED_BACKENDS]);
+    throw new Error("FATAL: API_BASE is not allowed. Backend HARD LOCKED to spa-dashboard-2.");
+  }
+})();
+
+// ✅ 5) LOG na startu za dijagnostiku
+console.log("🔐 LOCKED API_BASE =", API_BASE);
+
+/**
+ * ✅ apiFetch - centralizovan fetch wrapper
+ * Svi API pozivi MORAJU koristiti ovu funkciju.
+ */
+export async function apiFetch(path, options = {}) {
+  const url = `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
+  
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+  });
+
+  return res;
 }
 
 /**
- * ✅ FIX: "body stream already read" error
+ * ✅ safeJson - FIX za "body stream already read" error
  * Čita body SAMO JEDNOM kao text, pa parsira JSON
  */
 export async function safeJson(res) {
-  const raw = await res.text(); // čita se samo jednom
+  const raw = await res.text();
   let data = null;
 
   try { 
@@ -52,35 +85,33 @@ export async function safeJson(res) {
 }
 
 /**
- * ✅ API Helper funkcije - koriste safeJson
+ * ✅ API Helper funkcije - koriste apiFetch + safeJson
  */
 export async function apiGet(path) {
-  const res = await fetch(`${API_BASE}${path}`);
+  const res = await apiFetch(path);
   return safeJson(res);
 }
 
 export async function apiPost(path, body) {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await apiFetch(path, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
   return safeJson(res);
 }
 
-export async function apiPatch(path) {
-  const res = await fetch(`${API_BASE}${path}`, {
+export async function apiPatch(path, body = null) {
+  const res = await apiFetch(path, {
     method: "PATCH",
+    ...(body ? { body: JSON.stringify(body) } : {}),
   });
   return safeJson(res);
 }
 
-// Export config
+// ✅ Export config object za kompatibilnost
 export const API_CONFIG = {
-  // Base URL - koristi SAMO ovo
   BASE_URL: API_BASE,
   
-  // Endpoint-i
   ENDPOINTS: {
     HEALTH: '/api/health',
     SERVICES: '/api/services',
@@ -93,7 +124,6 @@ export const API_CONFIG = {
     SPA_QUOTE: '/api/spa/quote',
   },
   
-  // Helper funkcije
   getUrl: (endpoint) => `${API_BASE}${endpoint}`,
 };
 
