@@ -100,37 +100,23 @@ const Contact = () => {
   const handleBookingSuccess = (bookingDetails = {}) => {
     const { bookingType, bookingId, responseData, notifyFailed } = bookingDetails;
     
-    // ✅ UX B: Success text - samo 1 rečenica, bez datuma
-    const successTextByType = {
-      massage: "Uspešno ste zakazali vašu masažu.",
-      spa: "Uspešno ste zakazali vaš SPA tretman.",
-      couple: "Uspešno ste zakazali vašu masažu za parove.",
-      spaZone: "Uspešno ste zakazali vaš SPA tretman.",
-      coupleSpecial: "Uspešno ste zakazali vaš SPA tretman za parove.",
-    };
+    // ✅ SAMO JEDNA PORUKA - bez dodatnih tekstova
+    const SUCCESS_MESSAGE = "USPEŠNO STE ZAKAZALI VAŠ TRETMAN";
     
-    const msg = successTextByType[bookingType] || "Uspešno ste zakazali termin.";
+    // Debug log (samo u console, ne u UI)
+    console.log("✅ Booking success:", { bookingType, bookingId, notifyFailed, responseData });
     
-    console.log("✅ Booking success:", { bookingType, bookingId, notifyFailed });
-    
-    setSuccessMsg(msg);
+    setSuccessMsg(SUCCESS_MESSAGE);
     setSubmitStatus("success");
     setIsSubmitting(false);
     
-    // ✅ UX C: Check if backend confirmed email was sent OR notify_status failed
-    const emailSent = Boolean(responseData?.email_sent || responseData?.notification_sent);
-    const emailFailed = responseData?.warnings?.includes("EMAIL_FAILED") || responseData?.email_error;
-    
-    // ✅ B) Handle notify_status: failed from backend
+    // ✅ NEMA dodatnih poruka o email-u - samo console log
     if (notifyFailed || responseData?.notify_status === "failed") {
-      setSecondaryMessage("Termin je zakazan, ali email potvrda trenutno kasni. Recepcija će vas kontaktirati po potrebi.");
-    } else if (emailSent) {
-      setSecondaryMessage("Email potvrda je poslata.");
-    } else if (emailFailed) {
-      setSecondaryMessage("Termin je sačuvan, ali email trenutno nije poslat.");
-    } else {
-      setSecondaryMessage("");
+      console.log("⚠️ Email notification failed, but booking is confirmed");
     }
+    
+    // Ukloni secondaryMessage - samo jedna rečenica
+    setSecondaryMessage("");
     
     // ✅ UX FIX B: Reset form (keep phone/email for convenience)
     setFormData(prev => ({
@@ -143,7 +129,6 @@ const Contact = () => {
     }));
     
     // ✅ UX A: NO AUTO REDIRECT - korisnik ostaje na strani
-    // setRedirectCountdown(3); // REMOVED
   };
   
   const [formData, setFormData] = useState({
