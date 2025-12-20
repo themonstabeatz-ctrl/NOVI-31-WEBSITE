@@ -755,20 +755,37 @@ const Contact = () => {
         }
         
         const payload = {
+          // ✅ A) Client info - OBAVEZNO za email
           client_first_name: formData.firstName,
           client_last_name: formData.lastName,
           client_phone: formData.phone,
           client_email: formData.email,
+          
+          // ✅ Appointment details
           appointment_date: dateStr,
           start_time: `${dateStr}T${formData.preferredTime}:00`,
+          
+          // ✅ Type - za backend template selection
+          type: "spa",
           spa_category: "spa_special_couple",
+          
+          // ✅ Service details - za email template
           spa_package_id: spaBookingMeta.spa_package_id || spaBookingMeta.spaPackageId,
-          service_name: `SPA Special: ${spaBookingMeta.spaName}`,
+          service_name: spaBookingMeta.spaName || "Romantični paket za parove",
+          service_description: "Romantični SPA paket za parove",
+          
+          // ✅ Duration & guests
           guests: 2,
           duration: spaBookingMeta.totalDuration || spaBookingMeta.duration || 210,
-          notes: formData.message,
+          duration_min: spaBookingMeta.totalDuration || spaBookingMeta.duration || 210,
+          
+          // ✅ Notes
+          notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration || 210} min`,
+          
+          // ✅ Pricing
           final_price: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
           original_price: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
+          final_total: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
         };
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
