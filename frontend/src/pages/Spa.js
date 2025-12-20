@@ -393,9 +393,23 @@ const Spa = () => {
     fetchSpaZonePrices();
   }, []);
 
-  // ✅ Helper to get zone price from API data
+  // ✅ Helper to get zone FINAL price from API data (with discount applied)
   const getZonePrice = (zoneName) => {
-    return spaZonePrices[zoneName]?.price || 0;
+    const zone = spaZonePrices[zoneName];
+    // Koristi final_price ako postoji popust, inače original
+    return zone?.final_price || zone?.price || 0;
+  };
+  
+  // ✅ Helper to get zone pricing info (for PriceBlock display)
+  const getZonePricing = (zoneName) => {
+    const zone = spaZonePrices[zoneName];
+    if (!zone) return null;
+    return {
+      original_price: zone.original_price || zone.price || 0,
+      final_price: zone.final_price || zone.price || 0,
+      discount_percent: zone.discount_percent || 0,
+      has_discount: zone.has_discount || false
+    };
   };
   
   const getZoneDuration = (zoneName) => {
