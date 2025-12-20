@@ -1813,7 +1813,7 @@ const Spa = () => {
                           />
                           <span>Bez</span>
                         </label>
-                        {/* Zone options - ✅ Using API prices */}
+                        {/* Zone options - ✅ Using API prices with DISCOUNT DISPLAY */}
                         {zone.options.map((option) => {
                           const isSelected = selectedZones[zone.id] === option.id;
                           // ✅ Map option ID to API service name
@@ -1826,7 +1826,11 @@ const Spa = () => {
                             'JACUZZI_60': 'Jacuzzi 60 min'
                           };
                           const apiName = apiNameMap[option.id];
-                          const apiPrice = spaZonePrices[apiName]?.price || option.totalPrice;
+                          const zonePricing = getZonePricing(apiName);
+                          const displayPrice = zonePricing?.final_price || option.totalPrice;
+                          const hasDiscount = zonePricing?.has_discount || false;
+                          const originalPrice = zonePricing?.original_price || displayPrice;
+                          const discountPct = zonePricing?.discount_percent || 0;
                           
                           return (
                             <label key={option.id} style={{
@@ -1856,7 +1860,24 @@ const Spa = () => {
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>+{formatNumber(apiPrice)} RSD</span>
+                                {option.label}{' '}
+                                {hasDiscount ? (
+                                  <span>
+                                    <span style={{ color: '#888', textDecoration: 'line-through', fontSize: '0.8em' }}>
+                                      {formatNumber(originalPrice)} RSD
+                                    </span>{' '}
+                                    <span style={{ color: '#4ade80', fontWeight: '600' }}>
+                                      {formatNumber(displayPrice)} RSD
+                                    </span>
+                                    <span style={{ color: '#4ade80', fontSize: '0.75em', marginLeft: '0.3rem' }}>
+                                      (-{discountPct}%)
+                                    </span>
+                                  </span>
+                                ) : (
+                                  <span style={{ color: '#d4af37', fontWeight: '600' }}>
+                                    +{formatNumber(displayPrice)} RSD
+                                  </span>
+                                )}
                               </span>
                             </label>
                           );
