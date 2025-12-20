@@ -1264,11 +1264,25 @@ const Spa = () => {
                           />
                           <span>Bez</span>
                         </label>
-                        {/* Zone options - prikazuje cenu pored vremena */}
+                        {/* Zone options - ✅ Using API prices with DISCOUNT DISPLAY */}
                         {zone.options.map((option) => {
                           const isSelected = selectedZones[zone.id] === option.id;
-                          // ✅ Koristi extraPrice za rituale (dodaje se na baznu cenu)
-                          const priceToShow = option.extraPrice || option.totalPrice || 0;
+                          // ✅ Map option ID to API service name
+                          const apiNameMap = {
+                            'SAUNA_15': 'Sauna 15 min',
+                            'SAUNA_30': 'Sauna 30 min',
+                            'STEAM_15': 'Parno kupatilo 15 min',
+                            'STEAM_30': 'Parno kupatilo 30 min',
+                            'JACUZZI_30': 'Jacuzzi 30 min',
+                            'JACUZZI_60': 'Jacuzzi 60 min'
+                          };
+                          const apiName = apiNameMap[option.id];
+                          const zonePricing = getZonePricing(apiName);
+                          const displayPrice = zonePricing?.final_price || option.extraPrice || option.totalPrice || 0;
+                          const hasDiscount = zonePricing?.has_discount || false;
+                          const originalPrice = zonePricing?.original_price || displayPrice;
+                          const discountPct = zonePricing?.discount_percent || 0;
+                          
                           return (
                             <label key={option.id} style={{
                               display: 'flex',
@@ -1297,7 +1311,24 @@ const Spa = () => {
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600', opacity: 0.9 }}>(+{formatNumber(priceToShow)} RSD)</span>
+                                {option.label}{' '}
+                                {hasDiscount ? (
+                                  <span>
+                                    <span style={{ color: '#888', textDecoration: 'line-through', fontSize: '0.85em' }}>
+                                      {formatNumber(originalPrice)}
+                                    </span>{' '}
+                                    <span style={{ color: '#4ade80', fontWeight: '600' }}>
+                                      {formatNumber(displayPrice)} RSD
+                                    </span>
+                                    <span style={{ color: '#4ade80', fontSize: '0.75em', marginLeft: '0.15rem' }}>
+                                      (-{discountPct}%)
+                                    </span>
+                                  </span>
+                                ) : (
+                                  <span style={{ color: '#d4af37', fontWeight: '600', opacity: 0.9 }}>
+                                    (+{formatNumber(displayPrice)} RSD)
+                                  </span>
+                                )}
                               </span>
                             </label>
                           );
