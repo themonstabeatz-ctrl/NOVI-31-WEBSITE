@@ -35,6 +35,22 @@ export const API = {
   notifications: `${API_BASE}/api/notifications`,
 };
 
+// 🚫 ZABRANA: Discount updates - frontend NE SME da poziva ove endpoint-e
+// Ovi endpoint-i su samo za admin dashboard (poseban frontend)
+export function updateDiscount() {
+  console.warn("🚫 Discount updates are backend-only. Frontend must not call update endpoints.");
+  return Promise.resolve({ ok: false, error: "FORBIDDEN" });
+}
+
+// 🚫 Guard: Blokiraj PATCH na /api/services/*/discount
+export function guardDiscountUpdate(url) {
+  if (url && url.includes('/api/services') && url.includes('/discount')) {
+    console.error("🚫 BLOCKED: Attempt to update discount from public frontend:", url);
+    return true; // blocked
+  }
+  return false; // allowed
+}
+
 // 🔐 LOG na startu
 console.log("🔐 LOCKED API_BASE =", API_BASE);
 
