@@ -173,6 +173,7 @@ def test_appointments_list_endpoint():
             data = response.json()
             print(f"Response type: {type(data)}")
             
+            # Check if response is a list (direct array) or dict with items array
             if isinstance(data, list):
                 print(f"✅ PASS: Appointments list endpoint returned array with {len(data)} appointments")
                 
@@ -181,8 +182,22 @@ def test_appointments_list_endpoint():
                     print(f"Sample appointment: {json.dumps(data[0], indent=2)}")
                 
                 return True
+            elif isinstance(data, dict) and "items" in data:
+                # Response is a paginated structure with items array
+                items = data["items"]
+                print(f"✅ PASS: Appointments list endpoint returned paginated response with {len(items)} appointments")
+                print(f"Total count: {data.get('total_count', 'N/A')}")
+                print(f"Period: {data.get('period', 'N/A')}")
+                
+                # Show sample appointment if available
+                if len(items) > 0:
+                    print(f"Sample appointment: {json.dumps(items[0], indent=2)}")
+                else:
+                    print("No appointments in current period")
+                
+                return True
             else:
-                print(f"❌ FAIL: Expected array, got {type(data)}")
+                print(f"❌ FAIL: Expected array or dict with 'items' key, got {type(data)}")
                 print(f"Response: {json.dumps(data, indent=2)}")
                 return False
         else:
