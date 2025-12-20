@@ -8,48 +8,13 @@ import { Button } from "../components/ui/button";
 import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
 import { API_BASE } from "../config/api";
-
-// ✅ HELPER: Format RSD - "9.200 RSD"
-const formatRSD = (n) => {
-  const num = Number(n || 0);
-  return `${num.toLocaleString("sr-RS")} RSD`;
-};
+import { PriceBlock, InlinePriceBlock, formatRSD } from "../components/PriceBlock";
 
 // HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
 const formatNumber = (value) => {
   const n = typeof value === 'number' && !Number.isNaN(value) ? value : 0;
   return n.toLocaleString('sr-RS');
 };
-
-// ✅ PRICE BLOCK COMPONENT - prikazuje popust ako postoji
-// Frontend NE računa popuste - samo prikazuje ono što dobije od backend-a
-function PriceBlock({ original_price, final_price, discount_percent, has_discount, style = {} }) {
-  const showDiscount = has_discount && Number(final_price) < Number(original_price);
-
-  if (!showDiscount) {
-    return (
-      <div className="price" style={{ color: '#d4af37', fontWeight: 700, ...style }}>
-        {formatRSD(original_price || final_price)}
-      </div>
-    );
-  }
-
-  return (
-    <div className="price" style={style}>
-      <div style={{ textDecoration: "line-through", opacity: 0.6, color: '#888', fontSize: '0.85em' }}>
-        {formatRSD(original_price)}
-      </div>
-      <div style={{ fontWeight: 800, color: '#d4af37' }}>
-        {formatRSD(final_price)}
-      </div>
-      {discount_percent > 0 && (
-        <div style={{ fontSize: '0.75em', opacity: 0.85, color: '#4ade80' }}>
-          Popust: -{discount_percent}%
-        </div>
-      )}
-    </div>
-  );
-}
 
 // ✅ CENTRALIZOVANI IZVOR ZA SPA ZONE CENE
 // Ovo je jedini izvor istine za cene SPA zona
