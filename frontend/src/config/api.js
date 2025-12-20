@@ -10,7 +10,7 @@
  */
 
 // HARD LOCK - JEDINI BACKEND
-export const API_BASE = "https://spa-integration.preview.emergentagent.com";
+export const API_BASE = "https://relax-reserve-5.preview.emergentagent.com";
 
 // ✅ RUNTIME CHECK - pada ako je pogrešan backend
 if (!API_BASE.includes("spa-integration.preview.emergentagent.com")) {

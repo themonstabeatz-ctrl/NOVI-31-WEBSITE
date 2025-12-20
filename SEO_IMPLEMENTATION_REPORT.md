@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://massage-app-4.preview.emergentagent.com/robots.txt
+**Test URL:** https://relax-reserve-5.preview.emergentagent.com/robots.txt
 
 ---
 

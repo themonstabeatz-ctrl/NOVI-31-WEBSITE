@@ -78,12 +78,12 @@ sudo supervisorctl restart frontend
 **Protected Configuration**:
 ```bash
 # 🔒 DO NOT MODIFY — STABLE VERIFIED CONFIGURATION
-REACT_APP_BACKEND_URL=https://massage-app-4.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://relax-reserve-5.preview.emergentagent.com
 ```
 
 **Why Protected**: This URL is the CORRECT backend proxy server. Changing it will break all API communication.
 
-**DO NOT CHANGE TO**: `https://massage-app-4.preview.emergentagent.com` (that's the admin dashboard, not public API)
+**DO NOT CHANGE TO**: `https://relax-reserve-5.preview.emergentagent.com` (that's the admin dashboard, not public API)
 
 ---
 
@@ -189,7 +189,7 @@ git reset --hard f69cc31
 sudo supervisorctl start frontend
 
 # 4. Verify it's working
-curl -s https://massage-app-4.preview.emergentagent.com/ | grep -q "Bua Luang" && echo "✅ Website is up"
+curl -s https://relax-reserve-5.preview.emergentagent.com/ | grep -q "Bua Luang" && echo "✅ Website is up"
 ```
 
 ---

@@ -15,7 +15,7 @@ def analyze_working_version():
     print(" WORKING VERSION DEEP ANALYSIS")
     print("="*80)
     
-    working_base = "https://massage-app-4.preview.emergentagent.com"
+    working_base = "https://relax-reserve-5.preview.emergentagent.com"
     
     # Test various endpoints to understand the working version
     endpoints_to_test = [
@@ -87,10 +87,10 @@ def analyze_working_version():
     
     # Test possible external systems that working version might use
     possible_systems = [
-        "https://massage-app-4.preview.emergentagent.com/api/services",  # Self-hosted
+        "https://relax-reserve-5.preview.emergentagent.com/api/services",  # Self-hosted
         "https://spabooking.emergent.host/api/services",  # My system
         "https://pozdrav-kako-si.emergent.host/api/services",  # Alternative
-        "https://massage-app-4.preview.emergentagent.com/api/services"  # My version
+        "https://relax-reserve-5.preview.emergentagent.com/api/services"  # My version
     ]
     
     for system in possible_systems:

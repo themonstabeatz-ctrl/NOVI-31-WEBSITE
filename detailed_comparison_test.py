@@ -26,8 +26,8 @@ def test_backend_endpoints():
     print(f"Test started at: {datetime.now().isoformat()}")
     
     # URLs to test
-    working_base = "https://massage-app-4.preview.emergentagent.com"
-    my_base = "https://massage-app-4.preview.emergentagent.com"
+    working_base = "https://relax-reserve-5.preview.emergentagent.com"
+    my_base = "https://relax-reserve-5.preview.emergentagent.com"
     
     print_section("1. BACKEND CONFIGURATION ANALYSIS")
     
@@ -191,8 +191,8 @@ def test_backend_endpoints():
     external_systems = [
         "https://spabooking.emergent.host/api/services",
         "https://pozdrav-kako-si.emergent.host/api/services", 
-        "https://massage-app-4.preview.emergentagent.com/api/services",
-        "https://massage-app-4.preview.emergentagent.com/api/services"
+        "https://relax-reserve-5.preview.emergentagent.com/api/services",
+        "https://relax-reserve-5.preview.emergentagent.com/api/services"
     ]
     
     for system in external_systems:

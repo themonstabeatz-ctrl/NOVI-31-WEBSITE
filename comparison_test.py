@@ -17,8 +17,8 @@ load_dotenv('/app/frontend/.env')
 class SystemComparisonTester:
     def __init__(self):
         # URLs from review request
-        self.working_version_url = "https://massage-app-4.preview.emergentagent.com"
-        self.my_version_url = "https://massage-app-4.preview.emergentagent.com"
+        self.working_version_url = "https://relax-reserve-5.preview.emergentagent.com"
+        self.my_version_url = "https://relax-reserve-5.preview.emergentagent.com"
         
         self.results = []
         
