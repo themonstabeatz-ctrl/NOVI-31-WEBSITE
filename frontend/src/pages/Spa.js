@@ -325,40 +325,64 @@ const Spa = () => {
   const [spaZonePrices, setSpaZonePrices] = useState({});
   const [spaZoneError, setSpaZoneError] = useState(null);
 
-  // ✅ Fetch SPA Zone prices from API with safeJson
+  // ✅ Fetch SPA Zone prices from API with no-cache + normalizePricing
   useEffect(() => {
     const fetchSpaZonePrices = async () => {
       try {
-        console.log('📥 Loading SPA Zone prices from API...');
-        const res = await fetch(`${API_BASE}/api/spa/services`);
+        console.log('📥 Loading SPA services from API (no-cache)...');
+        console.log('🔗 Endpoint:', `${API_BASE}/api/spa/services`);
+        
+        // ✅ cache: "no-store" - obavezno dok debugging
+        const res = await fetch(`${API_BASE}/api/spa/services`, { 
+          cache: "no-store",
+          headers: { 'Accept': 'application/json' }
+        });
         
         // ✅ FIX: Read body only once to avoid "body stream already read"
         const raw = await res.text();
-        let services = [];
+        let rawServices = [];
         try {
-          services = raw ? JSON.parse(raw) : [];
+          rawServices = raw ? JSON.parse(raw) : [];
         } catch {
           console.error('❌ Failed to parse SPA services JSON:', raw);
           throw new Error('Invalid JSON response');
         }
         
         if (!res.ok) {
-          throw new Error(services?.error || services?.message || `HTTP ${res.status}`);
+          throw new Error(rawServices?.error || rawServices?.message || `HTTP ${res.status}`);
         }
+        
+        // ✅ NORMALIZE all services - handles snake_case/camelCase variations
+        const services = normalizeServiceList(rawServices);
+        
+        // ✅ DEBUG LOG - proveri da li imamo discount podatke
+        console.log('📊 SPA SERVICES DEBUG (first 5):');
+        console.table(services.slice(0, 5).map(s => ({
+          name: s.name?.substring(0, 30),
+          category: s.category,
+          original: s.original_price,
+          final: s.final_price,
+          disc: s.discount_percent,
+          has: s.has_discount
+        })));
         
         // Build price map from spa_zone category services
         const zoneMap = {};
         services.forEach(s => {
           if (s.category === 'spa_zone') {
             zoneMap[s.name] = {
-              price: s.price,
+              price: s.final_price || s.price,
+              original_price: s.original_price,
+              final_price: s.final_price,
+              discount_percent: s.discount_percent,
+              has_discount: s.has_discount,
               duration: s.duration,
               id: s.id
             };
           }
         });
         
-        console.log('✅ SPA Zone prices loaded:', zoneMap);
+        console.log('✅ SPA Zone prices loaded:', Object.keys(zoneMap).length, 'zones');
         setSpaZonePrices(zoneMap);
       } catch (err) {
         console.error('❌ Failed to load SPA Zone prices:', err);
