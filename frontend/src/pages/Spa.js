@@ -15,6 +15,29 @@ const formatNumber = (value) => {
   return n.toLocaleString('sr-RS');
 };
 
+// ✅ CENTRALIZOVANI IZVOR ZA SPA ZONE CENE
+// Ovo je jedini izvor istine za cene SPA zona
+export const SPA_ZONE_PRICES = {
+  // Za rituale (extra price - dodaje se na baznu cenu)
+  extraPrices: {
+    SAUNA_15: { minutes: 15, price: 800 },
+    SAUNA_30: { minutes: 30, price: 1400 },
+    STEAM_15: { minutes: 15, price: 800 },
+    STEAM_30: { minutes: 30, price: 1400 },
+    JACUZZI_30: { minutes: 30, price: 1400 },
+    JACUZZI_60: { minutes: 60, price: 2800 },
+  },
+  // Za samostalno korišćenje zona (total price)
+  totalPrices: {
+    SAUNA_15: { minutes: 15, price: 1400 },
+    SAUNA_30: { minutes: 30, price: 2400 },
+    STEAM_15: { minutes: 15, price: 1400 },
+    STEAM_30: { minutes: 30, price: 2400 },
+    JACUZZI_30: { minutes: 30, price: 2200 },
+    JACUZZI_60: { minutes: 60, price: 3400 },
+  }
+};
+
 // SPA PACKAGES - 3 ritual packages + 1 zone-only package
 const SPA_PACKAGES = [
   {
