@@ -1,10 +1,10 @@
 /**
  * ✅ SHARED PRICE BLOCK COMPONENT
  * 
- * Правило: Frontend САМО приказује оно што добије од backend-а
- * ❌ Frontend НИКАД не рачуна % нити price*(1-discount)
+ * Pravilo: Frontend SAMO prikazuje ono što dobije od backend-a
+ * ❌ Frontend NIKAD ne računa % niti price*(1-discount)
  * 
- * Очекивана поља из backend-а:
+ * Očekivana NORMALIZOVANA polja:
  * - original_price
  * - final_price  
  * - discount_percent
@@ -19,8 +19,10 @@ export function formatRSD(n) {
   return `${num.toLocaleString("sr-RS")} RSD`;
 }
 
-// ✅ PriceBlock - приказује попуст ако постоји
-// Користи САМО backend податке, НЕМА калкулација
+/**
+ * ✅ PriceBlock - prikazuje popust ako postoji
+ * Koristi SAMO backend podatke, NEMA kalkulacija
+ */
 export function PriceBlock({ 
   original_price, 
   final_price, 
@@ -30,10 +32,11 @@ export function PriceBlock({
   showBadge = true,
   size = 'normal' // 'small' | 'normal' | 'large'
 }) {
-  const original = Number(original_price);
-  const final = Number(final_price);
+  const original = Number(original_price || 0);
+  const final = Number(final_price || original);
+  const discountPct = Number(discount_percent || 0);
 
-  // ✅ Приказ попуста САМО ако backend каже да постоји
+  // ✅ Prikaz popusta SAMO ako backend kaže da postoji
   const showDiscount = Boolean(has_discount) 
     && Number.isFinite(original) 
     && Number.isFinite(final) 
@@ -47,55 +50,12 @@ export function PriceBlock({
   };
   const sizes = sizeStyles[size] || sizeStyles.normal;
 
-  return (
-    <div className="price-block" style={style}>
-      {showDiscount ? (
-        <>
-          {/* Original price (strikethrough) */}
-          <div 
-            className="original" 
-            style={{ 
-              textDecoration: "line-through", 
-              opacity: 0.6,
-              color: '#888',
-              fontSize: sizes.original,
-              marginBottom: '0.15rem'
-            }}
-          >
-            {formatRSD(original)}
-          </div>
-          
-          {/* Final price (bold) */}
-          <div 
-            className="final" 
-            style={{ 
-              fontWeight: 700,
-              color: '#d4af37',
-              fontSize: sizes.final
-            }}
-          >
-            {formatRSD(final)}
-          </div>
-          
-          {/* Discount badge */}
-          {showBadge && discount_percent > 0 && (
-            <div 
-              className="badge" 
-              style={{ 
-                fontSize: sizes.badge, 
-                opacity: 0.85,
-                color: '#4ade80',
-                marginTop: '0.15rem'
-              }}
-            >
-              -{Number(discount_percent)}%
-            </div>
-          )}
-        </>
-      ) : (
-        /* No discount - show original price */
+  if (!showDiscount) {
+    // ✅ Nema popusta - prikaži originalnu cenu
+    return (
+      <div className="price-block" style={style}>
         <div 
-          className="final" 
+          className="price" 
           style={{ 
             fontWeight: 700,
             color: '#d4af37',
@@ -104,12 +64,60 @@ export function PriceBlock({
         >
           {formatRSD(original || final)}
         </div>
-      )}
+      </div>
+    );
+  }
+
+  // ✅ Ima popust - prikaži obe cene i badge
+  return (
+    <div className="price-block" style={style}>
+      {/* Original price (strikethrough) */}
+      <div 
+        className="old-price" 
+        style={{ 
+          textDecoration: "line-through", 
+          opacity: 0.7,
+          color: '#888',
+          fontSize: sizes.original,
+          marginBottom: '0.15rem'
+        }}
+      >
+        {formatRSD(original)}
+      </div>
+      
+      {/* Final price + discount badge */}
+      <div 
+        className="discount-row" 
+        style={{ 
+          fontWeight: 700,
+          color: '#d4af37',
+          fontSize: sizes.final,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem'
+        }}
+      >
+        {formatRSD(final)}
+        {showBadge && discountPct > 0 && (
+          <span 
+            className="discount-badge"
+            style={{ 
+              fontSize: sizes.badge, 
+              color: '#4ade80',
+              fontWeight: 600
+            }}
+          >
+            -{discountPct}%
+          </span>
+        )}
+      </div>
     </div>
   );
 }
 
-// ✅ Inline PriceBlock за мање просторе (SPA zone итд.)
+/**
+ * ✅ Inline PriceBlock za manje prostore (SPA zone itd.)
+ */
 export function InlinePriceBlock({ 
   original_price, 
   final_price, 
@@ -117,34 +125,35 @@ export function InlinePriceBlock({
   has_discount,
   prefix = ''
 }) {
-  const original = Number(original_price);
-  const final = Number(final_price);
+  const original = Number(original_price || 0);
+  const final = Number(final_price || original);
+  const discountPct = Number(discount_percent || 0);
 
   const showDiscount = Boolean(has_discount) 
     && Number.isFinite(original) 
     && Number.isFinite(final) 
     && final < original;
 
-  if (showDiscount) {
+  if (!showDiscount) {
     return (
-      <span style={{ color: '#d4af37' }}>
-        {prefix}
-        <span style={{ textDecoration: 'line-through', opacity: 0.6, marginRight: '0.5rem' }}>
-          {formatRSD(original)}
-        </span>
-        <span style={{ fontWeight: 600 }}>
-          {formatRSD(final)}
-        </span>
-        <span style={{ fontSize: '0.8em', color: '#4ade80', marginLeft: '0.25rem' }}>
-          (-{discount_percent}%)
-        </span>
+      <span style={{ color: '#d4af37', fontWeight: 600 }}>
+        {prefix}{formatRSD(original || final)}
       </span>
     );
   }
 
   return (
-    <span style={{ color: '#d4af37', fontWeight: 600 }}>
-      {prefix}{formatRSD(original || final)}
+    <span style={{ color: '#d4af37' }}>
+      {prefix}
+      <span style={{ textDecoration: 'line-through', opacity: 0.6, marginRight: '0.5rem' }}>
+        {formatRSD(original)}
+      </span>
+      <span style={{ fontWeight: 600 }}>
+        {formatRSD(final)}
+      </span>
+      <span style={{ fontSize: '0.8em', color: '#4ade80', marginLeft: '0.25rem' }}>
+        (-{discountPct}%)
+      </span>
     </span>
   );
 }
