@@ -1224,9 +1224,11 @@ const Spa = () => {
                           />
                           <span>Bez</span>
                         </label>
-                        {/* Zone options */}
+                        {/* Zone options - prikazuje cenu pored vremena */}
                         {zone.options.map((option) => {
                           const isSelected = selectedZones[zone.id] === option.id;
+                          // ✅ Koristi extraPrice za rituale (dodaje se na baznu cenu)
+                          const priceToShow = option.extraPrice || option.totalPrice || 0;
                           return (
                             <label key={option.id} style={{
                               display: 'flex',
@@ -1255,7 +1257,7 @@ const Spa = () => {
                                 }}
                               />
                               <span>
-                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600' }}>{formatNumber(option.totalPrice)} RSD</span>
+                                {option.label} <span style={{ color: '#d4af37', fontWeight: '600', opacity: 0.9 }}>(+{formatNumber(priceToShow)} RSD)</span>
                               </span>
                             </label>
                           );
