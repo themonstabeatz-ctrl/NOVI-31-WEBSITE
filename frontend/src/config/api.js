@@ -13,7 +13,7 @@
  * 
  * 🚫 DISCOUNT UPDATES ARE RECEPCIJA-ONLY!
  * Client frontend ONLY READS discount data from backend.
- * Client NEVER calls PATCH /api/services/*/discount
+ * Client NEVER calls PATCH discount endpoints.
  */
 
 export const API_BASE = "https://spa-integration.preview.emergentagent.com";
