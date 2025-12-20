@@ -862,24 +862,39 @@ const Contact = () => {
         const startTimeIso = `${dateStr}T${formData.preferredTime}:00`;
 
         const payload = {
+          // ✅ A) Client info - OBAVEZNO za email
           client_first_name: formData.firstName,
           client_last_name: formData.lastName,
           client_phone: formData.phone,
           client_email: formData.email,
+          
+          // ✅ Appointment details
           appointment_date: dateStr,
           start_time: startTimeIso,
-
-          // SPA specific fields
+          
+          // ✅ Type - za backend template selection
+          type: "spa",
           category: "SPA",
-          service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId, // Use variant ID (will be assigned by reception later)
+          
+          // ✅ Service details - za email template
+          service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId,
+          service_name: spaBookingMeta.spaName || "SPA Tretman",
+          service_description: spaBookingMeta.variantLabel || "",
+          
+          // ✅ Duration & pricing
           duration: spaBookingMeta.totalMinutes,
-          duration_type: spaBookingMeta.totalMinutes,
-          notes: formData.message,
-          service_name: `SPA: ${spaBookingMeta.spaName}${spaBookingMeta.variantLabel ? ` (${spaBookingMeta.variantLabel})` : ''}`,
+          duration_min: spaBookingMeta.totalMinutes,
+          
+          // ✅ SPA zone info (ako postoji)
+          spa_zone: spaBookingMeta.spaZoneText || "",
+          
+          // ✅ Notes (poruka iz forme)
+          notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min\nUkupna cena: ${(spaBookingMeta.totalPrice || 0).toLocaleString('sr-RS')} RSD`,
 
-          // Snapshot prices for analytics
+          // ✅ Snapshot prices for analytics
           final_price: spaBookingMeta.totalPrice,
           original_price: spaBookingMeta.totalPrice,
+          final_total: spaBookingMeta.totalPrice,
           discount_percentage: 0,
           discount_amount: 0
         };
