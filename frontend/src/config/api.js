@@ -10,6 +10,10 @@
  * ❌ ZERO REACT_APP_BACKEND_URL
  * ❌ ZERO fallback
  * ❌ ZERO window.location
+ * 
+ * 🚫 DISCOUNT UPDATES ARE RECEPCIJA-ONLY!
+ * Client frontend ONLY READS discount data from backend.
+ * Client NEVER calls PATCH /api/services/*/discount
  */
 
 export const API_BASE = "https://spa-integration.preview.emergentagent.com";
@@ -30,3 +34,22 @@ export const API = {
   // CEO / NOTIF
   unviewedCount: `${API_BASE}/api/appointments/unviewed/count`,
 };
+
+/**
+ * 🚫 GUARD: Discount updates are RECEPCIJA-ONLY
+ * This function exists to prevent ANY discount update from client UI.
+ * If any code tries to call this, it will be blocked with a warning.
+ */
+export function updateDiscount() {
+  console.warn("🚫 Discount updates are RECEPCIJA-only. Client cannot modify discounts.");
+  return Promise.resolve({ ok: false, error: "FORBIDDEN" });
+}
+
+/**
+ * 🚫 GUARD: Block any PATCH to discount endpoints
+ * This is a safety net - client code should NEVER reach here.
+ */
+export function patchDiscount() {
+  console.warn("🚫 PATCH /discount is BLOCKED. Use recepcija to update discounts.");
+  return Promise.resolve({ ok: false, error: "FORBIDDEN" });
+}
