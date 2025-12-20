@@ -1207,35 +1207,42 @@ const Contact = () => {
           const durationTypeValue = couplesBookingData.duration_type || '60';
           
           appointmentData = {
+            // ✅ TYPE I CATEGORY - OBAVEZNO za backend template selection
+            type: "couple",
+            category: "MASAZE_PAROVI",
+            
+            // Client info
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
+            
             // ✅ Šaljemo liste ID-eva (ne objekte)
             person1_services: p1ServiceIds,
             person2_services: p2ServiceIds,
+            
             // ✅ duration_type
             duration_type: durationTypeValue,
+            duration_min: parseInt(durationTypeValue, 10),
+            
             // ✅ start_time
             start_time: `${dateStr}T${formData.preferredTime}:00`,
+            
             // ✅ discount ako je aktivan
             discount_couples_massage: couplesBookingData.pair_discount_percentage || 0,
+            
             // ✅ notes za debug
             notes: notesText
-            // ❌ NE šaljemo therapist_id
           };
           
-          console.log('✅ COUPLES PAYLOAD for /api/appointments/couple:', appointmentData);
+          // ✅ DEBUG LOG
+          console.log('📦 COUPLES MASSAGE payload:', appointmentData);
+          console.log('➡️ POST:', '/api/appointments/couple');
           console.log('📤 person1_services IDs:', p1ServiceIds);
           console.log('📤 person2_services IDs:', p2ServiceIds);
           
-          // ❌ ZABRANJENO: "package by duration" lookup
-          // ✅ Komponente ([PAROVI] servisi) su jedini izvor istine
-          
           // ✅ COUPLES MORA IĆI NA /api/appointments/couple
           bookingEndpoint = '/api/appointments/couple';
-          console.log('✅ Couples booking payload (STRICT MODE):', appointmentData);
-          console.log('📤 Couples endpoint:', bookingEndpoint);
         } else {
           // Regular booking data
           // Extract duration from service name (e.g., "Masaža - 90 min" -> 90)
