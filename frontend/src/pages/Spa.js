@@ -9,6 +9,7 @@ import { Clock, Sparkles, Leaf } from "lucide-react";
 import { throttle } from "../utils/debounce";
 import { API_BASE } from "../config/api";
 import { PriceBlock, InlinePriceBlock, formatRSD } from "../components/PriceBlock";
+import { normalizePricing, normalizeServiceList } from "../utils/normalizePricing";
 
 // HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
 const formatNumber = (value) => {
