@@ -1,5 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { API_BASE, safeJson } from '../config/api';
+import { API_BASE } from '../config/api';
+
+// ✅ Safe JSON helper - čita body SAMO JEDNOM
+async function safeJson(res) {
+  const text = await res.text();
+  let data = null;
+  
+  try { 
+    data = text ? JSON.parse(text) : null; 
+  } catch { 
+    data = { raw: text }; 
+  }
+  
+  if (!res.ok) {
+    const msg = data?.error || data?.message || data?.detail || `HTTP_${res.status}`;
+    throw new Error(msg);
+  }
+  
+  return data;
+}
 
 /**
  * 🔒 OSIGURAČ: Backend Health Check Component
