@@ -1247,24 +1247,38 @@ const Contact = () => {
           }
           
           appointmentData = {
+            // ✅ TYPE I CATEGORY - OBAVEZNO за backend template selection
+            type: "massage",
+            category: "MASAZE",
+            
+            // Client info
             client_first_name: formData.firstName,
             client_last_name: formData.lastName,
             client_phone: formData.phone,
             client_email: formData.email,
+            
+            // Appointment details
             appointment_date: dateStr,
             start_time: `${dateStr}T${formData.preferredTime}:00`,
+            
+            // Service details
             service_id: serviceId,
-            // therapist_id removed - backend will auto-assign or leave null
-            duration: duration,  // Service duration in minutes
-            duration_type: duration,  // Also send as duration_type for backwards compatibility
+            service_name: serviceName,
+            duration: duration,
+            duration_min: duration,
+            duration_type: duration,
+            
+            // Notes
             notes: formData.message || "",
-            language: language,
-            service_name: serviceName
+            language: language
           };
           
           // ✅ ISPRAVNO prema backendu recepcije - obične masaže koriste /api/appointments
           bookingEndpoint = '/api/appointments';
-          console.log('✅ SETTING bookingEndpoint to:', bookingEndpoint);
+          
+          // ✅ DEBUG LOG
+          console.log('📦 MASSAGE payload:', appointmentData);
+          console.log('➡️ POST:', bookingEndpoint);
         }
         // 🔒 Use API_BASE for all booking requests
         const url = `${API_BASE}${bookingEndpoint}`;
