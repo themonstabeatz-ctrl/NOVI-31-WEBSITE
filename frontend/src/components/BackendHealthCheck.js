@@ -7,7 +7,7 @@ import { API_BASE, safeJson } from '../config/api';
  * Na load proverava /api/health endpoint.
  * Ako backend nije dostupan, prikazuje jasnu poruku umesto da se app raspadne.
  * 
- * LOCKED TO: https://relax-reserve-5.preview.emergentagent.com
+ * LOCKED TO: https://spa-integration.preview.emergentagent.com
  */
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
@@ -20,9 +20,8 @@ const BackendHealthCheck = ({ children }) => {
     const checkBackendHealth = async (attempt = 1) => {
       const BACKEND_URL = API_BASE;
       
-      // 🔍 DIJAGNOSTIKA: Log ORIGIN i API_BASE
-      console.log("🔍 [BackendHealthCheck] ORIGIN:", window.location.origin);
-      console.log("🔍 [BackendHealthCheck] API_BASE:", BACKEND_URL);
+      // 🔐 HARD LOCK LOG (no window.location.origin)
+      console.log("🔐 [BackendHealthCheck] API_BASE:", BACKEND_URL);
       
       // 🔒 OSIGURAČ: Provera da je URL ispravan
       if (!BACKEND_URL) {

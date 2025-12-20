@@ -48,10 +48,9 @@ const CouplesMassageCard = ({
   
   const navigate = useNavigate();
 
-  // 🔍 DIJAGNOSTIKA: Log ORIGIN i API_BASE jednom na load
+  // 🔐 HARD LOCK LOG (no window.location.origin)
   React.useEffect(() => {
-    console.log("🔍 [CouplesMassageCard.js] ORIGIN:", window.location.origin);
-    console.log("🔍 [CouplesMassageCard.js] API_BASE:", API_BASE);
+    console.log("🔐 [CouplesMassageCard] API_BASE:", API_BASE);
   }, []);
   
   // Get discount for "Masaža za parove"
