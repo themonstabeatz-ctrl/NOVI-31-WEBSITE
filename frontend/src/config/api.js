@@ -1,58 +1,58 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: spa-booking-api.preview.emergentagent.com
+ * Backend URL: spa-integration.preview.emergentagent.com
  * 
- * PRAVILO: API_BASE koristiš ISKLJUČIVO za API pozive: API_BASE + "/api/..."
- * ZABRANJENO: ${API_BASE}/static/... ili ${API_BASE}/bundle.js
+ * ❌ NEMA spa-booking-api
+ * ❌ NEMA spa-dashboard-2
+ * ❌ NEMA process.env
+ * ❌ NEMA REACT_APP_BACKEND_URL
+ * ❌ NEMA fallback-a
  */
 
 // HARD LOCK - JEDINI BACKEND
-export const API_BASE = "https://spa-booking-api.preview.emergentagent.com";
+export const API_BASE = "https://spa-integration.preview.emergentagent.com";
 
-// ✅ CENTRALIZOVANE API RUTE - SVE MORA IMATI /api/
+// ✅ RUNTIME CHECK - pada ako je pogrešan backend
+if (!API_BASE.includes("spa-integration.preview.emergentagent.com")) {
+  console.error("🚨 WRONG BACKEND BASE!", API_BASE);
+}
+
+// ✅ CENTRALIZOVANE API RUTE
 export const API = {
   // Health & Status
   health: `${API_BASE}/api/health`,
-  
-  // Appointments
+
+  // MASAŽE
   appointments: `${API_BASE}/api/appointments`,
   appointmentsList: `${API_BASE}/api/appointments/list`,
-  appointmentsCouple: `${API_BASE}/api/appointments/couple`,
-  appointmentsCalendar: `${API_BASE}/api/appointments/calendar`,
-  unviewedCount: `${API_BASE}/api/appointments/unviewed/count`,
-  
+
+  // PAROVI
+  coupleAppointments: `${API_BASE}/api/appointments/couple`,
+
   // SPA
   spaAppointments: `${API_BASE}/api/spa/appointments`,
   spaServices: `${API_BASE}/api/spa/services`,
   spaQuote: `${API_BASE}/api/spa/quote`,
-  
+
   // Services
   services: `${API_BASE}/api/services`,
   servicesSingle: `${API_BASE}/api/services/single/list`,
   servicesCouples: `${API_BASE}/api/services/couples/list`,
-  
-  // Notifications
+
+  // CEO/NOTIF
+  unviewedCount: `${API_BASE}/api/appointments/unviewed/count`,
   notifications: `${API_BASE}/api/notifications`,
+  calendar: `${API_BASE}/api/appointments/calendar`,
 };
 
-// 🚫 ZABRANA: Discount updates - frontend NE SME da poziva ove endpoint-e
-// Ovi endpoint-i su samo za admin dashboard (poseban frontend)
+// 🔐 LOG na startu
+console.log("🔐 LOCKED API_BASE =", API_BASE);
+
+// 🚫 ZABRANA: Discount updates - frontend NE SME da poziva
 export function updateDiscount() {
   console.warn("🚫 Discount updates are backend-only. Frontend must not call update endpoints.");
   return Promise.resolve({ ok: false, error: "FORBIDDEN" });
 }
-
-// 🚫 Guard: Blokiraj PATCH na /api/services/*/discount
-export function guardDiscountUpdate(url) {
-  if (url && url.includes('/api/services') && url.includes('/discount')) {
-    console.error("🚫 BLOCKED: Attempt to update discount from public frontend:", url);
-    return true; // blocked
-  }
-  return false; // allowed
-}
-
-// 🔐 LOG na startu
-console.log("🔐 LOCKED API_BASE =", API_BASE);
 
 /**
  * ✅ Safe JSON helper - čita body SAMO JEDNOM
@@ -79,7 +79,6 @@ export async function safeJson(res) {
  * ✅ Fetch wrapper za API pozive
  */
 export async function apiFetch(endpoint, options = {}) {
-  // Endpoint mora početi sa /api/
   const url = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
   
   const res = await fetch(url, {
@@ -96,14 +95,14 @@ export async function apiFetch(endpoint, options = {}) {
 export const SPA_APPOINTMENTS_ENDPOINT = API.spaAppointments;
 export const APPOINTMENTS_ENDPOINT = API.appointments;
 export const APPOINTMENTS_LIST_ENDPOINT = API.appointmentsList;
-export const APPOINTMENTS_COUPLE_ENDPOINT = API.appointmentsCouple;
+export const APPOINTMENTS_COUPLE_ENDPOINT = API.coupleAppointments;
 export const SERVICES_ENDPOINT = API.services;
 export const SERVICES_SINGLE_ENDPOINT = API.servicesSingle;
 export const SERVICES_COUPLES_ENDPOINT = API.servicesCouples;
 export const SPA_SERVICES_ENDPOINT = API.spaServices;
 export const HEALTH_ENDPOINT = API.health;
 export const UNVIEWED_COUNT_ENDPOINT = API.unviewedCount;
-export const CALENDAR_ENDPOINT = API.appointmentsCalendar;
+export const CALENDAR_ENDPOINT = API.calendar;
 export const NOTIFICATIONS_ENDPOINT = API.notifications;
 
 // Default export
