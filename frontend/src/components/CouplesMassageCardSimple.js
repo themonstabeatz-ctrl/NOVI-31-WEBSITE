@@ -3,13 +3,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
+// ✅ HELPER: Format RSD - "9.200 RSD"
+const formatRSD = (n) => {
+  const num = Number(n || 0);
+  return `${num.toLocaleString("sr-RS")} RSD`;
+};
+
 const CouplesMassageCardSimple = ({ translate }) => {
-  // Fixed 60-minute couples massage
+  // ✅ Fixed prices - NE RAČUNAMO popuste, samo prikazujemo fiksne vrednosti
+  // Backend ili recepcija definiše cene, frontend samo prikazuje
   const DURATION = 60;
   const TOTAL_DURATION = 120; // 2 persons x 60 min
-  const BASE_PRICE = 8800; // 2 x 4400 RSD (60-min massage)
-  const DISCOUNT_PERCENT = 10;
-  const DISCOUNTED_PRICE = Math.round(BASE_PRICE * (1 - DISCOUNT_PERCENT / 100));
+  
+  // ✅ Cene kao što bi ih backend vratio
+  const original_price = 8800; // 2 x 4400 RSD
+  const final_price = 7920;    // Već izračunato (sa popustom)
+  const discount_percent = 10;
+  const has_discount = true;
 
   return (
     <Card 
@@ -26,16 +36,18 @@ const CouplesMassageCardSimple = ({ translate }) => {
           <CardTitle className="massage-name">{translate("sportsMassage")}</CardTitle>
           
           {/* Discount Badge */}
-          <img 
-            src="/discount-10.png" 
-            alt="-10%"
-            style={{ 
-              width: '54px',
-              height: '54px', 
-              objectFit: 'contain',
-              marginRight: '1rem'
-            }}
-          />
+          {has_discount && (
+            <img 
+              src="/discount-10.png" 
+              alt={`-${discount_percent}%`}
+              style={{ 
+                width: '54px',
+                height: '54px', 
+                objectFit: 'contain',
+                marginRight: '1rem'
+              }}
+            />
+          )}
         </div>
       </CardHeader>
       
@@ -98,7 +110,7 @@ const CouplesMassageCardSimple = ({ translate }) => {
           </div>
         </div>
 
-        {/* Price */}
+        {/* ✅ Price Block - prikazuje popust ako postoji */}
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -106,28 +118,52 @@ const CouplesMassageCardSimple = ({ translate }) => {
           marginBottom: '1rem',
           paddingRight: '0.5rem'
         }}>
-          {/* Original Price (strikethrough) */}
-          <div style={{
-            color: '#e63946',
-            fontSize: '1.2rem',
-            textDecoration: 'line-through',
-            textDecorationColor: 'white',
-            marginBottom: '0.25rem'
-          }}>
-            {BASE_PRICE.toLocaleString('sr-RS')} RSD
-          </div>
-          
-          {/* Discounted Price */}
-          <div style={{
-            color: '#d4af37',
-            fontWeight: 'bold',
-            fontSize: '2.2rem',
-            textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-            letterSpacing: '1px',
-            whiteSpace: 'nowrap'
-          }}>
-            {DISCOUNTED_PRICE.toLocaleString('sr-RS')} RSD
-          </div>
+          {has_discount && final_price < original_price ? (
+            <>
+              {/* Original Price (strikethrough) */}
+              <div style={{
+                color: '#888',
+                fontSize: '1.2rem',
+                textDecoration: 'line-through',
+                opacity: 0.7,
+                marginBottom: '0.25rem'
+              }}>
+                {formatRSD(original_price)}
+              </div>
+              
+              {/* Final Price */}
+              <div style={{
+                color: '#d4af37',
+                fontWeight: 'bold',
+                fontSize: '2.2rem',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+                letterSpacing: '1px',
+                whiteSpace: 'nowrap'
+              }}>
+                {formatRSD(final_price)}
+              </div>
+              
+              {/* Discount info */}
+              <div style={{
+                color: '#4ade80',
+                fontSize: '0.85rem',
+                marginTop: '0.25rem'
+              }}>
+                Popust: -{discount_percent}%
+              </div>
+            </>
+          ) : (
+            <div style={{
+              color: '#d4af37',
+              fontWeight: 'bold',
+              fontSize: '2.2rem',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+              letterSpacing: '1px',
+              whiteSpace: 'nowrap'
+            }}>
+              {formatRSD(original_price)}
+            </div>
+          )}
         </div>
 
         <Button 
@@ -146,9 +182,10 @@ const CouplesMassageCardSimple = ({ translate }) => {
                 massage: 'Tradicionalna tajlandska masaža',
                 duration: DURATION
               },
-              totalPrice: DISCOUNTED_PRICE,
-              originalPrice: BASE_PRICE,
-              discount: `${DISCOUNT_PERCENT}%`
+              totalPrice: final_price,
+              originalPrice: original_price,
+              discount_percent: discount_percent,
+              has_discount: has_discount
             }))}`}
           >
             {translate('bookNowBtn') || 'ZAKAŽITE'}
