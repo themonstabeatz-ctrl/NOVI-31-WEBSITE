@@ -1611,10 +1611,8 @@ const Spa = () => {
                                     </span>{' '}
                                     <span style={{ color: '#4ade80', fontWeight: '600' }}>
                                       {formatNumber(displayPrice)} RSD
-                                    </span>
-                                    <span style={{ color: '#4ade80', fontSize: '0.75em', marginLeft: '0.15rem' }}>
-                                      (-{discountPct}%)
-                                    </span>
+                                    </span>{' '}
+                                    <DiscountBadge percent={discountPct} size={16} />
                                   </span>
                                 ) : (
                                   <span style={{ color: '#d4af37', fontWeight: '600', opacity: 0.9 }}>
