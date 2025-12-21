@@ -904,11 +904,21 @@ const Spa = () => {
     
     const spaZoneLabel = zoneLabels.length > 0 ? zoneLabels.join(", ") : "Bez SPA zona";
 
+    // ✅ Get card_id from PACKAGE_TO_CARD_MAP
+    const cardId = PACKAGE_TO_CARD_MAP[pkg.id] || "";
+    
+    // ✅ Build service_ids array for booking
+    const bookingServiceIds = buildServiceIds(pkg.id, selectedVariant?.id, selectedZones);
+
     const params = new URLSearchParams({
       source: "spa",
       spaCategory: "SPA_RITUAL",
       spaPackageId: pkg.id,
       spaName: pkg.name,
+      // ✅ Card ID for card-level discounts
+      card_id: cardId,
+      // ✅ Service IDs for booking
+      service_ids: bookingServiceIds.join(","),
       // Base values
       basePrice: String(basePrice),
       baseDuration: String(baseDuration),
