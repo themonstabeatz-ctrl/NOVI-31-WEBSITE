@@ -10,6 +10,7 @@ import { throttle } from "../utils/debounce";
 import { API_BASE } from "../config/api";
 import { PriceBlock, InlinePriceBlock, formatRSD } from "../components/PriceBlock";
 import { normalizePricing, normalizeServiceList } from "../utils/normalizePricing";
+import { SPA_CARD_IDS, PACKAGE_TO_CARD_MAP } from "../config/spaCardIds";
 
 // HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
 const formatNumber = (value) => {
