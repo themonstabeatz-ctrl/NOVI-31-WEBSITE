@@ -1,8 +1,9 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: spa-integration.preview.emergentagent.com
+ * Backend URL: spa-web-update.preview.emergentagent.com
  * Frontend URL: relax-reserve-5.preview.emergentagent.com
  * 
+ * ❌ ZERO spa-integration (OLD)
  * ❌ ZERO spa-booking-api
  * ❌ ZERO spa-dashboard-2
  * ❌ ZERO massage-app-4
@@ -16,7 +17,10 @@
  * Client NEVER calls PATCH discount endpoints.
  */
 
-export const API_BASE = "https://spa-integration.preview.emergentagent.com";
+export const API_BASE = "https://spa-web-update.preview.emergentagent.com";
+
+// Debug log on import
+console.log("🔐 API_BASE =", API_BASE);
 
 export const API = {
   health: `${API_BASE}/api/health`,
@@ -30,6 +34,9 @@ export const API = {
 
   // SPA
   spaAppointments: `${API_BASE}/api/spa/appointments`,
+  spaCards: `${API_BASE}/api/spa/cards`,
+  spaQuote: `${API_BASE}/api/spa/quote`,
+  spaServices: `${API_BASE}/api/spa/services`,
 
   // CEO / NOTIF
   unviewedCount: `${API_BASE}/api/appointments/unviewed/count`,
