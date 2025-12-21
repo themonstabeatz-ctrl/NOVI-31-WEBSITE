@@ -1644,18 +1644,24 @@ const Spa = () => {
                       lineHeight: '1.3'
                     }}>
                       <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
-                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
                       {packageQuotes[pkg.id]?.has_discount ? (
                         <>
+                          <strong style={{ color: '#d4af37' }}>Originalna cena:</strong>{' '}
                           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
                             {formatNumber(packageQuotes[pkg.id].original_total)} RSD
-                          </span>{' '}
-                          <span style={{ color: '#4ade80', fontWeight: 600 }}>
-                            {formatNumber(packageQuotes[pkg.id].final_total)} RSD (-{Math.round(packageQuotes[pkg.id].discount_percentage)}%)
                           </span>
+                          <br />
+                          <strong style={{ color: '#d4af37' }}>Cena za naplatu:</strong>{' '}
+                          <span style={{ color: '#4ade80', fontWeight: 600 }}>
+                            {formatNumber(packageQuotes[pkg.id].final_total)} RSD
+                          </span>{' '}
+                          <DiscountBadge percent={packageQuotes[pkg.id].discount_percent || packageQuotes[pkg.id].discount_percentage} size={20} />
                         </>
                       ) : (
-                        <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
+                        <>
+                          <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
+                          <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
+                        </>
                       )}
                     </p>
                   </div>
@@ -1970,18 +1976,24 @@ const Spa = () => {
                       lineHeight: '1.3'
                     }}>
                       <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
-                      <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
                       {packageQuotes[pkg.id]?.has_discount ? (
                         <>
+                          <strong style={{ color: '#d4af37' }}>Originalna cena:</strong>{' '}
                           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
                             {formatNumber(packageQuotes[pkg.id].original_total)} RSD
-                          </span>{' '}
-                          <span style={{ color: '#4ade80', fontWeight: 600 }}>
-                            {formatNumber(packageQuotes[pkg.id].final_total)} RSD (-{Math.round(packageQuotes[pkg.id].discount_percentage)}%)
                           </span>
+                          <br />
+                          <strong style={{ color: '#d4af37' }}>Cena za naplatu:</strong>{' '}
+                          <span style={{ color: '#4ade80', fontWeight: 600 }}>
+                            {formatNumber(packageQuotes[pkg.id].final_total)} RSD
+                          </span>{' '}
+                          <DiscountBadge percent={packageQuotes[pkg.id].discount_percent || packageQuotes[pkg.id].discount_percentage} size={20} />
                         </>
                       ) : (
-                        <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
+                        <>
+                          <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
+                          <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
+                        </>
                       )}
                     </p>
                   </div>
