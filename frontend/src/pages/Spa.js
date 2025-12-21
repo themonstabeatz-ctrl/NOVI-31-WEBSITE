@@ -10,7 +10,13 @@ import { throttle } from "../utils/debounce";
 import { API_BASE } from "../config/api";
 import { PriceBlock, InlinePriceBlock, formatRSD } from "../components/PriceBlock";
 import { normalizePricing, normalizeServiceList } from "../utils/normalizePricing";
-import { SPA_CARD_IDS, PACKAGE_TO_CARD_MAP } from "../config/spaCardIds";
+import { SPA_CARD_IDS, PACKAGE_TO_CARD_MAP, PACKAGE_TO_BASE_SERVICE_IDS, BASE_SERVICE_IDS } from "../config/spaCardIds";
+
+// HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
+const formatNumber = (value) => {
+  const n = typeof value === 'number' && !Number.isNaN(value) ? value : 0;
+  return n.toLocaleString('sr-RS');
+};
 
 // HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
 const formatNumber = (value) => {
