@@ -625,7 +625,7 @@ const Spa = () => {
       }
       
       // Herbal cards also need initial quotes
-      for (const card of HERBAL_COMPRESS_CARDS) {
+      for (const card of NEW_SPA_PACKAGES) {
         const cardId = PACKAGE_TO_CARD_MAP[card.id];
         const baseServiceIds = PACKAGE_TO_BASE_SERVICE_IDS[card.id] || [];
         
