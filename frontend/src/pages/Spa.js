@@ -592,6 +592,7 @@ const Spa = () => {
   }, []);
 
   // ✅ Fetch quote when selections change for each package
+  // Uses PACKAGE_TO_CARD_MAP to send card_id for card-level discounts
   useEffect(() => {
     const fetchAllQuotes = async () => {
       const newQuotes = {};
@@ -602,8 +603,11 @@ const Spa = () => {
         const zoneSelections = selectedZonesByPackage[pkg.id];
         const serviceIds = buildServiceIds(pkg.id, variantId, zoneSelections);
         
+        // ✅ Get card_id from PACKAGE_TO_CARD_MAP
+        const cardId = PACKAGE_TO_CARD_MAP[pkg.id];
+        
         if (serviceIds.length > 0) {
-          const quote = await fetchSpaQuote(serviceIds);
+          const quote = await fetchSpaQuote(serviceIds, cardId);
           if (quote) {
             newQuotes[pkg.id] = quote;
           }
@@ -621,7 +625,8 @@ const Spa = () => {
         });
       }
       if (zoneOnlyServiceIds.length > 0) {
-        const quote = await fetchSpaQuote(zoneOnlyServiceIds);
+        // ✅ SPA Zone Only uses spa_zone card_id
+        const quote = await fetchSpaQuote(zoneOnlyServiceIds, PACKAGE_TO_CARD_MAP["SPA_ZONE_ONLY"]);
         if (quote) {
           newQuotes[SPA_ZONE_ONLY.id] = quote;
         }
