@@ -600,10 +600,57 @@ const Spa = () => {
       });
     }
     
+    // ✅ If no services selected, use base service IDs from config
+    if (serviceIds.length === 0 && PACKAGE_TO_BASE_SERVICE_IDS[pkgId]) {
+      return [...PACKAGE_TO_BASE_SERVICE_IDS[pkgId]];
+    }
+    
     return serviceIds;
   }, []);
 
-  // ✅ Fetch quote when selections change for each package
+  // ✅ INITIAL MOUNT: Fetch quotes immediately for all packages with default selections
+  // This ensures discount badges show immediately without user interaction
+  useEffect(() => {
+    const fetchInitialQuotes = async () => {
+      console.log("🚀 Fetching initial quotes on mount...");
+      const newQuotes = {};
+      
+      // Fetch quotes for all SPA packages with BASE service_ids
+      for (const pkg of SPA_PACKAGES) {
+        const cardId = PACKAGE_TO_CARD_MAP[pkg.id];
+        const baseServiceIds = PACKAGE_TO_BASE_SERVICE_IDS[pkg.id] || [];
+        
+        console.log(`📤 Initial quote for ${pkg.id}:`, { cardId, baseServiceIds });
+        
+        if (baseServiceIds.length > 0) {
+          const quote = await fetchSpaQuote(baseServiceIds, cardId);
+          if (quote) {
+            newQuotes[pkg.id] = quote;
+          }
+        }
+      }
+      
+      // Herbal cards also need initial quotes
+      for (const card of HERBAL_COMPRESS_CARDS) {
+        const cardId = PACKAGE_TO_CARD_MAP[card.id];
+        const baseServiceIds = PACKAGE_TO_BASE_SERVICE_IDS[card.id] || [];
+        
+        if (baseServiceIds.length > 0) {
+          const quote = await fetchSpaQuote(baseServiceIds, cardId);
+          if (quote) {
+            newQuotes[card.id] = quote;
+          }
+        }
+      }
+      
+      console.log("📊 Initial quotes loaded:", newQuotes);
+      setPackageQuotes(newQuotes);
+    };
+    
+    fetchInitialQuotes();
+  }, []); // Empty deps - only run on mount
+
+  // ✅ Fetch quote when selections CHANGE for each package
   // Uses PACKAGE_TO_CARD_MAP to send card_id for card-level discounts
   useEffect(() => {
     const fetchAllQuotes = async () => {
@@ -626,7 +673,7 @@ const Spa = () => {
         }
       }
       
-      // Fetch quote for SPA Zone Only
+      // Fetch quote for SPA Zone Only (using correct ID "SPAZONE")
       const zoneOnlySelections = selectedZonesByPackage[SPA_ZONE_ONLY.id];
       const zoneOnlyServiceIds = [];
       if (zoneOnlySelections) {
@@ -637,15 +684,15 @@ const Spa = () => {
         });
       }
       if (zoneOnlyServiceIds.length > 0) {
-        // ✅ SPA Zone Only uses spa_zone card_id
-        const quote = await fetchSpaQuote(zoneOnlyServiceIds, PACKAGE_TO_CARD_MAP["SPA_ZONE_ONLY"]);
+        // ✅ SPA Zone Only uses spa_zone card_id (ID is "SPAZONE")
+        const quote = await fetchSpaQuote(zoneOnlyServiceIds, PACKAGE_TO_CARD_MAP[SPA_ZONE_ONLY.id]);
         if (quote) {
           newQuotes[SPA_ZONE_ONLY.id] = quote;
         }
       }
       
       console.log("📊 All package quotes:", newQuotes);
-      setPackageQuotes(newQuotes);
+      setPackageQuotes(prev => ({ ...prev, ...newQuotes }));
     };
     
     // Debounce to avoid too many API calls
