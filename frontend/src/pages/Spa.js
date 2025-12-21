@@ -1296,7 +1296,6 @@ const Spa = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Clock size={14} color="#d4af37" />
                       <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
-                      <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
                         {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min
                       </span>
                     </div>
@@ -1306,7 +1305,6 @@ const Spa = () => {
                       fallbackPrice={totalPrice}
                       size="small"
                     />
-                  </div>
                   </div>
 
                   {/* Package Name */}
