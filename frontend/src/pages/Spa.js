@@ -1296,16 +1296,17 @@ const Spa = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Clock size={14} color="#d4af37" />
                       <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
-                        {formatNumber(totalMinutes)} min
+                      <span style={{ color: '#f5f2e8', fontSize: '0.8rem', fontWeight: '600' }}>
+                        {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min
                       </span>
                     </div>
-                    <div style={{
-                      fontSize: '1rem',
-                      fontWeight: 'bold',
-                      color: '#d4af37'
-                    }}>
-                      {formatNumber(totalPrice)} RSD
-                    </div>
+                    {/* ✅ Use CardPrice with quote data - NO JS calculations */}
+                    <CardPrice 
+                      quote={packageQuotes[pkg.id]} 
+                      fallbackPrice={totalPrice}
+                      size="small"
+                    />
+                  </div>
                   </div>
 
                   {/* Package Name */}
