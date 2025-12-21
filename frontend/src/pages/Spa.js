@@ -18,12 +18,6 @@ const formatNumber = (value) => {
   return n.toLocaleString('sr-RS');
 };
 
-// HELPER: Safe number formatting - prevents undefined.toLocaleString() crashes
-const formatNumber = (value) => {
-  const n = typeof value === 'number' && !Number.isNaN(value) ? value : 0;
-  return n.toLocaleString('sr-RS');
-};
-
 /**
  * 🔐 BACKEND SERVICE ID MAP
  * Maps frontend option IDs to backend service UUIDs
