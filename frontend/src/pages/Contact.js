@@ -402,33 +402,36 @@ const Contact = () => {
       });
 
       // ✅ NEW: Fetch quote pricing from backend (if we have card_id and service_ids)
+      // Use IIFE to handle async inside useEffect
       if (cardId && serviceIds) {
         const serviceIdArray = serviceIds.split(",").filter(Boolean);
         if (serviceIdArray.length > 0) {
-          setQuotePricingLoading(true);
-          try {
-            const quoteRes = await fetch(`${API_BASE}/api/spa/quote`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              cache: "no-store",
-              body: JSON.stringify({ service_ids: serviceIdArray, card_id: cardId })
-            });
-            if (quoteRes.ok) {
-              const quoteData = await quoteRes.json();
-              const discountPct = Number(quoteData.discount_percent ?? quoteData.discount_percentage ?? 0);
-              setQuotePricing({
-                original_total: Number(quoteData.original_total || 0),
-                final_total: Number(quoteData.final_total || quoteData.original_total || 0),
-                discount_percent: discountPct,
-                has_discount: discountPct > 0
+          (async () => {
+            setQuotePricingLoading(true);
+            try {
+              const quoteRes = await fetch(`${API_BASE}/api/spa/quote`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                cache: "no-store",
+                body: JSON.stringify({ service_ids: serviceIdArray, card_id: cardId })
               });
-              console.log("📊 Contact page quote pricing:", quoteData);
+              if (quoteRes.ok) {
+                const quoteData = await quoteRes.json();
+                const discountPct = Number(quoteData.discount_percent ?? quoteData.discount_percentage ?? 0);
+                setQuotePricing({
+                  original_total: Number(quoteData.original_total || 0),
+                  final_total: Number(quoteData.final_total || quoteData.original_total || 0),
+                  discount_percent: discountPct,
+                  has_discount: discountPct > 0
+                });
+                console.log("📊 Contact page quote pricing:", quoteData);
+              }
+            } catch (err) {
+              console.error("❌ Failed to fetch quote pricing:", err);
+            } finally {
+              setQuotePricingLoading(false);
             }
-          } catch (err) {
-            console.error("❌ Failed to fetch quote pricing:", err);
-          } finally {
-            setQuotePricingLoading(false);
-          }
+          })();
         }
       }
 
