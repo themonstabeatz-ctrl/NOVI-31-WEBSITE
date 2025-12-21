@@ -1374,6 +1374,22 @@ const Spa = () => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}>
+                
+                {/* ✅ DISCOUNT BADGE - Vidljiv ODMAH u gornjem desnom uglu */}
+                {packageQuotes[pkg.id]?.has_discount && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '-5px',
+                    right: '-5px',
+                    zIndex: 10
+                  }}>
+                    <DiscountBadge 
+                      percent={packageQuotes[pkg.id].discount_percent || packageQuotes[pkg.id].discount_percentage} 
+                      size={48}
+                    />
+                  </div>
+                )}
+                
                 <CardContent style={{ padding: '0.6rem' }}>
                   {/* Header: Duration and Price */}
                   <div style={{
