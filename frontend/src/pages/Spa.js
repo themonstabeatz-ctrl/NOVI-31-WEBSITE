@@ -2161,19 +2161,19 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.5'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
+                      <strong style={{ color: '#d4af37' }}>Ukupno trajanje:</strong> {packageQuotes[SPA_ZONE_ONLY.id]?.total_duration || formatNumber(totalMinutes)} min<br />
                       <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
-                      {packageQuotes[pkg.id]?.has_discount ? (
+                      {packageQuotes[SPA_ZONE_ONLY.id]?.has_discount ? (
                         <>
                           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
-                            {formatNumber(packageQuotes[pkg.id].original_total)} RSD
+                            {formatNumber(packageQuotes[SPA_ZONE_ONLY.id].original_total)} RSD
                           </span>{' '}
                           <span style={{ color: '#4ade80', fontWeight: 600 }}>
-                            {formatNumber(packageQuotes[pkg.id].final_total)} RSD (-{Math.round(packageQuotes[pkg.id].discount_percentage)}%)
+                            {formatNumber(packageQuotes[SPA_ZONE_ONLY.id].final_total)} RSD (-{Math.round(packageQuotes[SPA_ZONE_ONLY.id].discount_percentage)}%)
                           </span>
                         </>
                       ) : (
-                        <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
+                        <span>{formatNumber(packageQuotes[SPA_ZONE_ONLY.id]?.original_total || totalPrice)} RSD</span>
                       )}
                     </p>
                   </div>
