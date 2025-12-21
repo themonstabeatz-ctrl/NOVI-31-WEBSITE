@@ -44,18 +44,29 @@ const SERVICE_ID_MAP = {
 /**
  * 🔄 FETCH SPA QUOTE FROM BACKEND
  * No JS calculations - backend returns original_total, final_total, discount
+ * 
+ * @param {string[]} serviceIds - Array of service UUIDs
+ * @param {string} cardId - Card ID from SPA_CARD_IDS for card-level discounts
  */
-async function fetchSpaQuote(serviceIds) {
+async function fetchSpaQuote(serviceIds, cardId = null) {
   if (!serviceIds || serviceIds.length === 0) {
     return { original_total: 0, final_total: 0, discount_percentage: 0, has_discount: false };
   }
   
   try {
+    // ✅ Include card_id in request for card-level discounts
+    const payload = { 
+      service_ids: serviceIds,
+      ...(cardId && { card_id: cardId })
+    };
+    
+    console.log("📤 SPA Quote request:", payload);
+    
     const res = await fetch(`${API_BASE}/api/spa/quote`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
-      body: JSON.stringify({ service_ids: serviceIds })
+      body: JSON.stringify(payload)
     });
     
     if (!res.ok) {
@@ -64,7 +75,7 @@ async function fetchSpaQuote(serviceIds) {
     }
     
     const data = await res.json();
-    console.log("📊 SPA Quote response:", data);
+    console.log("📊 SPA Quote response:", { cardId, ...data });
     
     return {
       original_total: Number(data.original_total || 0),
@@ -74,7 +85,8 @@ async function fetchSpaQuote(serviceIds) {
       has_discount: Number(data.discount_percentage || 0) > 0,
       total_duration: Number(data.total_duration || 0),
       breakdown: data.breakdown || "",
-      services: data.services || []
+      services: data.services || [],
+      card_id: cardId
     };
   } catch (err) {
     console.error("❌ SPA Quote error:", err);
