@@ -77,12 +77,18 @@ async function fetchSpaQuote(serviceIds, cardId = null) {
     const data = await res.json();
     console.log("📊 SPA Quote response:", { cardId, ...data });
     
+    // ✅ Backend may return discount_percent OR discount_percentage
+    const discountPct = Number(data.discount_percent ?? data.discount_percentage ?? 0);
+    const finalTotal = Number(data.final_total ?? data.original_total ?? 0);
+    const originalTotal = Number(data.original_total ?? 0);
+    
     return {
-      original_total: Number(data.original_total || 0),
-      final_total: Number(data.final_total || 0),
-      discount_percentage: Number(data.discount_percentage || 0),
+      original_total: originalTotal,
+      final_total: finalTotal,
+      discount_percentage: discountPct,
+      discount_percent: discountPct, // alias
       discount_amount: Number(data.discount_amount || 0),
-      has_discount: Number(data.discount_percentage || 0) > 0,
+      has_discount: discountPct > 0 && finalTotal < originalTotal,
       total_duration: Number(data.total_duration || 0),
       breakdown: data.breakdown || "",
       services: data.services || [],
