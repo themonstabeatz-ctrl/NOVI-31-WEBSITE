@@ -185,13 +185,8 @@ function CardPrice({ quote, fallbackPrice = 0, size = 'normal' }) {
         gap: '0.5rem'
       }}>
         {formatNumber(final_total)} RSD
-        <span style={{ 
-          color: '#4ade80', 
-          fontWeight: 600, 
-          fontSize: s.badge 
-        }}>
-          (-{Math.round(discount_percentage)}%)
-        </span>
+        {/* ✅ Use DiscountBadge image instead of text */}
+        <DiscountBadge percent={discount_percentage} size={size === 'small' ? 24 : 32} />
       </div>
     </div>
   );
