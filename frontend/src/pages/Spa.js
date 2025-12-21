@@ -388,6 +388,10 @@ const Spa = () => {
   // ✅ NEW: State for dynamically loaded SPA Zone prices from API
   const [spaZonePrices, setSpaZonePrices] = useState({});
   const [spaZoneError, setSpaZoneError] = useState(null);
+  
+  // ✅ NEW: State for QUOTE data per package (from /api/spa/quote)
+  // Key: packageId, Value: { original_total, final_total, discount_percentage, has_discount }
+  const [packageQuotes, setPackageQuotes] = useState({});
 
   // ✅ Fetch SPA Zone prices from API with no-cache + normalizePricing
   useEffect(() => {
