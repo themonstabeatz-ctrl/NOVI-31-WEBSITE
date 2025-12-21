@@ -104,6 +104,73 @@ export const SPA_ZONE_PRICES = {
   }
 };
 
+/**
+ * 📊 CARD PRICE COMPONENT
+ * Displays price from /api/spa/quote response
+ * Shows strikethrough original + final when discount exists
+ * NO JS calculations - purely displays backend data
+ */
+function CardPrice({ quote, fallbackPrice = 0, size = 'normal' }) {
+  // Size configurations
+  const sizes = {
+    small: { original: '0.85rem', final: '1rem', badge: '0.7rem' },
+    normal: { original: '1rem', final: '1.3rem', badge: '0.8rem' },
+    large: { original: '1.1rem', final: '1.5rem', badge: '0.9rem' },
+  };
+  const s = sizes[size] || sizes.normal;
+
+  // If no quote, show fallback
+  if (!quote) {
+    return (
+      <div style={{ fontWeight: 'bold', color: '#d4af37', fontSize: s.final }}>
+        {formatNumber(fallbackPrice)} RSD
+      </div>
+    );
+  }
+
+  const { original_total, final_total, discount_percentage, has_discount } = quote;
+  const showDiscount = has_discount && Number(final_total) < Number(original_total);
+
+  if (!showDiscount) {
+    return (
+      <div style={{ fontWeight: 'bold', color: '#d4af37', fontSize: s.final }}>
+        {formatNumber(original_total || fallbackPrice)} RSD
+      </div>
+    );
+  }
+
+  // ✅ Show strikethrough original + final with discount badge
+  return (
+    <div className="card-price-block">
+      <div style={{ 
+        textDecoration: 'line-through', 
+        opacity: 0.7, 
+        color: '#888',
+        fontSize: s.original 
+      }}>
+        {formatNumber(original_total)} RSD
+      </div>
+      <div style={{ 
+        fontWeight: 'bold', 
+        color: '#d4af37', 
+        fontSize: s.final,
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem'
+      }}>
+        {formatNumber(final_total)} RSD
+        <span style={{ 
+          color: '#4ade80', 
+          fontWeight: 600, 
+          fontSize: s.badge 
+        }}>
+          (-{Math.round(discount_percentage)}%)
+        </span>
+      </div>
+    </div>
+  );
+}
+
 // SPA PACKAGES - 3 ritual packages + 1 zone-only package
 const SPA_PACKAGES = [
   {
