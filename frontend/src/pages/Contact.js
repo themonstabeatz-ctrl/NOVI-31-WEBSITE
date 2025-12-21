@@ -177,6 +177,10 @@ const Contact = () => {
   // SPA booking metadata
   const [spaBookingMeta, setSpaBookingMeta] = useState(null);
   
+  // ✅ NEW: Pricing from /api/spa/quote (for SPA bookings)
+  const [quotePricing, setQuotePricing] = useState(null);
+  const [quotePricingLoading, setQuotePricingLoading] = useState(false);
+  
   // Dynamic service mapping from booking system
   const [serviceMapping, setServiceMapping] = useState({});
   const [servicesLoaded, setServicesLoaded] = useState(false);
