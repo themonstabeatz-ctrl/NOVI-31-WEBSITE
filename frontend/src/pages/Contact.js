@@ -886,6 +886,12 @@ const Contact = () => {
           type: "spa",
           category: "SPA",
           
+          // ✅ CARD ID - for card-level discounts (OBAVEZNO)
+          card_id: spaBookingMeta.cardId || "",
+          
+          // ✅ SERVICE IDs - array of selected services (OBAVEZNO)
+          service_ids: spaBookingMeta.serviceIds || [],
+          
           // ✅ Service details - za email template
           service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId,
           service_name: spaBookingMeta.spaName || "SPA Tretman",
@@ -901,7 +907,7 @@ const Contact = () => {
           // ✅ Notes (poruka iz forme)
           notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min\nUkupna cena: ${(spaBookingMeta.totalPrice || 0).toLocaleString('sr-RS')} RSD`,
 
-          // ✅ Snapshot prices for analytics
+          // ✅ Snapshot prices for analytics (backend will override with card discount)
           final_price: spaBookingMeta.totalPrice,
           original_price: spaBookingMeta.totalPrice,
           final_total: spaBookingMeta.totalPrice,
