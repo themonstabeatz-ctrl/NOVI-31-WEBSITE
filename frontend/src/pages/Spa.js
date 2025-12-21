@@ -979,11 +979,16 @@ const Spa = () => {
       includedSpaZone = "steam15";
     }
 
+    // ✅ Get card_id from PACKAGE_TO_CARD_MAP for Herbal packages
+    const cardId = PACKAGE_TO_CARD_MAP[card.id] || "";
+
     const params = new URLSearchParams({
       source: "spa",
       spaCategory: "SPA_HERBAL",
       spaPackageId: card.id,
       spaName: card.name,
+      // ✅ Card ID for card-level discounts
+      card_id: cardId,
       basePrice: String(HERBAL_PRICE),
       baseDuration: String(HERBAL_BASE_MINUTES),
       includedSpaZone: includedSpaZone,
