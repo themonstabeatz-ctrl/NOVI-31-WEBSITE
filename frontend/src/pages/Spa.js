@@ -946,6 +946,8 @@ const Spa = () => {
       params.set("variantLabel", "Samo SPA zona");
       // ✅ Add selected zones list
       params.set("selectedSpaZones", zoneLabels.join("|"));
+      // ✅ Override card_id for SPA Zone Only
+      params.set("card_id", PACKAGE_TO_CARD_MAP["SPA_ZONE_ONLY"] || "spa_zone");
     } else {
       params.append("variantId", selectedVariant.id);
       params.append("variantLabel", selectedVariant.label);
