@@ -345,6 +345,10 @@ const Contact = () => {
       const spaZoneLabel   = searchParams.get("spaZoneLabel");
       const guests         = Number(searchParams.get("guests") || 1);
       
+      // ✅ NEW: Card ID and Service IDs for card-level discounts
+      const cardId         = searchParams.get("card_id") || "";
+      const serviceIds     = searchParams.get("service_ids") || "";
+      
       // New detailed params
       const basePrice      = Number(searchParams.get("basePrice") || 0);
       const baseDuration   = Number(searchParams.get("baseDuration") || 0);
@@ -363,7 +367,8 @@ const Contact = () => {
       console.log('🔍 SPA booking detected:', { 
         source, spaCategory, spaPackageId, spa_package_id, spaName, variantLabel, 
         face, saunaMin, steamMin, jacuzziMin, guests,
-        basePrice, addonPrice, totalPrice, totalDuration 
+        basePrice, addonPrice, totalPrice, totalDuration,
+        cardId, serviceIds // ✅ Log card_id and service_ids
       });
 
       // 1) Save all SPA metadata (for handleSubmit)
@@ -386,7 +391,10 @@ const Contact = () => {
         addonPrice,
         addonDuration,
         totalPrice,
-        totalDuration
+        totalDuration,
+        // ✅ NEW: Store card_id and service_ids
+        cardId,
+        serviceIds: serviceIds ? serviceIds.split(",") : []
       });
 
       // 2) Pre-populate form message with detailed breakdown
