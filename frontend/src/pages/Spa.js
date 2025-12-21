@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { useLanguage } from "../context/LanguageContext";
 import { useNavigate, Link } from "react-router-dom";
@@ -16,6 +16,70 @@ const formatNumber = (value) => {
   const n = typeof value === 'number' && !Number.isNaN(value) ? value : 0;
   return n.toLocaleString('sr-RS');
 };
+
+/**
+ * 🔐 BACKEND SERVICE ID MAP
+ * Maps frontend option IDs to backend service UUIDs
+ * Used for /api/spa/quote calls
+ */
+const SERVICE_ID_MAP = {
+  // SPA ZONE services
+  SAUNA_15: "7d46da23-a15a-4836-8db5-04d748cd6b72",
+  SAUNA_30: "9bcb2fa6-4474-48be-93bd-72bea64a9807",
+  STEAM_15: "876dff5c-4a13-4f5d-a4ff-b431f42b81e4",
+  STEAM_30: "e00a0411-30fb-4a5e-87ef-32509bd1890e",
+  JACUZZI_30: "af7458f2-6c40-4957-8871-347438e9ec57",
+  JACUZZI_60: "ef4206ac-372c-40d9-9cf8-1dcaf1a42979",
+  
+  // SPA RITUAL base services
+  SPA1: "ed3d9995-e195-4e56-8041-3459d3ecd324", // Silky Body Ritual
+  SPA2: "3308333f-de1a-40a5-b33a-6acc171bc538", // Gentle Touch Ritual
+  SPA3: "b4067c22-e4c0-4db7-aa7a-b6b6d396e27a", // Deep Renewal Ritual
+  
+  // Face Massage add-on
+  FACE_MASSAGE: "b398a25e-4f70-4060-80ac-e080fc34a0ef",
+};
+
+/**
+ * 🔄 FETCH SPA QUOTE FROM BACKEND
+ * No JS calculations - backend returns original_total, final_total, discount
+ */
+async function fetchSpaQuote(serviceIds) {
+  if (!serviceIds || serviceIds.length === 0) {
+    return { original_total: 0, final_total: 0, discount_percentage: 0, has_discount: false };
+  }
+  
+  try {
+    const res = await fetch(`${API_BASE}/api/spa/quote`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify({ service_ids: serviceIds })
+    });
+    
+    if (!res.ok) {
+      console.error("❌ SPA Quote failed:", res.status);
+      return null;
+    }
+    
+    const data = await res.json();
+    console.log("📊 SPA Quote response:", data);
+    
+    return {
+      original_total: Number(data.original_total || 0),
+      final_total: Number(data.final_total || 0),
+      discount_percentage: Number(data.discount_percentage || 0),
+      discount_amount: Number(data.discount_amount || 0),
+      has_discount: Number(data.discount_percentage || 0) > 0,
+      total_duration: Number(data.total_duration || 0),
+      breakdown: data.breakdown || "",
+      services: data.services || []
+    };
+  } catch (err) {
+    console.error("❌ SPA Quote error:", err);
+    return null;
+  }
+}
 
 // ✅ CENTRALIZOVANI IZVOR ZA SPA ZONE CENE
 // Ovo je jedini izvor istine za cene SPA zona
