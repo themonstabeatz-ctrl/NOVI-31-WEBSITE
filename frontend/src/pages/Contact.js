@@ -181,6 +181,43 @@ const Contact = () => {
   const [quotePricing, setQuotePricing] = useState(null);
   const [quotePricingLoading, setQuotePricingLoading] = useState(false);
   
+  // ✅ UPDATE: When quotePricing arrives, update the message with correct price
+  useEffect(() => {
+    if (!quotePricing || !spaBookingMeta) return;
+    
+    console.log("📊 BOOKING quote pricing received:", quotePricing);
+    console.log("📊 BOOKING card_id:", spaBookingMeta.cardId);
+    console.log("📊 BOOKING service_ids:", spaBookingMeta.serviceIds);
+    
+    // Build price line from quote (the ONLY source of truth)
+    const formatPrice = (n) => Number(n || 0).toLocaleString('sr-RS');
+    let priceLine;
+    
+    if (quotePricing.has_discount) {
+      priceLine = `Ukupna cena: ${formatPrice(quotePricing.original_total)} RSD → ${formatPrice(quotePricing.final_total)} RSD (-${quotePricing.discount_percent}%)`;
+    } else {
+      priceLine = `Ukupna cena: ${formatPrice(quotePricing.final_total || quotePricing.original_total)} RSD`;
+    }
+    
+    // Update message with correct pricing
+    setFormData(prev => {
+      if (!prev.message) return prev;
+      
+      // Replace the price line in the message
+      const updatedMessage = prev.message.replace(
+        /Ukupna cena:.*RSD.*/g,
+        priceLine
+      );
+      
+      console.log("📝 Updated booking message with quote price:", priceLine);
+      
+      return {
+        ...prev,
+        message: updatedMessage
+      };
+    });
+  }, [quotePricing, spaBookingMeta]);
+  
   // Dynamic service mapping from booking system
   const [serviceMapping, setServiceMapping] = useState({});
   const [servicesLoaded, setServicesLoaded] = useState(false);
