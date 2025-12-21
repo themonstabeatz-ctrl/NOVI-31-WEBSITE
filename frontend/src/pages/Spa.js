@@ -2005,16 +2005,15 @@ const Spa = () => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <Clock size={18} color="#d4af37" />
                         <span style={{ color: '#f5f2e8', fontSize: '1rem', fontWeight: '600' }}>
-                          {totalMinutes} min
+                          {packageQuotes[SPA_ZONE_ONLY.id]?.total_duration || totalMinutes} min
                         </span>
                       </div>
-                      <div style={{
-                        fontSize: '1.3rem',
-                        fontWeight: 'bold',
-                        color: '#d4af37'
-                      }}>
-                        {formatNumber(totalPrice)} RSD
-                      </div>
+                      {/* ✅ Use CardPrice with quote data - NO JS calculations */}
+                      <CardPrice 
+                        quote={packageQuotes[SPA_ZONE_ONLY.id]} 
+                        fallbackPrice={totalPrice}
+                        size="normal"
+                      />
                     </div>
                   </div>
 
