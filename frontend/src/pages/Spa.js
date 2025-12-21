@@ -484,6 +484,78 @@ const Spa = () => {
     return spaZonePrices[zoneName]?.duration || 0;
   };
 
+  // ✅ QUOTE API: Fetch quotes for all packages when selections change
+  // Builds service_ids array from selections and calls /api/spa/quote
+  const buildServiceIds = useCallback((pkgId, variantId, zoneSelections) => {
+    const serviceIds = [];
+    
+    // Add base ritual service
+    if (SERVICE_ID_MAP[pkgId]) {
+      serviceIds.push(SERVICE_ID_MAP[pkgId]);
+    }
+    
+    // Add face massage if variant includes it
+    if (variantId && variantId.includes("WITH_FACE")) {
+      serviceIds.push(SERVICE_ID_MAP.FACE_MASSAGE);
+    }
+    
+    // Add zone selections
+    if (zoneSelections) {
+      Object.entries(zoneSelections).forEach(([zoneId, optionId]) => {
+        if (optionId && SERVICE_ID_MAP[optionId]) {
+          serviceIds.push(SERVICE_ID_MAP[optionId]);
+        }
+      });
+    }
+    
+    return serviceIds;
+  }, []);
+
+  // ✅ Fetch quote when selections change for each package
+  useEffect(() => {
+    const fetchAllQuotes = async () => {
+      const newQuotes = {};
+      
+      // Fetch quotes for all SPA packages
+      for (const pkg of SPA_PACKAGES) {
+        const variantId = selectedVariantByPackage[pkg.id];
+        const zoneSelections = selectedZonesByPackage[pkg.id];
+        const serviceIds = buildServiceIds(pkg.id, variantId, zoneSelections);
+        
+        if (serviceIds.length > 0) {
+          const quote = await fetchSpaQuote(serviceIds);
+          if (quote) {
+            newQuotes[pkg.id] = quote;
+          }
+        }
+      }
+      
+      // Fetch quote for SPA Zone Only
+      const zoneOnlySelections = selectedZonesByPackage[SPA_ZONE_ONLY.id];
+      const zoneOnlyServiceIds = [];
+      if (zoneOnlySelections) {
+        Object.entries(zoneOnlySelections).forEach(([zoneId, optionId]) => {
+          if (optionId && SERVICE_ID_MAP[optionId]) {
+            zoneOnlyServiceIds.push(SERVICE_ID_MAP[optionId]);
+          }
+        });
+      }
+      if (zoneOnlyServiceIds.length > 0) {
+        const quote = await fetchSpaQuote(zoneOnlyServiceIds);
+        if (quote) {
+          newQuotes[SPA_ZONE_ONLY.id] = quote;
+        }
+      }
+      
+      console.log("📊 All package quotes:", newQuotes);
+      setPackageQuotes(newQuotes);
+    };
+    
+    // Debounce to avoid too many API calls
+    const timeoutId = setTimeout(fetchAllQuotes, 300);
+    return () => clearTimeout(timeoutId);
+  }, [selectedVariantByPackage, selectedZonesByPackage, buildServiceIds]);
+
   // Scroll fade-out effect for hero (IDENTICAL to Massage.js)
   useEffect(() => {
     const handleScroll = () => {
