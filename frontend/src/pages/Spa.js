@@ -2445,7 +2445,7 @@ const Spa = () => {
             <CardContent style={{ position: 'relative', zIndex: 1, padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
               {/* Content wrapper - uzima prostor */}
               <div style={{ flexGrow: 1 }}>
-                {/* Header: Duration and Price */}
+                {/* Header: Duration and Price - DYNAMIC from packageQuotes */}
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -2460,13 +2460,25 @@ const Spa = () => {
                       210 min
                     </span>
                   </div>
-                  <div style={{
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    color: '#d4af37'
-                  }}>
-                    {formatNumber(25000)} RSD
-                  </div>
+                  {packageQuotes["ROMANTIC_COUPLE"]?.has_discount ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ textDecoration: 'line-through', opacity: 0.6, color: '#f5f2e8', fontSize: '0.9rem' }}>
+                        {formatNumber(packageQuotes["ROMANTIC_COUPLE"].original_total)} RSD
+                      </span>
+                      <span style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#4ade80' }}>
+                        {formatNumber(packageQuotes["ROMANTIC_COUPLE"].final_total)} RSD
+                      </span>
+                      <DiscountBadge percent={packageQuotes["ROMANTIC_COUPLE"].discount_percent || packageQuotes["ROMANTIC_COUPLE"].discount_percentage} size={20} />
+                    </div>
+                  ) : (
+                    <div style={{
+                      fontSize: '1.1rem',
+                      fontWeight: 'bold',
+                      color: '#d4af37'
+                    }}>
+                      {formatNumber(packageQuotes["ROMANTIC_COUPLE"]?.original_total || 25000)} RSD
+                    </div>
+                  )}
                 </div>
 
                 {/* Naslov */}
