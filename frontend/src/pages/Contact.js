@@ -980,21 +980,10 @@ const Contact = () => {
           spa_zone: spaBookingMeta.spaZoneText || "",
           
           // ✅ Notes (poruka iz forme)
-          notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min\nUkupna cena: ${(quotePricing?.final_total || spaBookingMeta.totalPrice || 0).toLocaleString('sr-RS')} RSD`,
+          notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min`,
 
-          // ✅ Pricing snapshot from /api/spa/quote (or fallback to URL params)
-          pricing: {
-            original_total: quotePricing?.original_total || spaBookingMeta.totalPrice || 0,
-            final_total: quotePricing?.final_total || spaBookingMeta.totalPrice || 0,
-            discount_percent: quotePricing?.discount_percent || 0,
-            has_discount: quotePricing?.has_discount || false
-          },
-          // ✅ Also send flat fields for backend compatibility
-          final_price: quotePricing?.final_total || spaBookingMeta.totalPrice,
-          original_price: quotePricing?.original_total || spaBookingMeta.totalPrice,
-          final_total: quotePricing?.final_total || spaBookingMeta.totalPrice,
-          discount_percentage: quotePricing?.discount_percent || 0,
-          discount_amount: (quotePricing?.original_total || 0) - (quotePricing?.final_total || 0)
+          // ⚠️ NE ŠALJEMO PRICING - Backend računa sve sam na osnovu card_id i service_ids
+          // Frontend samo prikazuje quote, ne šalje cene
         };
 
         console.log("📦 SPA appointment payload:", payload);
