@@ -51,6 +51,10 @@ export const BASE_SERVICE_IDS = {
   STEAM_30: "e00a0411-30fb-4a5e-87ef-32509bd1890e",
   JACUZZI_30: "af7458f2-6c40-4957-8871-347438e9ec57",
   JACUZZI_60: "ef4206ac-372c-40d9-9cf8-1dcaf1a42979",
+  
+  // Romantic packages
+  ROMANTIC_COUPLE: "0431d7d9-c8cd-4392-bbed-f91298ace763",
+  ROMANTIC_PEELING: "80cd6f57-da53-4558-8641-9f8589b0726f",
 };
 
 /**
@@ -95,6 +99,10 @@ export const PACKAGE_TO_BASE_SERVICE_IDS = {
   // Zone only doesn't have base service - it's just zone selections
   "SPAZONE": [],
   "SPA_ZONE_ONLY": [],
+  
+  // Romantic packages
+  "ROMANTIC_COUPLE": [BASE_SERVICE_IDS.ROMANTIC_COUPLE],
+  "ROMANTIC_PEELING": [BASE_SERVICE_IDS.ROMANTIC_PEELING],
 };
 
 export default SPA_CARD_IDS;
