@@ -850,15 +850,13 @@ const Contact = () => {
           // ✅ Notes
           notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration || 210} min`,
           
-          // ✅ CARD ID & SERVICE IDs - backend računa cene sam
+          // ✅ CARD ID & SERVICE IDs - backend računa popust sam
           card_id: spaBookingMeta.cardId || spaBookingMeta.spa_package_id || "",
           service_ids: spaBookingMeta.serviceIds || [],
           
-          // ✅ PRICING - prosleđujemo cene koje je backend već izračunao u quote
-          // Backend NE TREBA ponovo da računa - samo da sačuva ove vrednosti
-          original_price: quotePricing?.original_total || spaBookingMeta.totalPrice || 0,
-          final_price: quotePricing?.final_total || spaBookingMeta.totalPrice || 0,
-          discount_percent: quotePricing?.discount_percent || 0,
+          // ✅ SAMO ORIGINALNA CENA - backend računa popust!
+          // NE SLATI final_price ili discount_percentage
+          total_original: quotePricing?.original_total || spaBookingMeta.totalPrice || 0,
         };
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
@@ -987,11 +985,9 @@ const Contact = () => {
           // ✅ Notes (poruka iz forme)
           notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min`,
 
-          // ✅ PRICING - prosleđujemo cene koje je backend već izračunao u quote
-          // Backend NE TREBA ponovo da računa - samo da sačuva ove vrednosti
-          original_price: quotePricing?.original_total || 0,
-          final_price: quotePricing?.final_total || 0,
-          discount_percent: quotePricing?.discount_percent || 0,
+          // ✅ SAMO ORIGINALNA CENA - backend računa popust!
+          // NE SLATI final_price ili discount_percentage
+          total_original: quotePricing?.original_total || 0,
         };
 
         console.log("📦 SPA appointment payload:", payload);
@@ -1321,11 +1317,9 @@ const Contact = () => {
             // ✅ start_time
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             
-            // ✅ PRICING - prosleđujemo cene koje smo izračunali iz servisa
-            // Backend čuva ove vrednosti direktno
-            original_price: couplesBookingData.pair_original_price || uiTotalPrice || 0,
-            final_price: couplesBookingData.pair_final_price || uiTotalPrice || 0,
-            discount_percent: couplesBookingData.pair_discount_percentage || 0,
+            // ✅ SAMO ORIGINALNA CENA - backend računa popust!
+            // NE SLATI final_price ili discount_percentage
+            total_original: couplesBookingData.pair_original_price || uiTotalPrice || 0,
             
             // ✅ notes za debug
             notes: notesText
