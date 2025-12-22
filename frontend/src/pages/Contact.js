@@ -439,7 +439,12 @@ const Contact = () => {
         addonDuration,
         totalPrice,
         totalDuration,
-        // ✅ NEW: Store card_id and service_ids
+        // ✅ NEW: Original and final prices from URL params (for Herbal packages)
+        originalPrice,
+        finalPrice,
+        hasDiscount,
+        discountPercent,
+        // ✅ Card ID and Service IDs
         cardId,
         serviceIds: serviceIds ? serviceIds.split(",") : []
       });
