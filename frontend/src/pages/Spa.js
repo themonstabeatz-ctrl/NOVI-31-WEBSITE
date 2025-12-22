@@ -1073,7 +1073,13 @@ const Spa = () => {
     
     // Dynamic duration: 120 min base, +15 min if SPA selected
     const totalMinutes = HERBAL_BASE_MINUTES + (hasSpa ? HERBAL_SPA_BONUS : 0);
-    const totalPrice = HERBAL_PRICE;
+    
+    // ✅ Get PRICE from packageQuotes (from API), fallback to HERBAL_PRICE
+    const quoteData = packageQuotes[card.id];
+    const originalPrice = quoteData?.original_total || HERBAL_PRICE;
+    const finalPrice = quoteData?.final_total || HERBAL_PRICE;
+    const hasDiscount = quoteData?.has_discount || false;
+    const discountPercent = quoteData?.discount_percent || quoteData?.discount_percentage || 0;
     
     // Determine SPA zone label and included zone
     let spaZoneLabel = "Bez SPA zone";
@@ -1097,12 +1103,19 @@ const Spa = () => {
       spaName: card.name,
       // ✅ Card ID for card-level discounts
       card_id: cardId,
-      basePrice: String(HERBAL_PRICE),
+      // ✅ PRICING from API quote - NOT hardcoded!
+      basePrice: String(originalPrice),
       baseDuration: String(HERBAL_BASE_MINUTES),
       includedSpaZone: includedSpaZone,
       spaZoneLabel: spaZoneLabel,
-      totalPrice: String(totalPrice),
-      totalDuration: String(totalMinutes)
+      // ✅ Send ORIGINAL price (total_original) for backend
+      totalPrice: String(originalPrice),
+      totalDuration: String(totalMinutes),
+      // ✅ Extra pricing info for Contact page
+      originalPrice: String(originalPrice),
+      finalPrice: String(finalPrice),
+      hasDiscount: String(hasDiscount),
+      discountPercent: String(discountPercent)
     });
 
     console.log("📍 HERBAL package booking params:", Object.fromEntries(params));
