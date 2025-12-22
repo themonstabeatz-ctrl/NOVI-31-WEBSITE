@@ -471,9 +471,49 @@ const Spa = () => {
   const [spaZonePrices, setSpaZonePrices] = useState({});
   const [spaZoneError, setSpaZoneError] = useState(null);
   
+  // ✅ NEW: State for CARD discounts (from /api/spa/cards)
+  // Key: card_id, Value: { discount_percent, has_discount }
+  const [cardDiscounts, setCardDiscounts] = useState({});
+  
   // ✅ NEW: State for QUOTE data per package (from /api/spa/quote)
   // Key: packageId, Value: { original_total, final_total, discount_percentage, has_discount }
   const [packageQuotes, setPackageQuotes] = useState({});
+
+  // ✅ Fetch SPA Card discounts from API on mount
+  useEffect(() => {
+    const fetchSpaCards = async () => {
+      try {
+        console.log('📥 Loading SPA cards from API...');
+        const res = await fetch(`${API_BASE}/api/spa/cards`, { 
+          cache: "no-store",
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        const cards = await res.json();
+        
+        if (!res.ok) {
+          throw new Error(cards?.error || `HTTP ${res.status}`);
+        }
+        
+        // Build discount map by card_id
+        const discountMap = {};
+        cards.forEach(card => {
+          discountMap[card.card_id] = {
+            discount_percent: card.discount_percent || 0,
+            has_discount: card.has_discount || false,
+            title: card.title_sr || card.title_en
+          };
+        });
+        
+        console.log('✅ SPA Card discounts loaded:', discountMap);
+        setCardDiscounts(discountMap);
+      } catch (err) {
+        console.error('❌ Failed to load SPA cards:', err);
+      }
+    };
+    
+    fetchSpaCards();
+  }, []);
 
   // ✅ Fetch SPA Zone prices from API with no-cache + normalizePricing
   useEffect(() => {
