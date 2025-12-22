@@ -401,6 +401,12 @@ const Contact = () => {
       const addonDuration  = Number(searchParams.get("addonDuration") || 0);
       const totalPrice     = Number(searchParams.get("totalPrice") || searchParams.get("price") || 0);
       const totalDuration  = Number(searchParams.get("totalDuration") || searchParams.get("totalMinutes") || searchParams.get("duration") || 0);
+      
+      // ✅ NEW: Original and final prices from Spa.js (for Herbal packages)
+      const originalPrice  = Number(searchParams.get("originalPrice") || totalPrice || 0);
+      const finalPrice     = Number(searchParams.get("finalPrice") || totalPrice || 0);
+      const hasDiscount    = searchParams.get("hasDiscount") === "true";
+      const discountPercent = Number(searchParams.get("discountPercent") || 0);
 
       // Format prices for sr-RS
       const formatRsdLocal = (n) => Number(n || 0).toLocaleString("sr-RS");
