@@ -1777,7 +1777,7 @@ const Spa = () => {
                   e.currentTarget.style.boxShadow = 'none';
                 }}>
                 <CardContent style={{ padding: '0.6rem' }}>
-                  {/* Header: Duration and Price */}
+                  {/* Header: Duration and Price - DYNAMIC from packageQuotes */}
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -1792,13 +1792,25 @@ const Spa = () => {
                         {formatNumber(totalMinutes)} min
                       </span>
                     </div>
-                    <div style={{
-                      fontSize: '1rem',
-                      fontWeight: 'bold',
-                      color: '#d4af37'
-                    }}>
-                      {formatNumber(totalPrice)} RSD
-                    </div>
+                    {packageQuotes[pkg.id]?.has_discount ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <span style={{ textDecoration: 'line-through', opacity: 0.6, color: '#f5f2e8', fontSize: '0.85rem' }}>
+                          {formatNumber(packageQuotes[pkg.id].original_total)} RSD
+                        </span>
+                        <span style={{ fontSize: '1rem', fontWeight: 'bold', color: '#4ade80' }}>
+                          {formatNumber(packageQuotes[pkg.id].final_total)} RSD
+                        </span>
+                        <DiscountBadge percent={packageQuotes[pkg.id].discount_percent || packageQuotes[pkg.id].discount_percentage} size={18} />
+                      </div>
+                    ) : (
+                      <div style={{
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        color: '#d4af37'
+                      }}>
+                        {formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD
+                      </div>
+                    )}
                   </div>
 
                   {/* Package Name */}
