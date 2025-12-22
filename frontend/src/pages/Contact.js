@@ -1321,8 +1321,11 @@ const Contact = () => {
             // ✅ start_time
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             
-            // ⚠️ NE ŠALJEMO DISCOUNT - Backend računa sve sam na osnovu service IDs
-            // Frontend samo prikazuje cene, ne šalje discount
+            // ✅ PRICING - prosleđujemo cene koje smo izračunali iz servisa
+            // Backend čuva ove vrednosti direktno
+            original_price: couplesBookingData.pair_original_price || uiTotalPrice || 0,
+            final_price: couplesBookingData.pair_final_price || uiTotalPrice || 0,
+            discount_percent: couplesBookingData.pair_discount_percentage || 0,
             
             // ✅ notes za debug
             notes: notesText
