@@ -26,18 +26,17 @@ console.log("✅ API_BASE =", API_BASE);
 export const API = {
   health: `${API_BASE}/api/health`,
 
-  // MASAŽE
-  appointments: `${API_BASE}/api/appointments`,
-  appointmentsList: `${API_BASE}/api/appointments/list`,
-
-  // PAROVI
-  coupleAppointments: `${API_BASE}/api/appointments/couple`,
-
-  // SPA
-  spaAppointments: `${API_BASE}/api/spa/appointments`,
+  // SERVICES
+  services: `${API_BASE}/api/services`,
+  spaServices: `${API_BASE}/api/spa/services`,
   spaCards: `${API_BASE}/api/spa/cards`,
   spaQuote: `${API_BASE}/api/spa/quote`,
-  spaServices: `${API_BASE}/api/spa/services`,
+
+  // APPOINTMENTS
+  appointments: `${API_BASE}/api/appointments`,
+  appointmentsList: `${API_BASE}/api/appointments/list`,
+  coupleAppointments: `${API_BASE}/api/appointments/couple`,
+  spaAppointments: `${API_BASE}/api/spa/appointments`,
 
   // CEO / NOTIF
   unviewedCount: `${API_BASE}/api/appointments/unviewed/count`,
