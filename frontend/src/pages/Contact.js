@@ -850,10 +850,12 @@ const Contact = () => {
           // ✅ Notes
           notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration || 210} min`,
           
-          // ✅ Pricing
-          final_price: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
-          original_price: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
-          final_total: spaBookingMeta.totalPrice || spaBookingMeta.price || 25000,
+          // ✅ CARD ID & SERVICE IDs - backend računa cene sam
+          card_id: spaBookingMeta.cardId || spaBookingMeta.spa_package_id || "",
+          service_ids: spaBookingMeta.serviceIds || [],
+          
+          // ⚠️ NE ŠALJEMO PRICING - Backend računa sve sam na osnovu card_id i service_ids
+          // Frontend samo prikazuje quote, ne šalje cene
         };
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
@@ -1313,8 +1315,8 @@ const Contact = () => {
             // ✅ start_time
             start_time: `${dateStr}T${formData.preferredTime}:00`,
             
-            // ✅ discount ako je aktivan
-            discount_couples_massage: couplesBookingData.pair_discount_percentage || 0,
+            // ⚠️ NE ŠALJEMO DISCOUNT - Backend računa sve sam na osnovu service IDs
+            // Frontend samo prikazuje cene, ne šalje discount
             
             // ✅ notes za debug
             notes: notesText
