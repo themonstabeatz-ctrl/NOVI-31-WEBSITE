@@ -36,7 +36,7 @@
 - User wanted GUARD mechanism that throws error if API_BASE is invalid
 
 ## Expected Results
-All API calls should use https://relax-reserve-5.preview.emergentagent.com
+All API calls should use https://booking-system-85.preview.emergentagent.com
 
 ---
 
@@ -44,7 +44,7 @@ All API calls should use https://relax-reserve-5.preview.emergentagent.com
 
 ### Test Execution Summary
 **Date:** 2025-12-18 14:47:35  
-**Backend URL:** https://relax-reserve-5.preview.emergentagent.com  
+**Backend URL:** https://booking-system-85.preview.emergentagent.com  
 **Test Suite:** Hard Lock API Configuration Test Suite  
 **Results:** 6/6 tests passed ✅
 
@@ -82,7 +82,7 @@ All API calls should use https://relax-reserve-5.preview.emergentagent.com
 
 #### 6. Environment Configuration ✅ PASS
 - **File:** `/app/frontend/.env`
-- **Setting:** `REACT_APP_BACKEND_URL=https://relax-reserve-5.preview.emergentagent.com`
+- **Setting:** `REACT_APP_BACKEND_URL=https://booking-system-85.preview.emergentagent.com`
 - **Verification:** Correct backend URL configured in environment
 
 ### API Response Samples Verified
@@ -146,7 +146,7 @@ All API calls should use https://relax-reserve-5.preview.emergentagent.com
 ### Hard Lock Implementation Verification
 
 #### Frontend Configuration Analysis:
-1. **API Base URL:** Hard-coded to `https://relax-reserve-5.preview.emergentagent.com`
+1. **API Base URL:** Hard-coded to `https://booking-system-85.preview.emergentagent.com`
 2. **Whitelist System:** Only spa-dashboard-2.preview.emergentagent.com allowed
 3. **Guard Mechanism:** Throws fatal error if invalid backend detected
 4. **Environment Override:** .env values only accepted if in whitelist
@@ -162,7 +162,7 @@ All API calls should use https://relax-reserve-5.preview.emergentagent.com
 ### Conclusion
 **🔒 HARD LOCK IMPLEMENTATION SUCCESSFUL**
 
-All test cases passed successfully. The backend is properly hard-locked to `https://relax-reserve-5.preview.emergentagent.com` with comprehensive security measures:
+All test cases passed successfully. The backend is properly hard-locked to `https://booking-system-85.preview.emergentagent.com` with comprehensive security measures:
 
 1. **API Connectivity:** All endpoints responding correctly
 2. **Data Integrity:** Services, appointments, and SPA data properly formatted
@@ -177,7 +177,7 @@ The implementation meets all requirements from the review request and provides r
 
 ### Test Execution Summary
 **Date:** 2025-12-18 16:22:11  
-**Backend URL:** https://relax-reserve-5.preview.emergentagent.com  
+**Backend URL:** https://booking-system-85.preview.emergentagent.com  
 **Test Suite:** SPA Booking Flow Test Suite  
 **Results:** 4/4 tests passed ✅
 
@@ -276,7 +276,7 @@ The SPA booking flow meets all requirements from the review request and is ready
 
 ### Test Execution Summary
 **Date:** 2025-12-20 21:47:50  
-**Backend URL:** https://spa-integration.preview.emergentagent.com  
+**Backend URL:** https://booking-system-85.preview.emergentagent.com  
 **Test Suite:** Review Request API Endpoint Verification  
 **Results:** 5/5 tests passed ✅
 
@@ -334,7 +334,7 @@ The SPA booking flow meets all requirements from the review request and is ready
 ### Conclusion
 **🔒 ALL REVIEW REQUEST ENDPOINTS VERIFIED**
 
-All 5 requested endpoints on https://spa-integration.preview.emergentagent.com are functioning correctly:
+All 5 requested endpoints on https://booking-system-85.preview.emergentagent.com are functioning correctly:
 
 1. **API Connectivity:** All endpoints responding with HTTP 200
 2. **Data Integrity:** Services and appointments data properly structured

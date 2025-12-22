@@ -18,7 +18,7 @@
  * Client NEVER calls PATCH discount endpoints.
  */
 
-export const API_BASE = "https://price-consistency.preview.emergentagent.com";
+export const API_BASE = "https://booking-system-85.preview.emergentagent.com";
 
 // Debug log on import
 console.log("🔐 API_BASE =", API_BASE);

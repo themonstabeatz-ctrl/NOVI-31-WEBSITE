@@ -13,8 +13,8 @@ OČEKIVANE CENE:
 - Finalna cena: 7,920 RSD
 
 ENDPOINTS:
-- GET https://relax-reserve-5.preview.emergentagent.com/api/services
-- POST https://relax-reserve-5.preview.emergentagent.com/api/book-appointment
+- GET https://booking-system-85.preview.emergentagent.com/api/services
+- POST https://booking-system-85.preview.emergentagent.com/api/book-appointment
 
 Testiranje podaci:
 - Ime: Finalni Test
@@ -29,7 +29,7 @@ import json
 from datetime import datetime, timedelta
 
 # Test configuration
-BASE_URL = "https://relax-reserve-5.preview.emergentagent.com"
+BASE_URL = "https://booking-system-85.preview.emergentagent.com"
 API_BASE = f"{BASE_URL}/api"
 
 class ComprehensiveFinalniTest:

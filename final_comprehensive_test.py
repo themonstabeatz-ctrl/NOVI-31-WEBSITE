@@ -215,7 +215,7 @@ def main():
     print("PHASE 2: TESTING WITH WORKING EXTERNAL SYSTEM")
     print("="*80)
     
-    working_system = "https://relax-reserve-5.preview.emergentagent.com"
+    working_system = "https://booking-system-85.preview.emergentagent.com"
     results['working_system_capabilities'] = test_external_system_capabilities(working_system)
     
     # Only proceed if working system has therapists
