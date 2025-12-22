@@ -986,8 +986,8 @@ const Contact = () => {
           notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min`,
 
           // ✅ SAMO ORIGINALNA CENA - backend računa popust!
-          // NE SLATI final_price ili discount_percentage
-          total_original: quotePricing?.original_total || 0,
+          // Prioritet: quotePricing (od API quote) > spaBookingMeta (od URL params) > 0
+          total_original: quotePricing?.original_total || spaBookingMeta?.originalPrice || spaBookingMeta?.totalPrice || 0,
         };
 
         console.log("📦 SPA appointment payload:", payload);
