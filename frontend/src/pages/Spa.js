@@ -2157,9 +2157,16 @@ const Spa = () => {
                         fontSize: '1.4rem',
                         color: '#d4af37',
                         marginBottom: '0.5rem',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
                       }}>
                         {SPA_ZONE_ONLY.name}
+                        {/* ✅ Show discount badge if card has discount */}
+                        {cardDiscounts["spa_zone"]?.has_discount && (
+                          <DiscountBadge percent={cardDiscounts["spa_zone"].discount_percent} size={20} />
+                        )}
                       </h3>
                     </div>
 
