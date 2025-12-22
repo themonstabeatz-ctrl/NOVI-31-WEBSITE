@@ -854,8 +854,11 @@ const Contact = () => {
           card_id: spaBookingMeta.cardId || spaBookingMeta.spa_package_id || "",
           service_ids: spaBookingMeta.serviceIds || [],
           
-          // ⚠️ NE ŠALJEMO PRICING - Backend računa sve sam na osnovu card_id i service_ids
-          // Frontend samo prikazuje quote, ne šalje cene
+          // ✅ PRICING - prosleđujemo cene koje je backend već izračunao u quote
+          // Backend NE TREBA ponovo da računa - samo da sačuva ove vrednosti
+          original_price: quotePricing?.original_total || spaBookingMeta.totalPrice || 0,
+          final_price: quotePricing?.final_total || spaBookingMeta.totalPrice || 0,
+          discount_percent: quotePricing?.discount_percent || 0,
         };
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
@@ -984,8 +987,11 @@ const Contact = () => {
           // ✅ Notes (poruka iz forme)
           notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min`,
 
-          // ⚠️ NE ŠALJEMO PRICING - Backend računa sve sam na osnovu card_id i service_ids
-          // Frontend samo prikazuje quote, ne šalje cene
+          // ✅ PRICING - prosleđujemo cene koje je backend već izračunao u quote
+          // Backend NE TREBA ponovo da računa - samo da sačuva ove vrednosti
+          original_price: quotePricing?.original_total || 0,
+          final_price: quotePricing?.final_total || 0,
+          discount_percent: quotePricing?.discount_percent || 0,
         };
 
         console.log("📦 SPA appointment payload:", payload);
