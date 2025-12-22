@@ -633,6 +633,25 @@ const Spa = () => {
         }
       }
       
+      // ✅ Romantic packages - fetch quotes on mount
+      const romanticPackages = [
+        { id: "ROMANTIC_COUPLE", cardId: "romantic_couple_package" },
+        { id: "ROMANTIC_PEELING", cardId: "romantic_peeling_couple_package" }
+      ];
+      
+      for (const pkg of romanticPackages) {
+        const baseServiceIds = PACKAGE_TO_BASE_SERVICE_IDS[pkg.id] || [];
+        
+        console.log(`📤 Initial quote for ${pkg.id}:`, { cardId: pkg.cardId, baseServiceIds });
+        
+        if (baseServiceIds.length > 0) {
+          const quote = await fetchSpaQuote(baseServiceIds, pkg.cardId);
+          if (quote) {
+            newQuotes[pkg.id] = quote;
+          }
+        }
+      }
+      
       console.log("📊 Initial quotes loaded:", newQuotes);
       setPackageQuotes(newQuotes);
     };
