@@ -1,13 +1,13 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: price-consistency.preview.emergentagent.com
- * Frontend URL: relax-reserve-5.preview.emergentagent.com
+ * Backend URL: https://price-consistency.preview.emergentagent.com
  * 
  * ❌ ZERO spa-web-update (OLD)
  * ❌ ZERO spa-integration (OLD)
  * ❌ ZERO spa-booking-api
  * ❌ ZERO spa-dashboard-2
  * ❌ ZERO massage-app-4
+ * ❌ ZERO booking-system-85 (OLD)
  * ❌ ZERO process.env
  * ❌ ZERO REACT_APP_BACKEND_URL
  * ❌ ZERO fallback
