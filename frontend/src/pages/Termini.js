@@ -201,7 +201,7 @@ function getAddonsText(row) {
  * Uses direct XMLHttpRequest to avoid rrweb-recorder clone() issue
  */
 const fetchCalendarEvents = async () => {
-  console.log("📅 Fetching all events from spa-integration...");
+  console.log("📅 Fetching all events from price-consistency...");
   
   // ✅ FIX: Use XMLHttpRequest to bypass rrweb-recorder interceptor
   const fetchWithXHR = (url) => new Promise((resolve, reject) => {
