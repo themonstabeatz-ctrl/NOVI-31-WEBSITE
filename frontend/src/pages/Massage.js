@@ -355,13 +355,19 @@ const Massage = () => {
 
   // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
   // Handle booking button click - navigate to Contact form
+  // ✅ FIX: serviceName must be Serbian name (for backend), durationMinutes must be NUMBER
   const handleBookClick = (serviceName, durationMinutes) => {
-    const serviceWithDuration = `${serviceName} - ${durationMinutes} min`;
+    // Ensure duration is a number
+    const durationNum = typeof durationMinutes === 'number' ? durationMinutes : parseInt(durationMinutes, 10) || 60;
+    
+    const serviceWithDuration = `${serviceName} - ${durationNum} min`;
     const params = new URLSearchParams({
       service: serviceWithDuration,
     });
     
     console.log('📍 Navigating to /contact with params:', params.toString());
+    console.log('📍 Service (Serbian name):', serviceName);
+    console.log('📍 Duration (number):', durationNum);
     console.log('📍 Full service name:', serviceWithDuration);
     
     navigate(`/contact?${params.toString()}`);
