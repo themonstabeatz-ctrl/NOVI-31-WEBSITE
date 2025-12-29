@@ -1308,6 +1308,7 @@ export const translations = {
     benefits: "ประโยชน์:",
     duration: "ระยะเวลา",
     price: "ราคา",
+    min: "นาที",
     
     // Home Page
     homeHeroTitle: "บัวหลวงไทยสปา",
