@@ -1399,8 +1399,8 @@ const Contact = () => {
             // ✅ notes za debug
             notes: notesText,
             
-            // ✅ Language for backend
-            lang: formData.lang || language || 'sr'
+            // ✅ Language for backend (from couplesData or fallback)
+            lang: couplesBookingData.lang || formData.lang || language || 'sr'
           };
           
           // ✅ DEBUG LOG
