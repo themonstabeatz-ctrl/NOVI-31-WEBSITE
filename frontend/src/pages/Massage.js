@@ -850,36 +850,76 @@ const Massage = () => {
               <CardHeader>
                 <CardTitle className="massage-name">{service.name}</CardTitle>
                 
-                {/* DYNAMIC Duration buttons from API data */}
-                {service.hasDurationOptions && apiServices[service.name] && apiServices[service.name].length > 0 && (
-                  <div style={{
-                    display: 'flex',
-                    gap: '0.5rem',
-                    marginTop: '0.75rem',
-                    marginBottom: '0.75rem'
-                  }}>
-                    {apiServices[service.name].map((variant) => (
-                      <button
-                        key={variant.duration}
-                        onClick={() => updateDuration(service.key, String(variant.duration))}
-                        style={{
-                          flex: 1,
-                          padding: '0.5rem',
-                          border: durations[service.key] === String(variant.duration) ? '2px solid #d4af37' : '1px solid #444',
-                          backgroundColor: durations[service.key] === String(variant.duration) ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-                          color: '#d4af37',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem',
-                          fontWeight: durations[service.key] === String(variant.duration) ? 'bold' : 'normal',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        {variant.duration} min
-                      </button>
-                    ))}
-                  </div>
-                )}
+                {/* DYNAMIC Duration buttons from API data - use apiKey (Serbian name) for lookup */}
+                {service.hasDurationOptions && (() => {
+                  // ✅ FIX: Use Serbian name (apiKey) for API lookup, not translated name
+                  const apiKey = serviceKeyToBookingName[service.key];
+                  const variants = apiServices[apiKey] || [];
+                  
+                  if (variants.length > 0) {
+                    return (
+                      <div style={{
+                        display: 'flex',
+                        gap: '0.5rem',
+                        marginTop: '0.75rem',
+                        marginBottom: '0.75rem'
+                      }}>
+                        {variants.map((variant) => (
+                          <button
+                            key={variant.duration}
+                            onClick={() => updateDuration(service.key, String(variant.duration))}
+                            style={{
+                              flex: 1,
+                              padding: '0.5rem',
+                              border: durations[service.key] === String(variant.duration) ? '2px solid #d4af37' : '1px solid #444',
+                              backgroundColor: durations[service.key] === String(variant.duration) ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                              color: '#d4af37',
+                              borderRadius: '8px',
+                              cursor: 'pointer',
+                              fontSize: '0.875rem',
+                              fontWeight: durations[service.key] === String(variant.duration) ? 'bold' : 'normal',
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            {variant.duration} {translate('min', 'min')}
+                          </button>
+                        ))}
+                      </div>
+                    );
+                  }
+                  
+                  // Fallback: Show hardcoded durations if API doesn't have data
+                  const fallbackDurations = service.customDurations || ['60', '90', '120'];
+                  return (
+                    <div style={{
+                      display: 'flex',
+                      gap: '0.5rem',
+                      marginTop: '0.75rem',
+                      marginBottom: '0.75rem'
+                    }}>
+                      {fallbackDurations.map((dur) => (
+                        <button
+                          key={dur}
+                          onClick={() => updateDuration(service.key, dur)}
+                          style={{
+                            flex: 1,
+                            padding: '0.5rem',
+                            border: durations[service.key] === dur ? '2px solid #d4af37' : '1px solid #444',
+                            backgroundColor: durations[service.key] === dur ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+                            color: '#d4af37',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            fontSize: '0.875rem',
+                            fontWeight: durations[service.key] === dur ? 'bold' : 'normal',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          {service.customDurationLabels?.[dur] || `${dur} ${translate('min', 'min')}`}
+                        </button>
+                      ))}
+                    </div>
+                  );
+                })()}
                 
                 <div className="massage-meta">
                   <div className="duration">
