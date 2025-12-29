@@ -866,6 +866,7 @@ const Massage = () => {
           {/* Masaža za parove Card sa dropdown menijima */}
           <CouplesMassageCard
             translate={translate}
+            currentLanguage={currentLanguage}
             durations={durations}
             updateDuration={updateDuration}
             couplesSelections={couplesSelections}
