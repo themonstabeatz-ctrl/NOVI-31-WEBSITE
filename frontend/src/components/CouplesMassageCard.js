@@ -554,7 +554,9 @@ const CouplesMassageCard = ({
       pair_discount_percentage: couplesDiscount,
       pair_discount_amount: (p1OrigTotal + p2OrigTotal) - (p1Total + p2Total),
       // ✅ FIX: Dodaj duration_type - paralelno trajanje (ne sabiraj!)
-      duration_type: durations.sports
+      duration_type: durations.sports,
+      // ✅ NEW: Language for localized email
+      lang: currentLanguage || 'sr'
     };
     
     // ✅ CRITICAL: Build URL with [PAROVI] prefix in service parameter
