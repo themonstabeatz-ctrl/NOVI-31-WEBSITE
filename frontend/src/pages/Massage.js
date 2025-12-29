@@ -357,19 +357,50 @@ const Massage = () => {
   // 🔒 DO NOT MODIFY — STABLE VERIFIED LOGIC (Bua Luang - SNAPSHOT: BuaLuang-FRONTEND-STABLE-01)
   // Handle booking button click - navigate to Contact form
   // ✅ FIX: serviceName must be Serbian name (for backend), durationMinutes must be NUMBER
-  const handleBookClick = (serviceName, durationMinutes) => {
+  // ✅ NEW: Pass serviceKey, lang, localizedName, description, benefits for detailed message
+  const handleBookClick = (serviceName, durationMinutes, serviceKey) => {
     // Ensure duration is a number
     const durationNum = typeof durationMinutes === 'number' ? durationMinutes : parseInt(durationMinutes, 10) || 60;
     
     const serviceWithDuration = `${serviceName} - ${durationNum} min`;
+    
+    // Get localized service data from translations
+    const t = translations[currentLanguage] || translations['sr'];
+    
+    // Map serviceKey to translation keys
+    const translationKeyMap = {
+      'traditional': { name: 'traditionalMassage', desc: 'traditionalMassageDesc', benefits: ['traditionalBenefit1', 'traditionalBenefit2', 'traditionalBenefit3'] },
+      'aroma': { name: 'aromaTherapy', desc: 'oilMassageDesc', benefits: ['oilBenefit1', 'oilBenefit2', 'oilBenefit3'] },
+      'hotStone': { name: 'hotStone', desc: 'hotStoneDesc', benefits: ['hotStoneBenefit1', 'hotStoneBenefit2', 'hotStoneBenefit3'] },
+      'royal': { name: 'royalMassage', desc: 'royalMassageDesc', benefits: ['royalBenefit1', 'royalBenefit2', 'royalBenefit3', 'royalBenefit4'] },
+      'foot': { name: 'footMassage', desc: 'footMassageDesc', benefits: ['footBenefit1', 'footBenefit2', 'footBenefit3'] },
+      'aromaDeepTissue': { name: 'aromaDeepTissueMassage', desc: 'aromaDeepTissueMassageDesc', benefits: ['aromaDeepTissueBenefit1', 'aromaDeepTissueBenefit2', 'aromaDeepTissueBenefit3', 'aromaDeepTissueBenefit4'] },
+      'aromaHotStone': { name: 'aromaHotStoneMassage', desc: 'aromaHotStoneMassageDesc', benefits: ['aromaHotStoneBenefit1', 'aromaHotStoneBenefit2', 'aromaHotStoneBenefit3'] },
+      'aromaThaiHerbal': { name: 'aromaThaiHerbalMassage', desc: 'aromaThaiHerbalMassageDesc', benefits: ['aromaThaiHerbalBenefit1', 'aromaThaiHerbalBenefit2', 'aromaThaiHerbalBenefit3'] },
+      'thaiHerbal': { name: 'thaiHerbalMassage', desc: 'thaiHerbalMassageDesc', benefits: ['thaiHerbalBenefit1', 'thaiHerbalBenefit2', 'thaiHerbalBenefit3'] }
+    };
+    
+    const keyMap = translationKeyMap[serviceKey] || { name: serviceKey, desc: '', benefits: [] };
+    const localizedName = t[keyMap.name] || serviceName;
+    const localizedDesc = t[keyMap.desc] || '';
+    const localizedBenefits = keyMap.benefits.map(b => t[b] || '').filter(Boolean).join(', ');
+    
     const params = new URLSearchParams({
       service: serviceWithDuration,
+      serviceKey: serviceKey,
+      lang: currentLanguage,
+      localizedName: localizedName,
+      localizedDesc: localizedDesc,
+      localizedBenefits: localizedBenefits,
+      duration: String(durationNum)
     });
     
     console.log('📍 Navigating to /contact with params:', params.toString());
     console.log('📍 Service (Serbian name):', serviceName);
+    console.log('📍 Service Key:', serviceKey);
+    console.log('📍 Language:', currentLanguage);
     console.log('📍 Duration (number):', durationNum);
-    console.log('📍 Full service name:', serviceWithDuration);
+    console.log('📍 Localized Name:', localizedName);
     
     navigate(`/contact?${params.toString()}`);
   };
