@@ -18,7 +18,7 @@ if (LOCKDOWN.MASAZE_LOCKED && LOCKDOWN.LOCK_TOKEN !== EXPECTED) {
 }
 
 const Massage = () => {
-  const { translate } = useLanguage();
+  const { translate, currentLanguage } = useLanguage();
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
