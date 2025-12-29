@@ -18,6 +18,7 @@ export const translations = {
     benefits: "Benefiti:",
     duration: "Trajanje",
     price: "Cena",
+    min: "min",
     
     // Home Page
     homeHeroTitle: "Bua Luang Thai Spa",
