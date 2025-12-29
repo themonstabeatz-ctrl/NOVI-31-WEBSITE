@@ -914,6 +914,7 @@ export const translations = {
     benefits: "Преимущества:",
     duration: "Продолжительность",
     price: "Цена",
+    min: "мин",
     
     // Home Page
     homeHeroTitle: "Буа Луанг Тай Спа",
