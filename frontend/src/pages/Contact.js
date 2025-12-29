@@ -22,7 +22,8 @@ import { getSEO } from "../utils/seoConfig";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Contact = () => {
-  const { translate, language } = useLanguage();
+  const { translate, currentLanguage } = useLanguage();
+  const language = currentLanguage; // Alias for backward compatibility
   const { toast } = useToast();
   const location = useLocation();
   const navigate = useNavigate(); // ✅ FIX: Added for redirect after booking success
