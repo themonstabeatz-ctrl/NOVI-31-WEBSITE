@@ -518,6 +518,7 @@ export const translations = {
     benefits: "Benefits:",
     duration: "Duration",
     price: "Price",
+    min: "min",
     
     // Home Page
     homeHeroTitle: "Bua Luang Thai Spa",
