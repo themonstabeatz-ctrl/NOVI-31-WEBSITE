@@ -1397,7 +1397,10 @@ const Contact = () => {
             total_original: couplesBookingData.pair_original_price || uiTotalPrice || 0,
             
             // ✅ notes za debug
-            notes: notesText
+            notes: notesText,
+            
+            // ✅ Language for backend
+            lang: formData.lang || language || 'sr'
           };
           
           // ✅ DEBUG LOG
