@@ -38,6 +38,7 @@ function getMinutes(service) {
 
 const CouplesMassageCard = ({ 
   translate, 
+  currentLanguage,
   durations, 
   updateDuration,
   couplesSelections,
