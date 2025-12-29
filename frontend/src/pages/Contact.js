@@ -1442,7 +1442,7 @@ const Contact = () => {
             
             // Notes
             notes: formData.message || "",
-            language: language
+            lang: formData.lang || language || 'sr'  // ✅ Standardized language field
           };
           
           // ✅ ISPRAVNO prema backendu recepcije - obične masaže koriste /api/appointments
