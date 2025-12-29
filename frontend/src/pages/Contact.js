@@ -566,7 +566,70 @@ const Contact = () => {
     if (service) {
       // Translate the service name
       const translatedService = translateMassageName(service);
-      let message = `${translate('youSelected')} ${translatedService}`;
+      
+      // ✅ NEW: Get detailed localized data from URL params
+      const localizedName = searchParams.get('localizedName');
+      const localizedDesc = searchParams.get('localizedDesc');
+      const localizedBenefits = searchParams.get('localizedBenefits');
+      const durationFromUrl = searchParams.get('duration');
+      const lang = searchParams.get('lang') || 'sr';
+      
+      // Store language for backend
+      setFormData(prev => ({ ...prev, lang: lang }));
+      
+      // Build detailed message based on whether we have localized data
+      let message = '';
+      
+      if (localizedName && !couplesData) {
+        // ✅ NEW: Detailed localized message for single massages
+        const durationLabel = {
+          'sr': 'Trajanje',
+          'en': 'Duration',
+          'ru': 'Продолжительность',
+          'th': 'ระยะเวลา'
+        }[lang] || 'Trajanje';
+        
+        const descLabel = {
+          'sr': 'Opis',
+          'en': 'Description',
+          'ru': 'Описание',
+          'th': 'รายละเอียด'
+        }[lang] || 'Opis';
+        
+        const benefitsLabel = {
+          'sr': 'Benefiti',
+          'en': 'Benefits',
+          'ru': 'Преимущества',
+          'th': 'ประโยชน์'
+        }[lang] || 'Benefiti';
+        
+        const minLabel = {
+          'sr': 'min',
+          'en': 'min',
+          'ru': 'мин',
+          'th': 'นาที'
+        }[lang] || 'min';
+        
+        message = `${translate('youSelected')} ${decodeURIComponent(localizedName)}\n\n`;
+        
+        if (durationFromUrl) {
+          message += `${durationLabel}: ${durationFromUrl} ${minLabel}\n`;
+        }
+        
+        if (localizedDesc) {
+          message += `\n${descLabel}:\n${decodeURIComponent(localizedDesc)}\n`;
+        }
+        
+        if (localizedBenefits) {
+          message += `\n${benefitsLabel}:\n${decodeURIComponent(localizedBenefits)}`;
+        }
+        
+        console.log('📝 Detailed localized massage message generated');
+        console.log('📝 Language:', lang);
+      } else {
+        // Fallback to simple message
+        message = `${translate('youSelected')} ${translatedService}`;
+      }
       
       console.log('🔍 Contact page - service:', service);
       console.log('🔍 Contact page - couplesData param:', couplesData);
