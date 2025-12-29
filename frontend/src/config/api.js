@@ -1,6 +1,6 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://price-consistency.preview.emergentagent.com
+ * Backend URL: https://discount-system-fix.preview.emergentagent.com
  * 
  * ❌ ZERO spa-web-update (OLD)
  * ❌ ZERO spa-integration (OLD)
@@ -8,6 +8,7 @@
  * ❌ ZERO spa-dashboard-2
  * ❌ ZERO massage-app-4
  * ❌ ZERO booking-system-85 (OLD)
+ * ❌ ZERO price-consistency (OLD)
  * ❌ ZERO process.env
  * ❌ ZERO REACT_APP_BACKEND_URL
  * ❌ ZERO fallback
@@ -18,7 +19,7 @@
  * Client NEVER calls PATCH discount endpoints.
  */
 
-export const API_BASE = "https://price-consistency.preview.emergentagent.com";
+export const API_BASE = "https://discount-system-fix.preview.emergentagent.com";
 
 // Debug log on import
 console.log("✅ API_BASE =", API_BASE);
