@@ -777,8 +777,8 @@ const CouplesMassageCard = ({
                         >
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             {selected && <Check className="w-4 h-4" />}
-                            {/* ✅ KEEP [PAROVI] PREFIX - required by backend for categorization */}
-                            <span>{massage.name} ({dur} min)</span>
+                            {/* ✅ UI shows translated name, but massage.name (Serbian) is used for backend */}
+                            <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
                             {couplesDiscount > 0 && massage.originalPrices[dur] && massage.originalPrices[dur] !== massage.prices[dur] ? (
@@ -951,8 +951,8 @@ const CouplesMassageCard = ({
                         >
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             {selected && <Check className="w-4 h-4" />}
-                            {/* ✅ KEEP [PAROVI] PREFIX - required by backend for categorization */}
-                            <span>{massage.name} ({dur} min)</span>
+                            {/* ✅ UI shows translated name, but massage.name (Serbian) is used for backend */}
+                            <span>{translate(getMassageTranslationKey(massage.name))} ({dur} min)</span>
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
                             {couplesDiscount > 0 && massage.originalPrices[dur] && massage.originalPrices[dur] !== massage.prices[dur] ? (
