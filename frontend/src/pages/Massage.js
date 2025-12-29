@@ -1021,10 +1021,11 @@ const Massage = () => {
                   }}
                   onClick={() => {
                     // ✅ FIX: Use Serbian service name (apiKey) for booking, not translated name
+                    // ✅ NEW: Pass serviceKey for detailed localized message
                     const apiKey = serviceKeyToBookingName[service.key];
                     const durationNum = parseInt(durations[service.key], 10) || 60;
-                    console.log('🔵 BUTTON CLICKED!', apiKey, durationNum);
-                    handleBookClick(apiKey, durationNum);
+                    console.log('🔵 BUTTON CLICKED!', apiKey, durationNum, service.key);
+                    handleBookClick(apiKey, durationNum, service.key);
                   }}
                 >
                   {translate("bookAppointment")}
