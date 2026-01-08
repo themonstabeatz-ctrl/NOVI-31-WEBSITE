@@ -265,6 +265,12 @@ const Termini = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [viewMode, setViewMode] = useState("week"); // "day", "week", "month"
   const [currentDate, setCurrentDate] = useState(new Date());
+  
+  // ✅ NEW: Edit mode state
+  const [isEditing, setIsEditing] = useState(false);
+  const [editFormData, setEditFormData] = useState({
+    status: "scheduled" // scheduled, completed, cancelled
+  });
 
   // Calculate date range based on view mode
   const getDateRange = useCallback(() => {
