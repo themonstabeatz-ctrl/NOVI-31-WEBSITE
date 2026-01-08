@@ -549,7 +549,15 @@ const Contact = () => {
       // Totals
       messageLines.push('');
       messageLines.push(`Ukupno trajanje: ${totalDuration} min`);
-      messageLines.push(`Ukupna cena: ${formatRsdLocal(totalPrice)} RSD`);
+      
+      // ✅ Show discount pricing for coupleSpecial and other SPA packages
+      if (hasDiscount && discountPercent > 0 && finalPrice < originalPrice) {
+        messageLines.push(`Originalna cena: ${formatRsdLocal(originalPrice)} RSD`);
+        messageLines.push(`Popust: -${discountPercent}%`);
+        messageLines.push(`Cena za naplatu: ${formatRsdLocal(finalPrice)} RSD`);
+      } else {
+        messageLines.push(`Ukupna cena: ${formatRsdLocal(originalPrice || totalPrice)} RSD`);
+      }
 
       const message = messageLines.join('\n');
 
