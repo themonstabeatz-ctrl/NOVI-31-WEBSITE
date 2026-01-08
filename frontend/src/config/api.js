@@ -1,12 +1,14 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://spa-booking-site-1.preview.emergentagent.com
+ * Backend URL: https://price-analyzer-8.preview.emergentagent.com
  * 
+ * ❌ ZERO spa-booking-site-1 (OLD)
+ * ❌ ZERO discount-system-fix (OLD)
  * ❌ ZERO spa-web-update (OLD)
  * ❌ ZERO spa-integration (OLD)
- * ❌ ZERO spa-booking-api
- * ❌ ZERO spa-dashboard-2
- * ❌ ZERO massage-app-4
+ * ❌ ZERO spa-booking-api (OLD)
+ * ❌ ZERO spa-dashboard-2 (OLD)
+ * ❌ ZERO massage-app-4 (OLD)
  * ❌ ZERO booking-system-85 (OLD)
  * ❌ ZERO price-consistency (OLD)
  * ❌ ZERO process.env
@@ -19,7 +21,11 @@
  * Client NEVER calls PATCH discount endpoints.
  */
 
-export const API_BASE = "https://spa-booking-site-1.preview.emergentagent.com";
+// ✅ SINGLE SOURCE OF TRUTH
+export const API_BASE = "https://price-analyzer-8.preview.emergentagent.com";
+
+// Freeze to prevent accidental overwrite
+Object.freeze?.(API_BASE);
 
 // Debug log on import
 console.log("✅ API_BASE =", API_BASE);
