@@ -2548,7 +2548,7 @@ const Spa = () => {
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
-                      {formatNumber(packageQuotes["ROMANTIC_COUPLE"]?.original_total || 25000)} RSD
+                      {packageQuotes["ROMANTIC_COUPLE"]?.original_total ? `${formatNumber(packageQuotes["ROMANTIC_COUPLE"].original_total)} RSD` : '...'}
                     </div>
                   )}
                 </div>
@@ -2766,7 +2766,7 @@ const Spa = () => {
                       fontWeight: 'bold',
                       color: '#d4af37'
                     }}>
-                      {formatNumber(packageQuotes["ROMANTIC_PEELING"]?.original_total || 25000)} RSD
+                      {packageQuotes["ROMANTIC_PEELING"]?.original_total ? `${formatNumber(packageQuotes["ROMANTIC_PEELING"].original_total)} RSD` : '...'}
                     </div>
                   )}
                 </div>
