@@ -468,13 +468,44 @@ const Termini = () => {
               </div>
             </div>
             
-            {/* Price */}
+            {/* Price - with discount display if applicable */}
             <div style={{ 
-              color: "#d4af37", 
-              fontWeight: "bold",
-              fontSize: "1rem"
+              textAlign: "right",
+              minWidth: "120px"
             }}>
-              {formatPrice(price)}
+              {event.pricing?.has_discount ? (
+                <>
+                  <div style={{ 
+                    color: "#888", 
+                    fontSize: "0.75rem",
+                    textDecoration: "line-through"
+                  }}>
+                    {formatPrice(event.pricing.original_total)}
+                  </div>
+                  <div style={{ 
+                    color: "#4ade80", 
+                    fontSize: "0.7rem",
+                    fontWeight: "600"
+                  }}>
+                    -{event.pricing.discount_percent}%
+                  </div>
+                  <div style={{ 
+                    color: "#d4af37", 
+                    fontWeight: "bold",
+                    fontSize: "1rem"
+                  }}>
+                    {formatPrice(event.pricing.final_total)}
+                  </div>
+                </>
+              ) : (
+                <div style={{ 
+                  color: "#d4af37", 
+                  fontWeight: "bold",
+                  fontSize: "1rem"
+                }}>
+                  {formatPrice(price)}
+                </div>
+              )}
             </div>
           </div>
         </CardContent>
