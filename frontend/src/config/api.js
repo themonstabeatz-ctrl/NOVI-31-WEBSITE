@@ -1,6 +1,6 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://discount-system-fix.preview.emergentagent.com
+ * Backend URL: https://spa-booking-site-1.preview.emergentagent.com
  * 
  * ❌ ZERO spa-web-update (OLD)
  * ❌ ZERO spa-integration (OLD)
@@ -19,7 +19,7 @@
  * Client NEVER calls PATCH discount endpoints.
  */
 
-export const API_BASE = "https://discount-system-fix.preview.emergentagent.com";
+export const API_BASE = "https://spa-booking-site-1.preview.emergentagent.com";
 
 // Debug log on import
 console.log("✅ API_BASE =", API_BASE);

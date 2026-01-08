@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Backend API Test Suite for Review Request
-Testing endpoints on https://booking-system-85.preview.emergentagent.com
+Testing endpoints on https://spa-booking-site-1.preview.emergentagent.com
 
 Test Cases:
 1. GET /api/health - should return {"status":"healthy"} with 200
@@ -17,7 +17,7 @@ import sys
 from datetime import datetime
 
 # Backend URL from review request
-BACKEND_URL = "https://booking-system-85.preview.emergentagent.com"
+BACKEND_URL = "https://spa-booking-site-1.preview.emergentagent.com"
 
 def test_health_endpoint():
     """Test GET /api/health endpoint"""

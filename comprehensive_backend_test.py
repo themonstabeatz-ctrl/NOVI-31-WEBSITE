@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv('/app/frontend/.env')
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://booking-system-85.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://spa-booking-site-1.preview.emergentagent.com')
 
 class ComprehensiveAPITester:
     def __init__(self):
@@ -283,7 +283,7 @@ class ComprehensiveAPITester:
 
     async def test_external_service_availability(self):
         """Test if external booking service exists"""
-        external_url = "https://booking-system-85.preview.emergentagent.com/api/appointments"
+        external_url = "https://spa-booking-site-1.preview.emergentagent.com/api/appointments"
         
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:

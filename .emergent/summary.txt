@@ -1,167 +1,161 @@
 <analysis>**original_problem_statement:**
-The user's primary goal is to build and refine a full-featured booking website for a massage and spa business called Bua Luang. The project has been characterized by a series of rapid, iterative changes and critical bug fixes.
+The user's primary goal is to build and refine a full-featured booking website for a massage and spa business called Bua Luang. The core of this session was to stabilize the application's backend connection, fix numerous UI bugs related to pricing and localization, and ensure a consistent user experience across all languages (Serbian, English, Russian, Thai).
 
-The main objectives addressed in this session were:
-1.  **API Backend Stabilization**: The user mandated multiple, successive hard locks of the backend API URL to eliminate environmental instability. The application's backend was migrated from  to , and finally to . This involved removing all fallbacks and reliance on  files for the API URL.
-2.  **Termini (Appointments) Page Completion**: The user requested that the  page, created in a previous session, display detailed information for SPA appointments instead of generic labels. This required implementing robust data parsing with fallbacks to read from a  field when the backend data was incomplete.
-3.  **SPA Booking Flow Refinement**: The entire SPA booking process was overhauled. This included fixing a critical bug where URL parameters were lost on redirect, enriching the booking payload with comprehensive data for email templating, and simplifying the post-booking success message to a single, consistent sentence.
-4.  **UI/UX Enhancements**:
-    *   **Discount Display**: Implement a standardized way to show discounted prices (original price struck through, final price bolded) on service cards. This required creating a shared  component and removing all client-side discount calculation logic.
-    *   **Price Transparency**: Modify the SPA cards to display the prices for add-ons (like Sauna, Jacuzzi) directly on the card to improve clarity for the user.
+Key requests included:
+1.  **Backend URL Migrations**: The frontend API endpoint was hard-locked multiple times, finally settling on .
+2.  **Fix Pricing & Discount Bugs**: A cycle of bugs, including double discounts and zero price errors, was addressed by refining the booking payload to send only the original price () and identifiers (), making the backend the single source of truth for calculations.
+3.  **UI Discount Display Consistency**: Fix multiple SPA cards (Herbal, Romantic, SPA Zone) that were not showing their discount badges and discounted prices on initial page load.
+4.  **Massage Page Localization**:
+    *   Fix duration buttons on the  page to be visible and functional across all supported languages.
+    *   Fix the Book Now button, which was inactive on non-Serbian languages.
+    *   Enhance the booking message on the  page to be detailed and localized.
+5.  **Couples Massage Localization**:
+    *   Translate the dropdown menu options on the Masaža za parove card for all languages.
+    *   Ensure the selected language code () is sent in the booking payload.
+6.  **Admin UI Unification**: Standardize the pricing display in the Termini (Appointments) view to show a detailed breakdown (original price, discount, final price) for all booking types.
 
 **User's preferred language**: Serbian
 
 **what currently exists?**
-The application is a React frontend () with its API endpoint now firmly hard-locked to a single backend: .
-- **Centralized & Locked API Config**:  is the undisputed source of truth, containing the  constant and an  object with all endpoint paths. The application is no longer vulnerable to environment variable instability for its backend URL.
-- **Complete Termini Page**: The  page successfully fetches and displays a unified list of all appointment types (massage, couples, SPA). It shows detailed information for each, using structured data from the backend when available and gracefully falling back to parsing a  field for legacy or incomplete SPA appointment data.
-- **Polished SPA Booking Flow**: The user journey from selecting a SPA service to booking is seamless. A routing bug that lost URL parameters has been fixed. The booking form correctly displays SPA details, and the post-booking UI shows a simple, unified success message.
-- **Backend-Driven Price Display**: All frontend discount calculations have been eliminated. A shared  component () is used to display original and final prices as provided by the backend. SPA service cards now also show the cost of add-ons upfront.
+The application is a React frontend with its API endpoint hard-locked to  in . A runtime guard in  prevents accidental changes.
+
+-   **SPA Page**: The  page dynamically fetches prices and displays discounts (badges, strikethrough prices) for almost all packages on initial load.
+-   **Massage Page**: The  page is fully localized. Duration selection buttons and the Book Now functionality work correctly in Serbian, English, Russian, and Thai.
+-   **Contact Page**: When booking a massage, the contact form pre-fills a detailed, localized message in the user's selected language.
+-   **Booking Payloads**: All booking payloads correctly send  (to prevent double discounts) and a  field for localization.
+-   **Termini (Appointments) View**: This admin page now features a unified and detailed pricing block for all appointment types, correctly displaying original price, discount percentage, and final price.
+-   **Couples Massage Card**: The UI and dropdown selection lists are fully translated across all four languages.
 
 **Last working item**:
-- Last item agent was working: The agent completed the user's final and most critical request of the session: migrating the entire application to a new backend, . This involved updating , removing all hardcoded references to previous backends (, ), and verifying the application remains functional.
-- Status: USER VERIFICATION PENDING
-- Agent Testing Done: Y
-- Which testing method agent to use? Frontend testing agent. A full end-to-end test of the primary booking flows (massage, SPA, couples) is recommended to ensure the backend migration did not introduce any regressions.
+- Last item agent was working: The agent was tasked with fixing a UI bug where the two romantic SPA package cards ( and ) were not displaying their discount badges and strikethrough prices on initial page load, despite the backend providing discount information. This was inconsistent with other SPA cards.
+- Status: IN PROGRESS
+- Agent Testing Done: N
+- Which testing method agent to use? screenshot tool. The agent needs to take a screenshot of the  page to visually confirm that the two romantic package cards now display a discount badge (e.g., -10%) and a strikethrough original price, just like the other discounted cards. A network log should also be captured to verify that  requests are being made for these cards on page load.
 - User Testing Done: N
 
 **All Pending/In progress Issue list**:
-- **Issue 1 (P0)**: User verification is pending for the final backend migration to .
-- **Issue 2 (P1 - Environmental)**: The  file has been historically unstable. While the app's dependency on it for the backend URL has been removed, the underlying environmental issue persists.
-- **Issue 3 (P2 - Blocked)**: A backend bug related to  for discounted couples massages, identified in a previous session, remains unresolved as it requires an external fix.
+- **Issue 1 (P0)**: Discount badge and strikethrough price not showing on romantic SPA cards.
 
   **Issues Detail:**
-  - **Issue 1: User verification for  backend migration**
-     - Attempted fixes: The migration has been fully implemented and tested by the agent.
-     - Next debug checklist: The user needs to test the live preview and confirm that all booking functionalities work as expected with the new backend. The browser's Network tab should be inspected to confirm all API calls are correctly routed.
-     - Why fix this issue and what will be achieved with the fix?: This will confirm the application is stable and correctly configured according to the user's latest critical requirement.
-     - Status: USER VERIFICATION PENDING
-     - Is recurring issue?: Y (The user has changed the target backend multiple times).
-     - Should Test frontend/backend/both after fix?: Frontend.
-     - Blocked on other issue: None.
-  - **Issue 2: Unstable .env file**
-     - Attempted fixes: A workaround was implemented by hard-locking the API URL in the code, making the  variable for the backend URL obsolete.
-     - Next debug checklist: Monitor for other potential issues arising from environment instability. For now, the main risk has been mitigated.
-     - Why fix this issue and what will be achieved with this fix?: A permanent fix would improve overall development stability.
-     - Status: BLOCKED (Environmental)
+  - **Issue 1: Discount badge and strikethrough price not showing on romantic SPA cards**
+     - Attempted fixes: The agent has investigated  and confirmed the  mapping is correct. The investigation of  revealed that while the UI rendering logic exists, the initial quote fetching mechanism likely does not include the romantic packages.
+     - Next debug checklist:
+        1.  View .
+        2.  Locate the  function (or the main  for data fetching on mount).
+        3.  Confirm that the romantic package identifiers (e.g., , ) are missing from the array of packages for which initial quotes are fetched.
+        4.  Add the romantic package identifiers to this initial fetch logic, ensuring it runs on page load alongside the other packages.
+        5.  Restart the  service and test via screenshot.
+     - Why fix this issue and what will be achieved with the fix?: To ensure a consistent user experience where all discounted SPA packages immediately and clearly display their promotional pricing.
+     - Status: IN PROGRESS
      - Is recurring issue?: Y
-     - Should Test frontend/backend/both after fix?: N/A
-     - Blocked on other issue: None.
-  - **Issue 3: Backend  Bug**
-     - Attempted fixes: None. This is an external backend issue.
-     - Next debug checklist: Wait for user confirmation that the backend service has been updated.
-     - Why fix this issue and what will be achieved with this fix?: This will unblock the booking flow for a specific edge case (discounted couples massages).
-     - Status: BLOCKED (Waiting for external backend fix)
-     - Is recurring issue?: Y
-     - Should Test frontend/backend/both after fix?: Backend (once fixed), then Frontend e2e.
-     - Blocked on other issue: None.
+     - Should Test frontend/backend/both after fix?: Frontend
+     - Blocked on other issue: None
 
 **In progress Task List**:
-None. The last active task was completed and is pending user verification.
+None
 
 **Upcoming and Future Tasks**
 - **Upcoming Tasks**:
-    - **(P2)** Implement lazy loading for images in , , and  using the  attribute.
+    - **(P1) Email Template Customization:** The user requested changes to the booking confirmation email, including a new background image and a centered logo. This task was explicitly paused by the user. (Backend task)
+    - **(P2) Lazy Loading Images:** Implement  for images in , , and  (carried over from previous sessions).
 - **Future Tasks**:
-    - Develop a CEO Dashboard with analytics for different SPA booking types.
-    - Connect SPA service prices to a backend endpoint instead of being hardcoded in the frontend.
+    - Develop a CEO Dashboard with analytics (confirmed as a backend/reception feature).
+    - Connect any remaining hardcoded prices to a backend endpoint.
     - Consider the development of a mobile application.
 
 **Completed work in this session**
-- **Multiple Backend Migrations & Hard-Lock**: Successfully migrated the API backend three times ( ->  -> ) and implemented a robust hard-lock in  to prevent future instability.
-- **Termini Page Feature Completion**: Fully implemented the UI for the  page, ensuring it displays detailed, parsed data for all SPA and massage appointments.
-- **SPA Booking Flow Overhaul**:
-    - Fixed a critical redirect bug that was losing URL parameters.
-    - Enriched the booking payload to ensure the backend receives all necessary data for email templating.
-    - Standardized the post-booking success message to a single, unconditional sentence.
-- **Discount Display Implementation**: Removed all frontend discount calculations and implemented a shared  component to display prices purely based on data from the backend.
-- **UI/UX Polish**:
-    - Made prices for SPA Zone add-ons visible directly on the SPA service cards.
-    - Ensured all booking payloads include correct  and  fields for proper backend processing.
+- **Backend URL Hard-Lock**: Successfully migrated and hard-locked the frontend to , including a runtime guard.
+- **Double-Discount Bug Resolution**: Resolved a critical bug causing double discounts by ensuring the frontend sends only the original price () in booking payloads.
+- **SPA Discount UI General Fixes**: Fixed discount displays for Herbal Rituals and SPA Zone cards to show on initial page load.
+- **Full Localization of Massage Page**:
+    - Fixed duration buttons to be visible and functional in all 4 languages.
+    - Fixed the Book Now button to work correctly in all languages.
+- **Detailed Localized Booking Message**: Enhanced the contact form to show a detailed, multi-line, and localized description for massage bookings.
+- **Standardized  in Payloads**: Ensured the  code is sent in all booking payloads (regular, couples, SPA).
+- **Couples Massage UI Localization**: Translated the entire Masaža za parove card UI, including the dropdown selection lists, to work across all languages.
+- **Termini UI Unification**: Refactored the appointments view () to use a single, detailed pricing component that correctly displays discounts for all booking types.
 
 **Earlier issues found/mentioned but not fixed**
-- The environmental  file instability and the backend  bug for discounted couples massages remain unresolved.
+-   The backend bug related to  for discounted couples massages remains unresolved as it's an external backend issue.
 
 **Known issue recurrence from previous fork**
-  - **Issue recurrence in previous fork**: The  file spontaneously reverts to an incorrect value.
-  - **Recurrence count**: High.
-  - **Status**: BLOCKED (Environmental). This has been effectively mitigated by hard-coding the API URL, removing the application's reliance on this environment variable.
+- **Issue recurrence in previous fork**: Unstable  file.
+- **Recurrence count**: High.
+- **Status**: RESOLVED. This was fully mitigated by hard-coding the  in  and adding a runtime guard in .
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Backend Hard-Locking**: A key pattern of defining the API URL as a constant in  to fight environmental instability, completely ignoring .
-- **Resilient Data Parsing**: Helper functions in  that prioritize structured backend fields () but can fall back to parsing unstructured text from a  field.
-- **Centralized API Configuration**: Consolidating all API endpoint strings into a single  object in  for maintainability and easy updates.
-- **Shared UI Components**: Creation of  for consistent display of pricing and discounts across the application.
-- **React Router Workarounds**: Implementation of a custom component ( in ) to preserve URL query parameters during client-side redirects.
+-   **Backend Hard-Locking**: Defining  as a constant in  and adding a runtime guard in  to ensure stability and prevent misconfiguration.
+-   **Backend-Driven UI**: The frontend has zero pricing logic. It assembles identifiers (, , ) and renders the pricing block purely from the backend's response.
+-   **Language-Independent Logic**: Refactoring components to use non-translated keys (e.g., ) for application logic, while using a  function from a context purely for UI display. This ensures functionality is consistent across all languages.
+-   **Stateless Pricing in Payload**: The booking payload was intentionally simplified to send only , forcing the backend to be the single source of truth for all discount calculations.
 
 **key DB schema**
-  - N/A (The agent interacts with a backend API and does not have direct access to the database.)
+-   N/A (The agent interacts with a backend API and does not have direct access to the database.)
 
 **changes in tech stack**
-  - None.
+-   None.
 
 **All files of reference**
--   **/app/frontend/src/config/api.js**: **CRITICAL**. Defines the locked-in backend URL and all API endpoints. This is the single source of truth.
--   **/app/frontend/src/pages/Contact.js**: **CRITICAL**. Central hub for all booking submission logic. Was heavily modified to adjust payloads and success messages.
--   **/app/frontend/src/pages/Termini.js**: Completed feature. Contains the logic for the unified appointments view and its robust data parsing.
--   **/app/frontend/src/pages/Spa.js**: Contains the UI for SPA packages and was updated to use the shared  component and display add-on prices.
--   **/app/frontend/src/App.js**: Modified to include the  fix for preserving URL parameters.
--   **/app/frontend/src/index.js**: Modified to implement a non-crashing startup log for the backend URL.
--   **/app/frontend/src/components/PriceBlock.js**: A new, shared component for displaying prices and discounts consistently.
--   **/app/frontend/.env**: Unstable file. Its value should be , but the app is coded not to rely on it.
+-   **/app/frontend/src/pages/Spa.js**: **CRITICAL**. The file to be modified to fix the pending issue with romantic card discount displays.
+-   **/app/frontend/src/config/api.js**: **CRITICAL**. Defines the hard-locked backend URL: .
+-   **/app/frontend/src/config/spaCardIds.js**: Crucial file mapping frontend identifiers to backend IDs. Was recently updated to fix other card issues.
+-   **/app/frontend/src/pages/Contact.js**: Was heavily modified to handle different booking payloads, generate localized messages, and pass the  parameter.
+-   **/app/frontend/src/pages/Massage.js**: Was refactored to support multi-language duration buttons and booking.
+-   **/app/frontend/src/components/CouplesMassageCard.js**: Was refactored for full multi-language support in its UI and dropdowns.
+-   **/app/frontend/src/data/translations.js**: The central source for all UI translations.
+-   **/app/frontend/src/pages/Termini.js**: Was refactored to include a unified, detailed pricing display for all appointments.
+
+**Areas that need refactoring**:
+-   The  file is monolithic and handles logic for many different card types. It could be refactored by creating a reusable  component to reduce code duplication and prevent bugs where fixes for one card type don't apply to others.
 
 **key api endpoints**
-- **Host**: 
-- 
--  (for standard massages)
--  (for couple massages)
--  (for all SPA bookings)
--  (for the Termini page)
-- 
+-   **Host**: 
+-   : Calculates prices for SPA packages.
+-   : Fetches SPA card metadata, including .
+-   : Final booking endpoint for SPA packages.
+-   : Final booking endpoint for couples massages.
+-   : Health check endpoint.
 
 **Critical Info for New Agent**
-1.  **The Backend URL is  and is HARD-LOCKED.** Do not attempt to change it or use environment variables. All API endpoints are defined in . The user is extremely sensitive about this.
-2.  **Verify your plan with the user.** The user frequently provides very specific, technical instructions and changes requirements mid-task. Always confirm your approach before implementing.
-3.  **Frontend does not calculate prices.** All pricing and discount logic is handled by the backend. The frontend's role is to display the  and  using the  component.
-4.  **Booking logic is complex and centralized.** All form submissions funnel through , which uses URL parameters to determine the booking type (massage, SPA, etc.).
-5.  **Data from the backend can be inconsistent.** Be prepared for some API responses to be missing structured data. The parsing logic in  is a good example of how to handle this gracefully by falling back to parsing a  field.
+1.  **YOUR FIRST TASK IS A UI BUG FIX:** The immediate goal is to fix the discount display on the two romantic SPA cards in . They must show their discount badge and strikethrough price on initial page load, just like the other cards.
+2.  **STRICTLY ADHERE TO SCOPE:** The user has repeatedly forbidden making changes to working parts of the app (e.g., the first three SPA cards, the couples booking logic, the API lock). Focus only on the requested fix.
+3.  **BACKEND IS THE SOURCE OF TRUTH:** Do not add any client-side price calculations. All prices and discounts are determined by the backend. The frontend's job is to send the correct identifiers and render the backend's response.
+4.  **DO NOT CHANGE THE API URL:** The backend URL is hard-locked in . This is a critical and non-negotiable requirement.
 
-**documents and test_reports created in this job**
-- 
-- 
+**documents and test reports created in this job**
+-   /app/backend/tests/test_spa_booking_flow.py
 
 **Last 10 User Messages and any pending HUMAN messages**
-The user's last several messages were a rapid-fire series of critical instructions focused on locking down the backend URL, refining the booking flow, and ensuring the frontend only displays data from the backend without performing its own calculations.
--   **Msg 430:** Final request to lock the backend URL to .
--   **Msg 415:** Instructed the agent to ensure SPA discount display is driven purely by backend data (, ).
--   **Msg 400:** Reported a 404 error from an external script trying to PATCH a discount endpoint and demanded it be stopped.
--   **Msg 381:** Detailed instructions for showing discounted prices on SPA cards and the CEO dashboard, emphasizing no frontend calculation.
--   **Msg 362:** Instructed the agent to ensure the payload for regular massages correctly identifies its  as .
--   **Msg 347:** Requested to simplify the post-booking success message to a single, unconditional sentence for all booking types.
--   **Msg 320:** Requested that prices for SPA Zone add-ons (Sauna, Jacuzzi) be made visible on the service cards at all times.
--   **Msg 313 & 296:** Provided detailed instructions on the required fields for the SPA booking payload to ensure the backend can generate correct client emails.
--   **Msg 287:** Repeated instructions to lock the backend to  and remove all fallbacks.
+1.  **Msg 627**: **(PENDING)** User reports that the discount badge is not showing on romantic SPA cards and requests a fix.
+2.  **Msg 621**: User asks for confirmation of the exact API endpoints and a sample payload for couples booking. (Completed)
+3.  **Msg 618**: User clarifies that the CEO Dashboard is a backend feature, not part of the frontend app. (Information noted)
+4.  **Msg 580**: User requests that the Termini (Appointments) page display a unified pricing block (original, discount, final) for all bookings. (Completed)
+5.  **Msg 567**: User asks for network proof that the  parameter is being correctly sent in couples booking requests. (Completed)
+6.  **Msg 564**: User confirms the frontend work for Couples Massage is finished and forbids further changes, stating remaining issues are on the backend. (Acknowledged)
+7.  **Msg 539**: User reports that the Couples Massage dropdown menu is not translated and requests a fix. (Completed)
+8.  **Msg 380**: User requests a more detailed, localized Message field in the contact form for massage bookings. (Completed)
+9.  **Msg 336**: User reports the BOOK NOW button is inactive on the massage page for non-Serbian languages. (Completed)
+10. **Msg 233**: User reports a critical price is 0 bug for Herbal Ritual bookings. (Completed)
 
 **Project Health Check:**
-- **Broken**:
-    - The booking flow for *discounted* couples massages is blocked by an external backend  bug.
-- **Mocked**: N/A
+-   **Broken**: The discount display UI for the two romantic SPA package cards is broken.
+-   **Mocked**: N/A
 
 **3rd Party Integrations**
 -   **Custom Backend API**: Connects to .
 
 **Testing status**
-  - Testing agent used after significant changes: YES. The backend testing agent was used to confirm endpoint functionality after major refactors.
-  - Troubleshoot agent used after agent stuck in loop: NO.
-  - Test files created: []
-  - Known regressions: The recurring  file instability, though this is now mitigated for the backend URL.
+-   Testing agent used after significant changes: YES
+-   Troubleshoot agent used after agent stuck in loop: NO
+-   Test files created: []
+-   Known regressions: The missing discount badge on romantic SPA cards appears to be a regression or a newly discovered aspect of a previous bug.
 
 **Credentials to test flow:**
 - N/A
 
 **What agent forgot to execute**
--   The task from the initial handoff to implement lazy loading for images () in , , and  is still pending.
--   The CEO Dashboard itself is a future task, so the related sub-task of displaying discounts on it has not been started.</analysis>
+-   The low-priority task to implement lazy loading for images () in , , and  is still pending from previous sessions.
+-   The task to customize email templates was explicitly paused by the user and remains pending.</analysis>

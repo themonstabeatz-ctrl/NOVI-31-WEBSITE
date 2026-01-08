@@ -8,7 +8,7 @@ import { Calendar, Clock, User, Phone, Sparkles, Leaf } from "lucide-react";
 /**
  * ✅ Termini (Appointments) Screen
  * Displays calendar events including SPA bookings from backend
- * LOCKED TO: https://price-consistency.preview.emergentagent.com
+ * LOCKED TO: https://spa-booking-site-1.preview.emergentagent.com
  */
 
 // Format date helper
