@@ -622,6 +622,35 @@ const Termini = () => {
                 </span>
               </div>
               
+              {/* Pricing block with discount (if applicable) */}
+              {selectedEvent.pricing?.has_discount && (
+                <div style={{ 
+                  padding: "0.75rem",
+                  background: "rgba(74, 222, 128, 0.1)",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(74, 222, 128, 0.3)"
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                    <span style={{ color: "#c0baa8" }}>Cena (orig):</span>
+                    <span style={{ color: "#888", textDecoration: "line-through" }}>
+                      {formatPrice(selectedEvent.pricing.original_total)}
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                    <span style={{ color: "#c0baa8" }}>Popust:</span>
+                    <span style={{ color: "#4ade80", fontWeight: "600" }}>
+                      -{selectedEvent.pricing.discount_percent}%
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <span style={{ color: "#c0baa8" }}>Za naplatu:</span>
+                    <span style={{ color: "#d4af37", fontWeight: "bold", fontSize: "1.1rem" }}>
+                      {formatPrice(selectedEvent.pricing.final_total)}
+                    </span>
+                  </div>
+                </div>
+              )}
+              
               {/* Notes */}
               {notes && (
                 <div style={{ 
