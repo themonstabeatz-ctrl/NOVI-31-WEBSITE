@@ -525,6 +525,7 @@ const Termini = () => {
     
     const badge = getBadge(selectedEvent);
     const title = getTitle(selectedEvent);
+    const duration = getDurationMin(selectedEvent);
     const clientName = selectedEvent.client 
       ? `${selectedEvent.client.first_name || ""} ${selectedEvent.client.last_name || ""}`.trim()
       : selectedEvent.client_first_name 
@@ -534,6 +535,36 @@ const Termini = () => {
     const email = selectedEvent.client?.email || selectedEvent.client_email || "";
     const price = selectedEvent.pricing?.final_total || selectedEvent.final_price || selectedEvent.price || 0;
     const notes = selectedEvent.notes || "";
+    
+    // ✅ Build service display label: "Naziv usluge - XX min"
+    const serviceDisplayLabel = duration > 0 ? `${title} - ${duration} min` : title;
+    
+    // ✅ Get current status from event
+    const currentStatus = selectedEvent.status || "scheduled";
+
+    // ✅ Handle opening edit mode
+    const handleEditClick = () => {
+      setEditFormData({ status: currentStatus });
+      setIsEditing(true);
+    };
+
+    // ✅ Handle closing edit mode
+    const handleCancelEdit = () => {
+      setIsEditing(false);
+    };
+
+    // ✅ Handle save (NOTE: just closes modal for now, no backend call per instructions)
+    const handleSaveEdit = () => {
+      console.log("📝 Edit saved (UI only):", editFormData);
+      setIsEditing(false);
+      // NOTE: Not modifying backend per user instructions - just UI display
+    };
+
+    // ✅ Close modal entirely
+    const handleCloseModal = () => {
+      setSelectedEvent(null);
+      setIsEditing(false);
+    };
 
     return (
       <div 
@@ -549,7 +580,7 @@ const Termini = () => {
           justifyContent: "center",
           zIndex: 1000
         }}
-        onClick={() => setSelectedEvent(null)}
+        onClick={handleCloseModal}
       >
         <Card 
           style={{
@@ -572,105 +603,288 @@ const Termini = () => {
               }}>
                 {badge.label}
               </span>
-              <button 
-                onClick={() => setSelectedEvent(null)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  color: "#888",
-                  fontSize: "1.5rem",
-                  cursor: "pointer"
-                }}
-              >
-                ×
-              </button>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                {/* ✅ Edit button (pencil icon) */}
+                {!isEditing && (
+                  <button 
+                    onClick={handleEditClick}
+                    title="Uredi termin"
+                    style={{
+                      background: "rgba(212, 175, 55, 0.2)",
+                      border: "1px solid #d4af37",
+                      borderRadius: "6px",
+                      color: "#d4af37",
+                      padding: "0.4rem",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  >
+                    <Pencil size={16} />
+                  </button>
+                )}
+                {/* Close button */}
+                <button 
+                  onClick={handleCloseModal}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: "#888",
+                    fontSize: "1.5rem",
+                    cursor: "pointer"
+                  }}
+                >
+                  ×
+                </button>
+              </div>
             </div>
             <CardTitle style={{ color: "#d4af37", marginTop: "0.5rem" }}>
-              {title}
+              {isEditing ? "Uredi termin" : title}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              {/* Client */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", color: "#f5f2e8" }}>
-                <User size={18} style={{ color: "#d4af37" }} />
-                <span>{clientName}</span>
+            {isEditing ? (
+              /* ✅ EDIT MODE */
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                {/* Usluga field - read-only, prepopulated */}
+                <div>
+                  <label style={{ 
+                    display: "block", 
+                    color: "#d4af37", 
+                    fontSize: "0.85rem", 
+                    marginBottom: "0.5rem",
+                    fontWeight: "600"
+                  }}>
+                    Usluga
+                  </label>
+                  <div style={{
+                    padding: "0.75rem",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(212, 175, 55, 0.3)",
+                    borderRadius: "8px",
+                    color: "#f5f2e8",
+                    fontSize: "0.95rem"
+                  }}>
+                    {serviceDisplayLabel}
+                  </div>
+                </div>
+
+                {/* Klijent field - read-only */}
+                <div>
+                  <label style={{ 
+                    display: "block", 
+                    color: "#d4af37", 
+                    fontSize: "0.85rem", 
+                    marginBottom: "0.5rem",
+                    fontWeight: "600"
+                  }}>
+                    Klijent
+                  </label>
+                  <div style={{
+                    padding: "0.75rem",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(212, 175, 55, 0.3)",
+                    borderRadius: "8px",
+                    color: "#f5f2e8",
+                    fontSize: "0.95rem"
+                  }}>
+                    {clientName}
+                  </div>
+                </div>
+
+                {/* Datum i vreme - read-only */}
+                <div>
+                  <label style={{ 
+                    display: "block", 
+                    color: "#d4af37", 
+                    fontSize: "0.85rem", 
+                    marginBottom: "0.5rem",
+                    fontWeight: "600"
+                  }}>
+                    Datum i vreme
+                  </label>
+                  <div style={{
+                    padding: "0.75rem",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(212, 175, 55, 0.3)",
+                    borderRadius: "8px",
+                    color: "#f5f2e8",
+                    fontSize: "0.95rem"
+                  }}>
+                    {formatDate(selectedEvent.start_time)} {formatTime(selectedEvent.start_time)} - {formatTime(selectedEvent.end_time)}
+                  </div>
+                </div>
+
+                {/* ✅ Status field - FULL WIDTH to prevent cut-off */}
+                <div style={{ width: "100%" }}>
+                  <label style={{ 
+                    display: "block", 
+                    color: "#d4af37", 
+                    fontSize: "0.85rem", 
+                    marginBottom: "0.5rem",
+                    fontWeight: "600"
+                  }}>
+                    Status
+                  </label>
+                  <select
+                    value={editFormData.status}
+                    onChange={(e) => setEditFormData({ ...editFormData, status: e.target.value })}
+                    style={{
+                      width: "100%",
+                      padding: "0.75rem",
+                      background: "#2a2a2a",
+                      border: "1px solid #d4af37",
+                      borderRadius: "8px",
+                      color: "#f5f2e8",
+                      fontSize: "0.95rem",
+                      cursor: "pointer",
+                      outline: "none"
+                    }}
+                  >
+                    <option value="scheduled">Zakazan</option>
+                    <option value="confirmed">Potvrđen</option>
+                    <option value="completed">Završen</option>
+                    <option value="cancelled">Otkazan</option>
+                  </select>
+                </div>
+
+                {/* Action buttons */}
+                <div style={{ 
+                  display: "flex", 
+                  gap: "0.75rem", 
+                  marginTop: "0.5rem",
+                  flexWrap: "wrap"
+                }}>
+                  <Button
+                    onClick={handleSaveEdit}
+                    style={{
+                      flex: 1,
+                      minWidth: "120px",
+                      background: "#d4af37",
+                      color: "#1a1a1a",
+                      border: "none",
+                      fontWeight: "bold"
+                    }}
+                  >
+                    Sačuvaj
+                  </Button>
+                  <Button
+                    onClick={handleCancelEdit}
+                    variant="outline"
+                    style={{
+                      flex: 1,
+                      minWidth: "120px",
+                      background: "transparent",
+                      color: "#888",
+                      border: "1px solid #555"
+                    }}
+                  >
+                    Otkaži
+                  </Button>
+                </div>
               </div>
-              
-              {/* Phone */}
-              {phone && (
+            ) : (
+              /* ✅ VIEW MODE */
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {/* ✅ Service/Usluga with duration */}
+                <div style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: "0.75rem",
+                  padding: "0.75rem",
+                  background: "rgba(212, 175, 55, 0.05)",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(212, 175, 55, 0.2)"
+                }}>
+                  <Sparkles size={18} style={{ color: "#d4af37" }} />
+                  <div>
+                    <div style={{ color: "#888", fontSize: "0.75rem" }}>Usluga</div>
+                    <div style={{ color: "#f5f2e8", fontWeight: "600" }}>{serviceDisplayLabel}</div>
+                  </div>
+                </div>
+
+                {/* Client */}
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", color: "#f5f2e8" }}>
+                  <User size={18} style={{ color: "#d4af37" }} />
+                  <span>{clientName}</span>
+                </div>
+                
+                {/* Phone */}
+                {phone && (
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", color: "#c0baa8" }}>
+                    <Phone size={18} style={{ color: "#d4af37" }} />
+                    <span>{phone}</span>
+                  </div>
+                )}
+                
+                {/* Time */}
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", color: "#c0baa8" }}>
-                  <Phone size={18} style={{ color: "#d4af37" }} />
-                  <span>{phone}</span>
+                  <Clock size={18} style={{ color: "#d4af37" }} />
+                  <span>
+                    {formatDate(selectedEvent.start_time)} {formatTime(selectedEvent.start_time)} - {formatTime(selectedEvent.end_time)}
+                  </span>
                 </div>
-              )}
-              
-              {/* Time */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", color: "#c0baa8" }}>
-                <Clock size={18} style={{ color: "#d4af37" }} />
-                <span>
-                  {formatDate(selectedEvent.start_time)} {formatTime(selectedEvent.start_time)} - {formatTime(selectedEvent.end_time)}
-                </span>
-              </div>
-              
-              {/* Price */}
-              <div style={{ 
-                display: "flex", 
-                alignItems: "center", 
-                gap: "0.75rem",
-                padding: "0.75rem",
-                background: "rgba(212, 175, 55, 0.1)",
-                borderRadius: "8px"
-              }}>
-                <span style={{ color: "#c0baa8" }}>Cena:</span>
-                <span style={{ color: "#d4af37", fontWeight: "bold", fontSize: "1.2rem" }}>
-                  {formatPrice(price)}
-                </span>
-              </div>
-              
-              {/* Pricing block with discount (if applicable) */}
-              {selectedEvent.pricing?.has_discount && (
+                
+                {/* Price */}
                 <div style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: "0.75rem",
                   padding: "0.75rem",
-                  background: "rgba(74, 222, 128, 0.1)",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(74, 222, 128, 0.3)"
+                  background: "rgba(212, 175, 55, 0.1)",
+                  borderRadius: "8px"
                 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <span style={{ color: "#c0baa8" }}>Cena (orig):</span>
-                    <span style={{ color: "#888", textDecoration: "line-through" }}>
-                      {formatPrice(selectedEvent.pricing.original_total)}
-                    </span>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <span style={{ color: "#c0baa8" }}>Popust:</span>
-                    <span style={{ color: "#4ade80", fontWeight: "600" }}>
-                      -{selectedEvent.pricing.discount_percent}%
-                    </span>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <span style={{ color: "#c0baa8" }}>Za naplatu:</span>
-                    <span style={{ color: "#d4af37", fontWeight: "bold", fontSize: "1.1rem" }}>
-                      {formatPrice(selectedEvent.pricing.final_total)}
-                    </span>
-                  </div>
+                  <span style={{ color: "#c0baa8" }}>Cena:</span>
+                  <span style={{ color: "#d4af37", fontWeight: "bold", fontSize: "1.2rem" }}>
+                    {formatPrice(price)}
+                  </span>
                 </div>
-              )}
-              
-              {/* Notes */}
-              {notes && (
-                <div style={{ 
-                  padding: "0.75rem",
-                  background: "rgba(255,255,255,0.05)",
-                  borderRadius: "8px",
-                  color: "#c0baa8",
-                  fontSize: "0.9rem"
-                }}>
-                  <strong style={{ color: "#f5f2e8" }}>Napomena:</strong>
-                  <p style={{ margin: "0.5rem 0 0 0" }}>{notes}</p>
-                </div>
-              )}
-            </div>
+                
+                {/* Pricing block with discount (if applicable) */}
+                {selectedEvent.pricing?.has_discount && (
+                  <div style={{ 
+                    padding: "0.75rem",
+                    background: "rgba(74, 222, 128, 0.1)",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(74, 222, 128, 0.3)"
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                      <span style={{ color: "#c0baa8" }}>Cena (orig):</span>
+                      <span style={{ color: "#888", textDecoration: "line-through" }}>
+                        {formatPrice(selectedEvent.pricing.original_total)}
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                      <span style={{ color: "#c0baa8" }}>Popust:</span>
+                      <span style={{ color: "#4ade80", fontWeight: "600" }}>
+                        -{selectedEvent.pricing.discount_percent}%
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span style={{ color: "#c0baa8" }}>Za naplatu:</span>
+                      <span style={{ color: "#d4af37", fontWeight: "bold", fontSize: "1.1rem" }}>
+                        {formatPrice(selectedEvent.pricing.final_total)}
+                      </span>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Notes */}
+                {notes && (
+                  <div style={{ 
+                    padding: "0.75rem",
+                    background: "rgba(255,255,255,0.05)",
+                    borderRadius: "8px",
+                    color: "#c0baa8",
+                    fontSize: "0.9rem"
+                  }}>
+                    <strong style={{ color: "#f5f2e8" }}>Napomena:</strong>
+                    <p style={{ margin: "0.5rem 0 0 0", whiteSpace: "pre-wrap" }}>{notes}</p>
+                  </div>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
