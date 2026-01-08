@@ -2645,7 +2645,28 @@ const Spa = () => {
                 type="button"
                 onClick={() => {
                   console.log("[ROMANTIC_COUPLE_1] Book click");
-                  navigate('/contact?source=coupleSpecial&spaCategory=SPA_SPECIAL_COUPLE&spa_package_id=ROMANTIC_COUPLE_1&spaName=Romantični%20paket%20za%20parove&duration=210&price=25000&guests=2');
+                  const quote = packageQuotes["ROMANTIC_COUPLE"];
+                  const originalPrice = quote?.original_total || 0;
+                  const finalPrice = quote?.final_total || originalPrice;
+                  const duration = quote?.total_duration || 180;
+                  const hasDiscount = quote?.has_discount || false;
+                  const discountPercent = quote?.discount_percent || quote?.discount_percentage || 0;
+                  
+                  const params = new URLSearchParams({
+                    source: 'coupleSpecial',
+                    spaCategory: 'SPA_SPECIAL_COUPLE',
+                    spa_package_id: 'ROMANTIC_COUPLE_1',
+                    card_id: 'romantic_couple_package',
+                    spaName: 'Romantični paket za parove',
+                    duration: String(duration),
+                    price: String(originalPrice),
+                    originalPrice: String(originalPrice),
+                    finalPrice: String(finalPrice),
+                    hasDiscount: String(hasDiscount),
+                    discountPercent: String(discountPercent),
+                    guests: '2'
+                  });
+                  navigate(`/contact?${params.toString()}`);
                 }}
                 style={{
                   width: '100%',
@@ -2863,7 +2884,28 @@ const Spa = () => {
                 type="button"
                 onClick={() => {
                   console.log("[ROMANTIC_COUPLE_2] Book click");
-                  navigate('/contact?source=coupleSpecial&spaCategory=SPA_SPECIAL_COUPLE&spa_package_id=ROMANTIC_COUPLE_2&spaName=Romantični%20piling%20paket%20za%20parove&duration=210&price=25000&guests=2');
+                  const quote = packageQuotes["ROMANTIC_PEELING"];
+                  const originalPrice = quote?.original_total || 0;
+                  const finalPrice = quote?.final_total || originalPrice;
+                  const duration = quote?.total_duration || 150;
+                  const hasDiscount = quote?.has_discount || false;
+                  const discountPercent = quote?.discount_percent || quote?.discount_percentage || 0;
+                  
+                  const params = new URLSearchParams({
+                    source: 'coupleSpecial',
+                    spaCategory: 'SPA_SPECIAL_COUPLE',
+                    spa_package_id: 'ROMANTIC_COUPLE_2',
+                    card_id: 'romantic_peeling_couple_package',
+                    spaName: 'Romantični piling paket za parove',
+                    duration: String(duration),
+                    price: String(originalPrice),
+                    originalPrice: String(originalPrice),
+                    finalPrice: String(finalPrice),
+                    hasDiscount: String(hasDiscount),
+                    discountPercent: String(discountPercent),
+                    guests: '2'
+                  });
+                  navigate(`/contact?${params.toString()}`);
                 }}
                 style={{
                   width: '100%',
