@@ -28,7 +28,8 @@ export const API_BASE = "https://price-analyzer-8.preview.emergentagent.com";
 Object.freeze?.(API_BASE);
 
 // Debug log on import
-console.log("✅ API_BASE =", API_BASE);
+console.log("🔐 LOCKED FRONTEND =", window.location.origin);
+console.log("🔐 LOCKED API_BASE =", API_BASE);
 
 export const API = {
   health: `${API_BASE}/api/health`,
