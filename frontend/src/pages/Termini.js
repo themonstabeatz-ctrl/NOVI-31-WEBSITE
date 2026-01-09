@@ -65,9 +65,21 @@ function parseNotesSpa(notes = "") {
   const out = { title: "", variant: "", totalMin: null, spaZone: "" };
   if (!notes) return out;
 
-  // Parse title: "SPA paket: Silky Body Ritual"
-  const mTitle = notes.match(/SPA paket:\s*([^\n]+?)(?:\s+Varijanta:|\s+SPA zona:|\s+Ukupno trajanje:|\s+Ukupna cena:|$)/);
-  if (mTitle) out.title = mTitle[1].trim();
+  // Parse title: Multiple formats supported
+  // Format 1: "SPA paket: Silky Body Ritual"
+  // Format 2: "Paket: Romantični paket za parove"
+  // Format 3: "🌹 Romantični SPA paket za parove" (first line)
+  const mTitle1 = notes.match(/SPA paket:\s*([^\n]+?)(?:\s+Varijanta:|\s+SPA zona:|\s+Ukupno trajanje:|\s+Ukupna cena:|$)/);
+  const mTitle2 = notes.match(/^Paket:\s*([^\n]+)/m);
+  const mTitle3 = notes.match(/^[🌹🧖‍♀️💆‍♂️✨🌿🍃💎]?\s*(.+?SPA.+?)$/m);
+  
+  if (mTitle1) {
+    out.title = mTitle1[1].trim();
+  } else if (mTitle2) {
+    out.title = mTitle2[1].trim();
+  } else if (mTitle3) {
+    out.title = mTitle3[1].trim();
+  }
 
   // Parse variant: "Varijanta: Sa masažom lica (+3.000 RSD)"
   const mVar = notes.match(/Varijanta:\s*([^\n]+?)(?:\s+SPA zona:|\s+Ukupno trajanje:|\s+Ukupna cena:|$)/);
