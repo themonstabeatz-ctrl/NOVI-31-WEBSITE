@@ -112,7 +112,7 @@ function parseNotesSpa(notes = "") {
 function getTitle(row) {
   const type = getType(row);
   
-  // Non-SPA: backend fields only
+  // Non-SPA: backend fields only (MASAŽE I PAROVI - NE DIRATI)
   if (type !== "spa") {
     // Couples massage
     if (row.is_couples_booking && row.person1_services_snapshot?.length) {
@@ -125,15 +125,20 @@ function getTitle(row) {
     return s(row.service_name) || s(row.service_title) || s(row.title) || "Usluga";
   }
 
-  // SPA: backend first, then notes fallback
+  // SPA: notes parsed title FIRST (because backend returns generic "SPA Tretman")
+  // then backend fields as fallback
   const notesParsed = parseNotesSpa(row.notes || "");
-  return (
-    s(row.service_name) ||
-    s(row.service_title) ||
-    s(row?.services_snapshot?.[0]?.name) ||
-    s(notesParsed.title) ||
-    "SPA Tretman"  // POSLEDNJI fallback
-  );
+  
+  // Check if backend service_name is not generic
+  const backendName = s(row.service_name) || s(row.service_title) || s(row?.services_snapshot?.[0]?.name);
+  const isGenericName = !backendName || backendName === "SPA Tretman" || backendName === "SPA";
+  
+  // Prefer notes parsed title if backend name is generic
+  if (notesParsed.title && isGenericName) {
+    return notesParsed.title;
+  }
+  
+  return backendName || s(notesParsed.title) || "SPA Tretman";
 }
 
 // ✅ Get description - BACKEND FIRST
