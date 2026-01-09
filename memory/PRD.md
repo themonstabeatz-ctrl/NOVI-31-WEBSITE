@@ -30,18 +30,21 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 
 ## Completed Features
 
+### 2025-01-09: "Uredi termin" Modal UI Enhancement
+- ✅ Added Edit button (pencil icon) to appointment modal
+- ✅ Usluga field shows service name + duration (e.g., "Romantični paket za parove - 210 min")
+- ✅ Status dropdown is full-width and fully visible
+- ✅ Edit form includes: Usluga (read-only), Klijent (read-only), Datum i vreme (read-only), Status (editable dropdown)
+- ✅ Works for both MASAŽA and SPA appointments
+
 ### 2025-01-08: Romantic Cards Discount Display Fix
 - ✅ Removed all hardcoded `25000` fallback values from Spa.js
-- ✅ Romantic cards now use quote response data exclusively (original_total, final_total, discount_percent)
-- ✅ Booking navigate() now passes all pricing params from quote response
-- ✅ Contact.js message shows: Original price, Discount %, Final price (when discount exists)
-- ✅ Verified: Both romantic cards show badges and strikethrough prices when backend returns discount
+- ✅ Romantic cards now use quote response data exclusively
+- ✅ Booking message shows discount details when applicable
 
 ### 2025-01-08: API Hard-Lock Migration
-- ✅ Migrated API_BASE from `spa-booking-site-1` to `price-analyzer-8`
-- ✅ Added Object.freeze() protection
-- ✅ Runtime guard throws error if API_BASE misconfigured
-- ✅ Verified: 23 requests to correct backend, 0 to old domains
+- ✅ Migrated API_BASE to `price-analyzer-8`
+- ✅ Added Object.freeze() + runtime guard
 
 ### Previous Sessions
 - ✅ Full localization (SR, EN, RU, TH)
@@ -50,28 +53,6 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - ✅ Couples massage with localized dropdowns
 - ✅ Contact form with detailed booking messages
 - ✅ Termini (Appointments) admin view
-
-## Pricing Display Logic (Frontend)
-
-### SPA Cards (including Romantic)
-```javascript
-// If backend returns has_discount=true:
-//   - Show strikethrough original_total
-//   - Show green final_total
-//   - Show DiscountBadge with discount_percent
-// If has_discount=false:
-//   - Show only original_total (no badge, no strikethrough)
-```
-
-### Booking Message (Contact.js)
-```javascript
-// If hasDiscount && discountPercent > 0:
-//   Originalna cena: {original} RSD
-//   Popust: -{percent}%
-//   Cena za naplatu: {final} RSD
-// Else:
-//   Ukupna cena: {original} RSD
-```
 
 ## Backlog
 
@@ -88,6 +69,6 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 ## Key Files
 - `/app/frontend/src/config/api.js` - API configuration (CRITICAL)
 - `/app/frontend/src/index.js` - Runtime guard
-- `/app/frontend/src/pages/Spa.js` - SPA packages (including romantic cards)
-- `/app/frontend/src/pages/Contact.js` - Booking form with discount display
-- `/app/frontend/src/pages/Massage.js` - Massage bookings
+- `/app/frontend/src/pages/Termini.js` - Appointments view with edit modal
+- `/app/frontend/src/pages/Spa.js` - SPA packages
+- `/app/frontend/src/pages/Contact.js` - Booking form
