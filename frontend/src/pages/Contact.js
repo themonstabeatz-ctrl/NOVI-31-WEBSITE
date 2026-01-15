@@ -1509,7 +1509,7 @@ const Contact = () => {
             
             // Notes
             notes: formData.message || "",
-            language: formData.lang || language || 'sr'  // ✅ Language for backend email template
+            lang: formData.lang || language || 'sr'  // ✅ Language for backend email template
           };
           
           // ✅ ISPRAVNO prema backendu recepcije - obične masaže koriste /api/appointments
