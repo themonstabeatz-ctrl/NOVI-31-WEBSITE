@@ -1,6 +1,6 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://spabook-upgrade.preview.emergentagent.com
+ * Backend URL: https://price-analyzer-8.preview.emergentagent.com
  * 
  * ❌ ZERO spa-booking-site-1 (OLD)
  * ❌ ZERO discount-system-fix (OLD)
@@ -11,6 +11,7 @@
  * ❌ ZERO massage-app-4 (OLD)
  * ❌ ZERO booking-system-85 (OLD)
  * ❌ ZERO price-consistency (OLD)
+ * ❌ ZERO spabook-upgrade (OLD)
  * ❌ ZERO process.env
  * ❌ ZERO REACT_APP_BACKEND_URL
  * ❌ ZERO fallback
@@ -22,7 +23,7 @@
  */
 
 // ✅ SINGLE SOURCE OF TRUTH
-export const API_BASE = "https://spabook-upgrade.preview.emergentagent.com";
+export const API_BASE = "https://price-analyzer-8.preview.emergentagent.com";
 
 // Freeze to prevent accidental overwrite
 Object.freeze?.(API_BASE);
