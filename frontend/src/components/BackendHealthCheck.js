@@ -26,7 +26,7 @@ async function safeJson(res) {
  * Na load proverava /api/health endpoint.
  * Ako backend nije dostupan, prikazuje jasnu poruku umesto da se app raspadne.
  * 
- * LOCKED TO: https://spa-booking-site-1.preview.emergentagent.com
+ * LOCKED TO: https://spabook-upgrade.preview.emergentagent.com
  */
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'

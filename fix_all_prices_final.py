@@ -5,7 +5,7 @@ FINALNO ISPRAVLJANJE - Sve cene na okrugle brojeve + uklanjanje popusta
 import requests
 import json
 
-API = "https://spa-booking-site-1.preview.emergentagent.com/api"
+API = "https://spabook-upgrade.preview.emergentagent.com/api"
 
 # ISPRAVNE OKRUGLE CENE
 CORRECT_PRICES = {

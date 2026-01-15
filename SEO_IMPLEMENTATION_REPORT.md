@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://spa-booking-site-1.preview.emergentagent.com/robots.txt
+**Test URL:** https://spabook-upgrade.preview.emergentagent.com/robots.txt
 
 ---
 

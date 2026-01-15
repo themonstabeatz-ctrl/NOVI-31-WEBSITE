@@ -6,12 +6,12 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 ## Core Architecture
 
 ### Frontend
-- **URL**: https://spa-booking-site-1.preview.emergentagent.com
+- **URL**: https://spabook-upgrade.preview.emergentagent.com
 - **Tech**: React
 - **API Lock**: Hard-locked to `price-analyzer-8` backend
 
 ### Backend  
-- **URL**: https://price-analyzer-8.preview.emergentagent.com
+- **URL**: https://spabook-upgrade.preview.emergentagent.com
 - **Status**: External backend (not managed in this repo)
 
 ## VERIFIED WORKING (2025-01-15)
