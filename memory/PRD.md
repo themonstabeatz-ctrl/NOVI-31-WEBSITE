@@ -23,57 +23,54 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 
 ## Completed Features
 
-### 2025-01-15: SPA Edit Modal - Active Dropdown + Print
-- ✅ SPA dropdown now has ACTIVE styling (gold text, 2px gold border, glow effect)
-- ✅ No gray/disabled appearance for SPA service dropdown
-- ✅ Print dialog opens after Save (same as massage)
-- ✅ Print includes: service name, duration, client info, pricing
+### 2025-01-15: SPA Edit Modal - FULLY WORKING
+- ✅ Fixed `getType()` to properly detect SPA appointments via `spa_category` field
+- ✅ SPA dropdown is INTERACTIVE (not disabled) - gold styling, working click
+- ✅ Changed from PATCH to PUT method (backend requirement)
+- ✅ PUT sends complete payload: client info, service_id, start_time, status, notes
+- ✅ Print window opens after successful save: `PRINT_TRIGGERED_AFTER_SAVE {type: spa}`
+- ✅ Backend returns 200 OK (not 405)
 - ✅ MASAŽE/PAROVI remain read-only div (NOT touched)
 
-### 2025-01-15: SPA Edit Modal - Service Dropdown Active
-- ✅ SPA appointments have active dropdown for "Usluga" field
-- ✅ Loaded 22 SPA services from `/api/spa/services`
-
-### 2025-01-15: Regular Massage Pricing in Booking Message
-- ✅ Massage.js sends pricing params
-- ✅ Contact.js displays pricing in "Poruka" field
-
-### Previous Sessions
-- ✅ SPA "Usluga" display fix in edit modal
-- ✅ "Uredi termin" modal UI enhancement
-- ✅ Romantic cards discount display fix
-- ✅ API hard-lock migration
-- ✅ Full localization (SR, EN, RU, TH)
-- ✅ SPA/Massage booking flows
-- ✅ Couples massage with localized dropdowns
-- ✅ Termini (Appointments) admin view
+### Previous Fixes
+- SPA dropdown active styling (gold text, 2px border, glow)
+- Print function with styled HTML template
+- Regular massage pricing in booking message
+- SPA "Usluga" display fix in edit modal
+- "Uredi termin" modal UI enhancement
+- Romantic cards discount display fix
+- API hard-lock migration to price-analyzer-8
 
 ## Key Technical Details
 
-### Edit Modal Service Field Logic
+### getType() Function
 ```javascript
-// SPA: Active dropdown with gold styling
+function getType(row) {
+  // Detect SPA via type or spa_category
+  if (row.type === "spa" || row.spa_category || row.category?.toLowerCase?.()?.includes("spa")) {
+    return "spa";
+  }
+  // ... couples and massage detection
+}
+```
+
+### Edit Modal Service Field
+```javascript
+// SPA: Active <select> dropdown
 getType(selectedEvent) === "spa" ? (
-  <select style={{ color: "#d4af37", border: "2px solid #d4af37", ... }}>
+  <select style={{ color: "#d4af37", border: "2px solid #d4af37" }}>
     {spaServices.map(svc => <option>...</option>)}
   </select>
 ) : (
-  // MASAŽE/PAROVI: Read-only div (NOT touched)
-  <div style={{ opacity readonly styling }}>
-    {serviceDisplayLabel}
-  </div>
+  // MASAŽE: Read-only <div>
+  <div>{serviceDisplayLabel}</div>
 )
 ```
 
-### Print Function
-- Opens new window with styled HTML
-- Includes: badge (SPA/MASAŽA), service, duration, client, pricing
-- Works for both SPA and massage appointments
-- Triggered after successful save or on 405 error (backend limitation)
-
-## Known Backend Limitations
-- `/api/spa/appointments/{id}` does not support PATCH/PUT (returns 405)
-- Print still works despite save limitation
+### Save Handler
+- Uses PUT method (not PATCH)
+- Sends complete appointment object
+- Triggers print after success: `PRINT_TRIGGERED_AFTER_SAVE`
 
 ## Backlog
 
@@ -88,7 +85,7 @@ getType(selectedEvent) === "spa" ? (
 - Mobile application
 
 ## Key Files
-- `/app/frontend/src/pages/Termini.js` - Edit modal with SPA service dropdown + print function
+- `/app/frontend/src/pages/Termini.js` - Edit modal with SPA dropdown + print
 - `/app/frontend/src/config/api.js` - API configuration
 - `/app/frontend/src/pages/Massage.js` - Massage bookings
 - `/app/frontend/src/pages/Contact.js` - Booking form
