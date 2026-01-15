@@ -286,8 +286,31 @@ const Termini = () => {
   // ✅ NEW: Edit mode state
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState({
-    status: "scheduled" // scheduled, completed, cancelled
+    status: "scheduled", // scheduled, completed, cancelled
+    service_id: null,    // ✅ NEW: For SPA service selection
+    service_name: ""     // ✅ NEW: Display name
   });
+  
+  // ✅ NEW: SPA services list for dropdown
+  const [spaServices, setSpaServices] = useState([]);
+  const [savingEdit, setSavingEdit] = useState(false);
+  
+  // ✅ Load SPA services on mount
+  useEffect(() => {
+    const loadSpaServices = async () => {
+      try {
+        const response = await fetch(`${API_BASE}/api/spa/services`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("📦 Loaded SPA services:", data.length);
+          setSpaServices(data);
+        }
+      } catch (err) {
+        console.error("❌ Failed to load SPA services:", err);
+      }
+    };
+    loadSpaServices();
+  }, []);
 
   // Calculate date range based on view mode
   const getDateRange = useCallback(() => {
