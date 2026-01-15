@@ -777,7 +777,7 @@ const Termini = () => {
             {isEditing ? (
               /* ✅ EDIT MODE */
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {/* Usluga field - read-only, prepopulated */}
+                {/* Usluga field - DROPDOWN for SPA, read-only for massage */}
                 <div>
                   <label style={{ 
                     display: "block", 
@@ -788,16 +788,51 @@ const Termini = () => {
                   }}>
                     Usluga
                   </label>
-                  <div style={{
-                    padding: "0.75rem",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(212, 175, 55, 0.3)",
-                    borderRadius: "8px",
-                    color: "#f5f2e8",
-                    fontSize: "0.95rem"
-                  }}>
-                    {serviceDisplayLabel}
-                  </div>
+                  {getType(selectedEvent) === "spa" ? (
+                    /* ✅ SPA: Editable dropdown */
+                    <select
+                      value={editFormData.service_id || ""}
+                      onChange={(e) => {
+                        const newServiceId = e.target.value;
+                        const selectedSvc = spaServices.find(s => s.id === newServiceId);
+                        setEditFormData(prev => ({
+                          ...prev,
+                          service_id: newServiceId,
+                          service_name: selectedSvc?.name || prev.service_name
+                        }));
+                      }}
+                      style={{
+                        width: "100%",
+                        padding: "0.75rem",
+                        background: "#2a2a2a",
+                        border: "1px solid #d4af37",
+                        borderRadius: "8px",
+                        color: "#f5f2e8",
+                        fontSize: "0.95rem",
+                        cursor: "pointer",
+                        outline: "none"
+                      }}
+                    >
+                      <option value="">-- Izaberite uslugu --</option>
+                      {spaServices.map(svc => (
+                        <option key={svc.id} value={svc.id}>
+                          {svc.name} {svc.price ? `(${Number(svc.price).toLocaleString('sr-RS')} RSD)` : ''}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    /* ✅ MASAŽE/PAROVI: Read-only (NE DIRATI) */
+                    <div style={{
+                      padding: "0.75rem",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(212, 175, 55, 0.3)",
+                      borderRadius: "8px",
+                      color: "#f5f2e8",
+                      fontSize: "0.95rem"
+                    }}>
+                      {serviceDisplayLabel}
+                    </div>
+                  )}
                 </div>
 
                 {/* Klijent field - read-only */}
