@@ -57,6 +57,13 @@ const s = (v) => (typeof v === "string" ? v.trim() : v);
 
 // Get event type
 function getType(row) {
+  // ✅ FIX: Properly detect SPA appointments
+  if (row.type === "spa" || row.spa_category || row.category?.toLowerCase?.()?.includes("spa")) {
+    return "spa";
+  }
+  if (row.is_couples_booking || row.type === "couple" || row.category?.toLowerCase?.()?.includes("couple")) {
+    return "couple";
+  }
   return row.type || row.appointment_type || row.source || "massage";
 }
 
