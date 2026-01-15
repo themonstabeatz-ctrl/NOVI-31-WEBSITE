@@ -221,7 +221,8 @@ const Home = ({ lang }) => {
           <p className="pim-quote-text">{translate("quoteText")}</p>
           <p className="pim-quote-author">{translate("quoteAuthor")}</p>
           <Button asChild className="pim-quote-button">
-            <Link to="/contact">{translate("reserveOnline")}</Link>
+            {/* ZADATAK 2: Vodi na Masaže stranicu */}
+            <Link to="/massage">{translate("reserveOnline")}</Link>
           </Button>
         </div>
       </section>
