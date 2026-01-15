@@ -30,6 +30,7 @@ function App() {
       <BackendHealthCheck>
       <LanguageProvider>
         <BrowserRouter>
+          <ScrollManager />
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
