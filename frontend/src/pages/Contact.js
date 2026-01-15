@@ -992,7 +992,7 @@ const Contact = () => {
           total_original: quotePricing?.original_total || spaBookingMeta.totalPrice || 0,
           
           // ✅ Language for backend email template
-          language: formData.lang || language || 'sr'
+          lang: formData.lang || language || 'sr'
         };
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
@@ -1126,7 +1126,7 @@ const Contact = () => {
           total_original: quotePricing?.original_total || spaBookingMeta?.originalPrice || spaBookingMeta?.totalPrice || 0,
           
           // ✅ Language for backend email template
-          language: formData.lang || language || 'sr'
+          lang: formData.lang || language || 'sr'
         };
 
         console.log("📦 SPA appointment payload:", payload);
@@ -1464,7 +1464,7 @@ const Contact = () => {
             notes: notesText,
             
             // ✅ Language for backend email template (from couplesData or fallback)
-            language: couplesBookingData.lang || formData.lang || language || 'sr'
+            lang: couplesBookingData.lang || formData.lang || language || 'sr'
           };
           
           // ✅ DEBUG LOG
