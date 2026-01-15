@@ -1356,7 +1356,7 @@ const Spa = () => {
   };
 
   return (
-    <div className="spa-page">
+    <div className="spa-page" id="top">
       <Helmet>
         <title>SPA Paketi - Bua Luang Thai Spa</title>
         <meta name="description" content="Ekskluzivni SPA tretmani sa body scrub, body wrap i aromaterapijom" />
