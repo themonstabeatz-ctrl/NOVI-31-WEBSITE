@@ -26,41 +26,38 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - ❌ Do not use process.env for backend URL
 - ❌ Do not add client-side price calculations
 - ❌ Do not modify discount endpoints from client
-- ❌ Do not hardcode prices (must come from backend)
+- ❌ Do not hardcode prices
 
 ## Completed Features
 
+### 2025-01-15: SPA Edit Modal - Service Dropdown Active
+- ✅ SPA appointments now have ACTIVE dropdown for "Usluga" field
+- ✅ Loaded 22 SPA services from `/api/spa/services`
+- ✅ Dropdown shows service name + price (e.g., "Deep Renewal Ritual (11.600 RSD)")
+- ✅ MASAŽE/PAROVI remain read-only (NOT touched)
+- ⚠️ Backend limitation: PATCH not supported for SPA appointments (405)
+
 ### 2025-01-15: Regular Massage Pricing in Booking Message
-- ✅ Added pricing params to Massage.js navigate (originalPrice, finalPrice, discountPercent, hasDiscount)
-- ✅ Contact.js now displays pricing in "Poruka" field for regular massages
-- ✅ WITH discount: Shows "Popust: -X%", "Originalna cena: X RSD", "Cena sa popustom: Y RSD"
-- ✅ WITHOUT discount: Shows "Cena: X RSD"
-- ✅ Multilingual labels (SR, EN, RU, TH)
-- ✅ Couples/SPA booking NOT touched
+- ✅ Massage.js sends pricing params (originalPrice, finalPrice, discountPercent)
+- ✅ Contact.js displays pricing in "Poruka" field
 
 ### 2025-01-09: SPA "Usluga" Display Fix in Edit Modal
-- ✅ Fixed `parseNotesSpa()` to support multiple notes formats
-- ✅ SPA Edit modal now shows package name + duration
+- ✅ Fixed `parseNotesSpa()` for multiple formats
+- ✅ SPA Edit modal shows package name + duration
 
 ### 2025-01-09: "Uredi termin" Modal UI Enhancement
 - ✅ Added Edit button (pencil icon)
-- ✅ Status dropdown full-width and visible
+- ✅ Status dropdown full-width
 
 ### 2025-01-08: Romantic Cards Discount Display Fix
-- ✅ Removed all hardcoded fallback values from Spa.js
-- ✅ Romantic cards use quote response data exclusively
+- ✅ Removed hardcoded fallbacks from Spa.js
 
 ### 2025-01-08: API Hard-Lock Migration
-- ✅ Migrated API_BASE to `price-analyzer-8`
-- ✅ Added Object.freeze() + runtime guard
+- ✅ Migrated to `price-analyzer-8`
 
-### Previous Sessions
-- ✅ Full localization (SR, EN, RU, TH)
-- ✅ SPA booking with discount display
-- ✅ Massage page with duration selection
-- ✅ Couples massage with localized dropdowns
-- ✅ Contact form with detailed booking messages
-- ✅ Termini (Appointments) admin view
+## Known Backend Limitations
+- `/api/spa/appointments/{id}` does not support PATCH/PUT (returns 405)
+- Only DELETE is allowed for SPA appointments
 
 ## Backlog
 
@@ -68,16 +65,15 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - Email template customization (paused by user)
 
 ### P2 - Low Priority  
-- Lazy loading images in Spa.js, Massage.js, Gallery.js
+- Lazy loading images
 
 ### Future
 - CEO Dashboard with analytics
-- Mobile application consideration
+- Mobile application
 
 ## Key Files
 - `/app/frontend/src/config/api.js` - API configuration (CRITICAL)
-- `/app/frontend/src/index.js` - Runtime guard
-- `/app/frontend/src/pages/Massage.js` - Massage bookings with pricing params
-- `/app/frontend/src/pages/Contact.js` - Booking form with pricing display
-- `/app/frontend/src/pages/Termini.js` - Appointments view with edit modal
+- `/app/frontend/src/pages/Termini.js` - Edit modal with SPA service dropdown
+- `/app/frontend/src/pages/Massage.js` - Massage bookings
+- `/app/frontend/src/pages/Contact.js` - Booking form
 - `/app/frontend/src/pages/Spa.js` - SPA packages
