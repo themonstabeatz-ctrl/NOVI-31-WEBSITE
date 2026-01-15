@@ -802,27 +802,6 @@ const Termini = () => {
         
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
-          
-          // ✅ Check if it's method not allowed - backend limitation
-          if (response.status === 405) {
-            console.warn("⚠️ Backend does not support PATCH for this appointment type");
-            
-            // ✅ Still trigger print with current data (even if save failed)
-            const mergedAppointment = { 
-              ...selectedEvent, 
-              service_name: editFormData.service_name,
-              status: editFormData.status
-            };
-            
-            setIsEditing(false);
-            
-            // Show message but still print
-            console.log("🖨️ Triggering print despite backend limitation");
-            printAppointment(mergedAppointment);
-            
-            return;
-          }
-          
           throw new Error(errorData.detail || `HTTP ${response.status}`);
         }
         
