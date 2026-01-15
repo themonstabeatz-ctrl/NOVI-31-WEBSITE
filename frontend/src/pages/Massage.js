@@ -1063,8 +1063,9 @@ const Massage = () => {
           <p className="cta-subtitle">{translate("massageCtaSubtitle")}</p>
           <div className="cta-buttons">
             {/* ZADATAK 1: Uklonjen dugme "Rezervišite sada" - ostavljen samo "Pogledajte SPA tretmane" */}
+            {/* SCROLL-TO-TOP: Navigacija na /spa#top za automatski scroll na vrh */}
             <Button asChild variant="outline" size="lg" className="cta-button-secondary">
-              <Link to="/spa">{translate("massageCtaButtonSecondary")}</Link>
+              <Link to="/spa#top">{translate("massageCtaButtonSecondary")}</Link>
             </Button>
           </div>
         </div>
