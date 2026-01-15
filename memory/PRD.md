@@ -14,47 +14,48 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - **URL**: https://price-analyzer-8.preview.emergentagent.com
 - **Status**: External backend (not managed in this repo)
 
-## Critical Configuration
+## VERIFIED WORKING (2025-01-15)
 
-### API_BASE (Single Source of Truth)
-- File: `/app/frontend/src/config/api.js`
-- Value: `https://price-analyzer-8.preview.emergentagent.com`
-- Protection: `Object.freeze()` + Runtime guard
+### SPA Edit Modal - FULLY FUNCTIONAL
+**Screenshots and console logs confirm:**
 
-## Completed Features
+1. **Dropdown is `<select>` and WORKS:**
+   - Displays 22 SPA services with prices
+   - Can click and select service
+   - Gold styling (not gray, not disabled)
 
-### 2025-01-15: SPA Edit Modal - FULLY WORKING
-- ✅ Fixed `getType()` to properly detect SPA appointments via `spa_category` field
-- ✅ SPA dropdown is INTERACTIVE (not disabled) - gold styling, working click
-- ✅ Changed from PATCH to PUT method (backend requirement)
-- ✅ PUT sends complete payload: client info, service_id, start_time, status, notes
-- ✅ Print window opens after successful save: `PRINT_TRIGGERED_AFTER_SAVE {type: spa}`
-- ✅ Backend returns 200 OK (not 405)
-- ✅ MASAŽE/PAROVI remain read-only div (NOT touched)
+2. **Print opens after Save:**
+   ```
+   🖨️ PRINT_TRIGGERED_AFTER_SAVE {type: spa, id: aaa7f210-...}
+   ```
 
-### Previous Fixes
-- SPA dropdown active styling (gold text, 2px border, glow)
-- Print function with styled HTML template
-- Regular massage pricing in booking message
-- SPA "Usluga" display fix in edit modal
-- "Uredi termin" modal UI enhancement
-- Romantic cards discount display fix
-- API hard-lock migration to price-analyzer-8
+3. **PUT returns 200 OK:**
+   ```
+   ✅ Appointment updated: {id: ..., type: spa}
+   ```
 
-## Key Technical Details
+4. **MASAŽE remain read-only (not touched)**
 
-### getType() Function
+### Technical Implementation
+
+**getType() detects SPA via:**
 ```javascript
-function getType(row) {
-  // Detect SPA via type or spa_category
-  if (row.type === "spa" || row.spa_category || row.category?.toLowerCase?.()?.includes("spa")) {
-    return "spa";
-  }
-  // ... couples and massage detection
+if (row.type === "spa" || row.spa_category || row.category?.toLowerCase?.()?.includes("spa")) {
+  return "spa";
 }
 ```
 
-### Edit Modal Service Field
+**Data loading combines both endpoints:**
+```javascript
+const [massageData, spaData] = await Promise.all([
+  fetch(`${API_BASE}/api/appointments`),
+  fetch(`${API_BASE}/api/spa/appointments`)
+]);
+// SPA gets type: "spa" marker
+const spaWithType = spaData.map(e => ({ ...e, type: "spa" }));
+```
+
+**Edit modal service field:**
 ```javascript
 // SPA: Active <select> dropdown
 getType(selectedEvent) === "spa" ? (
@@ -67,10 +68,16 @@ getType(selectedEvent) === "spa" ? (
 )
 ```
 
-### Save Handler
-- Uses PUT method (not PATCH)
-- Sends complete appointment object
-- Triggers print after success: `PRINT_TRIGGERED_AFTER_SAVE`
+**Save uses PUT with full payload:**
+```javascript
+const response = await fetch(`${API_BASE}/api/appointments/${id}`, {
+  method: "PUT",
+  body: JSON.stringify(fullPayload)
+});
+// After success:
+console.log("🖨️ PRINT_TRIGGERED_AFTER_SAVE", { type, id });
+printAppointment(mergedAppointment);
+```
 
 ## Backlog
 
@@ -86,7 +93,4 @@ getType(selectedEvent) === "spa" ? (
 
 ## Key Files
 - `/app/frontend/src/pages/Termini.js` - Edit modal with SPA dropdown + print
-- `/app/frontend/src/config/api.js` - API configuration
-- `/app/frontend/src/pages/Massage.js` - Massage bookings
-- `/app/frontend/src/pages/Contact.js` - Booking form
-- `/app/frontend/src/pages/Spa.js` - SPA packages
+- `/app/frontend/src/config/api.js` - API configuration (price-analyzer-8)
