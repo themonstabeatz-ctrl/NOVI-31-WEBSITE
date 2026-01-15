@@ -619,10 +619,59 @@ const Contact = () => {
           'th': 'นาที'
         }[lang] || 'min';
         
+        // ✅ NEW 2025-01-09: Pricing labels for regular massages
+        const priceLabel = {
+          'sr': 'Cena',
+          'en': 'Price',
+          'ru': 'Цена',
+          'th': 'ราคา'
+        }[lang] || 'Cena';
+        
+        const discountLabel = {
+          'sr': 'Popust',
+          'en': 'Discount',
+          'ru': 'Скидка',
+          'th': 'ส่วนลด'
+        }[lang] || 'Popust';
+        
+        const originalPriceLabel = {
+          'sr': 'Originalna cena',
+          'en': 'Original price',
+          'ru': 'Исходная цена',
+          'th': 'ราคาเดิม'
+        }[lang] || 'Originalna cena';
+        
+        const discountedPriceLabel = {
+          'sr': 'Cena sa popustom',
+          'en': 'Price with discount',
+          'ru': 'Цена со скидкой',
+          'th': 'ราคาหลังหักส่วนลด'
+        }[lang] || 'Cena sa popustom';
+        
+        // ✅ NEW 2025-01-09: Get pricing from URL params
+        const originalPrice = parseInt(searchParams.get('originalPrice') || '0', 10);
+        const finalPrice = parseInt(searchParams.get('finalPrice') || '0', 10);
+        const discountPercent = parseInt(searchParams.get('discountPercent') || '0', 10);
+        const hasDiscount = searchParams.get('hasDiscount') === 'true';
+        
+        // Helper to format price
+        const formatPrice = (n) => new Intl.NumberFormat('sr-RS').format(Math.round(Number(n)));
+        
         message = `${translate('youSelected')} ${decodeURIComponent(localizedName)}\n\n`;
         
         if (durationFromUrl) {
           message += `${durationLabel}: ${durationFromUrl} ${minLabel}\n`;
+        }
+        
+        // ✅ NEW 2025-01-09: Add pricing info to message
+        if (hasDiscount && discountPercent > 0 && originalPrice > 0) {
+          message += `\n${discountLabel}: -${discountPercent}%\n`;
+          message += `${originalPriceLabel}: ${formatPrice(originalPrice)} RSD\n`;
+          message += `${discountedPriceLabel}: ${formatPrice(finalPrice)} RSD\n`;
+        } else if (finalPrice > 0) {
+          message += `\n${priceLabel}: ${formatPrice(finalPrice)} RSD\n`;
+        } else if (originalPrice > 0) {
+          message += `\n${priceLabel}: ${formatPrice(originalPrice)} RSD\n`;
         }
         
         if (localizedDesc) {
@@ -635,6 +684,7 @@ const Contact = () => {
         
         console.log('📝 Detailed localized massage message generated');
         console.log('📝 Language:', lang);
+        console.log('📝 Pricing:', { originalPrice, finalPrice, discountPercent, hasDiscount });
       } else {
         // Fallback to simple message
         message = `${translate('youSelected')} ${translatedService}`;
