@@ -11,8 +11,34 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - **API Lock**: Hard-locked to `price-analyzer-8` backend
 
 ### Backend  
-- **URL**: https://spabook-upgrade.preview.emergentagent.com
+- **URL**: https://price-analyzer-8.preview.emergentagent.com
 - **Status**: External backend (not managed in this repo)
+
+## LATEST UPDATE (2025-01-15)
+
+### ✅ API_BASE Consolidated - Single Source of Truth
+**Completed:** Full API URL consolidation to ensure `spabook-upgrade` frontend uses ONLY `price-analyzer-8` backend.
+
+**Changes:**
+1. `/app/frontend/src/config/api.js` - Line 26: `API_BASE = "https://price-analyzer-8.preview.emergentagent.com"`
+2. `/app/frontend/src/index.js` - Line 8: Runtime guard validates API_BASE
+3. `/app/frontend/.env` - Updated REACT_APP_BACKEND_URL
+4. Removed all references to old URLs (spabook-upgrade as API base, spa-booking-site-1, etc.)
+
+**Proof (Console Logs):**
+```
+🔐 LOCKED FRONTEND = https://spabook-upgrade.preview.emergentagent.com
+🔐 LOCKED API_BASE = https://price-analyzer-8.preview.emergentagent.com
+✅ API_BASE verified = https://price-analyzer-8.preview.emergentagent.com
+✅ Backend healthy
+```
+
+**Network Requests Verified:**
+- GET /api/spa/cards → price-analyzer-8 ✅
+- GET /api/spa/services → price-analyzer-8 ✅  
+- POST /api/spa/quote → price-analyzer-8 ✅
+- GET /api/appointments → price-analyzer-8 ✅
+- GET /api/spa/appointments → price-analyzer-8 ✅
 
 ## VERIFIED WORKING (2025-01-15)
 
