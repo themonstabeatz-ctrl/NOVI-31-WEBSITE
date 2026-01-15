@@ -990,6 +990,9 @@ const Contact = () => {
           // ✅ SAMO ORIGINALNA CENA - backend računa popust!
           // NE SLATI final_price ili discount_percentage
           total_original: quotePricing?.original_total || spaBookingMeta.totalPrice || 0,
+          
+          // ✅ Language for backend email template
+          language: formData.lang || language || 'sr'
         };
         
         console.log("📦 SPA SPECIAL COUPLE payload:", payload);
