@@ -404,7 +404,12 @@ const Massage = () => {
       localizedName: localizedName,
       localizedDesc: localizedDesc,
       localizedBenefits: localizedBenefits,
-      duration: String(durationNum)
+      duration: String(durationNum),
+      // ✅ NEW 2025-01-09: Pricing info for detailed booking message
+      originalPrice: String(originalPrice),
+      finalPrice: String(finalPrice),
+      discountPercent: String(discountPercent),
+      hasDiscount: String(hasDiscount)
     });
     
     console.log('📍 Navigating to /contact with params:', params.toString());
@@ -413,6 +418,7 @@ const Massage = () => {
     console.log('📍 Language:', currentLanguage);
     console.log('📍 Duration (number):', durationNum);
     console.log('📍 Localized Name:', localizedName);
+    console.log('📍 Pricing:', { originalPrice, finalPrice, discountPercent, hasDiscount });
     
     navigate(`/contact?${params.toString()}`);
   };
