@@ -1457,8 +1457,8 @@ const Contact = () => {
             // ✅ notes za debug
             notes: notesText,
             
-            // ✅ Language for backend (from couplesData or fallback)
-            lang: couplesBookingData.lang || formData.lang || language || 'sr'
+            // ✅ Language for backend email template (from couplesData or fallback)
+            language: couplesBookingData.lang || formData.lang || language || 'sr'
           };
           
           // ✅ DEBUG LOG
@@ -1503,7 +1503,7 @@ const Contact = () => {
             
             // Notes
             notes: formData.message || "",
-            lang: formData.lang || language || 'sr'  // ✅ Standardized language field
+            language: formData.lang || language || 'sr'  // ✅ Language for backend email template
           };
           
           // ✅ ISPRAVNO prema backendu recepcije - obične masaže koriste /api/appointments
