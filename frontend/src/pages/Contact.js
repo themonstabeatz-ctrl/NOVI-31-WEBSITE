@@ -1124,6 +1124,9 @@ const Contact = () => {
           // ✅ SAMO ORIGINALNA CENA - backend računa popust!
           // Prioritet: quotePricing (od API quote) > spaBookingMeta (od URL params) > 0
           total_original: quotePricing?.original_total || spaBookingMeta?.originalPrice || spaBookingMeta?.totalPrice || 0,
+          
+          // ✅ Language for backend email template
+          language: formData.lang || language || 'sr'
         };
 
         console.log("📦 SPA appointment payload:", payload);
