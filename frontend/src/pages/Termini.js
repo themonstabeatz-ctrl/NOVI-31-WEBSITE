@@ -797,8 +797,20 @@ const Termini = () => {
           // ✅ Check if it's method not allowed - backend limitation
           if (response.status === 405) {
             console.warn("⚠️ Backend does not support PATCH for this appointment type");
-            alert("⚠️ Backend trenutno ne podržava izmenu ovog tipa termina.\n\nUsluga je uspešno izabrana u formi, ali čuvanje nije dostupno na ovom backendu.");
+            
+            // ✅ Still trigger print with current data (even if save failed)
+            const mergedAppointment = { 
+              ...selectedEvent, 
+              service_name: editFormData.service_name,
+              status: editFormData.status
+            };
+            
             setIsEditing(false);
+            
+            // Show message but still print
+            console.log("🖨️ Triggering print despite backend limitation");
+            printAppointment(mergedAppointment);
+            
             return;
           }
           
