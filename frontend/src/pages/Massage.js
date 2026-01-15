@@ -825,7 +825,7 @@ const Massage = () => {
   ];
 
   return (
-    <div className="massage-container">
+    <div id="masaze" className="massage-container" style={{ scrollMarginTop: '80px' }}>
       {/* SEO Meta Tags */}
       <Helmet>
         <title>Thai Masaže Beograd | Cenovnik & Online Rezervacija - Bua Luang Spa</title>
