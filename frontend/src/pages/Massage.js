@@ -358,6 +358,7 @@ const Massage = () => {
   // Handle booking button click - navigate to Contact form
   // ✅ FIX: serviceName must be Serbian name (for backend), durationMinutes must be NUMBER
   // ✅ NEW: Pass serviceKey, lang, localizedName, description, benefits for detailed message
+  // ✅ NEW 2025-01-09: Pass pricing info (originalPrice, finalPrice, discount) for detailed booking message
   const handleBookClick = (serviceName, durationMinutes, serviceKey) => {
     // Ensure duration is a number
     const durationNum = typeof durationMinutes === 'number' ? durationMinutes : parseInt(durationMinutes, 10) || 60;
@@ -366,6 +367,17 @@ const Massage = () => {
     
     // Get localized service data from translations
     const t = translations[currentLanguage] || translations['sr'];
+    
+    // ✅ NEW: Get pricing info from API data
+    const massageDetails = getMassageDetails(serviceKey, serviceName);
+    const originalPrice = massageDetails?.originalPrice 
+      ? parseInt(String(massageDetails.originalPrice).replace(/[^\d]/g, ''), 10) || 0 
+      : 0;
+    const finalPrice = massageDetails?.price 
+      ? parseInt(String(massageDetails.price).replace(/[^\d]/g, ''), 10) || 0 
+      : 0;
+    const discountPercent = massageDetails?.discount || 0;
+    const hasDiscount = discountPercent > 0 && originalPrice > finalPrice;
     
     // Map serviceKey to translation keys
     const translationKeyMap = {
