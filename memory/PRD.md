@@ -19,50 +19,66 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 ### API_BASE (Single Source of Truth)
 - File: `/app/frontend/src/config/api.js`
 - Value: `https://price-analyzer-8.preview.emergentagent.com`
-- Protection: `Object.freeze()` + Runtime guard in `index.js`
-
-### Forbidden Actions
-- ❌ Do not change API_BASE
-- ❌ Do not use process.env for backend URL
-- ❌ Do not add client-side price calculations
-- ❌ Do not modify discount endpoints from client
-- ❌ Do not hardcode prices
+- Protection: `Object.freeze()` + Runtime guard
 
 ## Completed Features
 
+### 2025-01-15: SPA Edit Modal - Active Dropdown + Print
+- ✅ SPA dropdown now has ACTIVE styling (gold text, 2px gold border, glow effect)
+- ✅ No gray/disabled appearance for SPA service dropdown
+- ✅ Print dialog opens after Save (same as massage)
+- ✅ Print includes: service name, duration, client info, pricing
+- ✅ MASAŽE/PAROVI remain read-only div (NOT touched)
+
 ### 2025-01-15: SPA Edit Modal - Service Dropdown Active
-- ✅ SPA appointments now have ACTIVE dropdown for "Usluga" field
+- ✅ SPA appointments have active dropdown for "Usluga" field
 - ✅ Loaded 22 SPA services from `/api/spa/services`
-- ✅ Dropdown shows service name + price (e.g., "Deep Renewal Ritual (11.600 RSD)")
-- ✅ MASAŽE/PAROVI remain read-only (NOT touched)
-- ⚠️ Backend limitation: PATCH not supported for SPA appointments (405)
 
 ### 2025-01-15: Regular Massage Pricing in Booking Message
-- ✅ Massage.js sends pricing params (originalPrice, finalPrice, discountPercent)
+- ✅ Massage.js sends pricing params
 - ✅ Contact.js displays pricing in "Poruka" field
 
-### 2025-01-09: SPA "Usluga" Display Fix in Edit Modal
-- ✅ Fixed `parseNotesSpa()` for multiple formats
-- ✅ SPA Edit modal shows package name + duration
+### Previous Sessions
+- ✅ SPA "Usluga" display fix in edit modal
+- ✅ "Uredi termin" modal UI enhancement
+- ✅ Romantic cards discount display fix
+- ✅ API hard-lock migration
+- ✅ Full localization (SR, EN, RU, TH)
+- ✅ SPA/Massage booking flows
+- ✅ Couples massage with localized dropdowns
+- ✅ Termini (Appointments) admin view
 
-### 2025-01-09: "Uredi termin" Modal UI Enhancement
-- ✅ Added Edit button (pencil icon)
-- ✅ Status dropdown full-width
+## Key Technical Details
 
-### 2025-01-08: Romantic Cards Discount Display Fix
-- ✅ Removed hardcoded fallbacks from Spa.js
+### Edit Modal Service Field Logic
+```javascript
+// SPA: Active dropdown with gold styling
+getType(selectedEvent) === "spa" ? (
+  <select style={{ color: "#d4af37", border: "2px solid #d4af37", ... }}>
+    {spaServices.map(svc => <option>...</option>)}
+  </select>
+) : (
+  // MASAŽE/PAROVI: Read-only div (NOT touched)
+  <div style={{ opacity readonly styling }}>
+    {serviceDisplayLabel}
+  </div>
+)
+```
 
-### 2025-01-08: API Hard-Lock Migration
-- ✅ Migrated to `price-analyzer-8`
+### Print Function
+- Opens new window with styled HTML
+- Includes: badge (SPA/MASAŽA), service, duration, client, pricing
+- Works for both SPA and massage appointments
+- Triggered after successful save or on 405 error (backend limitation)
 
 ## Known Backend Limitations
 - `/api/spa/appointments/{id}` does not support PATCH/PUT (returns 405)
-- Only DELETE is allowed for SPA appointments
+- Print still works despite save limitation
 
 ## Backlog
 
 ### P1 - Upcoming
-- Email template customization (paused by user)
+- Email template customization (paused)
 
 ### P2 - Low Priority  
 - Lazy loading images
@@ -72,8 +88,8 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - Mobile application
 
 ## Key Files
-- `/app/frontend/src/config/api.js` - API configuration (CRITICAL)
-- `/app/frontend/src/pages/Termini.js` - Edit modal with SPA service dropdown
+- `/app/frontend/src/pages/Termini.js` - Edit modal with SPA service dropdown + print function
+- `/app/frontend/src/config/api.js` - API configuration
 - `/app/frontend/src/pages/Massage.js` - Massage bookings
 - `/app/frontend/src/pages/Contact.js` - Booking form
 - `/app/frontend/src/pages/Spa.js` - SPA packages
