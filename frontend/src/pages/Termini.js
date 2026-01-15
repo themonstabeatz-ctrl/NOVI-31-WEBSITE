@@ -620,11 +620,74 @@ const Termini = () => {
       setIsEditing(false);
     };
 
-    // ✅ Handle save (NOTE: just closes modal for now, no backend call per instructions)
-    const handleSaveEdit = () => {
-      console.log("📝 Edit saved (UI only):", editFormData);
-      setIsEditing(false);
-      // NOTE: Not modifying backend per user instructions - just UI display
+    // ✅ Handle save - sends data to backend
+    const handleSaveEdit = async () => {
+      const type = getType(selectedEvent);
+      const isSpa = type === "spa";
+      const appointmentId = selectedEvent.id;
+      
+      if (!appointmentId) {
+        console.error("❌ No appointment ID found");
+        alert("Greška: Nema ID termina");
+        return;
+      }
+      
+      setSavingEdit(true);
+      
+      try {
+        // Build update payload
+        const payload = {
+          status: editFormData.status
+        };
+        
+        // ✅ For SPA, include service_id if changed
+        if (isSpa && editFormData.service_id) {
+          payload.service_id = editFormData.service_id;
+          // Also find service name from spaServices
+          const selectedSvc = spaServices.find(s => s.id === editFormData.service_id);
+          if (selectedSvc) {
+            payload.service_name = selectedSvc.name;
+          }
+        }
+        
+        console.log("📝 Saving edit:", { appointmentId, payload, isSpa });
+        
+        // Determine correct endpoint
+        const endpoint = isSpa 
+          ? `${API_BASE}/api/spa/appointments/${appointmentId}`
+          : `${API_BASE}/api/appointments/${appointmentId}`;
+        
+        const response = await fetch(endpoint, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.detail || `HTTP ${response.status}`);
+        }
+        
+        const updatedAppointment = await response.json();
+        console.log("✅ Appointment updated:", updatedAppointment);
+        
+        // Update local events list
+        setEvents(prev => prev.map(evt => 
+          evt.id === appointmentId ? { ...evt, ...updatedAppointment } : evt
+        ));
+        
+        // Update selected event
+        setSelectedEvent(prev => ({ ...prev, ...updatedAppointment }));
+        
+        setIsEditing(false);
+        alert("✅ Termin uspešno ažuriran!");
+        
+      } catch (err) {
+        console.error("❌ Failed to save:", err);
+        alert(`Greška pri čuvanju: ${err.message}`);
+      } finally {
+        setSavingEdit(false);
+      }
     };
 
     // ✅ Close modal entirely
