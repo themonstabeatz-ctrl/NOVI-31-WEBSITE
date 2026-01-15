@@ -799,7 +799,7 @@ const Termini = () => {
                     Usluga
                   </label>
                   {getType(selectedEvent) === "spa" ? (
-                    /* ✅ SPA: Editable dropdown */
+                    /* ✅ SPA: Editable dropdown - ACTIVE STYLING (not gray!) */
                     <select
                       value={editFormData.service_id || ""}
                       onChange={(e) => {
@@ -814,18 +814,21 @@ const Termini = () => {
                       style={{
                         width: "100%",
                         padding: "0.75rem",
-                        background: "#2a2a2a",
-                        border: "1px solid #d4af37",
+                        background: "#1a1a1a",
+                        border: "2px solid #d4af37",
                         borderRadius: "8px",
-                        color: "#f5f2e8",
+                        color: "#d4af37",
                         fontSize: "0.95rem",
+                        fontWeight: "600",
                         cursor: "pointer",
-                        outline: "none"
+                        outline: "none",
+                        opacity: 1,
+                        boxShadow: "0 0 8px rgba(212, 175, 55, 0.3)"
                       }}
                     >
-                      <option value="">-- Izaberite uslugu --</option>
+                      <option value="" style={{ background: "#1a1a1a", color: "#888" }}>-- Izaberite uslugu --</option>
                       {spaServices.map(svc => (
-                        <option key={svc.id} value={svc.id}>
+                        <option key={svc.id} value={svc.id} style={{ background: "#1a1a1a", color: "#f5f2e8" }}>
                           {svc.name} {svc.price ? `(${Number(svc.price).toLocaleString('sr-RS')} RSD)` : ''}
                         </option>
                       ))}
