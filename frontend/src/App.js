@@ -22,6 +22,7 @@ import Gallery from "./pages/Gallery";
 import Termini from "./pages/Termini";
 import { Toaster } from "./components/ui/sonner";
 import BackendHealthCheck from "./components/BackendHealthCheck";
+import ScrollManager from "./components/ScrollManager";
 
 function App() {
   return (
