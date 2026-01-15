@@ -813,11 +813,15 @@ const Termini = () => {
           evt.id === appointmentId ? { ...evt, ...updatedAppointment } : evt
         ));
         
-        // Update selected event
-        setSelectedEvent(prev => ({ ...prev, ...updatedAppointment }));
+        // Update selected event with merged data
+        const mergedAppointment = { ...selectedEvent, ...updatedAppointment };
+        setSelectedEvent(mergedAppointment);
         
         setIsEditing(false);
-        alert("✅ Termin uspešno ažuriran!");
+        
+        // ✅ Trigger print dialog - works for both SPA and MASAŽE
+        console.log("🖨️ Triggering print for appointment");
+        printAppointment(mergedAppointment);
         
       } catch (err) {
         console.error("❌ Failed to save:", err);
