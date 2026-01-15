@@ -584,7 +584,34 @@ const Termini = () => {
 
     // ✅ Handle opening edit mode
     const handleEditClick = () => {
-      setEditFormData({ status: currentStatus });
+      const type = getType(selectedEvent);
+      const isSpa = type === "spa";
+      
+      // ✅ Extract service_id for SPA appointments
+      let serviceId = null;
+      let serviceName = title;
+      
+      if (isSpa) {
+        // SPA: Try to get service_id from various fields
+        serviceId = selectedEvent.service_id 
+          || selectedEvent.card_id 
+          || (selectedEvent.services_snapshot?.[0]?.id)
+          || (selectedEvent.service_ids?.[0])
+          || null;
+        
+        serviceName = selectedEvent.service_name 
+          || selectedEvent.card_title 
+          || selectedEvent.services_snapshot?.[0]?.name
+          || title;
+          
+        console.log("📝 Opening SPA edit:", { serviceId, serviceName, type });
+      }
+      
+      setEditFormData({ 
+        status: currentStatus,
+        service_id: serviceId,
+        service_name: serviceName
+      });
       setIsEditing(true);
     };
 
