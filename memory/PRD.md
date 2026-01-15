@@ -16,6 +16,29 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 
 ## LATEST UPDATE (2025-01-15)
 
+### ✅ Scroll-to-Top Navigation
+**Completed:** "Pogledajte SPA tretmane" dugme na /massage stranici sada vodi na vrh SPA stranice.
+
+**Implementation:**
+1. Kreiran `ScrollManager.js` komponenta - globalni scroll handler
+2. Dodat u `App.js` unutar BrowserRouter
+3. Link promenjen sa `/spa` na `/spa#top`
+4. Dodat `id="top"` na root element Spa.js
+
+**Files Changed:**
+- `/app/frontend/src/components/ScrollManager.js` (NEW)
+- `/app/frontend/src/App.js` - Added ScrollManager import and component
+- `/app/frontend/src/pages/Massage.js` - Link changed to `/spa#top`
+- `/app/frontend/src/pages/Spa.js` - Added `id="top"`
+
+**E2E Test Results:**
+```
+✅ Click on "Pogledajte SPA tretmane" button
+✅ URL: /spa#top
+✅ Scroll Y: 0 (top of page)
+✅ Console: 📍 ScrollManager: Scrolled to TOP (hash=#top)
+```
+
 ### ✅ API_BASE Consolidated - Single Source of Truth
 **Completed:** Full API URL consolidation to ensure `spabook-upgrade` frontend uses ONLY `price-analyzer-8` backend.
 
