@@ -819,8 +819,9 @@ const Termini = () => {
         
         setIsEditing(false);
         
-        // ✅ Trigger print dialog - works for both SPA and MASAŽE
-        console.log("🖨️ Triggering print for appointment");
+        // ✅ PRINT_TRIGGERED_AFTER_SAVE - works for both SPA and MASAŽE
+        const appointmentType = getType(mergedAppointment);
+        console.log("🖨️ PRINT_TRIGGERED_AFTER_SAVE", { type: appointmentType, id: appointmentId });
         printAppointment(mergedAppointment);
         
       } catch (err) {
