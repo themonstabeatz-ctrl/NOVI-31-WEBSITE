@@ -923,19 +923,22 @@ const Termini = () => {
                 }}>
                   <Button
                     onClick={handleSaveEdit}
+                    disabled={savingEdit}
                     style={{
                       flex: 1,
                       minWidth: "120px",
-                      background: "#d4af37",
+                      background: savingEdit ? "#666" : "#d4af37",
                       color: "#1a1a1a",
                       border: "none",
-                      fontWeight: "bold"
+                      fontWeight: "bold",
+                      cursor: savingEdit ? "wait" : "pointer"
                     }}
                   >
-                    Sačuvaj
+                    {savingEdit ? "Čuvanje..." : "Sačuvaj"}
                   </Button>
                   <Button
                     onClick={handleCancelEdit}
+                    disabled={savingEdit}
                     variant="outline"
                     style={{
                       flex: 1,
