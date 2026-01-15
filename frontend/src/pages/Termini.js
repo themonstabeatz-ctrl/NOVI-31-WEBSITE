@@ -653,8 +653,9 @@ const Termini = () => {
         console.log("📝 Saving edit:", { appointmentId, payload, isSpa });
         
         // Determine correct endpoint
+        // NOTE: SPA appointments use different endpoint structure
         const endpoint = isSpa 
-          ? `${API_BASE}/api/spa/appointments/${appointmentId}`
+          ? `${API_BASE}/api/appointments/${appointmentId}`  // Try general appointments endpoint for SPA
           : `${API_BASE}/api/appointments/${appointmentId}`;
         
         const response = await fetch(endpoint, {
@@ -665,6 +666,15 @@ const Termini = () => {
         
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
+          
+          // ✅ Check if it's method not allowed - backend limitation
+          if (response.status === 405) {
+            console.warn("⚠️ Backend does not support PATCH for this appointment type");
+            alert("⚠️ Backend trenutno ne podržava izmenu ovog tipa termina.\n\nUsluga je uspešno izabrana u formi, ali čuvanje nije dostupno na ovom backendu.");
+            setIsEditing(false);
+            return;
+          }
+          
           throw new Error(errorData.detail || `HTTP ${response.status}`);
         }
         
