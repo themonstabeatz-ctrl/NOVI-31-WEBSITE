@@ -1062,9 +1062,7 @@ const Massage = () => {
           <h2 className="cta-title">{translate("massageCtaTitle")}</h2>
           <p className="cta-subtitle">{translate("massageCtaSubtitle")}</p>
           <div className="cta-buttons">
-            <Button asChild size="lg" className="cta-button-primary">
-              <Link to="/contact">{translate("massageCtaButtonPrimary")}</Link>
-            </Button>
+            {/* ZADATAK 1: Uklonjen dugme "Rezervišite sada" - ostavljen samo "Pogledajte SPA tretmane" */}
             <Button asChild variant="outline" size="lg" className="cta-button-secondary">
               <Link to="/spa">{translate("massageCtaButtonSecondary")}</Link>
             </Button>
