@@ -30,21 +30,25 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 
 ## Completed Features
 
+### 2025-01-15: Regular Massage Pricing in Booking Message
+- ✅ Added pricing params to Massage.js navigate (originalPrice, finalPrice, discountPercent, hasDiscount)
+- ✅ Contact.js now displays pricing in "Poruka" field for regular massages
+- ✅ WITH discount: Shows "Popust: -X%", "Originalna cena: X RSD", "Cena sa popustom: Y RSD"
+- ✅ WITHOUT discount: Shows "Cena: X RSD"
+- ✅ Multilingual labels (SR, EN, RU, TH)
+- ✅ Couples/SPA booking NOT touched
+
 ### 2025-01-09: SPA "Usluga" Display Fix in Edit Modal
-- ✅ Fixed `parseNotesSpa()` to support multiple notes formats (SPA paket:, Paket:, emoji prefix)
-- ✅ Fixed `getTitle()` to prefer notes-parsed title for SPA when backend returns generic "SPA Tretman"
-- ✅ SPA Edit modal now shows: "Romantični piling paket za parove - 210 min"
-- ✅ MASAŽE and PAROVI logic NOT touched
+- ✅ Fixed `parseNotesSpa()` to support multiple notes formats
+- ✅ SPA Edit modal now shows package name + duration
 
 ### 2025-01-09: "Uredi termin" Modal UI Enhancement
-- ✅ Added Edit button (pencil icon) to appointment modal
-- ✅ Usluga field shows service name + duration
-- ✅ Status dropdown is full-width and fully visible
-- ✅ Works for both MASAŽA and SPA appointments
+- ✅ Added Edit button (pencil icon)
+- ✅ Status dropdown full-width and visible
 
 ### 2025-01-08: Romantic Cards Discount Display Fix
-- ✅ Removed all hardcoded `25000` fallback values from Spa.js
-- ✅ Romantic cards now use quote response data exclusively
+- ✅ Removed all hardcoded fallback values from Spa.js
+- ✅ Romantic cards use quote response data exclusively
 
 ### 2025-01-08: API Hard-Lock Migration
 - ✅ Migrated API_BASE to `price-analyzer-8`
@@ -57,18 +61,6 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 - ✅ Couples massage with localized dropdowns
 - ✅ Contact form with detailed booking messages
 - ✅ Termini (Appointments) admin view
-
-## Key Technical Details
-
-### SPA Title Parsing (Termini.js)
-```javascript
-// parseNotesSpa supports:
-// Format 1: "SPA paket: Silky Body Ritual"
-// Format 2: "Paket: Romantični paket za parove"
-// Format 3: "🌹 Romantični SPA paket za parove" (first line with emoji)
-
-// getTitle for SPA prefers notes-parsed title when backend returns generic name
-```
 
 ## Backlog
 
@@ -85,6 +77,7 @@ Full-featured booking website for "Bua Luang" massage and spa business with mult
 ## Key Files
 - `/app/frontend/src/config/api.js` - API configuration (CRITICAL)
 - `/app/frontend/src/index.js` - Runtime guard
-- `/app/frontend/src/pages/Termini.js` - Appointments view with edit modal + SPA title parsing
+- `/app/frontend/src/pages/Massage.js` - Massage bookings with pricing params
+- `/app/frontend/src/pages/Contact.js` - Booking form with pricing display
+- `/app/frontend/src/pages/Termini.js` - Appointments view with edit modal
 - `/app/frontend/src/pages/Spa.js` - SPA packages
-- `/app/frontend/src/pages/Contact.js` - Booking form
