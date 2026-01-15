@@ -620,6 +620,133 @@ const Termini = () => {
       setIsEditing(false);
     };
 
+    // ✅ Print appointment helper - works for SPA and MASAŽE
+    const printAppointment = (appointmentData) => {
+      const type = getType(appointmentData);
+      const serviceName = appointmentData.service_name 
+        || appointmentData.card_title 
+        || appointmentData.services_snapshot?.[0]?.name
+        || getTitle(appointmentData);
+      const durationMin = getDurationMin(appointmentData);
+      const clientName = appointmentData.client 
+        ? `${appointmentData.client.first_name || ""} ${appointmentData.client.last_name || ""}`.trim()
+        : `${appointmentData.client_first_name || ""} ${appointmentData.client_last_name || ""}`.trim();
+      const phone = appointmentData.client?.phone || appointmentData.client_phone || "";
+      const email = appointmentData.client?.email || appointmentData.client_email || "";
+      const startTime = appointmentData.start_time ? new Date(appointmentData.start_time) : new Date();
+      const pricing = appointmentData.pricing || {};
+      
+      // Build print content
+      const printContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Termin - ${serviceName}</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; max-width: 400px; margin: 0 auto; }
+    .header { text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 15px; margin-bottom: 20px; }
+    .logo { font-size: 24px; font-weight: bold; color: #d4af37; }
+    .subtitle { color: #666; font-size: 12px; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; margin: 10px 0; }
+    .badge-spa { background: rgba(212, 175, 55, 0.2); color: #d4af37; }
+    .badge-massage { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+    .section { margin: 15px 0; }
+    .label { color: #888; font-size: 12px; margin-bottom: 4px; }
+    .value { font-size: 16px; font-weight: 500; }
+    .price-block { background: #f5f5f5; padding: 15px; border-radius: 8px; margin-top: 20px; }
+    .price-row { display: flex; justify-content: space-between; margin: 5px 0; }
+    .price-final { font-size: 20px; font-weight: bold; color: #d4af37; }
+    .strikethrough { text-decoration: line-through; color: #999; }
+    .discount { color: #4ade80; font-weight: bold; }
+    .footer { text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #eee; font-size: 11px; color: #888; }
+    @media print { body { padding: 10px; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🌸 Bua Luang Thai Spa</div>
+    <div class="subtitle">Potvrda termina</div>
+  </div>
+  
+  <div style="text-align: center;">
+    <span class="badge ${type === 'spa' ? 'badge-spa' : 'badge-massage'}">
+      ${type === 'spa' ? 'SPA' : 'MASAŽA'}
+    </span>
+  </div>
+  
+  <div class="section">
+    <div class="label">Usluga</div>
+    <div class="value">${serviceName}</div>
+  </div>
+  
+  <div class="section">
+    <div class="label">Trajanje</div>
+    <div class="value">${durationMin} min</div>
+  </div>
+  
+  <div class="section">
+    <div class="label">Datum i vreme</div>
+    <div class="value">${startTime.toLocaleDateString('sr-RS')} u ${startTime.toLocaleTimeString('sr-RS', { hour: '2-digit', minute: '2-digit' })}</div>
+  </div>
+  
+  <div class="section">
+    <div class="label">Klijent</div>
+    <div class="value">${clientName || 'N/A'}</div>
+  </div>
+  
+  ${phone ? `
+  <div class="section">
+    <div class="label">Telefon</div>
+    <div class="value">${phone}</div>
+  </div>
+  ` : ''}
+  
+  ${email ? `
+  <div class="section">
+    <div class="label">Email</div>
+    <div class="value">${email}</div>
+  </div>
+  ` : ''}
+  
+  <div class="price-block">
+    ${pricing.has_discount ? `
+    <div class="price-row">
+      <span>Originalna cena:</span>
+      <span class="strikethrough">${Number(pricing.original_total || 0).toLocaleString('sr-RS')} RSD</span>
+    </div>
+    <div class="price-row">
+      <span>Popust:</span>
+      <span class="discount">-${pricing.discount_percent || 0}%</span>
+    </div>
+    ` : ''}
+    <div class="price-row">
+      <span>${pricing.has_discount ? 'Za naplatu:' : 'Cena:'}</span>
+      <span class="price-final">${Number(pricing.final_total || pricing.original_total || appointmentData.price || 0).toLocaleString('sr-RS')} RSD</span>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div>Hvala vam na poverenju!</div>
+    <div style="margin-top: 5px;">Bua Luang Thai Spa • Beograd</div>
+  </div>
+</body>
+</html>
+      `;
+      
+      // Open print window
+      const printWindow = window.open('', '_blank', 'width=450,height=600');
+      if (printWindow) {
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        printWindow.focus();
+        setTimeout(() => {
+          printWindow.print();
+        }, 500);
+      } else {
+        alert("Molimo omogućite pop-up prozore za štampanje.");
+      }
+    };
+
     // ✅ Handle save - sends data to backend
     const handleSaveEdit = async () => {
       const type = getType(selectedEvent);
