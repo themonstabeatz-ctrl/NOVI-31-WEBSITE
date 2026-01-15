@@ -769,31 +769,33 @@ const Termini = () => {
       setSavingEdit(true);
       
       try {
-        // Build update payload
+        // Build update payload - PUT requires full object
         const payload = {
-          status: editFormData.status
+          client_first_name: selectedEvent.client_first_name || selectedEvent.client?.first_name || "",
+          client_last_name: selectedEvent.client_last_name || selectedEvent.client?.last_name || "",
+          client_phone: selectedEvent.client_phone || selectedEvent.client?.phone || "",
+          client_email: selectedEvent.client_email || selectedEvent.client?.email || "",
+          service_id: editFormData.service_id || selectedEvent.service_id || selectedEvent.card_id,
+          start_time: selectedEvent.start_time,
+          status: editFormData.status,
+          notes: selectedEvent.notes || ""
         };
         
-        // ✅ For SPA, include service_id if changed
+        // ✅ For SPA, update service_name if changed
         if (isSpa && editFormData.service_id) {
-          payload.service_id = editFormData.service_id;
-          // Also find service name from spaServices
           const selectedSvc = spaServices.find(s => s.id === editFormData.service_id);
           if (selectedSvc) {
             payload.service_name = selectedSvc.name;
           }
         }
         
-        console.log("📝 Saving edit:", { appointmentId, payload, isSpa });
+        console.log("📝 Saving edit (PUT):", { appointmentId, payload, isSpa });
         
-        // Determine correct endpoint
-        // NOTE: SPA appointments use different endpoint structure
-        const endpoint = isSpa 
-          ? `${API_BASE}/api/appointments/${appointmentId}`  // Try general appointments endpoint for SPA
-          : `${API_BASE}/api/appointments/${appointmentId}`;
+        // Use PUT method (backend requires full object)
+        const endpoint = `${API_BASE}/api/appointments/${appointmentId}`;
         
         const response = await fetch(endpoint, {
-          method: "PATCH",
+          method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
