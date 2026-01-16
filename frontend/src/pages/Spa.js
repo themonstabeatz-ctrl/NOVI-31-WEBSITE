@@ -1493,7 +1493,7 @@ const Spa = () => {
                       marginBottom: '0.2rem',
                       fontWeight: '600'
                     }}>
-                      Uključeno:
+                      {translate("spaIncluded")}
                     </h4>
                     <ul style={{
                       listStyle: 'none',
@@ -1894,7 +1894,7 @@ const Spa = () => {
                       marginBottom: '0.2rem',
                       fontWeight: '600'
                     }}>
-                      Uključeno:
+                      {translate("spaIncluded")}
                     </h4>
                     <ul style={{
                       listStyle: 'none',
