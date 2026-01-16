@@ -533,13 +533,10 @@ export const translations = {
     spaSteamBath: "Parno kupatilo",
     spaJacuzzi: "Đakuzi",
     
-    // Herbal Packages
-    spaHerbalAroma: "Herbal & Aroma Ritual",
-    spaHerbalAromaDesc: "Aromatična biljka masaža sa toplim kompresama",
-    spaHerbalHotStone: "Herbal & Hot Stone Ritual",
-    spaHerbalHotStoneDesc: "Topli kamenovi i biljne komprese za dubinsko opuštanje",
-    spaHerbalThai: "Herbal Thai Ritual",
-    spaHerbalThaiDesc: "Tradicionalna tajlandska masaža sa biljnim kompresama",
+    // SPA Zone extra labels
+    spaZoneIncluded: "SPA ZONA (15 min uključeno u cenu)",
+    spaSelectOption: "Izaberite SPA opciju:",
+    spaNone: "Bez SPA zone",
   },
   
   en: {
