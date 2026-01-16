@@ -2057,6 +2057,11 @@ export const translations = {
     spaZoneOnlyDesc: "การใช้โซนสปาเฉพาะโดยไม่มีพิธีกรรม",
     spaSelectZoneButton: "เลือกโซน",
     
+    // Herbal package descriptions
+    spaSilkyHerbalDesc: "การดูแลร่างกายด้วยสครับและการผ่อนคลายลึกพร้อมอโรมาและประคบสมุนไพรร้อน",
+    spaThaiHerbalCompressDesc: "การรักษาแบบไทยดั้งเดิมด้วยประคบสมุนไพรร้อนเพื่อผ่อนคลายกล้ามเนื้อและจิตใจ",
+    spaAromaStoneDesc: "การผสมผสานอโรมาเทอราพีและหินร้อนเพื่อการผ่อนคลายร่างกายอย่างลึกและคลายความตึงเครียด",
+    
     // Special Packages Section
     spaSpecialPackagesTitle: "แพ็คเกจสปาสำหรับโอกาสพิเศษ",
     spaForTwoPeople: "สำหรับสองคน",
