@@ -2277,7 +2277,7 @@ const Spa = () => {
                     fontSize: '0.9rem',
                     lineHeight: '1.5'
                   }}>
-                    {SPA_ZONE_ONLY.description}
+                    {translatePackageDescription(SPA_ZONE_ONLY.description)}
                   </p>
 
                   {/* Zone Options in Horizontal Layout */}
