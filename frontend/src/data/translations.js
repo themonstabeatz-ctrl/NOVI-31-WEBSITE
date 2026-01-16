@@ -1883,6 +1883,10 @@ export const translations = {
     spaSteamBath15: "ห้องอบไอน้ำ – 15 นาที",
     spaJacuzzi15: "จากุซซี่ – 15 นาที",
     
+    // SPA Variant Options (face massage)
+    spaNoFaceMassage: "ไม่มีนวดหน้า",
+    spaWithFaceMassage: "นวดหน้าระหว่างการพันตัว (Body Wrap)",
+    
     // Herbal Packages
     spaHerbalAroma: "พิธีกรรมสมุนไพร & อโรมา",
     spaHerbalAromaDesc: "นวดอโรมาสมุนไพรพร้อมประคบร้อน",
