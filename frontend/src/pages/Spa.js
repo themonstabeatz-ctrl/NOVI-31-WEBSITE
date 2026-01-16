@@ -1716,7 +1716,7 @@ const Spa = () => {
                       <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
                       {packageQuotes[pkg.id]?.has_discount ? (
                         <>
-                          <strong style={{ color: '#d4af37' }}>Originalna cena:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaOriginalPrice")}</strong>{' '}
                           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
                             {formatNumber(packageQuotes[pkg.id].original_total)} RSD
                           </span>
@@ -2060,7 +2060,7 @@ const Spa = () => {
                       <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
                       {packageQuotes[pkg.id]?.has_discount ? (
                         <>
-                          <strong style={{ color: '#d4af37' }}>Originalna cena:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaOriginalPrice")}</strong>{' '}
                           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
                             {formatNumber(packageQuotes[pkg.id].original_total)} RSD
                           </span>
@@ -2348,7 +2348,7 @@ const Spa = () => {
                       <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {packageQuotes[SPA_ZONE_ONLY.id]?.total_duration || formatNumber(totalMinutes)} min<br />
                       {packageQuotes[SPA_ZONE_ONLY.id]?.has_discount ? (
                         <>
-                          <strong style={{ color: '#d4af37' }}>Originalna cena:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaOriginalPrice")}</strong>{' '}
                           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
                             {formatNumber(packageQuotes[SPA_ZONE_ONLY.id].original_total)} RSD
                           </span>
