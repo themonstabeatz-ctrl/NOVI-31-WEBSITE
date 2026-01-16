@@ -1036,6 +1036,11 @@ export const translations = {
     spaBacheloretteDesc: "An exclusive evening designed for celebration, elegance and pure feminine energy. A bachelorette party at Bua Luang combines premium massages, a complete SPA experience, a cocktail master, a festive cake, and DJ Monsta Beatz leading the evening party. Privacy, luxury and good vibes – all in one place.",
     spaContactForInfo: "Contact us",
     spaChampagneFruit: "Champagne and fresh fruit",
+    spaBachMassage: "Massage of choice for each guest – 60 min",
+    spaBachSpaZone: "Full SPA zone (sauna, steam bath and jacuzzi) – private use",
+    spaBachCocktail: "Professional cocktail master",
+    spaBachCake: "Festive cake",
+    spaBachDJ: "DJ Monsta Beatz – atmosphere all evening",
   },
   
   ru: {
