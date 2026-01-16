@@ -1536,6 +1536,24 @@ export const translations = {
     spaHerbalSubtitle: "Традиционные тайские травяные компрессные процедуры с включенной СПА зоной",
     spaSelectZone: "Выберите СПА зону:",
     
+    // Booking Message Template
+    msgRomanticSpaCouple: "🌹 Романтический СПА пакет для пар",
+    msgPackage: "Пакет:",
+    msgForPersons: "Для: 2 персон",
+    msgSpecialSpaPackage: "Особый СПА пакет:",
+    msgSpaZoneOnly: "СПА Зона (только зоны, без ритуала)",
+    msgSelectedZones: "Выбранные зоны:",
+    msgSpaPackage: "СПА пакет:",
+    msgSpaZoneIncluded: "СПА зона (включено):",
+    msgSpaZone: "СПА зона:",
+    msgVariant: "Вариант:",
+    msgWithFaceMassage: "С массажем лица (+3 000 RSD)",
+    msgWithoutFaceMassage: "Без массажа лица",
+    msgDiscount: "Скидка:",
+    msgSauna: "Сауна:",
+    msgSteamBath: "Паровая баня:",
+    msgJacuzzi: "Джакузи:",
+    
     // SPA Package Names
     spaSilkyBodyRitual: "Ритуал Шёлковое Тело",
     spaSilkyBodyDesc: "Шелковистая кожа и полное расслабление",
