@@ -981,6 +981,10 @@ export const translations = {
     spaSteamBath15: "Steam Bath – 15 min",
     spaJacuzzi15: "Jacuzzi – 15 min",
     
+    // SPA Variant Options (face massage)
+    spaNoFaceMassage: "Without face massage",
+    spaWithFaceMassage: "With face massage (during body wrap)",
+    
     // Herbal Packages
     spaHerbalAroma: "Herbal & Aroma Ritual",
     spaHerbalAromaDesc: "Aromatic herbal massage with warm compresses",
