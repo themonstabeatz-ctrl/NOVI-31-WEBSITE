@@ -567,6 +567,10 @@ export const translations = {
     spaBachCocktail: "Profesionalni koktel majstor",
     spaBachCake: "Svečana torta",
     spaBachDJ: "DJ Monsta Beatz – atmosfera cele večeri",
+    spaBachCocktailShow: "Koktel majstor (live cocktail show & signature pića)",
+    spaBachCatering: "Klasični ketering",
+    spaBachDecoration: "Dekoracija prostora i intiman Bua Luang ambijent",
+    spaBachCallButton: "Pozovite: 062 625 500",
   },
   
   en: {
