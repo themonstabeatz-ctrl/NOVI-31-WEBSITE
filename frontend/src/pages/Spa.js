@@ -444,6 +444,45 @@ const Spa = () => {
     return description;
   };
 
+  // Helper function to translate "included" items in package cards
+  const translateIncludedItem = (item) => {
+    const itemMap = {
+      // Body Scrub
+      "Body scrub – 30 min": "spaBodyScrub30",
+      "Body scrub – 60 min": "spaBodyScrub60",
+      // Body Wrap
+      "Body wrap – 60 min": "spaBodyWrap60",
+      // Aroma Massage
+      "Aroma masaža celog tela – 60 min": "spaAromaMassage60",
+      "Aroma masaža celog tela – 90 min": "spaAromaMassage90",
+      // Herbal Massages
+      "Aroma masaža sa toplim biljnim kompresama – 90 min": "spaAromaHerbal90",
+      "Thai masaža sa toplim biljnim kompresama – 90 min": "spaThaiHerbal90",
+      // Aroma Stone
+      "Aromaterapija & topli kamen – 90 min": "spaAromaStone90",
+      // Face Massage
+      "Masaža lica – 60 min": "spaFaceMassage60",
+      // SPA Zone items
+      "Sauna – 30 min": "spaSauna30",
+      "Parno kupatilo – 30 min": "spaSteamBath30",
+      "Đakuzi – 30 min": "spaJacuzzi30",
+    };
+    
+    const translationKey = itemMap[item];
+    return translationKey ? translate(translationKey) : item;
+  };
+
+  // Helper function to translate SPA zone labels
+  const translateZoneLabel = (label) => {
+    const zoneMap = {
+      "Sauna": "spaSauna",
+      "Parno kupatilo": "spaSteamBath",
+      "Jacuzzi": "spaJacuzzi",
+    };
+    const translationKey = zoneMap[label];
+    return translationKey ? translate(translationKey) : label;
+  };
+
   // Detect mobile for video optimization
   useEffect(() => {
     const checkMobile = () => {
