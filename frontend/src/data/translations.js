@@ -2006,5 +2006,6 @@ export const translations = {
     spaBachCatering: "บริการจัดเลี้ยงแบบคลาสสิก",
     spaBachDecoration: "ตกแต่งพื้นที่และบรรยากาศ Bua Luang อันอบอุ่น",
     spaBachCallButton: "โทร: 062 625 500",
+    spaBachDisclaimer: "แพ็คเกจจัดขึ้นตามข้อตกลงและจำนวนแขกเท่านั้น",
   }
 };
