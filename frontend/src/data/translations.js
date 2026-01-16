@@ -2052,6 +2052,24 @@ export const translations = {
     spaHerbalSubtitle: "ทรีตเมนต์ประคบสมุนไพรไทยดั้งเดิมพร้อมโซนสปา",
     spaSelectZone: "เลือกโซนสปา:",
     
+    // Booking Message Template
+    msgRomanticSpaCouple: "🌹 แพ็คเกจสปาโรแมนติกสำหรับคู่รัก",
+    msgPackage: "แพ็คเกจ:",
+    msgForPersons: "สำหรับ: 2 คน",
+    msgSpecialSpaPackage: "แพ็คเกจสปาพิเศษ:",
+    msgSpaZoneOnly: "โซนสปา (เฉพาะโซน ไม่มีพิธีกรรม)",
+    msgSelectedZones: "โซนที่เลือก:",
+    msgSpaPackage: "แพ็คเกจสปา:",
+    msgSpaZoneIncluded: "โซนสปา (รวม):",
+    msgSpaZone: "โซนสปา:",
+    msgVariant: "รูปแบบ:",
+    msgWithFaceMassage: "พร้อมนวดหน้า (+3,000 RSD)",
+    msgWithoutFaceMassage: "ไม่มีนวดหน้า",
+    msgDiscount: "ส่วนลด:",
+    msgSauna: "ซาวน่า:",
+    msgSteamBath: "ห้องอบไอน้ำ:",
+    msgJacuzzi: "จากุซซี่:",
+    
     // SPA Package Names
     spaSilkyBodyRitual: "พิธีกรรมผิวไหม",
     spaSilkyBodyDesc: "ผิวไหมเนียนและผ่อนคลายอย่างสมบูรณ์",
