@@ -514,6 +514,24 @@ export const translations = {
     spaHerbalSubtitle: "Tradicionalni tajlandski Herbal Compress tretmani sa uključenom SPA zonom",
     spaSelectZone: "Izaberite SPA zonu:",
     
+    // Booking Message Template
+    msgRomanticSpaCouple: "🌹 Romantični SPA paket za parove",
+    msgPackage: "Paket:",
+    msgForPersons: "Za: 2 osobe",
+    msgSpecialSpaPackage: "Poseban SPA paket:",
+    msgSpaZoneOnly: "SPA Zona (samo zone, bez rituala)",
+    msgSelectedZones: "Izabrane zone:",
+    msgSpaPackage: "SPA paket:",
+    msgSpaZoneIncluded: "SPA zona (uključeno):",
+    msgSpaZone: "SPA zona:",
+    msgVariant: "Varijanta:",
+    msgWithFaceMassage: "Sa masažom lica (+3.000 RSD)",
+    msgWithoutFaceMassage: "Bez masaže lica",
+    msgDiscount: "Popust:",
+    msgSauna: "Sauna:",
+    msgSteamBath: "Parno kupatilo:",
+    msgJacuzzi: "Jacuzzi:",
+    
     // SPA Package Names
     spaSilkyBodyRitual: "Silky Body Ritual",
     spaSilkyBodyDesc: "Svilenkasta koža i potpuno opuštanje",
