@@ -2823,7 +2823,7 @@ const Spa = () => {
                   marginBottom: '0.4rem',
                   fontWeight: 'bold'
                 }}>
-                  Romantični piling paket za parove
+                  {translate("spaRomanticPeelingPackage")}
                 </h3>
                 
                 {/* Kratak opis */}
@@ -2833,7 +2833,7 @@ const Spa = () => {
                   fontSize: '0.85rem',
                   lineHeight: '1.4'
                 }}>
-                  Ekskluzivan SPA paket sa pilingom tela, aromaterapijom i SPA zonom za dvoje.
+                  {translate("spaRomanticPeelingDesc")}
                 </p>
                 
                 {/* Uključeno - lista */}
