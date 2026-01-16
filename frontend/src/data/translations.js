@@ -571,6 +571,7 @@ export const translations = {
     spaBachCatering: "Klasični ketering",
     spaBachDecoration: "Dekoracija prostora i intiman Bua Luang ambijent",
     spaBachCallButton: "Pozovite: 062 625 500",
+    spaBachDisclaimer: "Paket se organizuje isključivo po dogovoru i broju gošći.",
   },
   
   en: {
