@@ -3141,7 +3141,7 @@ const Spa = () => {
                     e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
                   }}
                 >
-                  POZOVITE
+                  {translate("spaBachCallButton")}
                 </a>
                 
                 {/* Tekst ispod dugmeta */}
@@ -3153,7 +3153,7 @@ const Spa = () => {
                   lineHeight: '1.4',
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
-                  Paket se organizuje isključivo po dogovoru i broju gošći.
+                  {translate("spaBachDisclaimer")}
                 </p>
               </div>
             </CardContent>
