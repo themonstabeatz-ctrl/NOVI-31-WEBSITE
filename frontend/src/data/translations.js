@@ -1504,6 +1504,20 @@ export const translations = {
     spaAromaMassage: "Арома массаж",
     spaFaceMassage: "Массаж лица",
     
+    // SPA Included items with duration (for package cards)
+    spaBodyScrub30: "Пилинг тела – 30 мин",
+    spaBodyScrub60: "Пилинг тела – 60 мин",
+    spaBodyWrap60: "Обертывание – 60 мин",
+    spaAromaMassage60: "Арома массаж всего тела – 60 мин",
+    spaAromaMassage90: "Арома массаж всего тела – 90 мин",
+    spaAromaHerbal90: "Арома массаж с горячими травяными компрессами – 90 мин",
+    spaThaiHerbal90: "Тайский массаж с горячими травяными компрессами – 90 мин",
+    spaAromaStone90: "Ароматерапия & горячие камни – 90 мин",
+    spaFaceMassage60: "Массаж лица – 60 мин",
+    spaSauna30: "Сауна – 30 мин",
+    spaSteamBath30: "Паровая баня – 30 мин",
+    spaJacuzzi30: "Джакузи – 30 мин",
+    
     // SPA Zone Options
     spaSauna: "Сауна",
     spaSteamBath: "Паровая баня",
