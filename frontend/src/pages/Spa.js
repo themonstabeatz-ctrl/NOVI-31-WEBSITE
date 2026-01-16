@@ -420,6 +420,19 @@ const Spa = () => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
+  // Helper function to translate variant labels
+  const translateVariantLabel = (label) => {
+    // Map known Serbian labels to translation keys
+    if (label === "Bez masaže lica") {
+      return translate("spaNoFaceMassage");
+    }
+    if (label === "Sa masažom lica (tokom body wrap-a)") {
+      return translate("spaWithFaceMassage");
+    }
+    // Return original if no translation found
+    return label;
+  };
+
   // Detect mobile for video optimization
   useEffect(() => {
     const checkMobile = () => {
