@@ -1866,6 +1866,10 @@ export const translations = {
     spaSauna: "ซาวน่า",
     spaSteamBath: "ห้องอบไอน้ำ",
     spaJacuzzi: "จากุซซี่",
+    spaIncludedLabel: "(รวม)",
+    spaSauna15: "ซาวน่า – 15 นาที",
+    spaSteamBath15: "ห้องอบไอน้ำ – 15 นาที",
+    spaJacuzzi15: "จากุซซี่ – 15 นาที",
     
     // Herbal Packages
     spaHerbalAroma: "พิธีกรรมสมุนไพร & อโรมา",
