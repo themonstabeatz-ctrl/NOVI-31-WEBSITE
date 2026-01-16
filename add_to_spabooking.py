@@ -2,7 +2,7 @@ import httpx
 import asyncio
 
 async def add_aroma_duboko_tkivo_to_spabooking():
-    booking_api = "https://spabook-upgrade.preview.emergentagent.com"
+    booking_api = "https://multi-lang-spa-1.preview.emergentagent.com"
     
     # New services to add
     new_services = [

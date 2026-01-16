@@ -74,7 +74,7 @@ Test ALL SPA card bookings to verify:
 9. ✅ **Romantični piling paket za parove** - 15% discount (ID: 065c1ccb-4431-4930-81cf-4ca29c8343c2)
 
 ## Test Configuration
-- Backend API: https://spabook-upgrade.preview.emergentagent.com ✅
+- Backend API: https://multi-lang-spa-1.preview.emergentagent.com ✅
 - Test Email: grujovicsavatije@gmail.com ✅
 - All bookings created for: 2025-12-30 at 11:00 ✅
 

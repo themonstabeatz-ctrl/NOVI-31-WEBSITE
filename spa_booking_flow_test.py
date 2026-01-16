@@ -9,7 +9,7 @@ Test Cases from Review Request:
 3. Verify frontend hard lock
 4. Verify Contact.js handles notify_status
 
-Backend URL: https://spabook-upgrade.preview.emergentagent.com
+Backend URL: https://multi-lang-spa-1.preview.emergentagent.com
 """
 
 import requests
@@ -20,7 +20,7 @@ import sys
 from datetime import datetime
 
 # Test Configuration
-BACKEND_URL = "https://spabook-upgrade.preview.emergentagent.com"
+BACKEND_URL = "https://multi-lang-spa-1.preview.emergentagent.com"
 TIMEOUT = 30
 
 class Colors:

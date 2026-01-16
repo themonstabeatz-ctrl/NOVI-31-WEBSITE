@@ -5,7 +5,7 @@ Testing ALL 9 SPA card bookings to verify emails are sent correctly with proper 
 
 Test Configuration:
 - Frontend URL: http://localhost:3000/spa
-- Backend API: https://spabook-upgrade.preview.emergentagent.com
+- Backend API: https://multi-lang-spa-1.preview.emergentagent.com
 - Test Email: grujovicsavatije@gmail.com
 
 Cards to Test (9 total):
@@ -26,7 +26,7 @@ import sys
 from datetime import datetime
 
 # Test Configuration
-BACKEND_URL = "https://spabook-upgrade.preview.emergentagent.com"
+BACKEND_URL = "https://multi-lang-spa-1.preview.emergentagent.com"
 TEST_EMAIL = "grujovicsavatije@gmail.com"
 TIMEOUT = 30
 

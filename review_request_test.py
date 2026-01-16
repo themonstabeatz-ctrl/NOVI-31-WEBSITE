@@ -11,7 +11,7 @@ import subprocess
 from datetime import datetime
 
 # Backend URL from review request
-BACKEND_URL = "https://spabook-upgrade.preview.emergentagent.com"
+BACKEND_URL = "https://multi-lang-spa-1.preview.emergentagent.com"
 
 def get_couples_package_120min():
     """

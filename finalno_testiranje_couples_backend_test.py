@@ -11,7 +11,7 @@ from datetime import datetime
 
 # Test configuration
 BACKEND_URL = "http://localhost:8001"
-RECEPCIJA_URL = "https://spabook-upgrade.preview.emergentagent.com"
+RECEPCIJA_URL = "https://multi-lang-spa-1.preview.emergentagent.com"
 
 def test_health_check():
     """Test if backend is accessible"""

@@ -5,7 +5,7 @@ Testing the connection between frontend and reception backend as specified in re
 
 Configuration:
 - Local backend is at: http://localhost:8001
-- Reception backend (external) is at: https://spabook-upgrade.preview.emergentagent.com
+- Reception backend (external) is at: https://multi-lang-spa-1.preview.emergentagent.com
 - Local backend proxies API calls to reception backend
 """
 
@@ -17,7 +17,7 @@ import time
 # URLs from review request
 LOCAL_BACKEND_URL = "http://localhost:8001"
 FRONTEND_PROXY_URL = "http://localhost:3000"
-RECEPTION_BACKEND_URL = "https://spabook-upgrade.preview.emergentagent.com"
+RECEPTION_BACKEND_URL = "https://multi-lang-spa-1.preview.emergentagent.com"
 
 def test_services_api_sync():
     """
