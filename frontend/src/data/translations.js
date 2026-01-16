@@ -537,6 +537,10 @@ export const translations = {
     spaSteamBath15: "Parno kupatilo – 15 min",
     spaJacuzzi15: "Đakuzi – 15 min",
     
+    // SPA Variant Options (face massage)
+    spaNoFaceMassage: "Bez masaže lica",
+    spaWithFaceMassage: "Sa masažom lica (tokom body wrap-a)",
+    
     // SPA Zone extra labels
     spaZoneIncluded: "SPA ZONA (15 min uključeno u cenu)",
     spaSelectOption: "Izaberite SPA opciju:",
