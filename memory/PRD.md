@@ -1,145 +1,75 @@
-# Bua Luang Thai Spa - PRD
+# Bua Luang Thai Spa - Product Requirements Document
 
 ## Original Problem Statement
-Full-featured booking website for "Bua Luang" massage and spa business with multi-language support (Serbian, English, Russian, Thai).
+Multi-language SPA booking application for Thai Spa with frontend synchronized to a specific backend API.
 
-## Core Architecture
+## Current Status: FRONTEND FROZEN 🔒
+- **Frontend URL**: https://multi-lang-spa-1.preview.emergentagent.com/
+- **Backend API**: https://multilingfix.preview.emergentagent.com/
+- **Last Updated**: January 2025
 
-### Frontend
-- **URL**: https://multi-lang-spa-1.preview.emergentagent.com
-- **Tech**: React
-- **API Lock**: Hard-locked to `price-analyzer-8` backend
+## Completed Features ✅
 
-### Backend  
-- **URL**: https://multi-lang-spa-1.preview.emergentagent.com
-- **Status**: External backend (not managed in this repo)
+### API Synchronization (January 2025)
+- API_BASE locked to `multilingfix` backend
+- All old domain references removed
+- Runtime guard in index.js prevents misconfiguration
+- Console logging confirms locked configuration
 
-## LATEST UPDATE (2025-01-15)
+### Multi-language Support
+- Languages: Serbian (SR), English (EN), Russian (RU), Thai (TH)
+- URL-driven language control via `?lang=` parameter
+- Full SPA page UI translation
+- 50+ translation keys in translations.js
 
-### ✅ Scroll-to-Top Navigation
-**Completed:** "Pogledajte SPA tretmane" dugme na /massage stranici sada vodi na vrh SPA stranice.
+### Scroll Management
+- ScrollManager.js component for reliable scroll-to-top
+- Navigation to `/spa#top` forces scroll position to (0,0)
 
-**Implementation:**
-1. Kreiran `ScrollManager.js` komponenta - globalni scroll handler
-2. Dodat u `App.js` unutar BrowserRouter
-3. Link promenjen sa `/spa` na `/spa#top`
-4. Dodat `id="top"` na root element Spa.js
+### Booking System
+- Contact.js sends `lang` parameter in all booking payloads
+- Supports appointments, spa appointments, couple appointments
 
-**Files Changed:**
-- `/app/frontend/src/components/ScrollManager.js` (NEW)
-- `/app/frontend/src/App.js` - Added ScrollManager import and component
-- `/app/frontend/src/pages/Massage.js` - Link changed to `/spa#top`
-- `/app/frontend/src/pages/Spa.js` - Added `id="top"`
+## Architecture
 
-**E2E Test Results:**
 ```
-✅ Click on "Pogledajte SPA tretmane" button
-✅ URL: /spa#top
-✅ Scroll Y: 0 (top of page)
-✅ Console: 📍 ScrollManager: Scrolled to TOP (hash=#top)
-```
-
-### ✅ API_BASE Consolidated - Single Source of Truth
-**Completed:** Full API URL consolidation to ensure `spabook-upgrade` frontend uses ONLY `price-analyzer-8` backend.
-
-**Changes:**
-1. `/app/frontend/src/config/api.js` - Line 26: `API_BASE = "https://multi-lang-spa-1.preview.emergentagent.com"`
-2. `/app/frontend/src/index.js` - Line 8: Runtime guard validates API_BASE
-3. `/app/frontend/.env` - Updated REACT_APP_BACKEND_URL
-4. Removed all references to old URLs (spabook-upgrade as API base, spa-booking-site-1, etc.)
-
-**Proof (Console Logs):**
-```
-🔐 LOCKED FRONTEND = https://multi-lang-spa-1.preview.emergentagent.com
-🔐 LOCKED API_BASE = https://multi-lang-spa-1.preview.emergentagent.com
-✅ API_BASE verified = https://multi-lang-spa-1.preview.emergentagent.com
-✅ Backend healthy
+/app/frontend/src/
+├── config/api.js         # CRITICAL: API_BASE locked to multilingfix
+├── index.js              # Runtime guard for API_BASE
+├── components/
+│   ├── ScrollManager.js  # Scroll-to-top handling
+│   └── BackendHealthCheck.js
+├── context/
+│   └── LanguageContext.js # URL param language control
+├── data/
+│   └── translations.js   # All UI translations
+└── pages/
+    ├── Spa.js            # Main SPA page (fully translated)
+    ├── Contact.js        # Booking with lang parameter
+    └── Termini.js        # Appointments display
 ```
 
-**Network Requests Verified:**
-- GET /api/spa/cards → price-analyzer-8 ✅
-- GET /api/spa/services → price-analyzer-8 ✅  
-- POST /api/spa/quote → price-analyzer-8 ✅
-- GET /api/appointments → price-analyzer-8 ✅
-- GET /api/spa/appointments → price-analyzer-8 ✅
+## API Endpoints (multilingfix backend)
+- `GET /api/health`
+- `GET /api/spa/services`
+- `GET /api/spa/cards`
+- `POST /api/appointments`
+- `POST /api/spa/appointments`
+- `POST /api/appointments/couple`
 
-## VERIFIED WORKING (2025-01-15)
-
-### SPA Edit Modal - FULLY FUNCTIONAL
-**Screenshots and console logs confirm:**
-
-1. **Dropdown is `<select>` and WORKS:**
-   - Displays 22 SPA services with prices
-   - Can click and select service
-   - Gold styling (not gray, not disabled)
-
-2. **Print opens after Save:**
-   ```
-   🖨️ PRINT_TRIGGERED_AFTER_SAVE {type: spa, id: aaa7f210-...}
-   ```
-
-3. **PUT returns 200 OK:**
-   ```
-   ✅ Appointment updated: {id: ..., type: spa}
-   ```
-
-4. **MASAŽE remain read-only (not touched)**
-
-### Technical Implementation
-
-**getType() detects SPA via:**
-```javascript
-if (row.type === "spa" || row.spa_category || row.category?.toLowerCase?.()?.includes("spa")) {
-  return "spa";
-}
-```
-
-**Data loading combines both endpoints:**
-```javascript
-const [massageData, spaData] = await Promise.all([
-  fetch(`${API_BASE}/api/appointments`),
-  fetch(`${API_BASE}/api/spa/appointments`)
-]);
-// SPA gets type: "spa" marker
-const spaWithType = spaData.map(e => ({ ...e, type: "spa" }));
-```
-
-**Edit modal service field:**
-```javascript
-// SPA: Active <select> dropdown
-getType(selectedEvent) === "spa" ? (
-  <select style={{ color: "#d4af37", border: "2px solid #d4af37" }}>
-    {spaServices.map(svc => <option>...</option>)}
-  </select>
-) : (
-  // MASAŽE: Read-only <div>
-  <div>{serviceDisplayLabel}</div>
-)
-```
-
-**Save uses PUT with full payload:**
-```javascript
-const response = await fetch(`${API_BASE}/api/appointments/${id}`, {
-  method: "PUT",
-  body: JSON.stringify(fullPayload)
-});
-// After success:
-console.log("🖨️ PRINT_TRIGGERED_AFTER_SAVE", { type, id });
-printAppointment(mergedAppointment);
-```
+## Known Limitations
+- Backend-driven content (service names) remains untranslated on frontend
+- Admin UI bugs are out of scope (separate codebase)
 
 ## Backlog
 
-### P1 - Upcoming
-- Email template customization (paused)
+### P1 - High Priority
+- Email template customization (BACKEND TASK)
 
-### P2 - Low Priority  
-- Lazy loading images
+### P2 - Medium Priority
+- Lazy loading images for Spa.js, Massage.js, Gallery.js
 
-### Future
+### P3 - Future
 - CEO Dashboard with analytics
+- Backend content translation
 - Mobile application
-
-## Key Files
-- `/app/frontend/src/pages/Termini.js` - Edit modal with SPA dropdown + print
-- `/app/frontend/src/config/api.js` - API configuration (price-analyzer-8)
