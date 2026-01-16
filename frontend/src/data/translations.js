@@ -1862,5 +1862,10 @@ export const translations = {
     spaHerbalHotStoneDesc: "หินร้อนและประคบสมุนไพรเพื่อการผ่อนคลายอย่างลึก",
     spaHerbalThai: "พิธีกรรมสมุนไพรไทย",
     spaHerbalThaiDesc: "นวดไทยดั้งเดิมพร้อมประคบสมุนไพร",
+    
+    // SPA Zone extra labels
+    spaZoneIncluded: "โซนสปา (รวม 15 นาที)",
+    spaSelectOption: "เลือกตัวเลือกสปา:",
+    spaNone: "ไม่มีโซนสปา",
   }
 };
