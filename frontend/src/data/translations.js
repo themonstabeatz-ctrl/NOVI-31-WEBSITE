@@ -936,6 +936,49 @@ export const translations = {
     contactInfo: "Contact Information",
     socialMedia: "Social Media",
     copyright: "© 2025 Bua Luang Thai Spa. All rights reserved.",
+    
+    // SPA Page UI Elements
+    spaRitualsTitle: "Luxurious SPA Rituals",
+    spaRitualsSubtitle: "A combination of scrubs, wraps, massages and SPA zone for complete relaxation of body and mind",
+    spaIncluded: "Included:",
+    spaSelectVariant: "Select variant:",
+    spaZoneTitle: "SPA ZONE",
+    spaWithout: "Without",
+    spaTotalDuration: "Total duration:",
+    spaOriginalPrice: "Original price:",
+    spaFinalPrice: "Price to pay:",
+    spaTotalPrice: "Total price:",
+    spaBookButton: "Book Now",
+    spaHerbalTitle: "Herbal Rituals",
+    spaHerbalSubtitle: "Traditional Thai Herbal Compress treatments with included SPA zone",
+    spaSelectZone: "Select SPA zone:",
+    
+    // SPA Package Names
+    spaSilkyBodyRitual: "Silky Body Ritual",
+    spaSilkyBodyDesc: "Silky skin and complete relaxation",
+    spaGentleTouchRitual: "Gentle Touch Ritual",
+    spaGentleTouchDesc: "Gentle touch for deep relaxation",
+    spaDeepRenewalRitual: "Deep Renewal Ritual",
+    spaDeepRenewalDesc: "Deep renewal of body and spirit",
+    
+    // SPA Services in packages
+    spaBodyScrub: "Body Scrub",
+    spaBodyWrap: "Body Wrap",
+    spaAromaMassage: "Aroma Massage",
+    spaFaceMassage: "Face Massage",
+    
+    // SPA Zone Options
+    spaSauna: "Sauna",
+    spaSteamBath: "Steam Bath",
+    spaJacuzzi: "Jacuzzi",
+    
+    // Herbal Packages
+    spaHerbalAroma: "Herbal & Aroma Ritual",
+    spaHerbalAromaDesc: "Aromatic herbal massage with warm compresses",
+    spaHerbalHotStone: "Herbal & Hot Stone Ritual",
+    spaHerbalHotStoneDesc: "Hot stones and herbal compresses for deep relaxation",
+    spaHerbalThai: "Herbal Thai Ritual",
+    spaHerbalThaiDesc: "Traditional Thai massage with herbal compresses",
   },
   
   ru: {
