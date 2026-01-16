@@ -2920,7 +2920,7 @@ const Spa = () => {
                     spaCategory: 'SPA_SPECIAL_COUPLE',
                     spa_package_id: 'ROMANTIC_COUPLE_2',
                     card_id: 'romantic_peeling_couple_package',
-                    spaName: 'Romantični piling paket za parove',
+                    spaName: translate("spaRomanticPeelingPackage"),
                     duration: String(duration),
                     price: String(originalPrice),
                     originalPrice: String(originalPrice),
