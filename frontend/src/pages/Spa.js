@@ -1528,7 +1528,7 @@ const Spa = () => {
                       marginBottom: '0.25rem',
                       fontWeight: '600'
                     }}>
-                      Izaberite varijantu:
+                      {translate("spaSelectVariant")}
                     </h4>
                     {pkg.variants.map((variant) => (
                       <label key={variant.id} style={{
