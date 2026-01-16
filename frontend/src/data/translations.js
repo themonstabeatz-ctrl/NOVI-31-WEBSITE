@@ -1022,6 +1022,7 @@ export const translations = {
     spaSpecialPackagesTitle: "SPA packages for special occasions",
     spaForTwoPeople: "For two people",
     spaRomanticPackage: "Romantic package for couples",
+    spaRomanticPackageDesc: "Couple's aroma massage with SPA zone, champagne and fruit for two.",
     spaRomanticPeelingPackage: "Romantic peeling package for couples",
     spaBacheloretteParty: "Bachelorette Party & Lady Party",
     spaBacheloretteDesc: "An exclusive evening designed for celebration, elegance and pure feminine energy. A bachelorette party at Bua Luang combines premium massages, a complete SPA experience, a cocktail master, a festive cake, and DJ Monsta Beatz leading the evening party. Privacy, luxury and good vibes – all in one place.",
