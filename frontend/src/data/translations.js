@@ -589,7 +589,7 @@ export const translations = {
     spaBachCocktailShow: "Koktel majstor (live cocktail show & signature pića)",
     spaBachCatering: "Klasični ketering",
     spaBachDecoration: "Dekoracija prostora i intiman Bua Luang ambijent",
-    spaBachCallButton: "Pozovite: 062 625 500",
+    spaBachCallButton: "Pozovite",
     spaBachDisclaimer: "Paket se organizuje isključivo po dogovoru i broju gošći.",
   },
   
@@ -1087,7 +1087,7 @@ export const translations = {
     spaBachCocktailShow: "Cocktail master (live cocktail show & signature drinks)",
     spaBachCatering: "Classic catering",
     spaBachDecoration: "Space decoration and intimate Bua Luang ambiance",
-    spaBachCallButton: "Call: 062 625 500",
+    spaBachCallButton: "Call us",
     spaBachDisclaimer: "Package is organized exclusively by agreement and number of guests.",
   },
   
@@ -1583,7 +1583,7 @@ export const translations = {
     spaBachCocktailShow: "Коктейльный мастер (live коктейль шоу и фирменные напитки)",
     spaBachCatering: "Классический кейтеринг",
     spaBachDecoration: "Декорация пространства и интимная атмосфера Bua Luang",
-    spaBachCallButton: "Позвоните: 062 625 500",
+    spaBachCallButton: "Позвоните",
     spaBachDisclaimer: "Пакет организуется исключительно по договоренности и количеству гостей.",
   },
   
@@ -2081,7 +2081,7 @@ export const translations = {
     spaBachCocktailShow: "ปรมาจารย์ค็อกเทล (แสดงสดทำเครื่องดื่มและเครื่องดื่มพิเศษ)",
     spaBachCatering: "บริการจัดเลี้ยงแบบคลาสสิก",
     spaBachDecoration: "ตกแต่งพื้นที่และบรรยากาศ Bua Luang อันอบอุ่น",
-    spaBachCallButton: "โทร: 062 625 500",
+    spaBachCallButton: "โทรหาเรา",
     spaBachDisclaimer: "แพ็คเกจจัดขึ้นตามข้อตกลงและจำนวนแขกเท่านั้น",
   }
 };
