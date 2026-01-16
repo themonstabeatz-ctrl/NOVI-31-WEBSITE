@@ -2756,7 +2756,7 @@ const Spa = () => {
                   e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
                 }}
               >
-                Zakažite
+                {translate("spaBookButton")}
               </button>
               </div>
             </CardContent>
@@ -2995,7 +2995,7 @@ const Spa = () => {
                   e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
                 }}
               >
-                Zakažite
+                {translate("spaBookButton")}
               </button>
               </div>
             </CardContent>
