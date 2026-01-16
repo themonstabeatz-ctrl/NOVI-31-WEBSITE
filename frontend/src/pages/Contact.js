@@ -493,70 +493,70 @@ const Contact = () => {
       
       // ✅ FIX B: Handle coupleSpecial (Romantični paketi za parove)
       if (source === "coupleSpecial" || spaCategory === "SPA_SPECIAL_COUPLE") {
-        messageLines.push(`🌹 Romantični SPA paket za parove`);
-        messageLines.push(`Paket: ${decodeURIComponent(spaName)}`);
-        messageLines.push(`Za: 2 osobe`);
+        messageLines.push(translate("msgRomanticSpaCouple"));
+        messageLines.push(`${translate("msgPackage")} ${decodeURIComponent(spaName)}`);
+        messageLines.push(translate("msgForPersons"));
       } else if (source === "spaSpecial") {
-        messageLines.push(`Poseban SPA paket: ${decodeURIComponent(spaName)}`);
+        messageLines.push(`${translate("msgSpecialSpaPackage")} ${decodeURIComponent(spaName)}`);
       } else if (source === "spaZone") {
         // ✅ SPA ZONE ONLY - show selected zones
-        messageLines.push(`SPA Zona (samo zone, bez rituala)`);
+        messageLines.push(translate("msgSpaZoneOnly"));
         if (selectedSpaZones) {
           const zones = selectedSpaZones.split("|");
-          messageLines.push(`Izabrane zone:`);
+          messageLines.push(translate("msgSelectedZones"));
           zones.forEach(zone => {
             messageLines.push(`  • ${zone}`);
           });
         } else if (spaZoneLabel && spaZoneLabel !== "Bez SPA zona") {
-          messageLines.push(`Izabrane zone: ${spaZoneLabel}`);
+          messageLines.push(`${translate("msgSelectedZones")} ${spaZoneLabel}`);
         }
       } else if (spaCategory === "SPA_HERBAL") {
         // ✅ HERBAL packages - show included SPA zone
-        messageLines.push(`SPA paket: ${decodeURIComponent(spaName)}`);
+        messageLines.push(`${translate("msgSpaPackage")} ${decodeURIComponent(spaName)}`);
         
         // Show included SPA zone (doesn't affect price)
         if (includedSpaZone && includedSpaZone !== "none") {
-          let zoneName = "Bez";
-          if (includedSpaZone === "sauna15") zoneName = "Sauna 15 min";
-          if (includedSpaZone === "steam15") zoneName = "Parno kupatilo 15 min";
-          messageLines.push(`SPA zona (uključeno): ${zoneName}`);
+          let zoneName = translate("spaWithout");
+          if (includedSpaZone === "sauna15") zoneName = translate("spaSauna15");
+          if (includedSpaZone === "steam15") zoneName = translate("spaSteamBath15");
+          messageLines.push(`${translate("msgSpaZoneIncluded")} ${zoneName}`);
         } else {
-          messageLines.push(`SPA zona: Bez`);
+          messageLines.push(`${translate("msgSpaZone")} ${translate("spaWithout")}`);
         }
       } else {
         // Regular SPA Ritual
-        messageLines.push(`SPA paket: ${decodeURIComponent(spaName)}`);
+        messageLines.push(`${translate("msgSpaPackage")} ${decodeURIComponent(spaName)}`);
         
         // Variant (face massage)
         if (variantLabel) {
           const variantText = face 
-            ? `Sa masažom lica (+3.000 RSD)` 
-            : `Bez masaže lica`;
-          messageLines.push(`Varijanta: ${variantText}`);
+            ? translate("msgWithFaceMassage")
+            : translate("msgWithoutFaceMassage");
+          messageLines.push(`${translate("msgVariant")} ${variantText}`);
         }
 
         // SPA Zone breakdown (only for regular rituals, not HERBAL)
         if (saunaMin > 0 || steamMin > 0 || jacuzziMin > 0) {
-          messageLines.push(`SPA zona:`);
-          if (saunaMin > 0) messageLines.push(`  • Sauna: ${saunaMin} min`);
-          if (steamMin > 0) messageLines.push(`  • Parno kupatilo: ${steamMin} min`);
-          if (jacuzziMin > 0) messageLines.push(`  • Jacuzzi: ${jacuzziMin} min`);
+          messageLines.push(`${translate("msgSpaZone")}`);
+          if (saunaMin > 0) messageLines.push(`  • ${translate("msgSauna")} ${saunaMin} min`);
+          if (steamMin > 0) messageLines.push(`  • ${translate("msgSteamBath")} ${steamMin} min`);
+          if (jacuzziMin > 0) messageLines.push(`  • ${translate("msgJacuzzi")} ${jacuzziMin} min`);
         } else if (spaZoneLabel && spaZoneLabel !== "Bez SPA zona") {
-          messageLines.push(`SPA zona: ${spaZoneLabel}`);
+          messageLines.push(`${translate("msgSpaZone")} ${spaZoneLabel}`);
         }
       }
 
       // Totals
       messageLines.push('');
-      messageLines.push(`Ukupno trajanje: ${totalDuration} min`);
+      messageLines.push(`${translate("spaTotalDuration")} ${totalDuration} min`);
       
       // ✅ Show discount pricing for coupleSpecial and other SPA packages
       if (hasDiscount && discountPercent > 0 && finalPrice < originalPrice) {
-        messageLines.push(`Originalna cena: ${formatRsdLocal(originalPrice)} RSD`);
-        messageLines.push(`Popust: -${discountPercent}%`);
-        messageLines.push(`Cena za naplatu: ${formatRsdLocal(finalPrice)} RSD`);
+        messageLines.push(`${translate("spaOriginalPrice")} ${formatRsdLocal(originalPrice)} RSD`);
+        messageLines.push(`${translate("msgDiscount")} -${discountPercent}%`);
+        messageLines.push(`${translate("spaFinalPrice")} ${formatRsdLocal(finalPrice)} RSD`);
       } else {
-        messageLines.push(`Ukupna cena: ${formatRsdLocal(originalPrice || totalPrice)} RSD`);
+        messageLines.push(`${translate("spaTotalPrice")} ${formatRsdLocal(originalPrice || totalPrice)} RSD`);
       }
 
       const message = messageLines.join('\n');
