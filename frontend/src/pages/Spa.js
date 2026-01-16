@@ -1729,7 +1729,7 @@ const Spa = () => {
                         </>
                       ) : (
                         <>
-                          <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaTotalPrice")}</strong>{' '}
                           <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
                         </>
                       )}
@@ -2073,7 +2073,7 @@ const Spa = () => {
                         </>
                       ) : (
                         <>
-                          <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaTotalPrice")}</strong>{' '}
                           <span>{formatNumber(packageQuotes[pkg.id]?.original_total || totalPrice)} RSD</span>
                         </>
                       )}
@@ -2361,7 +2361,7 @@ const Spa = () => {
                         </>
                       ) : (
                         <>
-                          <strong style={{ color: '#d4af37' }}>Ukupna cena:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaTotalPrice")}</strong>{' '}
                           <span>{formatNumber(packageQuotes[SPA_ZONE_ONLY.id]?.original_total || totalPrice)} RSD</span>
                         </>
                       )}
