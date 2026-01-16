@@ -976,6 +976,11 @@ export const translations = {
     spaHerbalHotStoneDesc: "Hot stones and herbal compresses for deep relaxation",
     spaHerbalThai: "Herbal Thai Ritual",
     spaHerbalThaiDesc: "Traditional Thai massage with herbal compresses",
+    
+    // SPA Zone extra labels
+    spaZoneIncluded: "SPA ZONE (15 min included)",
+    spaSelectOption: "Select SPA option:",
+    spaNone: "Without SPA zone",
   },
   
   ru: {
