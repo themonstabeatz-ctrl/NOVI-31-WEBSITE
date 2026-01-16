@@ -2660,7 +2660,7 @@ const Spa = () => {
                     fontWeight: '600',
                     textShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
                   }}>
-                    Za dve osobe
+                    {translate("spaForTwoPeople")}
                   </span>
                 </div>
 
@@ -2681,7 +2681,7 @@ const Spa = () => {
                     spaCategory: 'SPA_SPECIAL_COUPLE',
                     spa_package_id: 'ROMANTIC_COUPLE_1',
                     card_id: 'romantic_couple_package',
-                    spaName: 'Romantični paket za parove',
+                    spaName: translate("spaRomanticPackage"),
                     duration: String(duration),
                     price: String(originalPrice),
                     originalPrice: String(originalPrice),
