@@ -562,6 +562,11 @@ export const translations = {
     spaBacheloretteDesc: "Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.",
     spaContactForInfo: "Kontaktirajte nas",
     spaChampagneFruit: "Šampanjac i sveže voće",
+    spaBachMassage: "Masaža po izboru za svaku gošću – 60 min",
+    spaBachSpaZone: "Potpuna SPA zona (sauna, parno kupatilo i jacuzzi) – privatna upotreba",
+    spaBachCocktail: "Profesionalni koktel majstor",
+    spaBachCake: "Svečana torta",
+    spaBachDJ: "DJ Monsta Beatz – atmosfera cele večeri",
   },
   
   en: {
