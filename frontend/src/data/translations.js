@@ -1812,5 +1812,48 @@ export const translations = {
     contactInfo: "ข้อมูลติดต่อ",
     socialMedia: "โซเชียลมีเดีย",
     copyright: "© 2025 บัวหลวงไทยสปา สงวนลิขสิทธิ์",
+    
+    // SPA Page UI Elements
+    spaRitualsTitle: "พิธีกรรมสปาสุดหรู",
+    spaRitualsSubtitle: "การผสมผสานของสครับ แรป นวด และโซนสปาเพื่อการผ่อนคลายร่างกายและจิตใจอย่างสมบูรณ์",
+    spaIncluded: "รวม:",
+    spaSelectVariant: "เลือกรูปแบบ:",
+    spaZoneTitle: "โซนสปา",
+    spaWithout: "ไม่มี",
+    spaTotalDuration: "ระยะเวลารวม:",
+    spaOriginalPrice: "ราคาเดิม:",
+    spaFinalPrice: "ราคาที่ต้องชำระ:",
+    spaTotalPrice: "ราคารวม:",
+    spaBookButton: "จอง",
+    spaHerbalTitle: "พิธีกรรมสมุนไพร",
+    spaHerbalSubtitle: "ทรีตเมนต์ประคบสมุนไพรไทยดั้งเดิมพร้อมโซนสปา",
+    spaSelectZone: "เลือกโซนสปา:",
+    
+    // SPA Package Names
+    spaSilkyBodyRitual: "พิธีกรรมผิวไหม",
+    spaSilkyBodyDesc: "ผิวไหมเนียนและผ่อนคลายอย่างสมบูรณ์",
+    spaGentleTouchRitual: "พิธีกรรมสัมผัสอ่อนโยน",
+    spaGentleTouchDesc: "สัมผัสอ่อนโยนเพื่อการผ่อนคลายอย่างลึก",
+    spaDeepRenewalRitual: "พิธีกรรมฟื้นฟูลึก",
+    spaDeepRenewalDesc: "การฟื้นฟูร่างกายและจิตใจอย่างลึก",
+    
+    // SPA Services in packages
+    spaBodyScrub: "สครับผิว",
+    spaBodyWrap: "พันผ้า",
+    spaAromaMassage: "นวดอโรมา",
+    spaFaceMassage: "นวดหน้า",
+    
+    // SPA Zone Options
+    spaSauna: "ซาวน่า",
+    spaSteamBath: "ห้องอบไอน้ำ",
+    spaJacuzzi: "จากุซซี่",
+    
+    // Herbal Packages
+    spaHerbalAroma: "พิธีกรรมสมุนไพร & อโรมา",
+    spaHerbalAromaDesc: "นวดอโรมาสมุนไพรพร้อมประคบร้อน",
+    spaHerbalHotStone: "พิธีกรรมสมุนไพร & หินร้อน",
+    spaHerbalHotStoneDesc: "หินร้อนและประคบสมุนไพรเพื่อการผ่อนคลายอย่างลึก",
+    spaHerbalThai: "พิธีกรรมสมุนไพรไทย",
+    spaHerbalThaiDesc: "นวดไทยดั้งเดิมพร้อมประคบสมุนไพร",
   }
 };
