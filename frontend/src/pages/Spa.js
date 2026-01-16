@@ -2432,7 +2432,7 @@ const Spa = () => {
                       e.target.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
                     }}
                   >
-                    {totalPrice === 0 ? 'Izaberite zonu' : 'Zakažite'}
+                    {totalPrice === 0 ? translate("spaSelectZoneButton") : translate("spaBookButton")}
                   </button>
                 </CardContent>
               </Card>
