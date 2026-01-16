@@ -3088,23 +3088,23 @@ const Spa = () => {
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Koktel majstor (live cocktail show & signature pića)
+                      {translate("spaBachCocktailShow")}
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Klasični ketering
+                      {translate("spaBachCatering")}
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Svečana torta
+                      {translate("spaBachCake")}
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      DJ Monsta Beatz – ekskluzivni party program
+                      {translate("spaBachDJ")}
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Dekoracija prostora i intiman Bua Luang ambijent
+                      {translate("spaBachDecoration")}
                     </li>
                   </ul>
                 </div>
