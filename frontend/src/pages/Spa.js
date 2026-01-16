@@ -438,6 +438,8 @@ const Spa = () => {
     const descMap = {
       "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.": "spaCompleteBodyCare",
       "Isključivo korišćenje SPA zona bez rituala.": "spaZoneOnlyDesc",
+      // Deep Renewal Ritual
+      "Intenzivan tretman za dubinsku regeneraciju kože i opuštanje.": "spaDeepRenewalDesc",
       // Herbal packages
       "Nega tela sa pilingom i dubokim opuštanjem uz aromu i tople biljne komprese.": "spaSilkyHerbalDesc",
       "Tradicionalni tajlandski tretman sa toplim biljnim kompresama za rasterećenje mišića i uma.": "spaThaiHerbalCompressDesc",
