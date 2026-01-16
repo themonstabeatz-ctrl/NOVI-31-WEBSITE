@@ -433,6 +433,17 @@ const Spa = () => {
     return label;
   };
 
+  // Helper function to translate package descriptions
+  const translatePackageDescription = (description) => {
+    if (description === "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.") {
+      return translate("spaCompleteBodyCare");
+    }
+    if (description === "Isključivo korišćenje SPA zona bez rituala.") {
+      return translate("spaZoneOnlyDesc");
+    }
+    return description;
+  };
+
   // Detect mobile for video optimization
   useEffect(() => {
     const checkMobile = () => {
