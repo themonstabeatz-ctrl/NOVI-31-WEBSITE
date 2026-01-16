@@ -1373,6 +1373,49 @@ export const translations = {
     contactInfo: "Контактная информация",
     socialMedia: "Социальные сети",
     copyright: "© 2025 Буа Луанг Тай Спа. Все права защищены.",
+    
+    // SPA Page UI Elements
+    spaRitualsTitle: "Роскошные СПА Ритуалы",
+    spaRitualsSubtitle: "Комбинация пилингов, обертываний, массажей и СПА зоны для полного расслабления тела и души",
+    spaIncluded: "Включено:",
+    spaSelectVariant: "Выберите вариант:",
+    spaZoneTitle: "СПА ЗОНА",
+    spaWithout: "Без",
+    spaTotalDuration: "Общая продолжительность:",
+    spaOriginalPrice: "Оригинальная цена:",
+    spaFinalPrice: "К оплате:",
+    spaTotalPrice: "Общая цена:",
+    spaBookButton: "Забронировать",
+    spaHerbalTitle: "Травяные Ритуалы",
+    spaHerbalSubtitle: "Традиционные тайские травяные компрессные процедуры с включенной СПА зоной",
+    spaSelectZone: "Выберите СПА зону:",
+    
+    // SPA Package Names
+    spaSilkyBodyRitual: "Ритуал Шёлковое Тело",
+    spaSilkyBodyDesc: "Шелковистая кожа и полное расслабление",
+    spaGentleTouchRitual: "Ритуал Нежное Прикосновение",
+    spaGentleTouchDesc: "Нежное прикосновение для глубокого расслабления",
+    spaDeepRenewalRitual: "Ритуал Глубокого Обновления",
+    spaDeepRenewalDesc: "Глубокое обновление тела и духа",
+    
+    // SPA Services in packages
+    spaBodyScrub: "Пилинг тела",
+    spaBodyWrap: "Обертывание",
+    spaAromaMassage: "Арома массаж",
+    spaFaceMassage: "Массаж лица",
+    
+    // SPA Zone Options
+    spaSauna: "Сауна",
+    spaSteamBath: "Паровая баня",
+    spaJacuzzi: "Джакузи",
+    
+    // Herbal Packages
+    spaHerbalAroma: "Травяной & Арома Ритуал",
+    spaHerbalAromaDesc: "Ароматический травяной массаж с теплыми компрессами",
+    spaHerbalHotStone: "Травяной & Горячий Камень Ритуал",
+    spaHerbalHotStoneDesc: "Горячие камни и травяные компрессы для глубокого расслабления",
+    spaHerbalThai: "Травяной Тайский Ритуал",
+    spaHerbalThaiDesc: "Традиционный тайский массаж с травяными компрессами",
   },
   
   th: {
