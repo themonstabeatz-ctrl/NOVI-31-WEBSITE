@@ -12,11 +12,35 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  // Get language from localStorage or default to "sr"
+  // Get language from URL param, localStorage, or default to "sr"
   const [currentLanguage, setCurrentLanguage] = useState(() => {
+    // First check URL param
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    if (urlLang && translations[urlLang]) {
+      return urlLang;
+    }
+    // Then check localStorage
     const savedLanguage = localStorage.getItem("bua-luang-language");
     return savedLanguage || "sr";
   });
+
+  // Listen for URL changes and update language
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang && translations[urlLang] && urlLang !== currentLanguage) {
+        setCurrentLanguage(urlLang);
+      }
+    };
+    
+    // Check on mount and when URL changes
+    handleUrlChange();
+    window.addEventListener('popstate', handleUrlChange);
+    
+    return () => window.removeEventListener('popstate', handleUrlChange);
+  }, [currentLanguage]);
 
   // Save language to localStorage whenever it changes
   useEffect(() => {
@@ -24,7 +48,7 @@ export const LanguageProvider = ({ children }) => {
   }, [currentLanguage]);
 
   const translate = (key) => {
-    return translations[currentLanguage][key] || key;
+    return translations[currentLanguage]?.[key] || translations['sr']?.[key] || key;
   };
 
   return (
