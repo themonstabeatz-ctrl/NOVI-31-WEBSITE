@@ -1123,8 +1123,9 @@ const Contact = () => {
           // ✅ SPA zone info (ako postoji)
           spa_zone: spaBookingMeta.spaZoneText || "",
           
-          // ✅ Notes (poruka iz forme)
-          notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalDuration} min`,
+          // ✅ Notes - UVEK uključi srpski format za backend parsiranje
+          // Backend traži "Ukupno trajanje:" za prikaz u Termini/Notifikacije
+          notes: formData.message + `\n\n--- BACKEND DATA (SR) ---\nSPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\nUkupno trajanje: ${spaBookingMeta.totalDuration} min\nUkupna cena: ${spaBookingMeta.totalPrice} RSD`,
 
           // ✅ SAMO ORIGINALNA CENA - backend računa popust!
           // Prioritet: quotePricing (od API quote) > spaBookingMeta (od URL params) > 0
