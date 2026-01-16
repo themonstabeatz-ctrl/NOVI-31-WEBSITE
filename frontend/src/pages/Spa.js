@@ -1626,7 +1626,7 @@ const Spa = () => {
                               height: '10px'
                             }}
                           />
-                          <span>Bez</span>
+                          <span>{translate("spaWithout")}</span>
                         </label>
                         {/* Zone options - ✅ Using API prices with DISCOUNT DISPLAY */}
                         {zone.options.map((option) => {
@@ -2258,7 +2258,7 @@ const Spa = () => {
                               height: '14px'
                             }}
                           />
-                          <span>Bez</span>
+                          <span>{translate("spaWithout")}</span>
                         </label>
                         {/* Zone options - ✅ Using API prices with DISCOUNT DISPLAY */}
                         {zone.options.map((option) => {
