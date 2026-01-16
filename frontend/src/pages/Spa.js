@@ -2844,7 +2844,7 @@ const Spa = () => {
                     marginBottom: '0.5rem',
                     fontWeight: '600'
                   }}>
-                    Uključeno:
+                    {translate("spaIncluded")}
                   </h4>
                   <ul style={{
                     listStyle: 'none',
@@ -2864,19 +2864,19 @@ const Spa = () => {
                     </li>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                      Sauna – 30 min
+                      {translate("spaSauna")} – 30 min
                     </li>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                      Parno kupatilo – 30 min
+                      {translate("spaSteamBath")} – 30 min
                     </li>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                      Jacuzzi – 30 min
+                      {translate("spaJacuzzi")} – 30 min
                     </li>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                      Šampanjac i sveže voće
+                      {translate("spaChampagneFruit")}
                     </li>
                   </ul>
                 </div>
@@ -2899,7 +2899,7 @@ const Spa = () => {
                     fontWeight: '600',
                     textShadow: '0 0 8px rgba(212, 175, 55, 0.4)'
                   }}>
-                    Za dve osobe
+                    {translate("spaForTwoPeople")}
                   </span>
                 </div>
 
