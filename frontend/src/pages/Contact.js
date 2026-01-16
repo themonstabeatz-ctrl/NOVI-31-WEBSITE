@@ -971,18 +971,19 @@ const Contact = () => {
           spa_category: "spa_special_couple",
           
           // ✅ Service details - za email template
-          // MASTER: Koristi tačan naziv paketa, NIKAD fallback na generički naziv
+          // MASTER: Koristi tačan naziv paketa SA UKUPNIM TRAJANJEM
           spa_package_id: spaBookingMeta.spa_package_id || spaBookingMeta.spaPackageId,
-          service_name: spaBookingMeta.spaName,
+          service_name: `${spaBookingMeta.spaName} - ${spaBookingMeta.totalDuration} min`,
           service_description: "Romantični SPA paket za parove",
           
           // ✅ Duration & guests - MASTER: Koristi totalDuration iz URL params
           guests: 2,
-          duration: spaBookingMeta.totalDuration || spaBookingMeta.duration || 0,
-          duration_min: spaBookingMeta.totalDuration || spaBookingMeta.duration || 0,
+          duration: spaBookingMeta.totalDuration || 0,
+          duration_min: spaBookingMeta.totalDuration || 0,
+          total_duration: spaBookingMeta.totalDuration || 0,
           
-          // ✅ Notes - MASTER: Koristi tačan naziv i duration
-          notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration} min`,
+          // ✅ Notes - UVEK uključi srpski format za backend parsiranje
+          notes: formData.message + `\n\n--- BACKEND DATA (SR) ---\nRomantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nUkupno trajanje: ${spaBookingMeta.totalDuration} min\nUkupna cena: ${spaBookingMeta.totalPrice} RSD`,
           
           // ✅ CARD ID & SERVICE IDs - backend računa popust sam
           card_id: spaBookingMeta.cardId || spaBookingMeta.spa_package_id || "",
