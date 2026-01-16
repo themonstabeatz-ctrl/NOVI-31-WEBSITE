@@ -1063,6 +1063,11 @@ export const translations = {
     spaZoneOnlyDesc: "Exclusive use of SPA zones without rituals.",
     spaSelectZoneButton: "Select zone",
     
+    // Herbal package descriptions
+    spaSilkyHerbalDesc: "Body care with scrub and deep relaxation with aroma and hot herbal compresses.",
+    spaThaiHerbalCompressDesc: "Traditional Thai treatment with hot herbal compresses for muscle and mind relief.",
+    spaAromaStoneDesc: "Blend of aromatherapy and hot stones for deep body relaxation and tension relief.",
+    
     // Special Packages Section
     spaSpecialPackagesTitle: "SPA packages for special occasions",
     spaForTwoPeople: "For two people",
