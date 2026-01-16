@@ -1783,7 +1783,7 @@ const Spa = () => {
           color: '#d4af37',
           marginBottom: '1rem'
         }}>
-          Herbal Rituals
+          {translate("spaHerbalTitle")}
         </h2>
         <p style={{
           textAlign: 'center',
@@ -1792,7 +1792,7 @@ const Spa = () => {
           margin: '0 auto 3rem',
           fontSize: '1.1rem'
         }}>
-          Tradicionalni tajlandski Herbal Compress tretmani sa uključenom SPA zonom
+          {translate("spaHerbalSubtitle")}
         </p>
         <div className="spa-ritual-grid" style={{
           display: 'grid',
