@@ -1997,6 +1997,20 @@ export const translations = {
     spaAromaMassage: "นวดอโรมา",
     spaFaceMassage: "นวดหน้า",
     
+    // SPA Included items with duration (for package cards)
+    spaBodyScrub30: "สครับผิว – 30 นาที",
+    spaBodyScrub60: "สครับผิว – 60 นาที",
+    spaBodyWrap60: "พันผ้า – 60 นาที",
+    spaAromaMassage60: "นวดอโรมาเต็มตัว – 60 นาที",
+    spaAromaMassage90: "นวดอโรมาเต็มตัว – 90 นาที",
+    spaAromaHerbal90: "นวดอโรมาพร้อมประคบสมุนไพรร้อน – 90 นาที",
+    spaThaiHerbal90: "นวดไทยพร้อมประคบสมุนไพรร้อน – 90 นาที",
+    spaAromaStone90: "อโรมาเทอราพี & หินร้อน – 90 นาที",
+    spaFaceMassage60: "นวดหน้า – 60 นาที",
+    spaSauna30: "ซาวน่า – 30 นาที",
+    spaSteamBath30: "ห้องอบไอน้ำ – 30 นาที",
+    spaJacuzzi30: "จากุซซี่ – 30 นาที",
+    
     // SPA Zone Options
     spaSauna: "ซาวน่า",
     spaSteamBath: "ห้องอบไอน้ำ",
