@@ -1022,6 +1022,24 @@ export const translations = {
     spaHerbalSubtitle: "Traditional Thai Herbal Compress treatments with included SPA zone",
     spaSelectZone: "Select SPA zone:",
     
+    // Booking Message Template
+    msgRomanticSpaCouple: "🌹 Romantic SPA package for couples",
+    msgPackage: "Package:",
+    msgForPersons: "For: 2 persons",
+    msgSpecialSpaPackage: "Special SPA package:",
+    msgSpaZoneOnly: "SPA Zone (zones only, no ritual)",
+    msgSelectedZones: "Selected zones:",
+    msgSpaPackage: "SPA package:",
+    msgSpaZoneIncluded: "SPA zone (included):",
+    msgSpaZone: "SPA zone:",
+    msgVariant: "Variant:",
+    msgWithFaceMassage: "With face massage (+3,000 RSD)",
+    msgWithoutFaceMassage: "Without face massage",
+    msgDiscount: "Discount:",
+    msgSauna: "Sauna:",
+    msgSteamBath: "Steam bath:",
+    msgJacuzzi: "Jacuzzi:",
+    
     // SPA Package Names
     spaSilkyBodyRitual: "Silky Body Ritual",
     spaSilkyBodyDesc: "Silky skin and complete relaxation",
