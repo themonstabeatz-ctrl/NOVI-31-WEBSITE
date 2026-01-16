@@ -1431,6 +1431,10 @@ export const translations = {
     spaSteamBath15: "Паровая баня – 15 мин",
     spaJacuzzi15: "Джакузи – 15 мин",
     
+    // SPA Variant Options (face massage)
+    spaNoFaceMassage: "Без массажа лица",
+    spaWithFaceMassage: "С массажем лица (во время обертывания)",
+    
     // Herbal Packages
     spaHerbalAroma: "Травяной & Арома Ритуал",
     spaHerbalAromaDesc: "Ароматический травяной массаж с теплыми компрессами",
