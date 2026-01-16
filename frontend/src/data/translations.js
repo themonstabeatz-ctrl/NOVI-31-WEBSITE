@@ -497,6 +497,49 @@ export const translations = {
     contactInfo: "Kontakt informacije",
     socialMedia: "Društvene mreže",
     copyright: "© 2025 Bua Luang Thai Spa. Sva prava zadržana.",
+    
+    // SPA Page UI Elements
+    spaRitualsTitle: "Luksuzni SPA Rituali",
+    spaRitualsSubtitle: "Kombinacija pilinga, obloga, masaža i SPA zone za potpuno opuštanje tela i uma",
+    spaIncluded: "Uključeno:",
+    spaSelectVariant: "Izaberite varijantu:",
+    spaZoneTitle: "SPA ZONA",
+    spaWithout: "Bez",
+    spaTotalDuration: "Ukupno trajanje:",
+    spaOriginalPrice: "Originalna cena:",
+    spaFinalPrice: "Cena za naplatu:",
+    spaTotalPrice: "Ukupna cena:",
+    spaBookButton: "Zakažite",
+    spaHerbalTitle: "Herbal Rituals",
+    spaHerbalSubtitle: "Tradicionalni tajlandski Herbal Compress tretmani sa uključenom SPA zonom",
+    spaSelectZone: "Izaberite SPA zonu:",
+    
+    // SPA Package Names
+    spaSilkyBodyRitual: "Silky Body Ritual",
+    spaSilkyBodyDesc: "Svilenkasta koža i potpuno opuštanje",
+    spaGentleTouchRitual: "Gentle Touch Ritual",
+    spaGentleTouchDesc: "Nežni dodir za duboko opuštanje",
+    spaDeepRenewalRitual: "Deep Renewal Ritual",
+    spaDeepRenewalDesc: "Dubinska obnova tela i duha",
+    
+    // SPA Services in packages
+    spaBodyScrub: "Piling tela",
+    spaBodyWrap: "Body wrap obloga",
+    spaAromaMassage: "Aroma masaža",
+    spaFaceMassage: "Masaža lica",
+    
+    // SPA Zone Options
+    spaSauna: "Sauna",
+    spaSteamBath: "Parno kupatilo",
+    spaJacuzzi: "Đakuzi",
+    
+    // Herbal Packages
+    spaHerbalAroma: "Herbal & Aroma Ritual",
+    spaHerbalAromaDesc: "Aromatična biljka masaža sa toplim kompresama",
+    spaHerbalHotStone: "Herbal & Hot Stone Ritual",
+    spaHerbalHotStoneDesc: "Topli kamenovi i biljne komprese za dubinsko opuštanje",
+    spaHerbalThai: "Herbal Thai Ritual",
+    spaHerbalThaiDesc: "Tradicionalna tajlandska masaža sa biljnim kompresama",
   },
   
   en: {
