@@ -3052,7 +3052,7 @@ const Spa = () => {
                   color: '#f5f1e8',
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)'
                 }}>
-                  Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.
+                  {translate("spaBacheloretteDesc")}
                 </p>
                 
                 {/* Uključeno - lista ispod opisa, takođe levo */}
@@ -3071,7 +3071,7 @@ const Spa = () => {
                     fontWeight: '600',
                     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                   }}>
-                    Uključeno:
+                    {translate("spaIncluded")}
                   </h4>
                   <ul style={{
                     listStyle: 'none',
@@ -3080,11 +3080,11 @@ const Spa = () => {
                   }}>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Masaža po izboru za svaku gošću – 60 min
+                      {translate("spaBachMassage")}
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
-                      Potpuna SPA zona (sauna, parno kupatilo i jacuzzi) – privatna upotreba
+                      {translate("spaBachSpaZone")}
                     </li>
                     <li style={{ marginBottom: '0.4rem', paddingLeft: '1.5rem', position: 'relative', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)' }}>
                       <Sparkles size={12} color="#d4af37" style={{ position: 'absolute', left: 0, top: '5px' }} />
