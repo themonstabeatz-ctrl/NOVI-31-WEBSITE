@@ -1721,7 +1721,7 @@ const Spa = () => {
                             {formatNumber(packageQuotes[pkg.id].original_total)} RSD
                           </span>
                           <br />
-                          <strong style={{ color: '#d4af37' }}>Cena za naplatu:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaFinalPrice")}</strong>{' '}
                           <span style={{ color: '#4ade80', fontWeight: 600 }}>
                             {formatNumber(packageQuotes[pkg.id].final_total)} RSD
                           </span>{' '}
@@ -2065,7 +2065,7 @@ const Spa = () => {
                             {formatNumber(packageQuotes[pkg.id].original_total)} RSD
                           </span>
                           <br />
-                          <strong style={{ color: '#d4af37' }}>Cena za naplatu:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaFinalPrice")}</strong>{' '}
                           <span style={{ color: '#4ade80', fontWeight: 600 }}>
                             {formatNumber(packageQuotes[pkg.id].final_total)} RSD
                           </span>{' '}
@@ -2353,7 +2353,7 @@ const Spa = () => {
                             {formatNumber(packageQuotes[SPA_ZONE_ONLY.id].original_total)} RSD
                           </span>
                           <br />
-                          <strong style={{ color: '#d4af37' }}>Cena za naplatu:</strong>{' '}
+                          <strong style={{ color: '#d4af37' }}>{translate("spaFinalPrice")}</strong>{' '}
                           <span style={{ color: '#4ade80', fontWeight: 600 }}>
                             {formatNumber(packageQuotes[SPA_ZONE_ONLY.id].final_total)} RSD
                           </span>{' '}
