@@ -1660,7 +1660,7 @@ const Spa = () => {
                           marginBottom: '0.15rem',
                           fontWeight: '600'
                         }}>
-                          {zone.label}:
+                          {translateZoneLabel(zone.label)}:
                         </p>
                         {/* "Bez" option */}
                         <label style={{
