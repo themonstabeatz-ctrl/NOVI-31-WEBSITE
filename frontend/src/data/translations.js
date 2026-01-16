@@ -528,6 +528,20 @@ export const translations = {
     spaAromaMassage: "Aroma masaža",
     spaFaceMassage: "Masaža lica",
     
+    // SPA Included items with duration (for package cards)
+    spaBodyScrub30: "Piling tela – 30 min",
+    spaBodyScrub60: "Piling tela – 60 min",
+    spaBodyWrap60: "Body wrap obloga – 60 min",
+    spaAromaMassage60: "Aroma masaža celog tela – 60 min",
+    spaAromaMassage90: "Aroma masaža celog tela – 90 min",
+    spaAromaHerbal90: "Aroma masaža sa toplim biljnim kompresama – 90 min",
+    spaThaiHerbal90: "Thai masaža sa toplim biljnim kompresama – 90 min",
+    spaAromaStone90: "Aromaterapija & topli kamen – 90 min",
+    spaFaceMassage60: "Masaža lica – 60 min",
+    spaSauna30: "Sauna – 30 min",
+    spaSteamBath30: "Parno kupatilo – 30 min",
+    spaJacuzzi30: "Đakuzi – 30 min",
+    
     // SPA Zone Options
     spaSauna: "Sauna",
     spaSteamBath: "Parno kupatilo",
