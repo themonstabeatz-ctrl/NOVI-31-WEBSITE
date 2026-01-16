@@ -2008,7 +2008,7 @@ const Spa = () => {
                             height: '10px'
                           }}
                         />
-                        <span>Sauna – 15 min <span style={{ color: '#4ade80', fontWeight: '600' }}>(uključeno)</span></span>
+                        <span>{translate("spaSauna15")} <span style={{ color: '#4ade80', fontWeight: '600' }}>{translate("spaIncludedLabel")}</span></span>
                       </label>
                       
                       {/* Parno kupatilo option - ✅ Shows "(uključeno)" not "+0 RSD" */}
@@ -2038,7 +2038,7 @@ const Spa = () => {
                             height: '10px'
                           }}
                         />
-                        <span>Parno kupatilo – 15 min <span style={{ color: '#4ade80', fontWeight: '600' }}>(uključeno)</span></span>
+                        <span>{translate("spaSteamBath15")} <span style={{ color: '#4ade80', fontWeight: '600' }}>{translate("spaIncludedLabel")}</span></span>
                       </label>
                     </div>
                   </div>
