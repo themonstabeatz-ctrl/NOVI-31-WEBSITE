@@ -4383,6 +4383,7 @@ html {
   max-width: 700px;
   margin: 0 auto;
   animation: heroSubtitleFade 1.5s ease-out 0.7s backwards;
+  transition: opacity 0.1s ease-out, transform 0.1s ease-out;
 }
 
 @keyframes heroSubtitleFade {
