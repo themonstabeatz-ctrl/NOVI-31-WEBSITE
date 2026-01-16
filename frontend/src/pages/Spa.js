@@ -1390,10 +1390,10 @@ const Spa = () => {
               className="hero-logo-image"
             />
           </div>
-          <h1 className="spa-hero-title">Luksuzni SPA Rituali</h1>
+          <h1 className="spa-hero-title">{translate("spaRitualsTitle")}</h1>
           <div className="spa-hero-divider"></div>
           <p className="spa-hero-subtitle">
-            Kombinacija pilinga, obloga, masaža i SPA zone za potpuno opuštanje tela i uma
+            {translate("spaRitualsSubtitle")}
           </p>
         </div>
       </section>
