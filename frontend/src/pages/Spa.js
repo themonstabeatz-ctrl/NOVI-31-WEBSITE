@@ -1506,7 +1506,7 @@ const Spa = () => {
                     fontSize: '0.72rem',
                     lineHeight: '1.3'
                   }}>
-                    {pkg.description}
+                    {translatePackageDescription(pkg.description)}
                   </p>
 
                   {/* Included Services */}
@@ -1907,7 +1907,7 @@ const Spa = () => {
                     fontSize: '0.72rem',
                     lineHeight: '1.3'
                   }}>
-                    {pkg.description}
+                    {translatePackageDescription(pkg.description)}
                   </p>
 
                   {/* Included Services */}
