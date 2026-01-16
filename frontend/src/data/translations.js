@@ -561,6 +561,7 @@ export const translations = {
     spaBacheloretteParty: "Devojačko veče & Lady Party",
     spaBacheloretteDesc: "Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.",
     spaContactForInfo: "Kontaktirajte nas",
+    spaChampagneFruit: "Šampanjac i sveže voće",
   },
   
   en: {
