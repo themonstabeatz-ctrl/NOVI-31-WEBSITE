@@ -1418,6 +1418,10 @@ export const translations = {
     spaSauna: "Сауна",
     spaSteamBath: "Паровая баня",
     spaJacuzzi: "Джакузи",
+    spaIncludedLabel: "(включено)",
+    spaSauna15: "Сауна – 15 мин",
+    spaSteamBath15: "Паровая баня – 15 мин",
+    spaJacuzzi15: "Джакузи – 15 мин",
     
     // Herbal Packages
     spaHerbalAroma: "Травяной & Арома Ритуал",
