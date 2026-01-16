@@ -545,6 +545,20 @@ export const translations = {
     spaZoneIncluded: "SPA ZONA (15 min uključeno u cenu)",
     spaSelectOption: "Izaberite SPA opciju:",
     spaNone: "Bez SPA zone",
+    
+    // SPA Package descriptions
+    spaCompleteBodyCare: "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.",
+    spaZoneOnlyDesc: "Isključivo korišćenje SPA zona bez rituala.",
+    spaSelectZoneButton: "Izaberite zonu",
+    
+    // Special Packages Section
+    spaSpecialPackagesTitle: "Spa paketi za posebne slučajeve",
+    spaForTwoPeople: "Za dve osobe",
+    spaRomanticPackage: "Romantični paket za parove",
+    spaRomanticPeelingPackage: "Romantični piling paket za parove",
+    spaBacheloretteParty: "Devojačko veče & Lady Party",
+    spaBacheloretteDesc: "Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.",
+    spaContactForInfo: "Kontaktirajte nas",
   },
   
   en: {
