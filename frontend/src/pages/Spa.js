@@ -1978,7 +1978,7 @@ const Spa = () => {
                             height: '10px'
                           }}
                         />
-                        <span>Bez SPA zone</span>
+                        <span>{translate("spaNone")}</span>
                       </label>
                       
                       {/* Sauna option - ✅ Shows "(uključeno)" not "+0 RSD" */}
