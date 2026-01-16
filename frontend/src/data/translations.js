@@ -1941,5 +1941,19 @@ export const translations = {
     spaZoneIncluded: "โซนสปา (รวม 15 นาที)",
     spaSelectOption: "เลือกตัวเลือกสปา:",
     spaNone: "ไม่มีโซนสปา",
+    
+    // SPA Package descriptions
+    spaCompleteBodyCare: "การดูแลร่างกายครบวงจรด้วยสครับ แรป และอโรมาเทอราพี",
+    spaZoneOnlyDesc: "การใช้โซนสปาเฉพาะโดยไม่มีพิธีกรรม",
+    spaSelectZoneButton: "เลือกโซน",
+    
+    // Special Packages Section
+    spaSpecialPackagesTitle: "แพ็คเกจสปาสำหรับโอกาสพิเศษ",
+    spaForTwoPeople: "สำหรับสองคน",
+    spaRomanticPackage: "แพ็คเกจโรแมนติกสำหรับคู่รัก",
+    spaRomanticPeelingPackage: "แพ็คเกจพีลลิ่งโรแมนติกสำหรับคู่รัก",
+    spaBacheloretteParty: "ปาร์ตี้สละโสด & Lady Party",
+    spaBacheloretteDesc: "ค่ำคืนพิเศษที่สร้างขึ้นเพื่อการเฉลิมฉลอง ความสง่างาม และพลังงานหญิงบริสุทธิ์ ปาร์ตี้สละโสดที่ Bua Luang รวมการนวดระดับพรีเมียม ประสบการณ์สปาครบวงจร ปรมาจารย์ค็อกเทล เค้กเฉลิมฉลอง และ DJ Monsta Beatz ที่นำปาร์ตี้ยามค่ำคืน ความเป็นส่วนตัว ความหรูหรา และบรรยากาศดี – ทั้งหมดในที่เดียว",
+    spaContactForInfo: "ติดต่อเรา",
   }
 };
