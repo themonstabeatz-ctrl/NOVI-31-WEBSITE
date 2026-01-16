@@ -1999,5 +1999,9 @@ export const translations = {
     spaBachCocktail: "ปรมาจารย์ค็อกเทลมืออาชีพ",
     spaBachCake: "เค้กเฉลิมฉลอง",
     spaBachDJ: "DJ Monsta Beatz – บรรยากาศตลอดค่ำ",
+    spaBachCocktailShow: "ปรมาจารย์ค็อกเทล (แสดงสดทำเครื่องดื่มและเครื่องดื่มพิเศษ)",
+    spaBachCatering: "บริการจัดเลี้ยงแบบคลาสสิก",
+    spaBachDecoration: "ตกแต่งพื้นที่และบรรยากาศ Bua Luang อันอบอุ่น",
+    spaBachCallButton: "โทร: 062 625 500",
   }
 };
