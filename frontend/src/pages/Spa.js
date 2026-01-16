@@ -3037,7 +3037,7 @@ const Spa = () => {
                   letterSpacing: '0.03em',
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.85)'
                 }}>
-                  Devojačko veče & Lady Party
+                  {translate("spaBacheloretteParty")}
                 </h3>
                 
                 {/* Opis - samo leva polovina kartice */}
