@@ -47,6 +47,8 @@ const Gallery = () => {
       const scrollPosition = window.scrollY;
       const galleryHeroSection = document.querySelector('.gallery-hero-fixed');
       const galleryHeroLogo = document.querySelector('.gallery-hero-logo');
+      const galleryHeroTitle = document.querySelector('.gallery-hero-title');
+      const galleryHeroSubtitle = document.querySelector('.gallery-hero-subtitle');
       
       if (!galleryHeroSection || !galleryHeroLogo) return;
       
@@ -60,10 +62,32 @@ const Gallery = () => {
         galleryHeroLogo.style.opacity = opacity;
         galleryHeroLogo.style.transform = `scale(${scale})`;
         galleryHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+        
+        // Fade out title
+        if (galleryHeroTitle) {
+          galleryHeroTitle.style.opacity = opacity;
+          galleryHeroTitle.style.transform = `translateY(-${(scrollPercent - 0.05) * 80}px)`;
+        }
+        
+        // Fade out subtitle
+        if (galleryHeroSubtitle) {
+          galleryHeroSubtitle.style.opacity = opacity;
+          galleryHeroSubtitle.style.transform = `translateY(-${(scrollPercent - 0.05) * 60}px)`;
+        }
       } else {
         galleryHeroLogo.style.opacity = 1;
         galleryHeroLogo.style.transform = 'scale(1)';
         galleryHeroLogo.style.filter = 'blur(0px)';
+        
+        if (galleryHeroTitle) {
+          galleryHeroTitle.style.opacity = '1';
+          galleryHeroTitle.style.transform = 'translateY(0)';
+        }
+        
+        if (galleryHeroSubtitle) {
+          galleryHeroSubtitle.style.opacity = '1';
+          galleryHeroSubtitle.style.transform = 'translateY(0)';
+        }
       }
     };
     
