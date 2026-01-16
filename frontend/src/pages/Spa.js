@@ -1577,7 +1577,7 @@ const Spa = () => {
                             left: 0,
                             top: '2px'
                           }} />
-                          {item}
+                          {translateIncludedItem(item)}
                         </li>
                       ))}
                     </ul>
@@ -1978,7 +1978,7 @@ const Spa = () => {
                             left: 0,
                             top: '2px'
                           }} />
-                          {item}
+                          {translateIncludedItem(item)}
                         </li>
                       ))}
                     </ul>
