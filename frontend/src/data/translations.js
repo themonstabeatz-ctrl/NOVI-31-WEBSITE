@@ -972,6 +972,10 @@ export const translations = {
     spaSauna: "Sauna",
     spaSteamBath: "Steam Bath",
     spaJacuzzi: "Jacuzzi",
+    spaIncludedLabel: "(included)",
+    spaSauna15: "Sauna – 15 min",
+    spaSteamBath15: "Steam Bath – 15 min",
+    spaJacuzzi15: "Jacuzzi – 15 min",
     
     // Herbal Packages
     spaHerbalAroma: "Herbal & Aroma Ritual",
