@@ -435,13 +435,16 @@ const Spa = () => {
 
   // Helper function to translate package descriptions
   const translatePackageDescription = (description) => {
-    if (description === "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.") {
-      return translate("spaCompleteBodyCare");
-    }
-    if (description === "Isključivo korišćenje SPA zona bez rituala.") {
-      return translate("spaZoneOnlyDesc");
-    }
-    return description;
+    const descMap = {
+      "Kompletna nega tela sa pilingom, oblogom i aromaterapijom.": "spaCompleteBodyCare",
+      "Isključivo korišćenje SPA zona bez rituala.": "spaZoneOnlyDesc",
+      // Herbal packages
+      "Nega tela sa pilingom i dubokim opuštanjem uz aromu i tople biljne komprese.": "spaSilkyHerbalDesc",
+      "Tradicionalni tajlandski tretman sa toplim biljnim kompresama za rasterećenje mišića i uma.": "spaThaiHerbalCompressDesc",
+      "Spoj aromaterapije i toplog kamena za dubinsko opuštanje tela i otklanjanje napetosti.": "spaAromaStoneDesc",
+    };
+    const translationKey = descMap[description];
+    return translationKey ? translate(translationKey) : description;
   };
 
   // Helper function to translate "included" items in package cards
