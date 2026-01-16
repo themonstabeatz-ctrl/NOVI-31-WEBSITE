@@ -1011,6 +1011,20 @@ export const translations = {
     spaZoneIncluded: "SPA ZONE (15 min included)",
     spaSelectOption: "Select SPA option:",
     spaNone: "Without SPA zone",
+    
+    // SPA Package descriptions
+    spaCompleteBodyCare: "Complete body care with scrub, wrap and aromatherapy.",
+    spaZoneOnlyDesc: "Exclusive use of SPA zones without rituals.",
+    spaSelectZoneButton: "Select zone",
+    
+    // Special Packages Section
+    spaSpecialPackagesTitle: "SPA packages for special occasions",
+    spaForTwoPeople: "For two people",
+    spaRomanticPackage: "Romantic package for couples",
+    spaRomanticPeelingPackage: "Romantic peeling package for couples",
+    spaBacheloretteParty: "Bachelorette Party & Lady Party",
+    spaBacheloretteDesc: "An exclusive evening designed for celebration, elegance and pure feminine energy. A bachelorette party at Bua Luang combines premium massages, a complete SPA experience, a cocktail master, a festive cake, and DJ Monsta Beatz leading the evening party. Privacy, luxury and good vibes – all in one place.",
+    spaContactForInfo: "Contact us",
   },
   
   ru: {
