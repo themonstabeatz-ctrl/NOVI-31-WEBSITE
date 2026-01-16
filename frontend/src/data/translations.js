@@ -1418,6 +1418,11 @@ export const translations = {
     spaHerbalHotStoneDesc: "Горячие камни и травяные компрессы для глубокого расслабления",
     spaHerbalThai: "Травяной Тайский Ритуал",
     spaHerbalThaiDesc: "Традиционный тайский массаж с травяными компрессами",
+    
+    // SPA Zone extra labels
+    spaZoneIncluded: "СПА ЗОНА (15 мин включено)",
+    spaSelectOption: "Выберите СПА опцию:",
+    spaNone: "Без СПА зоны",
   },
   
   th: {
