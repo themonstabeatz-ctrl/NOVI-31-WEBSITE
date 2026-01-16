@@ -971,14 +971,15 @@ const Contact = () => {
           spa_category: "spa_special_couple",
           
           // ✅ Service details - za email template
+          // MASTER: Koristi tačan naziv paketa, NIKAD fallback na generički naziv
           spa_package_id: spaBookingMeta.spa_package_id || spaBookingMeta.spaPackageId,
-          service_name: spaBookingMeta.spaName || "Romantični paket za parove",
+          service_name: spaBookingMeta.spaName,
           service_description: "Romantični SPA paket za parove",
           
-          // ✅ Duration & guests
+          // ✅ Duration & guests - MASTER: Koristi totalDuration iz URL params
           guests: 2,
-          duration: spaBookingMeta.totalDuration || spaBookingMeta.duration || 210,
-          duration_min: spaBookingMeta.totalDuration || spaBookingMeta.duration || 210,
+          duration: spaBookingMeta.totalDuration || spaBookingMeta.duration || 0,
+          duration_min: spaBookingMeta.totalDuration || spaBookingMeta.duration || 0,
           
           // ✅ Notes
           notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration || 210} min`,
