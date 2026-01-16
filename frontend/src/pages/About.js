@@ -36,6 +36,8 @@ const About = () => {
       const scrollPosition = window.scrollY;
       const aboutHeroSection = document.querySelector('.about-hero-fixed');
       const aboutHeroLogo = document.querySelector('.about-hero-logo');
+      const aboutHeroTitle = document.querySelector('.about-hero-title');
+      const aboutHeroSubtitle = document.querySelector('.about-hero-subtitle');
       
       if (!aboutHeroSection || !aboutHeroLogo) return;
       
@@ -49,10 +51,32 @@ const About = () => {
         aboutHeroLogo.style.opacity = opacity;
         aboutHeroLogo.style.transform = `scale(${scale})`;
         aboutHeroLogo.style.filter = `blur(${(scrollPercent - 0.05) * 15}px)`;
+        
+        // Fade out title
+        if (aboutHeroTitle) {
+          aboutHeroTitle.style.opacity = opacity;
+          aboutHeroTitle.style.transform = `translateY(-${(scrollPercent - 0.05) * 80}px)`;
+        }
+        
+        // Fade out subtitle
+        if (aboutHeroSubtitle) {
+          aboutHeroSubtitle.style.opacity = opacity;
+          aboutHeroSubtitle.style.transform = `translateY(-${(scrollPercent - 0.05) * 60}px)`;
+        }
       } else {
         aboutHeroLogo.style.opacity = 1;
         aboutHeroLogo.style.transform = 'scale(1)';
         aboutHeroLogo.style.filter = 'blur(0px)';
+        
+        if (aboutHeroTitle) {
+          aboutHeroTitle.style.opacity = '1';
+          aboutHeroTitle.style.transform = 'translateY(0)';
+        }
+        
+        if (aboutHeroSubtitle) {
+          aboutHeroSubtitle.style.opacity = '1';
+          aboutHeroSubtitle.style.transform = 'translateY(0)';
+        }
       }
     };
     
