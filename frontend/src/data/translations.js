@@ -532,6 +532,10 @@ export const translations = {
     spaSauna: "Sauna",
     spaSteamBath: "Parno kupatilo",
     spaJacuzzi: "Đakuzi",
+    spaIncludedLabel: "(uključeno)",
+    spaSauna15: "Sauna – 15 min",
+    spaSteamBath15: "Parno kupatilo – 15 min",
+    spaJacuzzi15: "Đakuzi – 15 min",
     
     // SPA Zone extra labels
     spaZoneIncluded: "SPA ZONA (15 min uključeno u cenu)",
