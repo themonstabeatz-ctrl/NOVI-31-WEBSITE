@@ -1938,7 +1938,7 @@ const Spa = () => {
                       textTransform: 'uppercase',
                       letterSpacing: '0.5px'
                     }}>
-                      SPA ZONA (15 min uključeno u cenu)
+                      {translate("spaZoneIncluded")}
                     </h4>
                     
                     <div style={{ marginBottom: '0.2rem' }}>
