@@ -1050,6 +1050,7 @@ export const translations = {
     spaBachCatering: "Classic catering",
     spaBachDecoration: "Space decoration and intimate Bua Luang ambiance",
     spaBachCallButton: "Call: 062 625 500",
+    spaBachDisclaimer: "Package is organized exclusively by agreement and number of guests.",
   },
   
   ru: {
