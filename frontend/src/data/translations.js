@@ -520,7 +520,7 @@ export const translations = {
     spaGentleTouchRitual: "Gentle Touch Ritual",
     spaGentleTouchDesc: "Nežni dodir za duboko opuštanje",
     spaDeepRenewalRitual: "Deep Renewal Ritual",
-    spaDeepRenewalDesc: "Dubinska obnova tela i duha",
+    spaDeepRenewalDesc: "Intenzivan tretman za dubinsku regeneraciju kože i opuštanje.",
     
     // SPA Services in packages
     spaBodyScrub: "Piling tela",
@@ -1010,7 +1010,7 @@ export const translations = {
     spaGentleTouchRitual: "Gentle Touch Ritual",
     spaGentleTouchDesc: "Gentle touch for deep relaxation",
     spaDeepRenewalRitual: "Deep Renewal Ritual",
-    spaDeepRenewalDesc: "Deep renewal of body and spirit",
+    spaDeepRenewalDesc: "Intensive treatment for deep skin regeneration and relaxation.",
     
     // SPA Services in packages
     spaBodyScrub: "Body Scrub",
@@ -1506,7 +1506,7 @@ export const translations = {
     spaGentleTouchRitual: "Ритуал Нежное Прикосновение",
     spaGentleTouchDesc: "Нежное прикосновение для глубокого расслабления",
     spaDeepRenewalRitual: "Ритуал Глубокого Обновления",
-    spaDeepRenewalDesc: "Глубокое обновление тела и духа",
+    spaDeepRenewalDesc: "Интенсивная процедура для глубокой регенерации кожи и расслабления.",
     
     // SPA Services in packages
     spaBodyScrub: "Пилинг тела",
@@ -2004,7 +2004,7 @@ export const translations = {
     spaGentleTouchRitual: "พิธีกรรมสัมผัสอ่อนโยน",
     spaGentleTouchDesc: "สัมผัสอ่อนโยนเพื่อการผ่อนคลายอย่างลึก",
     spaDeepRenewalRitual: "พิธีกรรมฟื้นฟูลึก",
-    spaDeepRenewalDesc: "การฟื้นฟูร่างกายและจิตใจอย่างลึก",
+    spaDeepRenewalDesc: "การรักษาเข้มข้นเพื่อการฟื้นฟูผิวอย่างลึกและการผ่อนคลาย",
     
     // SPA Services in packages
     spaBodyScrub: "สครับผิว",
