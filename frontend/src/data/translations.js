@@ -1475,6 +1475,20 @@ export const translations = {
     spaZoneIncluded: "СПА ЗОНА (15 мин включено)",
     spaSelectOption: "Выберите СПА опцию:",
     spaNone: "Без СПА зоны",
+    
+    // SPA Package descriptions
+    spaCompleteBodyCare: "Комплексный уход за телом с пилингом, обертыванием и ароматерапией.",
+    spaZoneOnlyDesc: "Эксклюзивное использование СПА зон без ритуалов.",
+    spaSelectZoneButton: "Выберите зону",
+    
+    // Special Packages Section
+    spaSpecialPackagesTitle: "СПА пакеты для особых случаев",
+    spaForTwoPeople: "Для двоих",
+    spaRomanticPackage: "Романтический пакет для пар",
+    spaRomanticPeelingPackage: "Романтический пилинг пакет для пар",
+    spaBacheloretteParty: "Девичник & Lady Party",
+    spaBacheloretteDesc: "Эксклюзивный вечер, созданный для празднования, элегантности и чистой женской энергии. Девичник в атмосфере Bua Luang объединяет премиальные массажи, полный СПА опыт, коктейльного мастера, праздничный торт и DJ Monsta Beatz, ведущего вечернюю вечеринку. Приватность, роскошь и хорошая энергия – всё в одном месте.",
+    spaContactForInfo: "Свяжитесь с нами",
   },
   
   th: {
