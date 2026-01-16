@@ -27,11 +27,17 @@ Multi-language SPA booking application for Thai Spa with frontend synchronized t
   - Booking buttons
   - Romantic couple package content
   - Bachelorette party content
+  - Lady Party call button (phone number hidden, tel: link in background)
 - **Helper functions**:
   - `translateIncludedItem()` - translates package included items
   - `translateZoneLabel()` - translates SPA zone names
   - `translatePackageDescription()` - translates package descriptions
   - `translateVariantLabel()` - translates variant options
+
+### UI Improvements (January 2025)
+- **Gallery FADE OUT**: Hero text and subtitle fade out on scroll
+- **About FADE OUT**: Hero text and subtitle fade out on scroll
+- **Lady Party Button**: Phone number removed from text, tel: link preserved for mobile calls
 
 ### Scroll Management
 - ScrollManager.js component for reliable scroll-to-top
