@@ -1571,7 +1571,7 @@ const Spa = () => {
                           }}
                         />
                         <span>
-                          {variant.label}
+                          {translateVariantLabel(variant.label)}
                           {variant.totalPrice > pkg.variants[0].totalPrice && (
                             <span style={{ color: '#d4af37', fontSize: '0.68rem', marginLeft: '0.25rem' }}>
                               (+{formatNumber(variant.totalPrice - pkg.variants[0].totalPrice)} RSD)
