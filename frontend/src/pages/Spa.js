@@ -1586,7 +1586,7 @@ const Spa = () => {
                       textTransform: 'uppercase',
                       letterSpacing: '0.5px'
                     }}>
-                      SPA ZONA
+                      {translate("spaZoneTitle")}
                     </h4>
                     
                     {pkg.spaZones.map((zone) => (
