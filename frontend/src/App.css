@@ -4342,6 +4342,7 @@ html {
   text-shadow: 
     0 0 40px rgba(212, 175, 55, 0.5),
     0 10px 30px rgba(0, 0, 0, 0.8);
+  transition: opacity 0.1s ease-out, transform 0.1s ease-out;
 }
 
 @keyframes heroTitleFade {
