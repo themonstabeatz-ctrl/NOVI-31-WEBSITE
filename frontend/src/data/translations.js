@@ -565,6 +565,11 @@ export const translations = {
     spaZoneOnlyDesc: "Isključivo korišćenje SPA zona bez rituala.",
     spaSelectZoneButton: "Izaberite zonu",
     
+    // Herbal package descriptions
+    spaSilkyHerbalDesc: "Nega tela sa pilingom i dubokim opuštanjem uz aromu i tople biljne komprese.",
+    spaThaiHerbalCompressDesc: "Tradicionalni tajlandski tretman sa toplim biljnim kompresama za rasterećenje mišića i uma.",
+    spaAromaStoneDesc: "Spoj aromaterapije i toplog kamena za dubinsko opuštanje tela i otklanjanje napetosti.",
+    
     // Special Packages Section
     spaSpecialPackagesTitle: "Spa paketi za posebne slučajeve",
     spaForTwoPeople: "Za dve osobe",
