@@ -981,8 +981,8 @@ const Contact = () => {
           duration: spaBookingMeta.totalDuration || spaBookingMeta.duration || 0,
           duration_min: spaBookingMeta.totalDuration || spaBookingMeta.duration || 0,
           
-          // ✅ Notes
-          notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration || 210} min`,
+          // ✅ Notes - MASTER: Koristi tačan naziv i duration
+          notes: formData.message || `Romantični SPA paket: ${spaBookingMeta.spaName}\nBroj gostiju: 2\nTrajanje: ${spaBookingMeta.totalDuration} min`,
           
           // ✅ CARD ID & SERVICE IDs - backend računa popust sam
           card_id: spaBookingMeta.cardId || spaBookingMeta.spa_package_id || "",
