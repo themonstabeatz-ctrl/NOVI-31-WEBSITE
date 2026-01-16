@@ -2659,11 +2659,11 @@ const Spa = () => {
                   }}>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                      Aroma masaža celog tela – 60 min
+                      {translate("spaAromaMassage60")}
                     </li>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
-                      Masaža lica – 60 min
+                      {translate("spaFaceMassage60")}
                     </li>
                     <li style={{ marginBottom: '0.2rem', paddingLeft: '1rem', position: 'relative' }}>
                       <Sparkles size={9} color="#d4af37" style={{ position: 'absolute', left: 0, top: '4px' }} />
