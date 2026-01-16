@@ -2584,7 +2584,7 @@ const Spa = () => {
                   marginBottom: '0.4rem',
                   fontWeight: 'bold'
                 }}>
-                  Romantični paket za parove
+                  {translate("spaRomanticPackage")}
                 </h3>
                 
                 {/* Kratak opis */}
@@ -2594,7 +2594,7 @@ const Spa = () => {
                   fontSize: '0.85rem',
                   lineHeight: '1.4'
                 }}>
-                  Partnerska aroma masaža sa SPA zonom, šampanjcem i voćem za dvoje.
+                  {translate("spaRomanticPackageDesc")}
                 </p>
                 
                 {/* Uključeno - lista */}
@@ -2605,7 +2605,7 @@ const Spa = () => {
                     marginBottom: '0.5rem',
                     fontWeight: '600'
                   }}>
-                    Uključeno:
+                    {translate("spaIncluded")}
                   </h4>
                   <ul style={{
                     listStyle: 'none',
