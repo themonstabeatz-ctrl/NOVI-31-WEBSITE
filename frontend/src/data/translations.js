@@ -1013,6 +1013,20 @@ export const translations = {
     spaAromaMassage: "Aroma Massage",
     spaFaceMassage: "Face Massage",
     
+    // SPA Included items with duration (for package cards)
+    spaBodyScrub30: "Body scrub – 30 min",
+    spaBodyScrub60: "Body scrub – 60 min",
+    spaBodyWrap60: "Body wrap – 60 min",
+    spaAromaMassage60: "Full body aroma massage – 60 min",
+    spaAromaMassage90: "Full body aroma massage – 90 min",
+    spaAromaHerbal90: "Aroma massage with hot herbal compresses – 90 min",
+    spaThaiHerbal90: "Thai massage with hot herbal compresses – 90 min",
+    spaAromaStone90: "Aromatherapy & hot stones – 90 min",
+    spaFaceMassage60: "Face massage – 60 min",
+    spaSauna30: "Sauna – 30 min",
+    spaSteamBath30: "Steam bath – 30 min",
+    spaJacuzzi30: "Jacuzzi – 30 min",
+    
     // SPA Zone Options
     spaSauna: "Sauna",
     spaSteamBath: "Steam Bath",
