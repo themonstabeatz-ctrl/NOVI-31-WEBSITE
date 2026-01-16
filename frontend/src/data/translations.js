@@ -1559,6 +1559,11 @@ export const translations = {
     spaZoneOnlyDesc: "Эксклюзивное использование СПА зон без ритуалов.",
     spaSelectZoneButton: "Выберите зону",
     
+    // Herbal package descriptions
+    spaSilkyHerbalDesc: "Уход за телом с пилингом и глубоким расслаблением с ароматом и горячими травяными компрессами.",
+    spaThaiHerbalCompressDesc: "Традиционная тайская процедура с горячими травяными компрессами для расслабления мышц и ума.",
+    spaAromaStoneDesc: "Сочетание ароматерапии и горячих камней для глубокого расслабления тела и снятия напряжения.",
+    
     // Special Packages Section
     spaSpecialPackagesTitle: "СПА пакеты для особых случаев",
     spaForTwoPeople: "Для двоих",
