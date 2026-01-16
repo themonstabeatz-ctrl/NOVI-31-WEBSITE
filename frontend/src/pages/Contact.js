@@ -1108,14 +1108,17 @@ const Contact = () => {
           service_ids: spaBookingMeta.serviceIds || [],
           
           // ✅ Service details - za email template
-          // MASTER: Koristi tačan naziv paketa, NIKAD fallback na generički naziv
+          // MASTER: Koristi tačan naziv paketa SA UKUPNIM TRAJANJEM
           service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId,
-          service_name: spaBookingMeta.spaName,
+          service_name: `${spaBookingMeta.spaName} - ${spaBookingMeta.totalDuration} min`,
           service_description: spaBookingMeta.variantLabel || "",
           
           // ✅ Duration & pricing - MASTER: Koristi totalDuration iz URL params
-          duration: spaBookingMeta.totalDuration || spaBookingMeta.baseDuration || 0,
-          duration_min: spaBookingMeta.totalDuration || spaBookingMeta.baseDuration || 0,
+          // Šaljemo eksplicitno SVE duration polja da backend sigurno vidi
+          duration: spaBookingMeta.totalDuration || 0,
+          duration_min: spaBookingMeta.totalDuration || 0,
+          total_duration: spaBookingMeta.totalDuration || 0,
+          base_duration: spaBookingMeta.baseDuration || 0,
           
           // ✅ SPA zone info (ako postoji)
           spa_zone: spaBookingMeta.spaZoneText || "",
