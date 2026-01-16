@@ -1107,19 +1107,20 @@ const Contact = () => {
           service_ids: spaBookingMeta.serviceIds || [],
           
           // ✅ Service details - za email template
+          // MASTER: Koristi tačan naziv paketa, NIKAD fallback na generički naziv
           service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId,
-          service_name: spaBookingMeta.spaName || "SPA Tretman",
+          service_name: spaBookingMeta.spaName,
           service_description: spaBookingMeta.variantLabel || "",
           
-          // ✅ Duration & pricing
-          duration: spaBookingMeta.totalMinutes,
-          duration_min: spaBookingMeta.totalMinutes,
+          // ✅ Duration & pricing - MASTER: Koristi totalDuration iz URL params
+          duration: spaBookingMeta.totalDuration || spaBookingMeta.baseDuration || 0,
+          duration_min: spaBookingMeta.totalDuration || spaBookingMeta.baseDuration || 0,
           
           // ✅ SPA zone info (ako postoji)
           spa_zone: spaBookingMeta.spaZoneText || "",
           
           // ✅ Notes (poruka iz forme)
-          notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalMinutes} min`,
+          notes: formData.message || `SPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\n\nUkupno trajanje: ${spaBookingMeta.totalDuration} min`,
 
           // ✅ SAMO ORIGINALNA CENA - backend računa popust!
           // Prioritet: quotePricing (od API quote) > spaBookingMeta (od URL params) > 0
