@@ -1521,6 +1521,10 @@ export const translations = {
     spaBachCocktail: "Профессиональный коктейльный мастер",
     spaBachCake: "Праздничный торт",
     spaBachDJ: "DJ Monsta Beatz – атмосфера на весь вечер",
+    spaBachCocktailShow: "Коктейльный мастер (live коктейль шоу и фирменные напитки)",
+    spaBachCatering: "Классический кейтеринг",
+    spaBachDecoration: "Декорация пространства и интимная атмосфера Bua Luang",
+    spaBachCallButton: "Позвоните: 062 625 500",
   },
   
   th: {
