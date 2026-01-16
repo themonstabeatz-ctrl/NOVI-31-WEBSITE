@@ -555,6 +555,7 @@ export const translations = {
     spaSpecialPackagesTitle: "Spa paketi za posebne slučajeve",
     spaForTwoPeople: "Za dve osobe",
     spaRomanticPackage: "Romantični paket za parove",
+    spaRomanticPackageDesc: "Partnerska aroma masaža sa SPA zonom, šampanjcem i voćem za dvoje.",
     spaRomanticPeelingPackage: "Romantični piling paket za parove",
     spaBacheloretteParty: "Devojačko veče & Lady Party",
     spaBacheloretteDesc: "Ekskluzivno veče stvoreno za slavlje, eleganciju i čistu žensku energiju. Devojačko veče u Bua Luang ambijentu spaja vrhunske masaže, potpuni SPA doživljaj, koktel majstora, svečanu tortu, i DJ Monsta Beatz koji vodi večernju zabavu. Privatnost, luksuz i dobra energija – sve na jednom mestu.",
