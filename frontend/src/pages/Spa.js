@@ -1161,6 +1161,8 @@ const Spa = () => {
       baseDuration: String(HERBAL_BASE_MINUTES),
       includedSpaZone: includedSpaZone,
       spaZoneLabel: spaZoneLabel,
+      // ✅ Variant label for listing - use SPA zone choice
+      variantLabel: spaZoneLabel,
       // ✅ Send ORIGINAL price (total_original) for backend
       totalPrice: String(originalPrice),
       totalDuration: String(totalMinutes),
