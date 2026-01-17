@@ -1766,7 +1766,7 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.3'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
+                      <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {formatNumber(totalMinutes)} min<br />
                       {packageQuotes[pkg.id]?.has_discount ? (
                         <>
                           <strong style={{ color: '#d4af37' }}>{translate("spaOriginalPrice")}</strong>{' '}
@@ -2110,7 +2110,7 @@ const Spa = () => {
                       margin: 0,
                       lineHeight: '1.3'
                     }}>
-                      <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {packageQuotes[pkg.id]?.total_duration || formatNumber(totalMinutes)} min<br />
+                      <strong style={{ color: '#d4af37' }}>{translate("spaTotalDuration")}</strong> {formatNumber(totalMinutes)} min<br />
                       {packageQuotes[pkg.id]?.has_discount ? (
                         <>
                           <strong style={{ color: '#d4af37' }}>{translate("spaOriginalPrice")}</strong>{' '}
