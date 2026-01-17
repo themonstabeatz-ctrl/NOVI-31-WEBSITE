@@ -47,6 +47,7 @@ function App() {
               <Route path="gallery" element={<Gallery />} />
               <Route path="termini" element={<Termini />} />
               <Route path="appointments" element={<Termini />} />
+              <Route path="head-spa" element={<HeadSpa />} />
               
               {/* Serbian URL Aliases - 301 Redirects with query params preserved */}
               <Route path="usluge" element={<Navigate to="/masaze" replace />} />
