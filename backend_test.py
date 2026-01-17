@@ -20,7 +20,7 @@ import sys
 from datetime import datetime
 
 # Test Configuration
-BACKEND_URL = "https://multi-lang-spa-1.preview.emergentagent.com"
+BACKEND_URL = "https://spa-multilingual.preview.emergentagent.com"
 TIMEOUT = 30
 
 class Colors:
@@ -241,7 +241,7 @@ def test_env_configuration():
         with open(env_file, 'r') as f:
             env_content = f.read()
         
-        expected_url = "https://multi-lang-spa-1.preview.emergentagent.com"
+        expected_url = "https://spa-multilingual.preview.emergentagent.com"
         
         if f"REACT_APP_BACKEND_URL={expected_url}" in env_content:
             log_test("Environment Configuration", "PASS", f"Correct REACT_APP_BACKEND_URL found")

@@ -5,7 +5,7 @@ import App from "@/App";
 import { API_BASE } from "./config/api";
 
 // ✅ RUNTIME GUARD: Fail hard if API_BASE is not correct
-const EXPECTED_API_BASE = "https://spa-system-fixes.preview.emergentagent.com";
+const EXPECTED_API_BASE = "https://spa-multilingual.preview.emergentagent.com";
 
 if (API_BASE !== EXPECTED_API_BASE) {
   console.error("❌ API_BASE MISCONFIGURED:", API_BASE);

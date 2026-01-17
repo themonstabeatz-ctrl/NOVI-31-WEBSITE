@@ -33,7 +33,7 @@ Crawl-delay: 1
 ```
 
 **Status:** ✅ Live i funkcionalan
-**Test URL:** https://multi-lang-spa-1.preview.emergentagent.com/robots.txt
+**Test URL:** https://spa-multilingual.preview.emergentagent.com/robots.txt
 
 ---
 
