@@ -505,7 +505,12 @@ const Contact = () => {
           const zones = selectedSpaZones.split("|");
           messageLines.push(translate("msgSelectedZones"));
           zones.forEach(zone => {
-            messageLines.push(`  • ${zone}`);
+            // Translate zone names from Serbian to current language
+            let translatedZone = zone;
+            if (zone.includes("Sauna")) translatedZone = zone.replace("Sauna", translate("spaSauna"));
+            if (zone.includes("Parno kupatilo")) translatedZone = zone.replace("Parno kupatilo", translate("spaSteamBath"));
+            if (zone.includes("Jacuzzi")) translatedZone = zone.replace("Jacuzzi", translate("spaJacuzzi"));
+            messageLines.push(`  • ${translatedZone}`);
           });
         } else if (spaZoneLabel && spaZoneLabel !== "Bez SPA zona") {
           messageLines.push(`${translate("msgSelectedZones")} ${spaZoneLabel}`);
