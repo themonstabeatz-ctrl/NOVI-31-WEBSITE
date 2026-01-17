@@ -1,6 +1,6 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://spa-multilingual.preview.emergentagent.com
+ * Backend URL: https://spa-system-fixes.preview.emergentagent.com
  * 
  * ❌ ZERO spa-booking-site-1 (OLD)
  * ❌ ZERO discount-system-fix (OLD)
@@ -15,6 +15,7 @@
  * ❌ ZERO price-analyzer-8 (OLD)
  * ❌ ZERO multi-lang-spa-1 (OLD)
  * ❌ ZERO multilingfix (OLD)
+ * ❌ ZERO spa-multilingual (OLD)
  * ❌ ZERO process.env
  * ❌ ZERO REACT_APP_BACKEND_URL
  * ❌ ZERO fallback
@@ -26,7 +27,7 @@
  */
 
 // ✅ SINGLE SOURCE OF TRUTH
-export const API_BASE = "https://spa-multilingual.preview.emergentagent.com";
+export const API_BASE = "https://spa-system-fixes.preview.emergentagent.com";
 
 // Freeze to prevent accidental overwrite
 Object.freeze?.(API_BASE);
