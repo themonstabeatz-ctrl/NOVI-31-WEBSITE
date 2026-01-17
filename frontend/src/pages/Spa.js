@@ -1258,18 +1258,36 @@ const Spa = () => {
       let baseMinutes = selectedVariant.totalMinutes;
       let basePrice = selectedVariant.totalPrice;
       
-      // Add ALL selected zones
+      // Add ALL selected zones - USE API PRICES for consistency
       let zoneMinutes = 0;
       let zonePrice = 0;
+      
+      // Map selection IDs to API service names
+      const selectionToApiName = {
+        'SAUNA_15': 'Sauna 15 min',
+        'SAUNA_30': 'Sauna 30 min',
+        'STEAM_15': 'Parno kupatilo 15 min',
+        'STEAM_30': 'Parno kupatilo 30 min',
+        'JACUZZI_30': 'Jacuzzi 30 min',
+        'JACUZZI_60': 'Jacuzzi 60 min'
+      };
       
       if (pkg.spaZones) {
         pkg.spaZones.forEach(zone => {
           const selectedOptionId = selectedZones[zone.id];
           if (selectedOptionId) {  // If not null (not "Bez")
-            const option = zone.options.find(o => o.id === selectedOptionId);
-            if (option) {
-              zoneMinutes += option.extraMinutes;
-              zonePrice += option.extraPrice;
+            // ✅ ALWAYS use API prices for consistency
+            const apiName = selectionToApiName[selectedOptionId];
+            if (apiName && spaZonePrices[apiName]) {
+              zoneMinutes += spaZonePrices[apiName].duration;
+              zonePrice += spaZonePrices[apiName].price;
+            } else {
+              // Fallback to hardcoded only if API not available
+              const option = zone.options.find(o => o.id === selectedOptionId);
+              if (option) {
+                zoneMinutes += option.extraMinutes;
+                zonePrice += option.extraPrice;
+              }
             }
           }
         });
