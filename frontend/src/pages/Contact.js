@@ -183,6 +183,7 @@ const Contact = () => {
   const [quotePricingLoading, setQuotePricingLoading] = useState(false);
   
   // ✅ UPDATE: When quotePricing arrives, update the message with correct price
+  // ✅ FIX: Use translate() for ALL languages (SR, EN, RU, TH)
   useEffect(() => {
     if (!quotePricing || !spaBookingMeta) return;
     
@@ -190,34 +191,49 @@ const Contact = () => {
     console.log("📊 BOOKING card_id:", spaBookingMeta.cardId);
     console.log("📊 BOOKING service_ids:", spaBookingMeta.serviceIds);
     
-    // Build price line from quote (the ONLY source of truth)
+    // Build price lines from quote (the ONLY source of truth)
     const formatPrice = (n) => Number(n || 0).toLocaleString('sr-RS');
-    let priceLine;
+    let priceLines;
     
     if (quotePricing.has_discount) {
-      priceLine = `Ukupna cena: ${formatPrice(quotePricing.original_total)} RSD → ${formatPrice(quotePricing.final_total)} RSD (-${quotePricing.discount_percent}%)`;
+      // ✅ FIX: Use translate() for multi-language support
+      priceLines = [
+        `${translate("spaOriginalPrice")} ${formatPrice(quotePricing.original_total)} RSD`,
+        `${translate("msgDiscount")} -${quotePricing.discount_percent}%`,
+        `${translate("spaFinalPrice")} ${formatPrice(quotePricing.final_total)} RSD`
+      ].join('\n');
     } else {
-      priceLine = `Ukupna cena: ${formatPrice(quotePricing.final_total || quotePricing.original_total)} RSD`;
+      priceLines = `${translate("spaTotalPrice")} ${formatPrice(quotePricing.final_total || quotePricing.original_total)} RSD`;
     }
     
     // Update message with correct pricing
     setFormData(prev => {
       if (!prev.message) return prev;
       
-      // Replace the price line in the message
-      const updatedMessage = prev.message.replace(
-        /Ukupna cena:.*RSD.*/g,
-        priceLine
-      );
+      // ✅ FIX: Regex that matches ALL language price labels (SR, EN, RU, TH)
+      // Matches: "Ukupna cena:", "Total price:", "Общая цена:", "ราคารวม:", 
+      //          "Originalna cena:", "Original price:", etc.
+      const priceLineRegex = /(Ukupna cena:|Total price:|Общая цена:|ราคารวม:|Originalna cena:|Original price:|Оригинальная цена:|ราคาเดิม:|Popust:|Discount:|Скидка:|ส่วนลด:|Cena za naplatu:|Price to pay:|К оплате:|ราคาที่ต้องชำระ:).*$/gm;
       
-      console.log("📝 Updated booking message with quote price:", priceLine);
+      // Remove all existing price lines first
+      let cleanedMessage = prev.message;
+      let match;
+      while ((match = priceLineRegex.exec(prev.message)) !== null) {
+        cleanedMessage = cleanedMessage.replace(match[0], '');
+      }
+      
+      // Remove empty lines at the end and add price lines
+      cleanedMessage = cleanedMessage.replace(/\n+$/, '');
+      const updatedMessage = cleanedMessage + '\n' + priceLines;
+      
+      console.log("📝 Updated booking message with quote price (translated):", priceLines);
       
       return {
         ...prev,
         message: updatedMessage
       };
     });
-  }, [quotePricing, spaBookingMeta]);
+  }, [quotePricing, spaBookingMeta, translate]);
   
   // Dynamic service mapping from booking system
   const [serviceMapping, setServiceMapping] = useState({});
