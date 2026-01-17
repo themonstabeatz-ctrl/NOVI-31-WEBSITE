@@ -1048,21 +1048,28 @@ const Spa = () => {
       zones.forEach(zone => {
         const selectedOptionId = selectedZones[zone.id];
         if (selectedOptionId) {
-          // ✅ Use API prices for SPA Zone Only
-          if (pkg.isZoneOnly) {
-            const apiName = selectionToApiName[selectedOptionId];
-            if (apiName && spaZonePrices[apiName]) {
-              const apiData = spaZonePrices[apiName];
-              zoneLabels.push(`${zone.label} ${apiData.duration} min`);
-              addonPrice += apiData.price;
-              addonDuration += apiData.duration;
-              
-              if (zone.id === 'SAUNA') saunaMin = apiData.duration;
-              else if (zone.id === 'STEAM') steamMin = apiData.duration;
-              else if (zone.id === 'JACUZZI') jacuzziMin = apiData.duration;
-            }
+          // ✅ ALWAYS use API prices for consistency
+          const selectionToApiName = {
+            'SAUNA_15': 'Sauna 15 min',
+            'SAUNA_30': 'Sauna 30 min',
+            'STEAM_15': 'Parno kupatilo 15 min',
+            'STEAM_30': 'Parno kupatilo 30 min',
+            'JACUZZI_30': 'Jacuzzi 30 min',
+            'JACUZZI_60': 'Jacuzzi 60 min'
+          };
+          
+          const apiName = selectionToApiName[selectedOptionId];
+          if (apiName && spaZonePrices[apiName]) {
+            const apiData = spaZonePrices[apiName];
+            zoneLabels.push(`${zone.label} ${apiData.duration} min`);
+            addonPrice += apiData.price;
+            addonDuration += apiData.duration;
+            
+            if (zone.id === 'SAUNA') saunaMin = apiData.duration;
+            else if (zone.id === 'STEAM') steamMin = apiData.duration;
+            else if (zone.id === 'JACUZZI') jacuzziMin = apiData.duration;
           } else {
-            // Regular ritual packages use hardcoded addon prices
+            // Fallback to hardcoded only if API not available
             const option = zone.options.find(o => o.id === selectedOptionId);
             if (option) {
               zoneLabels.push(`${zone.label} ${option.label}`);
