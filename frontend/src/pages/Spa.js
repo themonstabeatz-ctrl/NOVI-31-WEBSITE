@@ -1048,38 +1048,16 @@ const Spa = () => {
       zones.forEach(zone => {
         const selectedOptionId = selectedZones[zone.id];
         if (selectedOptionId) {
-          // ✅ ALWAYS use API prices for consistency
-          const selectionToApiName = {
-            'SAUNA_15': 'Sauna 15 min',
-            'SAUNA_30': 'Sauna 30 min',
-            'STEAM_15': 'Parno kupatilo 15 min',
-            'STEAM_30': 'Parno kupatilo 30 min',
-            'JACUZZI_30': 'Jacuzzi 30 min',
-            'JACUZZI_60': 'Jacuzzi 60 min'
-          };
-          
-          const apiName = selectionToApiName[selectedOptionId];
-          if (apiName && spaZonePrices[apiName]) {
-            const apiData = spaZonePrices[apiName];
-            zoneLabels.push(`${zone.label} ${apiData.duration} min`);
-            addonPrice += apiData.price;
-            addonDuration += apiData.duration;
+          // Use hardcoded prices from SPA_PACKAGES
+          const option = zone.options.find(o => o.id === selectedOptionId);
+          if (option) {
+            zoneLabels.push(`${zone.label} ${option.label}`);
+            addonPrice += option.extraPrice || option.totalPrice || 0;
+            addonDuration += option.extraMinutes || option.totalMinutes || 0;
             
-            if (zone.id === 'SAUNA') saunaMin = apiData.duration;
-            else if (zone.id === 'STEAM') steamMin = apiData.duration;
-            else if (zone.id === 'JACUZZI') jacuzziMin = apiData.duration;
-          } else {
-            // Fallback to hardcoded only if API not available
-            const option = zone.options.find(o => o.id === selectedOptionId);
-            if (option) {
-              zoneLabels.push(`${zone.label} ${option.label}`);
-              addonPrice += option.extraPrice || option.totalPrice || 0;
-              addonDuration += option.extraMinutes || option.totalMinutes || 0;
-              
-              if (zone.id === 'SAUNA') saunaMin = option.extraMinutes || option.totalMinutes || 0;
-              else if (zone.id === 'STEAM') steamMin = option.extraMinutes || option.totalMinutes || 0;
-              else if (zone.id === 'JACUZZI') jacuzziMin = option.extraMinutes || option.totalMinutes || 0;
-            }
+            if (zone.id === 'SAUNA') saunaMin = option.extraMinutes || option.totalMinutes || 0;
+            else if (zone.id === 'STEAM') steamMin = option.extraMinutes || option.totalMinutes || 0;
+            else if (zone.id === 'JACUZZI') jacuzziMin = option.extraMinutes || option.totalMinutes || 0;
           }
         }
       });
