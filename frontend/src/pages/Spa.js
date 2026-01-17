@@ -216,24 +216,24 @@ const SPA_PACKAGES = [
         id: "SAUNA",
         label: "Sauna",
         options: [
-          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
-          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 1400 },
+          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 2400 }
         ]
       },
       {
         id: "STEAM",
         label: "Parno kupatilo",
         options: [
-          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
-          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 1400 },
+          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 2400 }
         ]
       },
       {
         id: "JACUZZI",
         label: "Jacuzzi",
         options: [
-          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 },
-          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 2800 }
+          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 2200 },
+          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 3400 }
         ]
       }
     ]
@@ -266,24 +266,24 @@ const SPA_PACKAGES = [
         id: "SAUNA",
         label: "Sauna",
         options: [
-          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
-          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 1400 },
+          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 2400 }
         ]
       },
       {
         id: "STEAM",
         label: "Parno kupatilo",
         options: [
-          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
-          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 1400 },
+          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 2400 }
         ]
       },
       {
         id: "JACUZZI",
         label: "Jacuzzi",
         options: [
-          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 },
-          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 2800 }
+          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 2200 },
+          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 3400 }
         ]
       }
     ]
@@ -316,24 +316,24 @@ const SPA_PACKAGES = [
         id: "SAUNA",
         label: "Sauna",
         options: [
-          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
-          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+          { id: "SAUNA_15", label: "15 min", extraMinutes: 15, extraPrice: 1400 },
+          { id: "SAUNA_30", label: "30 min", extraMinutes: 30, extraPrice: 2400 }
         ]
       },
       {
         id: "STEAM",
         label: "Parno kupatilo",
         options: [
-          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 800 },
-          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 }
+          { id: "STEAM_15", label: "15 min", extraMinutes: 15, extraPrice: 1400 },
+          { id: "STEAM_30", label: "30 min", extraMinutes: 30, extraPrice: 2400 }
         ]
       },
       {
         id: "JACUZZI",
         label: "Jacuzzi",
         options: [
-          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 1400 },
-          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 2800 }
+          { id: "JACUZZI_30", label: "30 min", extraMinutes: 30, extraPrice: 2200 },
+          { id: "JACUZZI_60", label: "60 min", extraMinutes: 60, extraPrice: 3400 }
         ]
       }
     ]
