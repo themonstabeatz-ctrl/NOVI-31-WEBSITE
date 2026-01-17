@@ -1126,7 +1126,7 @@ const Contact = () => {
           
           // ✅ Notes - UVEK uključi srpski format za backend parsiranje
           // Backend traži "Ukupno trajanje:" za prikaz u Termini/Notifikacije
-          notes: formData.message + `\n\n--- BACKEND DATA (SR) ---\nSPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || 'Osnovna'}\nUkupno trajanje: ${spaBookingMeta.totalDuration} min\nUkupna cena: ${spaBookingMeta.totalPrice} RSD`,
+          notes: formData.message + `\n\n--- BACKEND DATA (SR) ---\nSPA paket: ${spaBookingMeta.spaName}\nVarijanta: ${spaBookingMeta.variantLabel || spaBookingMeta.spaZoneLabel || 'Bez varijante'}\nUkupno trajanje: ${spaBookingMeta.totalDuration} min\nUkupna cena: ${spaBookingMeta.totalPrice} RSD`,
 
           // ✅ SAMO ORIGINALNA CENA - backend računa popust!
           // Prioritet: quotePricing (od API quote) > spaBookingMeta (od URL params) > 0
