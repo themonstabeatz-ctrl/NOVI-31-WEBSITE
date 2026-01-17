@@ -202,13 +202,13 @@ const SPA_PACKAGES = [
         id: "SPA1_BASE",
         label: "Bez masaže lica",
         totalMinutes: 150,
-        totalPrice: 9200
+        totalPrice: 9400
       },
       {
         id: "SPA1_WITH_FACE",
         label: "Sa masažom lica (tokom body wrap-a)",
         totalMinutes: 150,
-        totalPrice: 12200
+        totalPrice: 12400
       }
     ],
     spaZones: [
