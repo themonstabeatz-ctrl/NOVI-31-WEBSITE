@@ -1112,7 +1112,7 @@ const Contact = () => {
           // MASTER: Koristi tačan naziv paketa SA UKUPNIM TRAJANJEM
           service_id: spaBookingMeta.variantId || spaBookingMeta.spaPackageId,
           service_name: `${spaBookingMeta.spaName} - ${spaBookingMeta.totalDuration} min`,
-          service_description: spaBookingMeta.variantLabel || "",
+          service_description: spaBookingMeta.variantLabel || spaBookingMeta.spaZoneLabel || "",
           
           // ✅ Duration & pricing - MASTER: Koristi totalDuration iz URL params
           // Šaljemo eksplicitno SVE duration polja da backend sigurno vidi
