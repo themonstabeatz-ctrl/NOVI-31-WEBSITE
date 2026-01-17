@@ -20,6 +20,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import Termini from "./pages/Termini";
+import HeadSpa from "./pages/HeadSpa";
 import { Toaster } from "./components/ui/sonner";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import ScrollManager from "./components/ScrollManager";
