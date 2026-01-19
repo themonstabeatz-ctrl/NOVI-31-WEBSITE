@@ -402,14 +402,14 @@ const HeadSpa = () => {
           </div>
           
           <div className="hs-hero-content">
-            <h1 className="hs-hero-title">
-              <span className="hs-title-main">{content.heroTitle}</span>
-            </h1>
             <img 
               src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png" 
               alt="Bua Luang Thai Spa" 
               className="hs-hero-logo"
             />
+            <h1 className="hs-hero-title">
+              <span className="hs-title-main">{content.heroTitle}</span>
+            </h1>
             <p className="hs-title-sub">{content.heroSubtitle}</p>
             <p className="hs-hero-tagline">{content.heroTagline}</p>
           </div>
