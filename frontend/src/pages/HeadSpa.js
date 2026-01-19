@@ -433,6 +433,9 @@ const HeadSpa = () => {
             <h2 className="hs-section-title">{content.introTitle}</h2>
             <p className="hs-intro-text">{content.introText}</p>
           </div>
+          {/* Wave decoration at bottom of intro */}
+          <div className="hs-intro-wave" aria-hidden="true"></div>
+          <div className="hs-intro-wave-stroke" aria-hidden="true"></div>
         </section>
 
         {/* REFRESH SECTION - Parallax Effect */}
