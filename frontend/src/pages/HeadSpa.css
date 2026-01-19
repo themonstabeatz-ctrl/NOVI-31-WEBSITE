@@ -622,6 +622,11 @@
     width: 120px;
   }
   
+  .hs-hero-wave,
+  .hs-hero-wave-stroke {
+    height: 120px;
+  }
+  
   .hs-parallax-bg {
     background-attachment: scroll;
   }
@@ -638,10 +643,6 @@
   
   .hs-benefits-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .hs-scroll-indicator {
-    bottom: 20px;
   }
 }
 
