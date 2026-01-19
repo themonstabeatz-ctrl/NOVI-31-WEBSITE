@@ -324,6 +324,7 @@ const HeadSpa = () => {
   const { currentLanguage } = useLanguage();
   const content = headSpaContent[currentLanguage] || headSpaContent.sr;
   const [isVisible, setIsVisible] = useState({});
+  const [waveOffset, setWaveOffset] = useState(0);
   const sectionsRef = useRef({});
 
   // Intersection Observer for animations
@@ -346,6 +347,31 @@ const HeadSpa = () => {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
+  }, []);
+
+  // Wave parallax effect on scroll
+  useEffect(() => {
+    let rafId = null;
+    let lastScrollY = 0;
+
+    const handleScroll = () => {
+      if (rafId) return;
+      
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        // Only apply parallax in first 600px of scroll
+        const offset = Math.min(Math.max(scrollY * 0.12, 0), 50);
+        setWaveOffset(offset);
+        lastScrollY = scrollY;
+        rafId = null;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
@@ -376,20 +402,29 @@ const HeadSpa = () => {
           </div>
           
           <div className="hs-hero-content">
+            <h1 className="hs-hero-title">
+              <span className="hs-title-main">{content.heroTitle}</span>
+            </h1>
             <img 
               src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png" 
               alt="Bua Luang Thai Spa" 
               className="hs-hero-logo"
             />
-            <h1 className="hs-hero-title">
-              <span className="hs-title-main">{content.heroTitle}</span>
-              <span className="hs-title-sub">{content.heroSubtitle}</span>
-            </h1>
+            <p className="hs-title-sub">{content.heroSubtitle}</p>
             <p className="hs-hero-tagline">{content.heroTagline}</p>
-            <div className="hs-scroll-indicator">
-              <div className="hs-scroll-arrow"></div>
-            </div>
           </div>
+
+          {/* Wave decoration with parallax */}
+          <div 
+            className="hs-hero-wave" 
+            aria-hidden="true"
+            style={{ transform: `translateY(${waveOffset}px)` }}
+          ></div>
+          <div 
+            className="hs-hero-wave-stroke" 
+            aria-hidden="true"
+            style={{ transform: `translateY(${waveOffset}px)` }}
+          ></div>
         </section>
 
         {/* INTRO SECTION */}
