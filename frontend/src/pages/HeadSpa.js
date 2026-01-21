@@ -415,6 +415,23 @@ const HeadSpa = () => {
           </div>
         </section>
 
+        {/* INTRO PARALLAX SECTION - Between Hero and Refresh */}
+        <section id="hs-intro-parallax" className="hs-intro-parallax">
+          {/* Top gold wave line */}
+          <div className="hs-intro-wave-top" aria-hidden="true"></div>
+          <div className="hs-intro-wave-top-stroke" aria-hidden="true"></div>
+          
+          {/* Black content area */}
+          <div className="hs-intro-content">
+            <h2 className="hs-intro-title">{content.introTitle}</h2>
+            <p className="hs-intro-text">{content.introText}</p>
+          </div>
+          
+          {/* Bottom gold wave line */}
+          <div className="hs-intro-wave-bottom" aria-hidden="true"></div>
+          <div className="hs-intro-wave-bottom-stroke" aria-hidden="true"></div>
+        </section>
+
         {/* REFRESH SECTION - Parallax Effect */}
         <section id="hs-refresh" className="hs-section hs-refresh hs-parallax hs-animate">
           <div className="hs-parallax-bg"></div>
