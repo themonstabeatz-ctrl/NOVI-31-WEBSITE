@@ -278,7 +278,7 @@
 
 /* ========== REFRESH SECTION ========== */
 .hs-refresh {
-  background: var(--hs-dark-card);
+  background: transparent;
 }
 
 .hs-refresh .hs-parallax-bg {
