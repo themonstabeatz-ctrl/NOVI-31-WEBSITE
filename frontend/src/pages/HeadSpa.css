@@ -269,8 +269,6 @@
 /* ========== REFRESH SECTION ========== */
 .hs-refresh {
   background: var(--hs-dark-card);
-  padding-top: 60px;
-  margin-top: -45px;
 }
 
 .hs-refresh-grid {
