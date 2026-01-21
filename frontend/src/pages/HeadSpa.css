@@ -222,19 +222,19 @@
   z-index: 5;
 }
 
-/* Top wave - fill INSIDE (below the gold line) */
+/* Top wave - fill INSIDE (below the gold line towards content) */
 .hs-intro-wave-top {
   position: relative;
   width: 100%;
   height: 180px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-position: top center;
-  /* Fill below the curve - inverted */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180' preserveAspectRatio='none'%3E%3Cpath fill='%230a0a0a' d='M0,0 L0,100 Q360,180 720,120 Q1080,60 1440,140 L1440,0 Z'/%3E%3C/svg%3E");
+  background-position: bottom center;
+  /* Fill below the curve - same as bottom wave but fills downward */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180' preserveAspectRatio='none'%3E%3Cpath fill='%230a0a0a' d='M0,180 L0,80 Q360,0 720,60 Q1080,120 1440,40 L1440,180 Z'/%3E%3C/svg%3E");
 }
 
-/* Top wave - gold stroke */
+/* Top wave - gold stroke - same curve as bottom */
 .hs-intro-wave-top-stroke {
   position: absolute;
   top: 0;
@@ -243,9 +243,9 @@
   height: 180px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-position: top center;
+  background-position: bottom center;
   z-index: 2;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180' preserveAspectRatio='none'%3E%3Cpath fill='none' stroke='%23d4af37' stroke-width='2' d='M0,100 Q360,180 720,120 Q1080,60 1440,140'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180' preserveAspectRatio='none'%3E%3Cpath fill='none' stroke='%23d4af37' stroke-width='2' d='M0,80 Q360,0 720,60 Q1080,120 1440,40'/%3E%3C/svg%3E");
 }
 
 /* Black content area between waves */
