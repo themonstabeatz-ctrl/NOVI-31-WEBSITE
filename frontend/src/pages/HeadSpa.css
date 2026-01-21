@@ -268,7 +268,7 @@
 
 /* ========== REFRESH SECTION ========== */
 .hs-refresh {
-  background: var(--hs-dark-card);
+  background: rgba(26, 26, 26, 0.8);
 }
 
 .hs-refresh-grid {
