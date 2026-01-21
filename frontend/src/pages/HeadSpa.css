@@ -661,17 +661,15 @@
   }
   
   .hs-hero-wave,
-  .hs-hero-wave-stroke {
+  .hs-hero-wave-stroke,
+  .hs-intro-wave,
+  .hs-intro-wave-stroke {
     height: 100px;
   }
   
   .hs-intro {
     padding-top: 40px;
-    padding-bottom: 60px;
-  }
-  
-  .hs-intro-wave-stroke {
-    height: 60px;
+    padding-bottom: 30px;
   }
   
   .hs-parallax-bg {
