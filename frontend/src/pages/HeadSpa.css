@@ -191,6 +191,7 @@
   position: relative;
   padding-top: 60px;
   padding-bottom: 50px;
+  margin-bottom: 0;
 }
 
 .hs-intro-text {
@@ -202,7 +203,7 @@
   margin: 0 auto;
 }
 
-/* Wave at bottom of intro section - ONLY gold stroke at exact bottom */
+/* Wave at bottom of intro section - gold line as exact boundary */
 .hs-intro-wave {
   display: none;
 }
