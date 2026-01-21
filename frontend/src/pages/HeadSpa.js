@@ -427,15 +427,21 @@ const HeadSpa = () => {
           ></div>
         </section>
 
-        {/* INTRO SECTION */}
-        <section id="hs-intro" className="hs-section hs-intro hs-animate">
-          <div className={`hs-container ${isVisible["hs-intro"] ? "hs-visible" : ""}`}>
-            <h2 className="hs-section-title">{content.introTitle}</h2>
-            <p className="hs-intro-text">{content.introText}</p>
+        {/* INTRO SECTION - Wave Band Structure */}
+        <section id="hs-intro" className="hs-wave-band hs-animate">
+          {/* Top gold line */}
+          <div className="hs-wave-line hs-wave-top" aria-hidden="true"></div>
+          
+          {/* Inner content with dark background */}
+          <div className="hs-wave-inner">
+            <div className={`hs-wave-content ${isVisible["hs-intro"] ? "hs-visible" : ""}`}>
+              <h2 className="hs-band-title">{content.introTitle}</h2>
+              <p className="hs-band-text">{content.introText}</p>
+            </div>
           </div>
-          {/* Wave decoration at bottom of intro */}
-          <div className="hs-intro-wave" aria-hidden="true"></div>
-          <div className="hs-intro-wave-stroke" aria-hidden="true"></div>
+          
+          {/* Bottom gold line - LAST element, no background below */}
+          <div className="hs-wave-line hs-wave-bottom" aria-hidden="true"></div>
         </section>
 
         {/* REFRESH SECTION - Parallax Effect */}
