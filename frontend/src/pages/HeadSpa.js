@@ -413,18 +413,6 @@ const HeadSpa = () => {
             <p className="hs-title-sub">{content.heroSubtitle}</p>
             <p className="hs-hero-tagline">{content.heroTagline}</p>
           </div>
-
-          {/* Wave decoration with parallax */}
-          <div 
-            className="hs-hero-wave" 
-            aria-hidden="true"
-            style={{ transform: `translateY(${waveOffset}px)` }}
-          ></div>
-          <div 
-            className="hs-hero-wave-stroke" 
-            aria-hidden="true"
-            style={{ transform: `translateY(${waveOffset}px)` }}
-          ></div>
         </section>
 
         {/* REFRESH SECTION - Parallax Effect */}
