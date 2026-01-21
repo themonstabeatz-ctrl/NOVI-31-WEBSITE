@@ -214,7 +214,7 @@
 }
 
 /* Wave at bottom of intro section - same structure as hero wave */
-/* 1. FILL - matches "Osvežite se" section background */
+/* 1. FILL - transparent to show video below gold line */
 .hs-intro-wave {
   position: absolute;
   left: 0;
@@ -226,8 +226,8 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: bottom center;
-  /* SVG Wave - fill with refresh section color */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180' preserveAspectRatio='none'%3E%3Cpath fill='%231a1a1a' d='M0,180 L0,80 Q360,0 720,60 Q1080,120 1440,40 L1440,180 Z'/%3E%3C/svg%3E");
+  /* SVG Wave - NO FILL, transparent */
+  background-image: none;
 }
 
 /* 2. STROKE - gold line on top */
