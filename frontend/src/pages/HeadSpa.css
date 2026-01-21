@@ -723,14 +723,13 @@
     height: 100px;
   }
   
-  .hs-intro {
-    padding-top: 40px;
-    padding-bottom: 160px;
+  .hs-wave-line {
+    height: 60px;
   }
   
-  .hs-intro-wave,
-  .hs-intro-wave-stroke {
-    height: 100px;
+  .hs-wave-content {
+    min-height: 160px;
+    padding: 30px 15px;
   }
   
   .hs-parallax-bg {
