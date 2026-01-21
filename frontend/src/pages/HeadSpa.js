@@ -405,7 +405,7 @@ const HeadSpa = () => {
             <div className="hs-video-overlay"></div>
           </div>
           
-          <div className="hs-hero-content">
+          <div className="hs-hero-content" style={{ opacity: heroOpacity }}>
             <img 
               src="https://customer-assets.emergentagent.com/job_serene-retreat-1/artifacts/r2vm59ex_Bualuang%20logo%20senka.png" 
               alt="Bua Luang Thai Spa" 
