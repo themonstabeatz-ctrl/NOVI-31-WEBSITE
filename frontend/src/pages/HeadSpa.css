@@ -409,7 +409,7 @@
 
 /* ========== TREATMENTS SECTION ========== */
 .hs-treatments {
-  background: rgba(26, 26, 26, 0.85);
+  background: var(--hs-dark-card);
 }
 
 .hs-treatments-grid {
