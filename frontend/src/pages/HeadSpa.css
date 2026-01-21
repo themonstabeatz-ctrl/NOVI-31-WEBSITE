@@ -539,7 +539,7 @@
 
 /* ========== CONTRAINDICATIONS SECTION ========== */
 .hs-contra {
-  background: var(--hs-dark-card);
+  background: rgba(26, 26, 26, 0.85);
   padding: 80px 20px;
 }
 
