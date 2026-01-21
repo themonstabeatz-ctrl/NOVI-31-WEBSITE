@@ -405,7 +405,7 @@
 
 /* ========== TREATMENTS SECTION ========== */
 .hs-treatments {
-  background: var(--hs-dark-card);
+  background: rgba(26, 26, 26, 0.85);
 }
 
 .hs-treatments-grid {
