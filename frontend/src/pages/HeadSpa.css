@@ -195,7 +195,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  background: transparent;
+  background: #0a0a0a;
 }
 
 .hs-intro .hs-container {
