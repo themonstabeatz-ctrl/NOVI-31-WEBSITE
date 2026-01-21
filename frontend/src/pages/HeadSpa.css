@@ -354,7 +354,7 @@
 
 /* ========== BENEFITS SECTION ========== */
 .hs-benefits {
-  background: linear-gradient(180deg, var(--hs-dark-card) 0%, var(--hs-dark) 100%);
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.85) 0%, rgba(10, 10, 10, 0.85) 100%);
 }
 
 .hs-benefits-grid {
