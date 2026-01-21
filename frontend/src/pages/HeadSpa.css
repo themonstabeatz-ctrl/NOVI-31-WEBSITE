@@ -576,7 +576,7 @@
 
 /* ========== CTA SECTION ========== */
 .hs-cta {
-  background: linear-gradient(180deg, var(--hs-dark) 0%, var(--hs-dark-card) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%);
   text-align: center;
   padding: 120px 20px;
 }
