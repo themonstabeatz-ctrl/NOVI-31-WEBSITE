@@ -189,11 +189,11 @@
 .hs-intro {
   position: relative;
   padding-top: 40px;
-  padding-bottom: 120px;
+  padding-bottom: 200px;
   margin-bottom: 0;
   margin-top: -100px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: transparent;
 }
@@ -204,6 +204,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding-top: 20px;
 }
 
 .hs-intro-text {
