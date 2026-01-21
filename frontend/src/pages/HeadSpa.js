@@ -325,6 +325,7 @@ const HeadSpa = () => {
   const content = headSpaContent[currentLanguage] || headSpaContent.sr;
   const [isVisible, setIsVisible] = useState({});
   const [waveOffset, setWaveOffset] = useState(0);
+  const [heroOpacity, setHeroOpacity] = useState(1);
   const sectionsRef = useRef({});
 
   // Intersection Observer for animations
@@ -349,20 +350,23 @@ const HeadSpa = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Wave parallax effect on scroll
+  // Hero fade out + wave parallax effect on scroll
   useEffect(() => {
     let rafId = null;
-    let lastScrollY = 0;
 
     const handleScroll = () => {
       if (rafId) return;
       
       rafId = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
-        // Only apply parallax in first 600px of scroll
+        // Wave parallax
         const offset = Math.min(Math.max(scrollY * 0.12, 0), 50);
         setWaveOffset(offset);
-        lastScrollY = scrollY;
+        
+        // Hero fade out effect - fade out over first 400px of scroll
+        const opacity = Math.max(1 - (scrollY / 400), 0);
+        setHeroOpacity(opacity);
+        
         rafId = null;
       });
     };
