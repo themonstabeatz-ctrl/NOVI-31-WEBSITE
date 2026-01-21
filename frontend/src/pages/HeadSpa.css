@@ -187,34 +187,24 @@
 
 /* ========== INTRO SECTION ========== */
 .hs-intro {
-  background: linear-gradient(180deg, var(--hs-dark) 0%, var(--hs-dark-card) 100%);
   position: relative;
   padding-top: 100px;
   padding-bottom: 200px;
-  margin-bottom: 0;
+  margin-bottom: -90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  clip-path: url(#introWaveClip);
 }
 
-.hs-intro::after {
+.hs-intro::before {
   content: '';
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  height: 180px;
-  background: inherit;
-  clip-path: polygon(
-    0% 0%,
-    0% 44%,
-    25% 0%,
-    50% 33%,
-    75% 67%,
-    100% 22%,
-    100% 0%
-  );
+  bottom: 90px;
+  background: linear-gradient(180deg, var(--hs-dark) 0%, var(--hs-dark-card) 100%);
+  z-index: -1;
 }
 
 .hs-intro .hs-container {
