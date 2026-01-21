@@ -268,7 +268,11 @@
 
 /* ========== REFRESH SECTION ========== */
 .hs-refresh {
-  background: rgba(26, 26, 26, 0.8);
+  background: var(--hs-dark-card);
+}
+
+.hs-refresh .hs-parallax-bg {
+  display: none;
 }
 
 .hs-refresh-grid {
