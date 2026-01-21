@@ -187,10 +187,10 @@
 
 /* ========== INTRO SECTION ========== */
 .hs-intro {
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.85) 0%, rgba(26, 26, 26, 0.85) 100%);
+  background: linear-gradient(180deg, var(--hs-dark) 0%, var(--hs-dark-card) 100%);
   position: relative;
   padding-top: 60px;
-  padding-bottom: 50px;
+  padding-bottom: 120px;
   margin-bottom: 0;
 }
 
