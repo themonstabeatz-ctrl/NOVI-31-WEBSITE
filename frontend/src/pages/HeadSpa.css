@@ -253,6 +253,10 @@
 /* ========== REFRESH SECTION ========== */
 .hs-refresh {
   background: var(--hs-dark-card);
+  padding-top: 30px;
+  margin-top: -45px;
+  position: relative;
+  z-index: 1;
 }
 
 .hs-refresh-grid {
