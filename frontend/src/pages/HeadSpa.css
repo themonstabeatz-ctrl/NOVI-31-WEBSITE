@@ -289,6 +289,12 @@
   border: none !important;
 }
 
+/* Refresh section starts immediately after wave band */
+#hs-refresh {
+  margin-top: 0 !important;
+  padding-top: 80px;
+}
+
 /* ========== PARALLAX SECTIONS ========== */
 .hs-parallax {
   position: relative;
