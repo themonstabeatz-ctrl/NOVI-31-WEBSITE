@@ -315,7 +315,7 @@
 
 /* ========== CONCERNS SECTION ========== */
 .hs-concerns {
-  background: var(--hs-dark);
+  background: rgba(10, 10, 10, 0.85);
 }
 
 .hs-concerns-grid {
