@@ -494,7 +494,7 @@
 
 /* ========== PROCESS SECTION ========== */
 .hs-process {
-  background: rgba(10, 10, 10, 0.85);
+  background: var(--hs-dark);
 }
 
 .hs-process-steps {
