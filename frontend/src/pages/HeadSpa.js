@@ -427,17 +427,6 @@ const HeadSpa = () => {
           ></div>
         </section>
 
-        {/* INTRO SECTION */}
-        <section id="hs-intro" className="hs-section hs-intro hs-animate">
-          <div className={`hs-container ${isVisible["hs-intro"] ? "hs-visible" : ""}`}>
-            <h2 className="hs-section-title">{content.introTitle}</h2>
-            <p className="hs-intro-text">{content.introText}</p>
-          </div>
-          {/* Wave decoration at bottom - ONLY bottom gold line */}
-          <div className="hs-intro-wave" aria-hidden="true"></div>
-          <div className="hs-intro-wave-stroke" aria-hidden="true"></div>
-        </section>
-
         {/* REFRESH SECTION - Parallax Effect */}
         <section id="hs-refresh" className="hs-section hs-refresh hs-parallax hs-animate">
           <div className="hs-parallax-bg"></div>
