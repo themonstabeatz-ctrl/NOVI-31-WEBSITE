@@ -130,11 +130,11 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
     <section className="blParallaxSection" data-testid="parallax-curved-section">
       {/* SVG krive linije sa parallax efektom */}
       <div className="blCurveWrap" style={{ transform: `translate3d(0, ${parY}px, 0)` }}>
-        <svg className="blCurveSvg" viewBox="0 0 1440 1100" preserveAspectRatio="none">
+        <svg className="blCurveSvg" viewBox="0 0 1440 1250" preserveAspectRatio="none">
           <defs>
             {/* ClipPath - ispuna SAMO između gornje i donje linije */}
             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-              <path d={`${TOP_PATH} L1440,900 Q720,1050 0,920 Z`} />
+              <path d={`${TOP_PATH} L1440,1030 Q720,1180 0,1050 Z`} />
             </clipPath>
           </defs>
 
@@ -143,7 +143,7 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
             x="0"
             y="0"
             width="1440"
-            height="1100"
+            height="1250"
             clipPath={`url(#${clipId})`}
             className="blCurveFill"
           />
