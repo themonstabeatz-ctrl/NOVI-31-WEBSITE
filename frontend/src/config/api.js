@@ -1,25 +1,6 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://spa-parallax-page.preview.emergentagent.com
- * 
- * ❌ ZERO spa-booking-site-1 (OLD)
- * ❌ ZERO discount-system-fix (OLD)
- * ❌ ZERO spa-web-update (OLD)
- * ❌ ZERO spa-integration (OLD)
- * ❌ ZERO spa-booking-api (OLD)
- * ❌ ZERO spa-dashboard-2 (OLD)
- * ❌ ZERO massage-app-4 (OLD)
- * ❌ ZERO booking-system-85 (OLD)
- * ❌ ZERO price-consistency (OLD)
- * ❌ ZERO spabook-upgrade (OLD)
- * ❌ ZERO price-analyzer-8 (OLD)
- * ❌ ZERO multi-lang-spa-1 (OLD)
- * ❌ ZERO multilingfix (OLD)
- * ❌ ZERO spa-multilingual (OLD)
- * ❌ ZERO process.env
- * ❌ ZERO REACT_APP_BACKEND_URL
- * ❌ ZERO fallback
- * ❌ ZERO window.location
+ * Backend URL: https://spa-system-fixes.preview.emergentagent.com
  * 
  * 🚫 DISCOUNT UPDATES ARE RECEPCIJA-ONLY!
  * Client frontend ONLY READS discount data from backend.
@@ -27,7 +8,7 @@
  */
 
 // ✅ SINGLE SOURCE OF TRUTH
-export const API_BASE = "https://spa-parallax-page.preview.emergentagent.com";
+export const API_BASE = "https://spa-system-fixes.preview.emergentagent.com";
 
 // Freeze to prevent accidental overwrite
 Object.freeze?.(API_BASE);
