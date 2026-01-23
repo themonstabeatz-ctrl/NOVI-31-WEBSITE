@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import "./ParallaxCurvedSection.css";
 
-/* SVG Path koordinate za krive linije - TAČNO prema referentnoj slici
-   GORNJA: konkavna nadole ("frown") - počinje srednje levo, spušta se u sredinu (najniža tačka), završava srednje desno
-   DONJA: konkavna nadole ("frown") - stomak linije ide na dole */
+/* SVG Path koordinate za krive linije
+   GORNJA: konkavna nadole ("frown") - počinje srednje levo, spušta se u sredinu
+   DONJA: konkavna nadole ("frown") - spuštena za 20% */
 const TOP_PATH = "M0,50 Q720,180 1440,30";
-const BOTTOM_PATH = "M0,620 Q720,750 1440,600";
+const BOTTOM_PATH = "M0,750 Q720,880 1440,730";
 
 function useParallax(offset = 18) {
   const [y, setY] = useState(0);
@@ -18,18 +18,29 @@ function useParallax(offset = 18) {
   return Math.round((y % 600) * (offset / 600));
 }
 
-// FlipServiceCard komponenta - dizajn prema referenci
-function FlipServiceCard({ card }) {
+// FlipServiceCard komponenta - HOVER flip behavior
+function FlipServiceCard({ card, animationClass }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const cardRef = useRef(null);
 
-  const handleFlip = (e) => {
+  // Kada kursor napusti karticu, vraća se na prednju stranu
+  const handleMouseLeave = () => {
+    setIsFlipped(false);
+  };
+
+  // Klik na DETALJI flipuje karticu
+  const handleDetailsClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsFlipped(!isFlipped);
+    setIsFlipped(true);
   };
 
   return (
-    <div className={`blFlipCard ${isFlipped ? "isFlipped" : ""}`}>
+    <div 
+      ref={cardRef}
+      className={`blFlipCard ${isFlipped ? "isFlipped" : ""} ${animationClass}`}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="blFlipInner">
         {/* FRONT - Slika + naslov + cena/trajanje + opis + dugmad */}
         <div className="blFlipFace blFront">
@@ -49,7 +60,7 @@ function FlipServiceCard({ card }) {
               <button 
                 type="button"
                 className="blDetailsBtn"
-                onClick={handleFlip}
+                onClick={handleDetailsClick}
                 data-testid={`flip-card-details-${card.id}`}
               >
                 DETALJI
@@ -63,14 +74,9 @@ function FlipServiceCard({ card }) {
           <div className="blBackContent">
             <h3 className="blBackTitle">{card.title}</h3>
             <p className="blBackDesc">{card.fullDesc}</p>
-            <button 
-              type="button"
-              className="blBackBtn"
-              onClick={handleFlip}
-              data-testid={`flip-card-back-${card.id}`}
-            >
-              NAZAD
-            </button>
+            <div className="blBackNote">
+              Sklonite kursor za povratak
+            </div>
           </div>
         </div>
       </div>
@@ -81,44 +87,88 @@ function FlipServiceCard({ card }) {
 export default function ParallaxCurvedSection({ title, cards = [] }) {
   const parY = useParallax(22);
   const clipId = useMemo(() => `clip-${Math.random().toString(36).slice(2)}`, []);
+  const [visibleCards, setVisibleCards] = useState({});
+  const sectionRef = useRef(null);
+
+  // Intersection Observer za slide-in animacije
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardId = entry.target.dataset.cardId;
+            if (cardId) {
+              setVisibleCards((prev) => ({ ...prev, [cardId]: true }));
+            }
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const cardElements = document.querySelectorAll('.blFlipCard');
+    cardElements.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, [cards]);
+
+  // Određivanje animacije za svaku karticu
+  const getAnimationClass = (index, isVisible) => {
+    if (!isVisible) return "blCardHidden";
+    
+    // Gornji red: 0, 1, 2
+    // Donji red: 3, 4, 5
+    if (index === 0) return "blSlideFromLeft";
+    if (index === 2) return "blSlideFromRight";
+    if (index === 1) return "blSlideFromBottom";
+    if (index === 3) return "blSlideFromLeft";
+    if (index === 5) return "blSlideFromRight";
+    if (index === 4) return "blSlideFromBottom";
+    return "blSlideFromBottom";
+  };
 
   return (
-    <section className="blParallaxSection" data-testid="parallax-curved-section">
+    <section ref={sectionRef} className="blParallaxSection" data-testid="parallax-curved-section">
       {/* SVG krive linije sa parallax efektom */}
       <div className="blCurveWrap" style={{ transform: `translate3d(0, ${parY}px, 0)` }}>
-        <svg className="blCurveSvg" viewBox="0 0 1440 800" preserveAspectRatio="none">
+        <svg className="blCurveSvg" viewBox="0 0 1440 950" preserveAspectRatio="none">
           <defs>
             {/* ClipPath za ispunu između linija */}
             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-              <path d={`${TOP_PATH} L1440,800 L0,800 Z`} />
+              <path d={`${TOP_PATH} L1440,950 L0,950 Z`} />
             </clipPath>
           </defs>
 
-          {/* Tamno siva ispuna između linija - bez filtera */}
+          {/* Tamno siva ispuna između linija */}
           <rect
             x="0"
             y="0"
             width="1440"
-            height="800"
+            height="950"
             clipPath={`url(#${clipId})`}
             className="blCurveFill"
           />
 
-          {/* Gornja zlatna linija - "frown" shape */}
+          {/* Gornja zlatna linija */}
           <path d={TOP_PATH} className="blCurveLine blCurveTop" />
           
-          {/* Donja zlatna linija - "frown" shape (stomak nadole) */}
+          {/* Donja zlatna linija - spuštena */}
           <path d={BOTTOM_PATH} className="blCurveLine blCurveBottom" />
         </svg>
       </div>
 
-      {/* Sadržaj sekcije - naslov fiksan na vrhu, kartice niže */}
+      {/* Sadržaj sekcije - naslov i kartice spušteni za 20% */}
       <div className="blParallaxInner">
         {title && <h2 className="blParallaxTitle">{title}</h2>}
 
         <div className="blCardGrid">
-          {cards.map(card => (
-            <FlipServiceCard key={card.id} card={card} />
+          {cards.map((card, index) => (
+            <div key={card.id} data-card-id={card.id}>
+              <FlipServiceCard 
+                card={card} 
+                animationClass={getAnimationClass(index, visibleCards[card.id])}
+              />
+            </div>
           ))}
         </div>
       </div>
