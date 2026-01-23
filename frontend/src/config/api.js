@@ -1,6 +1,6 @@
 /**
  * 🔒 HARD LOCK - DO NOT CHANGE
- * Backend URL: https://spa-system-fixes.preview.emergentagent.com
+ * Backend URL: https://spa-parallax-page.preview.emergentagent.com
  * 
  * ❌ ZERO spa-booking-site-1 (OLD)
  * ❌ ZERO discount-system-fix (OLD)
@@ -27,7 +27,7 @@
  */
 
 // ✅ SINGLE SOURCE OF TRUTH
-export const API_BASE = "https://spa-system-fixes.preview.emergentagent.com";
+export const API_BASE = "https://spa-parallax-page.preview.emergentagent.com";
 
 // Freeze to prevent accidental overwrite
 Object.freeze?.(API_BASE);

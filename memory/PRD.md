@@ -4,8 +4,8 @@
 Multi-language SPA booking application for Thai Spa with frontend synchronized to a specific backend API.
 
 ## Current Status: TRANSLATION COMPLETE 🌍
-- **Frontend URL**: https://spa-multilingual.preview.emergentagent.com/
-- **Backend API**: https://spa-multilingual.preview.emergentagent.com/
+- **Frontend URL**: https://spa-parallax-page.preview.emergentagent.com/
+- **Backend API**: https://spa-parallax-page.preview.emergentagent.com/
 - **Last Updated**: January 2025
 
 ## Completed Features ✅

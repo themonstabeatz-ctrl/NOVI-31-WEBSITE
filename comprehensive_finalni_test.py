@@ -13,8 +13,8 @@ OČEKIVANE CENE:
 - Finalna cena: 7,920 RSD
 
 ENDPOINTS:
-- GET https://spa-multilingual.preview.emergentagent.com/api/services
-- POST https://spa-multilingual.preview.emergentagent.com/api/book-appointment
+- GET https://spa-parallax-page.preview.emergentagent.com/api/services
+- POST https://spa-parallax-page.preview.emergentagent.com/api/book-appointment
 
 Testiranje podaci:
 - Ime: Finalni Test
@@ -29,7 +29,7 @@ import json
 from datetime import datetime, timedelta
 
 # Test configuration
-BASE_URL = "https://spa-multilingual.preview.emergentagent.com"
+BASE_URL = "https://spa-parallax-page.preview.emergentagent.com"
 API_BASE = f"{BASE_URL}/api"
 
 class ComprehensiveFinalniTest:

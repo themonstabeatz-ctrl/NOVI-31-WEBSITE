@@ -8,7 +8,7 @@ import httpx
 import json
 from datetime import datetime, timedelta
 
-BACKEND_URL = "https://spa-multilingual.preview.emergentagent.com"
+BACKEND_URL = "https://spa-parallax-page.preview.emergentagent.com"
 
 async def test_final_review_requirements():
     """Test all review requirements with correct expectations"""
