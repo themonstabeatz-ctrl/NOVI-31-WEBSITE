@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import ParallaxCurveLines from "../components/ParallaxCurveLines";
+import ParallaxCurvedSection from "../components/ParallaxCurvedSection";
 import "./HeadSpa.css";
 
 // Head Spa content translations
@@ -13,55 +13,49 @@ const headSpaContent = {
     heroTagline: "Ritual koji budi temenje, neguje kosu i vraća mir u telo.",
     introTitle: "Više od nege kose",
     introText: "Bua Luang Head Spa je više od nege kose — to je luksuzni reset za vaše teme, vrat i um. Kombinujemo dubinsko čišćenje temena, parnu terapiju i preciznu masažu tačaka pritiska kako bismo smanjili napetost, osvežili kožu glave i podstakli zdrav rast kose. Namenjeno i ženama i muškarcima.",
-    benefitsTitle: "Benefiti Head Spa tretmana",
-    benefits: [
-      { icon: "🧴", title: "Detoks temena", desc: "Uklanja sebum, naslage i nečistoće iz pora" },
-      { icon: "💆", title: "Bolja cirkulacija", desc: "Masaža podstiče protok i može pomoći rastu kose" },
-      { icon: "✨", title: "Lifting efekat", desc: "Opuštanje i drenaža smanjuju nadutost i zatežu lice" },
-      { icon: "💎", title: "Zdravija kosa", desc: "Hranljive formule jačaju vlas i smanjuju pucanje" },
-      { icon: "😴", title: "Bolji san", desc: "Duboka relaksacija — budite se odmorniji" },
-      { icon: "🧘", title: "Mentalni reset", desc: "Aromaterapija + masaža vraćaju mir i fokus" },
-      { icon: "👁️", title: "Olakšanje za oči/vrat", desc: "Idealno za rad za računarom" },
-      { icon: "🌿", title: "Reset uma i tela", desc: "Umiruje nervni sistem i vraća balans" }
-    ],
-    concernsTitle: "Šta vas muči?",
-    concerns: [
-      "Opadanje kose, proređivanje, zalizci, širenje razdeljka",
-      "Suvo i perutavo teme (nedostatak hranljivih materija, stres)",
-      "Neprijatan miris temena, svrab i prekomerna masnoća",
-      "Zategnuto ili crveno teme (često primećeno kod frizera)",
-      "Oštećena kosa i ispucali krajevi",
-      "Želja za boljim kvalitetom kose: volumen, punoća, sjaj"
-    ],
-    refreshTitle: "Osvežite se",
-    refreshItems: [
-      { title: "Osvežite teme", desc: "manje suvoće, svraba i masnoće" },
-      { title: "Probudite se lakše", desc: "duboka relaksacija poboljšava kvalitet sna" },
-      { title: "Oslobodite se umora", desc: "ublažava glavobolju, ukočen vrat i naprezanje očiju" },
-      { title: "Rešite probleme kose", desc: "više volumena, elastičnosti i sjaja" },
-      { title: "Lakše kroz sezonu alergija", desc: "osećaj čistog disanja i komfora" },
-      { title: "Reset uma i tela", desc: "umiruje nervni sistem i vraća balans" },
-      { title: "Lakše stilizovanje", desc: "kosa je poslušnija i jutarnja rutina brža" }
-    ],
-    treatmentsTitle: "Naši Head Spa tretmani",
-    treatments: [
+    servicesTitle: "Naši tretmani",
+    services: [
       {
-        name: "Head Spa Signature",
-        duration: "60–75 min",
-        desc: "Dubinsko čišćenje + para + masaža + maska",
-        note: "Idealno za prvi put i održavanje"
+        id: "detox",
+        icon: "🧴",
+        title: "Detoks temena",
+        shortDesc: "Dubinsko čišćenje i uklanjanje nečistoća",
+        fullDesc: "Tretman dubinskog čišćenja temena koji uklanja sebum, naslage i nečistoće iz pora. Koristi se specijalna formula za detoksikaciju koja osvežava kožu glave i priprema je za dalju negu."
       },
       {
-        name: "Detox & Growth Ritual",
-        duration: "75–90 min",
-        desc: "Fokus na detoks pora, cirkulaciju i rast kose",
-        note: "Preporuka kod masnog temena i opadanja"
+        id: "circulation",
+        icon: "💆",
+        title: "Bolja cirkulacija",
+        shortDesc: "Masaža koja podstiče protok krvi",
+        fullDesc: "Precizna masaža temena koja podstiče cirkulaciju krvi i može pomoći rastu kose. Tehnike pritiska na specifične tačke stimulišu folikule dlake i poboljšavaju dotok hranljivih materija."
       },
       {
-        name: "Luxury Relax & Repair",
-        duration: "90+ min",
-        desc: "Maksimalna relaksacija + intenzivna regeneracija",
-        note: "Za suvu kosu, oštećenja i stres"
+        id: "lifting",
+        icon: "✨",
+        title: "Lifting efekat",
+        shortDesc: "Opuštanje i drenaža lica",
+        fullDesc: "Kombinacija masaže i drenaže koja smanjuje nadutost i zateže kožu lica. Rezultat je svežiji, mladalački izgled i osećaj lakoće nakon tretmana."
+      },
+      {
+        id: "hair",
+        icon: "💎",
+        title: "Zdravija kosa",
+        shortDesc: "Hranljive formule za jačanje vlasi",
+        fullDesc: "Primena premium hranljivih formula koje prodiru duboko u strukturu kose. Jačaju vlas od korena, smanjuju pucanje i lomljenje, i vraćaju prirodni sjaj i elastičnost."
+      },
+      {
+        id: "sleep",
+        icon: "😴",
+        title: "Bolji san",
+        shortDesc: "Duboka relaksacija za kvalitetniji odmor",
+        fullDesc: "Tretman duboke relaksacije koji umiruje nervni sistem. Mnogi klijenti primećuju poboljšanje kvaliteta sna već posle prvog tretmana — budite se odmorniji i energičniji."
+      },
+      {
+        id: "mental",
+        icon: "🧘",
+        title: "Mentalni reset",
+        shortDesc: "Aromaterapija i masaža za mir uma",
+        fullDesc: "Kombinacija aromaterapije sa eteričnim uljima i precizne masaže koja vraća mir i fokus. Idealno za osobe pod stresom, sa mentalnim umorom ili potrebom za resetom."
       }
     ],
     processTitle: "Tok tretmana",
@@ -91,55 +85,49 @@ const headSpaContent = {
     heroTagline: "A ritual that awakens your scalp, nurtures your hair, and restores peace to your body.",
     introTitle: "More than hair care",
     introText: "Bua Luang Head Spa is more than hair care — it's a luxurious reset for your scalp, neck, and mind. We combine deep scalp cleansing, steam therapy, and precise pressure point massage to reduce tension, refresh your scalp, and promote healthy hair growth. For both women and men.",
-    benefitsTitle: "Head Spa Treatment Benefits",
-    benefits: [
-      { icon: "🧴", title: "Scalp Detox", desc: "Removes sebum, buildup, and impurities from pores" },
-      { icon: "💆", title: "Better Circulation", desc: "Massage promotes blood flow and can help hair growth" },
-      { icon: "✨", title: "Lifting Effect", desc: "Relaxation and drainage reduce puffiness and tighten the face" },
-      { icon: "💎", title: "Healthier Hair", desc: "Nourishing formulas strengthen hair and reduce breakage" },
-      { icon: "😴", title: "Better Sleep", desc: "Deep relaxation — wake up more rested" },
-      { icon: "🧘", title: "Mental Reset", desc: "Aromatherapy + massage restore peace and focus" },
-      { icon: "👁️", title: "Eye/Neck Relief", desc: "Ideal for computer work" },
-      { icon: "🌿", title: "Mind & Body Reset", desc: "Calms the nervous system and restores balance" }
-    ],
-    concernsTitle: "What concerns you?",
-    concerns: [
-      "Hair loss, thinning, receding hairline, widening part",
-      "Dry and flaky scalp (nutrient deficiency, stress)",
-      "Unpleasant scalp odor, itching and excessive oiliness",
-      "Tight or red scalp (often noticed by hairdressers)",
-      "Damaged hair and split ends",
-      "Desire for better hair quality: volume, fullness, shine"
-    ],
-    refreshTitle: "Refresh Yourself",
-    refreshItems: [
-      { title: "Refresh your scalp", desc: "less dryness, itching and oiliness" },
-      { title: "Wake up easier", desc: "deep relaxation improves sleep quality" },
-      { title: "Release fatigue", desc: "relieves headaches, stiff neck and eye strain" },
-      { title: "Solve hair problems", desc: "more volume, elasticity and shine" },
-      { title: "Easier through allergy season", desc: "feeling of clean breathing and comfort" },
-      { title: "Mind & body reset", desc: "calms the nervous system and restores balance" },
-      { title: "Easier styling", desc: "hair is more manageable and morning routine faster" }
-    ],
-    treatmentsTitle: "Our Head Spa Treatments",
-    treatments: [
+    servicesTitle: "Our treatments",
+    services: [
       {
-        name: "Head Spa Signature",
-        duration: "60–75 min",
-        desc: "Deep cleansing + steam + massage + mask",
-        note: "Ideal for first time and maintenance"
+        id: "detox",
+        icon: "🧴",
+        title: "Scalp Detox",
+        shortDesc: "Deep cleansing and impurity removal",
+        fullDesc: "Deep scalp cleansing treatment that removes sebum, buildup, and impurities from pores. Uses a special detox formula that refreshes the scalp and prepares it for further care."
       },
       {
-        name: "Detox & Growth Ritual",
-        duration: "75–90 min",
-        desc: "Focus on pore detox, circulation and hair growth",
-        note: "Recommended for oily scalp and hair loss"
+        id: "circulation",
+        icon: "💆",
+        title: "Better Circulation",
+        shortDesc: "Massage that stimulates blood flow",
+        fullDesc: "Precise scalp massage that stimulates blood circulation and can help hair growth. Pressure point techniques stimulate hair follicles and improve nutrient delivery."
       },
       {
-        name: "Luxury Relax & Repair",
-        duration: "90+ min",
-        desc: "Maximum relaxation + intensive regeneration",
-        note: "For dry hair, damage and stress"
+        id: "lifting",
+        icon: "✨",
+        title: "Lifting Effect",
+        shortDesc: "Relaxation and facial drainage",
+        fullDesc: "Combination of massage and drainage that reduces puffiness and tightens facial skin. The result is a fresher, more youthful appearance and a feeling of lightness after treatment."
+      },
+      {
+        id: "hair",
+        icon: "💎",
+        title: "Healthier Hair",
+        shortDesc: "Nourishing formulas to strengthen hair",
+        fullDesc: "Application of premium nourishing formulas that penetrate deep into hair structure. Strengthens hair from the root, reduces breakage and splitting, and restores natural shine and elasticity."
+      },
+      {
+        id: "sleep",
+        icon: "😴",
+        title: "Better Sleep",
+        shortDesc: "Deep relaxation for better rest",
+        fullDesc: "Deep relaxation treatment that calms the nervous system. Many clients notice improved sleep quality after just the first treatment — wake up more rested and energized."
+      },
+      {
+        id: "mental",
+        icon: "🧘",
+        title: "Mental Reset",
+        shortDesc: "Aromatherapy and massage for peace of mind",
+        fullDesc: "Combination of aromatherapy with essential oils and precise massage that restores peace and focus. Ideal for people under stress, with mental fatigue, or in need of a reset."
       }
     ],
     processTitle: "Treatment Process",
@@ -169,55 +157,49 @@ const headSpaContent = {
     heroTagline: "Ритуал, который пробуждает кожу головы, питает волосы и возвращает покой телу.",
     introTitle: "Больше, чем уход за волосами",
     introText: "Bua Luang Head Spa — это больше, чем уход за волосами — это роскошная перезагрузка для кожи головы, шеи и разума. Мы сочетаем глубокое очищение кожи головы, паровую терапию и точечный массаж для снятия напряжения, освежения кожи головы и стимуляции роста волос. Для женщин и мужчин.",
-    benefitsTitle: "Преимущества Head Spa",
-    benefits: [
-      { icon: "🧴", title: "Детокс кожи головы", desc: "Удаляет себум, отложения и загрязнения из пор" },
-      { icon: "💆", title: "Улучшение кровообращения", desc: "Массаж стимулирует кровоток и рост волос" },
-      { icon: "✨", title: "Лифтинг эффект", desc: "Расслабление и дренаж уменьшают отечность" },
-      { icon: "💎", title: "Здоровые волосы", desc: "Питательные формулы укрепляют волосы" },
-      { icon: "😴", title: "Лучший сон", desc: "Глубокое расслабление — просыпайтесь отдохнувшими" },
-      { icon: "🧘", title: "Ментальная перезагрузка", desc: "Ароматерапия + массаж возвращают покой" },
-      { icon: "👁️", title: "Облегчение для глаз/шеи", desc: "Идеально при работе за компьютером" },
-      { icon: "🌿", title: "Перезагрузка тела", desc: "Успокаивает нервную систему" }
-    ],
-    concernsTitle: "Что вас беспокоит?",
-    concerns: [
-      "Выпадение волос, истончение, залысины",
-      "Сухая и шелушащаяся кожа головы",
-      "Неприятный запах, зуд и чрезмерная жирность",
-      "Напряженная или красная кожа головы",
-      "Поврежденные волосы и секущиеся кончики",
-      "Желание улучшить качество волос: объем, блеск"
-    ],
-    refreshTitle: "Освежитесь",
-    refreshItems: [
-      { title: "Освежите кожу головы", desc: "меньше сухости, зуда и жирности" },
-      { title: "Просыпайтесь легче", desc: "глубокое расслабление улучшает сон" },
-      { title: "Избавьтесь от усталости", desc: "снимает головную боль и напряжение" },
-      { title: "Решите проблемы с волосами", desc: "больше объема и блеска" },
-      { title: "Легче в сезон аллергии", desc: "ощущение чистого дыхания" },
-      { title: "Перезагрузка ума и тела", desc: "успокаивает нервную систему" },
-      { title: "Легче укладка", desc: "волосы послушнее" }
-    ],
-    treatmentsTitle: "Наши Head Spa процедуры",
-    treatments: [
+    servicesTitle: "Наши процедуры",
+    services: [
       {
-        name: "Head Spa Signature",
-        duration: "60–75 мин",
-        desc: "Глубокое очищение + пар + массаж + маска",
-        note: "Идеально для первого раза и поддержания"
+        id: "detox",
+        icon: "🧴",
+        title: "Детокс кожи головы",
+        shortDesc: "Глубокое очищение и удаление загрязнений",
+        fullDesc: "Процедура глубокого очищения кожи головы, удаляющая себум, отложения и загрязнения из пор. Используется специальная формула детокса, освежающая кожу головы."
       },
       {
-        name: "Detox & Growth Ritual",
-        duration: "75–90 мин",
-        desc: "Фокус на детокс пор, кровообращение и рост волос",
-        note: "Рекомендуется при жирной коже и выпадении"
+        id: "circulation",
+        icon: "💆",
+        title: "Улучшение кровообращения",
+        shortDesc: "Массаж, стимулирующий кровоток",
+        fullDesc: "Точечный массаж кожи головы, стимулирующий кровообращение и способствующий росту волос. Техники давления стимулируют волосяные фолликулы."
       },
       {
-        name: "Luxury Relax & Repair",
-        duration: "90+ мин",
-        desc: "Максимальное расслабление + интенсивная регенерация",
-        note: "Для сухих волос, повреждений и стресса"
+        id: "lifting",
+        icon: "✨",
+        title: "Лифтинг эффект",
+        shortDesc: "Расслабление и дренаж лица",
+        fullDesc: "Сочетание массажа и дренажа, уменьшающее отечность и подтягивающее кожу лица. Результат — свежий, молодой вид и ощущение легкости."
+      },
+      {
+        id: "hair",
+        icon: "💎",
+        title: "Здоровые волосы",
+        shortDesc: "Питательные формулы для укрепления",
+        fullDesc: "Применение премиальных питательных формул, проникающих глубоко в структуру волос. Укрепляет волосы от корней и возвращает естественный блеск."
+      },
+      {
+        id: "sleep",
+        icon: "😴",
+        title: "Лучший сон",
+        shortDesc: "Глубокое расслабление для отдыха",
+        fullDesc: "Процедура глубокого расслабления, успокаивающая нервную систему. Многие клиенты замечают улучшение качества сна уже после первой процедуры."
+      },
+      {
+        id: "mental",
+        icon: "🧘",
+        title: "Ментальная перезагрузка",
+        shortDesc: "Ароматерапия и массаж для покоя",
+        fullDesc: "Сочетание ароматерапии с эфирными маслами и точечного массажа, возвращающее покой и концентрацию. Идеально для людей в стрессе."
       }
     ],
     processTitle: "Процесс процедуры",
@@ -247,73 +229,67 @@ const headSpaContent = {
     heroTagline: "พิธีกรรมที่ปลุกหนังศีรษะ บำรุงเส้นผม และคืนความสงบให้ร่างกาย",
     introTitle: "มากกว่าการดูแลผม",
     introText: "Bua Luang Head Spa เป็นมากกว่าการดูแลผม — เป็นการรีเซ็ตสุดหรูสำหรับหนังศีรษะ คอ และจิตใจ เรารวมการทำความสะอาดหนังศีรษะอย่างล้ำลึก การบำบัดด้วยไอน้ำ และการนวดจุดกดที่แม่นยำ",
-    benefitsTitle: "ประโยชน์ของ Head Spa",
-    benefits: [
-      { icon: "🧴", title: "ดีท็อกซ์หนังศีรษะ", desc: "กำจัดซีบัม สิ่งสะสม และสิ่งสกปรก" },
-      { icon: "💆", title: "การไหลเวียนที่ดีขึ้น", desc: "การนวดกระตุ้นการไหลเวียนเลือด" },
-      { icon: "✨", title: "เอฟเฟกต์ยกกระชับ", desc: "การผ่อนคลายลดอาการบวม" },
-      { icon: "💎", title: "ผมที่แข็งแรง", desc: "สูตรบำรุงเสริมสร้างเส้นผม" },
-      { icon: "😴", title: "นอนหลับดีขึ้น", desc: "การผ่อนคลายอย่างลึก" },
-      { icon: "🧘", title: "รีเซ็ตจิตใจ", desc: "อโรมาเธอราพี + นวดคืนความสงบ" },
-      { icon: "👁️", title: "บรรเทาตา/คอ", desc: "เหมาะสำหรับการทำงานหน้าคอม" },
-      { icon: "🌿", title: "รีเซ็ตร่างกายและจิตใจ", desc: "สงบระบบประสาท" }
-    ],
-    concernsTitle: "คุณกังวลเรื่องอะไร?",
-    concerns: [
-      "ผมร่วง บาง แนวผมถอยร่น",
-      "หนังศีรษะแห้งและลอก",
-      "กลิ่นไม่พึงประสงค์ คัน และมัน",
-      "หนังศีรษะตึงหรือแดง",
-      "ผมเสียและปลายแตก",
-      "ต้องการคุณภาพผมที่ดี: วอลลุ่ม เงางาม"
-    ],
-    refreshTitle: "รีเฟรชตัวเอง",
-    refreshItems: [
-      { title: "รีเฟรชหนังศีรษะ", desc: "ลดความแห้ง คัน และมัน" },
-      { title: "ตื่นง่ายขึ้น", desc: "การผ่อนคลายช่วยการนอน" },
-      { title: "ปลดปล่อยความเหนื่อยล้า", desc: "บรรเทาปวดหัวและความตึง" },
-      { title: "แก้ปัญหาผม", desc: "วอลลุ่มและเงางามมากขึ้น" },
-      { title: "ผ่านฤดูแพ้ง่ายขึ้น", desc: "หายใจสะอาดสบาย" },
-      { title: "รีเซ็ตกายและใจ", desc: "สงบระบบประสาท" },
-      { title: "จัดแต่งง่ายขึ้น", desc: "ผมเชื่อฟังมากขึ้น" }
-    ],
-    treatmentsTitle: "การรักษา Head Spa ของเรา",
-    treatments: [
+    servicesTitle: "การรักษาของเรา",
+    services: [
       {
-        name: "Head Spa Signature",
-        duration: "60–75 นาที",
-        desc: "ทำความสะอาดลึก + ไอน้ำ + นวด + มาส์ก",
-        note: "เหมาะสำหรับครั้งแรกและการบำรุงรักษา"
+        id: "detox",
+        icon: "🧴",
+        title: "ดีท็อกซ์หนังศีรษะ",
+        shortDesc: "ทำความสะอาดลึกและกำจัดสิ่งสกปรก",
+        fullDesc: "การรักษาทำความสะอาดหนังศีรษะอย่างล้ำลึกที่กำจัดซีบัม สิ่งสะสม และสิ่งสกปรกออกจากรูขุมขน"
       },
       {
-        name: "Detox & Growth Ritual",
-        duration: "75–90 นาที",
-        desc: "เน้นดีท็อกซ์รูขุมขน การไหลเวียน และการเติบโตของผม",
-        note: "แนะนำสำหรับหนังศีรษะมันและผมร่วง"
+        id: "circulation",
+        icon: "💆",
+        title: "การไหลเวียนที่ดีขึ้น",
+        shortDesc: "นวดกระตุ้นการไหลเวียนเลือด",
+        fullDesc: "การนวดหนังศีรษะที่แม่นยำกระตุ้นการไหลเวียนเลือดและช่วยการเจริญเติบโตของเส้นผม"
       },
       {
-        name: "Luxury Relax & Repair",
-        duration: "90+ นาที",
-        desc: "ผ่อนคลายสูงสุด + การฟื้นฟูอย่างเข้มข้น",
-        note: "สำหรับผมแห้ง ความเสียหาย และความเครียด"
+        id: "lifting",
+        icon: "✨",
+        title: "เอฟเฟกต์ยกกระชับ",
+        shortDesc: "ผ่อนคลายและระบายน้ำใบหน้า",
+        fullDesc: "การรวมกันของการนวดและการระบายน้ำที่ลดอาการบวมและกระชับผิวหน้า"
+      },
+      {
+        id: "hair",
+        icon: "💎",
+        title: "ผมที่แข็งแรง",
+        shortDesc: "สูตรบำรุงเพื่อเสริมสร้างเส้นผม",
+        fullDesc: "การใช้สูตรบำรุงพรีเมียมที่ซึมลึกเข้าสู่โครงสร้างเส้นผม เสริมสร้างผมจากราก"
+      },
+      {
+        id: "sleep",
+        icon: "😴",
+        title: "นอนหลับดีขึ้น",
+        shortDesc: "ผ่อนคลายลึกเพื่อการพักผ่อนที่ดี",
+        fullDesc: "การรักษาผ่อนคลายลึกที่สงบระบบประสาท หลายคนสังเกตเห็นคุณภาพการนอนที่ดีขึ้น"
+      },
+      {
+        id: "mental",
+        icon: "🧘",
+        title: "รีเซ็ตจิตใจ",
+        shortDesc: "อโรมาเธอราพีและนวดเพื่อความสงบ",
+        fullDesc: "การรวมกันของอโรมาเธอราพีกับน้ำมันหอมระเหยและการนวดที่แม่นยำคืนความสงบและสมาธิ"
       }
     ],
     processTitle: "ขั้นตอนการรักษา",
     processSteps: [
       "นวดคอ ไหล่ และหน้าอก",
-      "ทำความสะอาดลึกและขัดหนังศีรษะเบาๆ",
-      "ไอน้ำอุ่นเปิดรูขุมขนและให้ความชุ่มชื้น",
-      "มาส์ก + นวดหนังศีรษะที่จุดกด",
-      "การดูแลผมขั้นสุดท้าย — นุ่ม เงา และสางง่าย"
+      "ทำความสะอาดลึกและขัดผิวหนังศีรษะอ่อนโยน",
+      "ไอน้ำอุ่นเพื่อเปิดรูขุมขนและให้ความชุ่มชื้น",
+      "มาส์ก + นวดหนังศีรษะแม่นยำ",
+      "การดูแลผมขั้นสุดท้าย — นุ่ม เงา และแยกง่าย"
     ],
     contraTitle: "สำคัญ",
     contraText: "ไม่แนะนำการรักษาหากคุณมี:",
     contraItems: [
       "ต่อผม",
-      "ย้อมผมใหม่",
-      "การติดเชื้อหนังศีรษะ",
-      "หนังศีรษะไวมาก",
-      "ตั้งครรภ์",
+      "ทำสีผมเร็วๆ นี้",
+      "การติดเชื้อหนังศีรษะที่ใช้งานอยู่",
+      "หนังศีรษะที่ไวมาก",
+      "การตั้งครรภ์",
       "กลัวที่แคบ"
     ],
     ctaTitle: "พร้อมสำหรับการเปลี่ยนแปลง?",
@@ -325,9 +301,7 @@ const HeadSpa = () => {
   const { currentLanguage } = useLanguage();
   const content = headSpaContent[currentLanguage] || headSpaContent.sr;
   const [isVisible, setIsVisible] = useState({});
-  const [waveOffset, setWaveOffset] = useState(0);
   const [heroOpacity, setHeroOpacity] = useState(1);
-  const sectionsRef = useRef({});
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -344,14 +318,13 @@ const HeadSpa = () => {
       });
     }, observerOptions);
 
-    // Observe all sections
     const sections = document.querySelectorAll(".hs-animate");
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
   }, []);
 
-  // Hero fade out + wave parallax effect on scroll
+  // Hero fade out effect on scroll
   useEffect(() => {
     let rafId = null;
 
@@ -360,14 +333,8 @@ const HeadSpa = () => {
       
       rafId = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
-        // Wave parallax
-        const offset = Math.min(Math.max(scrollY * 0.12, 0), 50);
-        setWaveOffset(offset);
-        
-        // Hero fade out effect - fade out over first 400px of scroll
         const opacity = Math.max(1 - (scrollY / 400), 0);
         setHeroOpacity(opacity);
-        
         rafId = null;
       });
     };
@@ -420,118 +387,25 @@ const HeadSpa = () => {
           </div>
         </section>
 
-        {/* INTRO PARALLAX SECTION - Between Hero and Refresh */}
+        {/* INTRO PARALLAX SECTION - "Više od nege kose" */}
         <section id="hs-intro-parallax" className="hs-intro-parallax">
-          {/* Top gold wave line */}
           <div className="hs-intro-wave-top" aria-hidden="true"></div>
           <div className="hs-intro-wave-top-stroke" aria-hidden="true"></div>
           
-          {/* Black content area */}
           <div className="hs-intro-content">
             <h2 className="hs-intro-title">{content.introTitle}</h2>
             <p className="hs-intro-text">{content.introText}</p>
           </div>
           
-          {/* Bottom gold wave line */}
           <div className="hs-intro-wave-bottom" aria-hidden="true"></div>
           <div className="hs-intro-wave-bottom-stroke" aria-hidden="true"></div>
         </section>
 
-        {/* REFRESH SECTION - Parallax Effect */}
-        <section id="hs-refresh" className="hs-section hs-refresh hs-parallax hs-animate">
-          <div className="hs-parallax-bg"></div>
-          <div className={`hs-container ${isVisible["hs-refresh"] ? "hs-visible" : ""}`}>
-            <h2 className="hs-section-title">{content.refreshTitle}</h2>
-            <div className="hs-refresh-grid">
-              {content.refreshItems.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="hs-refresh-item"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <span className="hs-refresh-title">{item.title}</span>
-                  <span className="hs-refresh-desc">{item.desc}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CONCERNS SECTION */}
-        <section id="hs-concerns" className="hs-section hs-concerns hs-animate">
-          {/* GORNJA zlatna parallax linija */}
-          <ParallaxCurveLines
-            variant="mirrored"
-            top={-20}
-            strokeWidth={2}
-            zIndex={3}
-          />
-          <div className={`hs-container ${isVisible["hs-concerns"] ? "hs-visible" : ""}`}>
-            <h2 className="hs-section-title">{content.concernsTitle}</h2>
-            <div className="hs-concerns-grid">
-              {content.concerns.map((concern, index) => (
-                <div 
-                  key={index} 
-                  className="hs-concern-item"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <span className="hs-concern-icon">•</span>
-                  <span className="hs-concern-text">{concern}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* BENEFITS SECTION */}
-        <section id="hs-benefits" className="hs-section hs-benefits hs-animate">
-          {/* DONJA zlatna parallax linija */}
-          <ParallaxCurveLines
-            variant="original"
-            top={-20}
-            strokeWidth={2}
-            zIndex={3}
-          />
-          <div className={`hs-container ${isVisible["hs-benefits"] ? "hs-visible" : ""}`}>
-            <h2 className="hs-section-title">{content.benefitsTitle}</h2>
-            <div className="hs-benefits-grid">
-              {content.benefits.map((benefit, index) => (
-                <div 
-                  key={index} 
-                  className="hs-benefit-card"
-                  style={{ animationDelay: `${index * 0.08}s` }}
-                >
-                  <span className="hs-benefit-icon">{benefit.icon}</span>
-                  <h3 className="hs-benefit-title">{benefit.title}</h3>
-                  <p className="hs-benefit-desc">{benefit.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* TREATMENTS SECTION */}
-        <section id="hs-treatments" className="hs-section hs-treatments hs-animate">
-          <div className={`hs-container ${isVisible["hs-treatments"] ? "hs-visible" : ""}`}>
-            <h2 className="hs-section-title">{content.treatmentsTitle}</h2>
-            <div className="hs-treatments-grid">
-              {content.treatments.map((treatment, index) => (
-                <div 
-                  key={index} 
-                  className="hs-treatment-card"
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
-                  <div className="hs-treatment-header">
-                    <h3 className="hs-treatment-name">{treatment.name}</h3>
-                    <span className="hs-treatment-duration">{treatment.duration}</span>
-                  </div>
-                  <p className="hs-treatment-desc">{treatment.desc}</p>
-                  <p className="hs-treatment-note">{treatment.note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* NOVA PARALLAX SEKCIJA SA FLIP KARTICAMA */}
+        <ParallaxCurvedSection 
+          title={content.servicesTitle}
+          cards={content.services}
+        />
 
         {/* PROCESS SECTION */}
         <section id="hs-process" className="hs-section hs-process hs-parallax hs-animate">
@@ -576,7 +450,7 @@ const HeadSpa = () => {
         <section id="hs-cta" className="hs-section hs-cta hs-animate">
           <div className={`hs-container ${isVisible["hs-cta"] ? "hs-visible" : ""}`}>
             <h2 className="hs-cta-title">{content.ctaTitle}</h2>
-            <Link to="/contact" className="hs-cta-button">
+            <Link to="/contact" className="hs-cta-button" data-testid="head-spa-cta-button">
               {content.ctaButton}
             </Link>
           </div>
