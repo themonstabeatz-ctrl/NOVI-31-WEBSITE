@@ -118,7 +118,7 @@
   border-radius: 16px;
   background: rgba(245, 242, 235, 0.97);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ========== PREDNJA STRANA ========== */
