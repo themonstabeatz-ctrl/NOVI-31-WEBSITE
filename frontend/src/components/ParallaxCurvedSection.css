@@ -6,9 +6,9 @@
 .blParallaxSection {
   position: relative;
   width: 100%;
-  min-height: 850px;
+  min-height: 950px;
   overflow: hidden;
-  padding: 140px 0 160px 0;
+  padding: 0;
 }
 
 /* SVG Wrapper sa parallax efektom */
@@ -33,9 +33,9 @@
   stroke-linecap: round;
 }
 
-/* Tamno siva ispuna između linija */
+/* Tamno siva ispuna između linija - BEZ FILTERA */
 .blCurveFill {
-  fill: rgba(18, 18, 18, 0.94);
+  fill: #1a1a1a;
 }
 
 /* Sadržaj sekcije - kartice unutar krivih linija */
@@ -44,24 +44,28 @@
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 80px 20px 100px 20px;
   text-align: center;
 }
 
+/* Naslov fiksan na vrhu sekcije */
 .blParallaxTitle {
   color: rgba(212, 175, 55, 0.95);
   font-size: 2.5rem;
   font-weight: 300;
   letter-spacing: 0.05em;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 10;
 }
 
-/* Grid za kartice - 3 kolone */
+/* Grid za kartice - 3 kolone, spuštene niže */
 .blCardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
+  margin-top: 20px;
 }
 
 @media (max-width: 1024px) {
@@ -80,8 +84,7 @@
   }
   
   .blParallaxSection {
-    padding: 100px 0 120px 0;
-    min-height: 700px;
+    min-height: 800px;
   }
 }
 
@@ -218,6 +221,7 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  pointer-events: auto;
 }
 
 .blDetailsBtn:hover {
@@ -238,6 +242,7 @@
 .blBackContent {
   padding: 30px 25px;
   text-align: center;
+  pointer-events: auto;
 }
 
 .blBackTitle {
@@ -255,7 +260,7 @@
   margin-bottom: 28px;
 }
 
-/* Dugme "NAZAD" */
+/* Dugme "NAZAD" - POPRAVLJEN pointer-events */
 .blBackBtn {
   background: rgba(212, 175, 55, 0.15);
   border: 1px solid rgba(212, 175, 55, 0.5);
@@ -268,6 +273,9 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  pointer-events: auto;
+  position: relative;
+  z-index: 100;
 }
 
 .blBackBtn:hover {
