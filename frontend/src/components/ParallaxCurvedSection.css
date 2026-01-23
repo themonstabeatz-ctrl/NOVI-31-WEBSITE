@@ -109,6 +109,15 @@
   transform: rotateY(180deg);
 }
 
+/* Kada je kartica flipovana, omogući klik na poleđinu */
+.blFlipCard.isFlipped .blBack {
+  pointer-events: auto;
+}
+
+.blFlipCard.isFlipped .blFront {
+  pointer-events: none;
+}
+
 /* Zajednički stil za obe strane kartice */
 .blFlipFace {
   position: absolute;
