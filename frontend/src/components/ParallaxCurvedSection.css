@@ -240,7 +240,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: auto;
 }
 
 .blBackContent {
@@ -276,9 +275,6 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  pointer-events: auto;
-  position: relative;
-  z-index: 100;
 }
 
 .blBackBtn:hover {
