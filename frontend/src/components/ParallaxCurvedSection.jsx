@@ -21,7 +21,6 @@ function useParallax(offset = 18) {
 // FlipServiceCard komponenta - HOVER flip behavior
 function FlipServiceCard({ card, animationClass }) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const cardRef = useRef(null);
 
   // Kada kursor napusti karticu, vraća se na prednju stranu
   const handleMouseLeave = () => {
@@ -37,7 +36,6 @@ function FlipServiceCard({ card, animationClass }) {
 
   return (
     <div 
-      ref={cardRef}
       className={`blFlipCard ${isFlipped ? "isFlipped" : ""} ${animationClass}`}
       onMouseLeave={handleMouseLeave}
     >
@@ -87,43 +85,37 @@ function FlipServiceCard({ card, animationClass }) {
 export default function ParallaxCurvedSection({ title, cards = [] }) {
   const parY = useParallax(22);
   const clipId = useMemo(() => `clip-${Math.random().toString(36).slice(2)}`, []);
-  const [visibleCards, setVisibleCards] = useState({});
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Intersection Observer za slide-in animacije
+  // Intersection Observer za aktiviranje animacija kada sekcija uđe u viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const cardId = entry.target.dataset.cardId;
-            if (cardId) {
-              setVisibleCards((prev) => ({ ...prev, [cardId]: true }));
-            }
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.1 }
     );
 
-    const cardElements = document.querySelectorAll('.blFlipCard');
-    cardElements.forEach((card) => observer.observe(card));
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => observer.disconnect();
-  }, [cards]);
+  }, []);
 
   // Određivanje animacije za svaku karticu
-  const getAnimationClass = (index, isVisible) => {
+  // Gornji red: 0=levo, 1=dole, 2=desno
+  // Donji red: 3=levo, 4=dole, 5=desno
+  const getAnimationClass = (index) => {
     if (!isVisible) return "blCardHidden";
     
-    // Gornji red: 0, 1, 2
-    // Donji red: 3, 4, 5
-    if (index === 0) return "blSlideFromLeft";
-    if (index === 2) return "blSlideFromRight";
-    if (index === 1) return "blSlideFromBottom";
-    if (index === 3) return "blSlideFromLeft";
-    if (index === 5) return "blSlideFromRight";
-    if (index === 4) return "blSlideFromBottom";
+    if (index === 0 || index === 3) return "blSlideFromLeft";
+    if (index === 2 || index === 5) return "blSlideFromRight";
     return "blSlideFromBottom";
   };
 
@@ -163,10 +155,10 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
 
         <div className="blCardGrid">
           {cards.map((card, index) => (
-            <div key={card.id} data-card-id={card.id}>
+            <div key={card.id}>
               <FlipServiceCard 
                 card={card} 
-                animationClass={getAnimationClass(index, visibleCards[card.id])}
+                animationClass={getAnimationClass(index)}
               />
             </div>
           ))}
