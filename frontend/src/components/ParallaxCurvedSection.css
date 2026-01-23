@@ -95,28 +95,31 @@
 
 /* ========================================
    SLIDE-IN ANIMACIJE ZA KARTICE
-   Sporije i glatke animacije
+   Fade in + sporije animacije
    ======================================== */
 
 /* Početno stanje - skrivene kartice */
 .blCardHidden {
   opacity: 0;
-  transform: translateX(-120px);
+  transform: translateX(-150px);
   transition: none;
 }
 
-/* Slide from left - SPORIJE */
+/* Slide from left - SA FADE IN, JOŠ SPORIJE */
 .blSlideFromLeft {
-  animation: slideFromLeft 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: slideFromLeft 2.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slideFromLeft {
   0% {
     opacity: 0;
-    transform: translateX(-150px);
+    transform: translateX(-200px);
   }
-  30% {
-    opacity: 0.3;
+  20% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
@@ -124,18 +127,21 @@
   }
 }
 
-/* Slide from right - SPORIJE */
+/* Slide from right - SA FADE IN, JOŠ SPORIJE */
 .blSlideFromRight {
-  animation: slideFromRight 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: slideFromRight 2.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slideFromRight {
   0% {
     opacity: 0;
-    transform: translateX(150px);
+    transform: translateX(200px);
   }
-  30% {
-    opacity: 0.3;
+  20% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
@@ -143,18 +149,21 @@
   }
 }
 
-/* Slide from bottom - SPORIJE */
+/* Slide from bottom - SA FADE IN, JOŠ SPORIJE */
 .blSlideFromBottom {
-  animation: slideFromBottom 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: slideFromBottom 2.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slideFromBottom {
   0% {
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(150px);
   }
-  30% {
-    opacity: 0.3;
+  20% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
@@ -169,23 +178,23 @@
 
 .blCardGrid > div:nth-child(2) .blSlideFromLeft,
 .blCardGrid > div:nth-child(2) .blSlideFromRight,
-.blCardGrid > div:nth-child(2) .blSlideFromBottom { animation-delay: 0.3s; }
+.blCardGrid > div:nth-child(2) .blSlideFromBottom { animation-delay: 0.4s; }
 
 .blCardGrid > div:nth-child(3) .blSlideFromLeft,
 .blCardGrid > div:nth-child(3) .blSlideFromRight,
-.blCardGrid > div:nth-child(3) .blSlideFromBottom { animation-delay: 0.6s; }
+.blCardGrid > div:nth-child(3) .blSlideFromBottom { animation-delay: 0.8s; }
 
 .blCardGrid > div:nth-child(4) .blSlideFromLeft,
 .blCardGrid > div:nth-child(4) .blSlideFromRight,
-.blCardGrid > div:nth-child(4) .blSlideFromBottom { animation-delay: 0.9s; }
+.blCardGrid > div:nth-child(4) .blSlideFromBottom { animation-delay: 1.2s; }
 
 .blCardGrid > div:nth-child(5) .blSlideFromLeft,
 .blCardGrid > div:nth-child(5) .blSlideFromRight,
-.blCardGrid > div:nth-child(5) .blSlideFromBottom { animation-delay: 1.2s; }
+.blCardGrid > div:nth-child(5) .blSlideFromBottom { animation-delay: 1.6s; }
 
 .blCardGrid > div:nth-child(6) .blSlideFromLeft,
 .blCardGrid > div:nth-child(6) .blSlideFromRight,
-.blCardGrid > div:nth-child(6) .blSlideFromBottom { animation-delay: 1.5s; }
+.blCardGrid > div:nth-child(6) .blSlideFromBottom { animation-delay: 2s; }
 
 /* ========================================
    FLIP CARD STILOVI
