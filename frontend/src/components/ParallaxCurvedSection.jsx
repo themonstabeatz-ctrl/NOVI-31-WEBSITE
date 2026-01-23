@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useState, useRef } from "react";
 import "./ParallaxCurvedSection.css";
 
 /* SVG Path koordinate za krive linije
-   GORNJA: konkavna nadole ("frown")
+   GORNJA: konkavna nadole ("frown") - spuštena
    DONJA: konkavna nadole - blizu sekcije Tok tretmana */
-const TOP_PATH = "M0,50 Q720,180 1440,30";
-const BOTTOM_PATH = "M0,1150 Q720,1280 1440,1130";
+const TOP_PATH = "M0,150 Q720,280 1440,130";
+const BOTTOM_PATH = "M0,1250 Q720,1380 1440,1230";
 
 function useParallax(offset = 18) {
   const [y, setY] = useState(0);
