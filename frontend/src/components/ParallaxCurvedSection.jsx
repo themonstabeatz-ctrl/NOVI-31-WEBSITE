@@ -19,8 +19,16 @@ function useParallax(offset = 18) {
 }
 
 // FlipServiceCard komponenta - HOVER flip behavior
-function FlipServiceCard({ card, isVisible, animationDirection }) {
+function FlipServiceCard({ card, isVisible, animationDirection, delay }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  // Kada kartica postane vidljiva, pokreni animaciju
+  useEffect(() => {
+    if (isVisible && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isVisible, hasAnimated]);
 
   // Kada kursor napusti karticu, vraća se na prednju stranu
   const handleMouseLeave = () => {
@@ -34,19 +42,20 @@ function FlipServiceCard({ card, isVisible, animationDirection }) {
     setIsFlipped(true);
   };
 
-  // Dinamička klasa za animaciju
-  const animClass = isVisible ? `blSlide${animationDirection}` : "blCardHidden";
+  // Klasa za animaciju - svi počinju skriveni dok ne postanu vidljivi
+  const animClass = hasAnimated ? `blAnimate${animationDirection}` : "blCardInitial";
 
   return (
     <div 
       className={`blFlipCard ${isFlipped ? "isFlipped" : ""} ${animClass}`}
+      style={{ animationDelay: `${delay}s` }}
       onMouseLeave={handleMouseLeave}
     >
       <div className="blFlipInner">
         {/* FRONT */}
         <div className="blFlipFace blFront">
           <div className="blCardImage">
-            <img src={card.image} alt={card.title} />
+            <img src={card.image} alt={card.title} loading="lazy" />
           </div>
           <div className="blCardContent">
             <div className="blCardHeader">
@@ -91,7 +100,7 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
   const [cardVisibility, setCardVisibility] = useState({});
   const cardRefs = useRef([]);
 
-  // Intersection Observer za svaku karticu - radi pri scroll gore i dole
+  // Intersection Observer za svaku karticu
   useEffect(() => {
     const observers = [];
     
@@ -101,13 +110,15 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            setCardVisibility(prev => ({
-              ...prev,
-              [index]: entry.isIntersecting
-            }));
+            if (entry.isIntersecting) {
+              setCardVisibility(prev => ({
+                ...prev,
+                [index]: true
+              }));
+            }
           });
         },
-        { threshold: 0.15, rootMargin: "-50px 0px" }
+        { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
       );
       
       observer.observe(ref);
@@ -117,13 +128,15 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
     return () => observers.forEach(obs => obs.disconnect());
   }, [cards]);
 
-  // Određivanje smera animacije za svaku karticu
-  // Gornji red: 0=levo, 1=dole, 2=desno
-  // Donji red: 3=levo, 4=dole, 5=desno
+  // Određivanje smera animacije i delay-a za svaku karticu
   const getAnimationDirection = (index) => {
     if (index === 0 || index === 3) return "FromLeft";
     if (index === 2 || index === 5) return "FromRight";
     return "FromBottom";
+  };
+
+  const getDelay = (index) => {
+    return index * 0.2;
   };
 
   return (
@@ -166,12 +179,12 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
               key={card.id} 
               ref={el => cardRefs.current[index] = el}
               className="blCardWrapper"
-              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <FlipServiceCard 
                 card={card} 
                 isVisible={cardVisibility[index]}
                 animationDirection={getAnimationDirection(index)}
+                delay={getDelay(index)}
               />
             </div>
           ))}
