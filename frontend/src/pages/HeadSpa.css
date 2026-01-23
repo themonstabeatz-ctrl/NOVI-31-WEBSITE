@@ -373,6 +373,8 @@
 /* ========== CONCERNS SECTION ========== */
 .hs-concerns {
   background: var(--hs-dark);
+  position: relative;
+  overflow: hidden;
 }
 
 .hs-concerns-grid {
@@ -412,6 +414,8 @@
 /* ========== BENEFITS SECTION ========== */
 .hs-benefits {
   background: linear-gradient(180deg, var(--hs-dark-card) 0%, var(--hs-dark) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
 .hs-benefits-grid {
