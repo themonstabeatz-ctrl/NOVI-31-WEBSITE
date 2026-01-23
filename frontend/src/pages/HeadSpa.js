@@ -360,6 +360,8 @@ const HeadSpa = () => {
   const content = headSpaContent[currentLanguage] || headSpaContent.sr;
   const [isVisible, setIsVisible] = useState({});
   const [heroOpacity, setHeroOpacity] = useState(1);
+  const [introVisible, setIntroVisible] = useState(false);
+  const introRef = useRef(null);
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -378,6 +380,26 @@ const HeadSpa = () => {
 
     const sections = document.querySelectorAll(".hs-animate");
     sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Intersection Observer za "Više od nege kose" sekciju
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIntroVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (introRef.current) {
+      observer.observe(introRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);
