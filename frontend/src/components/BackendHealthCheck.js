@@ -96,7 +96,7 @@ const BackendHealthCheck = ({ children }) => {
     };
 
     checkBackendHealth();
-  }, [retryCount]);
+  }, [retryCount, isHeadSpaPage]);
 
   // Dok se proverava
   if (status === 'checking') {
