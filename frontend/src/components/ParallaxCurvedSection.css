@@ -95,6 +95,7 @@
 .blFlipCard {
   perspective: 1200px;
   height: 420px;
+  pointer-events: auto;
 }
 
 .blFlipInner {
@@ -103,19 +104,11 @@
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: auto;
 }
 
 .blFlipCard.isFlipped .blFlipInner {
   transform: rotateY(180deg);
-}
-
-/* Kada je kartica flipovana, omogući klik na poleđinu */
-.blFlipCard.isFlipped .blBack {
-  pointer-events: auto;
-}
-
-.blFlipCard.isFlipped .blFront {
-  pointer-events: none;
 }
 
 /* Zajednički stil za obe strane kartice */
@@ -128,6 +121,7 @@
   background: rgba(245, 242, 235, 0.97);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   overflow: visible;
+  pointer-events: auto;
 }
 
 /* ========== PREDNJA STRANA ========== */
