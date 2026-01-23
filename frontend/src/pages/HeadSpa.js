@@ -467,14 +467,14 @@ const HeadSpa = () => {
           </div>
         </section>
 
-        {/* INTRO PARALLAX SECTION - "Više od nege kose" */}
-        <section id="hs-intro-parallax" className="hs-intro-parallax">
+        {/* INTRO PARALLAX SECTION - "Više od nege kose" sa slide-in efektom */}
+        <section id="hs-intro-parallax" className="hs-intro-parallax" ref={introRef}>
           <div className="hs-intro-wave-top" aria-hidden="true"></div>
           <div className="hs-intro-wave-top-stroke" aria-hidden="true"></div>
           
-          <div className="hs-intro-content">
-            <h2 className="hs-intro-title">{content.introTitle}</h2>
-            <p className="hs-intro-text">{content.introText}</p>
+          <div className={`hs-intro-content ${introVisible ? 'hs-intro-visible' : ''}`}>
+            <h2 className={`hs-intro-title ${introVisible ? 'hs-slide-in-title' : ''}`}>{content.introTitle}</h2>
+            <p className={`hs-intro-text ${introVisible ? 'hs-slide-in-text' : ''}`}>{content.introText}</p>
           </div>
           
           <div className="hs-intro-wave-bottom" aria-hidden="true"></div>
