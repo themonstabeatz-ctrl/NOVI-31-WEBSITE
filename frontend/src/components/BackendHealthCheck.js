@@ -27,6 +27,8 @@ async function safeJson(res) {
  * Ako backend nije dostupan, prikazuje jasnu poruku umesto da se app raspadne.
  * 
  * LOCKED TO: https://spa-system-fixes.preview.emergentagent.com
+ * 
+ * BYPASS: Head Spa stranica ne zavisi od backend-a
  */
 const BackendHealthCheck = ({ children }) => {
   const [status, setStatus] = useState('checking'); // 'checking', 'healthy', 'error'
@@ -34,8 +36,17 @@ const BackendHealthCheck = ({ children }) => {
   const [errorDetails, setErrorDetails] = useState({ statusCode: null, responseText: null });
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 3;
-
+  
+  // BYPASS: Head Spa stranica ne zavisi od backend-a
+  const isHeadSpaPage = typeof window !== 'undefined' && window.location.pathname === '/head-spa';
+  
   useEffect(() => {
+    // Bypass health check za Head Spa
+    if (isHeadSpaPage) {
+      console.log("🔓 [BackendHealthCheck] Bypass for Head Spa page");
+      setStatus('healthy');
+      return;
+    }
     const checkBackendHealth = async (attempt = 1) => {
       const BACKEND_URL = API_BASE;
       
