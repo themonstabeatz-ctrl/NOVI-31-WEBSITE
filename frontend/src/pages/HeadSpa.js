@@ -485,6 +485,13 @@ const HeadSpa = () => {
 
         {/* BENEFITS SECTION */}
         <section id="hs-benefits" className="hs-section hs-benefits hs-animate">
+          {/* DONJA zlatna parallax linija */}
+          <ParallaxCurveLines
+            variant="original"
+            top={-20}
+            strokeWidth={2}
+            zIndex={3}
+          />
           <div className={`hs-container ${isVisible["hs-benefits"] ? "hs-visible" : ""}`}>
             <h2 className="hs-section-title">{content.benefitsTitle}</h2>
             <div className="hs-benefits-grid">
