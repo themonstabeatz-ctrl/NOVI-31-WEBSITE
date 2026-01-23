@@ -33,9 +33,9 @@
   stroke-linecap: round;
 }
 
-/* Tamno siva ispuna između linija */
+/* Tamno siva ispuna između linija - kao "Više od nege kose" */
 .blCurveFill {
-  fill: #1a1a1a;
+  fill: #0a0a0a;
 }
 
 /* Sadržaj sekcije - spušten za 20% */
