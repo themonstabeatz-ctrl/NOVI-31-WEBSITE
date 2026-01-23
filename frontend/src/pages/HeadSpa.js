@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import ParallaxCurveLines from "../components/ParallaxCurveLines";
 import "./HeadSpa.css";
 
 // Head Spa content translations
