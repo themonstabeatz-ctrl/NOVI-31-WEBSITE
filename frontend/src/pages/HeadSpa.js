@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import ParallaxCurvedSection from "../components/ParallaxCurvedSection";
 import "./HeadSpa.css";
 
-// Head Spa slike
+// Head Spa slike - žene i devojke (free to use from Unsplash/Pexels)
 const CARD_IMAGES = {
-  headCare: "https://images.unsplash.com/photo-1740035680800-d5270855c68d?w=600&q=80",
-  headMassage: "https://images.unsplash.com/photo-1542848285-4777eb2a621e?w=600&q=80",
-  holisticSpa: "https://images.unsplash.com/photo-1722351153083-e32ff83a0c8a?w=600&q=80",
-  detox: "https://images.unsplash.com/photo-1666864694143-b43c8f1b8c66?w=600&q=80",
-  relaxation: "https://images.pexels.com/photos/35176574/pexels-photo-35176574.jpeg?w=600",
-  premium: "https://images.pexels.com/photos/33380403/pexels-photo-33380403.jpeg?w=600"
+  headCare: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&q=80",
+  headMassage: "https://images.unsplash.com/photo-1706795034830-de41aee06afa?w=600&q=80",
+  holisticSpa: "https://images.unsplash.com/photo-1737215398544-94db22a53a01?w=600&q=80",
+  detox: "https://images.unsplash.com/photo-1722351153083-e32ff83a0c8a?w=600&q=80",
+  relaxation: "https://images.pexels.com/photos/35176569/pexels-photo-35176569.jpeg?w=600",
+  premium: "https://images.pexels.com/photos/35176574/pexels-photo-35176574.jpeg?w=600"
 };
 
 // Head Spa content translations
