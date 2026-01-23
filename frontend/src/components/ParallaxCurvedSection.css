@@ -38,13 +38,13 @@
   fill: #0a0a0a;
 }
 
-/* Sadržaj sekcije - spušten */
+/* Sadržaj sekcije - spušten sa većim razmakom */
 .blParallaxInner {
   position: relative;
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 220px 20px 160px 20px;
+  padding: 320px 20px 180px 20px;
   text-align: center;
 }
 
