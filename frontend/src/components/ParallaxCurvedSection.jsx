@@ -3,9 +3,9 @@ import "./ParallaxCurvedSection.css";
 
 /* SVG Path koordinate za krive linije
    GORNJA: konkavna nadole ("frown")
-   DONJA: konkavna nadole - spuštena dodatno za 30% */
+   DONJA: konkavna nadole - spuštena dodatno za 60% ukupno */
 const TOP_PATH = "M0,50 Q720,180 1440,30";
-const BOTTOM_PATH = "M0,920 Q720,1050 1440,900";
+const BOTTOM_PATH = "M0,1050 Q720,1180 1440,1030";
 
 function useParallax(offset = 18) {
   const [y, setY] = useState(0);
