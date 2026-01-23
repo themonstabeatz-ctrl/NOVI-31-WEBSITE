@@ -97,8 +97,10 @@
    SLIDE-IN ANIMACIJE ZA KARTICE
    ======================================== */
 
+/* Početno stanje - skrivene kartice */
 .blCardHidden {
   opacity: 0;
+  transform: translateY(50px);
 }
 
 /* Slide from left */
@@ -109,7 +111,7 @@
 @keyframes slideFromLeft {
   from {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-80px);
   }
   to {
     opacity: 1;
@@ -125,7 +127,7 @@
 @keyframes slideFromRight {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(80px);
   }
   to {
     opacity: 1;
@@ -141,7 +143,7 @@
 @keyframes slideFromBottom {
   from {
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(60px);
   }
   to {
     opacity: 1;
@@ -150,12 +152,29 @@
 }
 
 /* Stagger animacije za kartice */
-.blCardGrid > div:nth-child(1) .blFlipCard { animation-delay: 0.1s; }
-.blCardGrid > div:nth-child(2) .blFlipCard { animation-delay: 0.2s; }
-.blCardGrid > div:nth-child(3) .blFlipCard { animation-delay: 0.3s; }
-.blCardGrid > div:nth-child(4) .blFlipCard { animation-delay: 0.4s; }
-.blCardGrid > div:nth-child(5) .blFlipCard { animation-delay: 0.5s; }
-.blCardGrid > div:nth-child(6) .blFlipCard { animation-delay: 0.6s; }
+.blCardGrid > div:nth-child(1) .blSlideFromLeft,
+.blCardGrid > div:nth-child(1) .blSlideFromRight,
+.blCardGrid > div:nth-child(1) .blSlideFromBottom { animation-delay: 0.1s; }
+
+.blCardGrid > div:nth-child(2) .blSlideFromLeft,
+.blCardGrid > div:nth-child(2) .blSlideFromRight,
+.blCardGrid > div:nth-child(2) .blSlideFromBottom { animation-delay: 0.25s; }
+
+.blCardGrid > div:nth-child(3) .blSlideFromLeft,
+.blCardGrid > div:nth-child(3) .blSlideFromRight,
+.blCardGrid > div:nth-child(3) .blSlideFromBottom { animation-delay: 0.4s; }
+
+.blCardGrid > div:nth-child(4) .blSlideFromLeft,
+.blCardGrid > div:nth-child(4) .blSlideFromRight,
+.blCardGrid > div:nth-child(4) .blSlideFromBottom { animation-delay: 0.55s; }
+
+.blCardGrid > div:nth-child(5) .blSlideFromLeft,
+.blCardGrid > div:nth-child(5) .blSlideFromRight,
+.blCardGrid > div:nth-child(5) .blSlideFromBottom { animation-delay: 0.7s; }
+
+.blCardGrid > div:nth-child(6) .blSlideFromLeft,
+.blCardGrid > div:nth-child(6) .blSlideFromRight,
+.blCardGrid > div:nth-child(6) .blSlideFromBottom { animation-delay: 0.85s; }
 
 /* ========================================
    FLIP CARD STILOVI
