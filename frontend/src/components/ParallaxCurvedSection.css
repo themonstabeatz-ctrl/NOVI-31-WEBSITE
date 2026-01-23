@@ -223,6 +223,7 @@
   perspective: 1200px;
   height: 420px;
   pointer-events: auto;
+  transform-style: preserve-3d;
 }
 
 .blFlipInner {
