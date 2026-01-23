@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./ParallaxCurvedSection.css";
 
-/* SVG Path koordinate za krive linije - bazirano na referentnoj slici
-   GORNJA: konkavna (otvorena nagore) - počinje nisko levo, penje se u sredini, završava visoko desno
-   DONJA: konveksna (otvorena nadole) - počinje nisko levo, penje se do kraja desno */
-const TOP_PATH = "M0,180 Q360,40 720,100 T1440,60";
-const BOTTOM_PATH = "M0,320 Q360,380 720,340 T1440,400";
+/* SVG Path koordinate za krive linije - TAČNO prema referentnoj slici
+   GORNJA: konkavna nadole ("frown") - počinje srednje levo, spušta se u sredinu (najniža tačka), završava srednje desno
+   DONJA: konveksna nagore - počinje nisko levo i diže se ka visoko desno */
+const TOP_PATH = "M0,80 Q720,220 1440,60";
+const BOTTOM_PATH = "M0,580 Q720,420 1440,620";
 
 function useParallax(offset = 18) {
   const [y, setY] = useState(0);
