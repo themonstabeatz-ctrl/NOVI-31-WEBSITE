@@ -1,9 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import ParallaxCurvedSection from "../components/ParallaxCurvedSection";
 import "./HeadSpa.css";
+
+// Head Spa slike
+const CARD_IMAGES = {
+  headCare: "https://images.unsplash.com/photo-1740035680800-d5270855c68d?w=600&q=80",
+  headMassage: "https://images.unsplash.com/photo-1542848285-4777eb2a621e?w=600&q=80",
+  holisticSpa: "https://images.unsplash.com/photo-1722351153083-e32ff83a0c8a?w=600&q=80",
+  detox: "https://images.unsplash.com/photo-1666864694143-b43c8f1b8c66?w=600&q=80",
+  relaxation: "https://images.pexels.com/photos/35176574/pexels-photo-35176574.jpeg?w=600",
+  premium: "https://images.pexels.com/photos/33380403/pexels-photo-33380403.jpeg?w=600"
+};
 
 // Head Spa content translations
 const headSpaContent = {
@@ -16,46 +26,58 @@ const headSpaContent = {
     servicesTitle: "Naši tretmani",
     services: [
       {
+        id: "head-care",
+        image: CARD_IMAGES.headCare,
+        title: "Head Care & Wash",
+        price: "3.900 RSD",
+        duration: "30 MIN",
+        shortDesc: "Osvežavajuće pranje i nega temena sa premium šamponima.",
+        fullDesc: "Tretman koji kombinuje dubinsko čišćenje temena sa premium šamponima i regenerativnu masažu. Uklanja nečistoće, višak sebuma i osvežava kožu glave. Idealno kao uvod u Head Spa ili za redovno održavanje."
+      },
+      {
+        id: "head-massage",
+        image: CARD_IMAGES.headMassage,
+        title: "Head Massage",
+        price: "4.500 RSD",
+        duration: "45 MIN",
+        shortDesc: "Relaksirajuća masaža temena za smanjenje stresa.",
+        fullDesc: "Precizna masaža temena i vrata koja otpušta napetost, poboljšava cirkulaciju i smanjuje glavobolje. Koriste se tehnike pritiska na specifične tačke koje stimulišu opuštanje i mentalni reset."
+      },
+      {
+        id: "holistic-spa",
+        image: CARD_IMAGES.holisticSpa,
+        title: "Holistic Head Spa",
+        price: "7.800 RSD",
+        duration: "60 MIN",
+        shortDesc: "Kompletni tretman sa parom, maskom i masažom.",
+        fullDesc: "Naš signature tretman koji uključuje dubinsko čišćenje, parnu terapiju, hranljivu masku i preciznu masažu tačaka pritiska. Rezultat: zdrava koža glave, sjajna kosa i potpuna relaksacija."
+      },
+      {
         id: "detox",
-        icon: "🧴",
-        title: "Detoks temena",
-        shortDesc: "Dubinsko čišćenje i uklanjanje nečistoća",
-        fullDesc: "Tretman dubinskog čišćenja temena koji uklanja sebum, naslage i nečistoće iz pora. Koristi se specijalna formula za detoksikaciju koja osvežava kožu glave i priprema je za dalju negu."
+        image: CARD_IMAGES.detox,
+        title: "Scalp Detox",
+        price: "5.500 RSD",
+        duration: "45 MIN",
+        shortDesc: "Detoksikacija temena i uklanjanje naslaga.",
+        fullDesc: "Specijalizovani tretman za detoksikaciju kože glave. Uklanja nakupljene naslage proizvoda, višak sebuma i nečistoće iz pora. Priprema teme za optimalnu apsorpciju hranljivih materija."
       },
       {
-        id: "circulation",
-        icon: "💆",
-        title: "Bolja cirkulacija",
-        shortDesc: "Masaža koja podstiče protok krvi",
-        fullDesc: "Precizna masaža temena koja podstiče cirkulaciju krvi i može pomoći rastu kose. Tehnike pritiska na specifične tačke stimulišu folikule dlake i poboljšavaju dotok hranljivih materija."
+        id: "relaxation",
+        image: CARD_IMAGES.relaxation,
+        title: "Deep Relaxation",
+        price: "6.500 RSD",
+        duration: "60 MIN",
+        shortDesc: "Duboka relaksacija sa aromaterapijom.",
+        fullDesc: "Tretman fokusiran na maksimalnu relaksaciju. Kombinuje blagotvornu masažu sa aromaterapijom eteričnim uljima. Umiruje nervni sistem, poboljšava san i vraća balans umu i telu."
       },
       {
-        id: "lifting",
-        icon: "✨",
-        title: "Lifting efekat",
-        shortDesc: "Opuštanje i drenaža lica",
-        fullDesc: "Kombinacija masaže i drenaže koja smanjuje nadutost i zateže kožu lica. Rezultat je svežiji, mladalački izgled i osećaj lakoće nakon tretmana."
-      },
-      {
-        id: "hair",
-        icon: "💎",
-        title: "Zdravija kosa",
-        shortDesc: "Hranljive formule za jačanje vlasi",
-        fullDesc: "Primena premium hranljivih formula koje prodiru duboko u strukturu kose. Jačaju vlas od korena, smanjuju pucanje i lomljenje, i vraćaju prirodni sjaj i elastičnost."
-      },
-      {
-        id: "sleep",
-        icon: "😴",
-        title: "Bolji san",
-        shortDesc: "Duboka relaksacija za kvalitetniji odmor",
-        fullDesc: "Tretman duboke relaksacije koji umiruje nervni sistem. Mnogi klijenti primećuju poboljšanje kvaliteta sna već posle prvog tretmana — budite se odmorniji i energičniji."
-      },
-      {
-        id: "mental",
-        icon: "🧘",
-        title: "Mentalni reset",
-        shortDesc: "Aromaterapija i masaža za mir uma",
-        fullDesc: "Kombinacija aromaterapije sa eteričnim uljima i precizne masaže koja vraća mir i fokus. Idealno za osobe pod stresom, sa mentalnim umorom ili potrebom za resetom."
+        id: "premium",
+        image: CARD_IMAGES.premium,
+        title: "Premium Head Spa",
+        price: "9.900 RSD",
+        duration: "90 MIN",
+        shortDesc: "Luksuzni kompletni tretman sa svim dodacima.",
+        fullDesc: "Naš najluksuzniji tretman koji uključuje sve: dubinsko čišćenje, parnu terapiju, premium masku, produženu masažu temena i vrata, aromaterapiju i završnu negu. Ultimativni Head Spa doživljaj."
       }
     ],
     processTitle: "Tok tretmana",
@@ -88,46 +110,58 @@ const headSpaContent = {
     servicesTitle: "Our treatments",
     services: [
       {
+        id: "head-care",
+        image: CARD_IMAGES.headCare,
+        title: "Head Care & Wash",
+        price: "€35",
+        duration: "30 MIN",
+        shortDesc: "Refreshing wash and scalp care with premium shampoos.",
+        fullDesc: "Treatment combining deep scalp cleansing with premium shampoos and regenerative massage. Removes impurities, excess sebum and refreshes the scalp. Ideal as an introduction to Head Spa or for regular maintenance."
+      },
+      {
+        id: "head-massage",
+        image: CARD_IMAGES.headMassage,
+        title: "Head Massage",
+        price: "€40",
+        duration: "45 MIN",
+        shortDesc: "Relaxing scalp massage to reduce stress.",
+        fullDesc: "Precise scalp and neck massage that releases tension, improves circulation and reduces headaches. Pressure point techniques stimulate relaxation and mental reset."
+      },
+      {
+        id: "holistic-spa",
+        image: CARD_IMAGES.holisticSpa,
+        title: "Holistic Head Spa",
+        price: "€70",
+        duration: "60 MIN",
+        shortDesc: "Complete treatment with steam, mask and massage.",
+        fullDesc: "Our signature treatment including deep cleansing, steam therapy, nourishing mask and precise pressure point massage. Result: healthy scalp, shiny hair and complete relaxation."
+      },
+      {
         id: "detox",
-        icon: "🧴",
+        image: CARD_IMAGES.detox,
         title: "Scalp Detox",
-        shortDesc: "Deep cleansing and impurity removal",
-        fullDesc: "Deep scalp cleansing treatment that removes sebum, buildup, and impurities from pores. Uses a special detox formula that refreshes the scalp and prepares it for further care."
+        price: "€50",
+        duration: "45 MIN",
+        shortDesc: "Scalp detoxification and buildup removal.",
+        fullDesc: "Specialized treatment for scalp detoxification. Removes accumulated product buildup, excess sebum and pore impurities. Prepares scalp for optimal nutrient absorption."
       },
       {
-        id: "circulation",
-        icon: "💆",
-        title: "Better Circulation",
-        shortDesc: "Massage that stimulates blood flow",
-        fullDesc: "Precise scalp massage that stimulates blood circulation and can help hair growth. Pressure point techniques stimulate hair follicles and improve nutrient delivery."
+        id: "relaxation",
+        image: CARD_IMAGES.relaxation,
+        title: "Deep Relaxation",
+        price: "€60",
+        duration: "60 MIN",
+        shortDesc: "Deep relaxation with aromatherapy.",
+        fullDesc: "Treatment focused on maximum relaxation. Combines soothing massage with essential oil aromatherapy. Calms the nervous system, improves sleep and restores balance."
       },
       {
-        id: "lifting",
-        icon: "✨",
-        title: "Lifting Effect",
-        shortDesc: "Relaxation and facial drainage",
-        fullDesc: "Combination of massage and drainage that reduces puffiness and tightens facial skin. The result is a fresher, more youthful appearance and a feeling of lightness after treatment."
-      },
-      {
-        id: "hair",
-        icon: "💎",
-        title: "Healthier Hair",
-        shortDesc: "Nourishing formulas to strengthen hair",
-        fullDesc: "Application of premium nourishing formulas that penetrate deep into hair structure. Strengthens hair from the root, reduces breakage and splitting, and restores natural shine and elasticity."
-      },
-      {
-        id: "sleep",
-        icon: "😴",
-        title: "Better Sleep",
-        shortDesc: "Deep relaxation for better rest",
-        fullDesc: "Deep relaxation treatment that calms the nervous system. Many clients notice improved sleep quality after just the first treatment — wake up more rested and energized."
-      },
-      {
-        id: "mental",
-        icon: "🧘",
-        title: "Mental Reset",
-        shortDesc: "Aromatherapy and massage for peace of mind",
-        fullDesc: "Combination of aromatherapy with essential oils and precise massage that restores peace and focus. Ideal for people under stress, with mental fatigue, or in need of a reset."
+        id: "premium",
+        image: CARD_IMAGES.premium,
+        title: "Premium Head Spa",
+        price: "€90",
+        duration: "90 MIN",
+        shortDesc: "Luxurious complete treatment with all extras.",
+        fullDesc: "Our most luxurious treatment including everything: deep cleansing, steam therapy, premium mask, extended scalp and neck massage, aromatherapy and finishing care. The ultimate Head Spa experience."
       }
     ],
     processTitle: "Treatment Process",
@@ -156,144 +190,168 @@ const headSpaContent = {
     heroSubtitle: "в Bua Luang Thai Spa",
     heroTagline: "Ритуал, который пробуждает кожу головы, питает волосы и возвращает покой телу.",
     introTitle: "Больше, чем уход за волосами",
-    introText: "Bua Luang Head Spa — это больше, чем уход за волосами — это роскошная перезагрузка для кожи головы, шеи и разума. Мы сочетаем глубокое очищение кожи головы, паровую терапию и точечный массаж для снятия напряжения, освежения кожи головы и стимуляции роста волос. Для женщин и мужчин.",
+    introText: "Bua Luang Head Spa — это больше, чем уход за волосами — это роскошная перезагрузка для кожи головы, шеи и разума.",
     servicesTitle: "Наши процедуры",
     services: [
       {
+        id: "head-care",
+        image: CARD_IMAGES.headCare,
+        title: "Head Care & Wash",
+        price: "3.900 RSD",
+        duration: "30 МИН",
+        shortDesc: "Освежающее мытье и уход с премиальными шампунями.",
+        fullDesc: "Процедура глубокого очищения кожи головы с премиальными шампунями и восстанавливающим массажем."
+      },
+      {
+        id: "head-massage",
+        image: CARD_IMAGES.headMassage,
+        title: "Head Massage",
+        price: "4.500 RSD",
+        duration: "45 МИН",
+        shortDesc: "Расслабляющий массаж для снятия стресса.",
+        fullDesc: "Точный массаж кожи головы и шеи, снимающий напряжение и улучшающий кровообращение."
+      },
+      {
+        id: "holistic-spa",
+        image: CARD_IMAGES.holisticSpa,
+        title: "Holistic Head Spa",
+        price: "7.800 RSD",
+        duration: "60 МИН",
+        shortDesc: "Полная процедура с паром, маской и массажем.",
+        fullDesc: "Наша фирменная процедура с глубоким очищением, паровой терапией и массажем точек давления."
+      },
+      {
         id: "detox",
-        icon: "🧴",
-        title: "Детокс кожи головы",
-        shortDesc: "Глубокое очищение и удаление загрязнений",
-        fullDesc: "Процедура глубокого очищения кожи головы, удаляющая себум, отложения и загрязнения из пор. Используется специальная формула детокса, освежающая кожу головы."
+        image: CARD_IMAGES.detox,
+        title: "Scalp Detox",
+        price: "5.500 RSD",
+        duration: "45 МИН",
+        shortDesc: "Детоксикация кожи головы.",
+        fullDesc: "Специализированная процедура детоксикации кожи головы, удаляющая накопления и загрязнения."
       },
       {
-        id: "circulation",
-        icon: "💆",
-        title: "Улучшение кровообращения",
-        shortDesc: "Массаж, стимулирующий кровоток",
-        fullDesc: "Точечный массаж кожи головы, стимулирующий кровообращение и способствующий росту волос. Техники давления стимулируют волосяные фолликулы."
+        id: "relaxation",
+        image: CARD_IMAGES.relaxation,
+        title: "Deep Relaxation",
+        price: "6.500 RSD",
+        duration: "60 МИН",
+        shortDesc: "Глубокое расслабление с ароматерапией.",
+        fullDesc: "Процедура максимального расслабления с массажем и ароматерапией эфирными маслами."
       },
       {
-        id: "lifting",
-        icon: "✨",
-        title: "Лифтинг эффект",
-        shortDesc: "Расслабление и дренаж лица",
-        fullDesc: "Сочетание массажа и дренажа, уменьшающее отечность и подтягивающее кожу лица. Результат — свежий, молодой вид и ощущение легкости."
-      },
-      {
-        id: "hair",
-        icon: "💎",
-        title: "Здоровые волосы",
-        shortDesc: "Питательные формулы для укрепления",
-        fullDesc: "Применение премиальных питательных формул, проникающих глубоко в структуру волос. Укрепляет волосы от корней и возвращает естественный блеск."
-      },
-      {
-        id: "sleep",
-        icon: "😴",
-        title: "Лучший сон",
-        shortDesc: "Глубокое расслабление для отдыха",
-        fullDesc: "Процедура глубокого расслабления, успокаивающая нервную систему. Многие клиенты замечают улучшение качества сна уже после первой процедуры."
-      },
-      {
-        id: "mental",
-        icon: "🧘",
-        title: "Ментальная перезагрузка",
-        shortDesc: "Ароматерапия и массаж для покоя",
-        fullDesc: "Сочетание ароматерапии с эфирными маслами и точечного массажа, возвращающее покой и концентрацию. Идеально для людей в стрессе."
+        id: "premium",
+        image: CARD_IMAGES.premium,
+        title: "Premium Head Spa",
+        price: "9.900 RSD",
+        duration: "90 МИН",
+        shortDesc: "Роскошная полная процедура.",
+        fullDesc: "Наша самая роскошная процедура со всеми дополнениями: очищение, пар, маска, массаж и ароматерапия."
       }
     ],
     processTitle: "Процесс процедуры",
     processSteps: [
       "Массаж шеи, плеч и декольте",
-      "Глубокое очищение и мягкий пилинг кожи головы",
-      "Теплый пар для открытия пор и увлажнения",
-      "Маска + точечный массаж кожи головы",
-      "Финальный уход — мягкость, блеск и легкое расчесывание"
+      "Глубокое очищение и мягкий пилинг",
+      "Теплый пар для открытия пор",
+      "Маска + точечный массаж",
+      "Финальный уход"
     ],
     contraTitle: "Важно",
     contraText: "Процедура не рекомендуется при:",
     contraItems: [
       "Наращенных волосах",
       "Недавнем окрашивании",
-      "Активных инфекциях кожи головы",
-      "Очень чувствительной коже головы",
+      "Активных инфекциях",
+      "Очень чувствительной коже",
       "Беременности",
       "Клаустрофобии"
     ],
     ctaTitle: "Готовы к трансформации?",
-    ctaButton: "Забронировать Head Spa"
+    ctaButton: "Забронировать"
   },
   th: {
     heroTitle: "Japanese Head Spa",
     heroSubtitle: "ที่ Bua Luang Thai Spa",
-    heroTagline: "พิธีกรรมที่ปลุกหนังศีรษะ บำรุงเส้นผม และคืนความสงบให้ร่างกาย",
+    heroTagline: "พิธีกรรมที่ปลุกหนังศีรษะ บำรุงเส้นผม และคืนความสงบ",
     introTitle: "มากกว่าการดูแลผม",
-    introText: "Bua Luang Head Spa เป็นมากกว่าการดูแลผม — เป็นการรีเซ็ตสุดหรูสำหรับหนังศีรษะ คอ และจิตใจ เรารวมการทำความสะอาดหนังศีรษะอย่างล้ำลึก การบำบัดด้วยไอน้ำ และการนวดจุดกดที่แม่นยำ",
+    introText: "Bua Luang Head Spa เป็นมากกว่าการดูแลผม — เป็นการรีเซ็ตสุดหรูสำหรับหนังศีรษะ คอ และจิตใจ",
     servicesTitle: "การรักษาของเรา",
     services: [
       {
+        id: "head-care",
+        image: CARD_IMAGES.headCare,
+        title: "Head Care & Wash",
+        price: "฿1,200",
+        duration: "30 นาที",
+        shortDesc: "ล้างและดูแลด้วยแชมพูพรีเมียม",
+        fullDesc: "การรักษาทำความสะอาดลึกด้วยแชมพูพรีเมียมและนวดฟื้นฟู"
+      },
+      {
+        id: "head-massage",
+        image: CARD_IMAGES.headMassage,
+        title: "Head Massage",
+        price: "฿1,400",
+        duration: "45 นาที",
+        shortDesc: "นวดผ่อนคลายเพื่อลดความเครียด",
+        fullDesc: "นวดหนังศีรษะและคออย่างแม่นยำเพื่อคลายความตึงเครียด"
+      },
+      {
+        id: "holistic-spa",
+        image: CARD_IMAGES.holisticSpa,
+        title: "Holistic Head Spa",
+        price: "฿2,400",
+        duration: "60 นาที",
+        shortDesc: "การรักษาครบครันด้วยไอน้ำ มาส์ก และนวด",
+        fullDesc: "การรักษาเอกลักษณ์ของเรารวมการทำความสะอาดลึก ไอน้ำ และนวดจุดกด"
+      },
+      {
         id: "detox",
-        icon: "🧴",
-        title: "ดีท็อกซ์หนังศีรษะ",
-        shortDesc: "ทำความสะอาดลึกและกำจัดสิ่งสกปรก",
-        fullDesc: "การรักษาทำความสะอาดหนังศีรษะอย่างล้ำลึกที่กำจัดซีบัม สิ่งสะสม และสิ่งสกปรกออกจากรูขุมขน"
+        image: CARD_IMAGES.detox,
+        title: "Scalp Detox",
+        price: "฿1,700",
+        duration: "45 นาที",
+        shortDesc: "ดีท็อกซ์หนังศีรษะ",
+        fullDesc: "การรักษาพิเศษสำหรับดีท็อกซ์หนังศีรษะ กำจัดสิ่งสะสมและสิ่งสกปรก"
       },
       {
-        id: "circulation",
-        icon: "💆",
-        title: "การไหลเวียนที่ดีขึ้น",
-        shortDesc: "นวดกระตุ้นการไหลเวียนเลือด",
-        fullDesc: "การนวดหนังศีรษะที่แม่นยำกระตุ้นการไหลเวียนเลือดและช่วยการเจริญเติบโตของเส้นผม"
+        id: "relaxation",
+        image: CARD_IMAGES.relaxation,
+        title: "Deep Relaxation",
+        price: "฿2,000",
+        duration: "60 นาที",
+        shortDesc: "ผ่อนคลายลึกด้วยอโรมาเธอราพี",
+        fullDesc: "การรักษาผ่อนคลายสูงสุดกับนวดและอโรมาเธอราพี"
       },
       {
-        id: "lifting",
-        icon: "✨",
-        title: "เอฟเฟกต์ยกกระชับ",
-        shortDesc: "ผ่อนคลายและระบายน้ำใบหน้า",
-        fullDesc: "การรวมกันของการนวดและการระบายน้ำที่ลดอาการบวมและกระชับผิวหน้า"
-      },
-      {
-        id: "hair",
-        icon: "💎",
-        title: "ผมที่แข็งแรง",
-        shortDesc: "สูตรบำรุงเพื่อเสริมสร้างเส้นผม",
-        fullDesc: "การใช้สูตรบำรุงพรีเมียมที่ซึมลึกเข้าสู่โครงสร้างเส้นผม เสริมสร้างผมจากราก"
-      },
-      {
-        id: "sleep",
-        icon: "😴",
-        title: "นอนหลับดีขึ้น",
-        shortDesc: "ผ่อนคลายลึกเพื่อการพักผ่อนที่ดี",
-        fullDesc: "การรักษาผ่อนคลายลึกที่สงบระบบประสาท หลายคนสังเกตเห็นคุณภาพการนอนที่ดีขึ้น"
-      },
-      {
-        id: "mental",
-        icon: "🧘",
-        title: "รีเซ็ตจิตใจ",
-        shortDesc: "อโรมาเธอราพีและนวดเพื่อความสงบ",
-        fullDesc: "การรวมกันของอโรมาเธอราพีกับน้ำมันหอมระเหยและการนวดที่แม่นยำคืนความสงบและสมาธิ"
+        id: "premium",
+        image: CARD_IMAGES.premium,
+        title: "Premium Head Spa",
+        price: "฿3,000",
+        duration: "90 นาที",
+        shortDesc: "การรักษาหรูหราครบครัน",
+        fullDesc: "การรักษาหรูหราที่สุดรวมทุกอย่าง: ทำความสะอาด ไอน้ำ มาส์ก นวด และอโรมาเธอราพี"
       }
     ],
     processTitle: "ขั้นตอนการรักษา",
     processSteps: [
       "นวดคอ ไหล่ และหน้าอก",
-      "ทำความสะอาดลึกและขัดผิวหนังศีรษะอ่อนโยน",
-      "ไอน้ำอุ่นเพื่อเปิดรูขุมขนและให้ความชุ่มชื้น",
-      "มาส์ก + นวดหนังศีรษะแม่นยำ",
-      "การดูแลผมขั้นสุดท้าย — นุ่ม เงา และแยกง่าย"
+      "ทำความสะอาดลึกและขัดผิวอ่อนโยน",
+      "ไอน้ำอุ่นเพื่อเปิดรูขุมขน",
+      "มาส์ก + นวดจุดกด",
+      "การดูแลขั้นสุดท้าย"
     ],
     contraTitle: "สำคัญ",
     contraText: "ไม่แนะนำการรักษาหากคุณมี:",
     contraItems: [
       "ต่อผม",
       "ทำสีผมเร็วๆ นี้",
-      "การติดเชื้อหนังศีรษะที่ใช้งานอยู่",
-      "หนังศีรษะที่ไวมาก",
+      "การติดเชื้อ",
+      "หนังศีรษะไวมาก",
       "การตั้งครรภ์",
       "กลัวที่แคบ"
     ],
     ctaTitle: "พร้อมสำหรับการเปลี่ยนแปลง?",
-    ctaButton: "จอง Head Spa"
+    ctaButton: "จอง"
   }
 };
 
