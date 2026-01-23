@@ -3,9 +3,9 @@ import "./ParallaxCurvedSection.css";
 
 /* SVG Path koordinate za krive linije - TAČNO prema referentnoj slici
    GORNJA: konkavna nadole ("frown") - počinje srednje levo, spušta se u sredinu (najniža tačka), završava srednje desno
-   DONJA: konveksna nagore - počinje nisko levo i diže se ka visoko desno */
+   DONJA: konkavna nadole ("frown") - stomak linije ide na dole */
 const TOP_PATH = "M0,50 Q720,180 1440,30";
-const BOTTOM_PATH = "M0,650 Q720,520 1440,680";
+const BOTTOM_PATH = "M0,620 Q720,750 1440,600";
 
 function useParallax(offset = 18) {
   const [y, setY] = useState(0);
@@ -22,7 +22,9 @@ function useParallax(offset = 18) {
 function FlipServiceCard({ card }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleFlip = () => {
+  const handleFlip = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsFlipped(!isFlipped);
   };
 
@@ -45,6 +47,7 @@ function FlipServiceCard({ card }) {
             <p className="blCardDesc">{card.shortDesc}</p>
             <div className="blCardButtons">
               <button 
+                type="button"
                 className="blDetailsBtn"
                 onClick={handleFlip}
                 data-testid={`flip-card-details-${card.id}`}
@@ -61,6 +64,7 @@ function FlipServiceCard({ card }) {
             <h3 className="blBackTitle">{card.title}</h3>
             <p className="blBackDesc">{card.fullDesc}</p>
             <button 
+              type="button"
               className="blBackBtn"
               onClick={handleFlip}
               data-testid={`flip-card-back-${card.id}`}
@@ -82,20 +86,20 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
     <section className="blParallaxSection" data-testid="parallax-curved-section">
       {/* SVG krive linije sa parallax efektom */}
       <div className="blCurveWrap" style={{ transform: `translate3d(0, ${parY}px, 0)` }}>
-        <svg className="blCurveSvg" viewBox="0 0 1440 720" preserveAspectRatio="none">
+        <svg className="blCurveSvg" viewBox="0 0 1440 800" preserveAspectRatio="none">
           <defs>
             {/* ClipPath za ispunu između linija */}
             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-              <path d={`${TOP_PATH} L1440,720 L0,720 Z`} />
+              <path d={`${TOP_PATH} L1440,800 L0,800 Z`} />
             </clipPath>
           </defs>
 
-          {/* Tamno siva ispuna između linija */}
+          {/* Tamno siva ispuna između linija - bez filtera */}
           <rect
             x="0"
             y="0"
             width="1440"
-            height="720"
+            height="800"
             clipPath={`url(#${clipId})`}
             className="blCurveFill"
           />
@@ -103,12 +107,12 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
           {/* Gornja zlatna linija - "frown" shape */}
           <path d={TOP_PATH} className="blCurveLine blCurveTop" />
           
-          {/* Donja zlatna linija - rising from left to right */}
+          {/* Donja zlatna linija - "frown" shape (stomak nadole) */}
           <path d={BOTTOM_PATH} className="blCurveLine blCurveBottom" />
         </svg>
       </div>
 
-      {/* Sadržaj sekcije - kartice unutar krivih linija */}
+      {/* Sadržaj sekcije - naslov fiksan na vrhu, kartice niže */}
       <div className="blParallaxInner">
         {title && <h2 className="blParallaxTitle">{title}</h2>}
 
