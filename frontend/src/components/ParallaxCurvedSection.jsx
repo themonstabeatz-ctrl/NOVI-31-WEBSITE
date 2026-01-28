@@ -21,14 +21,6 @@ function useParallax(offset = 18) {
 // FlipServiceCard komponenta - HOVER flip behavior
 function FlipServiceCard({ card, isVisible, animationDirection, delay }) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  // Kada kartica postane vidljiva, pokreni animaciju
-  useEffect(() => {
-    if (isVisible && !hasAnimated) {
-      setHasAnimated(true);
-    }
-  }, [isVisible, hasAnimated]);
 
   // Kada kursor napusti karticu, vraća se na prednju stranu
   const handleMouseLeave = () => {
@@ -42,8 +34,8 @@ function FlipServiceCard({ card, isVisible, animationDirection, delay }) {
     setIsFlipped(true);
   };
 
-  // Klasa za animaciju - svi počinju skriveni dok ne postanu vidljivi
-  const animClass = hasAnimated ? `blAnimate${animationDirection}` : "blCardInitial";
+  // Klasa za animaciju - animira se svaki put kada postane vidljiva
+  const animClass = isVisible ? `blAnimateFlip${animationDirection}` : "blCardHidden";
 
   return (
     <div 
