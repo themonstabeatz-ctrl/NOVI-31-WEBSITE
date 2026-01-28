@@ -466,14 +466,34 @@ const HeadSpa = () => {
           </div>
         </section>
 
-        {/* INTRO PARALLAX SECTION - "Više od nege kose" sa slide-in efektom */}
+        {/* INTRO PARALLAX SECTION - "Više od nege kose" sa animacijom reči */}
         <section id="hs-intro-parallax" className="hs-intro-parallax" ref={introRef}>
           <div className="hs-intro-wave-top" aria-hidden="true"></div>
           <div className="hs-intro-wave-top-stroke" aria-hidden="true"></div>
           
-          <div className={`hs-intro-content ${introVisible ? 'hs-intro-visible' : ''}`}>
-            <h2 className={`hs-intro-title ${introVisible ? 'hs-slide-in-title' : ''}`}>{content.introTitle}</h2>
-            <p className={`hs-intro-text ${introVisible ? 'hs-slide-in-text' : ''}`}>{content.introText}</p>
+          <div className={`hs-intro-content ${introVisible ? 'hs-intro-visible' : 'hs-intro-hidden'}`}>
+            <h2 className="hs-intro-title">
+              {content.introTitle.split(' ').map((word, index) => (
+                <span 
+                  key={index} 
+                  className={`hs-word ${introVisible ? 'hs-word-visible' : ''}`}
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  {word}&nbsp;
+                </span>
+              ))}
+            </h2>
+            <p className="hs-intro-text">
+              {content.introText.split(' ').map((word, index) => (
+                <span 
+                  key={index} 
+                  className={`hs-word ${introVisible ? 'hs-word-visible' : ''}`}
+                  style={{ animationDelay: `${0.6 + index * 0.03}s` }}
+                >
+                  {word}&nbsp;
+                </span>
+              ))}
+            </p>
           </div>
           
           <div className="hs-intro-wave-bottom" aria-hidden="true"></div>
