@@ -384,14 +384,13 @@ const HeadSpa = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Intersection Observer za "Više od nege kose" sekciju
+  // Intersection Observer za "Više od nege kose" sekciju - radi pri scroll gore i dole
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIntroVisible(true);
-          }
+          // Postavlja true kad uđe, false kad izađe
+          setIntroVisible(entry.isIntersecting);
         });
       },
       { threshold: 0.2 }
