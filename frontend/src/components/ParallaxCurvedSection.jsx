@@ -35,7 +35,7 @@ function FlipServiceCard({ card, isVisible, animationDirection, delay }) {
   };
 
   // Klasa za animaciju - animira se svaki put kada postane vidljiva
-  const animClass = isVisible ? `blAnimateFlip${animationDirection}` : "blCardHidden";
+  const animClass = isVisible ? `blSlideIn${animationDirection}` : "blCardHidden";
 
   return (
     <div 
