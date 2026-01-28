@@ -128,10 +128,16 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
     return () => observers.forEach(obs => obs.disconnect());
   }, [cards]);
 
-  // Određivanje smera animacije i delay-a za svaku karticu
+  // Određivanje smera animacije - kartice ulaze sa svih strana
+  // Kartica 0: odozgo, 1: sa leve strane, 2: odozdo
+  // Kartica 3: odozgo, 4: sa desne strane, 5: odozdo
   const getAnimationDirection = (index) => {
-    if (index === 0 || index === 3) return "FromLeft";
-    if (index === 2 || index === 5) return "FromRight";
+    if (index === 0) return "FromTop";
+    if (index === 1) return "FromLeft";
+    if (index === 2) return "FromBottom";
+    if (index === 3) return "FromTop";
+    if (index === 4) return "FromRight";
+    if (index === 5) return "FromBottom";
     return "FromBottom";
   };
 
