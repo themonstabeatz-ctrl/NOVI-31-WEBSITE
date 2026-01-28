@@ -96,17 +96,34 @@
 
 /* ========================================
    SLIDE-IN ANIMACIJE ZA KARTICE
-   Sve kartice počinju skrivene i ulaze glatko
+   Kartice ulaze sa svih strana (gore, dole, levo, desno)
    ======================================== */
 
 /* Početno stanje - SVE kartice skrivene */
 .blCardInitial {
   opacity: 0;
-  transform: translateX(-150px) rotateY(-40deg) scale(0.85);
+  transform: translateY(-100px) scale(0.9);
   visibility: hidden;
 }
 
-/* Animacija FROM LEFT */
+/* Animacija FROM TOP (odozgo) */
+.blAnimateFromTop {
+  animation: flipFromTop 1.4s ease-out forwards;
+  visibility: visible;
+}
+
+@keyframes flipFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animacija FROM LEFT (sa leve strane) */
 .blAnimateFromLeft {
   animation: flipFromLeft 1.4s ease-out forwards;
   visibility: visible;
@@ -123,7 +140,7 @@
   }
 }
 
-/* Animacija FROM RIGHT */
+/* Animacija FROM RIGHT (sa desne strane) */
 .blAnimateFromRight {
   animation: flipFromRight 1.4s ease-out forwards;
   visibility: visible;
@@ -140,7 +157,7 @@
   }
 }
 
-/* Animacija FROM BOTTOM */
+/* Animacija FROM BOTTOM (odozdo) */
 .blAnimateFromBottom {
   animation: flipFromBottom 1.4s ease-out forwards;
   visibility: visible;
@@ -149,11 +166,11 @@
 @keyframes flipFromBottom {
   0% {
     opacity: 0;
-    transform: translateY(120px) rotateX(30deg) scale(0.85);
+    transform: translateY(120px) scale(0.85);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotateX(0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
