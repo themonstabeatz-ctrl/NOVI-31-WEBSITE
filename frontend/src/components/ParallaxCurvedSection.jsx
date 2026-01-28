@@ -92,7 +92,7 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
   const [cardVisibility, setCardVisibility] = useState({});
   const cardRefs = useRef([]);
 
-  // Intersection Observer za svaku karticu
+  // Intersection Observer za svaku karticu - radi pri scroll gore i dole
   useEffect(() => {
     const observers = [];
     
@@ -102,15 +102,14 @@ export default function ParallaxCurvedSection({ title, cards = [] }) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setCardVisibility(prev => ({
-                ...prev,
-                [index]: true
-              }));
-            }
+            // Postavlja true kad uđe, false kad izađe
+            setCardVisibility(prev => ({
+              ...prev,
+              [index]: entry.isIntersecting
+            }));
           });
         },
-        { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
+        { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
       );
       
       observer.observe(ref);
