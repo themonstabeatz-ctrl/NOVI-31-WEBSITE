@@ -5,13 +5,13 @@ import { useLanguage } from "../context/LanguageContext";
 import ParallaxCurvedSection from "../components/ParallaxCurvedSection";
 import "./HeadSpa.css";
 
-// Head Spa slike - žene i devojke (free to use from Unsplash/Pexels)
+// Head Spa slike - žene i devojke (korisnikove slike)
 const CARD_IMAGES = {
-  headCare: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&q=80",
-  headMassage: "https://images.unsplash.com/photo-1706795034830-de41aee06afa?w=600&q=80",
-  holisticSpa: "https://images.unsplash.com/photo-1737215398544-94db22a53a01?w=600&q=80",
-  detox: "https://images.unsplash.com/photo-1722351153083-e32ff83a0c8a?w=600&q=80",
-  relaxation: "https://images.pexels.com/photos/35176569/pexels-photo-35176569.jpeg?w=600",
+  headCare: "https://customer-assets.emergentagent.com/job_258640de-320b-4835-89c0-93d3d07cf337/artifacts/5tq0zb76_Behandelingen-Headspa-facial-1-2048x1151-1.jpg",
+  headMassage: "https://customer-assets.emergentagent.com/job_258640de-320b-4835-89c0-93d3d07cf337/artifacts/3k9vkgli_vecteezy_head-massage-treatment-in-japanese-spa-with-skilled-hands-of_71594574.jpg",
+  holisticSpa: "https://customer-assets.emergentagent.com/job_258640de-320b-4835-89c0-93d3d07cf337/artifacts/8n5qvvdv_vecteezy_closeup-of-woman-receiving-relaxing-facial-massage-therapy_75798882.jpeg",
+  detox: "https://customer-assets.emergentagent.com/job_258640de-320b-4835-89c0-93d3d07cf337/artifacts/5pdxuokk_vecteezy_relaxing-hydromassage-session-featuring-a-woman-enjoying_71594435.jpg",
+  relaxation: "https://customer-assets.emergentagent.com/job_258640de-320b-4835-89c0-93d3d07cf337/artifacts/t2pr9jtn_ezgi_149-scaled.jpg",
   premium: "https://images.pexels.com/photos/35176574/pexels-photo-35176574.jpeg?w=600"
 };
 
